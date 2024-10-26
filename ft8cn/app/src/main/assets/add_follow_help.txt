@@ -1,0 +1,4 @@
+Manually add a follow call sign<BR>
+  Added follow call sign. You can pre-enter the call sign you want to track.<BR>
+  For example, you can put your friend's call sign into the database in advance, so that when your friend CQs, <BR>
+This program will respond to friends' calls first.
