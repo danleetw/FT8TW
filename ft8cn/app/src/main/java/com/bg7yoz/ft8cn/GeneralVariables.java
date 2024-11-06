@@ -146,11 +146,13 @@ public class GeneralVariables {
     public static int QUERY_FREQ_TIMEOUT = 2000;//轮询频率变化的时间间隔。2秒
     public static int START_QUERY_FREQ_DELAY = 2000;//开始轮询频率的时间延迟
 
-    public static final int DEFAULT_LAUNCH_SUPERVISION = 10 * 60 * 1000;//发射监管默认值,10分钟
+    public static final int DEFAULT_LAUNCH_SUPERVISION = 15 * 60 * 1000;//发射监管默认值,15分钟 因為選項裡面只有15分鐘沒有10分鐘，
     private static String myMaidenheadGrid = "";
     public static MutableLiveData<String> mutableMyMaidenheadGrid = new MutableLiveData<>();
 
     public static int connectMode = ConnectMode.USB_CABLE;//连接方式USB==0,BLUE_TOOTH==1
+	public static String btName = "";		// 藍芽裝置MAC BV6LC
+	public static boolean btListen = false;	// 藍芽監聽中  BV6LC
 
     //public static String bluetoothDeviceAddress=null;//可以用于连接的蓝牙设备地址
 
@@ -579,21 +581,13 @@ public class GeneralVariables {
             return "";
         }
     }
-	
-	// BV6LC
-	public static String getCountryByCallsign(String callsign, DatabaseOpr db) {
-		
-		
+	public static String getCountryByCallsign(String callsign, DatabaseOpr db) { // BV6LC
         String s = callsign.replace("<", "").replace(">", "");
 		// 創建 CallsignDatabase 的實例
-		//CallsignDatabase database = new CallsignDatabase();
-		//CallsignInfo callsignInfo=getCallsignInfo(db,callsign);
 		CallsignInfo callsignInfo =GeneralVariables.callsignDatabase.getCallInfo(callsign);
-		
 		return callsignInfo.CountryNameCN;
 
     }
-	
 
     /**
      * 遍历呼号--网格对应表，生成HTML

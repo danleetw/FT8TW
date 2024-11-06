@@ -32,7 +32,8 @@ public class LaunchSupervisionSpinnerAdapter extends BaseAdapter {
     }
     public static int getTimeOut(int index){
         if (index==0) return 0;
-       return  ((index+1) * 10-5) * 60 * 1000;
+       //return  ((index+1) * 10-5) * 60 * 1000;
+	   return (index * 10 - 5) * 60 * 1000;
     }
 
     @Override

@@ -86,11 +86,8 @@ public class HelpDialog extends Dialog {
         messageTextView = (TextView) findViewById(R.id.helpMessage);
         appNameTextView = (TextView) findViewById(R.id.appNameTextView);
         buildVersionTextView = (TextView) findViewById(R.id.buildVersionTextView);
-        
-		//messageTextView.setText(msg); //BV6LC
 		messageTextView.setText(Html.fromHtml(msg)); //BV6LC
 		messageTextView.setMovementMethod(LinkMovementMethod.getInstance());
-		 
         upImageView = (ImageView) findViewById(R.id.scrollUpImageView);
         downImageView = (ImageView) findViewById(R.id.scrollDownImageView);
         scrollView = (ScrollView) findViewById(R.id.helpScrollView);

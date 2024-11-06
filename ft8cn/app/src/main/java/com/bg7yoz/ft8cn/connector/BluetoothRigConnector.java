@@ -133,7 +133,7 @@ public class BluetoothRigConnector extends BaseRigConnector implements ServiceCo
     public void socketConnect() {
         try {
             ToastMessage.show(String.format(
-                    GeneralVariables.getStringFromResource(R.string.connect_bluetooth_spp)
+                    GeneralVariables.getStringFromResource(R.string.connect_bluetooth_spp) //正在連接藍牙通訊埠
                     ,deviceAddress));
             BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
             BluetoothDevice device = bluetoothAdapter.getRemoteDevice(deviceAddress);

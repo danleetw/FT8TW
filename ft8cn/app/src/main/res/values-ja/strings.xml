@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <resources>
-    <string name="app_name">FT8CN</string>
+    <string name="app_name">FT8TW</string>
 
     <string name="nav_menu_title_call_list">コンテンツ</string>
 
@@ -673,6 +673,8 @@
     <string name="cache_clear">削除</string>
     <string name="cache_clear_title">キャッシュを削除</string>
     <string name="follow_callsign_data">追跡中のコールサイン</string>
+	<string name="add_followcallsign">新增關注呼號</string>
+	<string name="added_followcallsign">新增關注呼號%s</string>
     <string name="cancel_clear_cache">キャンセル</string>
     <string name="log_statistics_cache">キャッシュされたログ数</string>
     <string name="logs_cache">キャッシュされたログ</string>
@@ -735,6 +737,7 @@
     <string name="launch_supervision_help">launch_supervision_en.txt</string>
     <string name="no_response_help">no_response_help_en.txt</string>
     <string name="auto_follow_help">auto_follow_help_en.txt</string>
+	<string name="add_follow_help">add_follow_help.txt</string>
     <string name="connectMode_help">connectMode_en.txt</string>
     <string name="excludeCallsign_help">excludeCallsign_en.txt</string>
     <string name="swlMode_help">swlMode_en.txt</string>

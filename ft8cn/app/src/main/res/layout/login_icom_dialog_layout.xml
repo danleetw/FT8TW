@@ -71,7 +71,7 @@
             android:ems="10"
             android:hint="@string/pl_input_flex_ip"
 
-            android:inputType="textUri|numberDecimal"
+            android:inputType="text"
             android:minHeight="32dp"
             android:textColor="#FFFFFF"
             android:textSize="14sp"
@@ -182,7 +182,7 @@
             android:ems="10"
             android:hint="@string/pl_icom_user"
 
-            android:inputType="textCapCharacters"
+            android:inputType="text"
             android:minHeight="32dp"
             android:textColor="#FFFFFF"
             android:textSize="14sp"

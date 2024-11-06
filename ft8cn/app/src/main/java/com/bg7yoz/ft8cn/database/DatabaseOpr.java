@@ -21,6 +21,7 @@ import android.util.Log;
 import com.bg7yoz.ft8cn.FT8Common;
 import com.bg7yoz.ft8cn.Ft8Message;
 import com.bg7yoz.ft8cn.GeneralVariables;
+import com.bg7yoz.ft8cn.connector.ConnectMode; //BV6LC
 import com.bg7yoz.ft8cn.R;
 import com.bg7yoz.ft8cn.ft8signal.FT8Package;
 import com.bg7yoz.ft8cn.log.OnQueryQSLCallsign;
@@ -30,6 +31,8 @@ import com.bg7yoz.ft8cn.log.QSLRecord;
 import com.bg7yoz.ft8cn.log.QSLRecordStr;
 import com.bg7yoz.ft8cn.rigs.BaseRigOperation;
 import com.bg7yoz.ft8cn.timer.UtcTimer;
+
+import com.bg7yoz.ft8cn.ui.ToastMessage;
 
 import org.jetbrains.annotations.Nullable;
 import org.json.JSONArray;
@@ -1105,8 +1108,8 @@ public class DatabaseOpr extends SQLiteOpenHelper {
             String querySQL = "DELETE FROM config where KeyName =?";
             db.execSQL(querySQL, new String[]{KeyName.toString()});
             querySQL = "INSERT INTO config (KeyName,Value)Values(?,?)";
-            db.execSQL(querySQL, new String[]{KeyName.toString(), Value.toString()});
-            if (afterWriteConfig != null) {
+			db.execSQL(querySQL, new String[]{KeyName.toString(), Value.toString()});
+			if (afterWriteConfig != null) {
                 afterWriteConfig.doOnAfterWriteConfig(true);
             }
             return null;
@@ -1851,6 +1854,14 @@ public class DatabaseOpr extends SQLiteOpenHelper {
                 if (name.equalsIgnoreCase("ctrMode")) {
                     GeneralVariables.controlMode = result.equals("") ? ControlMode.VOX : Integer.parseInt(result);
                 }
+				// 取得預設連線模式
+				if (name.equalsIgnoreCase("connectMode")) {
+					GeneralVariables.connectMode = result.equals("") ? ConnectMode.USB_CABLE : Integer.parseInt(result);
+                }
+				// 取得藍芽裝置名稱
+				if (name.equalsIgnoreCase("btName")) {
+					GeneralVariables.btName = result;
+				}
                 if (name.equalsIgnoreCase("model")) {//电台型号
                     GeneralVariables.modelNo = result.equals("") ? 0 : Integer.parseInt(result);
                 }

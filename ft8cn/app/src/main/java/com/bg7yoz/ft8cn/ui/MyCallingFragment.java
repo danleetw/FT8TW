@@ -42,6 +42,9 @@ import com.bg7yoz.ft8cn.ft8transmit.FunctionOfTransmit;
 import com.bg7yoz.ft8cn.ft8transmit.TransmitCallsign;
 import com.bg7yoz.ft8cn.timer.UtcTimer;
 
+import com.bg7yoz.ft8cn.connector.ConnectMode;
+import com.bg7yoz.ft8cn.database.ControlMode;
+
 import java.util.ArrayList;
 
 
@@ -234,14 +237,30 @@ public class MyCallingFragment extends Fragment {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (mainViewModel.ft8TransmitSignal.isTransmitting()) {
-                    binding.setTransmitImageButton.setImageResource(R.drawable.ic_baseline_send_red_48);
+					if( (!GeneralVariables.btListen)){ // 發射中紅色
+						binding.setTransmitImageButton.setImageResource(R.drawable.ic_baseline_send_red_48);
+					}
+					else {                             // 發射中藍色
+						binding.setTransmitImageButton.setImageResource(R.drawable.ic_baseline_sending_ble_48);
+					}
                     binding.setTransmitImageButton.setAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.view_blink));
                 } else {
                     //录音对象也要处于启动状态才可以有发射的状态
                     if (mainViewModel.ft8TransmitSignal.isActivated() && mainViewModel.hamRecorder.isRunning()) {
-                        binding.setTransmitImageButton.setImageResource(R.drawable.ic_baseline_send_white_48);
-                    } else {
-                        binding.setTransmitImageButton.setImageResource(R.drawable.ic_baseline_cancel_schedule_send_off);
+						if( (!GeneralVariables.btListen)){ 
+						                              // 可發射紅色
+							binding.setTransmitImageButton.setImageResource(R.drawable.ic_baseline_send_red_48);
+						}
+						else{                         // 可發藍色
+							binding.setTransmitImageButton.setImageResource(R.drawable.ic_baseline_send_white_ble_48);
+						}
+                    } else { // 不可發射紅色
+						if( (!GeneralVariables.btListen)){
+							binding.setTransmitImageButton.setImageResource(R.drawable.ic_baseline_cancel_schedule_send_off_red);
+						}
+						else{ // 不可發藍色
+							binding.setTransmitImageButton.setImageResource(R.drawable.ic_baseline_cancel_schedule_send_off_ble);
+						}
                     }
                     binding.setTransmitImageButton.setAnimation(null);
                 }
@@ -340,6 +359,12 @@ public class MyCallingFragment extends Fragment {
             public void onClick(View view) {
                 //如果
                 if (!mainViewModel.ft8TransmitSignal.isActivated()) {
+					// 如果選擇藍芽裝置，先嘗試連線
+					if( (GeneralVariables.controlMode == ControlMode.CAT) &&
+					    (GeneralVariables.connectMode == ConnectMode.BLUE_TOOTH) &&
+						(!GeneralVariables.btListen) ){
+							mainViewModel.connectBluetoothRig(GeneralVariables.getMainContext(),GeneralVariables.btName);
+						}
                     mainViewModel.ft8TransmitSignal.restTransmitting();
                 }
                 mainViewModel.ft8TransmitSignal.setActivated(!mainViewModel.ft8TransmitSignal.isActivated());

@@ -50,7 +50,8 @@ public class BluetoothStateBroadcastReceive extends BroadcastReceiver {
                 if(headset == BluetoothProfile.STATE_CONNECTED ||a2dp==BluetoothProfile.STATE_CONNECTED){
                 //if(headset == BluetoothProfile.STATE_CONNECTED){
                 //if(a2dp==BluetoothProfile.STATE_CONNECTED){
-                    mainViewModel.setBlueToothOn();
+                    //mainViewModel.setBlueToothOn(); 
+					//mainViewModel.connectBluetoothRig(GeneralVariables.getMainContext(),GeneralVariables.btName);
                 }else {
                     mainViewModel.setBlueToothOff();
                 }

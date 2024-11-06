@@ -4,6 +4,8 @@ package com.bg7yoz.ft8cn.ui;
  * @author BGY70Z
  * @date 2023-03-20
  */
+ 
+import android.app.AlertDialog;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -28,8 +30,10 @@ public class SetVolumeDialog extends Dialog {
     private final MainViewModel mainViewModel;
     private VolumeProgress volumeProgress;
 
-    public SetVolumeDialog(@NonNull Context context, MainViewModel mainViewModel) {
-        super(context);
+	// public SetVolumeDialog(@NonNull Context context, MainViewModel mainViewModel) {
+    public SetVolumeDialog(Context context, MainViewModel mainViewModel) {
+        //super(context);
+		super(context, R.style.HelpDialog);
         this.mainViewModel = mainViewModel;
     }
 
@@ -39,22 +43,19 @@ public class SetVolumeDialog extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.set_volume_dialog);
-        volumeValueMessage = (TextView) findViewById(R.id.volumeValueMessage);
-        volumeSeekBar = (SeekBar) findViewById(R.id.volumeSeekBar);
-        volumeProgress=(VolumeProgress) findViewById(R.id.volumeProgress);
-        volumeProgress.setAlarmValue(1.1f);
-        volumeProgress.setValueColor(getContext().getColor(R.color.volume_progress_value));//白色
-        setVolumeText(GeneralVariables.volumePercent);
-        volumeSeekBar.setProgress((int) (GeneralVariables.volumePercent*100));
-
+		volumeValueMessage = (TextView) findViewById(R.id.volumeValueMessage);
+		volumeSeekBar = (SeekBar) findViewById(R.id.volumeSeekBar);
+		volumeProgress=(VolumeProgress) findViewById(R.id.volumeProgress);
+		volumeProgress.setAlarmValue(1.1f);
+		volumeProgress.setValueColor(getContext().getColor(R.color.volume_progress_value));//白色
+		setVolumeText(GeneralVariables.volumePercent);
+		volumeSeekBar.setProgress((int) (GeneralVariables.volumePercent*100));
         GeneralVariables.mutableVolumePercent.observeForever(new Observer<Float>() {
             @Override
             public void onChanged(Float aFloat) {
                 setVolumeText(aFloat);
             }
         });
-
-
         volumeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -79,13 +80,15 @@ public class SetVolumeDialog extends Dialog {
 
             }
         });
+		
 
     }
 
-    private void setVolumeText(float vol){
+    private void setVolumeText(Float vol){
         volumeValueMessage.setText(String.format(
                 GeneralVariables.getStringFromResource(R.string.volume_percent)
                 , vol*100f));
+
         volumeProgress.setPercent(vol);
 
     }

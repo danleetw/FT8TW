@@ -39,6 +39,9 @@ import com.bg7yoz.ft8cn.R;
 import com.bg7yoz.ft8cn.databinding.FragmentCallingListBinding;
 import com.bg7yoz.ft8cn.timer.UtcTimer;
 
+import com.bg7yoz.ft8cn.connector.ConnectMode;
+import com.bg7yoz.ft8cn.database.ControlMode;
+
 import java.util.ArrayList;
 
 public class CallingListFragment extends Fragment {
@@ -49,6 +52,7 @@ public class CallingListFragment extends Fragment {
     private CallingListAdapter callingListAdapter;
     private MainViewModel mainViewModel;
 
+	private ArrayList<Ft8Message> previousMessageList = new ArrayList<>();
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -115,6 +119,11 @@ public class CallingListFragment extends Fragment {
             @Override
             public void onChanged(ArrayList<Ft8Message> messages) {
                 callingListAdapter.notifyDataSetChanged();
+				if (!messages.equals(previousMessageList)) { // 檢查與前次數據是否相同
+					previousMessageList.clear();
+					previousMessageList.addAll(messages); // 更新快照
+					callingListAdapter.notifyDataSetChanged(); // 只在數據變更時更新UI
+				}
                 //当列表下部稍微多出一些，自动上移
                 if (callListRecyclerView.computeVerticalScrollRange()
                         - callListRecyclerView.computeVerticalScrollExtent()
@@ -175,8 +184,27 @@ public class CallingListFragment extends Fragment {
         mainViewModel.mutableIsRecording.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
+				Log.d(TAG, "controlMode:" + String.valueOf(GeneralVariables.controlMode)	);
+				Log.d(TAG, "connectMode:" + String.valueOf(GeneralVariables.connectMode)	);
+				Log.d(TAG, "BtListen:" + String.valueOf(GeneralVariables.btListen)	);
                 if (aBoolean) {
-                    binding.timerImageButton.setImageResource(R.drawable.ic_baseline_mic_red_48);
+					if ( (GeneralVariables.controlMode == ControlMode.CAT) &&  
+					     (GeneralVariables.connectMode == ConnectMode.BLUE_TOOTH) ){
+						if( (GeneralVariables.btListen) /*|| (mainViewModel.isBTConnected())*/ ){
+							binding.timerImageButton.setImageResource(R.drawable.ic_baseline_mic_ble_48);
+						}
+						else
+						{
+							mainViewModel.connectBluetoothRig(GeneralVariables.getMainContext(),GeneralVariables.btName);
+							binding.timerImageButton.setImageResource(R.drawable.ic_baseline_mic_red_48);
+						}
+					}
+					else
+					{
+						if (GeneralVariables.btListen)
+						  mainViewModel.setBlueToothOff();
+						binding.timerImageButton.setImageResource(R.drawable.ic_baseline_mic_red_48);
+					}
                     binding.timerImageButton.setAnimation(AnimationUtils.loadAnimation(getContext()
                             , R.anim.view_blink));
                 } else {
@@ -347,7 +375,7 @@ public class CallingListFragment extends Fragment {
     }
 
     /**
-     * 菜单选项
+     * 菜单选项 
      *
      * @param item 菜单
      * @return 是否
@@ -355,7 +383,6 @@ public class CallingListFragment extends Fragment {
     //@RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
-
         //Ft8Message ft8Message = (Ft8Message) item.getActionView().getTag();
         int position = (int) item.getActionView().getTag();
         Ft8Message ft8Message = callingListAdapter.getMessageByPosition(position);

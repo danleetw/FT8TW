@@ -43,15 +43,13 @@ import com.bg7yoz.ft8cn.timer.UtcTimer;
 
 import java.io.IOException;
 
-import android.content.Context; // [MODIFIED]
-import android.location.Location; // [MODIFIED]
-import android.location.LocationManager; // [MODIFIED]
-import android.location.LocationListener; // [MODIFIED]
-
-
-import java.text.SimpleDateFormat;// [MODIFIED]
-import java.util.TimeZone; // [ADD THIS LINE]
-import java.util.Date; // [ADD THIS LINE]
+import android.content.Context; // BV6LC
+import android.location.Location; // BV6LC
+import android.location.LocationManager; // BV6LC
+import android.location.LocationListener; // BV6LC
+import java.text.SimpleDateFormat; // BV6LC
+import java.util.TimeZone; // BV6LC
+import java.util.Date; // BV6LC
 
 /**
  * A simple {@link Fragment} subclass.
@@ -425,7 +423,7 @@ public class ConfigFragment extends Fragment {
                 GeneralVariables.baudRate));
         //设置发射监管
         binding.launchSupervisionSpinner.setSelection(launchSupervisionSpinnerAdapter
-                .getPosition(GeneralVariables.launchSupervision));
+                .getPosition(GeneralVariables.launchSupervision)+1);
         //设置无回应中断
         binding.noResponseCountSpinner.setSelection(GeneralVariables.noReplyLimit);
 
@@ -1046,6 +1044,7 @@ public class ConfigFragment extends Fragment {
 
                 if (buttonId == binding.ctrVOXradioButton.getId()) {
                     GeneralVariables.controlMode = ControlMode.VOX;
+					//GeneralVariables.btListen=false;
                 } else if (buttonId == binding.ctrCATradioButton.getId()) {//CAT模式
                     GeneralVariables.controlMode = ControlMode.CAT;
                 } else if (buttonId == binding.ctrRTSradioButton.getId()) {//RTS模式
@@ -1064,6 +1063,7 @@ public class ConfigFragment extends Fragment {
                         mainViewModel.setOperationBand();
                     }
                 }
+				/* 寫入 Control Mode */
                 writeConfig("ctrMode", String.valueOf(GeneralVariables.controlMode));
                 setConnectMode();
             }
@@ -1112,11 +1112,28 @@ public class ConfigFragment extends Fragment {
                 }else if (buttonId==binding.networkConnectRadioButton.getId()){
                     GeneralVariables.connectMode=ConnectMode.NETWORK;
                 }
+				/* 寫入 Connect Mode */
+                writeConfig("connectMode", String.valueOf(GeneralVariables.connectMode));
                 //------显示蓝牙列表，并选择，然后建立蓝牙连接
                 if (GeneralVariables.connectMode == ConnectMode.BLUE_TOOTH) {
                     //根据安卓12，要判断一下蓝牙权限：
-                    new SelectBluetoothDialog(requireContext(), mainViewModel).show();
+                    new SelectBluetoothDialog(
+							requireContext(),
+							mainViewModel ,
+							new SelectBluetoothDialog.OnBluetoothSelectedListener() {
+								@Override
+								public void onBluetoothSelected(String selectedDevice) {
+								// 這裡儲存選中的藍牙裝置字串
+								GeneralVariables.btName=selectedDevice;
+								writeConfig("btName", GeneralVariables.btName);
+								}
+							}
+					).show();
                 }
+				else
+				{
+					//GeneralVariables.btListen=false;
+				}
 
                 //-----显示网络上的电台，目前是flex电台，-------------------
                 if (GeneralVariables.connectMode==ConnectMode.NETWORK){
@@ -1298,6 +1315,15 @@ public class ConfigFragment extends Fragment {
                             , true).show();
             }
         });
+		//手動輸入關注呼號Help
+        binding.addFollowCallImageHlpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    new HelpDialog(requireContext(), requireActivity()
+                            , GeneralVariables.getStringFromResource(R.string.add_follow_help)
+                            , true).show();
+            }
+        });
         //连接模式
         binding.connectModeHelpImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1379,61 +1405,63 @@ public class ConfigFragment extends Fragment {
                         ,ClearCacheDataDialog.CACHE_MODE.SWL_QSO).show();
             }
         });
+		// BV6LC 手動輸入關注呼號
+		binding.addFollowCallButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+				String callsign = "";
+				callsign=binding.addFollowCallEdit.getText().toString().toUpperCase();
+				if (!callsign.isEmpty()) {
+					try {
+					mainViewModel.databaseOpr.getDb().execSQL("insert into followCallsigns (callsign) values (?)", new String[]{callsign});
+					ToastMessage.show(String.format(GeneralVariables.getStringFromResource(R.string.added_followcallsign),callsign)); 
+					mainViewModel.getFollowCallsignsFromDataBase();
+					binding.addFollowCallEdit.setText("");
+					}
+					catch (Exception e){
+						ToastMessage.show("Insert fail!\nErr：" + e.getMessage());
+
+					}
+				}
+
+
+            }
+        });
 
         // 改成用GPS優先
 		binding.synTImeButton.setOnClickListener(
-			new View.OnClickListener() 
+			new View.OnClickListener()
 			{
 				@Override public void onClick(View view) {
-					//ToastMessage.show("Check Time"); // [MODIFIED]
+					//ToastMessage.show("Check Time"); // BV6LC
 					// 檢查並優先使用 GPS 進行時間同步
 					LocationManager locationManager = (LocationManager) requireContext().getSystemService(Context.LOCATION_SERVICE); // [MODIFIED]
-					
 					// 檢查是否有位置權限
 					if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 						// 如果沒有權限，請求權限
 						//ToastMessage.show("No GPS Permmion");
 						ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1); // [MODIFIED]
 						return;
-					}else {
-							//ToastMessage.show("GPS Permmion OK");
-						}
-					
-
+					}
 					// 判斷 GPS 是否可用
-					if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) 
-					{ // [MODIFIED]
-						//ToastMessage.show("GPS 可用ProviderEnabled");
-						// 嘗試從 GPS 取得位置和時間
-						//ToastMessage.show("Try to get GPS Info!");
+					if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
+					{ // BV6LC
 						// 告訴使用者正在使用 GPS 進行同步
-						ToastMessage.show(GeneralVariables.getStringFromResource(R.string.using_gps_time_sync)); // [MODIFIED]
-						locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, new LocationListener()  { // [MODIFIED]
+						ToastMessage.show(GeneralVariables.getStringFromResource(R.string.using_gps_time_sync)); // BV6LC
+						locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, new LocationListener()  { // BV6LC
 							@Override
-							public void onLocationChanged(Location location) { // [MODIFIED]
+							public void onLocationChanged(Location location) { // BV6LC
 								// 取得 GPS 時間
-								//ToastMessage.show("Try to get GPS Info!");
-								long gpsTime = location.getTime(); // [MODIFIED]
-								
-								
+								long gpsTime = location.getTime(); // BV6LC
 								// 用當前系統時間和 GPS 時間計算差異 (秒)
-								//int trueDelay = (int) ((gpsTime - System.currentTimeMillis()));
 								int trueDelay =(int) ((gpsTime - System.currentTimeMillis()));
 								int secTime=0;
 								secTime=trueDelay;
 								trueDelay = trueDelay % 15000;//延迟的周期
-								
 
-								//int secTime = (int) ((gpsTime - System.currentTimeMillis()) / 1000); // [MODIFIED]
-								//UtcTimer.ChgsyncTime(trueDelay);
-								
 								UtcTimer.ChgsyncTime(trueDelay);
 								setUtcTimeOffsetSpinner(); // [MODIFIED]
-								
 
-								
-								
-								
 								// 创建 SimpleDateFormat 实例，用于格式化时间
 								SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 								// 设置时区为 UTC
@@ -1446,22 +1474,14 @@ public class ConfigFragment extends Fragment {
 								ToastMessage.show("UTC Time: " + utcTimeString);
 
 
-								//ToastMessage.show(String.format("時間差: %d 毫秒(%d秒)", trueDelay,trueDelay/1000));
-								
-								//ToastMessage.show(String.format("Sel : %d ", (UtcTimer.delay / 100 + 75) / 5) );
-								//binding.utcTimeOffsetSpinner.setSelection((UtcTimer.delay / 100 + 75) / 5);
-								//binding.utcTimeOffsetSpinner.setSelection(5);
 								// 根據時間差異進行提示
-								if (secTime > 100) { // 時間偏慢 [MODIFIED]
-									//ToastMessage.show("時間偏慢");
+								if (secTime > 100) { // 時間偏慢 BV6LC
 									ToastMessage.show(String.format(GeneralVariables
 											.getStringFromResource(R.string.utc_time_sync_delay_slow), secTime)); // [MODIFIED]
-								} else if (secTime < -100) { // 時間偏快 [MODIFIED]
-									//ToastMessage.show("時間偏快");
+								} else if (secTime < -100) { // 時間偏快 BV6LC
 									ToastMessage.show(String.format(GeneralVariables
 											.getStringFromResource(R.string.utc_time_sync_delay_faster), -secTime)); // [MODIFIED]
 								} else { // 時間準確 [MODIFIED]
-									//ToastMessage.show("時間準確");
 									ToastMessage.show(GeneralVariables
 											.getStringFromResource(R.string.config_clock_is_accurate)); // [MODIFIED]
 								}
@@ -1476,15 +1496,10 @@ public class ConfigFragment extends Fragment {
 							@Override
 							public void onProviderDisabled(String provider) {
 								// 如果 GPS 無法使用或失敗，則使用 UTC 同步時間
-								//syncTimeWithUtcTimer(); // [MODIFIED]
-								//ToastMessage.show("位置未更新");
-								//ToastMessage.show(GeneralVariables
-								//			.getStringFromResource(R.string.config_clock_is_accurate)); // [MODIFIED]
 							}
 						}, null);
 					}else
 						{
-							//ToastMessage.show("Try to get Time Server info");
 							// 告訴使用者正在使用 Time Server 進行同步
 							ToastMessage.show(GeneralVariables.getStringFromResource(R.string.using_network_time_sync)); // [MODIFIED]
 							UtcTimer.syncTime(new UtcTimer.AfterSyncTime() {
@@ -1508,16 +1523,8 @@ public class ConfigFragment extends Fragment {
 									ToastMessage.show(e.getMessage());
 								}
 							});
-							
-							
-							
-							
-							
-							
-							
-							//--------------------
-						}						
-				} //-----
+						}
+				}
 			});
 
 

@@ -68,7 +68,6 @@ public class LogHttpServer extends NanoHTTPD {
         String uri = "";
         String msg;
         Log.i(TAG, "serve uri: " + session.getUri());
-		
 
         if (uriList.length >= 2) {
             uri = uriList[1];
@@ -304,7 +303,7 @@ public class LogHttpServer extends NanoHTTPD {
      */
     private String getConfig() {
         Cursor cursor = mainViewModel.databaseOpr.getDb()
-                .rawQuery("select KeyName,Value from config", null);
+                .rawQuery("select KeyName,Value from config order by KeyName", null);
         return HtmlContext.ListTableContext(cursor, true, 4, false);
     }
 
@@ -419,23 +418,23 @@ public class LogHttpServer extends NanoHTTPD {
      * @return HTML
      */
     private String getFollowCallsigns() {
-        Cursor cursor = mainViewModel.databaseOpr.getDb().rawQuery("select * from followCallsigns order by callsign", null); // // [MODIFIED] BV6LC 依照呼號排序
-        //Cursor cursor = mainViewModel.databaseOpr.getDb().rawQuery("select a.* from followCallsigns as a order by callsign", null); // // [MODIFIED] BV6LC 依照呼號排序
-        
-		StringBuilder result = new StringBuilder();
-		
-		// [MODIFIED] 新增一個段落，包含文字方塊和按鈕，按鈕會呼叫 /addfollow /BV6LC
+        Cursor cursor = mainViewModel.databaseOpr.getDb().rawQuery("select * from followCallsigns order by callsign", null); // BV6LC 依照呼號排序
+		StringBuilder result = new StringBuilder(); // 新增一個段落，包含文字方塊和按鈕，按鈕會呼叫 /addfollow /BV6LC
 
 		result.append("<p>\n<form action=/addfollow/");
 		result.append(String.format("  <label for=\"callsign\">%s:</label>\n",
 									GeneralVariables.getStringFromResource(R.string.html_callsign)
 									)
 					 );
-		result.append("  <input type=\"text\" id=\"callsign\" name=\"callsign\" placeholder=\"輸入呼號\">\n");
-		result.append("  <input type=\"submit\" value=\"新增關注呼號\">\n");
+		result.append(String.format("  <input type=\"text\" id=\"callsign\" name=\"callsign\" placeholder=\"%s\">\n",
+									 GeneralVariables.getStringFromResource(R.string.follow_callsign_data)
+									)
+					);
+		result.append(String.format("  <input type=\"submit\" value=\"%s\">\n",
+									  GeneralVariables.getStringFromResource(R.string.add_followcallsign)
+									)
+					);
 		result.append("</p></form>\n");
-			
-		
         HtmlContext.tableBegin(result, true, 4, false).append("\n"); //BV6LC
 
         //写字段名
@@ -450,17 +449,7 @@ public class LogHttpServer extends NanoHTTPD {
         int order = 0;
         while (cursor.moveToNext()) {
             HtmlContext.tableRowBegin(result, true, order % 2 != 0).append("\n");
-			
-			
-			//CallsignInfo fromCallsignInfo = getCallsignInfo(GeneralVariables.callsignDatabase.getDb(),"BV6LC"); // BV6LC
-			//String country="TEST"; //BV6LC
-			//country=GeneralVariables.getGridByCallsign("BV6LC", GeneralVariables.callsignDatabase.getDb());
-			//country=GeneralVariables.getCountryByCallsign("BV6LC",mainViewModel.databaseOpr);
-			
-
-			
             for (int i = 0; i < cursor.getColumnCount(); i++) {
-                
 				HtmlContext.tableCell(result
                         , String.format("<div style='text-align:left;'>%s</div>",cursor.getString(i)) //[MODIFIED] BV6LC
 						, String.format("%s",GeneralVariables.getCountryByCallsign(cursor.getString(i),mainViewModel.databaseOpr))
@@ -485,8 +474,7 @@ public class LogHttpServer extends NanoHTTPD {
     private void deleteFollowCallSign(String callsign) {
         mainViewModel.databaseOpr.getDb().execSQL("delete from followCallsigns where callsign=?", new String[]{callsign});
     }
-	
-	/*  [MODIFIED] BV6LC
+	/* BV6LC
      * 手動新增關注的呼号
      *
      * @param callsign 关注的呼号
@@ -505,23 +493,15 @@ public class LogHttpServer extends NanoHTTPD {
 						 Log.i(TAG, "收到呼號: " + callsign);
 						 mainViewModel.databaseOpr.getDb().execSQL("insert into followCallsigns (callsign) values (?)", new String[]{callsign});
 						}
-					
 				}
-			//	{
-			//	  // 取得input中name="callsign"的值
-            //     Log.i(TAG, "收到呼號: " + callsign);
-			//	}
 			mainViewModel.getFollowCallsignsFromDataBase();
-			
 			return "插入成功";
-			} 
-			catch (Exception e) 
-			{
-			return "Insert fail，錯誤訊息：" + e.getMessage();	
 			}
-				
+			catch (Exception e)
+			{
+			return "Insert fail，錯誤訊息：" + e.getMessage();
+			}
     }
-	
 
     private void deleteQSLByMonth(String month) {
         mainViewModel.databaseOpr.getDb().execSQL("delete from QSLTable where SUBSTR(qso_date,1,6)=? \n"

@@ -51,11 +51,11 @@ public class HtmlContext {
             "</head>\n" +
             "\n";
     private static final String HTML_TITLE = "<table bgcolor=#a1a1a1 border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr><td class=\"title\" colspan=\"15\">" +
-            "Welcome to FT8CN "+ BuildConfig.VERSION_NAME+"</a></td></tr><tr><td class=\"default\" colspan=\"15\"><a href=/>"
+            "Welcome to " + GeneralVariables.getStringFromResource(R.string.app_name) + " "+ BuildConfig.VERSION_NAME+"</a></td></tr><tr><td class=\"default\" colspan=\"15\"><a href=/>"
                     +GeneralVariables.getStringFromResource(R.string.html_return)
             +"</a></td></tr></table>\n";
     private static final String HTML_FOOTER = "<table bgcolor=#a1a1a1 border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">" +
-            "<tr><td class=\"title\">BG7YOZ</td></tr><tr><td class=\"default\" colspan=\"15\">" +
+            "<tr><td class=\"title\">"+GeneralVariables.getStringFromResource(R.string.app_name)+" Web Console</td></tr><tr><td class=\"default\" colspan=\"15\">" +
             "<a href=/>"+GeneralVariables.getStringFromResource(R.string.html_return)+"</a></td></tr></table>\n";
 
     private static String HTML_BODY(String context) {

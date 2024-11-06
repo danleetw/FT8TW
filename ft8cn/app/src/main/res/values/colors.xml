@@ -69,7 +69,7 @@
     <color name="calling_list_item_color">#B552AEF8</color>
     <color name="calling_follow_list_item_color">#851D3B53</color>
     <color name="transmitting_color">#E91E63</color>
-    <color name="follow_call_text_color">#AC2626</color>
+	<color name="follow_call_text_color">#FFEB3B</color>
     <color name="waterfall_text_color">#E91E63</color>
     <color name="ruler_text_color">#F44336</color>
     <color name="spectrum_switch_color">#FF00FFFF</color>

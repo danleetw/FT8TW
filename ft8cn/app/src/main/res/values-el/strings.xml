@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FT8CN</string>
+    <string name="app_name">FT8TW</string>
     <string name="nav_menu_title_call_list">Περιεχόμενο</string>
     <string name="nav_menu_title_decode_list">Αποκωδικοποίηση</string>
     <string name="nav_menu_title_my_calling">Κλήση</string>
@@ -390,6 +390,8 @@
     <string name="cache_clear">Καθαρό</string>
     <string name="cache_clear_title">Καθαρισμός μνήμης</string>
     <string name="follow_callsign_data">Ακολουθημένα σήματα κλήσης</string>
+	<string name="add_followcallsign">Followed callsigns</string>
+	<string name="added_followcallsign">Followed callsigns %s</string>
     <string name="cancel_clear_cache">ακύρωση</string>
     <string name="log_statistics_cache">Αριθμός αποθηκευμένων αρχείων καταγραφής</string>
     <string name="logs_cache">Decoded Msg</string>
@@ -452,6 +454,7 @@
     <string name="launch_supervision_help">launch_supervision_en.txt</string>
     <string name="no_response_help">no_response_help_en.txt</string>
     <string name="auto_follow_help">auto_follow_help_en.txt</string>
+	<string name="add_follow_help">add_follow_help.txt</string>
     <string name="connectMode_help">connectMode_en.txt</string>
     <string name="excludeCallsign_help">excludeCallsign_en.txt</string>
     <string name="swlMode_help">swlMode_en.txt</string>

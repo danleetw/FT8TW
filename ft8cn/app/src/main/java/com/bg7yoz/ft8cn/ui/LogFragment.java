@@ -193,10 +193,8 @@ public class LogFragment extends Fragment {
                 new HelpDialog(requireContext(), requireActivity()
                             , String.format(GeneralVariables.getStringFromResource(R.string.export_info)
                             , getLocalIpAddress(), LogHttpServer.DEFAULT_PORT)
-                            , false).show();				
+                            , false).show();
 				*/
-				
-				
 				//BV6LC
                 if (getLocalIp()==null) {
                     new HelpDialog(requireContext(), requireActivity()
@@ -209,7 +207,6 @@ public class LogFragment extends Fragment {
                             , getLocalIp(), LogHttpServer.DEFAULT_PORT)
                             , false).show();
                 }
-				
 
             }
         });

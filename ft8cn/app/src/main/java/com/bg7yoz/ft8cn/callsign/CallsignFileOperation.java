@@ -76,8 +76,7 @@ public class CallsignFileOperation {
         AssetManager assetManager = context.getAssets();
         try {
             InputStream inputStream;
-            //if (GeneralVariables.isTraditionalChinese) { // [MODIFIED]
-			if (GeneralVariables.isChina) {	
+			if (GeneralVariables.isChina) {	// 因為一開始判斷isChina的判斷式好像寫反了，所以造成繁體中文的國家/地區檔案也是顯示簡體，這邊就將錯就錯了
                 inputStream = assetManager.open("country_en2hk.dat");//繁体中文
             }else {
                 inputStream = assetManager.open("country_en2cn.dat");//简体中文

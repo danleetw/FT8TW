@@ -23,6 +23,10 @@ package com.bg7yoz.ft8cn;
 
 import static com.bg7yoz.ft8cn.GeneralVariables.getStringFromResource;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import androidx.core.app.ActivityCompat;
+
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -147,6 +151,9 @@ public class MainViewModel extends ViewModel {
 
     //控制电台的方式
     public OperationBand operationBand = null;
+	private boolean BTisConnecting = false;  // 用於追踪當前BT連接狀態
+	private boolean BT2isConnecting = false;  // 用於追踪當前BT連接狀態
+	private boolean BTisDisConnecting = false;  // 用於追踪當前BT連接狀態
 
     private SWLQsoList swlQsoList = new SWLQsoList();//用于记录SWL的QSO对象，对SWL QSO做判断，防止重复。
 
@@ -165,6 +172,7 @@ public class MainViewModel extends ViewModel {
         public void onConnected() {
             //与电台建立连接
             ToastMessage.show(getStringFromResource(R.string.connected_rig));
+			GeneralVariables.btListen=true;
         }
 
         @Override
@@ -181,6 +189,7 @@ public class MainViewModel extends ViewModel {
             GeneralVariables.band = freq;
             GeneralVariables.bandListIndex = OperationBand.getIndexByFreq(freq);
             GeneralVariables.mutableBandChange.postValue(GeneralVariables.bandListIndex);
+			GeneralVariables.btListen=true;
 
             databaseOpr.getAllQSLCallsigns();//通联成功的呼号读出来
 
@@ -191,6 +200,7 @@ public class MainViewModel extends ViewModel {
             //与电台通讯出现错误，
             ToastMessage.show(String.format(getStringFromResource(R.string.radio_communication_error)
                     , message));
+			GeneralVariables.btListen=false;
         }
     };
 
@@ -677,24 +687,62 @@ public class MainViewModel extends ViewModel {
 
     }
 
+	public void connectBluetoothRig(Context context, String btname) { // 如果傳入BT名稱，則先找到Device後，叫用下一段程式連線藍牙
+		BluetoothAdapter bluetoothAdapter;
+		bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+		// 檢查權限是否已授予
+		if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+			// 提示需要授權
+			ToastMessage.show("Bluetooth permission is required.");
+			return;
+		}
+		if (bluetoothAdapter == null) {
+            return;
+        }
+		// 由手機藍牙清單逐一尋找
+		for (BluetoothDevice device : bluetoothAdapter.getBondedDevices()) {
+			if (device.getName().equals(btname) ) {
+				connectBluetoothRig(context,device);
+				continue; // 找到則連線並完成
+			}
+        }
+	}
     public void connectBluetoothRig(Context context, BluetoothDevice device) {
         GeneralVariables.controlMode = ControlMode.CAT;//蓝牙控制模式，只能是CAT控制
+		//BTisConnecting=false;
+		if(BTisConnecting){
+			return;
+		}
+		BTisConnecting=true;
+
         connectRig();
         if (baseRig == null) {
+			BTisConnecting=false;
             return;
         }
         baseRig.setControlMode(GeneralVariables.controlMode);
         BluetoothRigConnector connector = BluetoothRigConnector.getInstance(context, device.getAddress()
                 , GeneralVariables.controlMode);
+
         baseRig.setOnRigStateChanged(onRigStateChanged);
         baseRig.setConnector(connector);
+
+
+        new Handler().postDelayed(new Runnable() {//蓝牙连接是需要时间的，等5秒再设置频率
+            @Override
+            public void run() {
+                setBlueToothOn();
+            }
+        }, 3000);
+
 
         new Handler().postDelayed(new Runnable() {//蓝牙连接是需要时间的，等2秒再设置频率
             @Override
             public void run() {
                 setOperationBand();//设置载波频率
             }
-        }, 5000);
+        }, 2000);
+		BTisConnecting=false;
     }
 
     /**
@@ -983,7 +1031,17 @@ public class MainViewModel extends ViewModel {
     public void setBlueToothOn() {
         AudioManager audioManager = (AudioManager) GeneralVariables.getMainContext()
                 .getSystemService(Context.AUDIO_SERVICE);
-        if (audioManager == null) return;
+		if(BT2isConnecting){
+			return;
+		}
+		else{
+			BT2isConnecting=true;
+		}
+        if (audioManager == null)
+		{
+			BT2isConnecting=false;
+			return;
+		}
         if (!audioManager.isBluetoothScoAvailableOffCall()) {
             //蓝牙设备不支持录音
             ToastMessage.show(getStringFromResource(R.string.does_not_support_recording));
@@ -993,31 +1051,67 @@ public class MainViewModel extends ViewModel {
         播放音乐的对应的就是MODE_NORMAL, 如果使用外放播则调用audioManager.setSpeakerphoneOn(true)即可.
         若使用耳机和听筒,则需要先设置模式为MODE_IN_CALL(3.0以前)或MODE_IN_COMMUNICATION(3.0以后).
          */
+		/*
         audioManager.setMode(AudioManager.MODE_NORMAL);//178毫秒
         audioManager.setBluetoothScoOn(true);
         audioManager.stopBluetoothSco();
         audioManager.startBluetoothSco();//71毫秒
         audioManager.setSpeakerphoneOn(false);//进入耳机模式
-
+		*/
+		// 設定為通話模式，以便準備 Bluetooth SCO 使用的音訊環境
+		//audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
+		audioManager.setMode(AudioManager.MODE_NORMAL);
+		// 停止可能已經開啟的 Bluetooth SCO
+		audioManager.stopBluetoothSco();
+		audioManager.setBluetoothScoOn(true);  // 設置 SCO 可用
+		audioManager.startBluetoothSco();      // 啟動 SCO 連接
+		// 使用 Handler 延遲 200 毫秒後執行其他操作
+		new Handler().postDelayed(() -> {
+			// 延遲後確保揚聲器關閉，進入耳機模式
+			audioManager.setSpeakerphoneOn(false);
+			// 其他可能的操作
+		}, 500); // 延遲 500 毫秒
+		// 確保揚聲器關閉，進入耳機模式
+        //audioManager.setSpeakerphoneOn(false);
         //进入到蓝牙耳机模式
         ToastMessage.show(getStringFromResource(R.string.bluetooth_headset_mode));
-
+		GeneralVariables.btListen = true;
+		BT2isConnecting=false;
     }
 
     public void setBlueToothOff() {
-
+		GeneralVariables.btListen = false;
+		if (BTisDisConnecting)
+			return;
+		BTisDisConnecting=true;
         AudioManager audioManager = (AudioManager) GeneralVariables.getMainContext()
                 .getSystemService(Context.AUDIO_SERVICE);
-        if (audioManager == null) return;
-        if (audioManager.isBluetoothScoOn()) {
-            audioManager.setMode(AudioManager.MODE_NORMAL);
-            audioManager.setBluetoothScoOn(false);
-            audioManager.stopBluetoothSco();
-            audioManager.setSpeakerphoneOn(true);//退出耳机模式
-        }
+        if (audioManager == null) {
+			BTisDisConnecting=false;
+			return;
+		}
+		// 停止 Bluetooth SCO
+		if (audioManager.isBluetoothScoOn()) { //切換模式時，必須先停止 Bluetooth SCO 音訊傳輸，然後再設定為正常模式。順序很重要，否則可能會導致無法成功切換：
+			audioManager.stopBluetoothSco();
+			audioManager.setBluetoothScoOn(false);
+		}
+		// 切換模式到正常模式
+		//audioManager.setMode(AudioManager.MODE_NORMAL);
+		//audioManager.setSpeakerphoneOn(true); // 重新開啟手機的擴音器 //退出耳机模式
+		// 使用 Handler 延遲 200 毫秒，確保 SCO 完全停止
+		new Handler().postDelayed(() -> {
+			// 切換回正常模式
+			audioManager.setMode(AudioManager.MODE_NORMAL);
+		}, 5000); // 延遲 200 毫秒
+				new Handler().postDelayed(() -> {
+			// 切換回正常模式
+			audioManager.setSpeakerphoneOn(true); // 重新開啟手機的擴音器，退出耳機模式
+		}, 5000); // 延遲 200 毫秒
+
         //离开蓝牙耳机模式
         ToastMessage.show(getStringFromResource(R.string.bluetooth_Headset_mode_cancelled));
-
+		GeneralVariables.btListen = false;
+		BTisDisConnecting=false;
     }
 
 

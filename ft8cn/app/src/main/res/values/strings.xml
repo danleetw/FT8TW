@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FT8CN</string>
+    <string name="app_name">FT8TW</string>
     <string name="nav_menu_title_call_list">Content</string>
     <string name="nav_menu_title_decode_list">Decode</string>
     <string name="nav_menu_title_my_calling">Calling</string>
@@ -397,6 +397,8 @@
     <string name="cache_clear">Clear</string>
     <string name="cache_clear_title">Clear cache</string>
     <string name="follow_callsign_data">Followed callsigns</string>
+	<string name="add_followcallsign">Add follow callsign</string>
+	<string name="added_followcallsign">Add follow callsign %s</string>
     <string name="cancel_clear_cache">Cancel</string>
     <string name="log_statistics_cache">Number of logs cached</string>
     <string name="logs_cache">Decoded Msg</string>
@@ -459,6 +461,7 @@
     <string name="launch_supervision_help">launch_supervision_en.txt</string>
     <string name="no_response_help">no_response_help_en.txt</string>
     <string name="auto_follow_help">auto_follow_help_en.txt</string>
+	<string name="add_follow_help">add_follow_help.txt</string>
     <string name="connectMode_help">connectMode_en.txt</string>
     <string name="excludeCallsign_help">excludeCallsign_en.txt</string>
     <string name="swlMode_help">swlMode_en.txt</string>

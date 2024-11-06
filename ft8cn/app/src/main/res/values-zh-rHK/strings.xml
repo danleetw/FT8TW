@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FT8CN</string>
+    <string name="app_name">FT8TW</string>
     <string name="nav_menu_title_call_list">通聯內容</string>
     <string name="nav_menu_title_decode_list">解碼</string>
     <string name="nav_menu_title_my_calling">呼叫</string>
@@ -389,6 +389,7 @@
     <string name="cache_clear">清空</string>
     <string name="cache_clear_title">清空緩存</string>
     <string name="follow_callsign_data">關註的呼號</string>
+	<string name="add_followcallsign">新增關注呼號</string>
     <string name="cancel_clear_cache">取消</string>
     <string name="log_statistics_cache">緩存的日誌數</string>
     <string name="logs_cache">解碼的消息</string>

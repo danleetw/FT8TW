@@ -45,6 +45,8 @@ import androidx.navigation.ui.NavigationUI;
 import com.bg7yoz.ft8cn.bluetooth.BluetoothStateBroadcastReceive;
 import com.bg7yoz.ft8cn.callsign.CallsignDatabase;
 import com.bg7yoz.ft8cn.connector.CableSerialPort;
+import com.bg7yoz.ft8cn.connector.ConnectMode;
+
 import com.bg7yoz.ft8cn.database.DatabaseOpr;
 import com.bg7yoz.ft8cn.database.OnAfterQueryConfig;
 import com.bg7yoz.ft8cn.database.OperationBand;
@@ -114,12 +116,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         GeneralVariables.getInstance().setMainContext(getApplicationContext());
 
-        //判断是不是简体中文// 
+        //判断是不是简体中文
         GeneralVariables.isTraditionalChinese =
                 getResources().getConfiguration().locale.getDisplayCountry().equals("中國");
 
-        //确定是不是中国、香港、澳门、台湾 // [MODIFIED]
-        GeneralVariables.isChina= (getResources().getConfiguration().locale
+        //确定是不是中国、香港、澳门、台湾
+        GeneralVariables.isChina = (getResources().getConfiguration().locale
                 .getLanguage().toUpperCase().startsWith("ZH"));
 
         mainViewModel = MainViewModel.getInstance(this);
@@ -128,13 +130,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
+
         ToastMessage.getInstance();
         registerBluetoothReceiver();//注册蓝牙动作改变的广播
         if (mainViewModel.isBTConnected()) {
-            //mainViewModel.setBlueToothOn(); // [MODIFIED]
+            //mainViewModel.setBlueToothOn(); // BV6LC 這邊會造成翻轉螢幕時重新藍牙連線造成錯誤
         }
-
-
         //观察DEBUG信息
         GeneralVariables.mutableDebugMessage.observe(this, new Observer<String>() {
             @Override
@@ -349,15 +350,13 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-        /*floatView.addButton(R.id.set_volume, "set_volume", R.drawable.ic_baseline_volume_up_24
+        floatView.addButton(R.id.set_volume, "set_volume", R.drawable.ic_baseline_volume_up_24
                 , new View.OnClickListener() {
-					
                     @Override
                     public void onClick(View view) {
                         new SetVolumeDialog(binding.container.getContext(), mainViewModel).show();
                     }
                 });
-		*/ // [MODIFIED]		
         //打开网格追踪
         floatView.addButton(R.id.grid_tracker, "grid_tracker", R.drawable.ic_baseline_grid_tracker_24
                 , new View.OnClickListener() {

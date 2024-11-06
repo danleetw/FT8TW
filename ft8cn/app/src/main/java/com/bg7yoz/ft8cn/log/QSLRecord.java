@@ -107,8 +107,8 @@ public class QSLRecord {
             distance = MaidenheadGrid.getDistStrEN(myMaidenGrid, toMaidenGrid);
         }
         this.comment =
-                distance.equals("") ? "QSO by FT8CN"
-                        : String.format("Distance: %s, QSO by FT8CN", distance);
+                distance.equals("") ? String.format("QSO by %s",GeneralVariables.getStringFromResource(R.string.app_name) )
+                        : String.format("Distance: %s, QSO by %s", distance,GeneralVariables.getStringFromResource(R.string.app_name));
     }
 
     public void update(QSLRecord record) {

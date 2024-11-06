@@ -114,7 +114,6 @@
                             app:layout_constraintStart_toEndOf="@+id/locationTextView"
                             app:layout_constraintTop_toTopOf="parent"
                             tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
-
                         <ImageButton
                             android:id="@+id/configGetGridImageButton"
                             android:layout_width="wrap_content"
@@ -583,7 +582,7 @@
                             android:layout_marginStart="8dp"
                             android:text="@string/mycall"
                             android:textAlignment="textEnd"
-                            android:textColor="@color/text_view_color"
+							android:textColor="@color/text_view_color"
                             android:textSize="14sp"
                             app:layout_constraintBottom_toBottomOf="@+id/inputMycallEdit"
                             app:layout_constraintEnd_toStartOf="@+id/inputMycallEdit"
@@ -603,6 +602,7 @@
                             android:ems="10"
                             android:hint="@string/pl_mycall"
                             android:inputType="textEmailAddress|textCapWords"
+
                             android:minHeight="32dp"
 
                             android:textColor="@color/text_view_color"
@@ -1502,8 +1502,84 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:srcCompat="@drawable/ic_baseline_info_32"
                             tools:ignore="TouchTargetSizeCheck" />
+						
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+					<!-- BV6LC -->
+					<androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/addFollowCall"
+						android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/editor_layout_style"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/autoFollowLayout">
+
+                        <TextView
+                            android:id="@+id/addFollowCallText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="@string/html_callsign"
+                            android:textColor="@color/text_view_color"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+						<EditText
+                            android:id="@+id/addFollowCallEdit"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="6dp"
+                            android:autofillHints=""
+                            android:background="@drawable/editor_style"
+                            android:ems="10"
+                            android:hint="@string/follow_callsign_data"
+                            android:inputType="textEmailAddress|textCapCharacters"
+                            android:minHeight="32dp"
+							android:textAllCaps="true"
+
+                            android:textColor="@color/text_view_color"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/addFollowCallButton"
+                            app:layout_constraintStart_toEndOf="@+id/addFollowCallText"
+                            tools:ignore="TextContrastCheck,TooManyViews,TouchTargetSizeCheck" />
+
+						<Button
+                            android:id="@+id/addFollowCallButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="@string/add_followcallsign"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/addFollowCallImageHlpButton"
+                            app:layout_constraintStart_toEndOf="@+id/addFollowCallEdit" />
+                        <ImageButton
+                            android:id="@+id/addFollowCallImageHlpButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/imagebutton_transparent_style"
+                            android:contentDescription="@string/help"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/addFollowCallButton"
+                            app:srcCompat="@drawable/ic_baseline_info_32"
+                            tools:ignore="TouchTargetSizeCheck" />
+
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+					<!-- BV6LC -->
+
+
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/excludedLayout"
@@ -1513,7 +1589,7 @@
                         android:background="@drawable/editor_layout_style"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/autoFollowLayout">
+                        app:layout_constraintTop_toBottomOf="@+id/addFollowCall">
 
                         <TextView
                             android:id="@+id/excludedText"

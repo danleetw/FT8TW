@@ -17,9 +17,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import android.widget.PopupMenu;
+
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+
 
 import com.bg7yoz.ft8cn.Ft8Message;
 import com.bg7yoz.ft8cn.GeneralVariables;
@@ -440,7 +446,39 @@ public class CallingListAdapter extends RecyclerView.Adapter<CallingListAdapter.
             cqFromImageView.setVisibility(View.GONE);
             itemView.setTag(-1);
             itemView.setOnClickListener(listener);
-            itemView.setOnCreateContextMenuListener(menuListener);
+            //itemView.setOnCreateContextMenuListener(menuListener);
+			// 使用GestureDetector來偵測長按事件
+			GestureDetector gestureDetector = new GestureDetector(itemView.getContext(), 
+			new GestureDetector.SimpleOnGestureListener() {
+				@Override
+				public void onLongPress(MotionEvent e) {
+					// 計算顯示位置，偏移10像素
+					float x = e.getX() + 10;
+					float y = e.getY() + 10;
+					if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+						itemView.showContextMenu(x, y); // API 24+ 方法
+					} else {
+						itemView.showContextMenu(); // 傳統方法
+					}
+				}
+
+
+				@Override
+				public boolean onSingleTapUp(MotionEvent e) {
+					// 確保單擊也能正常響應
+					itemView.performClick();
+					return super.onSingleTapUp(e);
+				}
+			});
+			// 將觸控事件分發給GestureDetector
+			itemView.setOnTouchListener((v, event) -> {
+				gestureDetector.onTouchEvent(event);
+				return true; // 返回true表示我們已處理該事件
+			});
+
+			// 設置OnCreateContextMenuListener，當showContextMenu被調用時彈出菜單
+			itemView.setOnCreateContextMenuListener(menuListener);
+
 
         }
 

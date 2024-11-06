@@ -43,6 +43,15 @@ public class SelectBluetoothDialog extends Dialog {
             this.isHeadSet=isHeadSet;
         }
     }
+	// 定義回傳值介面
+    public interface OnBluetoothSelectedListener {
+        void onBluetoothSelected(String selectedDevice);
+    }
+	private OnBluetoothSelectedListener listener;
+	// 設定回傳值
+    public void setOnBluetoothSelectedListener(OnBluetoothSelectedListener listener) {
+        this.listener = listener;
+    }
 
     private MainViewModel mainViewModel;
     private BluetoothAdapter bluetoothAdapter;
@@ -54,9 +63,10 @@ public class SelectBluetoothDialog extends Dialog {
     private ImageView downImage;
 
 
-    public SelectBluetoothDialog(@NonNull Context context, MainViewModel mainViewModel) {
+    public SelectBluetoothDialog(@NonNull Context context, MainViewModel mainViewModel, OnBluetoothSelectedListener listener) {
         super(context);
         this.mainViewModel = mainViewModel;
+		this.listener = listener;
 
     }
 
@@ -189,7 +199,12 @@ public class SelectBluetoothDialog extends Dialog {
                     ToastMessage.show(String.format(
                             GeneralVariables.getStringFromResource(R.string.select_bluetooth_device)
                             ,holder.device.device.getName()));
+					// 連線
                     mainViewModel.connectBluetoothRig(GeneralVariables.getMainContext(), holder.device.device);
+					/*  回傳藍牙設備名稱 */
+					if (listener != null) {
+						listener.onBluetoothSelected(holder.device.device.getName());// 回傳設備名稱
+					}
 
                     dismiss();
                 }
