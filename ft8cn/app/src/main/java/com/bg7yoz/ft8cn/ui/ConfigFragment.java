@@ -14,6 +14,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -29,6 +30,7 @@ import androidx.lifecycle.Observer;
 import com.bg7yoz.ft8cn.FAQActivity;
 import com.bg7yoz.ft8cn.Ft8Message;
 import com.bg7yoz.ft8cn.GeneralVariables;
+import com.bg7yoz.ft8cn.EncryptionUtil;
 import com.bg7yoz.ft8cn.MainViewModel;
 import com.bg7yoz.ft8cn.R;
 import com.bg7yoz.ft8cn.connector.ConnectMode;
@@ -37,6 +39,7 @@ import com.bg7yoz.ft8cn.database.OperationBand;
 import com.bg7yoz.ft8cn.database.RigNameList;
 import com.bg7yoz.ft8cn.databinding.FragmentConfigBinding;
 import com.bg7yoz.ft8cn.ft8signal.FT8Package;
+import com.bg7yoz.ft8cn.log.ThirdPartyService;
 import com.bg7yoz.ft8cn.maidenhead.MaidenheadGrid;
 import com.bg7yoz.ft8cn.rigs.InstructionSet;
 import com.bg7yoz.ft8cn.timer.UtcTimer;
@@ -172,6 +175,108 @@ public class ConfigFragment extends Fragment {
             writeConfig("transDelay", Integer.toString(transDelay));
         }
     };
+
+    // Cloudlog地址
+    private final TextWatcher onCloudlogAddressChanged=new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            GeneralVariables.cloudlogServerAddress = editable.toString();
+            writeConfig("cloudlogServerAddress", GeneralVariables.getCloudlogServerAddress());
+        }
+    };
+
+    // Cloudlog APIKEY
+    private final TextWatcher onCloudlogApiKeyChanged=new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            GeneralVariables.cloudlogApiKey = editable.toString();
+            writeConfig("cloudlogApiKey", GeneralVariables.getCloudlogServerApiKey());
+        }
+    };
+    // Cloudlog地址
+    private final TextWatcher onCloudlogStationIDChanged=new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            GeneralVariables.cloudlogStationID = editable.toString();
+            writeConfig("cloudlogStationID", GeneralVariables.getCloudlogStationID());
+        }
+    };
+
+    // qrz的api
+    private final TextWatcher onQrzApiKeyChanged=new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            GeneralVariables.qrzApiKey = editable.toString();
+			
+			
+			try {
+				
+				String encryptedPassword = EncryptionUtil.encryptPassword(GeneralVariables.qrzApiKey, requireContext());
+				//System.out.println("Encrypted Password: " + encryptedPassword);
+				writeConfig("qrzApiKey", encryptedPassword);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+						
+            //writeConfig("qrzApiKey", GeneralVariables.getQrzApiKey());
+        }
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //排除的呼号前缀
     private final TextWatcher onExcludedCallsigns=new TextWatcher() {
@@ -387,6 +492,30 @@ public class ConfigFragment extends Fragment {
         binding.excludedCallsignEdit.setText(GeneralVariables.getExcludeCallsigns());
         binding.excludedCallsignEdit.addTextChangedListener(onExcludedCallsigns);
 
+        // cloudlog相关配置
+		/*
+        binding.cloudlogServerAddressEdit.removeTextChangedListener(onCloudlogAddressChanged);
+        binding.cloudlogServerAddressEdit.setText(GeneralVariables.getCloudlogServerAddress());
+        binding.cloudlogServerAddressEdit.addTextChangedListener(onCloudlogAddressChanged);
+
+        binding.cloudlogServerApiKeyEdit.removeTextChangedListener(onCloudlogApiKeyChanged);
+        binding.cloudlogServerApiKeyEdit.setText(GeneralVariables.getCloudlogServerApiKey());
+        binding.cloudlogServerApiKeyEdit.addTextChangedListener(onCloudlogApiKeyChanged);
+
+        binding.cloudlogStationIdEdit.removeTextChangedListener(onCloudlogStationIDChanged);
+        binding.cloudlogStationIdEdit.setText(GeneralVariables.getCloudlogStationID());
+        binding.cloudlogStationIdEdit.addTextChangedListener(onCloudlogStationIDChanged);
+		*/
+
+		
+        // qrz相关配置
+        binding.qrzApiKeyTextEdit.removeTextChangedListener(onQrzApiKeyChanged);
+        binding.qrzApiKeyTextEdit.setText(GeneralVariables.getQrzApiKey());
+        binding.qrzApiKeyTextEdit.addTextChangedListener(onQrzApiKeyChanged);
+		
+
+
+
 
         //设置同频发射开关
         binding.synFrequencySwitch.setOnCheckedChangeListener(null);
@@ -427,8 +556,41 @@ public class ConfigFragment extends Fragment {
         //设置无回应中断
         binding.noResponseCountSpinner.setSelection(GeneralVariables.noReplyLimit);
 
+        //设置保存Cloudlog选项
+		/*
+        binding.enableCloudlogSwitch.setOnCheckedChangeListener(null);
+        binding.enableCloudlogSwitch.setChecked(GeneralVariables.enableCloudlog);
+        binding.enableCloudlogSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                GeneralVariables.enableCloudlog = binding.enableCloudlogSwitch.isChecked();
+                if (binding.enableCloudlogSwitch.isChecked()) {
+                    mainViewModel.databaseOpr.writeConfig("enableCloudlog", "1", null);
+                } else {
+                    mainViewModel.databaseOpr.writeConfig("enableCloudlog", "0", null);
+                }
+            }
+        });
+		*/
+        //设置保存QRZ选项
+		
+        binding.enableQrzSwitch.setOnCheckedChangeListener(null);
+        binding.enableQrzSwitch.setChecked(GeneralVariables.enableQRZ);
+        binding.enableQrzSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                GeneralVariables.enableQRZ = binding.enableQrzSwitch.isChecked();
+                if (binding.enableQrzSwitch.isChecked()) {
+                    mainViewModel.databaseOpr.writeConfig("enableQRZ", "1", null);
+                } else {
+                    mainViewModel.databaseOpr.writeConfig("enableQRZ", "0", null);
+                }
+            }
+        });
+		
 
         //设置自动关注CQ
+		
         binding.followCQSwitch.setOnCheckedChangeListener(null);
         binding.followCQSwitch.setChecked(GeneralVariables.autoFollowCQ);
         setAutoFollowCQText();
@@ -1157,6 +1319,33 @@ public class ConfigFragment extends Fragment {
         binding.cableConnectRadioButton.setOnClickListener(listener);
         binding.bluetoothConnectRadioButton.setOnClickListener(listener);
         binding.networkConnectRadioButton.setOnClickListener(listener);
+
+        //cloublog帮助
+		/*
+        binding.cloudlogSettingsImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new HelpDialog(requireContext(), requireActivity()
+                        , GeneralVariables.getStringFromResource(R.string.cloudlog_help)
+                        , true).show();
+            }
+        });
+		*/
+        //qrz帮助
+		
+        binding.qrzSettingsImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new HelpDialog(requireContext(), requireActivity()
+                        , GeneralVariables.getStringFromResource(R.string.qrz_help)
+                        , true).show();
+            }
+        });
+		
+
+		
+		
+		
     }
 
 
@@ -1371,7 +1560,75 @@ public class ConfigFragment extends Fragment {
                             , true).show();
             }
         });
+		// QRZ TEST
+        binding.testQrzButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.testQrzButton.setEnabled(false);
+                binding.testQrzButton.setText(getResources().getString(R.string.testing));
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        boolean result = ThirdPartyService.CheckQRZConnection();
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (result) {
+                                    binding.testQrzButton.setText(getResources().getString(R.string.pass));
+                                } else {
+                                    binding.testQrzButton.setText(getResources().getString(R.string.fail));
+                                }
+                                // 清空文本
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        binding.testQrzButton.setEnabled(true);
+                                        binding.testQrzButton.setText(getResources().getString(R.string.test));
+                                    }
+                                }, 3000);
+                            }
+                        });
+                    }
+                }).start();}
+        });		
+		
+		// 在 ConfigFragment 中，假設您已經有 mainViewModel 實例
+		ThirdPartyService thirdPartyService = new ThirdPartyService(mainViewModel);
+		
+		binding.UploadQrzTodayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.UploadQrzTodayButton.setEnabled(false);
+                //binding.UploadQrzTodayButton.setText(getResources().getString(R.string.testing));
+				binding.UploadQrzTodayButton.setText(getResources().getString(R.string.qrz_uploading)); //"上傳中"
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
 
+                        boolean result = thirdPartyService.UploadToQRZToday();
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (result) {
+                                    binding.UploadQrzTodayButton.setText(getResources().getString(R.string.qrz_uploaded)); //上傳結束
+                                } else {
+                                    binding.UploadQrzTodayButton.setText(getResources().getString(R.string.fail));
+                                }
+                                // 清空文本
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        binding.UploadQrzTodayButton.setEnabled(true);
+                                        binding.UploadQrzTodayButton.setText(getResources().getString(R.string.qrz_upload_today)); //上傳本日QSO(X)
+                                    }
+                                }, 3000);
+                            }
+                        });
+                    }
+                }).start();}
+        });	
+		
+		
         //清除缓存
         binding.clearCacheHelpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1551,3 +1808,5 @@ public class ConfigFragment extends Fragment {
 
 
 }
+
+

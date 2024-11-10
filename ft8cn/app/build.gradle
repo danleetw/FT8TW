@@ -22,7 +22,7 @@ android {
         minSdk 23
         targetSdk 33
         versionCode 1
-        versionName '0.923'
+        versionName '0.924a'
 
         //testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         dataBinding{

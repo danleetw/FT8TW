@@ -100,7 +100,7 @@ public class QSLRecord {
         this.receivedReport = receivedReport;
         this.mode = mode;
         this.bandLength = BaseRigOperation.getMeterFromFreq(bandFreq);//获取波长
-        this.bandFreq = bandFreq;
+        this.bandFreq = bandFreq; // 頻率
         this.wavFrequency = wavFrequency;
         String distance = "";
         if (!myMaidenGrid.equals("") && !toMaidenGrid.equals("")) {

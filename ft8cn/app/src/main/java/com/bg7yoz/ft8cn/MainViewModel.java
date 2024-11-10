@@ -67,6 +67,7 @@ import com.bg7yoz.ft8cn.icom.WifiRig;
 import com.bg7yoz.ft8cn.log.QSLCallsignRecord;
 import com.bg7yoz.ft8cn.log.QSLRecord;
 import com.bg7yoz.ft8cn.log.SWLQsoList;
+import com.bg7yoz.ft8cn.log.ThirdPartyService;
 import com.bg7yoz.ft8cn.rigs.BaseRig;
 import com.bg7yoz.ft8cn.rigs.BaseRigOperation;
 import com.bg7yoz.ft8cn.rigs.ElecraftRig;
@@ -460,6 +461,18 @@ public class MainViewModel extends ViewModel {
             @Override
             public void doAfterTransmit(QSLRecord qslRecord) {
                 databaseOpr.addQSL_Callsign(qslRecord);//两个操作，把呼号和QSL记录下来
+				// 记录到第三方服务，耗时可能较长
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						if (GeneralVariables.enableCloudlog){
+							ThirdPartyService.UploadToCloudLog(qslRecord);
+						}
+						if (GeneralVariables.enableQRZ){
+							ThirdPartyService.UploadToQRZ(qslRecord);
+						}
+					}
+				}).start();
                 if (qslRecord.getToCallsign() != null) {//把通联成功的分区加入到分区列表
                     GeneralVariables.callsignDatabase.getCallsignInformation(qslRecord.getToCallsign()
                             , new OnAfterQueryCallsignLocation() {

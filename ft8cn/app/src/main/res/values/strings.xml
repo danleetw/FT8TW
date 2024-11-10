@@ -101,6 +101,24 @@
     <string name="telemetry">Telemetry</string>>
     <string name="rtty_ru_msg">RTTY RU</string>>
 
+	<string name="cloudlog_settings">Cloudlog Settings</string>
+    <string name="config_enable_cloudlog">Auto-upload to Cloudlog</string>
+    <string name="cloudlog_addr">Server Address</string>
+    <string name="cloudlog_api_key">API Key</string>
+    <string name="test_cloudlog_config">Test</string>
+    <string name="cloudlog_station_id">Station ID</string>
+    <string name="cloudlog_help">cloudlog.txt</string>
+    <string name="pass">Success!</string>
+    <string name="fail">Failed!</string>
+    <string name="testing">Testing...</string>
+    <string name="test">Test</string>
+    <string name="qrz_settings">QRZ.com Settings</string>
+	<string name="qrz_api_key">api_key</string>
+    <string name="config_enable_qrz">Auto-upload to QRZ.com</string>
+    <string name="qrz_help">qrz.txt</string>
+	<string name="qrz_uploading">uploading...</string>
+	<string name="qrz_uploaded">uploading</string>
+	<string name="qrz_upload_today">Upload today</string>
 
     <!--   配置栏-->
     <string name="offset_time_sec">%.1f Secs</string>>
@@ -203,8 +221,8 @@
     <string name="html_show_communication_callsigns">Show QSO callsigns</string>
     <string name="html_export_log">Export log</string>
     <string name="html_import_log">Import log</string>
-    <string name="html_to_the_third_party">Export log (for backup and log uploading to a third-party platform for confirmation)</string>
-    <string name="html_from_jtdx_lotw">Export logs (used for backup, uploading logs to a third-party platform for confirmation, synchronizing JTDX logs and synchronizing LoTW for confirmation. It is recommended to use ADI data of JTDX, LoTW, Log32 and N1mm for synchronization)</string>
+    <string name="html_to_the_third_party">(for backup and log uploading to a third-party platform for confirmation)</string>
+    <string name="html_from_jtdx_lotw">(used for backup, uploading logs to a third-party platform for confirmation, synchronizing JTDX logs and synchronizing LoTW for confirmation. It is recommended to use ADI data of JTDX, LoTW, Log32 and N1mm for synchronization)</string>
     <string name="html_return">Return</string>
 
 

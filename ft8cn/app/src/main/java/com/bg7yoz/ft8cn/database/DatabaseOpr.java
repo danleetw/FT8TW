@@ -21,6 +21,7 @@ import android.util.Log;
 import com.bg7yoz.ft8cn.FT8Common;
 import com.bg7yoz.ft8cn.Ft8Message;
 import com.bg7yoz.ft8cn.GeneralVariables;
+import com.bg7yoz.ft8cn.EncryptionUtil;
 import com.bg7yoz.ft8cn.connector.ConnectMode; //BV6LC
 import com.bg7yoz.ft8cn.R;
 import com.bg7yoz.ft8cn.ft8signal.FT8Package;
@@ -666,7 +667,7 @@ public class DatabaseOpr extends SQLiteOpenHelper {
 
     //获取所有配置参数
     public void getAllConfigParameter(OnAfterQueryConfig onAfterQueryConfig) {
-        new GetAllConfigParameter(db, onAfterQueryConfig).execute();
+        new GetAllConfigParameter(db, this.context, onAfterQueryConfig).execute();
     }
 
     /**
@@ -1763,10 +1764,12 @@ public class DatabaseOpr extends SQLiteOpenHelper {
 
     static class GetAllConfigParameter extends AsyncTask<Void, Void, Void> {
         private final SQLiteDatabase db;
+		private final Context context;
         private OnAfterQueryConfig onAfterQueryConfig;
 
-        public GetAllConfigParameter(SQLiteDatabase db, OnAfterQueryConfig onAfterQueryConfig) {
+        public GetAllConfigParameter(SQLiteDatabase db, Context context,OnAfterQueryConfig onAfterQueryConfig) {
             this.db = db;
+			this.context = context;
             this.onAfterQueryConfig = onAfterQueryConfig;
         }
 
@@ -1932,6 +1935,33 @@ public class DatabaseOpr extends SQLiteOpenHelper {
                 if (name.equalsIgnoreCase("parityBits")) {//串口校验位
                     GeneralVariables.serialParity =Integer.parseInt(result);
                 }
+				// cloudlogs
+				if (name.equalsIgnoreCase("enableCloudlog")) {
+					GeneralVariables.enableCloudlog = result.equals("1");
+				}
+				if (name.equalsIgnoreCase("cloudlogServerAddress")) {
+					GeneralVariables.cloudlogServerAddress = result;
+				}
+				if (name.equalsIgnoreCase("cloudlogApiKey")) {
+					GeneralVariables.cloudlogApiKey = result;
+				}
+				if (name.equalsIgnoreCase("cloudlogStationID")) {
+					GeneralVariables.cloudlogStationID = result;
+				}
+				
+				//QRZ
+				if (name.equalsIgnoreCase("enableQRZ")) {
+					GeneralVariables.enableQRZ = result.equals("1");
+				}
+				if (name.equalsIgnoreCase("qrzApiKey")) {
+					try {
+						String decryptedPassword = EncryptionUtil.decryptPassword(result, context);
+						GeneralVariables.qrzApiKey = decryptedPassword;
+					} catch (Exception e) {
+						e.printStackTrace();
+						GeneralVariables.qrzApiKey = ""; // 如果解密失敗，可以設為空或採取其他錯誤處理
+					}
+				}
 
             }
 

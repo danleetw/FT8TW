@@ -1,0 +1,7 @@
+關於 QRZ
+
+此功能可讓您在 QSO 完成後立即將 QSO 記錄上傳至 QRZ。
+
+您需要在 QRZ 的日誌簿中獲取 API KEY，並將其輸入到軟體中。
+
+<a href="https://www.qrz.com/docs/logbook30/api">https://www.qrz.com/docs/logbook30/api</a>

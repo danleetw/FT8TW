@@ -806,6 +806,25 @@
     <string name="tcp_connect_closed">The network connection has been disconnected.</string>
     <string name="rtty_ru_msg">RTTY RU</string>
 	
+	<string name="cloudlog_settings">Cloudlog Settings</string>
+    <string name="config_enable_cloudlog">Auto-upload to Cloudlog</string>
+    <string name="cloudlog_addr">Server Address</string>
+    <string name="cloudlog_api_key">API Key</string>
+    <string name="test_cloudlog_config">Test</string>
+    <string name="cloudlog_station_id">Station ID</string>
+    <string name="cloudlog_help">cloudlog.txt</string>
+    <string name="pass">Success!</string>
+    <string name="fail">Failed!</string>
+    <string name="testing">Testing...</string>
+    <string name="test">Test</string>
+    <string name="qrz_settings">QRZ.com Settings</string>
+	<string name="qrz_api_key">api_key</string>
+    <string name="config_enable_qrz">Auto-upload to QRZ.com</string>
+    <string name="qrz_help">qrz.txt</string>
+	<string name="qrz_uploading">uploading...</string>
+	<string name="qrz_uploaded">uploading</string>
+	<string name="qrz_upload_today">qrz_upload_today</string>
+	
 	<string name="using_gps_time_sync">Using GPS for time synchronization.</string>	
 	<string name="using_network_time_sync">Using network time for synchronization.</string>
 	<string name="network_time_sync_failed">Network time synchronization failed.</string>

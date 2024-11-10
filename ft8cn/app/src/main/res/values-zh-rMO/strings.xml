@@ -394,8 +394,8 @@
     <string name="log_statistics_cache">緩存的日誌數</string>
     <string name="logs_cache">解碼的消息</string>
     <string name="band_total">頻段 \t 數量</string>
-    <string name="modifier_editor">CQ定向字</string>
-    <string name="pl_input_modifier">請輸入CQ定向字</string>
+    <string name="modifier_editor">CQ修飾符</string>
+    <string name="pl_input_modifier">請輸入修飾符</string>
     <string name="flex_start_atu">啟動調諧</string>
     <string name="flex_max_tx_power">最大發射功率%d瓦</string>
     <string name="flex_tune_power">調諧天調功率%d瓦</string>

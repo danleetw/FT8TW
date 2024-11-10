@@ -520,4 +520,24 @@
     <string name="serial_setting_help">serial_help_tw.txt</string>
     <string name="tcp_connect_closed">網路連接已經斷開！</string>
 
+	<string name="cloudlog_settings">Cloudlog 設定</string>
+    <string name="config_enable_cloudlog">自動上傳至 Cloudlog</string>
+    <string name="cloudlog_addr">伺服器地址</string>
+    <string name="cloudlog_api_key">API 金鑰</string>
+    <string name="test_cloudlog_config">測試</string>
+    <string name="cloudlog_station_id">站點 ID</string>
+    <string name="cloudlog_help">cloudlog.txt</string>
+    <string name="pass">成功！</string>
+    <string name="fail">失敗！</string>
+    <string name="testing">測試中...</string>
+    <string name="test">測試</string>
+	<string name="qrz_uploading">上傳中...</string>
+	<string name="qrz_uploaded">上傳結束</string>
+	<string name="qrz_upload_today">上傳本日記錄</string>
+    <string name="qrz_settings">QRZ.com 設定</string>
+    <string name="qrz_api_key">API 金鑰</string>
+    <string name="config_enable_qrz">自動上傳至 QRZ.com</string>
+    <string name="qrz_help">qrz_tw.txt</string>
+
+
 </resources>

@@ -116,6 +116,11 @@
 
     <color name="calling_list_start_color">#34D7EDFF</color>
     <color name="calling_list_end_color">#33D7EDFF</color>
+	
+	<color name="calling_list_start_color1">#53F7EDFF</color>
+    <color name="calling_list_end_color1">#53F7EDFF</color>
+	<color name="calling_list_start_color2">#35FFEEFF</color>
+    <color name="calling_list_end_color2">#73F7EDFF</color>
 
     <color name="editor_start_color">#4DB5DCFB</color>
     <color name="editor_end_color">#4DD7EDFF</color>
