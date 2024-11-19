@@ -8,6 +8,9 @@ My intention is to use the original FT8CN version as much as possible. This FT8T
 
 You can download the FT8TW version here: https://github.com/danleetw/FT8TW/releases/tag
 
+The related video is as follows.
+https://youtube.com/playlist?list=PLrXZ1U6SCKfWUOqkH-DzE-QTa2SLTmeJF&si=BzadtC9ZSHVXszhy
+
 感謝BG7YOZ跟N0BOY
 寫出了一個如此有趣又方便的程式，大幅減少了我在山上做SOTA的設備數量，以及纜線的數量，
 因為除了不可少的無線電機、電池、天線以外，可以少帶電腦以及一堆雜亂的線材，在爬山的過程減少了許多重量，在開始架設SOTA電台時，也節省了很多步驟，
