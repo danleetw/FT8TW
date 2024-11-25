@@ -161,7 +161,7 @@
     >
     <string name="bluetooth_Headset_mode_cancelled">Bluetoothヘッドホンモードから切断</string>
     >
-    <string name="version_info">FT8CNバージョン %1$s\nBG7YOZ\n%2$s</string>
+    <string name="version_info">FT8TWバージョン %1$s\nBV6LC\n%2$s</string>
     >
     <string name="exit">アプリを終了</string>
     >
@@ -824,6 +824,9 @@
 	<string name="qrz_uploading">uploading...</string>
 	<string name="qrz_uploaded">uploading</string>
 	<string name="qrz_upload_today">qrz_upload_today</string>
+	
+	<string name="psk_help">psk.txt</string>
+
 	
 	<string name="using_gps_time_sync">Using GPS for time synchronization.</string>	
 	<string name="using_network_time_sync">Using network time for synchronization.</string>

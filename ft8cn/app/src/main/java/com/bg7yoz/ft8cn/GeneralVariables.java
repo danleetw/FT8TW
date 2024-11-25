@@ -39,6 +39,11 @@ public class GeneralVariables {
     public static boolean saveSWL_QSO=false;//保存解码消息消息中的QSO开关
 	public static boolean enableCloudlog=false;//是否启用Cloudlog自动同步
 	public static boolean enableQRZ=false;//是否启用qrz自动同步
+	
+	public static boolean enablePskSpot=false;//是否上傳到PSK Reporter
+	public static boolean enablePskSpotChange=false;//是否更動過上傳到PSK Reporter設定
+	public static String antenna="";// 天線型號 PSK Reporter
+	public static int gpsPrecision=1; //0:low 1:medinu 2:high 3:Ultra High
 
     public static boolean deepDecodeMode=false;//是否开启深度解码
 
@@ -222,6 +227,19 @@ public class GeneralVariables {
     public static String getMyMaidenheadGrid() {
         return myMaidenheadGrid;
     }
+	
+	public static String getMyMaidenheadGrid(int length) {
+		String grid;
+		grid=myMaidenheadGrid;
+		
+		grid = grid.substring(0, 
+							  Math.min( length,
+										grid.length()
+									   )
+							);
+									
+        return grid;
+    }
 
     public static float getBaseFrequency() {
         return baseFrequency;
@@ -341,6 +359,21 @@ public class GeneralVariables {
             return myMaidenheadGrid.substring(0, 4);
         }
         return myMaidenheadGrid;
+    }
+
+    public static String getMyGrid(){
+        return myMaidenheadGrid.substring(0, 4);
+    }
+	
+	public static String getMyGridBySetting(){
+		String grid;
+		grid=myMaidenheadGrid;
+		
+		grid=grid.substring(0, Math.min( (GeneralVariables.gpsPrecision*2+4),
+																				grid.length() )
+														);
+		
+        return grid;
     }
 
     /**

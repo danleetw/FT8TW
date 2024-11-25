@@ -44,6 +44,8 @@ import com.bg7yoz.ft8cn.maidenhead.MaidenheadGrid;
 import com.bg7yoz.ft8cn.rigs.InstructionSet;
 import com.bg7yoz.ft8cn.timer.UtcTimer;
 
+import com.bg7yoz.ft8cn.log.PSKReporter; // PSKReporter
+
 import java.io.IOException;
 
 import android.content.Context; // BV6LC
@@ -67,11 +69,14 @@ public class ConfigFragment extends Fragment {
     private SerialDataBitsSpinnerAdapter dataBitsSpinnerAdapter;
     private SerialParityBitsSpinnerAdapter parityBitsSpinnerAdapter;
     private SerialStopBitsSpinnerAdapter stopBitsSpinnerAdapter;
+	private GpsSpinnerAdapter gpsSpinnerAdapter;
+	
     private RigNameSpinnerAdapter rigNameSpinnerAdapter;
     private LaunchSupervisionSpinnerAdapter launchSupervisionSpinnerAdapter;
     private PttDelaySpinnerAdapter pttDelaySpinnerAdapter;
     private NoReplyLimitSpinnerAdapter noReplyLimitSpinnerAdapter;
     //private SerialPortSpinnerAdapter serialPortSpinnerAdapter;
+
 
     public ConfigFragment() {
         // Required empty public constructor
@@ -111,6 +116,12 @@ public class ConfigFragment extends Fragment {
             GeneralVariables.setMyMaidenheadGrid(s.toString());
         }
     };
+	
+	
+	
+	
+	
+	
     //我的呼号
     private final TextWatcher onMyCallEditorChanged = new TextWatcher() {
         @Override
@@ -262,19 +273,25 @@ public class ConfigFragment extends Fragment {
             //writeConfig("qrzApiKey", GeneralVariables.getQrzApiKey());
         }
     };
+	
+	//Antenna
+    private final TextWatcher onAntennaEditorChanged = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+        }
 
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+        }
 
-
-
-
-
-
-
-
-
-
+        @Override
+        public void afterTextChanged(Editable editable) {
+            writeConfig("antenna", editable.toString().toUpperCase().trim());
+            GeneralVariables.antenna =  editable.toString().toUpperCase().trim();
+        }
+    };
 
 
 
@@ -399,6 +416,10 @@ public class ConfigFragment extends Fragment {
 
         //设置停止位
         setStopBitsSpinner();
+		
+		//設定GPS精度
+		//setStopBitsSpinner();
+        setGpsSpinner();
 
         //设置电台名称，参数列表
         setRigNameSpinner();
@@ -513,9 +534,43 @@ public class ConfigFragment extends Fragment {
         binding.qrzApiKeyTextEdit.setText(GeneralVariables.getQrzApiKey());
         binding.qrzApiKeyTextEdit.addTextChangedListener(onQrzApiKeyChanged);
 		
-
-
-
+		//PSK Report
+		//设置保存PSK Report选项
+        binding.pskReportSwitch.setOnCheckedChangeListener(null);
+        binding.pskReportSwitch.setChecked(GeneralVariables.enablePskSpot); //PSK
+        setPskSwl();
+		binding.pskReportSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+				GeneralVariables.enablePskSpot = binding.pskReportSwitch.isChecked();
+				if (binding.pskReportSwitch.isChecked()) {
+					mainViewModel.databaseOpr.writeConfig("spotPSK", "1", null);
+					GeneralVariables.enablePskSpotChange=true; //設定有更新
+				} else {
+					mainViewModel.databaseOpr.writeConfig("spotPSK", "0", null);
+				}
+				setPskSwl();
+			}
+		});
+		//psk帮助
+		
+        binding.pskspotImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new HelpDialog(requireContext(), requireActivity()
+                        , GeneralVariables.getStringFromResource(R.string.psk_help)
+                        , true).show();
+            }
+        });
+		
+		
+		
+		
+			
+		//我的天線
+        binding.inputAntennaEdit.removeTextChangedListener(onAntennaEditorChanged);
+        binding.inputAntennaEdit.setText(GeneralVariables.antenna);
+        binding.inputAntennaEdit.addTextChangedListener(onAntennaEditorChanged);
 
         //设置同频发射开关
         binding.synFrequencySwitch.setOnCheckedChangeListener(null);
@@ -665,8 +720,17 @@ public class ConfigFragment extends Fragment {
         binding.configGetGridImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String grid = MaidenheadGrid.getMyMaidenheadGrid(getContext());
-                if (!grid.equals("")) {
+                String grid = MaidenheadGrid.getMyMaidenheadGrid(getContext(), (GeneralVariables.gpsPrecision*2+4));
+				/*
+				grid = grid.substring(0, 
+									  Math.min( (GeneralVariables.gpsPrecision*2+4),
+												grid.length()
+											   )
+									);
+                */
+				
+				if (!grid.equals("")) {
+					ToastMessage.show(String.format("Get Grid from GPS:%s",grid));
                     binding.inputMyGridEdit.setText(grid);
                 }
             }
@@ -902,6 +966,17 @@ public class ConfigFragment extends Fragment {
             binding.saveSWLQSOSwitch.setText(getString(R.string.config_donot_save_swl_qso));
         }
     }
+	
+	private void setPskSwl() {
+        if (binding.pskReportSwitch.isChecked()) {
+            //binding.pskReportSwitch.setText(getString(R.string.config_save_swl));
+			binding.pskReportSwitch.setText("(O)Spot PSKReport");
+        } else {
+            //binding.pskReportSwitch.setText(getString(R.string.config_donot_save_swl));
+			binding.pskReportSwitch.setText("(X)Spot PSKReport");
+        }
+    }
+	
     /**
      * 设置UTC时间偏移的spinner
      */
@@ -928,6 +1003,84 @@ public class ConfigFragment extends Fragment {
             }
         });
     }
+
+    /**
+     * 设置GPS精度
+     */
+    private void setGpsSpinner(){
+		
+        gpsSpinnerAdapter = new GpsSpinnerAdapter(requireContext());
+		
+		
+        binding.precisionSpinner.setAdapter(gpsSpinnerAdapter);
+		
+        requireActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                gpsSpinnerAdapter.notifyDataSetChanged();
+            }
+        });
+		
+		
+		
+		// 设置 OnItemSelectedListener 来保存选中的值
+		binding.precisionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				// 根据选择的项保存设置
+				String selectedPrecision = parent.getItemAtPosition(position).toString();
+				String maidenheadGrid;
+				
+				// 根据 position 或值来保存具体设置
+				writeConfig("gpsPrecision", selectedPrecision);
+				GeneralVariables.gpsPrecision = position;
+
+				maidenheadGrid=GeneralVariables.getMyMaidenheadGrid((GeneralVariables.gpsPrecision*2+4));
+				/*maidenheadGrid=maidenheadGrid.substring(0, Math.min( (GeneralVariables.gpsPrecision*2+4),
+																				maidenheadGrid.length() )
+														);*/
+				
+				// 如果抓的到GPS就更新										
+				String Gpsgrid = MaidenheadGrid.getMyMaidenheadGrid(getContext() , (GeneralVariables.gpsPrecision*2+4));
+                /*Gpsgrid = Gpsgrid.substring(0, Math.min( (GeneralVariables.gpsPrecision*2+4),
+																				Gpsgrid.length() )
+														);*/
+				if (!Gpsgrid.equals("")) {
+					maidenheadGrid=Gpsgrid;
+                }													
+														
+
+				GeneralVariables.setMyMaidenheadGrid(maidenheadGrid);
+				binding.inputMyGridEdit.setText(GeneralVariables.getMyMaidenheadGrid());
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				// 默認選項，低精度
+				writeConfig("gpsPrecision", "0");
+				GeneralVariables.gpsPrecision = 0;
+			}
+		});
+
+		// 根據之前的設定值來設置選項
+		int savedPrecision = GeneralVariables.gpsPrecision; // 假設這個變數存了設定值
+		binding.precisionSpinner.setSelection(savedPrecision);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+    }
+	
+	
+	
+	
+	
+
 
     /**
      * 设置操作频段的spinner
@@ -1606,6 +1759,20 @@ public class ConfigFragment extends Fragment {
                     public void run() {
 
                         boolean result = thirdPartyService.UploadToQRZToday();
+						
+						/*
+						PSKReporter pskRepoter=new PSKReporter("BU2GF","PL05ra",3,"EFHW1","FT8TW v0.925");
+						//pskRepoter.addReport("BV6LC", (byte)-16, (byte) 5,(int) (14.071 * 1000000.0), System.currentTimeMillis() / 1000, "CW","PL03hw");
+						
+						try {
+							pskRepoter.addReport("BV6LC", (byte) -15, (byte) 5, (int) (14.071 * 1000000.0), 
+												 System.currentTimeMillis() / 1000, "CW", "PL03hw");
+						} catch (Exception e) {
+							e.printStackTrace(); // 或執行其他錯誤處理
+						}
+						*/
+						
+						
                         new Handler(Looper.getMainLooper()).post(new Runnable() {
                             @Override
                             public void run() {

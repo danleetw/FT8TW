@@ -23,9 +23,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
+import java.util.Random;
 
 import android.database.Cursor;
 
+import com.bg7yoz.ft8cn.log.PSKReporter; // PSKReporter
 
 enum ServiceType{
     Cloudlog,
@@ -35,6 +42,11 @@ enum ServiceType{
 public class ThirdPartyService {
     public static String TAG = "ThirdPartyService";
 	private MainViewModel mainViewModel;
+	
+	//private static final String PSK_SERVER_HOSTNAME = "report.pskreporter.info";
+    //private static final int PSK_SERVER_PORT = 4739;
+	//private static final int TEST_PSK_SERVER_PORT = 14739;
+	//private static final String TEST_PSK_SERVER_HOSTNAME = "pskreporter.info";
 
     public ThirdPartyService(MainViewModel mainViewModel) {
         this.mainViewModel = mainViewModel;
@@ -176,6 +188,7 @@ public class ThirdPartyService {
 
     public static boolean CheckQRZConnection(){
         String apiKey = GeneralVariables.getQrzApiKey();
+		
         try{
             String url = "https://logbook.qrz.com/api?KEY="+apiKey+"&ACTION=STATUS";
             String result = sendGetRequest(url);
@@ -196,7 +209,14 @@ public class ThirdPartyService {
             Log.d(TAG, e.toString());
             return false;
         }
+		
+
+		
+		
     }
+
+
+
 
   public static void UploadToQRZ(QSLRecord qslRecord){
         // 转换为adif格式
@@ -308,10 +328,14 @@ public class ThirdPartyService {
 				
 			} while (cursor.moveToNext());
 		}
-
+		
+		
 		if (cursor != null) {
 			cursor.close();
 		}
+		
+		
+		
 	
 		return true;
 		
@@ -392,4 +416,156 @@ public class ThirdPartyService {
         }
         return null;
     }
+	
+	public static String packetToHex(DatagramPacket packet) {
+        byte[] data = packet.getData();
+        int length = packet.getLength();
+        StringBuilder hexString = new StringBuilder(length * 2);
+
+        for (int i = 0; i < length; i++) {
+            String hex = Integer.toHexString(data[i] & 0xFF);
+            if (hex.length() == 1) {
+                hexString.append('0'); // 加上前置 0 以確保每個 byte 都是兩位
+            }
+            hexString.append(hex);
+            hexString.append(" ");
+        }
+
+        return hexString.toString().toUpperCase().trim(); // 輸出大寫字母並去掉最後的空格
+    }
+	
+    
+	/*
+	public static void pskReport(String senderCallsign, String receiverCallsign, int snr, double frequency, long epochTime, String mode) throws Exception {
+        try (DatagramSocket socket = new DatagramSocket()) {
+            InetAddress address = InetAddress.getByName(TEST_PSK_SERVER_HOSTNAME);
+
+            ByteBuffer packet = ByteBuffer.allocate(512);
+            
+            // Header
+            packet.put((byte) 0x00); // version 
+            packet.put((byte) 0x0A); // default version
+			// 開始位置為2(0~2) 00 AC
+            packet.putShort((short) 0); // length placeholder (updated later)
+			
+			// 傳輸時間戳：47 95 32 72
+            packet.putInt((int) (System.currentTimeMillis() / 1000)); // current timestamp
+			// 序列號：00 00 00 01 追蹤封包順序
+            packet.putInt(8); // random sequence number
+			
+			//隨機識別碼 00 00 00 00
+            packet.putInt(new Random().nextInt(Integer.MAX_VALUE)); // random identifier
+
+
+            // 接收者資訊描述符
+            packet.put(new byte[] {
+                (byte) 0x00, (byte) 0x03, 
+				(byte) 0x00, (byte) 0x24,  // 36 字節(00 24)。
+				(byte) 0x99, (byte) 0x92,  // 資料為接收者資訊。
+                (byte) 0x00, (byte) 0x03, (byte) 0x00, (byte) 0x01,
+                (byte) 0x80, (byte) 0x02, (byte) 0xFF, (byte) 0xFF, (byte) 0x00, (byte) 0x00, (byte) 0x76, (byte) 0x8F,  //接收者呼號。
+                (byte) 0x80, (byte) 0x04, (byte) 0xFF, (byte) 0xFF, (byte) 0x00, (byte) 0x00, (byte) 0x76, (byte) 0x8F,  //接收者位置（Locator）
+                (byte) 0x80, (byte) 0x08, (byte) 0xFF, (byte) 0xFF, (byte) 0x00, (byte) 0x00, (byte) 0x76, (byte) 0x8F,  //解碼軟體。
+                (byte) 0x00, (byte) 0x00
+            });
+
+            // 發送者資訊描述符
+            packet.put(new byte[] {
+                (byte) 0x00, (byte) 0x02,
+				(byte) 0x00, (byte) 0x2C, 
+				(byte) 0x99, (byte) 0x93, 
+                (byte) 0x00, (byte) 0x05,
+                (byte) 0x80, (byte) 0x01, (byte) 0xFF, (byte) 0xFF, (byte) 0x00, (byte) 0x00, (byte) 0x76, (byte) 0x8F, //發送者呼號
+                (byte) 0x80, (byte) 0x05, (byte) 0x00, (byte) 0x04, (byte) 0x00, (byte) 0x00, (byte) 0x76, (byte) 0x8F, //發送頻率（單位：赫茲）。
+                (byte) 0x80, (byte) 0x0A, (byte) 0xFF, (byte) 0xFF, (byte) 0x00, (byte) 0x00, (byte) 0x76, (byte) 0x8F, //通訊模式。
+                (byte) 0x80, (byte) 0x0B, (byte) 0x00, (byte) 0x01, (byte) 0x00, (byte) 0x00, (byte) 0x76, (byte) 0x8F,  //料來源識別碼。
+                (byte) 0x00, (byte) 0x96, (byte) 0x00, (byte) 0x04
+            });
+
+            // 接收者資訊記錄
+            packet.put((byte) 0x99);
+            packet.put((byte) 0x92);
+            packet.putShort((short) 0x21); //長度 32 字節。(00 20)
+            //byte[] receiverCallsignBytes = receiverCallsign.getBytes(StandardCharsets.UTF_8);
+			byte[] receiverCallsignBytes = "BV6LC".getBytes(StandardCharsets.UTF_8);
+            packet.put((byte) receiverCallsignBytes.length);
+            packet.put(receiverCallsignBytes);
+
+            byte[] locatorBytes = "FN42hn".getBytes(StandardCharsets.UTF_8);
+            packet.put((byte) locatorBytes.length);
+            packet.put(locatorBytes);
+
+            byte[] softwareBytes = "Homebrew v5.6".getBytes(StandardCharsets.UTF_8);
+            packet.put((byte) softwareBytes.length);
+            packet.put(softwareBytes);
+            packet.put((byte) 0x00); // Padding for 4-byte alignment
+			packet.put((byte) 0x00); // Padding for 4-byte alignment
+
+			
+            // 發送者資訊記錄 1
+			// For senderCallsign, frequency, mode, informationSource (1 byte), flowStartSeconds use:
+			packet.put((byte) 0x99);
+            packet.put((byte) 0x93);
+            packet.putShort((short) 0x2D);
+            //byte[] senderCallsignBytes = senderCallsign.getBytes(StandardCharsets.UTF_8);
+			byte[] senderCallsignBytes = "BV6LC".getBytes(StandardCharsets.UTF_8);
+            packet.put((byte) senderCallsignBytes.length);
+            packet.put(senderCallsignBytes);
+            packet.putInt((int) frequency*1000000); // frequency in Hz
+            //packet.put((byte) snr); // SNR
+            //byte[] modeBytes = mode.getBytes(StandardCharsets.UTF_8);
+			byte[] modeBytes = "PSL".getBytes(StandardCharsets.UTF_8);
+            packet.put((byte) modeBytes.length);
+            packet.put(modeBytes);
+            packet.put((byte) 0x01); // Information source
+            packet.putInt((int) epochTime); // UNIX time
+            
+
+			
+			// 發送者資訊記錄 2
+            //byte[] senderCallsignBytes = senderCallsign.getBytes(StandardCharsets.UTF_8);
+			senderCallsignBytes = "BU2GF".getBytes(StandardCharsets.UTF_8);
+            packet.put((byte) senderCallsignBytes.length);
+            packet.put(senderCallsignBytes);
+            packet.putInt((int) frequency*1000000); // frequency in Hz
+            //packet.put((byte) snr); // SNR
+            //byte[] modeBytes = mode.getBytes(StandardCharsets.UTF_8);
+			modeBytes = "PSL".getBytes(StandardCharsets.UTF_8);
+            packet.put((byte) modeBytes.length);
+            packet.put(modeBytes);
+            packet.put((byte) 0x01); // Information source
+            packet.putInt((int) epochTime); // UNIX time
+			packet.put((byte) 0x00); // Padding for 4-byte alignment
+			packet.put((byte) 0x00); // Padding for 4-byte alignment
+            
+            // Update packet length
+			int packetLength = packet.position();
+            packet.putShort(2, (short) packetLength);
+
+			
+
+            byte[] data = new byte[packet.position()];
+            packet.flip();
+            packet.get(data);
+
+            // Send packet
+            //DatagramPacket udpPacket = new DatagramPacket(data, data.length, address, TEST_PSK_SERVER_PORT);
+			DatagramPacket udpPacket = new DatagramPacket(data, data.length, address, 4739);
+            socket.send(udpPacket);
+            System.out.println("Spot data sent to PSK Reporter test server.");
+			
+			// 發送數據包
+			ToastMessage.show("Spot data sent to PSK Reporter test server.");
+			ToastMessage.show(packetToHex(udpPacket));
+			Log.d(TAG,packetToHex(udpPacket));
+			
+        }
+    }
+	*/
+	
+	
+
+
+	
+	
 }

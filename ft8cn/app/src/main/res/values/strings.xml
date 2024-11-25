@@ -38,7 +38,7 @@
     <string name="timeOffset">Time offset</string>
     <string name="help">Help</string>
     <string name="scroll_down">▾</string>
-    <string name="about_me">About FT8CN</string>
+    <string name="about_me">About FT8TW</string>
 
     <string name="connectMode">Control</string>
     <string name="VOX">VOX</string>
@@ -85,7 +85,7 @@
     <string name="bluetooth_headset_mode">Enter Bluetooth headset mode</string>>
     <string name="bluetooth_Headset_mode_cancelled">Exit Bluetooth headset mode</string>>
 
-    <string name="version_info">FT8CN Ver %1$s\nBG7YOZ\n%2$s</string>>
+    <string name="version_info">FT8TW Ver %1$s\nBV6LC\n%2$s</string>>
 
 
     <string name="exit">Exit</string>>
@@ -118,7 +118,9 @@
     <string name="qrz_help">qrz.txt</string>
 	<string name="qrz_uploading">uploading...</string>
 	<string name="qrz_uploaded">uploading</string>
-	<string name="qrz_upload_today">Upload today</string>
+	<string name="qrz_upload_today">Today</string>
+	
+	<string name="psk_help">psk.txt</string>
 
     <!--   配置栏-->
     <string name="offset_time_sec">%.1f Secs</string>>

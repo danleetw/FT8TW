@@ -404,6 +404,11 @@ public class MainActivity extends AppCompatActivity {
                 mainViewModel.configIsLoaded = true;
                 //此处梅登海德已经通过数据库得到了，但是如果GPS能获取到，还是用GPS的
                 String grid = MaidenheadGrid.getMyMaidenheadGrid(getApplicationContext());
+				// 依照設定精準度
+				grid=grid.substring(0, Math.min( (GeneralVariables.gpsPrecision*2+4),
+																				grid.length() )
+														);
+				
                 if (!grid.equals("")) {//说明获取到了GPS数据
                     GeneralVariables.setMyMaidenheadGrid(grid);
                     //写到数据库中

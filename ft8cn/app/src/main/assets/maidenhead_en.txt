@@ -1,3 +1,13 @@
-Please enter Maidenhead grid (at least 4 characters）. If it is 6 characters, the last two bits are automatically ignored while FT8 calling.
+Please enter Maidenhead grid (at least 4 characters）.<BR>
+If it is 6 characters, the last two bits are automatically ignored while FT8 calling.<BR>
 
-If you grant the APP the permission to locate, please click the positioning button next to the input box. The APP will automatically calculate the grid you are currently in.
+If you grant the APP the permission to locate,<BR>
+please click the positioning button next to the input box. <BR>
+The APP will automatically calculate the grid you are currently in.<BR>
+<BR>
+Currently, the accuracy of positioning can be selected.<BR>
+For latitude at the equator (unit: meters):<br> 
+Low: Longitude error 55,660, Latitude error 55,660<br> 
+Medium: Longitude error 4,630, Latitude error 4,630<br> 
+High: Longitude error 463, Latitude error 463<br> 
+Ultra High: Longitude error 92.6, Latitude error 42.3<br>

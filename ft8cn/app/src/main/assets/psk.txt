@@ -1,0 +1,10 @@
+About Psk<BR>
+<BR>
+This feature allows you to upload received signals to the PskReporter website, <BR>
+making it easier for you or others to observe overall communication propagation conditions.<BR>
+<BR>
+You need to specify your own callsign, location, and the antenna you are using.<BR>
+<BR>
+You can enter your callsign on the website below to check communication details related to the callsign.
+<BR>
+<a href="https://pskreporter.info/">https://pskreporter.info/</a>

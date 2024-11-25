@@ -35,7 +35,7 @@
     <string name="timeOffset">Desplazamiento de tiempo</string>
     <string name="help">Ayuda</string>
     <string name="scroll_down">▾</string>
-    <string name="about_me">Sobre FT8CN</string>
+    <string name="about_me">Sobre FT8TW</string>
 
     <string name="connectMode">Controlar</string>
     <string name="VOX">VOX</string>
@@ -82,7 +82,7 @@
     <string name="bluetooth_headset_mode">Ingrese al modo de auriculares Bluetooth</string>>
     <string name="bluetooth_Headset_mode_cancelled">Exit Bluetooth headset mode</string>>
 
-    <string name="version_info">FT8CN Ver %1$s\nBG7YOZ\n%2$s</string>>
+    <string name="version_info">FT8TW Ver %1$s\nBV6LC\n%2$s</string>>
 
 
     <string name="exit">Salida</string>>
@@ -542,7 +542,7 @@
 	<string name="qrz_uploaded">uploading</string>
 	<string name="qrz_upload_today">qrz_upload_today</string>
 	
-	
+	<string name="psk_help">psk.txt</string>
 	
     <!--    <string name="hello_blank_fragment">Hello blank fragment</string>-->
 

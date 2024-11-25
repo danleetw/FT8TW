@@ -301,6 +301,10 @@ public class Ft8Message {
     public String getdB() {
         return String.valueOf(snr);
     }
+	
+	public String getmaidenGrid() {
+		return String.valueOf(maidenGrid);
+    }
 
     /**
      * 检查消息处于奇数还是偶数序列。

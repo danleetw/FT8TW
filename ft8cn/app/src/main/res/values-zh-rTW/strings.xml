@@ -538,6 +538,8 @@
     <string name="qrz_api_key">API 金鑰</string>
     <string name="config_enable_qrz">自動上傳至 QRZ.com</string>
     <string name="qrz_help">qrz_tw.txt</string>
+	
+	<string name="psk_help">psk.txt</string>
 
 
 </resources>

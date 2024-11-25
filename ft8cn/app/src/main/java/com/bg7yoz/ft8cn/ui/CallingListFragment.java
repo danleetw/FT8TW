@@ -184,9 +184,9 @@ public class CallingListFragment extends Fragment {
         mainViewModel.mutableIsRecording.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-				Log.d(TAG, "controlMode:" + String.valueOf(GeneralVariables.controlMode)	);
-				Log.d(TAG, "connectMode:" + String.valueOf(GeneralVariables.connectMode)	);
-				Log.d(TAG, "BtListen:" + String.valueOf(GeneralVariables.btListen)	);
+				//Log.d(TAG, "controlMode:" + String.valueOf(GeneralVariables.controlMode)	);
+				//Log.d(TAG, "connectMode:" + String.valueOf(GeneralVariables.connectMode)	);
+				//Log.d(TAG, "BtListen:" + String.valueOf(GeneralVariables.btListen)	);
                 if (aBoolean) {
 					if ( (GeneralVariables.controlMode == ControlMode.CAT) &&  
 					     (GeneralVariables.connectMode == ConnectMode.BLUE_TOOTH) ){

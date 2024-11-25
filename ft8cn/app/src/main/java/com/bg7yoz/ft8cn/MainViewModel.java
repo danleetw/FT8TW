@@ -107,10 +107,13 @@ import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.bg7yoz.ft8cn.log.PSKReporter; // PSKReporter
 
 public class MainViewModel extends ViewModel {
     String TAG = "ft8cn MainViewModel";
     public boolean configIsLoaded = false;
+	
+	public PSKReporter pskReport; // 公共的 PSKReporter 實例
 
     private static MainViewModel viewModel = null;//当前存在的实例。
     //public static Application application;
@@ -259,9 +262,22 @@ public class MainViewModel extends ViewModel {
     //@RequiresApi(api = Build.VERSION_CODES.N)
     public MainViewModel() {
 
+
+
+
+
+
+
         //获取配置信息。
         databaseOpr = DatabaseOpr.getInstance(GeneralVariables.getMainContext()
                 , "data.db");
+				
+		
+
+		
+				
+				
+
         mutableIsDecoding.postValue(false);//解码状态
         //创录音对象
         hamRecorder = new HamRecorder(null);
@@ -302,6 +318,91 @@ public class MainViewModel extends ViewModel {
             public void afterDecode(long utc, float time_sec, int sequential
                     , ArrayList<Ft8Message> messages, boolean isDeep) {
                 if (messages.size() == 0) return;//没有解码出消息，不触发动作
+
+
+			// 遍歷解碼後的訊息
+				//int frequency =  (int)GeneralVariables.band;        // 頻率
+				String swVersion=GeneralVariables.VERSION;
+				String myCallSign=GeneralVariables.myCallsign;
+				String myGrid=GeneralVariables.getMyGrid();
+				
+				if(GeneralVariables.enablePskSpot){
+				// 初始化 pskReport
+					if (pskReport == null) { // Init Psk Class
+						try {
+							pskReport = new PSKReporter(
+								GeneralVariables.myCallsign,  // 接收呼號
+								GeneralVariables.getMyGridBySetting(),   // 接收網格
+								3,                          // 發送模式
+								//"EFHW",           // 天線資訊
+								GeneralVariables.antenna,           // 天線資訊
+								"FT8TW "+GeneralVariables.VERSION                // 軟體名稱
+							);
+							Log.d(TAG, "PSKReporter initialized successfully.#############################################");
+						} catch (Exception e) {
+							Log.e(TAG, "Failed to initialize PSKReporter: " + e.getMessage()+"#########################################");
+						}
+						pskReport.sendReportAsync();	
+					}
+					else{
+						pskReport.updateReceiverData(GeneralVariables.myCallsign,GeneralVariables.getMyGridBySetting(),GeneralVariables.antenna);
+					}
+
+					
+					for (Ft8Message message : messages) {
+						// 獲取呼號和其他資訊
+						String fromCallsign = message.getCallsignFrom(); // 發送呼號 getCallsignTo
+						String toCallsign = message.getCallsignTo();     // 接收呼號
+						//String grid = message.getmaidenGrid();           // Maidenhead 格網
+						System.out.println(" ------------------ msg_frq:"+message.freq_hz+ " Freq:" +" gred:"+message.maidenGrid +" Band:" +message.band);
+						
+						String grid = message.getMaidenheadGrid(databaseOpr);
+						//if((message.getmaidenGrid() !=message.getmaidenGrid()) && (message.getmaidenGrid()=="")){
+						//	System.out.println("<###################################################################>");
+						//	System.out.println("DB Grid:"+grid + " Msg Grid:"+message.getmaidenGrid());
+						//}
+						
+						//String snr = message.getdB();                      // 信噪比
+						String snr = message.getdB().replaceAll("[^\\d-]", "").trim(); // 移除非數字字符
+						int snrInt = Integer.parseInt(snr);
+						byte snrByte = (byte) snrInt;
+
+
+						// 示例：將訊息內容輸出到日誌
+						//Log.d("DecodeResult", "From: " + fromCallsign + "DB: " + snr );
+						Log.d("DecodeResult", "From: [" + fromCallsign + "], To: " + toCallsign 
+						//		+ ", SNR: " + snr + ", Frequency: " + frequency);
+									+ ", Grid: " + grid + ", SNR: " + snr + ", Frequency: " + message.band
+									+ " Ver:" + swVersion + " MyCallSign:" + myCallSign +
+									" MyGrid:"+myGrid + " Band:"+ ((int) message.band )
+									+ " GV BAND:" + ((int)GeneralVariables.band)
+									
+									);		
+						try {
+							//if(toCallsign==""){
+							//pskReport.addReport(fromCallsign, snrInt, 00, frequency , System.currentTimeMillis() / 1000, "FT8",grid);	
+							pskReport.addReport(fromCallsign, snrInt, 00, (int) message.band + (int) message.freq_hz, System.currentTimeMillis() / 1000, "FT8",grid);	
+							//}
+							//else{
+							//	pskReport.addReport(toCallsign, snrInt, 00,(int) (14.072 * 1000000.0), System.currentTimeMillis() / 1000, "FT8",grid);
+							//}
+
+						
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+			
+						
+					}
+					if(pskReport.firstTime() || GeneralVariables.enablePskSpotChange){
+						 ToastMessage.show("Start PSK Report...");
+						 GeneralVariables.enablePskSpotChange=false;
+					} // 如果是首次接收到就先上傳
+					//pskReport.sendReportAsync();	
+					//System.out.println("Spot sent successfully!");
+				}
+						
+
 
                 synchronized (ft8Messages) {
                     ft8Messages.addAll(messages);//添加消息到列表
@@ -486,8 +587,7 @@ public class MainViewModel extends ViewModel {
                 }
             }
         });
-
-
+	
         //打开HTTP SERVER
         httpServer = new LogHttpServer(this, LogHttpServer.DEFAULT_PORT);
         try {
@@ -495,6 +595,12 @@ public class MainViewModel extends ViewModel {
         } catch (IOException e) {
             Log.e(TAG, "http server error:" + e.getMessage());
         }
+		
+		
+		
+		
+		
+		
     }
 
     public void setTransmitIsFreeText(boolean isFreeText) {

@@ -1953,6 +1953,18 @@ public class DatabaseOpr extends SQLiteOpenHelper {
 				if (name.equalsIgnoreCase("enableQRZ")) {
 					GeneralVariables.enableQRZ = result.equals("1");
 				}
+				
+				//Psk
+				if (name.equalsIgnoreCase("spotPSK")) {
+					GeneralVariables.enablePskSpot = result.equals("1");
+				}
+				if (name.equalsIgnoreCase("antenna")) {
+					GeneralVariables.antenna = result;
+				}
+				if (name.equalsIgnoreCase("gpsPrecision")) {//GPS精度
+                    GeneralVariables.gpsPrecision =Integer.parseInt(result);
+                }
+				
 				if (name.equalsIgnoreCase("qrzApiKey")) {
 					try {
 						String decryptedPassword = EncryptionUtil.decryptPassword(result, context);

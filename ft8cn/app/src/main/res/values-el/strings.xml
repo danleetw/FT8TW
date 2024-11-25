@@ -35,7 +35,7 @@
     <string name="timeOffset">Χρονικό offset</string>
     <string name="help">Βοήθεια</string>
     <string name="scroll_down">▾</string>
-    <string name="about_me">Σχετικά με το FT8CN</string>
+    <string name="about_me">Σχετικά με το FT8TW</string>
 
     <string name="connectMode">\'Ελεγχος</string>
     <string name="VOX">VOX</string>
@@ -82,7 +82,7 @@
     <string name="bluetooth_headset_mode">Επιλέξτε κατάσταση ακουστικών Bluetooth </string>>
     <string name="bluetooth_Headset_mode_cancelled">Εξοδος κατάστασης ακουστικών Bluetooth</string>>
 
-    <string name="version_info">FT8CN Εκδοση %1$s\nBG7YOZ\n%2$s</string>>
+    <string name="version_info">FT8TW Εκδοση %1$s\nBV6LC\n%2$s</string>>
 
 
     <string name="exit">Εξοδος</string>>
@@ -535,13 +535,15 @@
     <string name="testing">Testing...</string>
     <string name="test">Test</string>
     <string name="qrz_settings">QRZ.com Settings</string>
-	<string name="qrz_api_key">api_key</string>
+	<string name="qrz_api_key">Api_key</string>
     <string name="config_enable_qrz">Auto-upload to QRZ.com</string>
     <string name="qrz_help">qrz.txt</string>
 	<string name="qrz_uploading">uploading...</string>
 	<string name="qrz_uploaded">uploading</string>
-	<string name="qrz_upload_today">qrz_upload_today</string>
+	<string name="qrz_upload_today">Today</string>
 	
+	<string name="psk_help">psk.txt</string>
+
 	<string name="using_gps_time_sync">Using GPS for time synchronization.</string>	
 	<string name="using_network_time_sync">Using network time for synchronization.</string>
 	<string name="network_time_sync_failed">Network time synchronization failed.</string>

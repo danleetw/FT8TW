@@ -251,8 +251,35 @@ public class MaidenheadGrid {
         tempNumber = _lat / 0.0416665;            // 步骤 2 的余数除以 0.0416665
         index = (int) tempNumber;            // 小写字母的索引
         buff.append(String.valueOf((char) (index + 'a')));//设置第五个字符
+		
+		/*
+		 * 现在是第四對兩個數字：
+		 */
+		tempNumber = (_long % 0.083333) / 0.0083333; // 經度更細分，除以0.0083333度（每格寬0.5分）
+		index = (int) tempNumber; // 数字索引
+		buff.append(String.valueOf((char) (index + '0'))); // 加入第七個（數字）
 
-        return buff.toString().substring(0, 4);
+		tempNumber = (_lat % 0.0416665) / 0.00416665; // 緯度更細分，除以0.00416665度（每格高0.25分）
+		index = (int) tempNumber; // 数字索引
+		buff.append(String.valueOf((char) (index + '0'))); // // 加入第八個（數字）
+		
+		/*
+		 * 现在是第五對數字兩個小寫字母：  
+		 */
+		// 經度誤差 92.6米（赤道地區）
+		// 緯度誤差 46.3米（固定值，不受緯度影響）
+		tempNumber = (_long % 0.0083333) / 0.00083333; // 經度更進一步細分，每步0.00083333度（每格寬5秒）
+		index = (int) tempNumber; // 小寫字母的索引
+		buff.append(String.valueOf((char) (index + 'a'))); // 加入第九個字母（小寫字母）
+
+		tempNumber = (_lat % 0.00416665) / 0.000416665; // 緯度更進一步細分，每步0.000416665度（每格高2.5秒）
+		index = (int) tempNumber; // 小寫字母的索引
+		buff.append(String.valueOf((char) (index + 'a'))); // 加入第十個字母（字母）
+		
+		
+		
+		return buff.toString();
+        //return buff.toString().substring(0, 6);
     }
 
     /**
@@ -381,6 +408,23 @@ public class MaidenheadGrid {
             //ToastMessage.show("无法定位，请确认是否有定位的权限。");
             return "";
         }
+    }
+	
+	public static String getMyMaidenheadGrid(Context context,int length) {
+        LatLng latLng = getLocalLocation(context);
+		String grid="";
+		
+		
+        if (latLng != null) {
+            grid=getGridSquare(latLng);
+        } 
+		grid = grid.substring(0, 
+									  Math.min( length,
+												grid.length()
+											   )
+									);
+		
+		return grid;
     }
 
     /**
