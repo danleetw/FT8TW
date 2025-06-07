@@ -4,11 +4,19 @@ I’m trying to publish FT8TW on Google Play, but Google requires at least 12 te
 
 https://play.google.com/apps/testing/com.bg7yoz.ft8tw
 
+Many thanks to the following OMs(listed in alphabetical order) for helping with the tests.
+If I accidentally missed anyone, please kindly let me know.
+---------------------------------
+DE2TRF,N9YIM,TA1MHS,W0RTA
+---------------------------------
+
 Thanks to BG7YOZ and N0BOY for creating such an interesting and convenient program. It has significantly reduced the amount of equipment and cables I need for SOTA operations on the mountains. Now, aside from the essential radio, battery, and antenna, I no longer need to bring a computer and a tangle of cables. This reduction in weight makes hiking easier, and when setting up a SOTA station, it saves many steps.
 
 In adverse weather conditions like rain and wind, this setup allows me to quickly pack everything and stow it in my backpack, minimizing body heat loss and the risk of equipment getting damp. I’m truly grateful to both of you.
 
 My intention is to use the original FT8CN version as much as possible. This FT8TW version is mainly my personal proof-of-concept space. If any ideas prove successful, I will share them with BG7YOZ. After all, I have no intention of overshadowing the original creators. For the official, full FT8CN version, please refer to https://github.com/N0BOY/FT8CN.
+
+
 
 You can download the FT8TW version here: https://github.com/danleetw/FT8TW/releases/tag
 
