@@ -77,6 +77,9 @@ https://www.youtube.com/playlist?list=PLrXZ1U6SCKfWc8pYtKHpirGeyk5XCOdfp
 
 DE BV6LC
 
+[🌈 Seeking volunteers]  
+I am looking for friends who can help write the user manual. I’m really too busy, and I’m not sure if anyone would be willing to help create and maintain the documentation.
+
 
 [🌈 Acknowledgements]  
 Thanks to the following OMs for helping with testing (if I missed anyone, please kindly remind me).<BR>
@@ -84,6 +87,7 @@ BU2GF(Tim)<BR>
 N7OMI(Charlie Ketchum)<BR>
 SQ2RBY(Grzegorz Błoński-Kubiak)<BR>
 TA1MHS(Muhsin Doğrular)<BR>
+
 
 
 
