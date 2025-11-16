@@ -80,9 +80,13 @@ DE BV6LC
 
 [🌈 Acknowledgements]  
 Thanks to the following OMs for helping with testing (if I missed anyone, please kindly remind me).<BR>
-TA1MHS(Muhsin Doğrular)<BR>
+BU2GF(Tim)<BR>
 N7OMI(Charlie Ketchum)<BR>
-BU2GF(Tim)
+SQ2RBY(Grzegorz Błoński-Kubiak)<BR>
+TA1MHS(Muhsin Doğrular)<BR>
+
+
+
 
 
 
