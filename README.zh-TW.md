@@ -1,4 +1,5 @@
 # FT8TW
+🌐 **Languages**: [English](README.md) | [中文（繁體）]
 
 Thanks to BG7YOZ and N0BOY for creating such an interesting and convenient program. It has significantly reduced the amount of equipment and cables I need for SOTA operations on the mountains. Now, aside from the essential radio, battery, and antenna, I no longer need to bring a computer and a tangle of cables. This reduction in weight makes hiking easier, and when setting up a SOTA station, it saves many steps.
 
@@ -94,4 +95,5 @@ https://pskreporter.info/cgi-bin/pskstats.pl
 3.Lowered minSdk from 23 to 21 to support more devices.
 4.Removed duplicated threads that were causing duplicate QSL entries and repeated screen displays.
 5.Config GUI Adj
+
 </en-US>
