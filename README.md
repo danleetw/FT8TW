@@ -80,6 +80,8 @@ DE BV6LC
 
 [🌈 Acknowledgements]  
 Thanks to the following OMs for helping with testing (if I missed anyone, please kindly remind me).
-TA1MHS(Muhsin Doğrular)
-N7OMI(Charlie Ketchum)
+TA1MHS(Muhsin Doğrular)<BR>
+N7OMI(Charlie Ketchum)<BR>
+BU2GF(Tim)
+
 
