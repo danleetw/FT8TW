@@ -91,7 +91,7 @@ TA1MHS(Muhsin Doğrular)<BR>
 
 <p align="center">
   <!-- 訪客計數器 -->
-  <img alt="Visitors" src="https://hits.sh/danleetw/FT8TW.svg?style=flat-square"/>
+  <img alt="Visitors" src="[https://hits.sh/danleetw/FT8TW.svg?style=flat-square](https://visitor-badge.laobi.icu/badge?page_id=danleetw.FT8TW&title=Visitors&color=blue&style=flat-squar)"/>
   &nbsp;
   <!-- GitHub Stars -->
   <img alt="Stars" src="https://img.shields.io/github/stars/danleetw/FT8TW?style=flat-square&logo=github"/>
@@ -108,3 +108,4 @@ TA1MHS(Muhsin Doğrular)<BR>
   <!-- Android Platform -->
   <img alt="Platform" src="https://img.shields.io/badge/platform-Android-brightgreen?style=flat-square&logo=android"/>
 </p>
+
