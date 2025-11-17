@@ -88,6 +88,7 @@ N7OMI(Charlie Ketchum)<BR>
 SQ2RBY(Grzegorz Błoński-Kubiak)<BR>
 TA1MHS(Muhsin Doğrular)<BR>
 
+![Hits](https://hits.sh/BV6LC/FT8TW.svg?style=flat-square)
 
 
 
