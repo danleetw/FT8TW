@@ -88,9 +88,25 @@ N7OMI(Charlie Ketchum)<BR>
 SQ2RBY(Grzegorz Błoński-Kubiak)<BR>
 TA1MHS(Muhsin Doğrular)<BR>
 
-![Hits](https://hits.sh/BV6LC/FT8TW.svg?style=flat-square)
+<p align="center">
+  <!-- 訪客計數器 -->
+  <img alt="Visitors" src="https://hits.sh/BV6LC/FT8TW.svg?style=flat-square"/>
 
+  <!-- GitHub Stars -->
+  <img alt="Stars" src="https://img.shields.io/github/stars/BV6LC/FT8TW?style=flat-square&logo=github"/>
 
+  <!-- Release Downloads -->
+  <img alt="Downloads" src="https://img.shields.io/github/downloads/BV6LC/FT8TW/total?style=flat-square"/>
+
+  <!-- License -->
+  <img alt="License" src="https://img.shields.io/github/license/BV6LC/FT8TW?style=flat-square"/>
+
+  <!-- Issues -->
+  <img alt="Issues" src="https://img.shields.io/github/issues/BV6LC/FT8TW?style=flat-square"/>
+
+  <!-- Android Platform -->
+  <img alt="Platform" src="https://img.shields.io/badge/platform-Android-brightgreen?style=flat-square&logo=android"/>
+</p>
 
 
 
