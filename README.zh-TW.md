@@ -1,6 +1,6 @@
 <p align="center">
   <!-- 訪客計數器 -->
-  <img alt="Visitors" src="https://visitor-badge.laobi.icu/badge?page_id=danleetw.FT8TW_CN&title=計數&color=blue&style=flat-squar"/>
+  <img alt="Visitors" src="https://visitor-badge.laobi.icu/badge?page_id=danleetw.FT8TW_CN&title=Count&color=blue&style=flat-squar"/>
   &nbsp;
   <!-- GitHub Stars -->
   <img alt="Stars" src="https://img.shields.io/github/stars/danleetw/FT8TW?style=flat-square&logo=github"/>
@@ -61,5 +61,6 @@ DE BV6LC
 
 [🌈感謝]
 感謝以下OM協助參與測試(如果我有漏掉，還請提醒我)
+
 
 
