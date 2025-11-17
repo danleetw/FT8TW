@@ -92,19 +92,19 @@ TA1MHS(Muhsin Doğrular)<BR>
 <p align="center">
   <!-- 訪客計數器 -->
   <img alt="Visitors" src="https://hits.sh/danleetw/FT8TW.svg?style=flat-square"/>
-
+  &nbsp;
   <!-- GitHub Stars -->
   <img alt="Stars" src="https://img.shields.io/github/stars/danleetw/FT8TW?style=flat-square&logo=github"/>
-
+  &nbsp;
   <!-- Release Downloads -->
   <img alt="Downloads" src="https://img.shields.io/github/downloads/danleetw/FT8TW/total?style=flat-square"/>
-
+  &nbsp;
   <!-- License -->
   <img alt="License" src="https://img.shields.io/github/license/danleetw/FT8TW?style=flat-square"/>
-
+  &nbsp;
   <!-- Issues -->
   <img alt="Issues" src="https://img.shields.io/github/issues/danleetw/FT8TW?style=flat-square"/>
-
+  &nbsp;
   <!-- Android Platform -->
   <img alt="Platform" src="https://img.shields.io/badge/platform-Android-brightgreen?style=flat-square&logo=android"/>
 </p>
