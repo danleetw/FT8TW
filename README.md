@@ -1,3 +1,22 @@
+<p align="center">
+  <!-- 訪客計數器 -->
+  <img alt="Visitors" src="https://visitor-badge.laobi.icu/badge?page_id=danleetw.FT8TW&title=Visitors&color=blue&style=flat-squar"/>
+  &nbsp;
+  <!-- GitHub Stars -->
+  <img alt="Stars" src="https://img.shields.io/github/stars/danleetw/FT8TW?style=flat-square&logo=github"/>
+  &nbsp;
+  <!-- Release Downloads -->
+  <img alt="Downloads" src="https://img.shields.io/github/downloads/danleetw/FT8TW/total?style=flat-square"/>
+  &nbsp;
+  <!-- License -->
+  <img alt="License" src="https://img.shields.io/github/license/danleetw/FT8TW?style=flat-square"/>
+  &nbsp;
+  <!-- Issues -->
+  <img alt="Issues" src="https://img.shields.io/github/issues/danleetw/FT8TW?style=flat-square"/>
+  &nbsp;
+  <!-- Android Platform -->
+  <img alt="Platform" src="https://img.shields.io/badge/platform-Android-brightgreen?style=flat-square&logo=android"/>
+</p>
 # FT8TW
 🌐 **Languages**: [English] | [中文（繁體）](README.zh-TW.md)
 
@@ -89,24 +108,7 @@ SQ2RBY(Grzegorz Błoński-Kubiak)<BR>
 TA1MHS(Muhsin Doğrular)<BR>
 
 
-<p align="center">
-  <!-- 訪客計數器 -->
-  <img alt="Visitors" src="https://visitor-badge.laobi.icu/badge?page_id=danleetw.FT8TW&title=Visitors&color=blue&style=flat-squar"/>
-  &nbsp;
-  <!-- GitHub Stars -->
-  <img alt="Stars" src="https://img.shields.io/github/stars/danleetw/FT8TW?style=flat-square&logo=github"/>
-  &nbsp;
-  <!-- Release Downloads -->
-  <img alt="Downloads" src="https://img.shields.io/github/downloads/danleetw/FT8TW/total?style=flat-square"/>
-  &nbsp;
-  <!-- License -->
-  <img alt="License" src="https://img.shields.io/github/license/danleetw/FT8TW?style=flat-square"/>
-  &nbsp;
-  <!-- Issues -->
-  <img alt="Issues" src="https://img.shields.io/github/issues/danleetw/FT8TW?style=flat-square"/>
-  &nbsp;
-  <!-- Android Platform -->
-  <img alt="Platform" src="https://img.shields.io/badge/platform-Android-brightgreen?style=flat-square&logo=android"/>
-</p>
+
+
 
 
