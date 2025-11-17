@@ -17,6 +17,7 @@
   <!-- Android Platform -->
   <img alt="Platform" src="https://img.shields.io/badge/platform-Android-brightgreen?style=flat-square&logo=android"/>
 </p>
+
 # FT8TW
 🌐 **Languages**: [English] | [中文（繁體）](README.zh-TW.md)
 
@@ -106,6 +107,7 @@ BU2GF(Tim)<BR>
 N7OMI(Charlie Ketchum)<BR>
 SQ2RBY(Grzegorz Błoński-Kubiak)<BR>
 TA1MHS(Muhsin Doğrular)<BR>
+
 
 
 
