@@ -1,0 +1,2734 @@
+package com.bg7yoz.ft8cn.ui;
+/**
+ * 設定介面。
+ * @author BGY70Z
+ * @date 2023-03-20
+ * @date 2025/7/2 BV6LC 增加onDestroyView
+ * @date 2025/7/12 BV6LC 增加onDestroyView
+ *   1.解除所有 Spinner 與 adapter 的綁定，並置空 adapter 參考
+ *   2.如有註冊過 LocationListener，也移除
+ *   3.解除 ScrollView listener
+ * @date 2025/7/13 BV6LC scrollHandler
+ * @date 2025/8/16 BV6LC 新增FREE/TEXT/SWR警報說明
+ */
+
+import android.Manifest;
+import android.content.pm.PackageManager;
+import androidx.core.app.ActivityCompat;
+
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.CompoundButton;
+
+
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+
+import androidx.lifecycle.ViewModelProvider;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import android.net.Uri;
+
+import com.bg7yoz.ft8cn.Ft8Message;
+import com.bg7yoz.ft8cn.GeneralVariables;
+import com.bg7yoz.ft8cn.EncryptionUtil;
+import com.bg7yoz.ft8cn.MainViewModel;
+import com.bg7yoz.ft8cn.R;
+import com.bg7yoz.ft8cn.connector.ConnectMode;
+import com.bg7yoz.ft8cn.database.ControlMode;
+import com.bg7yoz.ft8cn.database.OperationBand;
+import com.bg7yoz.ft8cn.database.RigNameList;
+import com.bg7yoz.ft8cn.databinding.FragmentConfigBinding;
+import com.bg7yoz.ft8cn.ft8signal.FT8Package;
+import com.bg7yoz.ft8cn.log.ThirdPartyService;
+import com.bg7yoz.ft8cn.maidenhead.MaidenheadGrid;
+import com.bg7yoz.ft8cn.rigs.InstructionSet;
+import com.bg7yoz.ft8cn.timer.UtcTimer;
+
+import android.content.res.ColorStateList;
+
+import java.io.IOException;
+
+import android.content.Context; // BV6LC
+import android.location.Location; // BV6LC
+import android.location.LocationManager; // BV6LC
+import android.location.LocationListener; // BV6LC
+import java.text.SimpleDateFormat; // BV6LC
+import java.util.TimeZone; // BV6LC
+import java.util.Date; // BV6LC
+
+import android.util.Log;
+
+import com.bg7yoz.ft8cn.Ft8DecodedMessage;
+import com.bg7yoz.ft8cn.LogExt;
+
+
+import android.widget.RadioGroup;
+import android.widget.RadioButton;
+import androidx.appcompat.app.AppCompatDelegate;
+
+import android.content.SharedPreferences;
+
+
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetView;
+
+/**
+ * A simple {@link Fragment} subclass.
+ * create an instance of this fragment.
+ */
+public class ConfigFragment extends Fragment {
+    private static final String TAG = "ConfigFragment";
+    private MainViewModel mainViewModel;
+    private FragmentConfigBinding binding;
+    private BandsSpinnerAdapter bandsSpinnerAdapter;
+    private BauRateSpinnerAdapter bauRateSpinnerAdapter;
+    private SerialDataBitsSpinnerAdapter dataBitsSpinnerAdapter;
+    private SerialParityBitsSpinnerAdapter parityBitsSpinnerAdapter;
+    private SerialStopBitsSpinnerAdapter stopBitsSpinnerAdapter;
+	private GpsSpinnerAdapter gpsSpinnerAdapter;
+	private UploadQrzSpinnerAdapter uploadQrzSpinnerAdapter;
+	private CqOrderSpinnerAdapter cqOrderSpinnerAdapter;
+	private CqFilterSpinnerAdapter cqFilterSpinnerAdapter;
+	private DecodeModeSpinnerAdapter decodeModeSpinnerAdapter;
+	private FT4FT8ModeSpinnerAdapter ft4ft8ModeSpinnerAdapter;
+	        
+	
+    private RigNameSpinnerAdapter rigNameSpinnerAdapter;
+    private LaunchSupervisionSpinnerAdapter launchSupervisionSpinnerAdapter;
+    private PttDelaySpinnerAdapter pttDelaySpinnerAdapter;
+    private NoReplyLimitSpinnerAdapter noReplyLimitSpinnerAdapter;
+    //private SerialPortSpinnerAdapter serialPortSpinnerAdapter;
+	
+    private LocationManager locationManager;
+    //private LocationListener locationListener;
+	
+	private boolean isUiReady = false;
+	
+
+	// 用于更新滚动箭头的 Handler + Runnable
+	private final Handler scrollHandler = new Handler(Looper.getMainLooper());
+	private final Runnable scrollUpdater = new Runnable() {
+		@Override
+		public void run() {
+			// 视图销毁后 binding 已设为 null，就不再调
+			if (binding != null) {
+				setScrollImageVisible();
+				scrollHandler.postDelayed(this, 500);
+			}
+		}
+	};
+
+
+
+    public ConfigFragment() {
+        // Required empty public constructor
+    }
+	
+    @Override
+    public void onResume() {
+        super.onResume();
+		//mainViewModel.forceHideFloatView.setValue(true);
+    }
+	
+	@Override
+    public void onPause() {
+        super.onPause();
+		//mainViewModel.forceHideFloatView.setValue(false);
+    }
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+		mainViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+    }
+
+	@Override
+	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+		
+		isUiReady = true;
+		
+		// 觀察MainView Model的getUtcOffsetUpdate
+		MainViewModel viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+		viewModel.getUtcOffsetUpdate().observe(getViewLifecycleOwner(), new Observer<Long>() {
+			@Override
+			public void onChanged(Long offset) {
+				// 當 ViewModel 通知偏移量有更新，就重新設定 Spinner
+				//
+				setUtcTimeOffsetSpinner();
+			}
+	
+		});
+		
+		GeneralVariables.mutableBandChange.observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                binding.operationBandSpinner.setSelection(integer);
+				
+				LogExt.d(TAG, "mutableBandChange Change:" + GeneralVariables.bandListIndex
+					+ ", adapter count=" + bandsSpinnerAdapter.getCount());
+				
+            }
+        });
+		
+		
+		
+		
+				/*
+				if (mainViewModel.mutableSerialPorts.getValue() != null && mainViewModel.mutableSerialPorts.getValue().size() > 0) {
+					ToastMessage.show("已偵測到 " + mainViewModel.mutableSerialPorts.getValue().size() + " 個 USB 裝置");
+				} else {
+					ToastMessage.show("目前未偵測到 USB 裝置");
+				}
+				*/
+				
+				
+				// 觀察 Connect Mode 變化
+				/*
+				GeneralVariables.mutableconnectMode.observe(getViewLifecycleOwner(), connectMode -> {
+					Log.d(TAG, "ConnectMode Changed: " + connectMode);
+					// 例如根據連線方式動態隱藏某些元件
+					if (connectMode == ConnectMode.USB_CABLE) {
+						ToastMessage.show("目前為 USB 連線模式");
+					} else if (connectMode == ConnectMode.BLUE_TOOTH) {
+						ToastMessage.show("目前為藍牙連線模式");
+					}
+				});*/
+				
+				// 監控 USB 裝置變化
+				/*
+				mainViewModel.mutableSerialPorts.observe(getViewLifecycleOwner(), serialPorts -> {
+					Log.d(TAG, "ConfigFragment 監控到 USB 裝置更新，共 " + serialPorts.size() + " 個");
+					if (serialPorts.size() > 0) {
+						ToastMessage.show("已偵測到 " + serialPorts.size() + " 個 USB 裝置");
+						mainViewModel.triggerUsbDeviceRefresh();
+					} else {
+						ToastMessage.show("目前未偵測到 USB 裝置");
+					}
+				});*/
+							
+				
+				
+
+				// 可選: 預防第一次 observer 尚未觸發時先主動拉一次
+				
+			}
+
+
+		//我的网格位置
+		private final TextWatcher onGridEditorChanged = new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable editable) {
+				//String s = "";
+				if (!isUiReady || 
+					mainViewModel == null ||
+					mainViewModel.ft8TransmitSignal == null) {
+					return; // 🔒 短期防堵：避免 restore view state 時 NPE
+				}
+				
+				StringBuilder s=new StringBuilder();
+				for (int j = 0; j < binding.inputMyGridEdit.getText().length(); j++) {
+					if (j < 2) {
+						//s = s + Character.toUpperCase(binding.inputMyGridEdit.getText().charAt(j));
+						s.append(Character.toUpperCase(binding.inputMyGridEdit.getText().charAt(j)));
+					} else {
+						//s = s + Character.toLowerCase(binding.inputMyGridEdit.getText().charAt(j));
+						s.append(Character.toLowerCase(binding.inputMyGridEdit.getText().charAt(j)));
+					}
+				}
+				writeConfig("grid", s.toString());
+				GeneralVariables.setMyMaidenheadGrid(s.toString());
+			}
+		};
+	
+	
+	
+	
+	
+	
+		//我的呼号
+		private final TextWatcher onMyCallEditorChanged = new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable editable) {
+				writeConfig("callsign", editable.toString().toUpperCase().trim());
+				String callsign = editable.toString().toUpperCase().trim();
+				if (callsign.length() > 0) {
+					
+					int[] hashes = Ft8DecodedMessage.computeHashes(callsign);
+					Ft8Message.hashList.addHash(hashes[0], callsign); // h22
+					Ft8Message.hashList.addHash(hashes[1], callsign); // h12
+					Ft8Message.hashList.addHash(hashes[2], callsign); // h10
+					
+					//Ft8Message.hashList.addHash(FT8Package.getHash22(callsign), callsign);
+					//Ft8Message.hashList.addHash(FT8Package.getHash12(callsign), callsign);
+					//Ft8Message.hashList.addHash(FT8Package.getHash10(callsign), callsign);
+				}
+				GeneralVariables.myCallsign = (editable.toString().toUpperCase().trim());
+			}
+		};
+		
+		//发射频率
+		private final TextWatcher onFreqEditorChanged = new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable editable) {
+				setfreq(editable.toString());
+			}
+		};
+		
+		//发射延迟时间
+		private final TextWatcher onTransDelayEditorChanged = new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable editable) {
+				int transDelay = 1000;
+				if (editable.toString().matches("^\\d{1,4}$")) {
+					transDelay = Integer.parseInt(editable.toString());
+				}
+				GeneralVariables.transmitDelay = transDelay;
+				
+				// ✅ 防止 ft8TransmitSignal 尚未初始化
+				if (mainViewModel != null && mainViewModel.ft8TransmitSignal != null) {
+					mainViewModel.ft8TransmitSignal.setTimer_sec(transDelay);
+				} else {
+					LogExt.d(TAG, "ft8TransmitSignal not ready, skip setTimer_sec");
+				}
+				
+				
+				
+				//mainViewModel.ft8TransmitSignal.setTimer_sec(GeneralVariables.transmitDelay);
+				writeConfig("transDelay", Integer.toString(transDelay));
+			}
+		};
+
+		// Cloudlog地址
+		private final TextWatcher onCloudlogAddressChanged=new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable editable) {
+				GeneralVariables.cloudlogServerAddress = editable.toString();
+				writeConfig("cloudlogServerAddress", GeneralVariables.getCloudlogServerAddress());
+			}
+		};
+
+		// Cloudlog APIKEY
+		private final TextWatcher onCloudlogApiKeyChanged=new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable editable) {
+				GeneralVariables.cloudlogApiKey = editable.toString();
+				writeConfig("cloudlogApiKey", GeneralVariables.getCloudlogServerApiKey());
+			}
+		};
+		// Cloudlog地址
+		private final TextWatcher onCloudlogStationIDChanged=new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable editable) {
+				GeneralVariables.cloudlogStationID = editable.toString();
+				writeConfig("cloudlogStationID", GeneralVariables.getCloudlogStationID());
+			}
+		};
+
+		// qrz的api
+		private final TextWatcher onQrzApiKeyChanged=new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable editable) {
+				GeneralVariables.qrzApiKey = editable.toString();
+				
+				
+				try {
+					
+					String encryptedPassword = EncryptionUtil.encryptPassword(GeneralVariables.qrzApiKey, requireContext());
+					//System.out.println("Encrypted Password: " + encryptedPassword);
+					writeConfig("qrzApiKey", encryptedPassword);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+							
+				//writeConfig("qrzApiKey", GeneralVariables.getQrzApiKey());
+			}
+		};
+	
+		//Antenna
+		private final TextWatcher onAntennaEditorChanged = new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable editable) {
+				writeConfig("antenna", editable.toString().toUpperCase().trim());
+				GeneralVariables.antenna =  editable.toString().toUpperCase().trim();
+			}
+		};
+
+
+
+		//排除的呼号前缀
+		private final TextWatcher onExcludedCallsigns=new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable editable) {
+				GeneralVariables.addExcludedCallsigns(editable.toString());
+				writeConfig("excludedCallsigns", GeneralVariables.getExcludeCallsigns());
+			}
+		};
+
+		//修饰符
+		private final TextWatcher onModifierEditorChanged = new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable editable) {
+				if (editable.toString().toUpperCase().trim().matches("[0-9]{3}|[A-Z]{1,4}")
+						||editable.toString().trim().length()==0){
+					binding.modifierEdit.setTextColor(requireContext().getColor(R.color.text_view_color));
+					GeneralVariables.toModifier=editable.toString().toUpperCase().trim();
+					writeConfig("toModifier", GeneralVariables.toModifier);
+				}else{
+					binding.modifierEdit.setTextColor(requireContext().getColor(R.color.text_view_error_color));
+				}
+			}
+		};
+
+		//CI-V地址
+		private final TextWatcher onCIVAddressEditorChanged = new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable editable) {
+				if (editable.toString().length() < 2) {
+					return;
+				}
+				String s = "0x" + editable.toString();
+				if (s.matches("\\b0[xX][0-9a-fA-F]+\\b")) {//匹配十六进制
+					String temp = editable.toString().substring(0, 2).toUpperCase();
+					writeConfig("civ", temp);
+					GeneralVariables.civAddress = Integer.parseInt(temp, 16);
+					mainViewModel.setCivAddress();
+				}
+			}
+		};
+		
+		// SOTAMAT
+		private final TextWatcher onSotamatEditorChanged = new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable editable) {
+				writeConfig("sotamat", editable.toString().toUpperCase().trim());
+				GeneralVariables.sotamat =  editable.toString().toUpperCase().trim();
+			}
+		};
+
+
+		@SuppressLint("DefaultLocale")
+		private void setfreq(String sFreq) {
+			float freq;
+			try {
+				freq = Float.parseFloat(sFreq);
+				if (freq < 100) {
+					freq = 100;
+				}
+				if (freq > 2900) {
+					freq = 2900;
+				}
+			} catch (Exception e
+			) {
+				freq = 1000;
+			}
+
+
+			writeConfig("freq", String.format("%.0f", freq));
+			GeneralVariables.setBaseFrequency(freq);
+		}
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+		
+        binding = FragmentConfigBinding.inflate(inflater, container, false);
+
+
+        //设置时间偏移
+        setUtcTimeOffsetSpinner();
+
+        //设置PTT延时
+        setPttDelaySpinner();
+
+        //设置操作频段
+        setBandsSpinner();
+
+        //设置波特率列表
+        setBauRateSpinner();
+
+        //设置数据位列表
+        setDataBitsSpinner();
+
+        //设置校验位
+        setParityBitsSpinner();
+
+        //设置停止位
+        setStopBitsSpinner();
+		
+		//設定GPS精度
+		//setStopBitsSpinner();
+        setGpsSpinner();
+		
+		// 設定上傳Qrz選項
+		setUploadQrzSpinner();
+		
+		// 設定CQ順序選項
+		setCqOrderSpinner();
+		
+		// 設定CQ Filter順序選項
+		setCqFilterSpinner();
+		
+		// 設定FT4/FT8解碼模式
+		setFT4FT8ModeSpinner();
+		
+		// 設定解碼模式
+		setDecodeModeSpinner();
+
+        //设置电台名称，参数列表
+        setRigNameSpinner();
+
+        //设置解码模式
+        //setDecodeMode();
+
+        //设置音频输出的位数
+        setAudioOutputBitsMode();
+
+        //设置音频输出采样率
+        setAudioOutputRateMode();
+
+        //设置显示消息模式
+        setMessageMode();
+		
+		//設定DarkMode
+        setDarkMode();
+
+        //设置控制模式 VOX CAT
+        setControlMode();
+
+        //设置连线的方式
+        setConnectMode();
+
+        //设置发射监管列表
+        setLaunchSupervision();
+
+        //设置帮助对话框
+        setHelpDialog();
+
+        //设置无回应次数中断
+        setNoReplyLimitSpinner();
+
+        //设置各个spinner的OnItemSelected事件
+        setSpinnerOnItemSelected();
+
+        //显示滚动箭头
+        // 启动第一次延迟更新
+        scrollHandler.postDelayed(scrollUpdater, 500);
+		
+        binding.scrollView3.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View view, int i, int i1, int i2, int i3) {
+                setScrollImageVisible();
+            }
+        });
+
+        //FAQ按钮的onClick
+        binding.faqButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent intent = new Intent(requireContext(), FAQActivity.class);
+                //startActivity(intent);
+				
+				Intent intent=new Intent();
+				intent.setAction(Intent.ACTION_VIEW);
+				Uri uri=Uri.parse("https://github.com/danleetw/FT8TW/discussions/categories/q-a");
+				intent.setData(uri);
+				requireContext().startActivity(intent);
+    
+				
+				
+            }
+        });
+
+        //梅登海德网格
+        binding.inputMyGridEdit.removeTextChangedListener(onGridEditorChanged);
+        binding.inputMyGridEdit.setText(GeneralVariables.getMyMaidenheadGrid());
+        binding.inputMyGridEdit.addTextChangedListener(onGridEditorChanged);
+
+        //我的呼号
+        binding.inputMycallEdit.removeTextChangedListener(onMyCallEditorChanged);
+        binding.inputMycallEdit.setText(GeneralVariables.myCallsign);
+        binding.inputMycallEdit.addTextChangedListener(onMyCallEditorChanged);
+		
+		String callsign = binding.inputMycallEdit.getText().toString().trim();
+		if (callsign.isEmpty()) {
+			TapTargetView.showFor(requireActivity(),
+				TapTarget.forView(binding.inputMycallEdit, GeneralVariables.getStringFromResource(R.string.set_you_callsign), GeneralVariables.getStringFromResource(R.string.set_you_callsign_in_field))
+					.outerCircleColor(android.R.color.holo_red_dark)
+					.targetCircleColor(R.color.white)
+					.titleTextSize(20)
+					.descriptionTextSize(14)
+					.outerCircleAlpha(0.8f)
+					.titleTextColor(android.R.color.white)           // 標題白色
+					.descriptionTextColor(android.R.color.white)     // 說明白色
+					.cancelable(true),
+				new TapTargetView.Listener() {
+					@Override
+					public void onTargetDismissed(TapTargetView view, boolean userInitiated) {
+						super.onTargetDismissed(view, userInitiated);
+						//prefs.edit().putBoolean("first_time_show_callsign_tip", false).apply();
+					}
+				});
+		}		
+			
+		
+		
+		
+
+        //修饰符
+        binding.modifierEdit.removeTextChangedListener(onModifierEditorChanged);
+        binding.modifierEdit.setText(GeneralVariables.toModifier);
+        binding.modifierEdit.addTextChangedListener(onModifierEditorChanged);
+
+        //发射频率
+        binding.inputFreqEditor.removeTextChangedListener(onFreqEditorChanged);
+        binding.inputFreqEditor.setText(GeneralVariables.getBaseFrequencyStr());
+        binding.inputFreqEditor.addTextChangedListener(onFreqEditorChanged);
+
+
+
+        //CIV地址
+        binding.civAddressEdit.removeTextChangedListener(onCIVAddressEditorChanged);
+        binding.civAddressEdit.setText(GeneralVariables.getCivAddressStr());
+        binding.civAddressEdit.addTextChangedListener(onCIVAddressEditorChanged);
+
+        //发射延迟
+        binding.inputTransDelayEdit.removeTextChangedListener(onTransDelayEditorChanged);
+        binding.inputTransDelayEdit.setText(GeneralVariables.getTransmitDelayStr());
+        binding.inputTransDelayEdit.addTextChangedListener(onTransDelayEditorChanged);
+
+        binding.excludedCallsignEdit.removeTextChangedListener(onExcludedCallsigns);
+        binding.excludedCallsignEdit.setText(GeneralVariables.getExcludeCallsigns());
+        binding.excludedCallsignEdit.addTextChangedListener(onExcludedCallsigns);
+
+        // cloudlog相关配置
+		/*
+        binding.cloudlogServerAddressEdit.removeTextChangedListener(onCloudlogAddressChanged);
+        binding.cloudlogServerAddressEdit.setText(GeneralVariables.getCloudlogServerAddress());
+        binding.cloudlogServerAddressEdit.addTextChangedListener(onCloudlogAddressChanged);
+
+        binding.cloudlogServerApiKeyEdit.removeTextChangedListener(onCloudlogApiKeyChanged);
+        binding.cloudlogServerApiKeyEdit.setText(GeneralVariables.getCloudlogServerApiKey());
+        binding.cloudlogServerApiKeyEdit.addTextChangedListener(onCloudlogApiKeyChanged);
+
+        binding.cloudlogStationIdEdit.removeTextChangedListener(onCloudlogStationIDChanged);
+        binding.cloudlogStationIdEdit.setText(GeneralVariables.getCloudlogStationID());
+        binding.cloudlogStationIdEdit.addTextChangedListener(onCloudlogStationIDChanged);
+		*/
+
+		
+        // qrz相关配置
+        binding.qrzApiKeyTextEdit.removeTextChangedListener(onQrzApiKeyChanged);
+        binding.qrzApiKeyTextEdit.setText(GeneralVariables.getQrzApiKey());
+        binding.qrzApiKeyTextEdit.addTextChangedListener(onQrzApiKeyChanged);
+		
+		//PSK Report
+		//设置保存PSK Report选项
+        binding.pskReportSwitch.setOnCheckedChangeListener(null);
+        binding.pskReportSwitch.setChecked(GeneralVariables.enablePskSpot); //PSK
+        setPskSwl();
+		binding.pskReportSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+				GeneralVariables.enablePskSpot = binding.pskReportSwitch.isChecked();
+				if (binding.pskReportSwitch.isChecked()) {
+					mainViewModel.databaseOpr.writeConfig("spotPSK", "1", null);
+					GeneralVariables.enablePskSpotChange=true; //設定有更新
+				} else {
+					mainViewModel.databaseOpr.writeConfig("spotPSK", "0", null);
+				}
+				setPskSwl();
+			}
+		});
+		//psk帮助
+		
+        binding.pskspotImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new HelpDialog(requireContext(), requireActivity()
+                        , GeneralVariables.getStringFromResource(R.string.psk_help)
+                        , true).show();
+            }
+        });
+		
+		
+		
+		
+			
+		//我的天線
+        binding.inputAntennaEdit.removeTextChangedListener(onAntennaEditorChanged);
+        binding.inputAntennaEdit.setText(GeneralVariables.antenna);
+        binding.inputAntennaEdit.addTextChangedListener(onAntennaEditorChanged);
+		
+		
+		// SOTAMAT相关配置
+        binding.inputSotaMatEdit.removeTextChangedListener(onSotamatEditorChanged);
+        //binding.inputSotaMatEdit.setText(GeneralVariables.getQrzApiKey());
+		binding.inputSotaMatEdit.setText(GeneralVariables.sotamat);
+        binding.inputSotaMatEdit.addTextChangedListener(onSotamatEditorChanged);
+		
+		// SWR/ALC Alert
+		binding.swrAlcAlertSwitch.setOnCheckedChangeListener(null);
+        binding.swrAlcAlertSwitch.setChecked(GeneralVariables.enableswrAlcAlert); // SWR/Alc
+		
+		if(GeneralVariables.enableswrAlcAlert)
+			binding.swrAlcAlertSwitch.setText(GeneralVariables.getStringFromResource(R.string.config_enable_swr_alert));
+		
+		binding.swrAlcAlertSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+				GeneralVariables.enableswrAlcAlert = binding.swrAlcAlertSwitch.isChecked();
+				if (binding.swrAlcAlertSwitch.isChecked()) {
+					mainViewModel.databaseOpr.writeConfig("swrAlert", "1", null);
+					binding.swrAlcAlertSwitch.setText(GeneralVariables.getStringFromResource(R.string.config_enable_swr_alert));
+				} else {
+					mainViewModel.databaseOpr.writeConfig("swrAlert", "0", null);
+					binding.swrAlcAlertSwitch.setText(GeneralVariables.getStringFromResource(R.string.config_disable_swr_alert));
+				}
+				setPskSwl();
+			}
+		});
+		
+		
+		
+
+        //设置同频发射开关
+        binding.synFrequencySwitch.setOnCheckedChangeListener(null);
+        binding.synFrequencySwitch.setChecked(GeneralVariables.synFrequency);
+        setSyncFreqText();//设置开关的文本
+        binding.synFrequencySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (binding.synFrequencySwitch.isChecked()) {
+                    mainViewModel.databaseOpr.writeConfig("synFreq", "1", null);
+                } else {
+                    mainViewModel.databaseOpr.writeConfig("synFreq", "0", null);
+                    setfreq(binding.inputFreqEditor.getText().toString());
+                }
+                GeneralVariables.synFrequency = binding.synFrequencySwitch.isChecked();
+                setSyncFreqText();
+                binding.inputFreqEditor.setEnabled(!binding.synFrequencySwitch.isChecked());
+            }
+        });
+
+        //设置PTT延迟
+        binding.pttDelayOffsetSpinner.setSelection(GeneralVariables.pttDelay / 10);
+        //获取操作的波段
+        binding.operationBandSpinner.setSelection(GeneralVariables.bandListIndex);
+        //获取电台型号
+        binding.rigNameSpinner.setSelection(GeneralVariables.modelNo);
+		//GeneralVariables.rigName=rigNameSpinnerAdapter.getRigDesc(GeneralVariables.modelNo);
+		//Log.d(TAG, "--Load Ini Rig--:["+GeneralVariables.rigName+"]");
+
+	
+		// 取得該選項對應的 RigName 物件
+		//GeneralVariables.rigName = rigNameSpinnerAdapter.getRigName(GeneralVariables.modelNo).name;
+		
+		
+        //串口数据位
+        binding.dataBitsSpinner.setSelection(dataBitsSpinnerAdapter.getPosition(GeneralVariables.serialDataBits));
+        //串口停止位
+        binding.stopBitsSpinner.setSelection(stopBitsSpinnerAdapter.getPosition(GeneralVariables.serialStopBits));
+        binding.parityBitsSpinner.setSelection(parityBitsSpinnerAdapter.getPosition(GeneralVariables.serialParity));
+        //获取波特率
+        binding.baudRateSpinner.setSelection(bauRateSpinnerAdapter.getPosition(
+                GeneralVariables.baudRate));
+        //设置发射监管
+        binding.launchSupervisionSpinner.setSelection(launchSupervisionSpinnerAdapter
+                .getPosition(GeneralVariables.launchSupervision)+1);
+        //设置无回应中断
+        binding.noResponseCountSpinner.setSelection(GeneralVariables.noReplyLimit);
+
+        //设置保存Cloudlog选项
+		/*
+        binding.enableCloudlogSwitch.setOnCheckedChangeListener(null);
+        binding.enableCloudlogSwitch.setChecked(GeneralVariables.enableCloudlog);
+        binding.enableCloudlogSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                GeneralVariables.enableCloudlog = binding.enableCloudlogSwitch.isChecked();
+                if (binding.enableCloudlogSwitch.isChecked()) {
+                    mainViewModel.databaseOpr.writeConfig("enableCloudlog", "1", null);
+                } else {
+                    mainViewModel.databaseOpr.writeConfig("enableCloudlog", "0", null);
+                }
+            }
+        });
+		*/
+        //设置保存QRZ选项
+		
+        binding.enableQrzSwitch.setOnCheckedChangeListener(null);
+        binding.enableQrzSwitch.setChecked(GeneralVariables.enableQRZ);
+        binding.enableQrzSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                GeneralVariables.enableQRZ = binding.enableQrzSwitch.isChecked();
+                if (binding.enableQrzSwitch.isChecked()) {
+                    mainViewModel.databaseOpr.writeConfig("enableQRZ", "1", null);
+                } else {
+                    mainViewModel.databaseOpr.writeConfig("enableQRZ", "0", null);
+                }
+            }
+        });
+		
+
+        //设置自动关注CQ
+		
+        binding.followCQSwitch.setOnCheckedChangeListener(null);
+        binding.followCQSwitch.setChecked(GeneralVariables.autoFollowCQ);
+        setAutoFollowCQText();
+        binding.followCQSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                GeneralVariables.autoFollowCQ = binding.followCQSwitch.isChecked();
+                if (binding.followCQSwitch.isChecked()) {
+                    mainViewModel.databaseOpr.writeConfig("autoFollowCQ", "1", null);
+                } else {
+                    mainViewModel.databaseOpr.writeConfig("autoFollowCQ", "0", null);
+                }
+                setAutoFollowCQText();
+            }
+        });
+
+
+
+        //设置自动呼叫关注的呼号
+        //binding.autoCallfollowSwitch.setOnCheckedChangeListener(null);
+        //binding.autoCallfollowSwitch.setChecked(GeneralVariables.autoAddFollow);
+        //setAutoCallFollow();
+		
+		/* BV6LC調整作法
+        binding.autoCallfollowSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                GeneralVariables.autoAddFollow = binding.autoCallfollowSwitch.isChecked();
+                if (binding.autoCallfollowSwitch.isChecked()) {
+                    mainViewModel.databaseOpr.writeConfig("autoAddFollow", "1", null);
+                } else {
+                    mainViewModel.databaseOpr.writeConfig("autoAddFollow", "0", null);
+                }
+                setAutoCallFollow();
+            }
+        });
+		*/
+
+        //设置保存SWL选项
+        binding.saveSWLSwitch.setOnCheckedChangeListener(null);
+        binding.saveSWLSwitch.setChecked(GeneralVariables.saveSWLMessage);
+        setSaveSwl();
+        binding.saveSWLSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                GeneralVariables.saveSWLMessage = binding.saveSWLSwitch.isChecked();
+                if (binding.saveSWLSwitch.isChecked()) {
+					// ✅ 開啟：使用「發射」語意色
+					//binding.saveSWLSwitch.setThumbTintList(
+					//		ColorStateList.valueOf(
+					//				requireContext().getColor(R.color.purple_500)
+					//		)
+					//);
+                    mainViewModel.databaseOpr.writeConfig("saveSWL", "1", null);
+                } else {
+					// ❌ 關閉：淡白 + 半透明黑
+					//binding.saveSWLSwitch.setThumbTintList(
+					//		ColorStateList.valueOf(
+					//				requireContext().getColor(R.color.image_button_ground_color)
+					//		)
+					//);
+                    mainViewModel.databaseOpr.writeConfig("saveSWL", "0", null);
+                }
+                setSaveSwl();
+            }
+        });
+
+        //设置保存SWL选项
+        binding.saveSWLQSOSwitch.setOnCheckedChangeListener(null);
+        binding.saveSWLQSOSwitch.setChecked(GeneralVariables.saveSWLMessage);
+        setSaveSwlQSO();
+        binding.saveSWLQSOSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                GeneralVariables.saveSWL_QSO = binding.saveSWLQSOSwitch.isChecked();
+				Log.d(TAG, "GeneralVariables.saveSWL_QSO: " + GeneralVariables.saveSWL_QSO);
+                if (binding.saveSWLQSOSwitch.isChecked()) {
+					Log.d(TAG, "writeConfig saveSWLQSO:1 " );
+                    mainViewModel.databaseOpr.writeConfig("saveSWLQSO", "1", null);
+                } else {
+					Log.d(TAG, "writeConfig saveSWLQSO:0 " );
+                    mainViewModel.databaseOpr.writeConfig("saveSWLQSO", "0", null);
+                }
+                setSaveSwlQSO();
+            }
+        });
+
+
+        //获取梅登海德网格
+        binding.configGetGridImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String grid = MaidenheadGrid.getMyMaidenheadGrid(getContext(), (GeneralVariables.gpsPrecision*2+4));
+				
+				if (!grid.equals("")) {
+					ToastMessage.show(String.format("Get Grid from GPS:%s",grid));
+                    binding.inputMyGridEdit.setText(grid);
+                }
+				else{
+					ToastMessage.show(String.format("GPS not enabled? %s",grid));
+				}
+			}
+        });
+
+        //串口默认值设置复位键
+        binding.serialDefaultButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GeneralVariables.serialParity = 0;
+                GeneralVariables.serialDataBits = 8;
+                GeneralVariables.serialStopBits = 1;
+                requireActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.parityBitsSpinner.setSelection(
+                                parityBitsSpinnerAdapter.getPosition(GeneralVariables.serialParity));
+                        binding.dataBitsSpinner.setSelection(
+                                dataBitsSpinnerAdapter.getPosition(GeneralVariables.serialDataBits));
+                        binding.stopBitsSpinner.setSelection(
+                                stopBitsSpinnerAdapter.getPosition(GeneralVariables.serialStopBits));
+                    }
+                });
+
+            }
+        });
+
+
+        return binding.getRoot();
+    }
+
+    /**
+     * 设置各个spinner的OnItemSelected事件，防止在进入主界面时，重复向数据库写入配置信息
+     */
+    private void setSpinnerOnItemSelected(){
+        
+		
+		
+			View root = binding.getRoot();
+			root.post(() -> {
+				// Fragment 视图如果已经销毁，binding 会被置空，这里先检查
+				if (binding == null) return;
+
+					binding.pttDelayOffsetSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+						@Override
+						public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+							GeneralVariables.pttDelay = i * 10;
+							writeConfig("pttDelay", String.valueOf(GeneralVariables.pttDelay));
+						}
+
+						@Override
+						public void onNothingSelected(AdapterView<?> adapterView) {
+
+						}
+					});
+
+					binding.operationBandSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+						@Override
+						public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+							GeneralVariables.bandListIndex = i;
+							GeneralVariables.band = OperationBand.getBandFreq(i);//把当前的频段保存下来
+
+							mainViewModel.databaseOpr.getAllQSLCallsigns();//通联成功的呼号读出来
+							writeConfig("bandFreq", String.valueOf(GeneralVariables.band));
+							if (GeneralVariables.controlMode == ControlMode.CAT//CAT、RTS、DTR模式下控制电台
+									|| GeneralVariables.controlMode == ControlMode.RTS
+									|| GeneralVariables.controlMode == ControlMode.DTR) {
+								//如果在CAT、RTS模式下，修改电台的频率
+								Log.i(TAG, "###: setOperationBand[");
+								mainViewModel.setOperationBand();
+								Log.i(TAG, "###: setOperationBand]");
+							}
+						}
+
+						@Override
+						public void onNothingSelected(AdapterView<?> adapterView) {
+
+						}
+					});
+					// 選擇電台
+					binding.rigNameSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+						@Override
+						public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+							GeneralVariables.modelNo = i;
+							writeConfig("model", String.valueOf(i));
+							setAddrAndBauRate(rigNameSpinnerAdapter.getRigName(i));
+							//Log.d(TAG, "--Rig--:["+rigNameSpinnerAdapter.getRigDesc(i)+"]");
+							GeneralVariables.rigName=rigNameSpinnerAdapter.getRigDesc(i);
+							writeConfig("rigName", GeneralVariables.rigName);
+
+							//指令集
+							GeneralVariables.instructionSet = rigNameSpinnerAdapter.getRigName(i).instructionSet;
+							writeConfig("instruction", String.valueOf(GeneralVariables.instructionSet));
+							
+							
+							// ⬇️新增這段：切換電台後重新連線
+							/*
+							if (GeneralVariables.controlMode == ControlMode.CAT
+									|| GeneralVariables.controlMode == ControlMode.RTS
+									|| GeneralVariables.controlMode == ControlMode.DTR) {
+								Log.i(TAG, "Rig changed, reconnecting...");
+								mainViewModel.disconnectRig();
+								mainViewModel.connectRig();
+							}*/
+							
+							
+						}
+
+						@Override
+						public void onNothingSelected(AdapterView<?> adapterView) {
+						}
+					});
+
+
+					binding.baudRateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+						@Override
+						public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+							GeneralVariables.baudRate = bauRateSpinnerAdapter.getValue(i);
+							writeConfig("baudRate", String.valueOf(GeneralVariables.baudRate));
+						}
+
+						@Override
+						public void onNothingSelected(AdapterView<?> adapterView) {
+						}
+					});
+
+
+					binding.launchSupervisionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+						@Override
+						public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+							GeneralVariables.launchSupervision = LaunchSupervisionSpinnerAdapter.getTimeOut(i);
+							writeConfig("launchSupervision", String.valueOf(GeneralVariables.launchSupervision));
+						}
+
+						@Override
+						public void onNothingSelected(AdapterView<?> adapterView) {
+
+						}
+					});
+
+
+					binding.noResponseCountSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+						@Override
+						public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+							GeneralVariables.noReplyLimit = i;
+							writeConfig("noReplyLimit", String.valueOf(GeneralVariables.noReplyLimit));
+						}
+
+						@Override
+						public void onNothingSelected(AdapterView<?> adapterView) {
+
+						}
+					});
+					//串口数据位
+					binding.dataBitsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+						@Override
+						public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+							GeneralVariables.serialDataBits =  dataBitsSpinnerAdapter.getValue(i);
+							writeConfig("dataBits", String.valueOf(GeneralVariables.serialDataBits));
+						}
+
+						@Override
+						public void onNothingSelected(AdapterView<?> adapterView) {
+
+						}
+					});
+
+					//串口停止位
+					binding.stopBitsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+						@Override
+						public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+							GeneralVariables.serialStopBits =  stopBitsSpinnerAdapter.getValue(i);
+							writeConfig("stopBits", String.valueOf(GeneralVariables.serialStopBits));
+						}
+
+						@Override
+						public void onNothingSelected(AdapterView<?> adapterView) {
+
+						}
+					});
+
+					//校验位
+					binding.parityBitsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+						@Override
+						public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+							GeneralVariables.serialParity =  parityBitsSpinnerAdapter.getValue(i);
+							writeConfig("parityBits", String.valueOf(GeneralVariables.serialParity));
+						}
+
+						@Override
+						public void onNothingSelected(AdapterView<?> adapterView) {
+
+						}
+					});
+			});
+
+
+		
+
+
+
+    }
+
+    /**
+     * 设置地址和波特率，指令集
+     *
+     * @param rigName 电台型号
+     */
+    private void setAddrAndBauRate(RigNameList.RigName rigName) {
+        GeneralVariables.civAddress = rigName.address;
+        mainViewModel.setCivAddress();
+        GeneralVariables.baudRate = rigName.bauRate;
+        binding.civAddressEdit.setText(String.format("%X", rigName.address));
+        binding.baudRateSpinner.setSelection(
+                bauRateSpinnerAdapter.getPosition(rigName.bauRate));
+    }
+
+
+    /**
+     * 设置同频发射开关的显示文本
+     */
+    private void setSyncFreqText() {
+        if (binding.synFrequencySwitch.isChecked()) {
+            binding.synFrequencySwitch.setText(getString(R.string.freq_syn));
+        } else {
+            binding.synFrequencySwitch.setText(getString(R.string.freq_asyn));
+        }
+    }
+
+    /**
+     * 设置自动关注CQ开关的文本
+     */
+    private void setAutoFollowCQText() {
+        if (binding.followCQSwitch.isChecked()) { // 自動CQ
+            binding.followCQSwitch.setText(getString(R.string.auto_follow_cq));
+        } else {
+            binding.followCQSwitch.setText(getString(R.string.not_concerned_about_CQ));
+        }
+    }
+
+    //设置自动呼叫关注的呼号
+	/*
+    private void setAutoCallFollow() {
+        if (binding.autoCallfollowSwitch.isChecked()) {
+            binding.autoCallfollowSwitch.setText(getString(R.string.automatic_call_following));
+        } else {
+            binding.autoCallfollowSwitch.setText(getString(R.string.do_not_call_the_following_callsign));
+        }
+    }
+	*/
+	
+    private void setSaveSwl() {
+        if (binding.saveSWLSwitch.isChecked()) {
+            binding.saveSWLSwitch.setText(getString(R.string.config_save_swl));
+        } else {
+            binding.saveSWLSwitch.setText(getString(R.string.config_donot_save_swl));
+        }
+    }
+    private void setSaveSwlQSO() {
+		if (isAdded()){
+			if (binding.saveSWLQSOSwitch.isChecked()) {
+				binding.saveSWLQSOSwitch.setText(getString(R.string.config_save_swl_qso));
+			} else {
+				binding.saveSWLQSOSwitch.setText(getString(R.string.config_donot_save_swl_qso));
+			}
+		}
+    }
+	
+	private void setPskSwl() {
+        if (binding.pskReportSwitch.isChecked()) {
+            //binding.pskReportSwitch.setText(getString(R.string.config_save_swl));
+			binding.pskReportSwitch.setText("(O)Spot to PSKReporter");
+        } else {
+            //binding.pskReportSwitch.setText(getString(R.string.config_donot_save_swl));
+			binding.pskReportSwitch.setText("(X)Spot to PSKReporter");
+        }
+    }
+	
+    /**
+     * 设置UTC时间偏移的spinner
+     */
+    private void setUtcTimeOffsetSpinner() {
+		
+        UtcOffsetSpinnerAdapter adapter = new UtcOffsetSpinnerAdapter(requireContext());
+
+        requireActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                binding.utcTimeOffsetSpinner.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+                binding.utcTimeOffsetSpinner.setSelection((UtcTimer.delay / 100 + 75) / 5);
+            }
+        });
+        binding.utcTimeOffsetSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                UtcTimer.delay = i * 500 - 7500;//设置延迟
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+		
+		
+		
+		
+    }
+	/* 設定 CQ 優先順序選項
+	*/
+	private void setCqOrderSpinner(){
+		cqOrderSpinnerAdapter = new CqOrderSpinnerAdapter(requireContext());
+		binding.cqOrderOptSpinner.setAdapter(cqOrderSpinnerAdapter);
+		
+		requireActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                cqOrderSpinnerAdapter.notifyDataSetChanged();
+            }
+        });
+		
+		
+		// 设置 OnItemSelectedListener 来保存选中的值
+		binding.cqOrderOptSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				// 根据选择的项保存设置
+				String selectedOpt = parent.getItemAtPosition(position).toString();
+				
+				// 根据 position 或值来保存具体设置
+				writeConfig("cqOrderOpt", selectedOpt);
+				GeneralVariables.autoFollowCQOrder = cqOrderSpinnerAdapter.getValue(position);
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				// 默認選項，Today
+				writeConfig("cqOrderOpt", "0");
+				GeneralVariables.autoFollowCQOrder = 0;
+			}
+		});
+
+		// 根據之前的設定值來設置選項
+		//int savedOpt = GeneralVariables.autoFollowCQOrder; // 假設這個變數存了設定值
+		//binding.cqOrderOptSpinner.setSelection(savedOpt);
+		
+		int currentOpt = GeneralVariables.autoFollowCQOrder;
+		int position = cqOrderSpinnerAdapter.getPosition(currentOpt);
+		binding.cqOrderOptSpinner.setSelection(position);
+		//binding.cqOrderOptSpinner.post(() -> binding.cqOrderOptSpinner.setSelection(position));
+	}
+	
+	
+	
+	/* 設定 QSO Filter選項
+	*/
+	private void setCqFilterSpinner(){
+		cqFilterSpinnerAdapter = new CqFilterSpinnerAdapter(requireContext());
+		
+		binding.cqFilterOptSpinner.setAdapter(cqFilterSpinnerAdapter);
+		
+		requireActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                cqFilterSpinnerAdapter.notifyDataSetChanged();
+            }
+        });
+		
+		
+		// 设置 OnItemSelectedListener 来保存选中的值
+		binding.cqFilterOptSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				// 根据选择的项保存设置
+				String selectedOpt = parent.getItemAtPosition(position).toString();
+				
+				// 根据 position 或值来保存具体设置
+				writeConfig("qsoFilterOpt", selectedOpt);
+				GeneralVariables.qsoFilterOpt=cqFilterSpinnerAdapter.getValue(position);
+				//GeneralVariables.autoFollowCQOrder = position;
+				mainViewModel.databaseOpr.getAllQSLCallsigns();//通联成功的呼号读出来
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				// 默認選項，Today
+				writeConfig("qsoFilterOpt", "0");
+				GeneralVariables.qsoFilterOpt=0;
+				//GeneralVariables.autoFollowCQOrder = 0;
+				mainViewModel.databaseOpr.getAllQSLCallsigns();//通联成功的呼号读出来
+			}
+		});
+
+		// 根據之前的設定值來設置選項
+		//int savedOpt = GeneralVariables.autoFollowCQOrder; // 假設這個變數存了設定值
+		//binding.cqOrderOptSpinner.setSelection(savedOpt);
+		
+		// 根據 GeneralVariables.qsoFilterOpt 設定預設選項
+		int currentOpt = GeneralVariables.qsoFilterOpt;
+		int position = cqFilterSpinnerAdapter.getPosition(currentOpt);
+		binding.cqFilterOptSpinner.setSelection(position);
+		
+		
+	}
+	
+	/* 設定 DeCodeMode選項
+	*/
+	private void setDecodeModeSpinner(){
+		decodeModeSpinnerAdapter = new DecodeModeSpinnerAdapter(requireContext());
+		
+		binding.decodeModeSpinner.setAdapter(decodeModeSpinnerAdapter);
+		
+		requireActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                decodeModeSpinnerAdapter.notifyDataSetChanged();
+            }
+        });
+		
+		
+		// 设置 OnItemSelectedListener 来保存选中的值
+		binding.decodeModeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				// 根据选择的项保存设置
+				String selectedOpt = parent.getItemAtPosition(position).toString();
+				
+				// 根据 position 或值来保存具体设置
+				writeConfig("deepMode", selectedOpt);
+				GeneralVariables.deepDecodeMode=decodeModeSpinnerAdapter.getValue(position);
+				//GeneralVariables.autoFollowCQOrder = position;
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				// 默認選項，Today
+				writeConfig("deepMode", "1");
+				GeneralVariables.deepDecodeMode=1;
+			}
+		});
+
+		// 根據之前的設定值來設置選項
+		int currentOpt = GeneralVariables.deepDecodeMode;
+		int position = decodeModeSpinnerAdapter.getPosition(currentOpt);
+		binding.decodeModeSpinner.setSelection(position);
+		
+		
+	}
+	
+	
+	
+	/* 設定 FT4FT8Mode選項
+	*/
+	private void setFT4FT8ModeSpinner(){
+		ft4ft8ModeSpinnerAdapter = new FT4FT8ModeSpinnerAdapter(requireContext());
+		
+		binding.ft4ft8ModeSpinner.setAdapter(ft4ft8ModeSpinnerAdapter);
+		
+		requireActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ft4ft8ModeSpinnerAdapter.notifyDataSetChanged();
+            }
+        });
+		
+		
+		// 设置 OnItemSelectedListener 来保存选中的值
+		binding.ft4ft8ModeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				// 根据选择的项保存设置
+				//String selectedOpt = parent.getItemAtPosition(position).toString();
+				
+				// 根据 position 或值来保存具体设置
+				writeConfig("ft4ft8Mode", position==0 ? "0" : "1");
+				Log.d(TAG, "ft4ft8Mode: " + position);
+				
+				Log.d(TAG, "Spinner切換 -> setIsFT4: " + (position == 0));
+				GeneralVariables.setIsFT4(position==0 ? true : false);
+				
+				OperationBand.clearInstance();
+				OperationBand.getInstance(requireContext(), GeneralVariables.isFT4);
+				setBandsSpinner();
+				
+				
+				//GeneralVariables.isFT4= position==0 ? true : false;
+				
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				// 默認選項，FT8
+				writeConfig("ft4ft8Mode", "1");
+				//GeneralVariables.isFT4=false;
+				GeneralVariables.setIsFT4(false);
+			}
+		});
+
+		// 根據之前的設定值來設置選項
+		int currentOpt = GeneralVariables.isFT4==true ? 0 : 1;
+		int position = ft4ft8ModeSpinnerAdapter.getPosition(currentOpt);
+		binding.ft4ft8ModeSpinner.setSelection(position);
+	}
+	
+	
+	
+
+	/* 設定上傳QRZ選項
+	*/
+	private void setUploadQrzSpinner(){
+		uploadQrzSpinnerAdapter = new UploadQrzSpinnerAdapter(requireContext());
+		binding.UploadQrzOptSpinner.setAdapter(uploadQrzSpinnerAdapter);
+		
+		requireActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                uploadQrzSpinnerAdapter.notifyDataSetChanged();
+            }
+        });
+		
+		
+		// 设置 OnItemSelectedListener 来保存选中的值
+		binding.UploadQrzOptSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				// 根据选择的项保存设置
+				String selectedOpt = parent.getItemAtPosition(position).toString();
+				
+				// 根据 position 或值来保存具体设置
+				writeConfig("qrzUploadOpt", selectedOpt);
+				GeneralVariables.qrzUploadOpt = position;
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				// 默認選項，Today
+				writeConfig("qrzUploadOpt", "0");
+				GeneralVariables.qrzUploadOpt = 0;
+			}
+		});
+
+		// 根據之前的設定值來設置選項
+		int savedOpt = GeneralVariables.qrzUploadOpt; // 假設這個變數存了設定值
+		binding.UploadQrzOptSpinner.setSelection(savedOpt);
+	}
+    /**
+     * 设置GPS精度
+     */
+    private void setGpsSpinner(){
+		
+        gpsSpinnerAdapter = new GpsSpinnerAdapter(requireContext());
+		
+		
+        binding.precisionSpinner.setAdapter(gpsSpinnerAdapter);
+		
+        requireActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                gpsSpinnerAdapter.notifyDataSetChanged();
+            }
+        });
+		
+		
+		
+		// 设置 OnItemSelectedListener 来保存选中的值
+		binding.precisionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				// 根据选择的项保存设置
+				String selectedPrecision = parent.getItemAtPosition(position).toString();
+				String maidenheadGrid;
+				
+				// 根据 position 或值来保存具体设置
+				writeConfig("gpsPrecision", selectedPrecision);
+				GeneralVariables.gpsPrecision = position;
+
+				maidenheadGrid=GeneralVariables.getMyMaidenheadGrid((GeneralVariables.gpsPrecision*2+4));
+				/*maidenheadGrid=maidenheadGrid.substring(0, Math.min( (GeneralVariables.gpsPrecision*2+4),
+																				maidenheadGrid.length() )
+														);*/
+				
+				// 如果抓的到GPS就更新										
+				String Gpsgrid = MaidenheadGrid.getMyMaidenheadGrid(getContext() , (GeneralVariables.gpsPrecision*2+4));
+                /*Gpsgrid = Gpsgrid.substring(0, Math.min( (GeneralVariables.gpsPrecision*2+4),
+																				Gpsgrid.length() )
+														);*/
+				if (!Gpsgrid.equals("")) {
+					maidenheadGrid=Gpsgrid;
+                }													
+														
+
+				GeneralVariables.setMyMaidenheadGrid(maidenheadGrid);
+				binding.inputMyGridEdit.setText(GeneralVariables.getMyMaidenheadGrid());
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				// 默認選項，低精度
+				writeConfig("gpsPrecision", "0");
+				GeneralVariables.gpsPrecision = 0;
+			}
+		});
+
+		// 根據之前的設定值來設置選項
+		int savedPrecision = GeneralVariables.gpsPrecision; // 假設這個變數存了設定值
+		binding.precisionSpinner.setSelection(savedPrecision);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+    }
+	
+	
+	
+	
+	
+
+
+    /**
+     * 设置操作频段的spinner
+     */
+    private void setBandsSpinner() {
+		
+		
+
+
+        bandsSpinnerAdapter = new BandsSpinnerAdapter(requireContext());
+        binding.operationBandSpinner.setAdapter(bandsSpinnerAdapter);
+        requireActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                bandsSpinnerAdapter.notifyDataSetChanged();
+				
+				// 等待下個繪製循環再設定選項
+				binding.operationBandSpinner.post(() -> {
+					
+					if ((bandsSpinnerAdapter != null) && (GeneralVariables.bandListIndex >= 0 )
+							&& GeneralVariables.bandListIndex < bandsSpinnerAdapter.getCount()) {
+						binding.operationBandSpinner.setSelection(GeneralVariables.bandListIndex);
+					}
+					
+					
+				});
+				
+            }
+        });
+		
+
+		GeneralVariables.mutableBandChange.postValue(GeneralVariables.bandListIndex);
+		
+
+    }
+
+    /**
+     * 设置波特率列表
+     */
+    private void setBauRateSpinner() {
+        bauRateSpinnerAdapter = new BauRateSpinnerAdapter(requireContext());
+        binding.baudRateSpinner.setAdapter(bauRateSpinnerAdapter);
+        requireActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                bauRateSpinnerAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    /**
+     * 设置数据位列表
+     */
+    private void setDataBitsSpinner(){
+        dataBitsSpinnerAdapter = new SerialDataBitsSpinnerAdapter(requireContext());
+        binding.dataBitsSpinner.setAdapter(dataBitsSpinnerAdapter);
+        requireActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                dataBitsSpinnerAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    /**
+     * 设置校验位列表
+     */
+    private void setParityBitsSpinner(){
+        parityBitsSpinnerAdapter = new SerialParityBitsSpinnerAdapter(requireContext());
+        binding.parityBitsSpinner.setAdapter(parityBitsSpinnerAdapter);
+        requireActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                parityBitsSpinnerAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+    /**
+     * 设置停止位列表
+     */
+    private void setStopBitsSpinner(){
+        stopBitsSpinnerAdapter = new SerialStopBitsSpinnerAdapter(requireContext());
+        binding.stopBitsSpinner.setAdapter(stopBitsSpinnerAdapter);
+        requireActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                stopBitsSpinnerAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+
+
+    /**
+     * 设置无回应次数中断
+     */
+    private void setNoReplyLimitSpinner() {
+        noReplyLimitSpinnerAdapter = new NoReplyLimitSpinnerAdapter(requireContext());
+        binding.noResponseCountSpinner.setAdapter(noReplyLimitSpinnerAdapter);
+        requireActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                noReplyLimitSpinnerAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    /**
+     * 设置发射监管列表
+     */
+    private void setLaunchSupervision() {
+        launchSupervisionSpinnerAdapter = new LaunchSupervisionSpinnerAdapter(requireContext());
+        binding.launchSupervisionSpinner.setAdapter(launchSupervisionSpinnerAdapter);
+        requireActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                launchSupervisionSpinnerAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    /**
+     * 设置电台名称，参数列表
+     */
+    private void setRigNameSpinner() {
+        rigNameSpinnerAdapter = new RigNameSpinnerAdapter(requireContext());
+        binding.rigNameSpinner.setAdapter(rigNameSpinnerAdapter);
+        requireActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                rigNameSpinnerAdapter.notifyDataSetChanged();
+            }
+        });
+
+    }
+
+    /**
+     * 设置PTT延时
+     */
+    private void setPttDelaySpinner() {
+        pttDelaySpinnerAdapter = new PttDelaySpinnerAdapter(requireContext());
+        binding.pttDelayOffsetSpinner.setAdapter(pttDelaySpinnerAdapter);
+        requireActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                pttDelaySpinnerAdapter.notifyDataSetChanged();
+                binding.pttDelayOffsetSpinner.setSelection(GeneralVariables.pttDelay / 10);
+            }
+        });
+
+
+    }
+
+
+	/*
+    private void setDecodeMode() {
+        binding.decodeModeRadioGroup.clearCheck();
+        //binding.fastDecodeRadioButton.setChecked(!GeneralVariables.deepDecodeMode);
+        //binding.deepDecodeRadioButton.setChecked(GeneralVariables.deepDecodeMode);
+
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int buttonId = binding.decodeModeRadioGroup.getCheckedRadioButtonId();
+                //GeneralVariables.deepDecodeMode= buttonId ==binding.deepDecodeRadioButton.getId();
+				GeneralVariables.deepDecodeMode= 1;
+                //writeConfig("deepMode", GeneralVariables.deepDecodeMode? "1" : "0");
+				writeConfig("deepMode", Integer.toString(GeneralVariables.deepDecodeMode) );
+				
+            }
+        };
+
+        binding.fastDecodeRadioButton.setOnClickListener(listener);
+        binding.deepDecodeRadioButton.setOnClickListener(listener);
+
+    }*/
+
+
+    /**
+     * 设置音频输出的位数
+     */
+    private void setAudioOutputBitsMode() {
+        //binding.controlModeRadioGroup.setOnCheckedChangeListener(null);
+        binding.audioBitsRadioGroup.clearCheck();
+        binding.audio32BitsRadioButton.setChecked(GeneralVariables.audioOutput32Bit);
+        binding.audio16BitsRadioButton.setChecked(!GeneralVariables.audioOutput32Bit);
+
+
+		//BV6LC 我看程式沒有實作，避免使用者花心思去調整
+		binding.audio32BitsRadioButton.setChecked(true);
+		GeneralVariables.audioOutput32Bit = true;
+		binding.audio32BitsRadioButton.setEnabled(false);
+		binding.audio16BitsRadioButton.setEnabled(false);
+
+
+
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int buttonId = binding.audioBitsRadioGroup.getCheckedRadioButtonId();
+                GeneralVariables.audioOutput32Bit= buttonId ==binding.audio32BitsRadioButton.getId();
+                writeConfig("audioBits", GeneralVariables.audioOutput32Bit? "1" : "0");
+            }
+        };
+
+        binding.audio32BitsRadioButton.setOnClickListener(listener);
+        binding.audio16BitsRadioButton.setOnClickListener(listener);
+
+    }
+
+    /**
+     * 输出音频的采样率设置
+     */
+    private void setAudioOutputRateMode() {
+        binding.audioRateRadioGroup.clearCheck();
+        binding.audio12kRadioButton.setChecked(GeneralVariables.audioSampleRate==12000);
+        binding.audio24kRadioButton.setChecked(GeneralVariables.audioSampleRate==24000);
+        binding.audio48kRadioButton.setChecked(GeneralVariables.audioSampleRate==48000);
+
+
+
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (binding.audio12kRadioButton.isChecked()) GeneralVariables.audioSampleRate=12000;
+                if (binding.audio24kRadioButton.isChecked()) GeneralVariables.audioSampleRate=24000;
+                if (binding.audio48kRadioButton.isChecked()) GeneralVariables.audioSampleRate=48000;
+                writeConfig("audioRate", String.valueOf(GeneralVariables.audioSampleRate));
+            }
+        };
+
+        binding.audio12kRadioButton.setOnClickListener(listener);
+        binding.audio24kRadioButton.setOnClickListener(listener);
+        binding.audio48kRadioButton.setOnClickListener(listener);
+
+    }
+
+
+
+    /**
+     * 设置消息列表显示模式
+     */
+    private void setMessageMode() {
+        binding.messageModeRadioGroup.clearCheck();
+        if (GeneralVariables.simpleCallItemMode){
+            binding.msgSimpleRadioButton.setChecked(true);
+        }else {
+            binding.msgStandardRadioButton.setChecked(true);
+        }
+
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int buttonId = binding.messageModeRadioGroup.getCheckedRadioButtonId();
+                GeneralVariables.simpleCallItemMode=
+                        binding.messageModeRadioGroup.getCheckedRadioButtonId()
+                                ==binding.msgSimpleRadioButton.getId();
+
+                writeConfig("msgMode", GeneralVariables.simpleCallItemMode?"1":"0");
+            }
+        };
+
+        binding.msgStandardRadioButton.setOnClickListener(listener);
+        binding.msgSimpleRadioButton.setOnClickListener(listener);
+    }
+	
+	
+	/**
+     * 設定深色模式
+     */
+    private void setDarkMode() {
+        
+		// 初始化 RadioButton（避免誤觸 listener）
+		binding.darkModeRadioGroup.setOnCheckedChangeListener(null);
+		 
+		switch (GeneralVariables.darkModeSetting) {
+			case 1: // 強制淺色
+				binding.darkMode1RadioButton.setChecked(true);
+				break;
+			case 2: // 強制深色
+				binding.darkMode2RadioButton.setChecked(true);
+				break;
+			default: // 跟隨系統
+				binding.darkMode0RadioButton.setChecked(true);
+				break;
+		}
+		
+		binding.darkModeRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+			int newMode = 0;
+			if (checkedId == R.id.darkMode0RadioButton) {
+				newMode = 0;
+			} else if (checkedId == R.id.darkMode1RadioButton) {
+				newMode = 1;
+			} else if (checkedId == R.id.darkMode2RadioButton) {
+				newMode = 2;
+			}
+			
+			// ✅ ① 切 Theme 前，先關 FloatView（避免 Activity recreate 後殘留）
+			if (mainViewModel != null) {
+				mainViewModel.showFloatView.postValue(false);
+			}
+			
+			//SharedPreferences prefs = requireContext().getSharedPreferences("ft8tw_config", Context.MODE_PRIVATE);
+			//prefs.edit().putInt("darkMode", GeneralVariables.darkModeSetting).apply();
+
+			//writeConfig("darkMode", Integer.toString(GeneralVariables.darkModeSetting));
+			if (GeneralVariables.darkModeSetting == newMode) return;
+			
+			if (GeneralVariables.darkModeSetting != newMode) {
+				GeneralVariables.darkModeSetting = newMode;
+				SharedPreferences prefs = requireContext().getSharedPreferences("ft8tw_config", Context.MODE_PRIVATE);
+				prefs.edit().putInt("darkMode", newMode).apply();
+
+				switch (newMode) {
+					case 0:
+						AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+						break;
+					case 1:
+						AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+						break;
+					case 2:
+						AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+						break;
+				}
+			}
+				
+			
+			
+		});
+
+
+    }
+	
+
+
+
+
+    /**
+     * 设置控制模式VOX CAT
+     */
+    private void setControlMode() {
+        //binding.controlModeRadioGroup.setOnCheckedChangeListener(null);
+        binding.controlModeRadioGroup.clearCheck();
+
+        switch (GeneralVariables.controlMode) {
+            case ControlMode.CAT:
+            case ConnectMode.NETWORK:
+                binding.ctrCATradioButton.setChecked(true);
+                break;
+            case ControlMode.RTS:
+                binding.ctrRTSradioButton.setChecked(true);
+                break;
+            case ControlMode.DTR:
+                binding.ctrDTRradioButton.setChecked(true);
+                break;
+            default:
+                binding.ctrVOXradioButton.setChecked(true);
+        }
+
+		
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { // VOX/CAT/RTS/DTR 選項被按下
+                int buttonId = binding.controlModeRadioGroup.getCheckedRadioButtonId();
+				//neralVariables.hasShownUsbSelectDialog = false;
+                if (buttonId == binding.ctrVOXradioButton.getId()) {
+                    GeneralVariables.controlMode = ControlMode.VOX;
+					//GeneralVariables.btListen=false;
+                } else if (buttonId == binding.ctrCATradioButton.getId()) {//CAT模式
+                    GeneralVariables.controlMode = ControlMode.CAT;
+					
+					//neralVariables.hasShownUsbSelectDialog = false; // 點選CAT讓使用者選擇
+					mainViewModel.getUsbDevice(); // 觸發選項
+                } else if (buttonId == binding.ctrRTSradioButton.getId()) {//RTS模式
+                    GeneralVariables.controlMode = ControlMode.RTS;
+                } else if (buttonId == binding.ctrDTRradioButton.getId()) {//DTR模式
+                    GeneralVariables.controlMode = ControlMode.DTR;
+                }
+                mainViewModel.setControlMode();//通知一下电台控制模式改变
+				
+                //无论CAT还是RTS，CI-V指令还是有效的，都是串口
+                if (GeneralVariables.controlMode == ControlMode.CAT
+                        || GeneralVariables.controlMode == ControlMode.RTS
+                        || GeneralVariables.controlMode == ControlMode.DTR) {
+                    if (!mainViewModel.isRigConnected()) {
+						//GeneralVariables.hasShownUsbSelectDialog = false; // 讓使用者選擇
+                        mainViewModel.getUsbDevice();
+                    } else {
+                        mainViewModel.setOperationBand();
+                    }
+                }
+				/* 寫入 Control Mode */
+                writeConfig("ctrMode", String.valueOf(GeneralVariables.controlMode));
+                setConnectMode();
+            }
+        };
+
+        binding.ctrCATradioButton.setOnClickListener(listener);
+        binding.ctrVOXradioButton.setOnClickListener(listener);
+        binding.ctrRTSradioButton.setOnClickListener(listener);
+        binding.ctrDTRradioButton.setOnClickListener(listener);
+    }
+
+    /**
+     * 设置连线的方式，可以是USB，也可以是BLUE_TOOTH
+     */
+    private void setConnectMode() {
+        if ((GeneralVariables.controlMode == ControlMode.CAT)
+                //&& BluetoothConstants.checkBluetoothIsOpen()
+            ) {
+            //此处要改成VISIBLE
+            binding.connectModeLayout.setVisibility(View.VISIBLE);
+            binding.serialLayout.setVisibility(View.VISIBLE);
+        } else {
+            binding.connectModeLayout.setVisibility(View.GONE);
+            binding.serialLayout.setVisibility(View.GONE);
+        }
+        binding.connectModeRadioGroup.clearCheck();
+        switch (GeneralVariables.connectMode) {
+            case ConnectMode.USB_CABLE:
+                binding.cableConnectRadioButton.setChecked(true);
+                break;
+            case ConnectMode.BLUE_TOOTH:
+                binding.bluetoothConnectRadioButton.setChecked(true);
+                break;
+            case ConnectMode.NETWORK:
+                binding.networkConnectRadioButton.setChecked(true);
+                break;
+        }
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { // CABLE/BULETOOTH/NETWORK 選項被按下
+                int buttonId = binding.connectModeRadioGroup.getCheckedRadioButtonId();
+                if (buttonId == binding.cableConnectRadioButton.getId()) {
+                    GeneralVariables.connectMode = ConnectMode.USB_CABLE;
+					
+					//neralVariables.hasShownUsbSelectDialog = false;  // 讓使用者選擇USB
+					//inViewModel.getUsbDevice(); // 觸發選項
+					
+                } else if (buttonId == binding.bluetoothConnectRadioButton.getId()) {
+                    GeneralVariables.connectMode = ConnectMode.BLUE_TOOTH;
+                }else if (buttonId==binding.networkConnectRadioButton.getId()){
+                    GeneralVariables.connectMode=ConnectMode.NETWORK;
+                }
+				
+				/* 寫入 Connect Mode */
+                writeConfig("connectMode", String.valueOf(GeneralVariables.connectMode));
+				
+				
+				// BV6LC 觸發USB檢查
+				if (mainViewModel == null) {
+					Log.e("DEBUG", "mainViewModel is NULL! Cannot proceed setConnectMode");
+					// 你可以選擇在這裡跳出 return，不繼續執行
+					return;
+				}
+				
+				
+				GeneralVariables.mutableconnectMode.postValue(GeneralVariables.connectMode);
+				if (GeneralVariables.connectMode == ConnectMode.USB_CABLE) {
+					if (!mainViewModel.isRigConnected()) {
+						mainViewModel.getUsbDevice();
+					} else {
+						mainViewModel.setOperationBand();
+					}
+				}
+				
+				
+				
+				
+				
+                //------显示蓝牙列表，并选择，然后建立蓝牙连接
+                if (GeneralVariables.connectMode == ConnectMode.BLUE_TOOTH) {
+                    //根据安卓12，要判断一下蓝牙权限：
+                    new SelectBluetoothDialog(
+							requireContext(),
+							mainViewModel ,
+							new SelectBluetoothDialog.OnBluetoothSelectedListener() {
+								@Override
+								public void onBluetoothSelected(String selectedDevice) {
+								// 這裡儲存選中的藍牙裝置字串
+								GeneralVariables.btName=selectedDevice;
+								writeConfig("btName", GeneralVariables.btName);
+								}
+							}
+					).show();
+                }
+				else
+				{
+					//GeneralVariables.btListen=false;
+				}
+
+                //-----显示网络上的电台，目前是flex电台，-------------------
+                if (GeneralVariables.connectMode==ConnectMode.NETWORK){
+                    //打开网络电台列表对话框
+                    if (GeneralVariables.instructionSet== InstructionSet.FLEX_NETWORK) {
+                        new SelectFlexRadioDialog(requireContext(), mainViewModel).show();
+                    }else if (GeneralVariables.instructionSet== InstructionSet.XIEGU_6100_FT8CNS) {
+                        new SelectXieguRadioDialog(requireContext(), mainViewModel).show();
+                    }
+                    else if(GeneralVariables.instructionSet== InstructionSet.ICOM
+                            ||GeneralVariables.instructionSet== InstructionSet.XIEGU_6100
+                            ||GeneralVariables.instructionSet== InstructionSet.XIEGUG90S) {
+                        new LoginIcomRadioDialog(requireContext(), mainViewModel).show();
+                    }else {
+                        ToastMessage.show(GeneralVariables.getStringFromResource(R.string.only_flex_supported));
+                    }
+                }
+
+            }
+        };
+        binding.cableConnectRadioButton.setOnClickListener(listener);
+        binding.bluetoothConnectRadioButton.setOnClickListener(listener);
+        binding.networkConnectRadioButton.setOnClickListener(listener);
+
+        //cloublog帮助
+		/*
+        binding.cloudlogSettingsImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new HelpDialog(requireContext(), requireActivity()
+                        , GeneralVariables.getStringFromResource(R.string.cloudlog_help)
+                        , true).show();
+            }
+        });
+		*/
+        //qrz帮助
+		
+        binding.qrzSettingsImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new HelpDialog(requireContext(), requireActivity()
+                        , GeneralVariables.getStringFromResource(R.string.qrz_help)
+                        , true).show();
+            }
+        });
+		
+
+		
+		
+		
+    }
+
+
+    /**
+     * 把配置信息写到数据库
+     *
+     * @param KeyName 关键词
+     * @param Value   值
+     */
+    private void writeConfig(String KeyName, String Value) {
+        mainViewModel.databaseOpr.writeConfig(KeyName, Value, null);
+    }
+
+    private void setHelpDialog() {
+        //呼号帮助
+        binding.callsignHelpImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    new HelpDialog(requireContext(), requireActivity()
+                            , GeneralVariables.getStringFromResource(R.string.callsign_help)
+                            , true).show();
+            }
+        });
+        //梅登海德网格的帮助
+        binding.maidenGridImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    new HelpDialog(requireContext(), requireActivity()
+                            , GeneralVariables.getStringFromResource(R.string.maidenhead_help)
+                            , true).show();
+            }
+        });
+        //发射频率的帮助
+        binding.frequencyImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    new HelpDialog(requireContext(), requireActivity()
+                            , GeneralVariables.getStringFromResource(R.string.frequency_help)
+                            , true).show();
+            }
+        });
+        //延迟发射帮助
+        binding.transDelayImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    new HelpDialog(requireContext(), requireActivity()
+                            , GeneralVariables.getStringFromResource(R.string.transDelay_help)
+                            , true).show();
+            }
+        });
+        //时间偏移帮助
+        binding.timeOffsetImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    new HelpDialog(requireContext(), requireActivity()
+                            , GeneralVariables.getStringFromResource(R.string.timeoffset_help)
+                            , true).show();
+            }
+        });
+        //PTT延时帮助
+        binding.pttDelayImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    new HelpDialog(requireContext(), requireActivity()
+                            , GeneralVariables.getStringFromResource(R.string.pttdelay_help)
+                            , true).show();
+            }
+        });
+        //设置串口参数帮助
+        binding.serialHelpImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new HelpDialog(requireContext(), requireActivity()
+                        , GeneralVariables.getStringFromResource(R.string.serial_setting_help)
+                        , true).show();
+            }
+        });
+
+        //显示列表方式
+        binding.messageModeeHelpImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new HelpDialog(requireContext(),requireActivity()
+                        ,GeneralVariables.getStringFromResource(R.string.message_mode_help)
+                        ,true).show();
+            }
+        });
+
+        //设置ABOUT
+        binding.aboutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new HelpDialog(requireContext(), requireActivity(), "readme.txt", true).show();
+            }
+        });
+		
+		
+		//设置Debug
+        binding.debugButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*
+				Intent intent = new Intent(requireContext(), ErrorActivity.class);
+				//intent.putExtra("error_message", throwable.toString());
+				String errMsg=GeneralVariables.readErrorLog(requireContext());
+				
+				if (errMsg != null && errMsg.length() > 1000) {
+					errMsg = errMsg.substring(errMsg.length() - 1000);
+				}
+				intent.putExtra("error_message",  errMsg);
+				intent.putExtra("error_title",  getString(R.string.debug_title));
+				intent.putExtra("debug",  "1");
+				
+				startActivity(intent);
+				*/
+				
+				String filePath = requireContext().getFilesDir() + "/ft8tw_log.txt";
+				// 啟動 ErrorActivity，傳遞檔案路徑
+				Intent intent = new Intent(requireContext(), ErrorActivity.class);
+				intent.putExtra("error_title", requireContext().getString(R.string.error_title));
+				intent.putExtra("error_log_path", filePath);  // ✅ 只傳路徑
+				intent.putExtra("debug", "1");
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				requireContext().startActivity(intent);
+
+				
+				
+				
+				
+            }
+        });
+		
+		
+        //设置操作频段(Help Icon)
+        binding.operationHelpImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    new HelpDialog(requireContext(), requireActivity()
+                            , GeneralVariables.getStringFromResource(R.string.operationBand_help)
+                            , true).show();
+            }
+        });
+        //设置操作模式
+        binding.controlModeHelpImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    new HelpDialog(requireContext(), requireActivity()
+                            , GeneralVariables.getStringFromResource(R.string.controlMode_help)
+                            , true).show();
+            }
+        });
+        //设置CI-V地址和波特率帮助
+        binding.baudRateHelpImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    new HelpDialog(requireContext(), requireActivity()
+                            , GeneralVariables.getStringFromResource(R.string.civ_help)
+                            , true).show();
+            }
+        });
+        //电台型号列表
+        binding.rigNameHelpImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    new HelpDialog(requireContext(), requireActivity()
+                            , GeneralVariables.getStringFromResource(R.string.rig_model_help)
+                            , true).show();
+            }
+        });
+        //发射监管
+        binding.launchSupervisionImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    new HelpDialog(requireContext(), requireActivity()
+                            , GeneralVariables.getStringFromResource(R.string.launch_supervision_help)
+                            , true).show();
+            }
+        });
+        //无回应次数
+        binding.noResponseCountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    new HelpDialog(requireContext(), requireActivity()
+                            , GeneralVariables.getStringFromResource(R.string.no_response_help)
+                            , true).show();
+            }
+        });
+        //自动呼叫
+        binding.autoFollowCountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    new HelpDialog(requireContext(), requireActivity()
+                            , GeneralVariables.getStringFromResource(R.string.auto_follow_help)
+                            , true).show();
+            }
+        });
+		//手動輸入關注呼號Help
+        binding.addFollowCallImageHlpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    new HelpDialog(requireContext(), requireActivity()
+                            , GeneralVariables.getStringFromResource(R.string.add_follow_help)
+                            , true).show();
+            }
+        });
+        //连接模式
+        binding.connectModeHelpImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    new HelpDialog(requireContext(), requireActivity()
+                            , GeneralVariables.getStringFromResource(R.string.connectMode_help)
+                            , true).show();
+            }
+        });
+        //排除选项
+        binding.excludedHelpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    new HelpDialog(requireContext(), requireActivity()
+                            , GeneralVariables.getStringFromResource(R.string.excludeCallsign_help)
+                            , true).show();
+            }
+        });
+
+		//SWL說明
+        binding.swlHelpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    new HelpDialog(requireContext(), requireActivity()
+                            , GeneralVariables.getStringFromResource(R.string.swlMode_help)
+                            , true).show();
+            }
+        });
+
+        //解码模式
+        binding.decodeModeHelpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new HelpDialog(requireContext(),requireActivity()
+                        ,GeneralVariables.getStringFromResource(R.string.deep_mode_help)
+                        ,true).show();
+            }
+        });
+
+        //音频输出帮助
+        binding.audioOutputImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    new HelpDialog(requireContext(), requireActivity()
+                            , GeneralVariables.getStringFromResource(R.string.audio_output_help)
+                            , true).show();
+            }
+        });
+		
+		//FREE TEXTHelp
+        binding.sotaMatHelpImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    new HelpDialog(requireContext(), requireActivity()
+                            , GeneralVariables.getStringFromResource(R.string.sota_mat_help)
+                            , true).show();
+            }
+        });
+		
+		
+		
+		
+		// QRZ TEST
+        binding.testQrzButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.testQrzButton.setEnabled(false);
+                binding.testQrzButton.setText(getResources().getString(R.string.testing));
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        boolean result = ThirdPartyService.CheckQRZConnection();
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (result) {
+                                    binding.testQrzButton.setText(getResources().getString(R.string.pass));
+                                } else {
+                                    binding.testQrzButton.setText(getResources().getString(R.string.fail));
+                                }
+                                // 清空文本
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        binding.testQrzButton.setEnabled(true);
+                                        binding.testQrzButton.setText(getResources().getString(R.string.test));
+                                    }
+                                }, 3000);
+                            }
+                        });
+                    }
+                }).start();}
+        });		
+		
+		
+		
+		
+		
+		
+		
+		
+		// 在 ConfigFragment 中，假設您已經有 mainViewModel 實例
+		ThirdPartyService thirdPartyService = new ThirdPartyService(mainViewModel);
+		
+		binding.UploadQrzButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.UploadQrzButton.setEnabled(false);
+                //binding.UploadQrzTodayButton.setText(getResources().getString(R.string.testing));
+				binding.UploadQrzButton.setText(getResources().getString(R.string.qrz_uploading)); //"上傳中"
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        boolean result = thirdPartyService.UploadToQRZwithOpt();
+						
+						/*
+						PSKReporter pskRepoter=new PSKReporter("BU2GF","PL05ra",3,"EFHW1","FT8TW v0.925");
+						//pskRepoter.addReport("BV6LC", (byte)-16, (byte) 5,(int) (14.071 * 1000000.0), System.currentTimeMillis() / 1000, "CW","PL03hw");
+						
+						try {
+							pskRepoter.addReport("BV6LC", (byte) -15, (byte) 5, (int) (14.071 * 1000000.0), 
+												 System.currentTimeMillis() / 1000, "CW", "PL03hw");
+						} catch (Exception e) {
+							e.printStackTrace(); // 或執行其他錯誤處理
+						}
+						*/
+						
+						
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (result) {
+                                    binding.UploadQrzButton.setText(getResources().getString(R.string.qrz_uploaded)); //上傳結束
+                                } else {
+                                    binding.UploadQrzButton.setText(getResources().getString(R.string.fail));
+                                }
+                                // 清空文本
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        binding.UploadQrzButton.setEnabled(true);
+                                        binding.UploadQrzButton.setText(getResources().getString(R.string.qrz_upload)); //上傳本日QSO(X)
+                                    }
+                                }, 3000);
+                            }
+                        });
+                    }
+                }).start();}
+        });	
+		
+		
+        //清除缓存
+        binding.clearCacheHelpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    new HelpDialog(requireContext(), requireActivity()
+                            , GeneralVariables.getStringFromResource(R.string.clear_cache_data_help)
+                            , true).show();
+            }
+        });
+        binding.clearFollowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new ClearCacheDataDialog(requireContext(), requireActivity()
+                        ,mainViewModel.databaseOpr
+                        ,ClearCacheDataDialog.CACHE_MODE.FOLLOW_DATA).show();
+            }
+        });
+        binding.clearLogCacheButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new ClearCacheDataDialog(requireContext(), requireActivity()
+                        ,mainViewModel.databaseOpr
+                        ,ClearCacheDataDialog.CACHE_MODE.SWL_MSG).show();
+            }
+        });
+        binding.clearSWlQsoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new ClearCacheDataDialog(requireContext(), requireActivity()
+                        ,mainViewModel.databaseOpr
+                        ,ClearCacheDataDialog.CACHE_MODE.SWL_QSO).show();
+            }
+        });
+		
+		//删除共享的临时文件
+        binding.clearShareDataButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        GeneralVariables.clearCache(binding.getRoot().getContext());
+                    }
+                }).start();
+            }
+        });
+		
+		//删除QSO Cnt
+        binding.clearQsoCntButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        GeneralVariables.qsoCnt=0;
+						ToastMessage.show( GeneralVariables.getStringFromResource(R.string.config_clear_qso_cnt_cleared) ); 
+						mainViewModel.databaseOpr.writeConfig("qsoCnt", "0", null);
+                    }
+                }).start();
+            }
+        });
+		
+		
+		
+		// BV6LC 手動輸入關注呼號
+		binding.addFollowCallButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+				String callsign = "";
+				callsign=binding.addFollowCallEdit.getText().toString().toUpperCase();
+				if (!callsign.isEmpty()) {
+					try {
+					mainViewModel.databaseOpr.getDb().execSQL("insert into followCallsigns (callsign) values (?)", new String[]{callsign});
+					ToastMessage.show(String.format(GeneralVariables.getStringFromResource(R.string.added_followcallsign),callsign)); 
+					mainViewModel.getFollowCallsignsFromDataBase();
+					binding.addFollowCallEdit.setText("");
+					}
+					catch (Exception e){
+						ToastMessage.show("Insert fail!\nErr：" + e.getMessage());
+
+					}
+				}
+
+
+            }
+        });
+
+        // 改成用GPS優先
+		binding.synTImeButton.setOnClickListener(
+			new View.OnClickListener()
+			{
+				@Override public void onClick(View view) {
+					
+					mainViewModel.syncTimeWithGpsOrNetwork(requireContext(), requireActivity() , 
+						() -> ToastMessage.show(GeneralVariables.getStringFromResource(R.string.time_sync_ok)),
+						errMsg -> ToastMessage.show(String.format(GeneralVariables.getStringFromResource(R.string.time_sync_fail_detail), errMsg))
+					);
+				}
+			});
+
+
+		}
+
+    /**
+     * 设置界面的上下滚动的图标
+     */
+    private void setScrollImageVisible() {
+
+        if (binding.scrollView3.getScrollY() == 0) {
+            binding.configScrollUpImageView.setVisibility(View.GONE);
+        } else {
+            binding.configScrollUpImageView.setVisibility(View.VISIBLE);
+        }
+
+        if (binding.scrollView3.getHeight() + binding.scrollView3.getScrollY()
+                < binding.scrollLinearLayout.getMeasuredHeight()) {
+            binding.configScrollDownImageView.setVisibility(View.VISIBLE);
+        } else {
+            binding.configScrollDownImageView.setVisibility(View.GONE);
+        }
+    }
+
+
+
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+		
+		// 1) 解除所有 Spinner 與 adapter 的綁定，並置空 adapter 參考
+		binding.operationBandSpinner.setAdapter(null);
+		bandsSpinnerAdapter = null;
+		
+		binding.baudRateSpinner.setAdapter(null);
+        bauRateSpinnerAdapter = null;
+
+        binding.dataBitsSpinner.setAdapter(null);
+        dataBitsSpinnerAdapter = null;
+
+        binding.parityBitsSpinner.setAdapter(null);
+        parityBitsSpinnerAdapter = null;
+
+        binding.stopBitsSpinner.setAdapter(null);
+        stopBitsSpinnerAdapter = null;
+
+        binding.precisionSpinner.setAdapter(null);
+        gpsSpinnerAdapter = null;
+
+        binding.UploadQrzOptSpinner.setAdapter(null);
+        uploadQrzSpinnerAdapter = null;
+
+        binding.cqOrderOptSpinner.setAdapter(null);
+        cqOrderSpinnerAdapter = null;
+		
+		binding.cqFilterOptSpinner.setAdapter(null);
+        cqFilterSpinnerAdapter = null;
+		
+		
+		binding.decodeModeSpinner.setAdapter(null);
+		decodeModeSpinnerAdapter = null;
+		
+		binding.ft4ft8ModeSpinner.setAdapter(null);
+		ft4ft8ModeSpinnerAdapter = null;
+		
+
+        binding.rigNameSpinner.setAdapter(null);
+        rigNameSpinnerAdapter = null;
+
+        binding.launchSupervisionSpinner.setAdapter(null);
+        launchSupervisionSpinnerAdapter = null;
+
+        binding.pttDelayOffsetSpinner.setAdapter(null);
+        pttDelaySpinnerAdapter = null;
+
+        binding.noResponseCountSpinner.setAdapter(null);
+        noReplyLimitSpinnerAdapter = null;
+
+		// 2) 如有註冊過 LocationListener，也移除
+        //if (locationManager != null && locationListener != null) {
+        //    locationManager.removeUpdates(locationListener);
+        //}
+		
+		// 3) 解除 ScrollView listener
+        binding.scrollView3.setOnScrollChangeListener(null);
+		
+		// 4) 停掉定时任务，避免 onDestroyView 后还 run()
+        scrollHandler.removeCallbacks(scrollUpdater);
+		
+		// 4) 最後釋放 binding
+		binding = null; // 釋放 view 相關記憶體，防止記憶體洩漏
+	}
+
+}
+
+

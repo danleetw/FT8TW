@@ -1,0 +1,64 @@
+package com.bg7yoz.ft8cn.ui;
+/**
+ * QRZ 上傳清單界面
+ * @author BV6LC
+ * @date 2024-12-10
+ */
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+import com.bg7yoz.ft8cn.R;
+
+
+public class UploadQrzSpinnerAdapter extends BaseAdapter {
+    private final Context mContext;
+    private final int[] qrzOpt= {0,1,2,3};
+    private final String[] qrzOptStr= {"Today","ThisMonth","ThisYear","All"};
+    public UploadQrzSpinnerAdapter(Context context) {
+        mContext=context;
+    }
+
+    @Override
+    public int getCount() {
+        return qrzOpt.length;
+    }
+
+    @Override
+    public Object getItem(int i) {
+        return qrzOpt[i];
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return i;
+    }
+
+    @SuppressLint({"ViewHolder", "InflateParams"})
+    @Override
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        LayoutInflater _LayoutInflater=LayoutInflater.from(mContext);
+        view=_LayoutInflater.inflate(R.layout.gps_spinner_item, null);
+        if (view!=null){
+            TextView textView=(TextView)view.findViewById(R.id.gpsItemTextView);
+            textView.setText(qrzOptStr[i]);
+        }
+        return view;
+    }
+    public int getPosition(int i){
+        for (int j = 0; j < qrzOpt.length; j++) {
+            if (qrzOpt[j]==i){
+                return j;
+            }
+        }
+        return 0;
+    }
+    public int getValue(int position){
+        return qrzOpt[position];
+    }
+}
