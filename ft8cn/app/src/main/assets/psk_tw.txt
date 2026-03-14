@@ -1,0 +1,8 @@
+About Psk<BR>
+<BR>
+這個功能讓你可以把收到的訊號，上傳到PskReporter網站上，這樣可以方便你自己或其他人觀察整體通訊傳播狀況，<BR>
+你必須指定你自己的呼號、所在的地區、使用的天線。<BR>
+<BR>
+<BR>
+可以在下面網站輸入呼號，可以查詢呼號相關的通訊狀況。<BR>
+<a href="https://pskreporter.info/">https://pskreporter.info/</a><BR>

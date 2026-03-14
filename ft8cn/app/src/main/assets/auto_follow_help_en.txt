@@ -1,0 +1,21 @@
+About Auto Track CQ
+
+Auto track CQ means that when an FT8TW decoded message contains a CQ message, the FT8TW will push the decoded message to the message list on "Calling" interface, so that to respond to the CQ message on "Calling" interface. Auto track CQ callsign will not be stored in the callsign database for a long time.
+
+About Auto Call Tracked
+
+After the target callsign is set to track, FT8TW will automatically call the callsign when the target callsign has CQ behavior.
+FT8TW will preserve the tracking callsigns for a long time. Every time you use FT8TW, FT8TW will push the new message of the tracking callsigns to the list of the "Calling" interface. If you want to unfollow a callsign, you can delete the callsign through background operations (accessing FT8TW with a browser on the lan).
+
+
+Auto-response to CQ<BR>
+When a decoded message contains a CQ call, <BR>
+the program will push this message into the message list in the "Calling" interface,<BR>
+making it convenient to respond to CQ messages directly from there.<BR>
+<br>
+When Auto-Follow is enabled, the program will enter an optimized response scheduling mode.<BR>
+<br>
+The current calling priority is as follows:<BR>
+1.If someone is calling me<BR>
+2.CQ messages with SOTA or POTA take priority<BR>
+3.Based on the scoring strategy for CQ responses, targets with higher scores will be prioritized<BR>

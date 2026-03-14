@@ -1,0 +1,8 @@
+請輸入您的呼號。<BR>
+呼號是您使用本APP進行FT8呼叫的基本要求。<BR>
+<BR>
+關於修飾符<BR>
+CQ後面可能跟有三個數字或一到四個字母的修飾符，一般是<B>000-999</B>或<B>A-Z</b>或<B>AA-ZZ</b>或<B>AAA-ZZZ</b>或<B>AAAA-ZZZZ</b>。<BR>
+例如：<BR>
+CQ <B>POTA</B> callsign grid。<BR>
+CQ <B>SOTA</B> callsign grid。<BR>

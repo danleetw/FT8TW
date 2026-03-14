@@ -1,0 +1,12 @@
+關於 QRZ
+
+此功能可讓您在 QSO 完成後立即將 QSO 記錄上傳至 QRZ。
+
+您需要在 QRZ 的日誌簿中獲取 API KEY，並將其輸入到軟體中。
+
+<B>(請務必記得，QRZ只接受付費的使用者透過API金鑰上傳，如果您沒有付費，就不用白費時間了)</b><BR>
+1.請到下面網頁取得你的QZR金鑰。<br>
+<a href="https://www.qrz.com/docs/logbook30/api">https://www.qrz.com/docs/logbook30/api</a>
+2.選擇自動上傳至QRZ，會在每次完成QSO之後，上傳該筆QSL到QRZ網站。<br>
+3.可以選擇手動上傳的範圍(今天、本月、本年、全部)，並點選手動上傳)。<br>
+4.依照QRZ說明應該已經上傳過的QSL不會重複上傳。<br>
