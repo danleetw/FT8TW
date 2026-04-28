@@ -845,20 +845,19 @@ function applyLang(lang) {
   /* View counter badge */
   const badge = document.getElementById('view-badge');
   if (badge) {
-    const labels  = { 'en': 'Views', 'zh-TW': '點閱' };
-    const langIds = { 'en': 'en', 'zh-TW': 'zhtw' };
-    const label   = encodeURIComponent(labels[lang] || 'Views');
-    const pageUrl = encodeURIComponent(`https://danleetw.github.io/FT8TW/${langIds[lang] || lang}`);
-    const sKey    = `ft8tw-counted-${lang}`;
-    const counted = (() => { try { return sessionStorage.getItem(sKey); } catch(e) { return null; } })();
-    const mode    = counted ? 'noincr' : 'incr';
+    const pageIds = { 'en': 'danleetw.FT8TW.en', 'zh-TW': 'danleetw.FT8TW.zhtw' };
+    const titles  = { 'en': 'Visitors', 'zh-TW': encodeURIComponent('訪客') };
+    const pageId  = pageIds[lang] || 'danleetw.FT8TW';
+    const title   = titles[lang]  || 'Visitors';
+    const newSrc  = `https://visitor-badge.laobi.icu/badge?page_id=${pageId}&title=${title}&color=blue&style=flat-square`;
 
-    badge.style.display = 'none';
-    badge.onload  = () => { badge.style.display = 'inline'; };
-    badge.onerror = () => { badge.style.display = 'none'; };
-    badge.src = `https://hits.seeyoufarm.com/api/count/${mode}/badge.svg?url=${pageUrl}&count_bg=%2379C83D&title_bg=%23555555&title=${label}&edge_flat=true`;
-
-    if (!counted) { try { sessionStorage.setItem(sKey, '1'); } catch(e) {} }
+    if (badge.getAttribute('data-src') !== newSrc) {
+      badge.style.display = 'none';
+      badge.onload  = () => { badge.style.display = 'inline'; };
+      badge.onerror = () => { badge.style.display = 'none'; };
+      badge.setAttribute('data-src', newSrc);
+      badge.src = newSrc;
+    }
   }
 
   /* Persist */
