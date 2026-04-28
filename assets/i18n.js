@@ -845,12 +845,19 @@ function applyLang(lang) {
   /* View counter badge */
   const badge = document.getElementById('view-badge');
   if (badge) {
-    const labels = { 'en': 'Views', 'zh-TW': '點閱' };
-    const label  = encodeURIComponent(labels[lang] || 'Views');
-    const sKey   = `ft8tw-counted-${lang}`;
+    const labels  = { 'en': 'Views', 'zh-TW': '點閱' };
+    const langIds = { 'en': 'en', 'zh-TW': 'zhtw' };
+    const label   = encodeURIComponent(labels[lang] || 'Views');
+    const pageUrl = encodeURIComponent(`https://danleetw.github.io/FT8TW/${langIds[lang] || lang}`);
+    const sKey    = `ft8tw-counted-${lang}`;
     const counted = (() => { try { return sessionStorage.getItem(sKey); } catch(e) { return null; } })();
-    const mode   = counted ? 'noincr' : 'incr';
-    badge.src = `https://hits.seeyoufarm.com/api/count/${mode}/badge.svg?url=danleetw-FT8TW-${lang}&count_bg=%23ffffff&title_bg=%230d47a1&title=${label}&edge_flat=true`;
+    const mode    = counted ? 'noincr' : 'incr';
+
+    badge.style.display = 'none';
+    badge.onload  = () => { badge.style.display = 'inline'; };
+    badge.onerror = () => { badge.style.display = 'none'; };
+    badge.src = `https://hits.seeyoufarm.com/api/count/${mode}/badge.svg?url=${pageUrl}&count_bg=%2379C83D&title_bg=%23555555&title=${label}&edge_flat=true`;
+
     if (!counted) { try { sessionStorage.setItem(sKey, '1'); } catch(e) {} }
   }
 
