@@ -846,7 +846,7 @@ function applyLang(lang) {
   const badge = document.getElementById('view-badge');
   if (badge) {
     const pageIds = { 'en': 'danleetw.FT8TW.en', 'zh-TW': 'danleetw.FT8TW.zhtw' };
-    const titles  = { 'en': 'Visitors', 'zh-TW': encodeURIComponent('訪客') };
+    const titles  = { 'en': 'EN+Visitors', 'zh-TW': 'ZH+Visitors' };
     const pageId  = pageIds[lang] || 'danleetw.FT8TW';
     const title   = titles[lang]  || 'Visitors';
     const newSrc  = `https://visitor-badge.laobi.icu/badge?page_id=${pageId}&title=${title}&color=blue&style=flat-square`;
