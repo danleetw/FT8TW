@@ -21,6 +21,9 @@
 # FT8TW
 🌐 **Languages**: [English](README.md) | [中文（繁體）]
 
+使用手冊
+https://danleetw.github.io/FT8TW
+
 [🙏感謝FT8CN]
 感謝BG7YOZ跟N0BOY
 寫出並維護了一個如此有趣又方便的程式FT8CN，大幅減少了我在山上做SOTA的設備數量，以及纜線的數量，
