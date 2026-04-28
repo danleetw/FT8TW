@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FT8TW User Manual</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">&#9776;</button>
+      <div class="brand">
+        <span class="brand-icon">&#128251;</span>
+        <span class="brand-name">FT8TW</span>
+        <span class="brand-sep">|</span>
+        <span class="brand-sub" data-i18n="brand_sub"></span>
+      </div>
+      <div class="lang-switch">
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="zh-TW">繁中</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="sidebar" id="sidebar">
+      <ul>
+        <li><a href="#intro"        data-i18n="nav_intro"></a></li>
+        <li><a href="#requirements" data-i18n="nav_requirements"></a></li>
+        <li><a href="#install"      data-i18n="nav_install"></a></li>
+        <li><a href="#first-setup"  data-i18n="nav_first_setup"></a></li>
+        <li><a href="#screens"      data-i18n="nav_screens"></a></li>
+        <li><a href="#connection"   data-i18n="nav_connection"></a></li>
+        <li><a href="#operating"    data-i18n="nav_operating"></a></li>
+        <li><a href="#logging"      data-i18n="nav_logging"></a></li>
+        <li><a href="#third-party"  data-i18n="nav_third_party"></a></li>
+        <li><a href="#settings"     data-i18n="nav_settings"></a></li>
+        <li><a href="#troubleshoot" data-i18n="nav_troubleshoot"></a></li>
+      </ul>
+    </nav>
+
+    <main class="main-content" id="mainContent">
+
+      <!-- ── Introduction ─────────────────────────────────────────── -->
+      <section id="intro">
+        <h1 data-i18n="intro_title"></h1>
+        <p data-i18n="intro_p1"></p>
+        <p data-i18n="intro_p2"></p>
+        <div data-i18n-html="intro_features"></div>
+      </section>
+
+      <!-- ── Requirements ─────────────────────────────────────────── -->
+      <section id="requirements">
+        <h2 data-i18n="req_title"></h2>
+        <h3 data-i18n="req_device_title"></h3>
+        <div data-i18n-html="req_device_list"></div>
+        <h3 data-i18n="req_license_title"></h3>
+        <p data-i18n="req_license_text"></p>
+      </section>
+
+      <!-- ── Installation ──────────────────────────────────────────── -->
+      <section id="install">
+        <h2 data-i18n="install_title"></h2>
+        <p data-i18n="install_p1"></p>
+        <h3 data-i18n="install_steps_title"></h3>
+        <div data-i18n-html="install_steps"></div>
+        <h3 data-i18n="install_perms_title"></h3>
+        <div data-i18n-html="install_perms"></div>
+      </section>
+
+      <!-- ── First Setup ───────────────────────────────────────────── -->
+      <section id="first-setup">
+        <h2 data-i18n="setup_title"></h2>
+        <p data-i18n="setup_intro"></p>
+        <h3 data-i18n="setup_s1_title"></h3>
+        <p data-i18n="setup_s1_text"></p>
+        <h3 data-i18n="setup_s2_title"></h3>
+        <p data-i18n="setup_s2_text"></p>
+        <h3 data-i18n="setup_s3_title"></h3>
+        <p data-i18n="setup_s3_text"></p>
+        <h3 data-i18n="setup_s4_title"></h3>
+        <p data-i18n="setup_s4_text"></p>
+        <h3 data-i18n="setup_s5_title"></h3>
+        <p data-i18n="setup_s5_text"></p>
+      </section>
+
+      <!-- ── Main Screens ──────────────────────────────────────────── -->
+      <section id="screens">
+        <h2 data-i18n="screens_title"></h2>
+        <p data-i18n="screens_intro"></p>
+
+        <h3 data-i18n="screens_content_title"></h3>
+        <p data-i18n="screens_content_text"></p>
+
+        <h3 data-i18n="screens_decode_title"></h3>
+        <p data-i18n="screens_decode_text"></p>
+        <p data-i18n="screens_decode_modes_label"></p>
+        <div data-i18n-html="screens_decode_modes"></div>
+
+        <h3 data-i18n="screens_calling_title"></h3>
+        <p data-i18n="screens_calling_text"></p>
+        <div data-i18n-html="screens_calling_features"></div>
+
+        <h3 data-i18n="screens_logs_title"></h3>
+        <p data-i18n="screens_logs_text"></p>
+
+        <h3 data-i18n="screens_settings_title"></h3>
+        <p data-i18n="screens_settings_text"></p>
+      </section>
+
+      <!-- ── Radio Connection ──────────────────────────────────────── -->
+      <section id="connection">
+        <h2 data-i18n="conn_title"></h2>
+        <p data-i18n="conn_intro"></p>
+
+        <h3 data-i18n="conn_vox_title"></h3>
+        <p data-i18n="conn_vox_text"></p>
+        <p><em data-i18n="conn_vox_use"></em></p>
+
+        <h3 data-i18n="conn_usb_title"></h3>
+        <p data-i18n="conn_usb_text"></p>
+        <div data-i18n-html="conn_usb_steps"></div>
+
+        <h3 data-i18n="conn_bt_title"></h3>
+        <p data-i18n="conn_bt_text"></p>
+        <div data-i18n-html="conn_bt_modes"></div>
+
+        <h3 data-i18n="conn_flex_title"></h3>
+        <p data-i18n="conn_flex_text"></p>
+        <div data-i18n-html="conn_flex_steps"></div>
+
+        <h3 data-i18n="conn_icom_title"></h3>
+        <p data-i18n="conn_icom_text"></p>
+        <div data-i18n-html="conn_icom_steps"></div>
+
+        <h3 data-i18n="conn_xiegu_title"></h3>
+        <p data-i18n="conn_xiegu_text"></p>
+      </section>
+
+      <!-- ── Operating ─────────────────────────────────────────────── -->
+      <section id="operating">
+        <h2 data-i18n="op_title"></h2>
+
+        <h3 data-i18n="op_rx_title"></h3>
+        <p data-i18n="op_rx_text"></p>
+        <p data-i18n="op_rx_tips_label"></p>
+        <div data-i18n-html="op_rx_tips"></div>
+
+        <h3 data-i18n="op_tx_title"></h3>
+        <p data-i18n="op_tx_text"></p>
+        <div data-i18n-html="op_tx_seq"></div>
+
+        <h3 data-i18n="op_autocq_title"></h3>
+        <p data-i18n="op_autocq_text"></p>
+        <div data-i18n-html="op_autocq_opts"></div>
+        <p data-i18n="op_autocq_filter"></p>
+
+        <h3 data-i18n="op_watchdog_title"></h3>
+        <p data-i18n="op_watchdog_text"></p>
+
+        <h3 data-i18n="op_noresponse_title"></h3>
+        <p data-i18n="op_noresponse_text"></p>
+
+        <h3 data-i18n="op_freetext_title"></h3>
+        <p data-i18n="op_freetext_text"></p>
+      </section>
+
+      <!-- ── QSO Logging ───────────────────────────────────────────── -->
+      <section id="logging">
+        <h2 data-i18n="log_title"></h2>
+        <p data-i18n="log_intro"></p>
+
+        <h3 data-i18n="log_view_title"></h3>
+        <p data-i18n="log_view_text"></p>
+        <p data-i18n="log_view_filter"></p>
+
+        <h3 data-i18n="log_export_title"></h3>
+        <p data-i18n="log_export_text"></p>
+        <div data-i18n-html="log_export_formats"></div>
+        <p data-i18n="log_share_text"></p>
+
+        <h3 data-i18n="log_import_title"></h3>
+        <p data-i18n="log_import_text"></p>
+
+        <h3 data-i18n="log_confirm_title"></h3>
+        <p data-i18n="log_confirm_text"></p>
+        <div data-i18n-html="log_confirm_list"></div>
+      </section>
+
+      <!-- ── Third-party Services ──────────────────────────────────── -->
+      <section id="third-party">
+        <h2 data-i18n="third_title"></h2>
+
+        <h3 data-i18n="third_cloudlog_title"></h3>
+        <p data-i18n="third_cloudlog_text"></p>
+        <div data-i18n-html="third_cloudlog_setup"></div>
+
+        <h3 data-i18n="third_qrz_title"></h3>
+        <p data-i18n="third_qrz_text"></p>
+        <div data-i18n-html="third_qrz_setup"></div>
+
+        <h3 data-i18n="third_psk_title"></h3>
+        <p data-i18n="third_psk_text"></p>
+      </section>
+
+      <!-- ── Settings Reference ────────────────────────────────────── -->
+      <section id="settings">
+        <h2 data-i18n="set_title"></h2>
+
+        <h3 data-i18n="set_station_title"></h3>
+        <div data-i18n-html="set_station_table"></div>
+
+        <h3 data-i18n="set_radio_title"></h3>
+        <div data-i18n-html="set_radio_table"></div>
+
+        <h3 data-i18n="set_op_title"></h3>
+        <div data-i18n-html="set_op_table"></div>
+
+        <h3 data-i18n="set_audio_title"></h3>
+        <div data-i18n-html="set_audio_table"></div>
+
+        <h3 data-i18n="set_display_title"></h3>
+        <div data-i18n-html="set_display_table"></div>
+      </section>
+
+      <!-- ── Troubleshooting ───────────────────────────────────────── -->
+      <section id="troubleshoot">
+        <h2 data-i18n="ts_title"></h2>
+
+        <h3 data-i18n="ts_nodecode_title"></h3>
+        <div data-i18n-html="ts_nodecode_list"></div>
+
+        <h3 data-i18n="ts_noconn_title"></h3>
+        <div data-i18n-html="ts_noconn_list"></div>
+
+        <h3 data-i18n="ts_notx_title"></h3>
+        <div data-i18n-html="ts_notx_list"></div>
+
+        <h3 data-i18n="ts_timesync_title"></h3>
+        <div data-i18n-html="ts_timesync_list"></div>
+
+        <h3 data-i18n="ts_bt_title"></h3>
+        <div data-i18n-html="ts_bt_list"></div>
+      </section>
+
+      <footer>
+        <p data-i18n="footer_text"></p>
+      </footer>
+
+    </main>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+  <script src="assets/i18n.js"></script>
+</body>
+</html>
