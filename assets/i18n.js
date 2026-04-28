@@ -56,14 +56,21 @@ en: {
 
   /* ── Installation ─────────────────────────────────────────── */
   install_title:       'Installation',
-  install_p1:          'FT8TW is distributed as an APK file via GitHub Releases. Because it is not published on the Google Play Store, you must allow your device to install apps from external sources.',
-  install_steps_title: 'Installation Steps',
+  install_p1:          'FT8TW is available on the Google Play Store and can also be downloaded directly as an APK from GitHub Releases.',
+  install_steps_title: 'Installation Methods',
   install_steps: `
+    <h4>Method 1 – Google Play Store (Recommended)</h4>
     <ol>
-      <li><strong>Download</strong> the latest <code>.apk</code> file from the <a href="https://github.com/danleetw/ft8tw/releases" target="_blank">GitHub Releases</a> page.</li>
-      <li><strong>Allow unknown sources:</strong> Go to <em>Android Settings → Security → Install unknown apps</em> (path varies by Android version) and grant permission to your browser or file manager.</li>
+      <li>Open the <strong>Google Play Store</strong> on your Android device.</li>
+      <li>Search for <strong>FT8TW</strong> or use the direct link:<br>
+        <a href="https://play.google.com/store/apps/details?id=com.bv6lc.ft8tw" target="_blank">play.google.com/store/apps/details?id=com.bv6lc.ft8tw</a></li>
+      <li>Tap <strong>Install</strong> and grant the required permissions when prompted.</li>
+    </ol>
+    <h4>Method 2 – GitHub APK (Latest / Beta)</h4>
+    <ol>
+      <li><strong>Download</strong> the latest <code>.apk</code> file from the <a href="https://github.com/danleetw/FT8TW/releases" target="_blank">GitHub Releases</a> page.</li>
+      <li><strong>Allow unknown sources:</strong> Go to <em>Android Settings → Security → Install unknown apps</em> and grant permission to your browser or file manager.</li>
       <li><strong>Open</strong> the downloaded APK and tap <em>Install</em>.</li>
-      <li><strong>Grant permissions</strong> when prompted – see the table below.</li>
     </ol>`,
   install_perms_title: 'Required Permissions',
   install_perms: `
@@ -264,18 +271,6 @@ en: {
   /* ── Third-party Services ─────────────────────────────────── */
   third_title: 'Third-party Services',
 
-  third_cloudlog_title: 'Cloudlog',
-  third_cloudlog_text:  'FT8TW can upload QSOs to a <a href="https://www.cloudlogger.de" target="_blank">Cloudlog</a> instance in real time via its REST API.',
-  third_cloudlog_setup: `
-    <ol>
-      <li>Go to Settings → <strong>Cloudlog Settings</strong>.</li>
-      <li>Enter the <strong>Server Address</strong> (e.g., <code>https://cloudlog.example.com</code>).</li>
-      <li>Enter your Cloudlog <strong>API Key</strong> (found in Cloudlog → My Profile).</li>
-      <li>Enter the <strong>Station ID</strong> if you operate multiple stations in Cloudlog.</li>
-      <li>Tap <strong>Test</strong> to verify connectivity – a success message confirms the connection.</li>
-      <li>Enable <strong>Auto-upload to Cloudlog</strong>.</li>
-    </ol>`,
-
   third_qrz_title: 'QRZ.com Logbook',
   third_qrz_text:  'Automatically upload completed QSOs to your QRZ.com online logbook. Requires a QRZ.com XML Subscription.',
   third_qrz_setup: `
@@ -463,14 +458,21 @@ en: {
 
   /* ── 安裝 ──────────────────────────────────────────────────── */
   install_title:       '安裝',
-  install_p1:          'FT8TW 以 APK 格式透過 GitHub Releases 發布，尚未上架 Google Play 商店，因此需要允許安裝來自外部來源的應用程式。',
-  install_steps_title: '安裝步驟',
+  install_p1:          'FT8TW 已上架 Google Play 商店，也可直接從 GitHub Releases 下載 APK 安裝。',
+  install_steps_title: '安裝方式',
   install_steps: `
+    <h4>方式一 — Google Play 商店（建議）</h4>
     <ol>
-      <li>前往 <a href="https://github.com/danleetw/ft8tw/releases" target="_blank">GitHub Releases</a> 頁面，下載最新的 <code>.apk</code> 檔案。</li>
-      <li><strong>開啟未知來源安裝：</strong>進入<em>設定 → 安全性 → 安裝未知應用程式</em>（路徑依 Android 版本略有不同），對您的瀏覽器或檔案管理員授予安裝權限。</li>
+      <li>在 Android 裝置上開啟 <strong>Google Play 商店</strong>。</li>
+      <li>搜尋 <strong>FT8TW</strong>，或直接前往：<br>
+        <a href="https://play.google.com/store/apps/details?id=com.bv6lc.ft8tw&hl=zh_TW" target="_blank">play.google.com/store/apps/details?id=com.bv6lc.ft8tw</a></li>
+      <li>點選<strong>安裝</strong>，依提示授予所需權限。</li>
+    </ol>
+    <h4>方式二 — GitHub APK（最新版 / 測試版）</h4>
+    <ol>
+      <li>前往 <a href="https://github.com/danleetw/FT8TW/releases" target="_blank">GitHub Releases</a> 頁面，下載最新的 <code>.apk</code> 檔案。</li>
+      <li><strong>開啟未知來源安裝：</strong>進入<em>設定 → 安全性 → 安裝未知應用程式</em>，對瀏覽器或檔案管理員授予安裝權限。</li>
       <li>開啟下載的 APK 檔案，點選<em>安裝</em>。</li>
-      <li>依提示授予所需權限（參見下方權限說明）。</li>
     </ol>`,
   install_perms_title: '所需權限',
   install_perms: `
@@ -670,18 +672,6 @@ en: {
 
   /* ── 第三方服務 ─────────────────────────────────────────────── */
   third_title: '第三方服務',
-
-  third_cloudlog_title: 'Cloudlog',
-  third_cloudlog_text:  'FT8TW 可透過 REST API 即時將通聯記錄上傳至 <a href="https://www.cloudlogger.de" target="_blank">Cloudlog</a> 伺服器。',
-  third_cloudlog_setup: `
-    <ol>
-      <li>進入設置 → <strong>Cloudlog 設定</strong>。</li>
-      <li>輸入<strong>伺服器地址</strong>（例如 <code>https://cloudlog.example.com</code>）。</li>
-      <li>輸入 Cloudlog 帳號中的 <strong>API 金鑰</strong>（Cloudlog → 我的個人資料）。</li>
-      <li>若 Cloudlog 中設有多個站台，請輸入<strong>站點 ID</strong>。</li>
-      <li>點選<strong>測試連線</strong>驗證設定是否正確，成功訊息表示連線正常。</li>
-      <li>開啟<strong>自動上傳至 Cloudlog</strong>。</li>
-    </ol>`,
 
   third_qrz_title: 'QRZ.com 日誌簿',
   third_qrz_text:  '自動將完成的通聯上傳至您的 QRZ.com 線上日誌簿。需要 QRZ.com XML 訂閱方案。',
