@@ -33,7 +33,7 @@ en: {
       <li>Native <strong>C/C++ signal processing</strong> (LDPC, CRC, Kiss FFT) for high-performance encoding and decoding</li>
       <li>Automatic CQ response with configurable priority strategies</li>
       <li>QSO logging with ADIF export/import and log sharing</li>
-      <li>Integration with <strong>Cloudlog</strong>, <strong>QRZ.com</strong>, and <strong>PSKReporter</strong></li>
+      <li>Integration with <strong>QRZ.com</strong> and <strong>PSKReporter</strong></li>
       <li>Maidenhead grid tracker with OpenStreetMap overlay</li>
       <li>ITU, CQ zone, and DXCC statistics</li>
       <li>Light / Dark / System theme</li>
@@ -435,7 +435,7 @@ en: {
       <li>使用原生 <strong>C/C++ 訊號處理</strong>（LDPC、CRC、Kiss FFT），編解碼效能優異</li>
       <li>自動回應 CQ，可設定優先策略</li>
       <li>通聯日誌管理，支援 ADIF 匯出／匯入及日誌分享</li>
-      <li>整合 <strong>Cloudlog</strong>、<strong>QRZ.com</strong> 及 <strong>PSKReporter</strong></li>
+      <li>整合 <strong>QRZ.com</strong> 及 <strong>PSKReporter</strong></li>
       <li>Maidenhead 網格追蹤器，結合 OpenStreetMap 顯示</li>
       <li>ITU、CQ 分區及 DXCC 統計</li>
       <li>淺色 / 深色 / 跟隨系統佈景</li>
