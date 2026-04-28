@@ -69,6 +69,7 @@ header {
 .brand-name { font-size: 18px; font-weight: 700; letter-spacing: 0.5px; }
 .brand-sep  { opacity: 0.5; }
 .brand-sub  { font-size: 14px; opacity: 0.85; }
+.view-badge { height: 20px; margin-left: 10px; vertical-align: middle; opacity: 0.9; border-radius: 3px; }
 
 .lang-switch { display: flex; align-items: center; gap: 4px; }
 .lang-btn {

@@ -842,6 +842,18 @@ function applyLang(lang) {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
 
+  /* View counter badge */
+  const badge = document.getElementById('view-badge');
+  if (badge) {
+    const labels = { 'en': 'Views', 'zh-TW': '點閱' };
+    const label  = encodeURIComponent(labels[lang] || 'Views');
+    const sKey   = `ft8tw-counted-${lang}`;
+    const counted = (() => { try { return sessionStorage.getItem(sKey); } catch(e) { return null; } })();
+    const mode   = counted ? 'noincr' : 'incr';
+    badge.src = `https://hits.seeyoufarm.com/api/count/${mode}/badge.svg?url=danleetw-FT8TW-${lang}&count_bg=%23ffffff&title_bg=%230d47a1&title=${label}&edge_flat=true`;
+    if (!counted) { try { sessionStorage.setItem(sKey, '1'); } catch(e) {} }
+  }
+
   /* Persist */
   try { localStorage.setItem('ft8tw-lang', lang); } catch(e) {}
 }
