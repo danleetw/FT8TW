@@ -835,10 +835,10 @@ function applyLang(lang) {
   /* Update html[lang] */
   document.documentElement.lang = lang;
 
-  /* Text content nodes */
+  /* Text / HTML content nodes */
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
-    if (dict[key] !== undefined) el.textContent = dict[key];
+    if (dict[key] !== undefined) el.innerHTML = dict[key];
   });
 
   /* HTML content nodes */
