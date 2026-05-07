@@ -29,10 +29,11 @@ public class InstructionSet {
 	public static final int QRPLAB_QMX=23; // QRP Lab QMX
 	
 	public static final int TX_500MP=24; // QRP LAB
-	
+
 	public static final int YAESU_FTX1=25; // YAESU FTX1
-	
-    
+    public static final int UVK6_DIGI = 26; // UV-K6 uvk5cec DigiManager protocol
+
+
 
 
 

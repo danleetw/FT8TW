@@ -72,6 +72,7 @@ import com.bg7yoz.ft8cn.rigs.KenwoodTS570Rig;
 import com.bg7yoz.ft8cn.rigs.KenwoodTS590Rig;
 import com.bg7yoz.ft8cn.rigs.OnRigStateChanged;
 import com.bg7yoz.ft8cn.rigs.TrUSDXRig;
+import com.bg7yoz.ft8cn.rigs.UVK6Rig;
 import com.bg7yoz.ft8cn.rigs.Wolf_sdr_450Rig;
 import com.bg7yoz.ft8cn.rigs.XieGu6100NetRig;
 import com.bg7yoz.ft8cn.rigs.XieGu6100Rig;
@@ -776,7 +777,9 @@ public class MainViewModel extends AndroidViewModel {
                 if (GeneralVariables.controlMode != ControlMode.CAT) {
                     return true;
                 }
-                return baseRig != null && !baseRig.supportWaveOverCAT();
+                return baseRig != null
+                        && !baseRig.supportWaveOverCAT()
+                        && !baseRig.supportDirectMessageTransmit();
             }
 
             @Override
@@ -855,7 +858,10 @@ public class MainViewModel extends AndroidViewModel {
                 if (baseRig == null) {
                     return false;
                 }
-                if (!baseRig.isConnected() || !baseRig.supportWaveOverCAT()) {
+                if (!baseRig.isConnected()) {
+                    return false;
+                }
+                if (!baseRig.supportWaveOverCAT() && !baseRig.supportDirectMessageTransmit()) {
                     return false;
                 }
                 return true;
@@ -1547,7 +1553,11 @@ public class MainViewModel extends AndroidViewModel {
 				case InstructionSet.YAESU_FTX1: // 25
 					BaseRig.SSE_rigModel(TAG , "Yaesu_FTX1");
 					baseRig = new YaesuFTX1Rig();//YAESU FTX1
-					break;				
+					break;
+				case InstructionSet.UVK6_DIGI:
+					BaseRig.SSE_rigModel(TAG , "UVK6Rig");
+					baseRig = new UVK6Rig();
+					break;
 				 default:
 					BaseRig.SSE_rigModel(TAG , "Unknown value,no baseRig created");
 					LogExt.d(TAG, "### InstructionSet: unknown value, no baseRig created");

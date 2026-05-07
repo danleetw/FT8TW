@@ -249,6 +249,10 @@ public abstract class BaseRig {
         return false;
     }
 
+    public boolean supportDirectMessageTransmit() {
+        return false;
+    }
+
     public void onDisconnecting() {
     }
 	
