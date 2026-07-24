@@ -245,6 +245,24 @@ ol.steps li::before {
   margin-top: 1px;
 }
 
+/* ── Screenshots ─────────────────────────────────────────────── */
+.screenshot-wrap {
+  margin: 16px 0 24px;
+  text-align: center;
+}
+.screenshot {
+  max-width: 300px;
+  width: 100%;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+}
+.screenshot-caption {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
 /* ── Footer ──────────────────────────────────────────────────── */
 footer {
   border-top: 1px solid var(--border);
