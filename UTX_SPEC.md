@@ -170,3 +170,21 @@ bits.
 
 Message header (magic + mode) costs 18–33 bits, amortized over the first frame
 of the message.
+
+## 8. Transmission Time Comparison Example
+
+Sending a **20-character message** in Normal mode (15-second frame):
+
+| Content | chars/frame | frames needed | approx. time |
+|---|---|---|---|
+| English (Mode A, same speed as legacy) | ~15.3 | 2 | 30 s |
+| Common Chinese (UTX tier 1) | ~5.3 | 4 | 60 s |
+| Hangul/less-common (UTX tier 2) | ~4.3 | 5 | 75 s |
+| Cyrillic-class scripts (UTX window) | ~8.5 | 3 | 45 s |
+| Reference: same Chinese text as raw UTF-8 (no UTX) | ~2.9 | 7 | 105 s |
+
+For the same 20 Chinese characters, UTX (tier 1) takes about 60 seconds — roughly
+**1.75× faster** than the 105 seconds raw UTF-8 would need. English content transmits
+at exactly the same speed as legacy JS8, unaffected by UTX. The Fast/Turbo/Slow
+submodes use different frame lengths (10/6/30 s); scale the figures above
+proportionally.
