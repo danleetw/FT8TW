@@ -26,6 +26,8 @@
 
 📖 **[User Manual](https://danleetw.github.io/FT8TW/)**
 
+🔓 **[JS8 UTX Unicode Encoding Specification](UTX_SPEC.md)** — full public bit-level spec for the Unicode text encoding used in JS8 mode, published in the interest of transparency (this is an open, documented encoding, not a cipher).
+
 [🙏 Thanks to FT8CN]  
 Many thanks to BG7YOZ and N0BOY  
 for creating and maintaining such an interesting and convenient program, FT8CN.  

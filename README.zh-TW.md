@@ -26,6 +26,8 @@
 
 📖 **[使用手冊](https://danleetw.github.io/FT8TW/?lang=zh-TW)**
 
+🔓 **[JS8 UTX Unicode 編碼規格書](UTX_SPEC.zh-TW.md)** — JS8 模式 Unicode 文字編碼的完整位元層級公開規格，基於透明公開原則發布（這是公開文件化的編碼格式，並非隱匿內容的密碼）。
+
 [🙏感謝FT8CN]
 感謝BG7YOZ跟N0BOY
 寫出並維護了一個如此有趣又方便的程式FT8CN，大幅減少了我在山上做SOTA的設備數量，以及纜線的數量，
