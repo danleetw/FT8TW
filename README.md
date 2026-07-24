@@ -16,13 +16,15 @@
   &nbsp;
   <!-- Android Platform -->
   <img alt="Platform" src="https://img.shields.io/badge/platform-Android-brightgreen?style=flat-square&logo=android"/>
+  &nbsp;
+  <!-- User Manual -->
+  <a href="https://danleetw.github.io/FT8TW/"><img alt="User Manual" src="https://img.shields.io/badge/📖-User%20Manual-blue?style=flat-square"/></a>
 </p>
 
 # FT8TW
 🌐 **Languages**: [English] | [中文（繁體）](README.zh-TW.md)
 
-User Manual
-https://danleetw.github.io/FT8TW
+📖 **[User Manual](https://danleetw.github.io/FT8TW/)**
 
 [🙏 Thanks to FT8CN]  
 Many thanks to BG7YOZ and N0BOY  
