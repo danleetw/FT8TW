@@ -17,6 +17,10 @@ en: {
   nav_screens:      'Main Screens',
   nav_connection:   'Radio Connection',
   nav_operating:    'Operating FT8 / FT4',
+  nav_js8:          'JS8 Chat Mode',
+  nav_wspr:         'WSPR Beacon',
+  nav_ssb:          'SSB Voice',
+  nav_gridtracker:  'Grid Tracker',
   nav_logging:      'QSO Logging',
   nav_third_party:  'Third-party Services',
   nav_settings:     'Settings Reference',
@@ -103,7 +107,7 @@ en: {
 
   /* ── Main Screens ─────────────────────────────────────────── */
   screens_title: 'Main Screens',
-  screens_intro: 'FT8TW has five tabs accessible from the bottom navigation bar:',
+  screens_intro: 'The bottom navigation bar gives access to the main operating tabs. Additional screens for JS8, WSPR, SSB, and the grid tracker are described in their own sections below.',
 
   screens_content_title: 'Content Tab',
   screens_content_text:  'The primary operating screen. Shows a list of decoded stations currently calling CQ. Each row displays callsign, signal level (dB), time offset (Δt), audio frequency (Hz), Maidenhead grid, distance, and country/location. Tap a row to select that station as your call target.',
@@ -135,6 +139,20 @@ en: {
 
   screens_settings_title: 'Settings Tab',
   screens_settings_text:  'All configuration options for your station, radio interface, decoding, logging, and third-party integrations. See the Settings Reference section for a complete list.',
+
+  screens_more_title: 'Other Screens',
+  screens_more_text:  'Beyond the core FT8/FT4 tabs, FT8TW includes several additional screens, accessible from the navigation menu or the floating shortcut window:',
+  screens_more_list: `
+    <ul>
+      <li><strong>Spectrum</strong> – Live waterfall and spectrum display of the receive audio, with adjustable color scheme and noise-floor-anchored contrast; also shows your own transmit audio during TX.</li>
+      <li><strong>JS8</strong> – Chat-style conversation screen for JS8 mode. See the <a href="#js8">JS8 Chat Mode</a> section.</li>
+      <li><strong>WSPR</strong> – Beacon scheduling screen for WSPR mode. See the <a href="#wspr">WSPR Beacon</a> section.</li>
+      <li><strong>SSB</strong> – Push-to-talk voice screen. See the <a href="#ssb">SSB Voice</a> section.</li>
+      <li><strong>Grid Tracker</strong> – Full-screen map view. See the <a href="#gridtracker">Grid Tracker</a> section.</li>
+      <li><strong>Count</strong> – QSO statistics: totals by band, mode, DXCC, ITU/CQ zone, and time period.</li>
+      <li><strong>QRZ.com Lookup</strong> – Embedded QRZ.com callsign lookup for the currently selected station.</li>
+      <li><strong>Floating Window</strong> – An optional always-on-top overlay with quick-access buttons (frequency, volume, grid tracker, and more), independently toggleable per button in Settings.</li>
+    </ul>`,
 
   /* ── Radio Connection ─────────────────────────────────────── */
   conn_title: 'Radio Connection',
@@ -237,7 +255,90 @@ en: {
   op_freetext_title: 'Free Text Mode',
   op_freetext_text:  'Tap the free text icon in the Calling tab to enter a custom message up to 13 characters. Free text bypasses the standard FT8 QSO sequence — use it for special event messages or announcements. Switch back to Standard Message Mode to resume normal QSOs.',
 
-  /* ── QSO Logging ──────────────────────────────────────────── */
+  op_ft2_title: 'FT2 (Experimental)',
+  op_ft2_text:  'FT8TW includes early support for FT2, a faster FT4-derived mode. FT2 has not yet been field-verified against a second station and should be considered experimental — please report any issues you encounter.',
+
+  /* ── JS8 ──────────────────────────────────────────────────── */
+  js8_title: 'JS8 Chat Mode',
+  js8_intro: 'JS8 is a keyboard-to-keyboard chat mode built on the FT8 signal structure, allowing free-form conversation, store-and-forward messaging, and network-style commands in addition to structured QSOs. Open the JS8 tab to access the chat screen.',
+
+  js8_speed_title: 'Speed Modes',
+  js8_speed_text:  'JS8 offers four speed/submode combinations, trading off sensitivity for message throughput:',
+  js8_speed_table: `
+    <table>
+      <tr><th>Mode</th><th>Slot length</th><th>Characteristics</th></tr>
+      <tr><td>Normal</td><td>15 s</td><td>Best sensitivity, standard throughput</td></tr>
+      <tr><td>Fast</td><td>10 s</td><td>Higher throughput, slightly reduced sensitivity</td></tr>
+      <tr><td>Turbo</td><td>6 s</td><td>Fastest throughput, reduced sensitivity — best for strong local signals</td></tr>
+      <tr><td>Slow</td><td>30 s</td><td>Highest sensitivity, lowest throughput — best for marginal DX</td></tr>
+    </table>`,
+
+  js8_msg_title: 'Message Types',
+  js8_msg_text:  'JS8 supports several message formats beyond a simple CQ/reply exchange:',
+  js8_msg_list: `
+    <ul>
+      <li><strong>Heartbeat (HB)</strong> – A periodic announcement of your presence and signal report, so other stations can hear you without an active QSO.</li>
+      <li><strong>Directed commands</strong> – Query another station for its SNR, grid, info string, or "heard" list (e.g. <code>CALL SNR?</code>, <code>CALL GRID?</code>, <code>CALL HEARING?</code>).</li>
+      <li><strong>Free text</strong> – Full-length conversational messages, automatically split across as many transmit frames as needed.</li>
+      <li><strong>Store-and-forward (MSG / MSG TO:)</strong> – Buffered commands with a checksum, for relaying a message to a station that isn't currently listening.</li>
+    </ul>`,
+
+  js8_hb_title: 'Heartbeat',
+  js8_hb_text:  'Enable heartbeat announcements at a configurable interval (10, 15, or 30 minutes) so other stations know you are monitoring, even without an active QSO.',
+
+  js8_autoreply_title: 'Auto-Reply',
+  js8_autoreply_text:  'Auto-reply can automatically answer directed queries (SNR?/GRID?/INFO?/HEARING?/AGN?) addressed to your callsign, and optionally answer CQ calls as well; each is a separate toggle, both default to off. A per-source cooldown prevents responding to the same station too frequently.',
+
+  js8_unicode_title: 'Unicode Text (UTX)',
+  js8_unicode_text:  'Standard JS8 free text is limited to an uppercase ASCII subset. FT8TW adds an optional, openly documented extension called UTX that allows free text to carry full Unicode content — Chinese, Japanese, Korean, Cyrillic, Arabic, and more — while remaining fully backward-compatible with unmodified JS8Call software. UTX is purely a public, reversible text-encoding format (comparable to UTF-8), never an obscuring cipher, and its complete bit-level specification is published in the project repository for anyone to inspect or re-implement.',
+
+  js8_safety_title: 'Transmit Safety',
+  js8_safety_text:  'As with FT8/FT4, an independent watchdog automatically stops any JS8 transmission (including heartbeat and auto-reply) if the app is closed, backgrounded and killed by the system, or crashes, preventing the radio from being left keyed unattended.',
+
+  /* ── WSPR ─────────────────────────────────────────────────── */
+  wspr_title: 'WSPR Beacon',
+  wspr_intro: 'WSPR (Weak Signal Propagation Reporter) is a low-power beacon mode used to study radio propagation. FT8TW supports scheduled WSPR transmission, plus experimental WSPR decoding.',
+
+  wspr_tx_title: 'Beacon Transmission',
+  wspr_tx_text:  'Open the WSPR tab to configure and arm a beacon schedule:',
+  wspr_tx_list: `
+    <ul>
+      <li>Requires a standard-format callsign (a digit in the 2nd or 3rd position).</li>
+      <li>Just before each scheduled transmission, the radio's frequency automatically switches to the WSPR sub-band, then reverts to your normal operating frequency afterward.</li>
+      <li>Select TX power (dBm) to be encoded in the beacon message.</li>
+      <li>The scheduler automatically disarms after a completed transmission and must be manually re-armed for the next one — this is intentional, to prevent unattended continuous beaconing.</li>
+      <li>A countdown timer and a preview of the next scheduled message are shown on the WSPR tab.</li>
+    </ul>`,
+
+  wspr_rx_title: 'Decoding (Experimental)',
+  wspr_rx_text:  'WSPR decoding is provided on a best-effort basis and is considered experimental: it decodes a single signal at a time and does not compensate for receiver clock drift. For serious propagation monitoring, a dedicated WSPR decoder is still recommended.',
+
+  /* ── SSB ──────────────────────────────────────────────────── */
+  ssb_title: 'SSB Voice',
+  ssb_intro: 'Beyond digital modes, FT8TW can also operate as a simple push-to-talk voice interface, using the same radio connection already configured for FT8/FT4.',
+
+  ssb_use_title: 'Push-to-Talk Operation',
+  ssb_use_text:  'Open the SSB tab and press and hold the talk button to transmit:',
+  ssb_use_list: `
+    <ul>
+      <li>Holding the button captures audio from the phone's microphone, asserts PTT via CAT command, and routes audio out through the connected USB sound card or Bluetooth SCO audio.</li>
+      <li>Releasing the button (or if the touch is interrupted) immediately stops transmission and releases PTT.</li>
+      <li>USB audio PTT is field-verified. Bluetooth SCO audio PTT is functional but has seen less field testing — please report any issues.</li>
+    </ul>`,
+
+  ssb_safety_title: 'PTT-Stuck Protection',
+  ssb_safety_text:  'The talk button uses a triple safety mechanism — release, touch-cancel, and a backstop timeout — so that a stuck or interrupted touch event cannot leave the radio transmitting indefinitely.',
+
+  /* ── Grid Tracker ─────────────────────────────────────────── */
+  grid_title: 'Grid Tracker',
+  grid_intro: 'The Grid Tracker is a full-screen map view (based on OpenStreetMap) that plots decoded and worked stations by their Maidenhead grid locator, giving a geographic view of current band activity.',
+  grid_features: `
+    <ul>
+      <li>Markers distinguish stations you have already worked from newly decoded ones, and show callsign/signal details on tap.</li>
+      <li>A nearby band-activity panel summarizes recent spot density per band, refreshed periodically.</li>
+      <li>The map can be opened from the main navigation menu or, if enabled, from the floating shortcut window.</li>
+    </ul>`,
+
   log_title: 'QSO Logging',
   log_intro: 'FT8TW logs every completed QSO automatically. The log database stores date/time (UTC), callsign, band, mode, frequency, RST reports, grid locator, and confirmation status.',
 
@@ -347,6 +448,19 @@ en: {
       <tr><td>Del Temp files</td><td>Remove temporary log sharing files</td></tr>
     </table>`,
 
+  set_modes_title: 'JS8 / WSPR / SSB',
+  set_modes_table: `
+    <table>
+      <tr><th>Setting</th><th>Description</th></tr>
+      <tr><td>JS8 speed</td><td>Normal / Fast / Turbo / Slow submode</td></tr>
+      <tr><td>JS8 heartbeat</td><td>Off, or every 10 / 15 / 30 minutes</td></tr>
+      <tr><td>JS8 auto-reply</td><td>Auto-answer directed queries and/or CQ calls addressed to you</td></tr>
+      <tr><td>JS8 enhanced encoding (UTX)</td><td>Force free text to always use the Unicode-capable encoding, even for plain ASCII</td></tr>
+      <tr><td>WSPR TX power</td><td>Power level (dBm) encoded in the beacon message</td></tr>
+      <tr><td>Waterfall color scheme</td><td>Classic or rainbow color mapping for the spectrum/waterfall display</td></tr>
+      <tr><td>Floating window</td><td>Master toggle plus individual show/hide for each shortcut button</td></tr>
+    </table>`,
+
   /* ── Troubleshooting ──────────────────────────────────────── */
   ts_title: 'Troubleshooting',
 
@@ -419,6 +533,10 @@ en: {
   nav_screens:      '主要畫面',
   nav_connection:   '電台連線',
   nav_operating:    '操作 FT8 / FT4',
+  nav_js8:          'JS8 聊天模式',
+  nav_wspr:         'WSPR 信標',
+  nav_ssb:          'SSB 語音',
+  nav_gridtracker:  '網格追蹤地圖',
   nav_logging:      '通聯記錄',
   nav_third_party:  '第三方服務',
   nav_settings:     '設定說明',
@@ -505,7 +623,7 @@ en: {
 
   /* ── 主要畫面 ───────────────────────────────────────────────── */
   screens_title: '主要畫面',
-  screens_intro: 'FT8TW 底部導覽列有五個分頁：',
+  screens_intro: '底部導覽列可切換主要操作分頁；JS8、WSPR、SSB 及網格追蹤地圖等畫面在下方各有獨立章節說明。',
 
   screens_content_title: '通聯內容（Content）',
   screens_content_text:  '主要操作畫面，顯示目前正在呼叫 CQ 的電台清單。每一列顯示呼號、訊號強度（dB）、時間偏差（Δt）、音訊頻率（Hz）、Maidenhead 網格、距離及國家地點。點選任一列即可選定為呼叫目標。',
@@ -537,6 +655,20 @@ en: {
 
   screens_settings_title: '設置（Settings）',
   screens_settings_text:  '包含電台資訊、電台連線、解碼、日誌、第三方整合等所有設定選項。詳細說明請參閱「設定說明」章節。',
+
+  screens_more_title: '其他畫面',
+  screens_more_text:  '除了核心的 FT8/FT4 分頁之外，FT8TW 還有下列畫面，可從導覽選單或浮動快捷視窗開啟：',
+  screens_more_list: `
+    <ul>
+      <li><strong>頻譜（Spectrum）</strong> — 即時顯示接收音訊的瀑布圖與頻譜，色階可切換，黑點錨定雜訊地板以維持對比；發射時也會顯示自己的發射音訊。</li>
+      <li><strong>JS8</strong> — JS8 模式的聊天式對話畫面，詳見<a href="#js8">「JS8 聊天模式」</a>章節。</li>
+      <li><strong>WSPR</strong> — WSPR 模式的信標排程畫面，詳見<a href="#wspr">「WSPR 信標」</a>章節。</li>
+      <li><strong>SSB</strong> — 按住通話語音畫面，詳見<a href="#ssb">「SSB 語音」</a>章節。</li>
+      <li><strong>網格追蹤（Grid Tracker）</strong> — 全螢幕地圖畫面，詳見<a href="#gridtracker">「網格追蹤地圖」</a>章節。</li>
+      <li><strong>統計（Count）</strong> — 依頻段、模式、DXCC、ITU/CQ 分區及時間區間統計 QSO 數量。</li>
+      <li><strong>QRZ.com 查詢</strong> — 內嵌 QRZ.com 呼號查詢，顯示目前選定電台的資料。</li>
+      <li><strong>浮動視窗</strong> — 可選的常駐懸浮功能表（頻率、音量、網格追蹤等快捷按鈕），每個按鈕可在設置中個別開關。</li>
+    </ul>`,
 
   /* ── 電台連線 ───────────────────────────────────────────────── */
   conn_title: '電台連線',
@@ -638,6 +770,90 @@ en: {
 
   op_freetext_title: '自定義訊息模式',
   op_freetext_text:  '點選呼叫頁面的自定義訊息圖示，輸入最多 13 個字元的自由文字。自定義訊息會跳過標準 FT8 通聯流程，適用於特殊活動或公告。點選「標準訊息模式」可返回正常通聯。',
+
+  op_ft2_title: 'FT2（實驗性）',
+  op_ft2_text:  'FT8TW 已初步支援 FT2，這是基於 FT4 衍生、速度更快的模式。FT2 尚未完成與第二台電台的實機互測，請視為實驗性功能，若遇到問題還請回報。',
+
+  /* ── JS8 ──────────────────────────────────────────────────── */
+  js8_title: 'JS8 聊天模式',
+  js8_intro: 'JS8 是建構在 FT8 訊號結構上的鍵盤對鍵盤聊天模式，除了標準 QSO 之外，還能進行自由對話、儲轉訊息及類似網路指令的操作。開啟 JS8 分頁即可進入聊天畫面。',
+
+  js8_speed_title: '速度模式',
+  js8_speed_text:  'JS8 提供四種速度／子模式組合，在靈敏度與傳輸量之間權衡：',
+  js8_speed_table: `
+    <table>
+      <tr><th>模式</th><th>時隙長度</th><th>特性</th></tr>
+      <tr><td>Normal</td><td>15 秒</td><td>靈敏度最佳，傳輸量標準</td></tr>
+      <tr><td>Fast</td><td>10 秒</td><td>傳輸量較高，靈敏度略降</td></tr>
+      <tr><td>Turbo</td><td>6 秒</td><td>傳輸量最高，靈敏度較低——適合訊號強勁的近距離通聯</td></tr>
+      <tr><td>Slow</td><td>30 秒</td><td>靈敏度最高，傳輸量最低——適合微弱訊號的遠距 DX</td></tr>
+    </table>`,
+
+  js8_msg_title: '訊息類型',
+  js8_msg_text:  '除了單純的 CQ／回應交換，JS8 還支援多種訊息格式：',
+  js8_msg_list: `
+    <ul>
+      <li><strong>Heartbeat（HB）</strong> — 週期性廣播自己的存在與訊號報告，讓其他電台無需建立通聯即可聽到您。</li>
+      <li><strong>指定指令（Directed commands）</strong> — 查詢其他電台的 SNR、網格、資訊字串或「聽到清單」（例如 <code>呼號 SNR?</code>、<code>呼號 GRID?</code>、<code>呼號 HEARING?</code>）。</li>
+      <li><strong>自由文字</strong> — 完整長度的對話訊息，程式會自動拆分成所需的多個發射 frame。</li>
+      <li><strong>儲轉指令（MSG / MSG TO:）</strong> — 帶校驗碼的緩衝指令，用於轉發訊息給目前不在監聽的電台。</li>
+    </ul>`,
+
+  js8_hb_title: 'Heartbeat',
+  js8_hb_text:  '可設定 heartbeat 廣播間隔（10、15 或 30 分鐘），即使沒有進行中的通聯，也能讓其他電台知道您正在監聽。',
+
+  js8_autoreply_title: '自動回覆',
+  js8_autoreply_text:  '自動回覆可自動應答指向您呼號的查詢指令（SNR?/GRID?/INFO?/HEARING?/AGN?），也可選擇自動回應 CQ；兩者為各自獨立的開關，預設皆為關閉。同一來源呼號有冷卻時間限制，避免過於頻繁回應。',
+
+  js8_unicode_title: 'Unicode 文字（UTX）',
+  js8_unicode_text:  '標準 JS8 自由文字僅限大寫 ASCII 子集。FT8TW 新增一個可選、且公開文件化的擴充格式「UTX」，讓自由文字能夠承載完整 Unicode 內容——中文、日文、韓文、西里爾文、阿拉伯文等，同時與未修改的原版 JS8Call 軟體保持完全相容。UTX 純粹是一種公開、可逆的文字編碼格式（性質類似 UTF-8），絕非用來隱匿內容的密碼，完整的位元層級規格已公開發布於專案 repo 中，任何人皆可查閱或重新實作。',
+
+  js8_safety_title: '發射安全',
+  js8_safety_text:  '與 FT8/FT4 相同，獨立的監管機制會在 App 被關閉、被系統於背景中結束，或發生當機時，自動停止任何 JS8 發射（包含 heartbeat 與自動回覆），避免電台在無人看管下持續發射。',
+
+  /* ── WSPR ─────────────────────────────────────────────────── */
+  wspr_title: 'WSPR 信標',
+  wspr_intro: 'WSPR（Weak Signal Propagation Reporter）是一種低功率信標模式，用於研究無線電傳播狀況。FT8TW 支援排程發射 WSPR 信標，並提供實驗性的 WSPR 解碼功能。',
+
+  wspr_tx_title: '信標發射',
+  wspr_tx_text:  '開啟 WSPR 分頁即可設定並啟用信標排程：',
+  wspr_tx_list: `
+    <ul>
+      <li>需使用標準格式呼號（第 2 或第 3 碼為數字）。</li>
+      <li>每次排程發射前，電台頻率會自動切到 WSPR 子頻段，發射結束後自動切回原本的操作頻率。</li>
+      <li>可選擇要編碼進信標訊息的發射功率（dBm）。</li>
+      <li>排程在完成一次發射後會自動停用，須手動重新啟用才會進行下一次發射——這是刻意設計，避免無人看管下持續發射信標。</li>
+      <li>WSPR 分頁會顯示倒數計時，以及下一則排程訊息的預覽。</li>
+    </ul>`,
+
+  wspr_rx_title: '解碼（實驗性）',
+  wspr_rx_text:  'WSPR 解碼功能屬於盡力而為的實驗性功能：一次僅能解出單一訊號，且未補償接收端時鐘漂移。若需嚴謹的傳播監測，仍建議使用專門的 WSPR 解碼軟體。',
+
+  /* ── SSB ──────────────────────────────────────────────────── */
+  ssb_title: 'SSB 語音',
+  ssb_intro: '除了數位模式之外，FT8TW 也能作為簡易的按住通話（PTT）語音介面，沿用與 FT8/FT4 相同的電台連線設定。',
+
+  ssb_use_title: '按住通話操作',
+  ssb_use_text:  '開啟 SSB 分頁，按住通話按鈕即可發射：',
+  ssb_use_list: `
+    <ul>
+      <li>按住按鈕時，程式會擷取手機麥克風音訊、透過 CAT 指令觸發 PTT，並將音訊輸出至已連接的 USB 音效卡或藍牙 SCO 音訊。</li>
+      <li>放開按鈕（或觸控被中斷）會立即停止發射並釋放 PTT。</li>
+      <li>USB 音訊 PTT 已完成實機驗證；藍牙 SCO 音訊 PTT 功能可運作，但實機測試較少，若遇到問題還請回報。</li>
+    </ul>`,
+
+  ssb_safety_title: 'PTT 卡住防護',
+  ssb_safety_text:  '通話按鈕採用三重安全機制——放開、觸控取消、以及保底逾時——確保觸控事件卡住或被中斷時，電台不會無限期持續發射。',
+
+  /* ── 網格追蹤地圖 ─────────────────────────────────────────── */
+  grid_title: '網格追蹤地圖',
+  grid_intro: '網格追蹤地圖是一個全螢幕地圖畫面（基於 OpenStreetMap），依 Maidenhead 網格座標標示解碼到及已通聯的電台，以地理視角呈現目前波段活動狀況。',
+  grid_features: `
+    <ul>
+      <li>標記會區分已通聯過的電台與新解碼到的電台，點選可查看呼號與訊號詳情。</li>
+      <li>附近波段活躍度面板會定期刷新，摘要各頻段近期的訊號密度。</li>
+      <li>可從主導覽選單開啟地圖，若已啟用浮動視窗，也能從快捷按鈕開啟。</li>
+    </ul>`,
 
   /* ── 通聯記錄 ───────────────────────────────────────────────── */
   log_title: '通聯記錄',
@@ -747,6 +963,19 @@ en: {
       <tr><td>保存 SWL 記錄</td><td>記錄監聽到的其他電台 QSO</td></tr>
       <tr><td>清除 QSO 計數</td><td>重設本次作業的 QSO 計數器</td></tr>
       <tr><td>清除暫存檔</td><td>刪除日誌分享的暫存檔案</td></tr>
+    </table>`,
+
+  set_modes_title: 'JS8 / WSPR / SSB',
+  set_modes_table: `
+    <table>
+      <tr><th>設定項目</th><th>說明</th></tr>
+      <tr><td>JS8 速度</td><td>Normal / Fast / Turbo / Slow 子模式</td></tr>
+      <tr><td>JS8 heartbeat</td><td>關閉，或每 10／15／30 分鐘廣播一次</td></tr>
+      <tr><td>JS8 自動回覆</td><td>自動應答指向自己的查詢指令，及／或自動回應 CQ</td></tr>
+      <tr><td>JS8 強化編碼（UTX）</td><td>強制自由文字一律使用可承載 Unicode 的編碼，即使是純 ASCII 內容</td></tr>
+      <tr><td>WSPR 發射功率</td><td>編碼進信標訊息的功率等級（dBm）</td></tr>
+      <tr><td>瀑布圖色階</td><td>頻譜／瀑布圖顯示採經典色階或彩虹色階</td></tr>
+      <tr><td>浮動視窗</td><td>總開關，以及各快捷按鈕的個別顯示／隱藏</td></tr>
     </table>`,
 
   /* ── 問題排除 ───────────────────────────────────────────────── */
