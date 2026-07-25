@@ -129,10 +129,27 @@ function applyLang(lang) {
 
 function setLang(lang) { applyLang(lang); }
 
+/* 依瀏覽器語系猜預設語言：中文語系(zh*)→繁中，其餘一律英文。
+   只在使用者從未手動選過語言時作為預設值使用。 */
+function detectBrowserLang() {
+  let list = [];
+  try {
+    list = (navigator.languages && navigator.languages.length)
+      ? navigator.languages
+      : [navigator.language || navigator.userLanguage || ''];
+  } catch (e) { list = ['']; }
+  for (const l of list) {
+    if (l && l.toLowerCase().indexOf('zh') === 0) return 'zh-TW';
+  }
+  return 'en';
+}
+
 /* ── Init ──────────────────────────────────────────────────────── */
 (function init() {
-  let lang = 'en';
-  try { lang = localStorage.getItem('ft8tw-lang') || lang; } catch (e) {}
+  /* 優先序：網址 ?lang=（分享連結）> 使用者記住的選擇 > 瀏覽器語系 > 英文 */
+  let stored = null;
+  try { stored = localStorage.getItem('ft8tw-lang'); } catch (e) {}
+  let lang = stored || detectBrowserLang();
   const urlLang = new URLSearchParams(window.location.search).get('lang');
   if (urlLang && T[urlLang]) lang = urlLang;
   if (!T[lang]) lang = 'en';

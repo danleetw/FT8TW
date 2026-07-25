@@ -64,14 +64,14 @@ header {
 }
 .menu-toggle:hover { background: rgba(255,255,255,0.15); }
 
-.brand { display: flex; align-items: center; gap: 8px; flex: 1; }
+.brand { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; overflow: hidden; }
 .brand-icon { font-size: 22px; }
 .brand-name { font-size: 18px; font-weight: 700; letter-spacing: 0.5px; }
 .brand-sep  { opacity: 0.5; }
 .brand-sub  { font-size: 14px; opacity: 0.85; }
 .view-badge { height: 20px; margin-left: 10px; vertical-align: middle; opacity: 0.9; border-radius: 3px; }
 
-.lang-switch { display: flex; align-items: center; gap: 4px; }
+.lang-switch { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
 .lang-btn {
   background: rgba(255,255,255,0.15);
   border: 1px solid rgba(255,255,255,0.4);
@@ -285,6 +285,9 @@ footer {
 @media (max-width: 768px) {
   .menu-toggle { display: block; }
   .brand-sub   { display: none; }
+  .view-badge  { display: none; }   /* 訪客徽章寬度不定，手機上會把語言按鈕擠出畫面，隱藏 */
+  .header-inner { padding: 0 12px; gap: 8px; }
+  .lang-btn    { padding: 4px 10px; }
 
   .sidebar {
     transform: translateX(-100%);
