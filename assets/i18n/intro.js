@@ -22,7 +22,7 @@ en: {
       <li>Light / Dark / System theme</li>
       <li>Requires Android 5.0 (API 21) or later</li>
     </ul>`,
-  intro_support: 'Development runs on voluntary support. There is a <a href="https://ko-fi.com/bv6lc" target="_blank">buy-me-a-coffee link</a> in the app under About, and here as well. It unlocks nothing — every feature works the same either way. FT8TW is a fork of FT8CN by BG7YOZ; thanks to the original author.',
+  intro_support: 'Development of FT8TW is supported by voluntary donations. If the app has been useful to you, you are welcome to <a href="https://ko-fi.com/bv6lc" target="_blank">buy the author a coffee</a>. A donation unlocks nothing and changes nothing about how the app behaves — every feature is fully available whether you give or not. FT8TW is a fork of FT8CN by BG7YOZ, with thanks to the original author.',
 },
 
 'zh-TW': {
@@ -45,7 +45,7 @@ en: {
       <li>淺色 / 深色 / 跟隨系統佈景</li>
       <li>需要 Android 5.0（API 21）或更新版本</li>
     </ul>`,
-  intro_support: '開發靠自願支持維持。App 的「關於」裡有一個<a href="https://ko-fi.com/bv6lc" target="_blank">請喝咖啡的連結</a>，這裡也放一份。它不會解鎖任何東西——所有功能給不給都一樣可用。FT8TW 基於 BG7YOZ 的 FT8CN，感謝原作者。',
+  intro_support: 'FT8TW 的開發由自願贊助支持。若這個程式對您有所幫助，歡迎<a href="https://ko-fi.com/bv6lc" target="_blank">請作者喝杯咖啡</a>。贊助不會解鎖任何功能，也不會改變程式的任何行為——無論是否贊助，所有功能都完整開放。FT8TW 基於 BG7YOZ 開發的 FT8CN，謹此感謝原作者。',
 },
 
 'zh-CN': {
@@ -68,7 +68,7 @@ en: {
       <li>浅色 / 深色 / 跟随系统主题</li>
       <li>需要 Android 5.0（API 21）或更新版本</li>
     </ul>`,
-  intro_support: '开发靠自愿支持维持。App 的「关于」里有一个<a href="https://ko-fi.com/bv6lc" target="_blank">请喝咖啡的链接</a>，这里也放一份。它不会解锁任何东西——所有功能给不给都一样可用。FT8TW 基于 BG7YOZ 的 FT8CN，感谢原作者。',
+  intro_support: 'FT8TW 的开发由自愿赞助支持。若这个程序对您有所帮助，欢迎<a href="https://ko-fi.com/bv6lc" target="_blank">请作者喝杯咖啡</a>。赞助不会解锁任何功能，也不会改变程序的任何行为——无论是否赞助，所有功能都完整开放。FT8TW 基于 BG7YOZ 开发的 FT8CN，谨此感谢原作者。',
 },
 
 'ja': {
@@ -91,7 +91,7 @@ en: {
       <li>ライト / ダーク / システムに従うテーマ</li>
       <li>Android 5.0（API 21）以降が必要</li>
     </ul>`,
-  intro_support: '開発は任意の支援で成り立っています。アプリの「情報」に<a href="https://ko-fi.com/bv6lc" target="_blank">コーヒーをおごるリンク</a>があり、ここにも置いておきます。何かが解放されることはなく、機能はどちらでも同じように使えます。FT8TW は BG7YOZ の FT8CN のフォークです。原作者に感謝します。',
+  intro_support: 'FT8TW の開発は任意のご寄付に支えられています。本アプリがお役に立ちましたら、<a href="https://ko-fi.com/bv6lc" target="_blank">作者にコーヒーを一杯</a>おごっていただけると励みになります。ご寄付によって何かが解放されることはなく、アプリの動作が変わることもありません。ご支援の有無にかかわらず、すべての機能をそのままお使いいただけます。FT8TW は BG7YOZ 氏が開発した FT8CN のフォークです。原作者に感謝いたします。',
 },
 
 'ru': {
@@ -114,7 +114,7 @@ en: {
       <li>Светлая / тёмная / системная тема</li>
       <li>Требуется Android 5.0 (API 21) или новее</li>
     </ul>`,
-  intro_support: 'Разработка держится на добровольной поддержке. <a href="https://ko-fi.com/bv6lc" target="_blank">Ссылка «угостить кофе»</a> есть в приложении в разделе «О программе», а также здесь. Она ничего не открывает — все возможности работают одинаково. FT8TW — форк FT8CN от BG7YOZ; спасибо автору оригинала.',
+  intro_support: 'Разработка FT8TW держится на добровольных пожертвованиях. Если приложение оказалось вам полезным, вы можете <a href="https://ko-fi.com/bv6lc" target="_blank">угостить автора кофе</a>. Пожертвование ничего не открывает и никак не меняет работу приложения — все возможности доступны в полном объёме независимо от того, поддержали вы проект или нет. FT8TW — форк FT8CN от BG7YOZ; благодарим автора оригинала.',
 },
 
 'pl': {
@@ -137,7 +137,7 @@ en: {
       <li>Motyw jasny / ciemny / zgodny z systemem</li>
       <li>Wymaga Androida 5.0 (API 21) lub nowszego</li>
     </ul>`,
-  intro_support: 'Rozwój opiera się na dobrowolnym wsparciu. <a href="https://ko-fi.com/bv6lc" target="_blank">Odnośnik na kawę</a> jest w aplikacji w sekcji „O programie”, a także tutaj. Niczego nie odblokowuje — wszystkie funkcje działają tak samo. FT8TW to fork FT8CN autorstwa BG7YOZ; podziękowania dla pierwotnego autora.',
+  intro_support: 'Rozwój FT8TW opiera się na dobrowolnych darowiznach. Jeśli aplikacja okazała się przydatna, można <a href="https://ko-fi.com/bv6lc" target="_blank">postawić autorowi kawę</a>. Darowizna niczego nie odblokowuje ani nie zmienia działania programu — wszystkie funkcje są w pełni dostępne niezależnie od tego, czy ktoś wesprze projekt. FT8TW to fork FT8CN autorstwa BG7YOZ; podziękowania dla pierwotnego autora.',
 },
 
 'es': {
@@ -160,7 +160,7 @@ en: {
       <li>Tema claro / oscuro / según el sistema</li>
       <li>Requiere Android 5.0 (API 21) o posterior</li>
     </ul>`,
-  intro_support: 'El desarrollo se sostiene con apoyo voluntario. Hay un <a href="https://ko-fi.com/bv6lc" target="_blank">enlace para invitar a un café</a> en la aplicación, en «Acerca de», y también aquí. No desbloquea nada: todas las funciones funcionan igual. FT8TW es un fork de FT8CN de BG7YOZ; gracias al autor original.',
+  intro_support: 'El desarrollo de FT8TW se sostiene con donaciones voluntarias. Si la aplicación le ha resultado útil, puede <a href="https://ko-fi.com/bv6lc" target="_blank">invitar a un café al autor</a>. Una donación no desbloquea nada ni altera el comportamiento del programa: todas las funciones están plenamente disponibles se contribuya o no. FT8TW es un fork de FT8CN de BG7YOZ; gracias al autor original.',
 },
 
 'el': {
@@ -183,7 +183,7 @@ en: {
       <li>Φωτεινό / σκοτεινό θέμα ή σύμφωνα με το σύστημα</li>
       <li>Απαιτείται Android 5.0 (API 21) ή νεότερο</li>
     </ul>`,
-  intro_support: 'Η ανάπτυξη στηρίζεται σε εθελοντική υποστήριξη. Υπάρχει <a href="https://ko-fi.com/bv6lc" target="_blank">σύνδεσμος για έναν καφέ</a> στην εφαρμογή, στην ενότητα «Σχετικά», καθώς και εδώ. Δεν ξεκλειδώνει τίποτα — όλες οι λειτουργίες δουλεύουν το ίδιο. Το FT8TW είναι fork του FT8CN του BG7YOZ· ευχαριστούμε τον αρχικό δημιουργό.',
+  intro_support: 'Η ανάπτυξη του FT8TW στηρίζεται σε εθελοντικές δωρεές. Αν η εφαρμογή σάς φάνηκε χρήσιμη, μπορείτε να <a href="https://ko-fi.com/bv6lc" target="_blank">κεράσετε έναν καφέ στον δημιουργό</a>. Η δωρεά δεν ξεκλειδώνει τίποτα ούτε αλλάζει τη συμπεριφορά της εφαρμογής — όλες οι λειτουργίες είναι πλήρως διαθέσιμες, είτε συνεισφέρετε είτε όχι. Το FT8TW είναι fork του FT8CN του BG7YOZ· ευχαριστούμε τον αρχικό δημιουργό.',
 },
 
 }; /* end PAGE_T */
