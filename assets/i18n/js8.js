@@ -34,7 +34,7 @@ en: {
   js8_autoreply_text:  'Auto-reply can automatically answer directed queries (SNR?/GRID?/INFO?/HEARING?/AGN?) addressed to your callsign, and optionally answer CQ calls as well; each is a separate toggle, both default to off. A per-source cooldown prevents responding to the same station too frequently.',
 
   js8_unicode_title: 'Unicode Text (UTX)',
-  js8_unicode_text:  'Standard JS8 free text is limited to an uppercase ASCII subset. FT8TW adds an optional, openly documented extension called UTX that allows free text to carry full Unicode content — Chinese, Japanese, Korean, Cyrillic, Arabic, and more — while remaining fully backward-compatible with unmodified JS8Call software. UTX is purely a public, reversible text-encoding format (comparable to UTF-8), never an obscuring cipher, and its complete bit-level specification is published in the project repository for anyone to inspect or re-implement.',
+  js8_unicode_text:  'Standard JS8 free text is limited to an uppercase ASCII subset. FT8TW adds an optional, openly documented extension called UTX that allows free text to carry full Unicode content — Chinese, Japanese, Korean, Cyrillic, Arabic, and more — while remaining fully backward-compatible with unmodified JS8Call software. UTX is purely a public, reversible text-encoding format (comparable to UTF-8), never an obscuring cipher, and its complete bit-level specification is published with the project source for anyone to inspect or re-implement.',
 
   js8_safety_title: 'Transmit Safety',
   js8_safety_text:  'As with FT8/FT4, an independent watchdog automatically stops any JS8 transmission (including heartbeat and auto-reply) if the app is closed, backgrounded and killed by the system, or crashes, preventing the radio from being left keyed unattended.',
@@ -72,7 +72,7 @@ en: {
   js8_autoreply_text:  '自動回覆可自動應答指向您呼號的查詢指令（SNR?/GRID?/INFO?/HEARING?/AGN?），也可選擇自動回應 CQ；兩者為各自獨立的開關，預設皆為關閉。同一來源呼號有冷卻時間限制，避免過於頻繁回應。',
 
   js8_unicode_title: 'Unicode 文字（UTX）',
-  js8_unicode_text:  '標準 JS8 自由文字僅限大寫 ASCII 子集。FT8TW 新增一個可選、且公開文件化的擴充格式「UTX」，讓自由文字能夠承載完整 Unicode 內容——中文、日文、韓文、西里爾文、阿拉伯文等，同時與未修改的原版 JS8Call 軟體保持完全相容。UTX 純粹是一種公開、可逆的文字編碼格式（性質類似 UTF-8），絕非用來隱匿內容的密碼，完整的位元層級規格已公開發布於專案 repo 中，任何人皆可查閱或重新實作。',
+  js8_unicode_text:  '標準 JS8 自由文字僅限大寫 ASCII 子集。FT8TW 新增一個可選、且公開文件化的擴充格式「UTX」，讓自由文字能夠承載完整 Unicode 內容——中文、日文、韓文、西里爾文、阿拉伯文等，同時與未修改的原版 JS8Call 軟體保持完全相容。UTX 純粹是一種公開、可逆的文字編碼格式（性質類似 UTF-8），絕非用來隱匿內容的密碼，完整的位元層級規格已隨專案原始碼公開，任何人皆可查閱或重新實作。',
 
   js8_safety_title: '發射安全',
   js8_safety_text:  '與 FT8/FT4 相同，獨立的監管機制會在 App 被關閉、被系統於背景中結束，或發生當機時，自動停止任何 JS8 發射（包含 heartbeat 與自動回覆），避免電台在無人看管下持續發射。',
@@ -110,7 +110,7 @@ en: {
   js8_autoreply_text:  '自动回复可自动应答指向您呼号的查询指令（SNR?/GRID?/INFO?/HEARING?/AGN?），也可选择自动回应 CQ；两者为各自独立的开关，默认均为关闭。同一来源呼号有冷却时间限制，避免过于频繁回应。',
 
   js8_unicode_title: 'Unicode 文本（UTX）',
-  js8_unicode_text:  '标准 JS8 自由文本仅限大写 ASCII 子集。FT8TW 新增一个可选、且公开文档化的扩展格式「UTX」，让自由文本能够承载完整 Unicode 内容——中文、日文、韩文、西里尔文、阿拉伯文等，同时与未修改的原版 JS8Call 软件保持完全兼容。UTX 纯粹是一种公开、可逆的文本编码格式（性质类似 UTF-8），绝非用来隐匿内容的密码，完整的位级规格已公开发布于项目 repo 中，任何人均可查阅或重新实现。',
+  js8_unicode_text:  '标准 JS8 自由文本仅限大写 ASCII 子集。FT8TW 新增一个可选、且公开文档化的扩展格式「UTX」，让自由文本能够承载完整 Unicode 内容——中文、日文、韩文、西里尔文、阿拉伯文等，同时与未修改的原版 JS8Call 软件保持完全兼容。UTX 纯粹是一种公开、可逆的文本编码格式（性质类似 UTF-8），绝非用来隐匿内容的密码，完整的位级规格已随项目源码公开，任何人均可查阅或重新实现。',
 
   js8_safety_title: '发射安全',
   js8_safety_text:  '与 FT8/FT4 相同，独立的监管机制会在 App 被关闭、被系统于后台结束，或发生崩溃时，自动停止任何 JS8 发射（包含 heartbeat 与自动回复），避免电台在无人看管下持续发射。',
@@ -148,7 +148,7 @@ en: {
   js8_autoreply_text:  '自動応答は、自局宛ての問い合わせコマンド（SNR?/GRID?/INFO?/HEARING?/AGN?）に自動で返信します。CQ への自動応答も選べます。どちらも独立したスイッチで、既定はどちらもオフです。同じ相手へ返信しすぎないよう、送信元ごとのクールダウンがあります。',
 
   js8_unicode_title: 'Unicode テキスト（UTX）',
-  js8_unicode_text:  '標準の JS8 のフリーテキストは大文字 ASCII の一部に限られます。FT8TW は任意で使える公開仕様の拡張「UTX」を追加し、フリーテキストで Unicode の内容（中国語、日本語、韓国語、キリル文字、アラビア文字など）をそのまま送れるようにしました。改造していない JS8Call とも完全に互換です。UTX はあくまで公開された可逆の文字符号化方式（UTF-8 に近い性質）であり、内容を隠すための暗号ではありません。ビット単位の完全な仕様はプロジェクトのリポジトリで公開されており、誰でも検証・再実装できます。',
+  js8_unicode_text:  '標準の JS8 のフリーテキストは大文字 ASCII の一部に限られます。FT8TW は任意で使える公開仕様の拡張「UTX」を追加し、フリーテキストで Unicode の内容（中国語、日本語、韓国語、キリル文字、アラビア文字など）をそのまま送れるようにしました。改造していない JS8Call とも完全に互換です。UTX はあくまで公開された可逆の文字符号化方式（UTF-8 に近い性質）であり、内容を隠すための暗号ではありません。ビット単位の完全な仕様はプロジェクトのソースとともに公開されており、誰でも検証・再実装できます。',
 
   js8_safety_title: '送信時の安全',
   js8_safety_text:  'FT8/FT4 と同様に、アプリを閉じたとき、バックグラウンドでシステムに終了させられたとき、異常終了したときには、独立したウォッチドッグが JS8 の送信（Heartbeat や自動応答を含む）をすべて自動的に停止し、無人のまま送信し続けることを防ぎます。',
@@ -186,7 +186,7 @@ en: {
   js8_autoreply_text:  'Автоответ может сам отвечать на адресованные вам запросы (SNR?/GRID?/INFO?/HEARING?/AGN?), а при желании и на вызовы CQ; это два независимых переключателя, оба по умолчанию выключены. Пауза для каждого корреспондента не даёт отвечать одной и той же станции слишком часто.',
 
   js8_unicode_title: 'Текст Unicode (UTX)',
-  js8_unicode_text:  'Обычный свободный текст JS8 ограничен подмножеством прописных символов ASCII. FT8TW добавляет необязательное расширение UTX с открытой документацией, позволяющее передавать в свободном тексте полноценный Unicode — китайский, японский, корейский, кириллицу, арабский и другие — сохраняя полную совместимость с обычным JS8Call. UTX — это именно открытый обратимый формат кодирования текста (по духу близкий к UTF-8), а не шифр для сокрытия содержимого; полная побитовая спецификация опубликована в репозитории проекта, и любой может её изучить или реализовать заново.',
+  js8_unicode_text:  'Обычный свободный текст JS8 ограничен подмножеством прописных символов ASCII. FT8TW добавляет необязательное расширение UTX с открытой документацией, позволяющее передавать в свободном тексте полноценный Unicode — китайский, японский, корейский, кириллицу, арабский и другие — сохраняя полную совместимость с обычным JS8Call. UTX — это именно открытый обратимый формат кодирования текста (по духу близкий к UTF-8), а не шифр для сокрытия содержимого; полная побитовая спецификация опубликована вместе с исходным кодом проекта, и любой может её изучить или реализовать заново.',
 
   js8_safety_title: 'Безопасность передачи',
   js8_safety_text:  'Как и в FT8/FT4, независимый сторожевой механизм автоматически прекращает любую передачу JS8 (включая heartbeat и автоответ), если приложение закрыто, выгружено системой из фона или аварийно завершилось, — трансивер не останется в передаче без присмотра.',
@@ -224,7 +224,7 @@ en: {
   js8_autoreply_text:  'Automatyczna odpowiedź potrafi sama odpowiadać na kierowane do twojego znaku zapytania (SNR?/GRID?/INFO?/HEARING?/AGN?), a opcjonalnie także na wywołania CQ; są to dwa niezależne przełączniki, oba domyślnie wyłączone. Osobny czas blokady dla każdego nadawcy zapobiega zbyt częstemu odpowiadaniu tej samej stacji.',
 
   js8_unicode_title: 'Tekst Unicode (UTX)',
-  js8_unicode_text:  'Standardowy dowolny tekst w JS8 ogranicza się do podzbioru wielkich liter ASCII. FT8TW dodaje opcjonalne, jawnie udokumentowane rozszerzenie UTX, dzięki któremu dowolny tekst może przenosić pełny Unicode — chiński, japoński, koreański, cyrylicę, arabski i inne — zachowując pełną zgodność z niezmodyfikowanym JS8Call. UTX jest wyłącznie jawnym, odwracalnym formatem kodowania tekstu (o charakterze zbliżonym do UTF-8), a nie szyfrem ukrywającym treść; pełna specyfikacja bitowa jest opublikowana w repozytorium projektu, więc każdy może ją sprawdzić lub zaimplementować od nowa.',
+  js8_unicode_text:  'Standardowy dowolny tekst w JS8 ogranicza się do podzbioru wielkich liter ASCII. FT8TW dodaje opcjonalne, jawnie udokumentowane rozszerzenie UTX, dzięki któremu dowolny tekst może przenosić pełny Unicode — chiński, japoński, koreański, cyrylicę, arabski i inne — zachowując pełną zgodność z niezmodyfikowanym JS8Call. UTX jest wyłącznie jawnym, odwracalnym formatem kodowania tekstu (o charakterze zbliżonym do UTF-8), a nie szyfrem ukrywającym treść; pełna specyfikacja bitowa jest opublikowana wraz z kodem źródłowym projektu, więc każdy może ją sprawdzić lub zaimplementować od nowa.',
 
   js8_safety_title: 'Bezpieczeństwo nadawania',
   js8_safety_text:  'Podobnie jak w FT8/FT4, niezależny nadzorca automatycznie przerywa każde nadawanie JS8 (w tym heartbeat i automatyczne odpowiedzi), gdy aplikacja zostanie zamknięta, usunięta z tła przez system albo ulegnie awarii — radio nie zostanie na nadawaniu bez nadzoru.',
@@ -262,7 +262,7 @@ en: {
   js8_autoreply_text:  'La respuesta automática puede contestar por sí sola a las consultas dirigidas a tu indicativo (SNR?/GRID?/INFO?/HEARING?/AGN?) y, si quieres, también a las llamadas CQ; son dos conmutadores independientes y ambos vienen desactivados. Un tiempo de espera por estación evita responder a la misma con demasiada frecuencia.',
 
   js8_unicode_title: 'Texto Unicode (UTX)',
-  js8_unicode_text:  'El texto libre estándar de JS8 se limita a un subconjunto de ASCII en mayúsculas. FT8TW añade una extensión opcional y documentada públicamente llamada UTX, que permite que el texto libre transporte contenido Unicode completo —chino, japonés, coreano, cirílico, árabe y más— manteniendo plena compatibilidad con el JS8Call original sin modificar. UTX es únicamente un formato de codificación de texto público y reversible (de naturaleza parecida a UTF-8), nunca un cifrado para ocultar contenido; su especificación completa a nivel de bits está publicada en el repositorio del proyecto para que cualquiera pueda revisarla o reimplementarla.',
+  js8_unicode_text:  'El texto libre estándar de JS8 se limita a un subconjunto de ASCII en mayúsculas. FT8TW añade una extensión opcional y documentada públicamente llamada UTX, que permite que el texto libre transporte contenido Unicode completo —chino, japonés, coreano, cirílico, árabe y más— manteniendo plena compatibilidad con el JS8Call original sin modificar. UTX es únicamente un formato de codificación de texto público y reversible (de naturaleza parecida a UTF-8), nunca un cifrado para ocultar contenido; su especificación completa a nivel de bits se publica junto con el código fuente del proyecto para que cualquiera pueda revisarla o reimplementarla.',
 
   js8_safety_title: 'Seguridad en transmisión',
   js8_safety_text:  'Igual que en FT8/FT4, un vigilante independiente detiene automáticamente cualquier transmisión JS8 (incluidos heartbeat y respuesta automática) si la aplicación se cierra, el sistema la elimina en segundo plano o se bloquea, evitando que el equipo quede transmitiendo sin vigilancia.',
@@ -300,7 +300,7 @@ en: {
   js8_autoreply_text:  'Η αυτόματη απάντηση μπορεί να απαντά μόνη της σε ερωτήματα που απευθύνονται στο διακριτικό σας (SNR?/GRID?/INFO?/HEARING?/AGN?) και προαιρετικά και σε κλήσεις CQ· πρόκειται για δύο ξεχωριστούς διακόπτες, και οι δύο απενεργοποιημένοι από προεπιλογή. Ένας χρόνος αναμονής ανά σταθμό αποτρέπει τις πολύ συχνές απαντήσεις στον ίδιο σταθμό.',
 
   js8_unicode_title: 'Κείμενο Unicode (UTX)',
-  js8_unicode_text:  'Το τυπικό ελεύθερο κείμενο του JS8 περιορίζεται σε υποσύνολο κεφαλαίων χαρακτήρων ASCII. Το FT8TW προσθέτει την προαιρετική και ανοικτά τεκμηριωμένη επέκταση UTX, που επιτρέπει στο ελεύθερο κείμενο να μεταφέρει πλήρες περιεχόμενο Unicode — κινεζικά, ιαπωνικά, κορεατικά, κυριλλικά, αραβικά και άλλα — διατηρώντας πλήρη συμβατότητα με το αυθεντικό JS8Call. Το UTX είναι αποκλειστικά ανοικτή και αντιστρέψιμη μορφή κωδικοποίησης κειμένου (συγγενής με το UTF-8) και ποτέ κρυπτογράφηση απόκρυψης· η πλήρης προδιαγραφή σε επίπεδο bit είναι δημοσιευμένη στο αποθετήριο του έργου, ώστε ο καθένας να μπορεί να την ελέγξει ή να την υλοποιήσει εκ νέου.',
+  js8_unicode_text:  'Το τυπικό ελεύθερο κείμενο του JS8 περιορίζεται σε υποσύνολο κεφαλαίων χαρακτήρων ASCII. Το FT8TW προσθέτει την προαιρετική και ανοικτά τεκμηριωμένη επέκταση UTX, που επιτρέπει στο ελεύθερο κείμενο να μεταφέρει πλήρες περιεχόμενο Unicode — κινεζικά, ιαπωνικά, κορεατικά, κυριλλικά, αραβικά και άλλα — διατηρώντας πλήρη συμβατότητα με το αυθεντικό JS8Call. Το UTX είναι αποκλειστικά ανοικτή και αντιστρέψιμη μορφή κωδικοποίησης κειμένου (συγγενής με το UTF-8) και ποτέ κρυπτογράφηση απόκρυψης· η πλήρης προδιαγραφή σε επίπεδο bit δημοσιεύεται μαζί με τον πηγαίο κώδικα του έργου, ώστε ο καθένας να μπορεί να την ελέγξει ή να την υλοποιήσει εκ νέου.',
 
   js8_safety_title: 'Ασφάλεια εκπομπής',
   js8_safety_text:  'Όπως και στο FT8/FT4, ανεξάρτητος επιτηρητής σταματά αυτόματα κάθε εκπομπή JS8 (συμπεριλαμβανομένων heartbeat και αυτόματης απάντησης) αν η εφαρμογή κλείσει, τερματιστεί από το σύστημα στο παρασκήνιο ή καταρρεύσει, ώστε ο πομποδέκτης να μη μένει σε εκπομπή χωρίς επίβλεψη.',

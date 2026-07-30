@@ -12,14 +12,14 @@ en: {
     <ul>
       <li>Holding the button captures audio from the phone's microphone, asserts PTT via CAT command, and routes audio out through the connected USB sound card or Bluetooth SCO audio.</li>
       <li>Releasing the button (or if the touch is interrupted) immediately stops transmission and releases PTT.</li>
-      <li>A level bar shows how loud the microphone is picking you up, so you can tell whether you are being heard before wondering why nobody answers.</li>
+      <li>A level bar shows how loud the microphone is picking you up, so you can confirm your audio is actually going out.</li>
       <li><strong>Gain</strong> and <strong>App Volume</strong> sliders set how hard the microphone signal is driven and how loud the app plays; the current audio source is shown above them, so it is clear whether the phone microphone or a headset is in use.</li>
       <li>The radio's frequency and SWR appear at the top when the connection reports them.</li>
-      <li>USB audio PTT is field-verified. Bluetooth SCO audio PTT is functional but has seen less field testing — please report any issues.</li>
+      <li>The USB audio path is the most dependable one; Bluetooth SCO audio works too, though how well varies with the phone and the headset.</li>
     </ul>`,
 
   ssb_disabled_title: 'When the Talk Button Is Unavailable',
-  ssb_disabled_text:  'The button refuses to key rather than transmitting into a setup that cannot carry it, and says which condition is in the way:',
+  ssb_disabled_text:  'If the current setup cannot carry a transmission, the button stays inactive and states which condition is responsible:',
   ssb_disabled_list: `
     <ul>
       <li><strong>Radio not connected</strong> — no CAT connection to assert PTT with.</li>
@@ -29,7 +29,7 @@ en: {
     </ul>`,
 
   ssb_monitor_title: 'Radio Monitor',
-  ssb_monitor_text:  'The <strong>Radio Monitor</strong> switch plays the received audio from the radio through the phone, so you can listen on the phone\'s earpiece or headset instead of the radio\'s speaker. Useful for keeping an ear on the frequency without filling the room with noise.',
+  ssb_monitor_text:  'The <strong>Radio Monitor</strong> switch plays the received audio from the radio through the phone, so you can listen on the phone\'s earpiece or headset instead of the radio\'s speaker. This keeps the frequency audible without the radio speaker filling the room.',
 
   ssb_tune_title: 'Tuning an Antenna (TUNE)',
   ssb_tune_text:  'The <strong>Tune</strong> section keys the radio and sends a continuous tone, which is what an antenna tuner or an SWR reading needs. Set the duration and the tune volume, then press <strong>TUNE</strong>; the button becomes <strong>STOP</strong> with a countdown, and transmission ends by itself when the timer runs out.',
@@ -55,14 +55,14 @@ en: {
     <ul>
       <li>按住按鈕時，程式會擷取手機麥克風音訊、透過 CAT 指令觸發 PTT，並將音訊輸出至已連接的 USB 音效卡或藍牙 SCO 音訊。</li>
       <li>放開按鈕（或觸控被中斷）會立即停止發射並釋放 PTT。</li>
-      <li>畫面上的電平條顯示麥克風收到您的音量大小，可以先確認自己有沒有被收到，而不是等到沒人回應才開始猜。</li>
+      <li>畫面上的電平條顯示麥克風收到您的音量大小，可先確認自己的音訊確實有送出去。</li>
       <li><strong>增益</strong>與 <strong>App 音量</strong>兩支滑桿分別調整麥克風訊號的推動程度與程式播放音量；上方會顯示目前的音訊來源，一眼就知道用的是手機麥克風還是耳機。</li>
       <li>連線有回報時，電台的頻率與駐波比（SWR）會顯示在上方。</li>
-      <li>USB 音訊 PTT 已完成實機驗證；藍牙 SCO 音訊 PTT 功能可運作，但實機測試較少，若遇到問題還請回報。</li>
+      <li>USB 音訊是最穩定的路徑；藍牙 SCO 音訊同樣可用，但實際表現會因手機與耳機而異。</li>
     </ul>`,
 
   ssb_disabled_title: '通話按鈕無法按下時',
-  ssb_disabled_text:  '當接線條件無法支撐發射時，按鈕會拒絕觸發而不是硬送出去，並直接說明是哪一項擋住了：',
+  ssb_disabled_text:  '若目前的接線條件無法支撐發射，按鈕會保持未啟用狀態，並直接指出是哪一項條件所致：',
   ssb_disabled_list: `
     <ul>
       <li><strong>電台未連接</strong> — 沒有 CAT 連線可以觸發 PTT。</li>
@@ -98,14 +98,14 @@ en: {
     <ul>
       <li>按住按钮时，程序会采集手机麦克风音频、通过 CAT 指令触发 PTT，并将音频输出至已连接的 USB 声卡或蓝牙 SCO 音频。</li>
       <li>松开按钮（或触摸被中断）会立即停止发射并释放 PTT。</li>
-      <li>界面上的电平条显示麦克风收到您的音量大小，可以先确认自己有没有被收到，而不是等到没人回应才开始猜。</li>
+      <li>界面上的电平条显示麦克风收到您的音量大小，可先确认自己的音频确实有送出去。</li>
       <li><strong>增益</strong>与 <strong>App 音量</strong>两支滑块分别调整麦克风信号的推动程度与程序播放音量；上方会显示当前的音频来源，一眼就知道用的是手机麦克风还是耳机。</li>
       <li>连接有回报时，电台的频率与驻波比（SWR）会显示在上方。</li>
-      <li>USB 音频 PTT 已完成实机验证；蓝牙 SCO 音频 PTT 功能可运行，但实机测试较少，若遇到问题还请反馈。</li>
+      <li>USB 音频是最稳定的路径；蓝牙 SCO 音频同样可用，但实际表现会因手机与耳机而异。</li>
     </ul>`,
 
   ssb_disabled_title: '通话按钮无法按下时',
-  ssb_disabled_text:  '当接线条件无法支撑发射时，按钮会拒绝触发而不是硬送出去，并直接说明是哪一项挡住了：',
+  ssb_disabled_text:  '若当前的接线条件无法支撑发射，按钮会保持未启用状态，并直接指出是哪一项条件所致：',
   ssb_disabled_list: `
     <ul>
       <li><strong>电台未连接</strong> — 没有 CAT 连接可以触发 PTT。</li>
@@ -115,7 +115,7 @@ en: {
     </ul>`,
 
   ssb_monitor_title: '电台监听',
-  ssb_monitor_text:  '<strong>电台监听</strong>开关会把电台收到的音频通过手机播放，让您用手机听筒或耳机收听，不必开电台扬声器。想留意频率上的动静又不想吵到整个房间时很好用。',
+  ssb_monitor_text:  '<strong>电台监听</strong>开关会把电台收到的音频通过手机播放，让您用手机听筒或耳机收听，不必开电台扬声器。如此可持续留意频率，又不必让电台扬声器充满整个房间。',
 
   ssb_tune_title: '天线调谐（TUNE）',
   ssb_tune_text:  '<strong>调谐</strong>区块会按下 PTT 并送出连续单音，正是天线调谐器或测量驻波比所需要的信号。设置持续时间与调谐音量后按 <strong>TUNE</strong>，按钮会变成带倒计时的 <strong>STOP</strong>，计时结束就自动停止发射。',
@@ -141,14 +141,14 @@ en: {
     <ul>
       <li>ボタンを押している間、スマートフォンのマイクから音声を取り込み、CAT コマンドで PTT を制御し、接続された USB サウンドカードまたは Bluetooth SCO 経由で音声を出力します。</li>
       <li>ボタンを離す（またはタッチが中断される）と、直ちに送信を停止して PTT を解除します。</li>
-      <li>レベルバーでマイクが自分の声をどれくらい拾っているか分かります。応答がないときに原因を推測する前に、そもそも声が乗っているかを確認できます。</li>
+      <li>レベルバーでマイクが自分の声をどれくらい拾っているか分かります。自分の音声が実際に送出されているかを確認できます。</li>
       <li><strong>ゲイン</strong>と <strong>アプリ音量</strong>のスライダーで、マイク信号の増幅具合とアプリの再生音量をそれぞれ調整します。上部には現在の音声入力元が表示され、本体マイクとヘッドセットのどちらを使っているか一目で分かります。</li>
       <li>接続から取得できる場合は、無線機の周波数と SWR が上部に表示されます。</li>
-      <li>USB 音声の PTT は実機で確認済みです。Bluetooth SCO 音声の PTT も動作しますが実機テストは少ないため、問題があればご報告ください。</li>
+      <li>USB 音声の経路がもっとも安定しています。Bluetooth SCO 音声も使えますが、実際の具合は端末とヘッドセットによって変わります。</li>
     </ul>`,
 
   ssb_disabled_title: '送話ボタンが押せないとき',
-  ssb_disabled_text:  '送信できない構成のときは、無理に送信せずボタン側で止め、どの条件が引っかかっているかを表示します:',
+  ssb_disabled_text:  '送信できない構成のときはボタンが働かず、どの条件によるものかを表示します:',
   ssb_disabled_list: `
     <ul>
       <li><strong>無線機が未接続</strong> — PTT を制御する CAT 接続がありません。</li>
@@ -158,7 +158,7 @@ en: {
     </ul>`,
 
   ssb_monitor_title: '受信音のモニター',
-  ssb_monitor_text:  '<strong>ラジオモニター</strong>のスイッチを入れると、無線機の受信音をスマートフォンから鳴らせます。無線機のスピーカーではなく本体の受話口やヘッドセットで聞けるので、部屋中に音を出さずに周波数を聞いておきたいときに便利です。',
+  ssb_monitor_text:  '<strong>ラジオモニター</strong>のスイッチを入れると、無線機の受信音をスマートフォンから鳴らせます。無線機のスピーカーではなく本体の受話口やヘッドセットで聞けるので、部屋中に音を響かせずに周波数を聞き続けられます。',
 
   ssb_tune_title: 'アンテナ調整（TUNE）',
   ssb_tune_text:  '<strong>チューン</strong>の欄では PTT を入れて連続したトーンを送出します。アンテナチューナーの調整や SWR の測定に必要な信号です。送信時間とチューン音量を設定して <strong>TUNE</strong> を押すと、ボタンがカウントダウン付きの <strong>STOP</strong> に変わり、時間が来れば自動的に送信を終えます。',
@@ -184,14 +184,14 @@ en: {
     <ul>
       <li>Пока кнопка удерживается, приложение берёт звук с микрофона телефона, включает PTT командой CAT и выводит звук через подключённую USB-звуковую карту или Bluetooth SCO.</li>
       <li>Отпускание кнопки (или прерывание касания) немедленно прекращает передачу и отпускает PTT.</li>
-      <li>Индикатор уровня показывает, насколько громко микрофон вас слышит, — можно сразу убедиться, что голос вообще идёт, а не гадать, почему никто не отвечает.</li>
+      <li>Индикатор уровня показывает, насколько громко микрофон вас слышит, — можно сразу убедиться, что ваш звук действительно уходит в эфир.</li>
       <li>Ползунки <strong>усиления</strong> и <strong>громкости приложения</strong> задают, насколько сильно раскачивается сигнал микрофона и как громко воспроизводит приложение; выше показан текущий источник звука, так что видно, используется микрофон телефона или гарнитура.</li>
       <li>Если соединение их сообщает, вверху показываются частота трансивера и КСВ.</li>
-      <li>Передача с USB-звуком проверена на практике. Передача через Bluetooth SCO работает, но испытана меньше — сообщайте о проблемах.</li>
+      <li>Путь через USB-звук наиболее надёжен; звук по Bluetooth SCO тоже работает, но результат зависит от телефона и гарнитуры.</li>
     </ul>`,
 
   ssb_disabled_title: 'Когда кнопка передачи недоступна',
-  ssb_disabled_text:  'Если конфигурация не позволяет передавать, кнопка не сработает вместо того, чтобы выйти в эфир вслепую, и покажет, что именно мешает:',
+  ssb_disabled_text:  'Если текущая конфигурация не позволяет передавать, кнопка остаётся неактивной и указывает, какое именно условие этому причиной:',
   ssb_disabled_list: `
     <ul>
       <li><strong>Трансивер не подключён</strong> — нет соединения CAT, которым можно включить PTT.</li>
@@ -201,7 +201,7 @@ en: {
     </ul>`,
 
   ssb_monitor_title: 'Прослушивание трансивера',
-  ssb_monitor_text:  'Переключатель <strong>прослушивания</strong> выводит принимаемый звук трансивера через телефон, так что слушать можно в разговорный динамик или гарнитуру, а не через динамик аппарата. Удобно, когда нужно держать частоту на слух, не заполняя шумом всю комнату.',
+  ssb_monitor_text:  'Переключатель <strong>прослушивания</strong> выводит принимаемый звук трансивера через телефон, так что слушать можно в разговорный динамик или гарнитуру, а не через динамик аппарата. Так частота остаётся на слуху, а динамик трансивера не заполняет шумом комнату.',
 
   ssb_tune_title: 'Настройка антенны (TUNE)',
   ssb_tune_text:  'Раздел <strong>настройки</strong> включает передачу и выдаёт непрерывный тон — именно это нужно антенному тюнеру или для измерения КСВ. Задайте длительность и громкость тона, затем нажмите <strong>TUNE</strong>: кнопка станет <strong>STOP</strong> с обратным отсчётом, а по истечении времени передача прекратится сама.',
@@ -227,14 +227,14 @@ en: {
     <ul>
       <li>Przytrzymanie przycisku pobiera dźwięk z mikrofonu telefonu, załącza PTT komendą CAT i kieruje dźwięk przez podłączoną kartę dźwiękową USB lub Bluetooth SCO.</li>
       <li>Zwolnienie przycisku (lub przerwanie dotyku) natychmiast kończy nadawanie i zwalnia PTT.</li>
-      <li>Pasek poziomu pokazuje, jak głośno mikrofon cię odbiera — od razu wiadomo, czy głos w ogóle idzie, zamiast zgadywać, czemu nikt nie odpowiada.</li>
+      <li>Pasek poziomu pokazuje, jak głośno mikrofon cię odbiera — od razu wiadomo, czy dźwięk rzeczywiście wychodzi.</li>
       <li>Suwaki <strong>wzmocnienia</strong> i <strong>głośności aplikacji</strong> ustawiają, jak mocno wysterowany jest sygnał z mikrofonu i jak głośno odtwarza aplikacja; powyżej widnieje bieżące źródło dźwięku, więc widać, czy używany jest mikrofon telefonu, czy zestaw słuchawkowy.</li>
       <li>Jeśli połączenie je zgłasza, u góry pokazywane są częstotliwość radia i SWR.</li>
-      <li>Nadawanie z dźwiękiem USB zostało sprawdzone w praktyce. Wariant Bluetooth SCO działa, ale był mniej testowany — prosimy o zgłaszanie problemów.</li>
+      <li>Ścieżka dźwięku przez USB jest najpewniejsza; dźwięk przez Bluetooth SCO także działa, ale efekt zależy od telefonu i zestawu słuchawkowego.</li>
     </ul>`,
 
   ssb_disabled_title: 'Gdy przycisk nadawania jest niedostępny',
-  ssb_disabled_text:  'Jeśli konfiguracja nie pozwala nadawać, przycisk odmawia zamiast wychodzić w eter na oślep, i podaje, co stoi na przeszkodzie:',
+  ssb_disabled_text:  'Jeśli bieżąca konfiguracja nie pozwala nadawać, przycisk pozostaje nieaktywny i wskazuje, które warunki o tym decydują:',
   ssb_disabled_list: `
     <ul>
       <li><strong>Radio niepodłączone</strong> — brak połączenia CAT, którym można załączyć PTT.</li>
@@ -244,7 +244,7 @@ en: {
     </ul>`,
 
   ssb_monitor_title: 'Odsłuch radia',
-  ssb_monitor_text:  'Przełącznik <strong>odsłuchu</strong> odtwarza dźwięk odbierany przez radio w telefonie, dzięki czemu można słuchać przez słuchawkę telefonu lub zestaw zamiast głośnika radia. Przydatne, gdy chcesz mieć pasmo na uchu, nie zapełniając hałasem całego pomieszczenia.',
+  ssb_monitor_text:  'Przełącznik <strong>odsłuchu</strong> odtwarza dźwięk odbierany przez radio w telefonie, dzięki czemu można słuchać przez słuchawkę telefonu lub zestaw zamiast głośnika radia. Dzięki temu pasmo pozostaje słyszalne, a głośnik radia nie wypełnia hałasem pomieszczenia.',
 
   ssb_tune_title: 'Strojenie anteny (TUNE)',
   ssb_tune_text:  'Sekcja <strong>strojenia</strong> załącza nadawanie i wysyła ciągły ton — dokładnie to, czego potrzebuje skrzynka antenowa albo pomiar SWR. Ustaw czas trwania i głośność tonu, a następnie naciśnij <strong>TUNE</strong>; przycisk zmieni się w <strong>STOP</strong> z odliczaniem, a po upływie czasu nadawanie samo się zakończy.',
@@ -270,14 +270,14 @@ en: {
     <ul>
       <li>Al mantener el botón, la aplicación capta el audio del micrófono del teléfono, activa el PTT mediante comando CAT y envía el audio por la tarjeta de sonido USB conectada o por audio Bluetooth SCO.</li>
       <li>Al soltar el botón (o si se interrumpe el toque) la transmisión se detiene de inmediato y se libera el PTT.</li>
-      <li>Una barra de nivel muestra con qué fuerza te recoge el micrófono, así compruebas si tu voz sale antes de preguntarte por qué nadie contesta.</li>
+      <li>Una barra de nivel muestra con qué fuerza te recoge el micrófono, así compruebas que tu audio está saliendo realmente.</li>
       <li>Los deslizadores de <strong>ganancia</strong> y <strong>volumen de la aplicación</strong> ajustan cuánto se excita la señal del micrófono y con qué volumen reproduce la aplicación; encima se indica la fuente de audio actual, de modo que se ve si se usa el micrófono del teléfono o unos auriculares.</li>
       <li>Cuando la conexión los facilita, arriba aparecen la frecuencia del equipo y la ROE.</li>
-      <li>El PTT con audio USB está verificado en la práctica. El PTT con audio Bluetooth SCO funciona, pero se ha probado menos: informa de cualquier problema.</li>
+      <li>La ruta de audio por USB es la más fiable; el audio por Bluetooth SCO también funciona, aunque el resultado varía según el teléfono y los auriculares.</li>
     </ul>`,
 
   ssb_disabled_title: 'Cuando el botón de transmisión no está disponible',
-  ssb_disabled_text:  'Si la configuración no permite transmitir, el botón se niega en lugar de salir al aire a ciegas, e indica qué condición lo impide:',
+  ssb_disabled_text:  'Si la configuración actual no permite transmitir, el botón permanece inactivo e indica qué condición lo impide:',
   ssb_disabled_list: `
     <ul>
       <li><strong>Equipo no conectado</strong> — no hay conexión CAT con la que activar el PTT.</li>
@@ -287,7 +287,7 @@ en: {
     </ul>`,
 
   ssb_monitor_title: 'Escucha del equipo',
-  ssb_monitor_text:  'El conmutador de <strong>escucha</strong> reproduce en el teléfono el audio recibido por el equipo, de modo que puedes oírlo por el auricular del teléfono o unos cascos en lugar del altavoz del equipo. Útil para no perder de oído la frecuencia sin llenar de ruido la habitación.',
+  ssb_monitor_text:  'El conmutador de <strong>escucha</strong> reproduce en el teléfono el audio recibido por el equipo, de modo que puedes oírlo por el auricular del teléfono o unos cascos en lugar del altavoz del equipo. Así la frecuencia sigue audible sin que el altavoz del equipo llene de ruido la sala.',
 
   ssb_tune_title: 'Sintonizar la antena (TUNE)',
   ssb_tune_text:  'La sección de <strong>sintonía</strong> pasa el equipo a transmisión y envía un tono continuo, que es justo lo que necesita un acoplador de antena o una medida de ROE. Fija la duración y el volumen del tono y pulsa <strong>TUNE</strong>; el botón pasa a <strong>STOP</strong> con una cuenta atrás y la transmisión termina sola al agotarse el tiempo.',
@@ -313,14 +313,14 @@ en: {
     <ul>
       <li>Όσο κρατάτε το πλήκτρο, η εφαρμογή καταγράφει ήχο από το μικρόφωνο του τηλεφώνου, ενεργοποιεί το PTT μέσω εντολής CAT και στέλνει τον ήχο στη συνδεδεμένη κάρτα ήχου USB ή μέσω Bluetooth SCO.</li>
       <li>Η απελευθέρωση του πλήκτρου (ή η διακοπή της αφής) σταματά αμέσως την εκπομπή και απελευθερώνει το PTT.</li>
-      <li>Μια μπάρα στάθμης δείχνει πόσο δυνατά σας πιάνει το μικρόφωνο, ώστε να βεβαιωθείτε ότι η φωνή σας βγαίνει πριν αναρωτηθείτε γιατί δεν απαντά κανείς.</li>
+      <li>Μια μπάρα στάθμης δείχνει πόσο δυνατά σας πιάνει το μικρόφωνο, ώστε να βεβαιωθείτε ότι ο ήχος σας όντως βγαίνει.</li>
       <li>Τα ρυθμιστικά <strong>ενίσχυσης</strong> και <strong>έντασης εφαρμογής</strong> καθορίζουν πόσο οδηγείται το σήμα του μικροφώνου και πόσο δυνατά αναπαράγει η εφαρμογή· από πάνω εμφανίζεται η τρέχουσα πηγή ήχου, ώστε να φαίνεται αν χρησιμοποιείται το μικρόφωνο του τηλεφώνου ή ακουστικά.</li>
       <li>Όταν τα αναφέρει η σύνδεση, στο επάνω μέρος εμφανίζονται η συχνότητα του πομποδέκτη και ο λόγος στάσιμων (SWR).</li>
-      <li>Το PTT με ήχο USB έχει επαληθευτεί στην πράξη. Το PTT με ήχο Bluetooth SCO λειτουργεί, αλλά έχει δοκιμαστεί λιγότερο — παρακαλούμε αναφέρετε τυχόν προβλήματα.</li>
+      <li>Η διαδρομή ήχου μέσω USB είναι η πιο αξιόπιστη· ο ήχος μέσω Bluetooth SCO λειτουργεί επίσης, αλλά το αποτέλεσμα διαφέρει ανάλογα με το τηλέφωνο και τα ακουστικά.</li>
     </ul>`,
 
   ssb_disabled_title: 'Όταν το πλήκτρο ομιλίας δεν είναι διαθέσιμο',
-  ssb_disabled_text:  'Αν η διάταξη δεν επιτρέπει εκπομπή, το πλήκτρο αρνείται αντί να βγει στον αέρα στα τυφλά, και δηλώνει ποια συνθήκη το εμποδίζει:',
+  ssb_disabled_text:  'Αν η τρέχουσα διάταξη δεν επιτρέπει εκπομπή, το πλήκτρο παραμένει ανενεργό και δηλώνει ποια συνθήκη το προκαλεί:',
   ssb_disabled_list: `
     <ul>
       <li><strong>Ο πομποδέκτης δεν είναι συνδεδεμένος</strong> — δεν υπάρχει σύνδεση CAT για να ενεργοποιηθεί το PTT.</li>
@@ -330,7 +330,7 @@ en: {
     </ul>`,
 
   ssb_monitor_title: 'Ακρόαση πομποδέκτη',
-  ssb_monitor_text:  'Ο διακόπτης <strong>ακρόασης</strong> αναπαράγει τον ήχο λήψης του πομποδέκτη μέσα από το τηλέφωνο, ώστε να ακούτε από το ακουστικό του τηλεφώνου ή από ακουστικά αντί για το ηχείο του πομποδέκτη. Χρήσιμο όταν θέλετε να παρακολουθείτε τη συχνότητα χωρίς να γεμίζετε τον χώρο με θόρυβο.',
+  ssb_monitor_text:  'Ο διακόπτης <strong>ακρόασης</strong> αναπαράγει τον ήχο λήψης του πομποδέκτη μέσα από το τηλέφωνο, ώστε να ακούτε από το ακουστικό του τηλεφώνου ή από ακουστικά αντί για το ηχείο του πομποδέκτη. Έτσι η συχνότητα παραμένει ακουστή χωρίς το ηχείο του πομποδέκτη να γεμίζει τον χώρο με θόρυβο.',
 
   ssb_tune_title: 'Συντονισμός κεραίας (TUNE)',
   ssb_tune_text:  'Η ενότητα <strong>συντονισμού</strong> ενεργοποιεί την εκπομπή και στέλνει συνεχή τόνο — ακριβώς ό,τι χρειάζεται ένας συζευκτήρας κεραίας ή μια μέτρηση SWR. Ορίστε διάρκεια και ένταση τόνου και πατήστε <strong>TUNE</strong>· το πλήκτρο γίνεται <strong>STOP</strong> με αντίστροφη μέτρηση και η εκπομπή σταματά μόνη της όταν τελειώσει ο χρόνος.',

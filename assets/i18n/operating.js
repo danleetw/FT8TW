@@ -6,7 +6,7 @@ en: {
   op_title: 'Operating FT8 / FT4',
 
   op_rx_title:      'Receiving',
-  op_rx_text:       'Tap <strong>Start decoding</strong> on the Content or Decode tab. The app records audio and decodes FT8/FT4 messages at the start of each 15-second (FT8) or 7.5-second (FT4) slot. Decoded stations appear in the Content list.',
+  op_rx_text:       'Tap <strong>Start decoding</strong> on the Decode tab. The app records audio and decodes FT8/FT4 messages at the start of each 15-second (FT8) or 7.5-second (FT4) slot. Decoded stations appear in the decode list.',
   op_rx_tips_label: 'Tips for good reception:',
   op_rx_tips: `
     <ul>
@@ -21,7 +21,7 @@ en: {
   op_tx_text:  'A typical FT8 QSO is fully automated once you select a target station:',
   op_tx_seq: `
     <ol>
-      <li>In the <strong>Content</strong> tab, tap a station calling CQ to select them as your target.</li>
+      <li>In the <strong>Decode</strong> tab, tap a station calling CQ to select them as your target.</li>
       <li>Switch to the <strong>Calling</strong> tab and tap <strong>TX</strong> to start transmitting.</li>
       <li>The app automatically sequences through the FT8 exchange:<br>
         <code>CQ reply → RST report → RRR → 73</code></li>
@@ -66,14 +66,14 @@ en: {
   op_freetext_text:  'Tap the free text icon in the Calling tab to enter a custom message up to 13 characters. Free text bypasses the standard FT8 QSO sequence — use it for special event messages or announcements. Switch back to Standard Message Mode to resume normal QSOs.',
 
   op_ft2_title: 'FT2 (Experimental)',
-  op_ft2_text:  'FT8TW includes early support for FT2, a faster FT4-derived mode. FT2 has not yet been field-verified against a second station and should be considered experimental — please report any issues you encounter.',
+  op_ft2_text:  'FT8TW includes early support for FT2, a faster mode derived from FT4. FT2 should still be treated as experimental: it has not yet been proven over real contacts, so approach it as something to try rather than rely on.',
 },
 
 'zh-TW': {
   op_title: '操作 FT8 / FT4',
 
   op_rx_title:      '接收',
-  op_rx_text:       '點選通聯內容或解碼頁面的<strong>開始解碼</strong>。程式會開始錄製音訊，並在每個 15 秒（FT8）或 7.5 秒（FT4）時隙開始時進行解碼。解碼到的電台會顯示在通聯內容清單中。',
+  op_rx_text:       '點選<strong>解碼</strong>分頁的<strong>開始解碼</strong>。程式會開始錄製音訊，並在每個 15 秒（FT8）或 7.5 秒（FT4）時隙開始時進行解碼。解碼到的電台會顯示在解碼清單中。',
   op_rx_tips_label: '接收品質提示：',
   op_rx_tips: `
     <ul>
@@ -88,7 +88,7 @@ en: {
   op_tx_text:  '選定目標電台後，FT8 通聯流程將全自動進行：',
   op_tx_seq: `
     <ol>
-      <li>在<strong>通聯內容</strong>頁面，點選正在呼叫 CQ 的電台以選定為目標。</li>
+      <li>在<strong>解碼</strong>分頁，點選正在呼叫 CQ 的電台以選定為目標。</li>
       <li>切換至<strong>呼叫</strong>頁面，點選<strong>發射</strong>開始通聯。</li>
       <li>程式自動依序完成 FT8 通聯流程：<br>
         <code>回應 CQ → 訊號報告 → RRR → 73</code></li>
@@ -133,14 +133,14 @@ en: {
   op_freetext_text:  '點選呼叫頁面的自定義訊息圖示，輸入最多 13 個字元的自由文字。自定義訊息會跳過標準 FT8 通聯流程，適用於特殊活動或公告。點選「標準訊息模式」可返回正常通聯。',
 
   op_ft2_title: 'FT2（實驗性）',
-  op_ft2_text:  'FT8TW 已初步支援 FT2，這是基於 FT4 衍生、速度更快的模式。FT2 尚未完成與第二台電台的實機互測，請視為實驗性功能，若遇到問題還請回報。',
+  op_ft2_text:  'FT8TW 已初步支援 FT2，這是由 FT4 衍生、速度更快的模式。FT2 目前仍應視為實驗性功能：尚未在實際通聯中獲得驗證，建議以嘗試的心態使用，而非倭賴它。',
 },
 
 'zh-CN': {
   op_title: '操作 FT8 / FT4',
 
   op_rx_title:      '接收',
-  op_rx_text:       '点击通联内容或解码页面的<strong>开始解码</strong>。程序会开始录制音频，并在每个 15 秒（FT8）或 7.5 秒（FT4）时隙开始时进行解码。解码到的电台会显示在通联内容列表中。',
+  op_rx_text:       '点击<strong>解码</strong>分页的<strong>开始解码</strong>。程序会开始录制音频，并在每个 15 秒（FT8）或 7.5 秒（FT4）时隙开始时进行解码。解码到的电台会显示在解码列表中。',
   op_rx_tips_label: '接收质量提示：',
   op_rx_tips: `
     <ul>
@@ -155,7 +155,7 @@ en: {
   op_tx_text:  '选定目标电台后，FT8 通联流程将全自动进行：',
   op_tx_seq: `
     <ol>
-      <li>在<strong>通联内容</strong>页面，点击正在呼叫 CQ 的电台以选定为目标。</li>
+      <li>在<strong>解码</strong>分页，点击正在呼叫 CQ 的电台以选定为目标。</li>
       <li>切换至<strong>呼叫</strong>页面，点击<strong>发射</strong>开始通联。</li>
       <li>程序自动依次完成 FT8 通联流程：<br>
         <code>回应 CQ → 信号报告 → RRR → 73</code></li>
@@ -200,14 +200,14 @@ en: {
   op_freetext_text:  '点击呼叫页面的自定义消息图标，输入最多 13 个字符的自由文本。自定义消息会跳过标准 FT8 通联流程，适用于特殊活动或公告。点击「标准消息模式」可返回正常通联。',
 
   op_ft2_title: 'FT2（实验性）',
-  op_ft2_text:  'FT8TW 已初步支持 FT2，这是基于 FT4 衍生、速度更快的模式。FT2 尚未完成与第二台电台的实机互测，请视为实验性功能，若遇到问题还请反馈。',
+  op_ft2_text:  'FT8TW 已初步支持 FT2，这是由 FT4 衍生、速度更快的模式。FT2 目前仍应视为实验性功能：尚未在实际通联中获得验证，建议以尝试的心态使用，而非依赖它。',
 },
 
 'ja': {
   op_title: 'FT8 / FT4 の運用',
 
   op_rx_title:      '受信',
-  op_rx_text:       '交信内容タブまたはデコードタブで<strong>デコード開始</strong>をタップします。アプリが音声を録音し、15 秒（FT8）または 7.5 秒（FT4）の各スロットの先頭で FT8/FT4 の電文をデコードします。デコードした局は交信内容の一覧に表示されます。',
+  op_rx_text:       '<strong>デコード</strong>タブで<strong>デコード開始</strong>をタップします。アプリが音声を録音し、15 秒（FT8）または 7.5 秒（FT4）の各スロットの先頭で FT8/FT4 の電文をデコードします。デコードした局はデコードの一覧に表示されます。',
   op_rx_tips_label: '良好な受信のためのヒント:',
   op_rx_tips: `
     <ul>
@@ -222,7 +222,7 @@ en: {
   op_tx_text:  '相手局を選べば、一般的な FT8 の交信は自動的に進みます:',
   op_tx_seq: `
     <ol>
-      <li><strong>交信内容</strong>タブで CQ を出している局をタップして相手に指定します。</li>
+      <li><strong>デコード</strong>タブで CQ を出している局をタップして相手に指定します。</li>
       <li><strong>呼び出し</strong>タブに切り替え、<strong>送信</strong>をタップして送信を始めます。</li>
       <li>アプリが FT8 のシーケンスを自動的に進めます:<br>
         <code>CQ への応答 → シグナルレポート → RRR → 73</code></li>
@@ -267,14 +267,14 @@ en: {
   op_freetext_text:  '呼び出しタブのフリーテキストアイコンをタップすると、最大 13 文字の自由な電文を入力できます。フリーテキストは標準の FT8 シーケンスを飛ばすため、記念局の案内などに使います。通常の交信に戻るには標準電文モードに切り替えてください。',
 
   op_ft2_title: 'FT2（実験的）',
-  op_ft2_text:  'FT8TW は FT4 から派生したより高速なモード FT2 に暫定対応しています。FT2 は第二の局との実機相互試験がまだ済んでいないため実験的機能とお考えください。問題があればご報告ください。',
+  op_ft2_text:  'FT8TW は FT4 から派生したより高速なモード FT2 に暫定対応しています。FT2 は実際の交信で十分に確かめられていないため、あくまで実験的な機能としてお試しの範囲でご利用ください。',
 },
 
 'ru': {
   op_title: 'Работа в FT8 / FT4',
 
   op_rx_title:      'Приём',
-  op_rx_text:       'Нажмите <strong>Начать декодирование</strong> на вкладке содержимого или декодера. Приложение записывает звук и декодирует сообщения FT8/FT4 в начале каждого интервала 15 с (FT8) или 7,5 с (FT4). Декодированные станции появляются в списке.',
+  op_rx_text:       'Нажмите <strong>Начать декодирование</strong> на вкладке декодера. Приложение записывает звук и декодирует сообщения FT8/FT4 в начале каждого интервала 15 с (FT8) или 7,5 с (FT4). Декодированные станции появляются в списке.',
   op_rx_tips_label: 'Советы для уверенного приёма:',
   op_rx_tips: `
     <ul>
@@ -289,7 +289,7 @@ en: {
   op_tx_text:  'После выбора корреспондента типовое QSO в FT8 проходит полностью автоматически:',
   op_tx_seq: `
     <ol>
-      <li>На вкладке <strong>Содержимое</strong> нажмите на станцию, дающую CQ, чтобы выбрать её.</li>
+      <li>На вкладке <strong>Декодер</strong> нажмите на станцию, дающую CQ, чтобы выбрать её.</li>
       <li>Перейдите на вкладку <strong>Вызов</strong> и нажмите <strong>Передача</strong>.</li>
       <li>Приложение само проходит обмен FT8:<br>
         <code>ответ на CQ → рапорт → RRR → 73</code></li>
@@ -334,14 +334,14 @@ en: {
   op_freetext_text:  'Нажмите значок свободного текста на вкладке вызова, чтобы ввести собственное сообщение длиной до 13 символов. Свободный текст обходит стандартную последовательность QSO — используйте его для объявлений и специальных мероприятий. Чтобы вернуться к обычным связям, переключитесь в режим стандартных сообщений.',
 
   op_ft2_title: 'FT2 (экспериментально)',
-  op_ft2_text:  'В FT8TW есть предварительная поддержка FT2 — более быстрого режима, производного от FT4. FT2 ещё не проверялся в эфире со второй станцией и считается экспериментальным; сообщайте о любых замеченных проблемах.',
+  op_ft2_text:  'В FT8TW есть предварительная поддержка FT2 — более быстрого режима, производного от FT4. FT2 пока следует считать экспериментальным: он ещё не подтверждён реальными связями, поэтому относитесь к нему как к пробе, а не как к основному режиму.',
 },
 
 'pl': {
   op_title: 'Praca w FT8 / FT4',
 
   op_rx_title:      'Odbiór',
-  op_rx_text:       'Dotknij <strong>Rozpocznij dekodowanie</strong> w zakładce treści lub dekodowania. Aplikacja nagrywa dźwięk i dekoduje wiadomości FT8/FT4 na początku każdego okna 15-sekundowego (FT8) lub 7,5-sekundowego (FT4). Zdekodowane stacje pojawiają się na liście.',
+  op_rx_text:       'Dotknij <strong>Rozpocznij dekodowanie</strong> w zakładce dekodowania. Aplikacja nagrywa dźwięk i dekoduje wiadomości FT8/FT4 na początku każdego okna 15-sekundowego (FT8) lub 7,5-sekundowego (FT4). Zdekodowane stacje pojawiają się na liście.',
   op_rx_tips_label: 'Wskazówki dla dobrego odbioru:',
   op_rx_tips: `
     <ul>
@@ -356,7 +356,7 @@ en: {
   op_tx_text:  'Po wybraniu stacji docelowej typowa łączność FT8 przebiega w pełni automatycznie:',
   op_tx_seq: `
     <ol>
-      <li>W zakładce <strong>Treść</strong> dotknij stacji wywołującej CQ, aby ją wybrać.</li>
+      <li>W zakładce <strong>Dekodowanie</strong> dotknij stacji wywołującej CQ, aby ją wybrać.</li>
       <li>Przejdź do zakładki <strong>Wywołanie</strong> i dotknij <strong>Nadawanie</strong>.</li>
       <li>Aplikacja sama przechodzi przez wymianę FT8:<br>
         <code>odpowiedź na CQ → raport → RRR → 73</code></li>
@@ -401,14 +401,14 @@ en: {
   op_freetext_text:  'Dotknij ikony dowolnego tekstu w zakładce wywołania, aby wpisać własną wiadomość o długości do 13 znaków. Dowolny tekst pomija standardową sekwencję łączności FT8 — używaj go do ogłoszeń i imprez okolicznościowych. Aby wrócić do zwykłych łączności, przełącz się na tryb wiadomości standardowych.',
 
   op_ft2_title: 'FT2 (eksperymentalny)',
-  op_ft2_text:  'FT8TW ma wstępną obsługę FT2 — szybszego trybu wywodzącego się z FT4. FT2 nie został jeszcze sprawdzony w łączności z drugą stacją i należy traktować go jako eksperymentalny; prosimy o zgłaszanie napotkanych problemów.',
+  op_ft2_text:  'FT8TW ma wstępną obsługę FT2 — szybszego trybu wywodzącego się z FT4. FT2 należy nadal traktować jako eksperymentalny: nie potwierdzono go w rzeczywistych łącznościach, więc warto go próbować, a nie na nim polegać.',
 },
 
 'es': {
   op_title: 'Operar en FT8 / FT4',
 
   op_rx_title:      'Recepción',
-  op_rx_text:       'Pulsa <strong>Iniciar decodificación</strong> en la pestaña de contenido o de decodificación. La aplicación graba audio y decodifica los mensajes FT8/FT4 al comienzo de cada intervalo de 15 segundos (FT8) o 7,5 segundos (FT4). Las estaciones decodificadas aparecen en la lista de contenido.',
+  op_rx_text:       'Pulsa <strong>Iniciar decodificación</strong> en la pestaña de decodificación. La aplicación graba audio y decodifica los mensajes FT8/FT4 al comienzo de cada intervalo de 15 segundos (FT8) o 7,5 segundos (FT4). Las estaciones decodificadas aparecen en la lista de decodificación.',
   op_rx_tips_label: 'Consejos para una buena recepción:',
   op_rx_tips: `
     <ul>
@@ -423,7 +423,7 @@ en: {
   op_tx_text:  'Una vez seleccionada la estación, un QSO típico de FT8 se desarrolla de forma totalmente automática:',
   op_tx_seq: `
     <ol>
-      <li>En la pestaña <strong>Contenido</strong>, pulsa una estación que esté llamando CQ para seleccionarla.</li>
+      <li>En la pestaña <strong>Decodificación</strong>, pulsa una estación que esté llamando CQ para seleccionarla.</li>
       <li>Cambia a la pestaña <strong>Llamada</strong> y pulsa <strong>TX</strong> para empezar a transmitir.</li>
       <li>La aplicación recorre automáticamente el intercambio FT8:<br>
         <code>respuesta al CQ → informe de señal → RRR → 73</code></li>
@@ -468,14 +468,14 @@ en: {
   op_freetext_text:  'Pulsa el icono de texto libre en la pestaña de llamada para escribir un mensaje propio de hasta 13 caracteres. El texto libre omite la secuencia estándar de QSO de FT8: úsalo para anuncios o eventos especiales. Vuelve al modo de mensaje estándar para retomar los QSO normales.',
 
   op_ft2_title: 'FT2 (experimental)',
-  op_ft2_text:  'FT8TW incluye compatibilidad preliminar con FT2, un modo más rápido derivado de FT4. FT2 aún no se ha verificado en aire con una segunda estación y debe considerarse experimental: informa de cualquier problema que encuentres.',
+  op_ft2_text:  'FT8TW incluye compatibilidad preliminar con FT2, un modo más rápido derivado de FT4. FT2 debe seguir considerándose experimental: todavía no se ha confirmado en contactos reales, así que conviene probarlo más que confiar en él.',
 },
 
 'el': {
   op_title: 'Λειτουργία FT8 / FT4',
 
   op_rx_title:      'Λήψη',
-  op_rx_text:       'Πατήστε <strong>Έναρξη αποκωδικοποίησης</strong> στην καρτέλα περιεχομένου ή αποκωδικοποίησης. Η εφαρμογή καταγράφει ήχο και αποκωδικοποιεί μηνύματα FT8/FT4 στην αρχή κάθε χρονοθυρίδας 15 δευτερολέπτων (FT8) ή 7,5 δευτερολέπτων (FT4). Οι σταθμοί που αποκωδικοποιούνται εμφανίζονται στη λίστα περιεχομένου.',
+  op_rx_text:       'Πατήστε <strong>Έναρξη αποκωδικοποίησης</strong> στην καρτέλα αποκωδικοποίησης. Η εφαρμογή καταγράφει ήχο και αποκωδικοποιεί μηνύματα FT8/FT4 στην αρχή κάθε χρονοθυρίδας 15 δευτερολέπτων (FT8) ή 7,5 δευτερολέπτων (FT4). Οι σταθμοί που αποκωδικοποιούνται εμφανίζονται στη λίστα αποκωδικοποίησης.',
   op_rx_tips_label: 'Συμβουλές για καλή λήψη:',
   op_rx_tips: `
     <ul>
@@ -490,7 +490,7 @@ en: {
   op_tx_text:  'Μόλις επιλέξετε σταθμό, μια τυπική επαφή FT8 εξελίσσεται εντελώς αυτόματα:',
   op_tx_seq: `
     <ol>
-      <li>Στην καρτέλα <strong>Περιεχόμενο</strong> πατήστε έναν σταθμό που καλεί CQ για να τον επιλέξετε.</li>
+      <li>Στην καρτέλα <strong>Αποκωδικοποίηση</strong> πατήστε έναν σταθμό που καλεί CQ για να τον επιλέξετε.</li>
       <li>Μεταβείτε στην καρτέλα <strong>Κλήση</strong> και πατήστε <strong>Εκπομπή</strong>.</li>
       <li>Η εφαρμογή εκτελεί αυτόματα την ακολουθία FT8:<br>
         <code>απάντηση σε CQ → αναφορά σήματος → RRR → 73</code></li>
@@ -535,7 +535,7 @@ en: {
   op_freetext_text:  'Πατήστε το εικονίδιο ελεύθερου κειμένου στην καρτέλα κλήσης για να γράψετε δικό σας μήνυμα έως 13 χαρακτήρες. Το ελεύθερο κείμενο παρακάμπτει την τυπική ακολουθία επαφής FT8 — χρησιμοποιήστε το για ανακοινώσεις ή ειδικές εκδηλώσεις. Επιστρέψτε στη λειτουργία τυπικών μηνυμάτων για κανονικές επαφές.',
 
   op_ft2_title: 'FT2 (πειραματικό)',
-  op_ft2_text:  'Το FT8TW περιλαμβάνει πρώιμη υποστήριξη για το FT2, μια ταχύτερη λειτουργία που προέρχεται από το FT4. Το FT2 δεν έχει ακόμη επαληθευτεί στον αέρα με δεύτερο σταθμό και θεωρείται πειραματικό — παρακαλούμε αναφέρετε τυχόν προβλήματα.',
+  op_ft2_text:  'Το FT8TW περιλαμβάνει πρώιμη υποστήριξη για το FT2, μια ταχύτερη λειτουργία που προέρχεται από το FT4. Το FT2 πρέπει να θεωρείται ακόμη πειραματικό: δεν έχει επιβεβαιωθεί σε πραγματικές επαφές, οπότε δοκιμάστε το αντί να το εμπιστευτείτε.',
 },
 
 }; /* end PAGE_T */

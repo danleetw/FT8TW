@@ -18,7 +18,7 @@ en: {
     </ul>`,
 
   wspr_rx_title: 'Decoding (Experimental)',
-  wspr_rx_text:  'WSPR decoding is provided on a best-effort basis and is considered experimental: it decodes a single signal at a time and does not compensate for receiver clock drift. For serious propagation monitoring, a dedicated WSPR decoder is still recommended.',
+  wspr_rx_text:  'WSPR decoding is experimental and has two known limits: it decodes one signal at a time, and it does not compensate for receiver clock drift. For serious propagation monitoring, a dedicated WSPR decoder remains the better tool.',
 },
 
 'zh-TW': {
@@ -37,7 +37,7 @@ en: {
     </ul>`,
 
   wspr_rx_title: '解碼（實驗性）',
-  wspr_rx_text:  'WSPR 解碼功能屬於盡力而為的實驗性功能：一次僅能解出單一訊號，且未補償接收端時鐘漂移。若需嚴謹的傳播監測，仍建議使用專門的 WSPR 解碼軟體。',
+  wspr_rx_text:  'WSPR 解碼屬於實驗性功能，有兩項已知限制：一次僅能解出單一訊號，且不補償接收端的時鐘漂移。若需嚴謹的傳播監測，專門的 WSPR 解碼軟體仍是較合適的工具。',
 },
 
 'zh-CN': {
@@ -56,7 +56,7 @@ en: {
     </ul>`,
 
   wspr_rx_title: '解码（实验性）',
-  wspr_rx_text:  'WSPR 解码功能属于尽力而为的实验性功能：一次仅能解出单一信号，且未补偿接收端时钟漂移。若需严谨的传播监测，仍建议使用专门的 WSPR 解码软件。',
+  wspr_rx_text:  'WSPR 解码属于实验性功能，有两项已知限制：一次仅能解出单一信号，且不补偿接收端的时钟漂移。若需严谨的传播监测，专门的 WSPR 解码软件仍是更合适的工具。',
 },
 
 'ja': {
@@ -75,7 +75,7 @@ en: {
     </ul>`,
 
   wspr_rx_title: 'デコード（実験的）',
-  wspr_rx_text:  'WSPR のデコードはベストエフォートの実験的機能です。一度に 1 信号しかデコードできず、受信側のクロックドリフトも補正しません。本格的な伝搬モニターには専用の WSPR デコーダーの使用をおすすめします。',
+  wspr_rx_text:  'WSPR のデコードは実験的な機能で、既知の制限が 2 つあります。一度に 1 信号しかデコードできず、受信側のクロックドリフトを補正しません。本格的な伝搬モニターには専用の WSPR デコーダーのほうが適しています。',
 },
 
 'ru': {
@@ -94,7 +94,7 @@ en: {
     </ul>`,
 
   wspr_rx_title: 'Декодирование (экспериментально)',
-  wspr_rx_text:  'Декодирование WSPR работает по мере возможностей и считается экспериментальным: за раз декодируется только один сигнал, уход частоты приёмника не компенсируется. Для серьёзного наблюдения за прохождением по-прежнему рекомендуется специализированный декодер WSPR.',
+  wspr_rx_text:  'Декодирование WSPR экспериментальное и имеет два известных ограничения: за раз декодируется только один сигнал, и уход часов приёмника не компенсируется. Для серьёзного наблюдения за прохождением специализированный декодер WSPR остаётся более подходящим инструментом.',
 },
 
 'pl': {
@@ -113,7 +113,7 @@ en: {
     </ul>`,
 
   wspr_rx_title: 'Dekodowanie (eksperymentalne)',
-  wspr_rx_text:  'Dekodowanie WSPR działa w miarę możliwości i jest uznawane za eksperymentalne: dekoduje jeden sygnał naraz i nie kompensuje dryfu zegara odbiornika. Do poważnego monitorowania propagacji nadal zalecany jest dedykowany dekoder WSPR.',
+  wspr_rx_text:  'Dekodowanie WSPR jest eksperymentalne i ma dwa znane ograniczenia: dekoduje jeden sygnał naraz i nie kompensuje dryfu zegara odbiornika. Do poważnego monitorowania propagacji lepszym narzędziem pozostaje dedykowany dekoder WSPR.',
 },
 
 'es': {
@@ -132,7 +132,7 @@ en: {
     </ul>`,
 
   wspr_rx_title: 'Decodificación (experimental)',
-  wspr_rx_text:  'La decodificación WSPR se ofrece en la medida de lo posible y se considera experimental: decodifica una sola señal a la vez y no compensa la deriva del reloj del receptor. Para una monitorización seria de la propagación sigue siendo recomendable un decodificador WSPR dedicado.',
+  wspr_rx_text:  'La decodificación WSPR es experimental y tiene dos límites conocidos: decodifica una sola señal a la vez y no compensa la deriva del reloj del receptor. Para una monitorización seria de la propagación, un decodificador WSPR dedicado sigue siendo la mejor herramienta.',
 },
 
 'el': {
@@ -151,7 +151,7 @@ en: {
     </ul>`,
 
   wspr_rx_title: 'Αποκωδικοποίηση (πειραματική)',
-  wspr_rx_text:  'Η αποκωδικοποίηση WSPR παρέχεται στο μέτρο του δυνατού και θεωρείται πειραματική: αποκωδικοποιεί ένα σήμα κάθε φορά και δεν αντισταθμίζει την ολίσθηση του ρολογιού του δέκτη. Για σοβαρή παρακολούθηση διάδοσης εξακολουθεί να συνιστάται ειδικός αποκωδικοποιητής WSPR.',
+  wspr_rx_text:  'Η αποκωδικοποίηση WSPR είναι πειραματική και έχει δύο γνωστά όρια: αποκωδικοποιεί ένα σήμα κάθε φορά και δεν αντισταθμίζει την ολίσθηση του ρολογιού του δέκτη. Για σοβαρή παρακολούθηση διάδοσης, ένας ειδικός αποκωδικοποιητής WSPR παραμένει το καταλληλότερο εργαλείο.',
 },
 
 }; /* end PAGE_T */

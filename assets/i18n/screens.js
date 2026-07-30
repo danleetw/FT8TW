@@ -48,7 +48,7 @@ en: {
       <li><strong>Spectrum</strong> – Live waterfall and spectrum display of the receive audio, with adjustable color scheme and noise-floor-anchored contrast; also shows your own transmit audio during TX.</li>
       <li><strong>JS8</strong> – Chat-style conversation screen for JS8 mode. See the <a href="js8.html">JS8 Chat Mode</a> section.</li>
       <li><strong>WSPR</strong> – Beacon scheduling screen for WSPR mode. See the <a href="wspr.html">WSPR Beacon</a> section.</li>
-      <li><strong>SSB</strong> – Push-to-talk voice screen. See the <a href="ssb.html">SSB Voice</a> section.</li>
+      <li><strong>SSB</strong> – Radio microphone, receive monitor and antenna tuning. See the <a href="ssb.html">SSB Voice</a> section.</li>
       <li><strong>Grid Tracker</strong> – Full-screen map view. See the <a href="gridtracker.html">Grid Tracker</a> section.</li>
       <li><strong>Count</strong> – QSO statistics: totals by band, mode, DXCC, ITU/CQ zone, and time period.</li>
       <li><strong>QRZ.com Lookup</strong> – Embedded QRZ.com callsign lookup for the currently selected station.</li>
@@ -102,7 +102,7 @@ en: {
       <li><strong>頻譜（Spectrum）</strong> — 即時顯示接收音訊的瀑布圖與頻譜，色階可切換，黑點錨定雜訊地板以維持對比；發射時也會顯示自己的發射音訊。</li>
       <li><strong>JS8</strong> — JS8 模式的聊天式對話畫面，詳見<a href="js8.html">「JS8 聊天模式」</a>章節。</li>
       <li><strong>WSPR</strong> — WSPR 模式的信標排程畫面，詳見<a href="wspr.html">「WSPR 信標」</a>章節。</li>
-      <li><strong>SSB</strong> — 按住通話語音畫面，詳見<a href="ssb.html">「SSB 語音」</a>章節。</li>
+      <li><strong>SSB</strong> — 電台麥克風、收訊監聽與天線調諧，詳見<a href="ssb.html">「SSB 語音」</a>章節。</li>
       <li><strong>網格追蹤（Grid Tracker）</strong> — 全螢幕地圖畫面，詳見<a href="gridtracker.html">「網格追蹤地圖」</a>章節。</li>
       <li><strong>統計（Count）</strong> — 依頻段、模式、DXCC、ITU/CQ 分區及時間區間統計 QSO 數量。</li>
       <li><strong>QRZ.com 查詢</strong> — 內嵌 QRZ.com 呼號查詢，顯示目前選定電台的資料。</li>
@@ -156,7 +156,7 @@ en: {
       <li><strong>频谱（Spectrum）</strong> — 实时显示接收音频的瀑布图与频谱，色阶可切换，黑点锚定噪声基底以维持对比；发射时也会显示自己的发射音频。</li>
       <li><strong>JS8</strong> — JS8 模式的聊天式对话界面，详见<a href="js8.html">「JS8 聊天模式」</a>章节。</li>
       <li><strong>WSPR</strong> — WSPR 模式的信标计划界面，详见<a href="wspr.html">「WSPR 信标」</a>章节。</li>
-      <li><strong>SSB</strong> — 按住通话语音界面，详见<a href="ssb.html">「SSB 语音」</a>章节。</li>
+      <li><strong>SSB</strong> — 电台麦克风、收听监听与天线调谐，详见<a href="ssb.html">「SSB 语音」</a>章节。</li>
       <li><strong>网格追踪（Grid Tracker）</strong> — 全屏地图界面，详见<a href="gridtracker.html">「网格追踪地图」</a>章节。</li>
       <li><strong>统计（Count）</strong> — 按频段、模式、DXCC、ITU/CQ 分区及时间区间统计 QSO 数量。</li>
       <li><strong>QRZ.com 查询</strong> — 内嵌 QRZ.com 呼号查询，显示当前选定电台的资料。</li>
@@ -210,7 +210,7 @@ en: {
       <li><strong>スペクトラム</strong> — 受信音声のウォーターフォールとスペクトラムをリアルタイム表示します。配色は切り替え可能で、暗部はノイズフロアを基準にコントラストを保ちます。送信中は自局の送信音声も表示します。</li>
       <li><strong>JS8</strong> — JS8 モードのチャット画面。<a href="js8.html">JS8 チャットモード</a>の章を参照してください。</li>
       <li><strong>WSPR</strong> — WSPR のビーコン予約画面。<a href="wspr.html">WSPR ビーコン</a>の章を参照してください。</li>
-      <li><strong>SSB</strong> — プレストークの音声画面。<a href="ssb.html">SSB 音声</a>の章を参照してください。</li>
+      <li><strong>SSB</strong> — 無線機用マイク、受信音のモニター、アンテナ調整。<a href="ssb.html">SSB 音声</a>の章を参照してください。</li>
       <li><strong>グリッドトラッカー</strong> — 全画面の地図表示。<a href="gridtracker.html">グリッドトラッカー</a>の章を参照してください。</li>
       <li><strong>統計</strong> — バンド、モード、DXCC、ITU/CQ ゾーン、期間ごとの交信数を集計します。</li>
       <li><strong>QRZ.com 検索</strong> — 選択中の局について QRZ.com のコールサイン検索を内蔵表示します。</li>
@@ -264,7 +264,7 @@ en: {
       <li><strong>Спектр</strong> — водопад и спектр принимаемого звука в реальном времени, с выбором цветовой схемы и контрастом, привязанным к уровню шума; во время передачи показывает и ваш сигнал.</li>
       <li><strong>JS8</strong> — экран чата для режима JS8. См. раздел <a href="js8.html">Режим чата JS8</a>.</li>
       <li><strong>WSPR</strong> — экран расписания маяка. См. раздел <a href="wspr.html">Маяк WSPR</a>.</li>
-      <li><strong>SSB</strong> — экран голосовой работы с кнопкой передачи. См. раздел <a href="ssb.html">Голос SSB</a>.</li>
+      <li><strong>SSB</strong> — микрофон для трансивера, прослушивание приёма и настройка антенны. См. раздел <a href="ssb.html">Голос SSB</a>.</li>
       <li><strong>Карта локаторов</strong> — полноэкранная карта. См. раздел <a href="gridtracker.html">Карта локаторов</a>.</li>
       <li><strong>Статистика</strong> — количество QSO по диапазонам, видам работы, DXCC, зонам ITU/CQ и периодам.</li>
       <li><strong>Поиск на QRZ.com</strong> — встроенный поиск позывного выбранной станции.</li>
@@ -318,7 +318,7 @@ en: {
       <li><strong>Widmo</strong> — wodospad i widmo odbieranego dźwięku na żywo, z wyborem palety barw i kontrastem odniesionym do poziomu szumów; w czasie nadawania pokazuje także własny sygnał.</li>
       <li><strong>JS8</strong> — ekran rozmowy w trybie JS8. Zobacz rozdział <a href="js8.html">Tryb czatu JS8</a>.</li>
       <li><strong>WSPR</strong> — ekran harmonogramu latarni. Zobacz rozdział <a href="wspr.html">Latarnia WSPR</a>.</li>
-      <li><strong>SSB</strong> — ekran pracy głosem z przyciskiem nadawania. Zobacz rozdział <a href="ssb.html">Głos SSB</a>.</li>
+      <li><strong>SSB</strong> — mikrofon do radia, odsłuch odbioru i strojenie anteny. Zobacz rozdział <a href="ssb.html">Głos SSB</a>.</li>
       <li><strong>Mapa lokatorów</strong> — pełnoekranowa mapa. Zobacz rozdział <a href="gridtracker.html">Mapa lokatorów</a>.</li>
       <li><strong>Statystyki</strong> — liczba łączności według pasm, emisji, DXCC, stref ITU/CQ i okresów.</li>
       <li><strong>Wyszukiwanie QRZ.com</strong> — wbudowane wyszukiwanie znaku wybranej stacji.</li>
@@ -372,7 +372,7 @@ en: {
       <li><strong>Espectro</strong> — cascada y espectro en vivo del audio recibido, con paleta de color ajustable y contraste anclado al nivel de ruido; durante la transmisión también muestra tu propio audio.</li>
       <li><strong>JS8</strong> — pantalla de conversación del modo JS8. Consulta la sección <a href="js8.html">Modo chat JS8</a>.</li>
       <li><strong>WSPR</strong> — pantalla de programación de la baliza. Consulta la sección <a href="wspr.html">Baliza WSPR</a>.</li>
-      <li><strong>SSB</strong> — pantalla de voz con pulsar para hablar. Consulta la sección <a href="ssb.html">Voz SSB</a>.</li>
+      <li><strong>SSB</strong> — micrófono para el equipo, escucha de recepción y sintonización de antena. Consulta la sección <a href="ssb.html">Voz SSB</a>.</li>
       <li><strong>Mapa de localizadores</strong> — vista de mapa a pantalla completa. Consulta la sección <a href="gridtracker.html">Mapa de localizadores</a>.</li>
       <li><strong>Estadísticas</strong> — totales de QSO por banda, modo, DXCC, zona ITU/CQ y periodo.</li>
       <li><strong>Búsqueda en QRZ.com</strong> — búsqueda integrada del indicativo de la estación seleccionada.</li>
@@ -426,7 +426,7 @@ en: {
       <li><strong>Φάσμα</strong> — ζωντανή προβολή καταρράκτη και φάσματος του ήχου λήψης, με εναλλάξιμη χρωματική κλίμακα και αντίθεση αγκυρωμένη στο επίπεδο θορύβου· κατά την εκπομπή δείχνει και τον δικό σας ήχο.</li>
       <li><strong>JS8</strong> — οθόνη συνομιλίας για τη λειτουργία JS8. Δείτε το κεφάλαιο <a href="js8.html">Λειτουργία συνομιλίας JS8</a>.</li>
       <li><strong>WSPR</strong> — οθόνη προγραμματισμού φάρου. Δείτε το κεφάλαιο <a href="wspr.html">Φάρος WSPR</a>.</li>
-      <li><strong>SSB</strong> — οθόνη φωνής με πλήκτρο εκπομπής. Δείτε το κεφάλαιο <a href="ssb.html">Φωνή SSB</a>.</li>
+      <li><strong>SSB</strong> — μικρόφωνο για τον πομποδέκτη, ακρόαση λήψης και συντονισμός κεραίας. Δείτε το κεφάλαιο <a href="ssb.html">Φωνή SSB</a>.</li>
       <li><strong>Χάρτης τετραγώνων</strong> — προβολή χάρτη σε πλήρη οθόνη. Δείτε το κεφάλαιο <a href="gridtracker.html">Χάρτης τετραγώνων</a>.</li>
       <li><strong>Στατιστικά</strong> — σύνολα επαφών ανά μπάντα, τρόπο λειτουργίας, DXCC, ζώνη ITU/CQ και χρονική περίοδο.</li>
       <li><strong>Αναζήτηση QRZ.com</strong> — ενσωματωμένη αναζήτηση διακριτικού για τον επιλεγμένο σταθμό.</li>
