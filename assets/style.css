@@ -86,6 +86,19 @@ header {
 .lang-btn:hover     { background: rgba(255,255,255,0.25); }
 .lang-btn.active    { background: #fff; color: var(--brand); border-color: #fff; }
 
+/* 語系一多就換成下拉（見 layout.js buildLangSwitch） */
+.lang-select {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.4);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-size: 13px;
+  max-width: 130px;
+}
+.lang-select option { color: var(--text); }
+
 /* ── Layout ──────────────────────────────────────────────────── */
 .layout {
   display: flex;
@@ -127,6 +140,13 @@ header {
   border-left-color: var(--brand);
   background: rgba(26,115,232,0.15);
   font-weight: 600;
+}
+
+/* PDF 入口排在章節清單之外，用分隔線隔開 */
+.sidebar ul li.nav-pdf {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.12);
 }
 
 /* ── Main Content ────────────────────────────────────────────── */
@@ -307,4 +327,165 @@ footer {
   h1 { font-size: 22px; }
   h2 { font-size: 18px; }
   .main-content { padding: 16px 14px 60px; }
+}
+
+/* ── PDF / 列印頁（print.html）── 螢幕上的預覽樣式 ─────────────── */
+.print-page { background: var(--bg); }
+
+.print-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: var(--header-h);
+  padding: 0 16px;
+  background: var(--brand);
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+.print-back { color: #fff; font-size: 14px; flex-shrink: 0; }
+.print-back:hover { text-decoration: underline; }
+.print-lang {
+  margin-left: auto;
+  padding: 5px 10px;
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+}
+.print-lang option { color: var(--text); }
+.print-btn {
+  padding: 6px 16px;
+  border: none;
+  border-radius: 14px;
+  background: #fff;
+  color: var(--brand);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.print-btn:disabled { opacity: 0.5; cursor: default; }
+.print-btn:not(:disabled):hover { background: #e8f0fe; }
+
+.print-hint {
+  max-width: 900px;
+  margin: 20px auto 0;
+  padding: 12px 16px;
+  background: var(--note-bg);
+  border-left: 4px solid var(--note-border);
+  border-radius: 0 6px 6px 0;
+  font-size: 14px;
+}
+.print-hint p { margin-bottom: 0; }
+
+.print-status {
+  max-width: 900px;
+  margin: 24px auto;
+  padding: 0 16px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+.print-status.print-error { color: #c62828; font-weight: 600; }
+
+.print-body {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 48px 80px;
+  background: var(--surface);
+}
+
+.print-cover { text-align: center; padding: 48px 0 40px; margin-bottom: 40px; }
+.print-cover .cover-icon  { font-size: 56px; }
+.print-cover .cover-title {
+  font-size: 40px;
+  border: none;
+  margin: 8px 0 0;
+  padding: 0;
+  letter-spacing: 1px;
+}
+.print-cover .cover-sub   { font-size: 20px; color: var(--text-muted); margin-bottom: 28px; }
+.print-cover .cover-meta  { font-size: 13px; color: var(--text-muted); line-height: 2; }
+.print-cover .cover-url   { color: var(--link); }
+
+.print-toc { margin-bottom: 40px; }
+.print-toc .toc-list { list-style: none; padding-left: 0; }
+.print-toc .toc-list li {
+  padding: 6px 0;
+  border-bottom: 1px dotted var(--border);
+  font-size: 15px;
+}
+.print-toc .toc-no { display: inline-block; min-width: 28px; color: var(--text-muted); }
+
+.print-chapter { margin-bottom: 48px; }
+.print-chapter .chapter-no { color: var(--brand); }
+.print-footer { margin-top: 40px; }
+
+@media (max-width: 768px) {
+  .print-body { padding: 20px 18px 60px; }
+  .print-hint { margin: 14px 12px 0; }
+  .print-back span { display: none; }
+}
+
+/* ── 列印輸出（print.html 與各章節頁共用）───────────────────────── */
+@media print {
+  @page { size: A4; margin: 16mm 14mm; }
+
+  /* 螢幕專用的介面元素一律不進 PDF */
+  .no-print,
+  header, .sidebar, .overlay, .view-badge, .menu-toggle, .lang-switch {
+    display: none !important;
+  }
+
+  html, body {
+    background: #fff !important;
+    font-size: 10.5pt;
+    line-height: 1.55;
+  }
+
+  /* 單獨列印某一章時，把版面從「側欄 + 內容」攤平成整頁 */
+  .layout { display: block; margin-top: 0; min-height: 0; }
+  .main-content, .print-body {
+    margin: 0;
+    padding: 0;
+    max-width: none;
+    background: #fff;
+  }
+
+  /* 底色是分辨 note / warn / 表頭的唯一線索，不能讓瀏覽器省掉 */
+  .note, .warn, th, tr:nth-child(even) td, code, ol.steps li::before {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  tr:hover td { background: inherit; }
+
+  /* 封面、目錄各自成頁，之後每章從新的一頁開始 */
+  .print-cover { padding: 40mm 0 0; margin: 0; break-after: page; }
+  .print-cover .cover-title { font-size: 32pt; }
+  .print-toc { break-after: page; margin: 0; }
+  .print-chapter { break-before: page; margin: 0; }
+  .print-chapter:first-of-type { break-before: auto; }
+
+  /* 標題留在內文同一頁，別讓它單獨掛在頁尾 */
+  h1, h2, h3 { break-after: avoid; break-inside: avoid; }
+  h1 { font-size: 18pt; }
+  h2 { font-size: 14pt; }
+  h3 { font-size: 11.5pt; }
+  p, li { orphans: 2; widows: 2; }
+
+  /* 這幾種區塊被切成兩頁會很難讀 */
+  .screenshot-wrap, table, .note, .warn, ol.steps li { break-inside: avoid; }
+
+  .screenshot {
+    max-width: 62mm;
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+
+  a { color: var(--link); text-decoration: none; }
+  section { margin-bottom: 0; }
+  footer, .print-footer { border-top: 1px solid #ccc; padding-top: 8pt; font-size: 8.5pt; }
 }

@@ -22,14 +22,46 @@ const NAV_ITEMS = [
   { id: 'troubleshoot', file: 'troubleshoot.html', key: 'nav_troubleshoot' },
 ];
 
-/* Merge shared + page-specific dictionaries */
-const T = { en: {}, 'zh-TW': {} };
-for (const lang of Object.keys(T)) {
+/* Merge shared + page-specific dictionaries.
+   語系清單不寫死，直接看 COMMON_T 有哪些語言，
+   日後 i18n 檔多一個語系區塊就自動多一種語言，這裡不用再改。 */
+const LANGS = Object.keys((typeof COMMON_T !== 'undefined' && COMMON_T) || { en: {} });
+const T = {};
+for (const lang of LANGS) {
+  T[lang] = {};
   Object.assign(T[lang], (typeof COMMON_T !== 'undefined' && COMMON_T[lang]) || {});
   Object.assign(T[lang], (typeof PAGE_T !== 'undefined' && PAGE_T[lang]) || {});
 }
 
+/* 語言選單的顯示名稱；未列出者退回代碼本身，漏補這張表不會壞 */
+const LANG_LABELS = {
+  'en': 'EN', 'zh-TW': '繁中', 'zh-CN': '简中', 'ja': '日本語',
+  'ru': 'Русский', 'pl': 'Polski', 'es': 'Español', 'el': 'Ελληνικά',
+};
+const langLabel = l => LANG_LABELS[l] || l;
+
+/* 取字串：目標語系缺字時退回英文。
+   某語系只翻了一部分時，未翻的地方顯示英文而不是留下空白。 */
+function pickT(lang, key) {
+  const d = T[lang];
+  if (d && d[key] !== undefined) return d[key];
+  const en = T['en'];
+  if (en && en[key] !== undefined) return en[key];
+  return undefined;
+}
+
 const currentPage = document.body.dataset.page || 'intro';
+
+/* 少數語系用並排按鈕，多了就改下拉，否則手機 header 會被擠爆 */
+function buildLangSwitch() {
+  if (LANGS.length <= 3) {
+    return LANGS.map(l =>
+      `<button class="lang-btn" data-lang="${l}">${langLabel(l)}</button>`).join('');
+  }
+  return `<select class="lang-select" id="langSelect" aria-label="Language">${
+    LANGS.map(l => `<option value="${l}">${langLabel(l)}</option>`).join('')
+  }</select>`;
+}
 
 /* ── Build header ──────────────────────────────────────────────── */
 const header = document.createElement('header');
@@ -43,10 +75,7 @@ header.innerHTML = `
       <span class="brand-sub" data-i18n="brand_sub"></span>
       <img id="view-badge" src="" alt="views" class="view-badge">
     </a>
-    <div class="lang-switch">
-      <button class="lang-btn" data-lang="en">EN</button>
-      <button class="lang-btn" data-lang="zh-TW">繁中</button>
-    </div>
+    <div class="lang-switch">${buildLangSwitch()}</div>
   </div>`;
 document.body.insertBefore(header, document.body.firstChild);
 
@@ -64,6 +93,18 @@ NAV_ITEMS.forEach(item => {
   li.appendChild(a);
   ul.appendChild(li);
 });
+
+/* 整本手冊的 PDF 入口。刻意排在章節清單之外，
+   這樣它不會被算成一章，也不會出現在 PDF 自己的目錄裡。 */
+const pdfLi = document.createElement('li');
+pdfLi.className = 'nav-pdf';
+const pdfLink = document.createElement('a');
+pdfLink.id = 'navPdfLink';
+pdfLink.href = 'print.html';
+pdfLink.innerHTML = '&#11015; <span data-i18n="nav_pdf"></span>';
+pdfLi.appendChild(pdfLink);
+ul.appendChild(pdfLi);
+
 sidebar.appendChild(ul);
 const layoutDiv = document.querySelector('.layout');
 layoutDiv.insertBefore(sidebar, layoutDiv.firstChild);
@@ -82,30 +123,49 @@ function applyLang(lang) {
   if (!dict) return;
   currentLang = lang;
 
-  const navTitle = dict[NAV_ITEMS.find(n => n.id === currentPage)?.key];
+  const navTitle = pickT(lang, NAV_ITEMS.find(n => n.id === currentPage)?.key);
+  const pageTitle = pickT(lang, 'page_title');
   document.title = currentPage === 'intro' || !navTitle
-    ? (dict.page_title || document.title)
-    : `${dict.page_title} – ${navTitle}`;
+    ? (pageTitle || document.title)
+    : `${pageTitle} – ${navTitle}`;
 
   document.documentElement.lang = lang;
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (dict[key] !== undefined) el.innerHTML = dict[key];
+    const v = pickT(lang, el.getAttribute('data-i18n'));
+    if (v !== undefined) el.innerHTML = v;
   });
 
   document.querySelectorAll('[data-i18n-html]').forEach(el => {
-    const key = el.getAttribute('data-i18n-html');
-    if (dict[key] !== undefined) el.innerHTML = dict[key];
+    const v = pickT(lang, el.getAttribute('data-i18n-html'));
+    if (v !== undefined) el.innerHTML = v;
   });
 
-  document.querySelectorAll('[data-lang-img]').forEach(el => {
-    el.style.display = (el.getAttribute('data-lang-img') === lang) ? '' : 'none';
+  /* 截圖的 fallback 順序：該語系 → 同語言的其他變體(简中→繁中) → 英文 → 第一張。
+     少了這段，新增語系時所有截圖會因為沒有對應的 data-lang-img 而整批消失。 */
+  const base = lang.split('-')[0];
+  document.querySelectorAll('.screenshot-wrap').forEach(wrap => {
+    const group = [...wrap.querySelectorAll('[data-lang-img]')];
+    if (!group.length) return;
+    const tagOf = el => el.getAttribute('data-lang-img');
+    const target =
+      group.find(el => tagOf(el) === lang) ||
+      group.find(el => tagOf(el).split('-')[0] === base) ||
+      group.find(el => tagOf(el) === 'en') ||
+      group[0];
+    group.forEach(el => { el.style.display = (el === target) ? '' : 'none'; });
   });
 
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
+
+  const langSelect = document.getElementById('langSelect');
+  if (langSelect) langSelect.value = lang;
+
+  /* PDF 頁沿用同一個語系，順手帶在網址上讓連結可分享 */
+  const pdfA = document.getElementById('navPdfLink');
+  if (pdfA) pdfA.href = `print.html?lang=${encodeURIComponent(lang)}`;
 
   const badge = document.getElementById('view-badge');
   if (badge) {
@@ -129,7 +189,7 @@ function applyLang(lang) {
 
 function setLang(lang) { applyLang(lang); }
 
-/* 依瀏覽器語系猜預設語言：中文語系(zh*)→繁中，其餘一律英文。
+/* 依瀏覽器語系猜預設語言，猜不到才用英文。
    只在使用者從未手動選過語言時作為預設值使用。 */
 function detectBrowserLang() {
   let list = [];
@@ -138,8 +198,25 @@ function detectBrowserLang() {
       ? navigator.languages
       : [navigator.language || navigator.userLanguage || ''];
   } catch (e) { list = ['']; }
-  for (const l of list) {
-    if (l && l.toLowerCase().indexOf('zh') === 0) return 'zh-TW';
+
+  for (const raw of list) {
+    const l = (raw || '').trim();
+    if (!l) continue;
+    if (LANGS.includes(l)) return l;
+
+    const lower = l.toLowerCase();
+    /* 中文要分繁簡：Hant / TW / HK / MO 算繁體，其餘 zh 算簡體；
+       手冊還沒有的那一邊就退到另一邊。 */
+    if (lower.indexOf('zh') === 0) {
+      const trad = /hant|tw|hk|mo/.test(lower);
+      const order = trad ? ['zh-TW', 'zh-CN'] : ['zh-CN', 'zh-TW'];
+      const zhHit = order.find(x => LANGS.includes(x));
+      if (zhHit) return zhHit;
+    }
+
+    const base = lower.split('-')[0];
+    const hit = LANGS.find(x => x.toLowerCase().split('-')[0] === base);
+    if (hit) return hit;
   }
   return 'en';
 }
@@ -159,6 +236,9 @@ function detectBrowserLang() {
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', () => setLang(btn.dataset.lang));
   });
+
+  const langSelect = document.getElementById('langSelect');
+  if (langSelect) langSelect.addEventListener('change', () => setLang(langSelect.value));
 
   const toggle = document.getElementById('menuToggle');
 

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FT8TW User Manual</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="print" class="print-page">
+
+  <!-- 工具列：僅螢幕可見，列印時由 @media print 隱藏 -->
+  <div class="print-toolbar no-print" id="printToolbar">
+    <a class="print-back" href="index.html">&#8592;&nbsp;<span data-i18n="print_back"></span></a>
+    <select class="print-lang" id="printLang" aria-label="Language"></select>
+    <button class="print-btn" id="printBtn" disabled data-i18n="print_button"></button>
+  </div>
+
+  <div class="print-hint no-print" id="printHint">
+    <p data-i18n-html="print_hint"></p>
+  </div>
+
+  <div class="print-status no-print" id="printStatus" data-i18n="print_loading"></div>
+
+  <main class="print-body" id="printRoot"></main>
+
+  <script src="assets/i18n/common.js"></script>
+  <script src="assets/print.js"></script>
+</body>
+</html>
