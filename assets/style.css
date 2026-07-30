@@ -65,7 +65,7 @@ header {
 .menu-toggle:hover { background: rgba(255,255,255,0.15); }
 
 .brand { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; overflow: hidden; }
-.brand-icon { font-size: 22px; }
+.brand-icon { width: 26px; height: 26px; border-radius: 5px; flex-shrink: 0; display: block; }
 .brand-name { font-size: 18px; font-weight: 700; letter-spacing: 0.5px; }
 .brand-sep  { opacity: 0.5; }
 .brand-sub  { font-size: 14px; opacity: 0.85; }
@@ -430,7 +430,12 @@ footer {
 }
 
 .print-cover { text-align: center; padding: 48px 0 40px; margin-bottom: 40px; }
-.print-cover .cover-icon  { font-size: 56px; }
+.print-cover .cover-icon  {
+  width: 84px; height: 84px;
+  border-radius: 18px;
+  display: inline-block;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.22);
+}
 .print-cover .cover-title {
   font-size: 40px;
   border: none;
@@ -438,7 +443,9 @@ footer {
   padding: 0;
   letter-spacing: 1px;
 }
-.print-cover .cover-sub   { font-size: 20px; color: var(--text-muted); margin-bottom: 28px; }
+.print-cover .cover-sub   { font-size: 20px; color: var(--text-muted); margin-bottom: 20px; }
+.print-cover .cover-shot  { margin: 0 0 20px; }
+.print-cover .cover-shot .screenshot { max-width: 210px; }
 .print-cover .cover-meta  { font-size: 13px; color: var(--text-muted); line-height: 2; }
 .print-cover .cover-url   { color: var(--link); }
 
@@ -499,8 +506,12 @@ footer {
   tr:hover td { background: inherit; }
 
   /* 封面、目錄各自成頁，之後每章從新的一頁開始 */
-  .print-cover { padding: 40mm 0 0; margin: 0; break-after: page; }
+  .print-cover { padding: 16mm 0 0; margin: 0; break-after: page; }
   .print-cover .cover-title { font-size: 32pt; }
+  .print-cover .cover-icon { width: 24mm; height: 24mm; box-shadow: none; }
+  /* 封面的呼叫畫面要連同標題、日期一起塞進同一頁；
+     62mm 時整頁約用掉 214mm，A4 可用高度 265mm 仍有餘裕 */
+  .print-cover .cover-shot .screenshot { max-width: 62mm; }
   .print-toc { break-after: page; margin: 0; }
   .print-chapter { break-before: page; margin: 0; }
   .print-chapter:first-of-type { break-before: auto; }

@@ -128,12 +128,19 @@ function buildCover(lang) {
   const dateLine = PRINT_STATE.updated
     ? `${pick(COMMON_T, 'last_updated', lang) || 'Last updated'} ${PRINT_STATE.updated}<br>`
     : '';
+  /* 封面的呼叫畫面沿用章節內文那套 data-lang-img 機制，
+     語系選擇與 fallback 直接交給 applyLangImages，不必另寫一份規則。 */
   cover.innerHTML = `
-    <div class="cover-icon">&#128251;</div>
+    <img class="cover-icon" src="assets/ft8tw-icon.png" alt="FT8TW">
     <h1 class="cover-title">FT8TW</h1>
     <p class="cover-sub">${sub}</p>
+    <div class="cover-shot screenshot-wrap">
+      <img class="screenshot" data-lang-img="en" src="assets/screenshots/en/calling.png" alt="">
+      <img class="screenshot" data-lang-img="zh-TW" src="assets/screenshots/zh-TW/calling.png" alt="">
+    </div>
     <p class="cover-meta">${title}<br>${dateLine}
       <span class="cover-url">https://danleetw.github.io/FT8TW/</span></p>`;
+  applyLangImages(cover, lang);
   return cover;
 }
 

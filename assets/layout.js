@@ -72,7 +72,7 @@ header.innerHTML = `
   <div class="header-inner">
     <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">&#9776;</button>
     <a class="brand" href="index.html" style="text-decoration:none; color:#fff;">
-      <span class="brand-icon">&#128251;</span>
+      <img class="brand-icon" src="assets/ft8tw-icon.png" alt="FT8TW">
       <span class="brand-name">FT8TW</span>
       <span class="brand-sep">|</span>
       <span class="brand-sub" data-i18n="brand_sub"></span>
