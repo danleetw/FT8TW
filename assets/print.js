@@ -13,6 +13,7 @@ const PRINT_STATE = {
   navItems: [],
   chapters: [],          /* { id, key, node, dict } */
   lang: 'en',
+  updated: null,         /* 手冊最後更新日期，取不到就是 null */
   ready: false,
 };
 
@@ -122,12 +123,16 @@ function buildCover(lang) {
   cover.className = 'print-cover';
   const title = pick(COMMON_T, 'page_title', lang) || 'FT8TW User Manual';
   const sub   = pick(COMMON_T, 'brand_sub', lang)  || 'User Manual';
-  const date  = new Date().toISOString().slice(0, 10);
+  /* 用手冊的最後更新日期，而不是產生 PDF 的當天日期：後者每次列印都不同，
+     會讓人以為手冊天天在改。取不到日期就整行不印。 */
+  const dateLine = PRINT_STATE.updated
+    ? `${pick(COMMON_T, 'last_updated', lang) || 'Last updated'} ${PRINT_STATE.updated}<br>`
+    : '';
   cover.innerHTML = `
     <div class="cover-icon">&#128251;</div>
     <h1 class="cover-title">FT8TW</h1>
     <p class="cover-sub">${sub}</p>
-    <p class="cover-meta">${title}<br>${date}<br>
+    <p class="cover-meta">${title}<br>${dateLine}
       <span class="cover-url">https://danleetw.github.io/FT8TW/</span></p>`;
   return cover;
 }
@@ -178,7 +183,10 @@ function render(lang) {
 
   const footer = document.createElement('footer');
   footer.className = 'print-footer';
-  footer.innerHTML = `<p>${pick(COMMON_T, 'footer_text', lang) || ''}</p>`;
+  const updatedLine = PRINT_STATE.updated
+    ? `<p class="footer-updated">${pick(COMMON_T, 'last_updated', lang) || 'Last updated'} ${PRINT_STATE.updated}</p>`
+    : '';
+  footer.innerHTML = `${updatedLine}<p>${pick(COMMON_T, 'footer_text', lang) || ''}</p>`;
   root.appendChild(footer);
 
   /* 工具列與提示文字本身也要跟著語系走 */
@@ -264,6 +272,7 @@ function initialLang() {
   PRINT_STATE.lang = initialLang();
 
   try {
+    PRINT_STATE.updated = await fetchManualUpdated();
     PRINT_STATE.navItems = await loadNavItems();
     initLangSelect();
 

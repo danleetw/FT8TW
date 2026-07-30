@@ -52,15 +52,18 @@ function pickT(lang, key) {
 
 const currentPage = document.body.dataset.page || 'intro';
 
-/* 少數語系用並排按鈕，多了就改下拉，否則手機 header 會被擠爆 */
+/* 少數語系用並排按鈕，多了就改下拉，否則手機 header 會被擠爆。
+   下拉收合時只看得到目前的語言，很容易被當成純文字標籤，
+   所以前面固定放一個地球圖示，讓它一眼就是語言選擇器。 */
 function buildLangSwitch() {
   if (LANGS.length <= 3) {
     return LANGS.map(l =>
       `<button class="lang-btn" data-lang="${l}">${langLabel(l)}</button>`).join('');
   }
-  return `<select class="lang-select" id="langSelect" aria-label="Language">${
-    LANGS.map(l => `<option value="${l}">${langLabel(l)}</option>`).join('')
-  }</select>`;
+  return `<span class="lang-icon" aria-hidden="true">&#127760;</span>` +
+    `<select class="lang-select" id="langSelect" aria-label="Language">${
+      LANGS.map(l => `<option value="${l}">${langLabel(l)}</option>`).join('')
+    }</select>`;
 }
 
 /* ── Build header ──────────────────────────────────────────────── */
@@ -73,6 +76,7 @@ header.innerHTML = `
       <span class="brand-name">FT8TW</span>
       <span class="brand-sep">|</span>
       <span class="brand-sub" data-i18n="brand_sub"></span>
+      <span class="last-updated" id="lastUpdated"></span>
       <img id="view-badge" src="" alt="views" class="view-badge">
     </a>
     <div class="lang-switch">${buildLangSwitch()}</div>
@@ -167,6 +171,9 @@ function applyLang(lang) {
   const pdfA = document.getElementById('navPdfLink');
   if (pdfA) pdfA.href = `print.html?lang=${encodeURIComponent(lang)}`;
 
+  /* 日期是非同步取回的，切語言時用已取到的值重畫標籤即可 */
+  renderLastUpdated();
+
   const badge = document.getElementById('view-badge');
   if (badge) {
     const pageIds = { 'en': 'danleetw.FT8TW.en', 'zh-TW': 'danleetw.FT8TW.zhtw' };
@@ -175,10 +182,13 @@ function applyLang(lang) {
     const title   = titles[lang]  || 'Visitors';
     const newSrc  = `https://visitor-badge.laobi.icu/badge?page_id=${pageId}&title=${title}&color=blue&style=flat-square`;
 
+    /* 顯示與否交給 class，不要寫 inline style：inline style 的優先序高過
+       CSS，會蓋掉手機版隱藏徽章的 media query，徽章就會把語言選擇器
+       擠出畫面外。 */
     if (badge.getAttribute('data-src') !== newSrc) {
-      badge.style.display = 'none';
-      badge.onload  = () => { badge.style.display = 'inline'; };
-      badge.onerror = () => { badge.style.display = 'none'; };
+      badge.classList.remove('loaded');
+      badge.onload  = () => { badge.classList.add('loaded'); };
+      badge.onerror = () => { badge.classList.remove('loaded'); };
       badge.setAttribute('data-src', newSrc);
       badge.src = newSrc;
     }
@@ -188,6 +198,26 @@ function applyLang(lang) {
 }
 
 function setLang(lang) { applyLang(lang); }
+
+/* 手冊最後更新日期。取不到就整個不顯示（見 common.js 的說明）。 */
+let manualUpdated = null;
+function renderLastUpdated() {
+  const el = document.getElementById('lastUpdated');
+  if (!el) return;
+  if (!manualUpdated) { el.innerHTML = ''; return; }
+  /* 標籤與日期分開包，手機上只留日期——有些語系的標籤很長
+     （例如 Ostatnia aktualizacja），整串塞進頁首會被截成半個詞。 */
+  const label = document.createElement('span');
+  label.className = 'lu-label';
+  label.textContent = pickT(currentLang, 'last_updated') || '';
+  const date = document.createElement('span');
+  date.className = 'lu-date';
+  date.textContent = manualUpdated;
+  el.innerHTML = '';
+  el.appendChild(label);
+  el.appendChild(document.createTextNode(' '));
+  el.appendChild(date);
+}
 
 /* 依瀏覽器語系猜預設語言，猜不到才用英文。
    只在使用者從未手動選過語言時作為預設值使用。 */
@@ -248,4 +278,6 @@ function detectBrowserLang() {
   if (toggle)  toggle.addEventListener('click', openSidebar);
   if (overlay) overlay.addEventListener('click', closeSidebar);
   sidebar.querySelectorAll('a').forEach(a => a.addEventListener('click', closeSidebar));
+
+  fetchManualUpdated().then(d => { manualUpdated = d; renderLastUpdated(); });
 })();

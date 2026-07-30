@@ -69,7 +69,16 @@ header {
 .brand-name { font-size: 18px; font-weight: 700; letter-spacing: 0.5px; }
 .brand-sep  { opacity: 0.5; }
 .brand-sub  { font-size: 14px; opacity: 0.85; }
-.view-badge { height: 20px; margin-left: 10px; vertical-align: middle; opacity: 0.9; border-radius: 3px; }
+.last-updated {
+  font-size: 12px;
+  opacity: 0.75;
+  margin-left: 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+/* 徽章載入成功前後都靠 .loaded 控制，見 layout.js 的說明 */
+.view-badge { display: none; height: 20px; margin-left: 10px; vertical-align: middle; opacity: 0.9; border-radius: 3px; }
+.view-badge.loaded { display: inline; }
 
 .lang-switch { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
 .lang-btn {
@@ -86,18 +95,23 @@ header {
 .lang-btn:hover     { background: rgba(255,255,255,0.25); }
 .lang-btn.active    { background: #fff; color: var(--brand); border-color: #fff; }
 
-/* 語系一多就換成下拉（見 layout.js buildLangSwitch） */
+/* 語系一多就換成下拉（見 layout.js buildLangSwitch）。
+   用白底藍字而非半透明，讓它在藍色頁首上明顯是個可點的控制項——
+   半透明版本收合時很像單純的文字標籤，看不出還有其他語言。 */
+.lang-icon { font-size: 15px; line-height: 1; flex-shrink: 0; }
 .lang-select {
-  background: rgba(255,255,255,0.15);
-  border: 1px solid rgba(255,255,255,0.4);
-  color: #fff;
-  padding: 4px 8px;
+  background: #fff;
+  border: 1px solid #fff;
+  color: var(--brand);
+  font-weight: 600;
+  padding: 4px 6px 4px 10px;
   border-radius: 14px;
   cursor: pointer;
   font-size: 13px;
   max-width: 130px;
 }
-.lang-select option { color: var(--text); }
+.lang-select:hover { background: #e8f0fe; }
+.lang-select option { color: var(--text); font-weight: 400; }
 
 /* ── Layout ──────────────────────────────────────────────────── */
 .layout {
@@ -305,7 +319,14 @@ footer {
 @media (max-width: 768px) {
   .menu-toggle { display: block; }
   .brand-sub   { display: none; }
-  .view-badge  { display: none; }   /* 訪客徽章寬度不定，手機上會把語言按鈕擠出畫面，隱藏 */
+  /* 副標題隱藏後這條分隔線沒有東西可分隔了，拿掉它把寬度讓給日期 */
+  .brand-sep   { display: none; }
+  /* 手機上只留日期，標籤（有些語系很長）會被截成半個詞 */
+  .lu-label    { display: none; }
+  .last-updated { margin-left: 8px; font-size: 11px; }
+  /* 訪客徽章寬度不定，手機上會把語言選擇器擠出畫面，一律隱藏
+     （.loaded 也要一起蓋掉，否則載入完成後又會冒出來） */
+  .view-badge, .view-badge.loaded { display: none; }
   .header-inner { padding: 0 12px; gap: 8px; }
   .lang-btn    { padding: 4px 10px; }
 
@@ -327,6 +348,16 @@ footer {
   h1 { font-size: 22px; }
   h2 { font-size: 18px; }
   .main-content { padding: 16px 14px 60px; }
+}
+
+/* 360px 這種主流手機寬度仍要放得下日期，圖示純裝飾，先讓位給它 */
+@media (max-width: 400px) {
+  .brand-icon { display: none; }
+}
+
+/* 再窄下去日期只會被裁成半截，不如不顯示（PDF 與封面仍看得到） */
+@media (max-width: 330px) {
+  .last-updated { display: none; }
 }
 
 /* ── PDF / 列印頁（print.html）── 螢幕上的預覽樣式 ─────────────── */
@@ -423,6 +454,7 @@ footer {
 .print-chapter { margin-bottom: 48px; }
 .print-chapter .chapter-no { color: var(--brand); }
 .print-footer { margin-top: 40px; }
+.print-footer .footer-updated { font-weight: 600; color: var(--text); margin-bottom: 6px; }
 
 @media (max-width: 768px) {
   .print-body { padding: 20px 18px 60px; }
