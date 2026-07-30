@@ -107,7 +107,7 @@ en: {
     </ul>`,
   op_autocq_filter: '在設置中使用<strong>排除已通聯</strong>，可自動跳過在選定時間窗口內（1 小時、4 小時、今天、30 天、365 天）已通聯過的電台。',
 
-  op_autocq_lists: '另有兩份呼號清單可進一步調整：<strong>追蹤呼號</strong>會讓指定的呼號持續留在視線內，一出現就能抓到；<strong>排除前綴</strong>則整批跳過您不想讓自動回應去回的前綴。',
+  op_autocq_lists: '另有兩份呼號清單可進一步調整：<strong>關注的呼號</strong>會讓指定的呼號持續留在視線內，一出現就能抓到；<strong>排除的呼號前綴</strong>則整批跳過您不想讓自動回應去回的前綴。',
 
   op_modifier_title: 'CQ 對象（修飾詞）',
   op_modifier_text:  'CQ 呼叫可以附加地理或活動修飾詞，例如 <code>CQ DX</code>、<code>CQ EU</code>、<code>CQ TEST</code>。這份清單可以自行編輯，遇到特定活動需要的修飾詞可以自己加，不受內建項目限制。',
@@ -174,7 +174,7 @@ en: {
     </ul>`,
   op_autocq_filter: '在设置中使用<strong>排除已通联</strong>，可自动跳过在选定时间窗口内（1 小时、4 小时、今天、30 天、365 天）已通联过的电台。',
 
-  op_autocq_lists: '另有两份呼号列表可进一步调整：<strong>追踪呼号</strong>会让指定的呼号持续留在视线内，一出现就能抓到；<strong>排除前缀</strong>则整批跳过您不想让自动回应去回的前缀。',
+  op_autocq_lists: '另有两份呼号列表可进一步调整：<strong>关注的呼号</strong>会让指定的呼号持续留在视线内，一出现就能抓到；<strong>排除的呼号前缀</strong>则整批跳过您不想让自动回应去回的前缀。',
 
   op_modifier_title: 'CQ 对象（修饰词）',
   op_modifier_text:  'CQ 呼叫可以附加地理或活动修饰词，例如 <code>CQ DX</code>、<code>CQ EU</code>、<code>CQ TEST</code>。这份列表可以自行编辑，遇到特定活动需要的修饰词可以自己加，不受内置项目限制。',

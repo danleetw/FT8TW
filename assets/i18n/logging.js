@@ -96,15 +96,15 @@ en: {
   log_backup_text:  '日誌資料庫可以自己定期備份，手機遺失或重置時不會把通聯記錄一起帶走。在設置 → 自動備份中設定：',
   log_backup_list: `
     <ul>
-      <li><strong>開機時自動備份</strong> — App 啟動時自動執行，不需另外操作</li>
-      <li><strong>間隔（天）</strong> — 距離下一次自動備份要等多久</li>
-      <li><strong>保留份數</strong> — 保留幾份舊備份，超過的份數會從最舊的開始刪除</li>
+      <li><strong>啟動時自動備份</strong> — App 啟動時自動執行，不需另外操作</li>
+      <li><strong>週期（天）</strong> — 距離下一次自動備份要等多久</li>
+      <li><strong>保留代數</strong> — 保留幾份舊備份，超過的份數會從最舊的開始刪除</li>
       <li><strong>選擇備份資料夾</strong> — 指定檔案存放位置；選一個有雲端同步的資料夾，備份就同時離開了手機</li>
       <li><strong>立即備份</strong>與<strong>還原備份</strong> — 馬上做一份，或瀏覽並還原先前的備份</li>
     </ul>`,
 
-  log_activation_title: '啟動模式（SOTA / POTA）',
-  log_activation_text:  '當您是登山或到公園進行啟動的一方時，請在設置 → 啟動（SOTA/POTA）填入自己的編號並開啟啟動模式。之後每筆通聯都會自動把您的 SOTA、POTA 編號寫進日誌，這正是 SOTA 匯出格式需要的欄位——比事後逐筆補上輕鬆得多。',
+  log_activation_title: '出勤模式（SOTA / POTA）',
+  log_activation_text:  '當您是登山或到公園進行啟動的一方時，請在設置 → 出勤活動 (SOTA/POTA) 填入自己的編號，並開啟「出勤模式（將編號寫入記錄）」。之後每筆通聯都會自動把您的 SOTA、POTA 編號寫進日誌，這正是 SOTA 匯出格式需要的欄位——比事後逐筆補上輕鬆得多。',
 
   log_slideshow_title: '日誌幻燈片',
   log_slideshow_text:  '長按日誌清單選擇<em>播放幻燈片</em>，即可全螢幕逐筆瀏覽通聯記錄，畫面包含對方的照片與仿 QSL 卡的版面。可設定每張停留的秒數自動播放，也可以手動捲動翻閱。',
@@ -155,15 +155,15 @@ en: {
   log_backup_text:  '日志数据库可以自己定期备份，手机丢失或重置时不会把通联记录一起带走。在设置 → 自动备份中设定：',
   log_backup_list: `
     <ul>
-      <li><strong>开机时自动备份</strong> — App 启动时自动执行，无需另外操作</li>
-      <li><strong>间隔（天）</strong> — 距离下一次自动备份要等多久</li>
-      <li><strong>保留份数</strong> — 保留几份旧备份，超过的份数会从最旧的开始删除</li>
+      <li><strong>启动时自动备份</strong> — App 启动时自动执行，无需另外操作</li>
+      <li><strong>周期（天）</strong> — 距离下一次自动备份要等多久</li>
+      <li><strong>保留代数</strong> — 保留几份旧备份，超过的份数会从最旧的开始删除</li>
       <li><strong>选择备份文件夹</strong> — 指定文件存放位置；选一个有云同步的文件夹，备份就同时离开了手机</li>
       <li><strong>立即备份</strong>与<strong>还原备份</strong> — 马上做一份，或浏览并还原此前的备份</li>
     </ul>`,
 
-  log_activation_title: '启动模式（SOTA / POTA）',
-  log_activation_text:  '当您是登山或到公园进行启动的一方时，请在设置 → 启动（SOTA/POTA）填入自己的编号并开启启动模式。之后每笔通联都会自动把您的 SOTA、POTA 编号写进日志，这正是 SOTA 导出格式需要的字段——比事后逐条补上轻松得多。',
+  log_activation_title: '出勤模式（SOTA / POTA）',
+  log_activation_text:  '当您是登山或到公园进行启动的一方时，请在设置 → 出勤活动 (SOTA/POTA) 填入自己的编号，并开启「出勤模式（将编号写入记录）」。之后每笔通联都会自动把您的 SOTA、POTA 编号写进日志，这正是 SOTA 导出格式需要的字段——比事后逐条补上轻松得多。',
 
   log_slideshow_title: '日志幻灯片',
   log_slideshow_text:  '长按日志列表选择<em>播放幻灯片</em>，即可全屏逐条浏览通联记录，画面包含对方的照片与仿 QSL 卡的版面。可设置每张停留的秒数自动播放，也可以手动滚动翻阅。',

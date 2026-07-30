@@ -9,6 +9,7 @@ en: {
   set_profile_text:  'Settings can be kept as several named profiles and switched in one step — handy when you move between a home rig, a portable radio and a club station, each with its own connection type, baud rate and CI-V address. Use the buttons beside the profile name to add, rename or delete one.',
   set_profile_note: 'Not every setting belongs to a profile. Those that do are marked in the app with a <strong>purple stripe</strong> down the left edge; anything without the stripe is shared by all profiles.',
 
+  set_profile_caption: 'The profile row at the top of Settings, with the purple stripe note beneath it. (Screenshot shows the Traditional Chinese interface.)',
   set_station_title: 'Station',
   set_station_table: `
     <table>
@@ -28,7 +29,7 @@ en: {
       <tr><td>CI-V address</td><td>ICOM CI-V bus address (ICOM radios only)</td></tr>
       <tr><td>PTT control</td><td>VOX / CAT / RTS / DTR – how PTT is asserted</td></tr>
       <tr><td>PTT delay</td><td>Milliseconds to wait after PTT before sending audio</td></tr>
-      <tr><td>TX delay</td><td>Audio output timing compensation (ms)</td></tr>
+      <tr><td>TX delay <em>(deprecated)</em></td><td>Audio output timing compensation (ms); the app now marks this as deprecated and it can be left alone</td></tr>
       <tr><td>Data bits / Parity / Stop bits</td><td>Serial frame format; leave at the defaults unless your radio's manual says otherwise</td></tr>
       <tr><td>Antenna</td><td>Which antenna port the radio should select, on rigs that support it</td></tr>
     </table>`,
@@ -44,6 +45,7 @@ en: {
       <tr><td>Message mode</td><td>Standard or Simple display layout</td></tr>
       <tr><td>TX watchdog</td><td>Auto-stop TX after N minutes (0 = off)</td></tr>
       <tr><td>No response</td><td>Stop calling after N unanswered TX cycles</td></tr>
+      <tr><td>Resend 73</td><td>If the other station calls again after the QSO, resend RR73 up to N times (0 = off)</td></tr>
       <tr><td>CQ method</td><td>Priority strategy for Auto response CQ</td></tr>
       <tr><td>Exclude QSOs</td><td>Skip stations worked within selected time window</td></tr>
       <tr><td>Time offset</td><td>Manual clock correction in seconds</td></tr>
@@ -115,10 +117,11 @@ en: {
 'zh-TW': {
   set_title: '設定說明',
 
-  set_profile_title: '設定檔（Profile）',
+  set_profile_title: '設定組（Profile）',
   set_profile_text:  '設定可以存成多組具名的設定檔，一步就能切換——在家用電台、隨身機與社團電台之間移動時特別方便，因為各自的連接方式、傳輸速率與 CI-V 地址都不同。設定檔名稱旁的按鈕可新增、更名或刪除。',
   set_profile_note: '並非所有設定都屬於設定檔。屬於的項目在 App 中會於左緣標示一道<strong>紫色色條</strong>；沒有色條的項目則是所有設定檔共用。',
 
+  set_profile_caption: '設置頁面最上方的設定組列，下方即是紫色條紋的說明。',
   set_station_title: '站台',
   set_station_table: `
     <table>
@@ -138,7 +141,7 @@ en: {
       <tr><td>CI-V 地址</td><td>ICOM CI-V 匯流排地址（僅 ICOM 電台）</td></tr>
       <tr><td>PTT 控制方式</td><td>VOX / CAT / RTS / DTR</td></tr>
       <tr><td>PTT 延遲</td><td>PTT 觸發後至開始發射音訊的等待時間（毫秒）</td></tr>
-      <tr><td>發射延遲</td><td>音訊輸出時序補償（毫秒）</td></tr>
+      <tr><td>發射延遲<em>（已停用）</em></td><td>音訊輸出時序補償（毫秒）；App 已標示為停用，不必再調整</td></tr>
       <tr><td>資料位元 / 同位 / 停止位元</td><td>序列埠的資料框格式；除非電台手冊另有說明，保持預設值即可</td></tr>
       <tr><td>天線</td><td>要電台切換到哪一個天線埠（限支援的機種）</td></tr>
     </table>`,
@@ -154,6 +157,7 @@ en: {
       <tr><td>顯示模式</td><td>標準列表或精簡列表</td></tr>
       <tr><td>發射監管</td><td>N 分鐘後自動停止發射（0 = 停用）</td></tr>
       <tr><td>沒回應</td><td>N 次無回應後停止呼叫</td></tr>
+      <tr><td>收尾重發</td><td>通聯尾聲時對方若又呼叫，最多補發 N 次 RR73（0 = 關閉）</td></tr>
       <tr><td>回應 CQ 方案</td><td>自動回應 CQ 的優先策略</td></tr>
       <tr><td>排除已通聯</td><td>跳過在選定時間窗口內已通聯過的電台</td></tr>
       <tr><td>時間偏移</td><td>手動時鐘修正（秒）</td></tr>
@@ -161,8 +165,8 @@ en: {
       <tr><td>競賽模式（交換網格）</td><td>改送 <code>R</code> + 自己的網格取代訊號報告，詳見<a href="operating.html">「操作 FT8 / FT4」</a></td></tr>
       <tr><td>CQ 對象</td><td>編輯 CQ 可用的修飾詞清單（DX、EU、TEST…）</td></tr>
       <tr><td>自動追蹤 CQ</td><td>持續追蹤出現的 CQ 呼叫</td></tr>
-      <tr><td>追蹤呼號</td><td>要留在視線內的呼號，一出現就能抓到</td></tr>
-      <tr><td>排除前綴</td><td>自動回應永遠不去回的呼號前綴</td></tr>
+      <tr><td>關注的呼號</td><td>要留在視線內的呼號，一出現就能抓到</td></tr>
+      <tr><td>排除的呼號前綴</td><td>自動回應永遠不去回的呼號前綴</td></tr>
       <tr><td>顯示已通聯電台</td><td>已通聯過的電台仍留在清單中，以刪除線標示</td></tr>
       <tr><td>頻率表</td><td>編輯程式提供的頻段／頻率對照表</td></tr>
     </table>`,
@@ -187,10 +191,10 @@ en: {
       <tr><td>清除 QSO 計數</td><td>重設本次作業的 QSO 計數器</td></tr>
       <tr><td>清除暫存檔</td><td>刪除日誌分享的暫存檔案</td></tr>
       <tr><td>語言</td><td>介面語言，與系統語言各自獨立</td></tr>
-      <tr><td>清單字級</td><td>解碼與日誌清單的文字大小</td></tr>
+      <tr><td>列表字型大小</td><td>解碼與日誌清單的文字大小</td></tr>
       <tr><td>小瀑布圖（解碼／呼叫）</td><td>在兩個分頁顯示精簡瀑布圖，各有獨立開關</td></tr>
       <tr><td>通聯成功：閃畫面／水波／閃光燈／QRZ 照片</td><td>四種各自獨立的完成提示，詳見<a href="logging.html">「通聯記錄」</a></td></tr>
-      <tr><td>清除快取</td><td>清掉呼號追蹤資料與日誌快取</td></tr>
+      <tr><td>清空儲存資料</td><td>分別清掉關注的呼號、解碼的訊息與 SWL 記錄</td></tr>
     </table>`,
 
   set_modes_title: 'JS8 / WSPR / SSB',
@@ -213,11 +217,11 @@ en: {
       <tr><td>QRZ.com API 金鑰／自動上傳</td><td>將完成的通聯上傳至 QRZ.com 日誌簿</td></tr>
       <tr><td>PSKReporter</td><td>提交收聽報告至全球傳播地圖</td></tr>
       <tr><td>Cloudlog / Wavelog</td><td>伺服器位址、API Key 與 Station ID，並可測試連線，詳見<a href="third-party.html">「第三方服務」</a></td></tr>
-      <tr><td>開機時自動備份</td><td>App 啟動時備份日誌資料庫</td></tr>
-      <tr><td>間隔（天）／保留份數</td><td>多久備份一次，以及保留幾份舊備份</td></tr>
+      <tr><td>啟動時自動備份</td><td>App 啟動時備份日誌資料庫</td></tr>
+      <tr><td>週期（天）／保留代數</td><td>多久備份一次，以及保留幾份舊備份</td></tr>
       <tr><td>備份資料夾</td><td>備份檔案的存放位置</td></tr>
       <tr><td>立即備份／還原備份</td><td>馬上備份一份，或還原先前的備份</td></tr>
-      <tr><td>啟動模式（SOTA / POTA）</td><td>把自己的山峰或公園編號寫進每一筆通聯記錄</td></tr>
+      <tr><td>出勤模式（SOTA / POTA）</td><td>把自己的山峰或公園編號寫進每一筆通聯記錄</td></tr>
       <tr><td>我的 SOTA／我的 POTA</td><td>啟動模式開啟時所使用的編號</td></tr>
     </table>`,
 },
@@ -225,10 +229,11 @@ en: {
 'zh-CN': {
   set_title: '设置说明',
 
-  set_profile_title: '配置文件（Profile）',
+  set_profile_title: '设置组（Profile）',
   set_profile_text:  '设置可以存成多组具名的配置文件，一步就能切换——在家用电台、随身机与俱乐部电台之间移动时特别方便，因为各自的连接方式、波特率与 CI-V 地址都不同。配置文件名称旁的按钮可新增、重命名或删除。',
   set_profile_note: '并非所有设置都属于配置文件。属于的项目在 App 中会于左缘标示一道<strong>紫色色条</strong>；没有色条的项目则是所有配置文件共用。',
 
+  set_profile_caption: '设置页面最上方的设置组行，下方即是紫色条纹的说明。（截图为繁体中文界面。）',
   set_station_title: '台站',
   set_station_table: `
     <table>
@@ -248,7 +253,7 @@ en: {
       <tr><td>CI-V 地址</td><td>ICOM CI-V 总线地址（仅 ICOM 电台）</td></tr>
       <tr><td>PTT 控制方式</td><td>VOX / CAT / RTS / DTR</td></tr>
       <tr><td>PTT 延迟</td><td>PTT 触发后至开始发射音频的等待时间（毫秒）</td></tr>
-      <tr><td>发射延迟</td><td>音频输出时序补偿（毫秒）</td></tr>
+      <tr><td>发射延迟<em>（已停用）</em></td><td>音频输出时序补偿（毫秒）；App 已标示为停用，不必再调整</td></tr>
       <tr><td>数据位 / 校验位 / 停止位</td><td>串口的数据帧格式；除非电台手册另有说明，保持默认值即可</td></tr>
       <tr><td>天线</td><td>要电台切换到哪一个天线端口（限支持的机型）</td></tr>
     </table>`,
@@ -264,6 +269,7 @@ en: {
       <tr><td>显示模式</td><td>标准列表或精简列表</td></tr>
       <tr><td>发射监管</td><td>N 分钟后自动停止发射（0 = 停用）</td></tr>
       <tr><td>无回应</td><td>N 次无回应后停止呼叫</td></tr>
+      <tr><td>收尾重发</td><td>通联尾声时对方若又呼叫，最多补发 N 次 RR73（0 = 关闭）</td></tr>
       <tr><td>回应 CQ 方案</td><td>自动回应 CQ 的优先策略</td></tr>
       <tr><td>排除已通联</td><td>跳过在选定时间窗口内已通联过的电台</td></tr>
       <tr><td>时间偏移</td><td>手动时钟修正（秒）</td></tr>
@@ -271,8 +277,8 @@ en: {
       <tr><td>竞赛模式（交换网格）</td><td>改送 <code>R</code> + 自己的网格取代信号报告，详见<a href="operating.html">「操作 FT8 / FT4」</a></td></tr>
       <tr><td>CQ 对象</td><td>编辑 CQ 可用的修饰词列表（DX、EU、TEST…）</td></tr>
       <tr><td>自动追踪 CQ</td><td>持续追踪出现的 CQ 呼叫</td></tr>
-      <tr><td>追踪呼号</td><td>要留在视线内的呼号，一出现就能抓到</td></tr>
-      <tr><td>排除前缀</td><td>自动回应永远不去回的呼号前缀</td></tr>
+      <tr><td>关注的呼号</td><td>要留在视线内的呼号，一出现就能抓到</td></tr>
+      <tr><td>排除的呼号前缀</td><td>自动回应永远不去回的呼号前缀</td></tr>
       <tr><td>显示已通联电台</td><td>已通联过的电台仍留在列表中，以删除线标示</td></tr>
       <tr><td>频率表</td><td>编辑程序提供的频段／频率对照表</td></tr>
     </table>`,
@@ -297,10 +303,10 @@ en: {
       <tr><td>清除 QSO 计数</td><td>重置本次运行的 QSO 计数器</td></tr>
       <tr><td>清除临时文件</td><td>删除日志分享的临时文件</td></tr>
       <tr><td>语言</td><td>界面语言，与系统语言各自独立</td></tr>
-      <tr><td>列表字号</td><td>解码与日志列表的文字大小</td></tr>
+      <tr><td>列表字型大小</td><td>解码与日志列表的文字大小</td></tr>
       <tr><td>小瀑布图（解码／呼叫）</td><td>在两个分页显示精简瀑布图，各有独立开关</td></tr>
       <tr><td>通联成功：闪屏／水波／闪光灯／QRZ 照片</td><td>四种各自独立的完成提示，详见<a href="logging.html">「通联日志」</a></td></tr>
-      <tr><td>清除缓存</td><td>清掉呼号追踪数据与日志缓存</td></tr>
+      <tr><td>清空存储数据</td><td>分别清掉关注的呼号、解码的消息与 SWL 记录</td></tr>
     </table>`,
 
   set_modes_title: 'JS8 / WSPR / SSB',
@@ -323,11 +329,11 @@ en: {
       <tr><td>QRZ.com API 密钥／自动上传</td><td>将完成的通联上传至 QRZ.com 日志簿</td></tr>
       <tr><td>PSKReporter</td><td>提交收听报告至全球传播地图</td></tr>
       <tr><td>Cloudlog / Wavelog</td><td>服务器地址、API Key 与 Station ID，并可测试连接，详见<a href="third-party.html">「第三方服务」</a></td></tr>
-      <tr><td>开机时自动备份</td><td>App 启动时备份日志数据库</td></tr>
-      <tr><td>间隔（天）／保留份数</td><td>多久备份一次，以及保留几份旧备份</td></tr>
+      <tr><td>启动时自动备份</td><td>App 启动时备份日志数据库</td></tr>
+      <tr><td>周期（天）／保留代数</td><td>多久备份一次，以及保留几份旧备份</td></tr>
       <tr><td>备份文件夹</td><td>备份文件的存放位置</td></tr>
       <tr><td>立即备份／还原备份</td><td>马上备份一份，或还原此前的备份</td></tr>
-      <tr><td>启动模式（SOTA / POTA）</td><td>把自己的山峰或公园编号写进每一笔通联记录</td></tr>
+      <tr><td>出勤模式（SOTA / POTA）</td><td>把自己的山峰或公园编号写进每一笔通联记录</td></tr>
       <tr><td>我的 SOTA／我的 POTA</td><td>启动模式开启时所使用的编号</td></tr>
     </table>`,
 },
@@ -339,6 +345,7 @@ en: {
   set_profile_text:  '設定は名前を付けた複数のプロファイルとして保存でき、ワンステップで切り替えられます。シャックの固定機、ポータブル機、クラブ局のように接続方式・ボーレート・CI-V アドレスがそれぞれ違う場合に便利です。プロファイル名の横のボタンで追加・名前の変更・削除ができます。',
   set_profile_note: 'すべての設定がプロファイルに属するわけではありません。属する項目はアプリ上で左端に<strong>紫色の帯</strong>が付きます。帯のない項目は全プロファイル共通です。',
 
+  set_profile_caption: '設定画面上部のプロファイル行と、その下の紫色の帯についての説明。（スクリーンショットは繁体字中国語の画面です。）',
   set_station_title: '自局',
   set_station_table: `
     <table>
@@ -374,6 +381,7 @@ en: {
       <tr><td>表示モード</td><td>標準表示または簡易表示</td></tr>
       <tr><td>送信ウォッチドッグ</td><td>N 分後に送信を自動停止（0 = 無効）</td></tr>
       <tr><td>無応答</td><td>応答のない送信サイクルが N 回で呼び出しを終了</td></tr>
+      <tr><td>73 の再送</td><td>交信の終わりに相手が再び呼んできた場合、RR73 を最大 N 回まで再送（0 = 無効）</td></tr>
       <tr><td>CQ 応答方式</td><td>CQ 自動応答の優先条件</td></tr>
       <tr><td>交信済みを除外</td><td>選んだ期間内に交信した局を飛ばします</td></tr>
       <tr><td>時刻オフセット</td><td>時計の手動補正（秒）</td></tr>
@@ -449,6 +457,7 @@ en: {
   set_profile_text:  'Настройки можно хранить в виде нескольких именованных профилей и переключать одним действием — удобно, когда вы работаете то на домашнем трансивере, то на носимом, то на коллективной станции, у каждого из которых свои тип подключения, скорость порта и адрес CI-V. Кнопки рядом с именем профиля позволяют добавить, переименовать или удалить его.',
   set_profile_note: 'К профилю относятся не все настройки. Те, что относятся, отмечены в приложении <strong>фиолетовой полосой</strong> у левого края; всё без полосы общее для всех профилей.',
 
+  set_profile_caption: 'Строка профиля вверху настроек и пояснение про фиолетовую полосу под ней. (На снимке — интерфейс на традиционном китайском.)',
   set_station_title: 'Станция',
   set_station_table: `
     <table>
@@ -484,6 +493,7 @@ en: {
       <tr><td>Режим отображения</td><td>Стандартный или упрощённый вид списка</td></tr>
       <tr><td>Сторожевой таймер</td><td>Автостоп передачи через N минут (0 — выключено)</td></tr>
       <tr><td>Без ответа</td><td>Прекратить вызов после N циклов без ответа</td></tr>
+      <tr><td>Повтор 73</td><td>Если в конце связи корреспондент зовёт снова, повторить RR73 до N раз (0 — выключено)</td></tr>
       <tr><td>Способ ответа на CQ</td><td>Правило приоритета для автоответа на CQ</td></tr>
       <tr><td>Исключать проведённые</td><td>Пропускать станции, сработанные за выбранный период</td></tr>
       <tr><td>Смещение времени</td><td>Ручная поправка часов в секундах</td></tr>
@@ -559,6 +569,7 @@ en: {
   set_profile_text:  'Ustawienia można przechowywać jako kilka nazwanych profili i przełączać jednym ruchem — przydaje się, gdy pracujesz raz na radiu domowym, raz na przenośnym, a raz na stacji klubowej, bo każde ma inny rodzaj połączenia, prędkość transmisji i adres CI-V. Przyciski obok nazwy profilu pozwalają dodać, zmienić nazwę lub usunąć profil.',
   set_profile_note: 'Nie wszystkie ustawienia należą do profilu. Te, które należą, mają w aplikacji <strong>fioletowy pasek</strong> przy lewej krawędzi; pozycje bez paska są wspólne dla wszystkich profili.',
 
+  set_profile_caption: 'Wiersz profilu na górze ustawień i objaśnienie fioletowego paska pod nim. (Zrzut przedstawia interfejs w chińskim tradycyjnym.)',
   set_station_title: 'Stacja',
   set_station_table: `
     <table>
@@ -594,6 +605,7 @@ en: {
       <tr><td>Tryb wyświetlania</td><td>Standardowy lub uproszczony układ listy</td></tr>
       <tr><td>Nadzorca nadawania</td><td>Automatyczne zatrzymanie po N minutach (0 = wyłączone)</td></tr>
       <tr><td>Brak odpowiedzi</td><td>Zakończ wywoływanie po N cyklach bez odpowiedzi</td></tr>
+      <tr><td>Powtórz 73</td><td>Jeśli po łączności stacja zawoła ponownie, ponów RR73 do N razy (0 = wyłączone)</td></tr>
       <tr><td>Sposób odpowiedzi na CQ</td><td>Zasada priorytetu dla automatycznej odpowiedzi na CQ</td></tr>
       <tr><td>Pomijaj przepracowane</td><td>Pomija stacje pracowane w wybranym okresie</td></tr>
       <tr><td>Przesunięcie czasu</td><td>Ręczna korekta zegara w sekundach</td></tr>
@@ -669,6 +681,7 @@ en: {
   set_profile_text:  'Los ajustes pueden guardarse como varios perfiles con nombre y cambiarse en un solo paso, algo cómodo cuando alternas entre el equipo de casa, uno portátil y una estación de radioclub, cada uno con su tipo de conexión, su velocidad en baudios y su dirección CI-V. Los botones junto al nombre del perfil permiten añadir, renombrar o borrar.',
   set_profile_note: 'No todos los ajustes pertenecen a un perfil. Los que sí lo hacen aparecen en la aplicación con una <strong>franja morada</strong> en el borde izquierdo; lo que no lleva franja es común a todos los perfiles.',
 
+  set_profile_caption: 'La fila de perfil en la parte superior de Ajustes, con la nota de la franja morada debajo. (La captura muestra la interfaz en chino tradicional.)',
   set_station_title: 'Estación',
   set_station_table: `
     <table>
@@ -704,6 +717,7 @@ en: {
       <tr><td>Modo de presentación</td><td>Lista estándar o simplificada</td></tr>
       <tr><td>Vigilante de TX</td><td>Detiene la transmisión tras N minutos (0 = desactivado)</td></tr>
       <tr><td>Sin respuesta</td><td>Deja de llamar tras N ciclos sin contestación</td></tr>
+      <tr><td>Reenviar 73</td><td>Si al final del QSO la otra estación vuelve a llamar, reenvía RR73 hasta N veces (0 = desactivado)</td></tr>
       <tr><td>Método de CQ</td><td>Estrategia de prioridad de la respuesta automática a CQ</td></tr>
       <tr><td>Excluir QSO ya hechos</td><td>Salta las estaciones trabajadas dentro del periodo elegido</td></tr>
       <tr><td>Desfase horario</td><td>Corrección manual del reloj en segundos</td></tr>
@@ -779,6 +793,7 @@ en: {
   set_profile_text:  'Οι ρυθμίσεις μπορούν να κρατιούνται ως πολλά ονομασμένα προφίλ και να εναλλάσσονται με μία κίνηση — βολικό όταν μετακινείστε ανάμεσα σε σταθερό πομποδέκτη, φορητό και σταθμό συλλόγου, καθένας με τον δικό του τύπο σύνδεσης, ρυθμό baud και διεύθυνση CI-V. Με τα κουμπιά δίπλα στο όνομα του προφίλ προσθέτετε, μετονομάζετε ή διαγράφετε.',
   set_profile_note: 'Δεν ανήκουν όλες οι ρυθμίσεις σε προφίλ. Όσες ανήκουν σημειώνονται στην εφαρμογή με μια <strong>μοβ λωρίδα</strong> στην αριστερή άκρη· ό,τι δεν έχει λωρίδα είναι κοινό για όλα τα προφίλ.',
 
+  set_profile_caption: 'Η γραμμή προφίλ στο επάνω μέρος των Ρυθμίσεων και η σημείωση για τη μοβ λωρίδα από κάτω. (Η οθόνη είναι στα παραδοσιακά κινεζικά.)',
   set_station_title: 'Σταθμός',
   set_station_table: `
     <table>
@@ -814,6 +829,7 @@ en: {
       <tr><td>Λειτουργία εμφάνισης</td><td>Τυπική ή απλή διάταξη λίστας</td></tr>
       <tr><td>Επιτηρητής εκπομπής</td><td>Αυτόματη διακοπή εκπομπής μετά από N λεπτά (0 = ανενεργό)</td></tr>
       <tr><td>Χωρίς απάντηση</td><td>Διακοπή κλήσης μετά από N κύκλους χωρίς απάντηση</td></tr>
+      <tr><td>Επανάληψη 73</td><td>Αν στο τέλος της επαφής ο άλλος σταθμός καλέσει ξανά, επανάληψη RR73 έως N φορές (0 = ανενεργό)</td></tr>
       <tr><td>Μέθοδος CQ</td><td>Στρατηγική προτεραιότητας για την αυτόματη απάντηση σε CQ</td></tr>
       <tr><td>Εξαίρεση ολοκληρωμένων επαφών</td><td>Παράλειψη σταθμών με τους οποίους έγινε επαφή στο επιλεγμένο διάστημα</td></tr>
       <tr><td>Απόκλιση ώρας</td><td>Χειροκίνητη διόρθωση ρολογιού σε δευτερόλεπτα</td></tr>

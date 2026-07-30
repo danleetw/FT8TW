@@ -303,6 +303,11 @@ ol.steps li::before {
   font-size: 13px;
   color: var(--text-muted);
 }
+/* 局部截圖（例如狀態列一條）不該套用手機外觀的圓角與寬度上限 */
+.screenshot.screenshot-wide {
+  max-width: 520px;
+  border-radius: 6px;
+}
 
 /* ── Footer ──────────────────────────────────────────────────── */
 footer {

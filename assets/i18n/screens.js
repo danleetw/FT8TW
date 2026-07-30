@@ -20,6 +20,7 @@ en: {
   screens_level_text:  'The status bar shows how loud the radio audio is by the time it reaches the app — what the decoder actually sees. Too loud clips and distorts; too quiet lets quantisation noise take a bigger share. Neither announces itself: both simply show up as a poor decode rate. The reading turns colour when it drifts out of range, and tapping it opens a fuller explanation.',
   screens_level_note: 'A useful working range is roughly <strong>−45 to −18 dBFS RMS</strong>. Too high — turn down the AF or DATA output on the radio, or the input gain of the audio interface; too low — turn it up the same way. The exact boundaries vary between radios, phones and USB codecs, so treat the numbers as a guide and judge by whether decoding is reliable. No level is shown during transmit slots or in acoustic mode, where the reading would be misleading.',
 
+  screens_level_caption: 'The status bar showing the input level; here it reads too low, so the value is highlighted. (Screenshot shows the Traditional Chinese interface.)',
   screens_miniwf_title: 'Mini Waterfall',
   screens_miniwf_text:  'A compact waterfall strip can be shown on the Decode and Calling tabs, so you can watch band activity without leaving the list for the full Spectrum screen. Each tab has its own switch in Settings.',
 
@@ -74,6 +75,7 @@ en: {
   screens_level_text:  '狀態列會顯示電台音訊傳到 App 時的音量大小，也就是解碼器實際看到的訊號。太大會削峰失真，太小則讓量化雜訊佔掉更多比例。這兩種情況都不會主動報錯，只會表現為解碼率變差。數值超出合理範圍時會變色，點一下可展開完整說明。',
   screens_level_note: '合用的範圍大約是 <strong>−45 至 −18 dBFS RMS</strong>。太高就把電台的 AF 或 DATA 輸出調小，或降低音效介面的輸入增益；太低則反向調大。實際邊界會因電台、手機與 USB 音效晶片而異，所以請把數字當成參考，最終仍以解碼是否穩定為準。發射時段與聲學（喇叭麥克風）模式下不顯示數值，因為那時的讀數會誤導人。',
 
+  screens_level_caption: '狀態列上的輸入電平；圖中正處於過低的狀態，因此數值被特別標示。',
   screens_miniwf_title: '小瀑布圖',
   screens_miniwf_text:  '解碼與呼叫兩個分頁都可以顯示一條精簡的瀑布圖，讓您不必離開清單切到完整的頻譜畫面，也能看到波段上的活動。兩個分頁在設置中各有獨立開關。',
 
@@ -128,6 +130,7 @@ en: {
   screens_level_text:  '状态栏会显示电台音频传到 App 时的音量大小，也就是解码器实际看到的信号。太大会削峰失真，太小则让量化噪声占掉更多比例。这两种情况都不会主动报错，只会表现为解码率变差。数值超出合理范围时会变色，点一下可展开完整说明。',
   screens_level_note: '合用的范围大约是 <strong>−45 至 −18 dBFS RMS</strong>。太高就把电台的 AF 或 DATA 输出调小，或降低音频接口的输入增益；太低则反向调大。实际边界会因电台、手机与 USB 音频芯片而异，所以请把数字当成参考，最终仍以解码是否稳定为准。发射时隙与声学（扬声器麦克风）模式下不显示数值，因为那时的读数会误导人。',
 
+  screens_level_caption: '状态栏上的输入电平；图中正处于过低的状态，因此数值被特别标示。（截图为繁体中文界面。）',
   screens_miniwf_title: '小瀑布图',
   screens_miniwf_text:  '解码与呼叫两个分页都可以显示一条精简的瀑布图，让您不必离开列表切到完整的频谱界面，也能看到波段上的活动。两个分页在设置中各有独立开关。',
 
@@ -182,6 +185,7 @@ en: {
   screens_level_text:  'ステータスバーには、無線機の音声がアプリに届いた時点での大きさ、つまりデコーダーが実際に見ている信号のレベルが表示されます。大きすぎるとクリップして歪み、小さすぎると量子化ノイズの割合が増えます。どちらもエラーとしては現れず、デコード率の低下という形でしか分かりません。適正範囲から外れると表示色が変わり、タップすると詳しい説明が開きます。',
   screens_level_note: '目安となる範囲はおよそ <strong>−45〜−18 dBFS RMS</strong> です。大きすぎる場合は無線機の AF または DATA 出力を絞るか、オーディオインターフェースの入力ゲインを下げます。小さすぎる場合は逆に上げます。実際の境目は無線機・スマートフォン・USB コーデックによって変わるため、数値は目安と考え、最終的にはデコードが安定しているかどうかで判断してください。送信スロット中と音響（スピーカーとマイク）モードでは、読み取り値が誤解を招くため表示されません。',
 
+  screens_level_caption: 'ステータスバーの入力レベル。ここでは低すぎる状態のため、値が強調表示されています。（スクリーンショットは繁体字中国語の画面です。）',
   screens_miniwf_title: 'ミニウォーターフォール',
   screens_miniwf_text:  'デコードタブと呼び出しタブには小さなウォーターフォールを表示できます。一覧から離れてスペクトラム画面へ移らなくてもバンドの状況が分かります。タブごとに設定で個別に切り替えられます。',
 
@@ -236,6 +240,7 @@ en: {
   screens_level_text:  'В строке состояния показано, насколько громким звук трансивера доходит до приложения, то есть что реально видит декодер. Слишком громкий сигнал ограничивается и искажается, слишком тихий отдаёт большую долю шуму квантования. Ни то, ни другое не объявляет о себе прямо: заметно лишь по ухудшению декодирования. При выходе за пределы показание меняет цвет, а по нажатию открывается подробное пояснение.',
   screens_level_note: 'Рабочий диапазон — примерно <strong>от −45 до −18 dBFS RMS</strong>. Слишком высоко — убавьте выход AF или DATA на трансивере либо входное усиление звукового интерфейса; слишком низко — прибавьте тем же способом. Точные границы зависят от трансивера, телефона и USB-кодека, поэтому считайте числа ориентиром и судите по тому, надёжно ли идёт декодирование. Во время интервалов передачи и в акустическом режиме уровень не показывается: там показание вводило бы в заблуждение.',
 
+  screens_level_caption: 'Строка состояния с уровнем входа; здесь он слишком низкий, поэтому значение выделено. (На снимке — интерфейс на традиционном китайском.)',
   screens_miniwf_title: 'Мини-водопад',
   screens_miniwf_text:  'На вкладках декодера и вызова можно показать узкую полоску водопада, чтобы следить за активностью на диапазоне, не уходя из списка на полноэкранный спектр. У каждой вкладки свой переключатель в настройках.',
 
@@ -290,6 +295,7 @@ en: {
   screens_level_text:  'Pasek stanu pokazuje, jak głośny jest dźwięk z radia w chwili, gdy dociera do aplikacji — czyli to, co naprawdę widzi dekoder. Za głośny sygnał się obcina i zniekształca, za cichy oddaje większą część szumowi kwantyzacji. Żadne z tego nie zgłasza się samo: objawia się wyłącznie gorszą skutecznością dekodowania. Po wyjściu poza zakres odczyt zmienia kolor, a dotknięcie otwiera pełniejsze wyjaśnienie.',
   screens_level_note: 'Praktyczny zakres to mniej więcej <strong>od −45 do −18 dBFS RMS</strong>. Za wysoko — zmniejsz wyjście AF lub DATA w radiu albo wzmocnienie wejściowe interfejsu audio; za nisko — zwiększ w ten sam sposób. Dokładne granice zależą od radia, telefonu i kodeka USB, więc traktuj liczby orientacyjnie i oceniaj po tym, czy dekodowanie jest niezawodne. W czasie nadawania oraz w trybie akustycznym poziom nie jest pokazywany, bo odczyt byłby mylący.',
 
+  screens_level_caption: 'Pasek stanu z poziomem wejściowym; tutaj jest za niski, więc wartość jest wyróżniona. (Zrzut przedstawia interfejs w chińskim tradycyjnym.)',
   screens_miniwf_title: 'Mały wodospad',
   screens_miniwf_text:  'Na zakładkach dekodowania i wywołania można wyświetlić wąski pasek wodospadu, aby obserwować aktywność w paśmie bez opuszczania listy na rzecz pełnego ekranu widma. Każda zakładka ma własny przełącznik w ustawieniach.',
 
@@ -344,6 +350,7 @@ en: {
   screens_level_text:  'La barra de estado muestra con qué volumen llega el audio del equipo a la aplicación, es decir, lo que ve realmente el decodificador. Si es demasiado alto recorta y distorsiona; si es demasiado bajo, el ruido de cuantificación se lleva una parte mayor. Ninguno de los dos casos se anuncia solo: únicamente se nota como una peor tasa de decodificación. La lectura cambia de color al salirse del margen y, al pulsarla, se abre una explicación más completa.',
   screens_level_note: 'Un margen práctico ronda los <strong>−45 a −18 dBFS RMS</strong>. Demasiado alto: baja la salida de AF o DATA del equipo, o la ganancia de entrada de la interfaz de audio; demasiado bajo: súbela del mismo modo. Los límites exactos varían según el equipo, el teléfono y el códec USB, así que toma las cifras como orientación y juzga por si la decodificación es fiable. Durante los intervalos de transmisión y en modo acústico no se muestra nivel, porque la lectura sería engañosa.',
 
+  screens_level_caption: 'La barra de estado con el nivel de entrada; aquí está demasiado bajo, por eso el valor aparece resaltado. (La captura muestra la interfaz en chino tradicional.)',
   screens_miniwf_title: 'Mini cascada',
   screens_miniwf_text:  'Las pestañas de decodificación y de llamada pueden mostrar una franja de cascada compacta, para seguir la actividad de la banda sin abandonar la lista para ir a la pantalla de espectro completa. Cada pestaña tiene su propio conmutador en Ajustes.',
 
@@ -398,6 +405,7 @@ en: {
   screens_level_text:  'Η γραμμή κατάστασης δείχνει πόσο δυνατός φτάνει ο ήχος του πομποδέκτη στην εφαρμογή — δηλαδή τι βλέπει πραγματικά ο αποκωδικοποιητής. Πολύ δυνατός ψαλιδίζεται και παραμορφώνεται· πολύ χαμηλός αφήνει μεγαλύτερο μερίδιο στον θόρυβο κβαντισμού. Κανένα από τα δύο δεν δηλώνεται ρητά: φαίνονται μόνο ως χειρότερο ποσοστό αποκωδικοποίησης. Όταν η τιμή βγει εκτός ορίων αλλάζει χρώμα, και με πάτημα ανοίγει πληρέστερη εξήγηση.',
   screens_level_note: 'Ένα πρακτικό εύρος είναι περίπου <strong>−45 έως −18 dBFS RMS</strong>. Πολύ ψηλά — χαμηλώστε την έξοδο AF ή DATA του πομποδέκτη ή την ενίσχυση εισόδου της κάρτας ήχου· πολύ χαμηλά — ανεβάστε την αντίστοιχα. Τα ακριβή όρια διαφέρουν ανά πομποδέκτη, τηλέφωνο και codec USB, οπότε πάρτε τους αριθμούς ως οδηγό και κρίνετε από το αν η αποκωδικοποίηση είναι αξιόπιστη. Κατά τις χρονοθυρίδες εκπομπής και στην ακουστική λειτουργία δεν εμφανίζεται στάθμη, γιατί η ένδειξη θα ήταν παραπλανητική.',
 
+  screens_level_caption: 'Η γραμμή κατάστασης με τη στάθμη εισόδου· εδώ είναι πολύ χαμηλή, γι’ αυτό η τιμή επισημαίνεται. (Η οθόνη είναι στα παραδοσιακά κινεζικά.)',
   screens_miniwf_title: 'Μικρός καταρράκτης',
   screens_miniwf_text:  'Στις καρτέλες αποκωδικοποίησης και κλήσης μπορεί να εμφανίζεται μια συμπαγής λωρίδα καταρράκτη, ώστε να παρακολουθείτε τη δραστηριότητα της μπάντας χωρίς να φεύγετε από τη λίστα για την πλήρη οθόνη φάσματος. Κάθε καρτέλα έχει δικό της διακόπτη στις Ρυθμίσεις.',
 

@@ -51,14 +51,14 @@ en: {
   third_cloudlog_setup: `
     <ol>
       <li>進入設置 → <strong>Cloudlog / Wavelog</strong>。</li>
-      <li>填入您站台的<strong>伺服器位址</strong>，例如 <code>https://log.example.com</code>。</li>
+      <li>填入您站台的<strong>伺服器地址</strong>，例如 <code>https://log.example.com</code>。</li>
       <li>填入在 Cloudlog／Wavelog 網頁介面中建立的 <strong>API Key</strong>。</li>
-      <li>填入要歸屬的 <strong>Station ID</strong>（電台設定檔編號）。</li>
+      <li>填入要歸屬的<strong>站點 ID</strong>（電台設定檔編號）。</li>
       <li>上場前先點<strong>測試</strong>，確認位址與金鑰無誤。</li>
       <li>開啟<strong>自動上傳至 Cloudlog / Wavelog</strong>。</li>
     </ol>`,
   third_cloudlog_note: '<strong>API 金鑰必須是可讀寫的。</strong>唯讀金鑰能通過連線測試卻無法上傳——測試會明確指出這一點，讓您在真正倚賴它之前就先修正。',
-  third_cloudlog_manual: '已經記錄過的通聯也能事後補傳：選定日期範圍即可批次上傳。完成後會回報成功與失敗的筆數，避免把只傳了一部分誤當成全部傳完。',
+  third_cloudlog_manual: '已經記錄過的通聯也能事後補傳：選定日期範圍後點<strong>手動上傳</strong>即可批次送出。完成後會回報成功與失敗的筆數，避免把只傳了一部分誤當成全部傳完。',
 
   third_psk_title: 'PSKReporter',
   third_psk_text:  '<a href="https://pskreporter.info" target="_blank">PSKReporter</a> 是全球無線電傳播地圖服務。FT8TW 可自動提交收聽報告，無需帳號。在設置中開啟 PSKReporter 功能。您的呼號、網格及收聽到的電台資訊將透過 HTTPS 匿名提交。',
@@ -84,12 +84,12 @@ en: {
       <li>进入设置 → <strong>Cloudlog / Wavelog</strong>。</li>
       <li>填入您站点的<strong>服务器地址</strong>，例如 <code>https://log.example.com</code>。</li>
       <li>填入在 Cloudlog／Wavelog 网页界面中创建的 <strong>API Key</strong>。</li>
-      <li>填入要归属的 <strong>Station ID</strong>（电台配置编号）。</li>
+      <li>填入要归属的<strong>站点 ID</strong>（电台配置编号）。</li>
       <li>上场前先点<strong>测试</strong>，确认地址与密钥无误。</li>
       <li>开启<strong>自动上传至 Cloudlog / Wavelog</strong>。</li>
     </ol>`,
   third_cloudlog_note: '<strong>API 密钥必须是可读写的。</strong>只读密钥能通过连接测试却无法上传——测试会明确指出这一点，让您在真正依赖它之前就先修正。',
-  third_cloudlog_manual: '已经记录过的通联也能事后补传：选定日期范围即可批量上传。完成后会报告成功与失败的条数，避免把只传了一部分误当成全部传完。',
+  third_cloudlog_manual: '已经记录过的通联也能事后补传：选定日期范围后点<strong>手动上传</strong>即可批量发出。完成后会报告成功与失败的条数，避免把只传了一部分误当成全部传完。',
 
   third_psk_title: 'PSKReporter',
   third_psk_text:  '<a href="https://pskreporter.info" target="_blank">PSKReporter</a> 是全球无线电传播地图服务。FT8TW 可自动提交收听报告，无需账号。在设置中开启 PSKReporter 功能。您的呼号、网格及收听到的电台信息将通过 HTTPS 匿名提交。',
