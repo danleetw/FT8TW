@@ -40,6 +40,22 @@ en: {
     </ul>`,
   op_autocq_filter: 'Use <strong>Exclude QSOs</strong> in Settings to automatically skip stations already worked within a selected time window (1 hour, 4 hours, Today, 30 days, or 365 days).',
 
+  op_autocq_lists: 'Two callsign lists refine this further: <strong>Follow</strong> keeps specific callsigns in view so you can catch them when they appear, while <strong>Excluded prefixes</strong> skips whole prefixes you do not want the automation to answer.',
+
+  op_modifier_title: 'CQ Modifier',
+  op_modifier_text:  'A CQ can carry a geographic or activity modifier — <code>CQ DX</code>, <code>CQ EU</code>, <code>CQ TEST</code> and so on. The list is editable, so you can add the modifier a particular event calls for instead of being limited to the built-in entries.',
+
+  op_contest_title: 'Contest Mode (Grid Exchange)',
+  op_contest_text:  'Some contests exchange grid locators instead of signal reports — ARRL Digital, WW Digi and CQ WW VHF among them. Enable <strong>Contest mode (grid exchange)</strong> in Settings and the second transmission sends <code>R</code> followed by your own grid, in place of the usual report:',
+  op_contest_seq: `
+    <ol>
+      <li>You call <code>CQ TEST</code> — switching the mode on sets the CQ modifier to <code>TEST</code> for you, and restores the previous value when you switch it off.</li>
+      <li>The other station answers with their grid.</li>
+      <li>You send <code>R</code> plus your grid instead of a signal report.</li>
+      <li>The other station confirms and the QSO is logged.</li>
+    </ol>`,
+  op_contest_note: 'The exchange is one transmit slot shorter than an ordinary FT8 QSO, so contest runs go faster. Incoming <code>R + grid</code> messages are always understood whether or not this switch is on — it only changes what <em>you</em> send.',
+
   op_watchdog_title: 'TX Watchdog',
   op_watchdog_text:  'The TX watchdog automatically stops transmitting after a configurable time limit (in minutes) to prevent accidentally prolonged transmission. Set the limit in Settings → TX watchdog. Set to 0 to disable.',
 
@@ -90,6 +106,22 @@ en: {
       <li><strong>ITU / CQ / DX 分區優先</strong> — 依指定分區類型優先排序（適合獎項追求）</li>
     </ul>`,
   op_autocq_filter: '在設置中使用<strong>排除已通聯</strong>，可自動跳過在選定時間窗口內（1 小時、4 小時、今天、30 天、365 天）已通聯過的電台。',
+
+  op_autocq_lists: '另有兩份呼號清單可進一步調整：<strong>追蹤呼號</strong>會讓指定的呼號持續留在視線內，一出現就能抓到；<strong>排除前綴</strong>則整批跳過您不想讓自動回應去回的前綴。',
+
+  op_modifier_title: 'CQ 對象（修飾詞）',
+  op_modifier_text:  'CQ 呼叫可以附加地理或活動修飾詞，例如 <code>CQ DX</code>、<code>CQ EU</code>、<code>CQ TEST</code>。這份清單可以自行編輯，遇到特定活動需要的修飾詞可以自己加，不受內建項目限制。',
+
+  op_contest_title: '競賽模式（交換網格）',
+  op_contest_text:  '部分競賽交換的是網格座標而非訊號報告，例如 ARRL Digital、WW Digi 及 CQ WW VHF。在設置中開啟<strong>競賽模式（交換網格）</strong>後，第二個發射時段會改送 <code>R</code> 加上自己的網格，取代原本的訊號報告：',
+  op_contest_seq: `
+    <ol>
+      <li>您呼叫 <code>CQ TEST</code>——開啟此模式時會自動把 CQ 對象設為 <code>TEST</code>，關閉時再還原成原本的值。</li>
+      <li>對方以自己的網格回應。</li>
+      <li>您送出 <code>R</code> 加上自己的網格，而不是訊號報告。</li>
+      <li>對方確認後完成通聯並記錄。</li>
+    </ol>`,
+  op_contest_note: '這樣的交換比一般 FT8 通聯少一個發射時段，競賽時節奏更快。收到的 <code>R + 網格</code> 訊息無論此開關是否開啟都能正確辨識——它只改變<em>您自己</em>送出的內容。',
 
   op_watchdog_title: '發射監管（TX Watchdog）',
   op_watchdog_text:  '發射監管功能在設定的分鐘數後自動停止發射，防止意外長時間佔用頻道。在設置 → 發射監管中設定時間限制，設為 0 表示停用。',
@@ -142,6 +174,22 @@ en: {
     </ul>`,
   op_autocq_filter: '在设置中使用<strong>排除已通联</strong>，可自动跳过在选定时间窗口内（1 小时、4 小时、今天、30 天、365 天）已通联过的电台。',
 
+  op_autocq_lists: '另有两份呼号列表可进一步调整：<strong>追踪呼号</strong>会让指定的呼号持续留在视线内，一出现就能抓到；<strong>排除前缀</strong>则整批跳过您不想让自动回应去回的前缀。',
+
+  op_modifier_title: 'CQ 对象（修饰词）',
+  op_modifier_text:  'CQ 呼叫可以附加地理或活动修饰词，例如 <code>CQ DX</code>、<code>CQ EU</code>、<code>CQ TEST</code>。这份列表可以自行编辑，遇到特定活动需要的修饰词可以自己加，不受内置项目限制。',
+
+  op_contest_title: '竞赛模式（交换网格）',
+  op_contest_text:  '部分竞赛交换的是网格坐标而非信号报告，例如 ARRL Digital、WW Digi 及 CQ WW VHF。在设置中开启<strong>竞赛模式（交换网格）</strong>后，第二个发射时隙会改送 <code>R</code> 加上自己的网格，取代原本的信号报告：',
+  op_contest_seq: `
+    <ol>
+      <li>您呼叫 <code>CQ TEST</code>——开启此模式时会自动把 CQ 对象设为 <code>TEST</code>，关闭时再还原成原本的值。</li>
+      <li>对方以自己的网格回应。</li>
+      <li>您送出 <code>R</code> 加上自己的网格，而不是信号报告。</li>
+      <li>对方确认后完成通联并记录。</li>
+    </ol>`,
+  op_contest_note: '这样的交换比一般 FT8 通联少一个发射时隙，竞赛时节奏更快。收到的 <code>R + 网格</code> 消息无论此开关是否开启都能正确识别——它只改变<em>您自己</em>送出的内容。',
+
   op_watchdog_title: '发射监管（TX Watchdog）',
   op_watchdog_text:  '发射监管功能在设定的分钟数后自动停止发射，防止意外长时间占用频道。在设置 → 发射监管中设定时间限制，设为 0 表示停用。',
 
@@ -192,6 +240,22 @@ en: {
       <li><strong>ITU / CQ / DX ゾーン優先</strong> — アワード狙いで特定のゾーン種別を優先します</li>
     </ul>`,
   op_autocq_filter: '設定の<strong>交信済みを除外</strong>を使うと、選んだ期間内（1 時間、4 時間、今日、30 日、365 日）にすでに交信した局を自動的に飛ばします。',
+
+  op_autocq_lists: 'さらに 2 つのコールサイン一覧で細かく調整できます。<strong>フォロー</strong>は指定した局を見失わないように表示し続け、<strong>除外プリフィックス</strong>は自動応答させたくないプリフィックスをまとめて飛ばします。',
+
+  op_modifier_title: 'CQ の対象（修飾語）',
+  op_modifier_text:  'CQ には地域や運用の修飾語を付けられます（<code>CQ DX</code>、<code>CQ EU</code>、<code>CQ TEST</code> など）。この一覧は編集できるので、特定のイベントで必要な修飾語を自分で追加でき、初期状態の項目だけに縛られません。',
+
+  op_contest_title: 'コンテストモード（グリッド交換）',
+  op_contest_text:  'ARRL Digital、WW Digi、CQ WW VHF など、シグナルレポートではなくグリッドロケーターを交換するコンテストがあります。設定で<strong>コンテストモード（グリッド交換）</strong>を有効にすると、2 回目の送信でレポートの代わりに <code>R</code> と自局のグリッドを送ります:',
+  op_contest_seq: `
+    <ol>
+      <li>自局が <code>CQ TEST</code> を出します。モードを有効にすると CQ の対象が自動的に <code>TEST</code> になり、無効に戻すと元の値に戻ります。</li>
+      <li>相手局が自分のグリッドで応答します。</li>
+      <li>シグナルレポートではなく <code>R</code> と自局のグリッドを送ります。</li>
+      <li>相手局が確認して交信が成立し、ログに記録されます。</li>
+    </ol>`,
+  op_contest_note: 'この交換は通常の FT8 交信より送信スロットが 1 つ少なく、コンテストではその分テンポが上がります。受信した <code>R + グリッド</code> はこのスイッチの状態に関係なく常に正しく解釈されます。変わるのは<em>自分が送る内容</em>だけです。',
 
   op_watchdog_title: '送信ウォッチドッグ',
   op_watchdog_text:  '送信ウォッチドッグは設定した分数で送信を自動停止し、意図しない長時間送信を防ぎます。設定 → 送信ウォッチドッグ で上限を指定します。0 にすると無効です。',
@@ -244,6 +308,22 @@ en: {
     </ul>`,
   op_autocq_filter: 'Параметр <strong>Исключать проведённые</strong> в настройках позволяет автоматически пропускать станции, с которыми связь уже была в выбранном интервале (1 час, 4 часа, сегодня, 30 дней или 365 дней).',
 
+  op_autocq_lists: 'Уточнить выбор помогают два списка позывных: <strong>Отслеживать</strong> держит нужные позывные на виду, чтобы не пропустить их появление, а <strong>Исключаемые префиксы</strong> целиком пропускают префиксы, которым автоответ отвечать не должен.',
+
+  op_modifier_title: 'Уточнение CQ',
+  op_modifier_text:  'К вызову CQ можно добавить географическое или тематическое уточнение — <code>CQ DX</code>, <code>CQ EU</code>, <code>CQ TEST</code> и другие. Список редактируется, поэтому нужное для конкретного мероприятия уточнение можно добавить самому, не ограничиваясь встроенными вариантами.',
+
+  op_contest_title: 'Контестовый режим (обмен локаторами)',
+  op_contest_text:  'В части соревнований обмениваются локаторами, а не рапортами: ARRL Digital, WW Digi, CQ WW VHF и другие. Включите в настройках <strong>контестовый режим (обмен локаторами)</strong>, и во второй передаче вместо обычного рапорта пойдёт <code>R</code> и ваш локатор:',
+  op_contest_seq: `
+    <ol>
+      <li>Вы даёте <code>CQ TEST</code> — при включении режима уточнение CQ автоматически становится <code>TEST</code>, а при выключении возвращается прежнее значение.</li>
+      <li>Корреспондент отвечает своим локатором.</li>
+      <li>Вы отправляете <code>R</code> и свой локатор вместо рапорта.</li>
+      <li>Корреспондент подтверждает, связь состоялась и заносится в журнал.</li>
+    </ol>`,
+  op_contest_note: 'Такой обмен на один интервал передачи короче обычного QSO в FT8, поэтому в соревновании темп выше. Приходящие сообщения <code>R + локатор</code> распознаются всегда, независимо от этого переключателя: он меняет только то, что передаёте <em>вы</em>.',
+
   op_watchdog_title: 'Сторожевой таймер передачи',
   op_watchdog_text:  'Сторожевой таймер автоматически прекращает передачу по истечении заданного времени (в минутах), чтобы исключить случайно затянувшуюся передачу. Предел задаётся в Настройки → Сторожевой таймер. Значение 0 отключает его.',
 
@@ -294,6 +374,22 @@ en: {
       <li><strong>Priorytet stref ITU / CQ / DX</strong> — preferuje wybrane rodzaje stref przy polowaniu na dyplomy</li>
     </ul>`,
   op_autocq_filter: 'Opcja <strong>Pomijaj przepracowane</strong> w ustawieniach automatycznie pomija stacje, z którymi łączność odbyła się w wybranym okresie (1 godzina, 4 godziny, dziś, 30 dni lub 365 dni).',
+
+  op_autocq_lists: 'Wybór doprecyzowują dwie listy znaków: <strong>Obserwowane</strong> utrzymuje wskazane znaki na widoku, by nie przegapić ich pojawienia się, a <strong>Wykluczone prefiksy</strong> pomijają w całości prefiksy, na które automat nie ma odpowiadać.',
+
+  op_modifier_title: 'Dopisek do CQ',
+  op_modifier_text:  'Do wywołania CQ można dodać określenie geograficzne lub tematyczne — <code>CQ DX</code>, <code>CQ EU</code>, <code>CQ TEST</code> i inne. Listę można edytować, więc określenie potrzebne na daną imprezę dopiszesz sam, bez ograniczania się do wpisów wbudowanych.',
+
+  op_contest_title: 'Tryb zawodów (wymiana lokatorów)',
+  op_contest_text:  'W części zawodów wymienia się lokatory zamiast raportów — m.in. ARRL Digital, WW Digi i CQ WW VHF. Po włączeniu w ustawieniach <strong>trybu zawodów (wymiana lokatorów)</strong> druga transmisja wysyła <code>R</code> wraz z twoim lokatorem zamiast zwykłego raportu:',
+  op_contest_seq: `
+    <ol>
+      <li>Wywołujesz <code>CQ TEST</code> — włączenie trybu samo ustawia dopisek CQ na <code>TEST</code>, a wyłączenie przywraca poprzednią wartość.</li>
+      <li>Stacja odpowiada swoim lokatorem.</li>
+      <li>Wysyłasz <code>R</code> i swój lokator zamiast raportu.</li>
+      <li>Stacja potwierdza, łączność dochodzi do skutku i trafia do dziennika.</li>
+    </ol>`,
+  op_contest_note: 'Taka wymiana jest o jeden okres nadawania krótsza od zwykłej łączności FT8, więc w zawodach tempo rośnie. Odbierane wiadomości <code>R + lokator</code> są rozpoznawane zawsze, niezależnie od tego przełącznika — zmienia on tylko to, co nadajesz <em>ty</em>.',
 
   op_watchdog_title: 'Nadzorca nadawania',
   op_watchdog_text:  'Nadzorca nadawania automatycznie przerywa nadawanie po ustawionym czasie (w minutach), aby zapobiec przypadkowemu przedłużonemu nadawaniu. Limit ustawisz w Ustawienia → Nadzorca nadawania. Wartość 0 wyłącza tę funkcję.',
@@ -346,6 +442,22 @@ en: {
     </ul>`,
   op_autocq_filter: 'Usa <strong>Excluir QSO ya hechos</strong> en Ajustes para saltar automáticamente las estaciones ya trabajadas dentro del periodo elegido (1 hora, 4 horas, hoy, 30 días o 365 días).',
 
+  op_autocq_lists: 'Dos listas de indicativos afinan aún más el comportamiento: <strong>Seguir</strong> mantiene a la vista los indicativos que te interesan para no perderlos cuando aparezcan, y <strong>Prefijos excluidos</strong> salta por completo los prefijos a los que no quieres que conteste la automatización.',
+
+  op_modifier_title: 'Modificador de CQ',
+  op_modifier_text:  'Un CQ puede llevar un modificador geográfico o de actividad: <code>CQ DX</code>, <code>CQ EU</code>, <code>CQ TEST</code>, etc. La lista es editable, así que puedes añadir el modificador que exija un evento concreto sin limitarte a las entradas predefinidas.',
+
+  op_contest_title: 'Modo concurso (intercambio de localizador)',
+  op_contest_text:  'Algunos concursos intercambian localizadores en lugar de informes de señal: ARRL Digital, WW Digi y CQ WW VHF entre otros. Activa <strong>Modo concurso (intercambio de localizador)</strong> en Ajustes y la segunda transmisión enviará <code>R</code> seguido de tu localizador en lugar del informe habitual:',
+  op_contest_seq: `
+    <ol>
+      <li>Llamas <code>CQ TEST</code>: al activar el modo, el modificador de CQ pasa solo a <code>TEST</code>, y al desactivarlo se restaura el valor anterior.</li>
+      <li>La otra estación responde con su localizador.</li>
+      <li>Envías <code>R</code> y tu localizador en lugar del informe de señal.</li>
+      <li>La otra estación confirma, el QSO se completa y se registra.</li>
+    </ol>`,
+  op_contest_note: 'El intercambio es un intervalo de transmisión más corto que un QSO normal de FT8, así que el ritmo del concurso es más rápido. Los mensajes <code>R + localizador</code> que recibas se interpretan siempre, esté o no activado este conmutador: solo cambia lo que envías <em>tú</em>.',
+
   op_watchdog_title: 'Vigilante de transmisión',
   op_watchdog_text:  'El vigilante de transmisión detiene automáticamente la emisión tras un límite de tiempo configurable (en minutos) para evitar transmisiones prolongadas por descuido. Fija el límite en Ajustes → Vigilante de TX. Ponlo a 0 para desactivarlo.',
 
@@ -396,6 +508,22 @@ en: {
       <li><strong>Προτεραιότητα ζώνης ITU / CQ / DX</strong> — προτιμά συγκεκριμένους τύπους ζώνης για κυνήγι διπλωμάτων</li>
     </ul>`,
   op_autocq_filter: 'Με την επιλογή <strong>Εξαίρεση ολοκληρωμένων επαφών</strong> στις Ρυθμίσεις παραλείπονται αυτόματα σταθμοί με τους οποίους έχει ήδη γίνει επαφή μέσα στο επιλεγμένο διάστημα (1 ώρα, 4 ώρες, σήμερα, 30 ημέρες ή 365 ημέρες).',
+
+  op_autocq_lists: 'Δύο λίστες διακριτικών ρυθμίζουν περαιτέρω τη συμπεριφορά: η <strong>Παρακολούθηση</strong> κρατά συγκεκριμένα διακριτικά σε κοινή θέα ώστε να μην τα χάσετε όταν εμφανιστούν, ενώ τα <strong>Εξαιρούμενα προθέματα</strong> παρακάμπτουν ολόκληρα προθέματα στα οποία δεν θέλετε να απαντά ο αυτοματισμός.',
+
+  op_modifier_title: 'Προσδιορισμός CQ',
+  op_modifier_text:  'Μια κλήση CQ μπορεί να φέρει γεωγραφικό ή θεματικό προσδιορισμό — <code>CQ DX</code>, <code>CQ EU</code>, <code>CQ TEST</code> κ.ά. Η λίστα είναι επεξεργάσιμη, οπότε μπορείτε να προσθέσετε τον προσδιορισμό που απαιτεί μια συγκεκριμένη εκδήλωση χωρίς να περιορίζεστε στις προεπιλεγμένες επιλογές.',
+
+  op_contest_title: 'Λειτουργία διαγωνισμού (ανταλλαγή τετραγώνου)',
+  op_contest_text:  'Ορισμένοι διαγωνισμοί ανταλλάσσουν τετράγωνα αντί για αναφορές σήματος — μεταξύ άλλων οι ARRL Digital, WW Digi και CQ WW VHF. Ενεργοποιήστε τη <strong>λειτουργία διαγωνισμού (ανταλλαγή τετραγώνου)</strong> στις Ρυθμίσεις και η δεύτερη εκπομπή θα στέλνει <code>R</code> και το δικό σας τετράγωνο στη θέση της συνηθισμένης αναφοράς:',
+  op_contest_seq: `
+    <ol>
+      <li>Καλείτε <code>CQ TEST</code> — με την ενεργοποίηση, ο προσδιορισμός CQ γίνεται αυτόματα <code>TEST</code> και με την απενεργοποίηση επανέρχεται η προηγούμενη τιμή.</li>
+      <li>Ο άλλος σταθμός απαντά με το τετράγωνό του.</li>
+      <li>Στέλνετε <code>R</code> και το τετράγωνό σας αντί για αναφορά σήματος.</li>
+      <li>Ο άλλος σταθμός επιβεβαιώνει, η επαφή ολοκληρώνεται και καταγράφεται.</li>
+    </ol>`,
+  op_contest_note: 'Η ανταλλαγή είναι μία χρονοθυρίδα εκπομπής συντομότερη από μια συνηθισμένη επαφή FT8, οπότε ο ρυθμός στον διαγωνισμό ανεβαίνει. Τα εισερχόμενα μηνύματα <code>R + τετράγωνο</code> αναγνωρίζονται πάντα, ανεξάρτητα από αυτόν τον διακόπτη — αλλάζει μόνο αυτό που στέλνετε <em>εσείς</em>.',
 
   op_watchdog_title: 'Επιτηρητής εκπομπής',
   op_watchdog_text:  'Ο επιτηρητής εκπομπής σταματά αυτόματα την εκπομπή μετά από ρυθμιζόμενο χρονικό όριο (σε λεπτά), ώστε να αποφεύγεται η κατά λάθος παρατεταμένη εκπομπή. Ορίστε το όριο στις Ρυθμίσεις → Επιτηρητής εκπομπής. Η τιμή 0 το απενεργοποιεί.',

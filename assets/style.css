@@ -199,6 +199,13 @@ h3 {
   color: var(--text);
   margin: 24px 0 8px;
 }
+/* install 章早就用了 h4，但一直沒有樣式，等於吃瀏覽器預設 */
+h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 18px 0 6px;
+}
 p { margin-bottom: 12px; color: var(--text); }
 em { color: var(--text-muted); }
 
@@ -517,10 +524,11 @@ footer {
   .print-chapter:first-of-type { break-before: auto; }
 
   /* 標題留在內文同一頁，別讓它單獨掛在頁尾 */
-  h1, h2, h3 { break-after: avoid; break-inside: avoid; }
+  h1, h2, h3, h4 { break-after: avoid; break-inside: avoid; }
   h1 { font-size: 18pt; }
   h2 { font-size: 14pt; }
   h3 { font-size: 11.5pt; }
+  h4 { font-size: 10.5pt; }
   p, li { orphans: 2; widows: 2; }
 
   /* 這幾種區塊被切成兩頁會很難讀 */

@@ -32,6 +32,33 @@ en: {
       <li><strong>QRZ.com Logbook</strong> – Enable auto-upload (Settings → QRZ.com); QRZ.com automatically marks mutual contacts as confirmed</li>
       <li><strong>Manual</strong> – Long-press any log entry and tap <em>Manual confirmation</em></li>
     </ul>`,
+
+  log_backup_title: 'Automatic Backup',
+  log_backup_text:  'The log database can back itself up without being asked, so a lost or reset phone does not take your contacts with it. Configure it in Settings → Auto Backup:',
+  log_backup_list: `
+    <ul>
+      <li><strong>Auto backup on startup</strong> – runs when the app starts, no further action needed</li>
+      <li><strong>Interval (days)</strong> – how long to wait before the next automatic backup</li>
+      <li><strong>Keep generations</strong> – how many older backups to retain; the oldest are discarded beyond this count</li>
+      <li><strong>Choose backup folder</strong> – pick where the files are written; a folder synced to cloud storage also gets them off the device</li>
+      <li><strong>Backup now</strong> and <strong>Restore backup</strong> – take one immediately, or browse and restore an earlier one</li>
+    </ul>`,
+
+  log_activation_title: 'Activation Mode (SOTA / POTA)',
+  log_activation_text:  'When you are the one activating a summit or a park, enter your own reference in Settings → Activation (SOTA/POTA) and turn on activation mode. Your SOTA and POTA references are then written into the log entries as you work stations, which is what the SOTA export format needs — far easier than adding them to every record afterwards.',
+
+  log_slideshow_title: 'Log Slideshow',
+  log_slideshow_text:  'Long-press the log list and choose <em>Show slideshow</em> to page through your contacts full-screen, one at a time, complete with the operator photo and a QSL-card style layout. Slides advance on a configurable interval, or you can scroll through them by hand.',
+
+  log_qsl_title: 'QSO Success Feedback',
+  log_qsl_text:  'A completed QSO can announce itself, which helps when the phone is not in your hand or is across the shack. Each effect is a separate switch in Settings, so you can enable only what suits your operating position:',
+  log_qsl_list: `
+    <ul>
+      <li><strong>Flash screen</strong> – a brief full-screen flash</li>
+      <li><strong>Ripple effect</strong> – an expanding ripple over the screen</li>
+      <li><strong>Flashlight blink</strong> – blinks the camera flash, visible from across the room</li>
+      <li><strong>Show QRZ photo</strong> – shows the other operator's QRZ.com photo, if they have one</li>
+    </ul>`,
 },
 
 'zh-TW': {
@@ -63,6 +90,33 @@ en: {
       <li><strong>LoTW</strong> — 從 <a href="https://lotw.arrl.org" target="_blank">lotw.arrl.org</a> 下載您的 LoTW ADIF 檔並匯入，符合的記錄會標記為 LoTW 已確認</li>
       <li><strong>QRZ.com 日誌簿</strong> — 啟用自動上傳（設置 → QRZ.com）；雙方均上傳後 QRZ.com 自動標記為已確認</li>
       <li><strong>手工確認</strong> — 長按任一日誌記錄，點選<em>手工確認</em></li>
+    </ul>`,
+
+  log_backup_title: '自動備份',
+  log_backup_text:  '日誌資料庫可以自己定期備份，手機遺失或重置時不會把通聯記錄一起帶走。在設置 → 自動備份中設定：',
+  log_backup_list: `
+    <ul>
+      <li><strong>開機時自動備份</strong> — App 啟動時自動執行，不需另外操作</li>
+      <li><strong>間隔（天）</strong> — 距離下一次自動備份要等多久</li>
+      <li><strong>保留份數</strong> — 保留幾份舊備份，超過的份數會從最舊的開始刪除</li>
+      <li><strong>選擇備份資料夾</strong> — 指定檔案存放位置；選一個有雲端同步的資料夾，備份就同時離開了手機</li>
+      <li><strong>立即備份</strong>與<strong>還原備份</strong> — 馬上做一份，或瀏覽並還原先前的備份</li>
+    </ul>`,
+
+  log_activation_title: '啟動模式（SOTA / POTA）',
+  log_activation_text:  '當您是登山或到公園進行啟動的一方時，請在設置 → 啟動（SOTA/POTA）填入自己的編號並開啟啟動模式。之後每筆通聯都會自動把您的 SOTA、POTA 編號寫進日誌，這正是 SOTA 匯出格式需要的欄位——比事後逐筆補上輕鬆得多。',
+
+  log_slideshow_title: '日誌幻燈片',
+  log_slideshow_text:  '長按日誌清單選擇<em>播放幻燈片</em>，即可全螢幕逐筆瀏覽通聯記錄，畫面包含對方的照片與仿 QSL 卡的版面。可設定每張停留的秒數自動播放，也可以手動捲動翻閱。',
+
+  log_qsl_title: '通聯成功提示',
+  log_qsl_text:  '完成一筆通聯時可以主動提示您，手機不在手上或放在對面桌上時特別有用。每種效果都是獨立開關，可依操作位置只開需要的：',
+  log_qsl_list: `
+    <ul>
+      <li><strong>閃畫面</strong> — 全螢幕短暫閃爍一下</li>
+      <li><strong>水波效果</strong> — 畫面上出現向外擴散的水波</li>
+      <li><strong>閃光燈</strong> — 閃爍相機補光燈，隔一段距離也看得到</li>
+      <li><strong>顯示 QRZ 照片</strong> — 若對方在 QRZ.com 有照片，直接顯示出來</li>
     </ul>`,
 },
 
@@ -96,6 +150,33 @@ en: {
       <li><strong>QRZ.com 日志簿</strong> — 启用自动上传（设置 → QRZ.com）；双方均上传后 QRZ.com 自动标记为已确认</li>
       <li><strong>手工确认</strong> — 长按任一日志记录，点击<em>手工确认</em></li>
     </ul>`,
+
+  log_backup_title: '自动备份',
+  log_backup_text:  '日志数据库可以自己定期备份，手机丢失或重置时不会把通联记录一起带走。在设置 → 自动备份中设定：',
+  log_backup_list: `
+    <ul>
+      <li><strong>开机时自动备份</strong> — App 启动时自动执行，无需另外操作</li>
+      <li><strong>间隔（天）</strong> — 距离下一次自动备份要等多久</li>
+      <li><strong>保留份数</strong> — 保留几份旧备份，超过的份数会从最旧的开始删除</li>
+      <li><strong>选择备份文件夹</strong> — 指定文件存放位置；选一个有云同步的文件夹，备份就同时离开了手机</li>
+      <li><strong>立即备份</strong>与<strong>还原备份</strong> — 马上做一份，或浏览并还原此前的备份</li>
+    </ul>`,
+
+  log_activation_title: '启动模式（SOTA / POTA）',
+  log_activation_text:  '当您是登山或到公园进行启动的一方时，请在设置 → 启动（SOTA/POTA）填入自己的编号并开启启动模式。之后每笔通联都会自动把您的 SOTA、POTA 编号写进日志，这正是 SOTA 导出格式需要的字段——比事后逐条补上轻松得多。',
+
+  log_slideshow_title: '日志幻灯片',
+  log_slideshow_text:  '长按日志列表选择<em>播放幻灯片</em>，即可全屏逐条浏览通联记录，画面包含对方的照片与仿 QSL 卡的版面。可设置每张停留的秒数自动播放，也可以手动滚动翻阅。',
+
+  log_qsl_title: '通联成功提示',
+  log_qsl_text:  '完成一笔通联时可以主动提示您，手机不在手上或放在对面桌上时特别有用。每种效果都是独立开关，可按操作位置只开需要的：',
+  log_qsl_list: `
+    <ul>
+      <li><strong>闪屏</strong> — 全屏短暂闪烁一下</li>
+      <li><strong>水波效果</strong> — 屏幕上出现向外扩散的水波</li>
+      <li><strong>闪光灯</strong> — 闪烁相机补光灯，隔一段距离也看得到</li>
+      <li><strong>显示 QRZ 照片</strong> — 若对方在 QRZ.com 有照片，直接显示出来</li>
+    </ul>`,
 },
 
 'ja': {
@@ -127,6 +208,33 @@ en: {
       <li><strong>LoTW</strong> — <a href="https://lotw.arrl.org" target="_blank">lotw.arrl.org</a> から LoTW の ADIF ファイルをダウンロードして取り込むと、一致した交信が LoTW 確認済みになります</li>
       <li><strong>QRZ.com ログブック</strong> — 自動アップロードを有効にすると（設定 → QRZ.com）、双方が登録した交信を QRZ.com が自動的に確認済みにします</li>
       <li><strong>手動</strong> — ログの項目を長押しして<em>手動確認</em>をタップします</li>
+    </ul>`,
+
+  log_backup_title: '自動バックアップ',
+  log_backup_text:  'ログのデータベースは自動でバックアップを取れます。端末を紛失したり初期化したりしても交信記録を失わずに済みます。設定 → 自動バックアップ で指定します:',
+  log_backup_list: `
+    <ul>
+      <li><strong>起動時に自動バックアップ</strong> — アプリの起動時に実行され、ほかの操作は不要です</li>
+      <li><strong>間隔（日）</strong> — 次の自動バックアップまでの日数</li>
+      <li><strong>世代数</strong> — 残しておく古いバックアップの数。超えた分は古いものから削除されます</li>
+      <li><strong>保存先フォルダーを選択</strong> — ファイルの保存場所を指定します。クラウド同期されるフォルダーにすれば端末の外にも残せます</li>
+      <li><strong>今すぐバックアップ</strong>と<strong>バックアップから復元</strong> — すぐに 1 つ作る、または以前のものを選んで復元します</li>
+    </ul>`,
+
+  log_activation_title: 'アクティベーションモード（SOTA / POTA）',
+  log_activation_text:  '自分が山や公園からアクティベートする側のときは、設定 → アクティベーション（SOTA/POTA）に自局のリファレンスを入力し、アクティベーションモードを有効にします。以後の交信では SOTA・POTA のリファレンスがログに自動的に書き込まれます。SOTA の書き出し形式が必要とする項目なので、あとから 1 件ずつ追記するより格段に楽です。',
+
+  log_slideshow_title: 'ログのスライドショー',
+  log_slideshow_text:  'ログ一覧を長押しして<em>スライドショー</em>を選ぶと、交信記録を全画面で 1 件ずつ表示できます。相手局の写真と QSL カード風のレイアウト付きです。切り替え間隔を指定して自動送りにも、手でスクロールして見ることもできます。',
+
+  log_qsl_title: '交信成立の通知',
+  log_qsl_text:  '交信が成立したことを知らせる演出を有効にできます。端末を手に持っていないときや離れた場所に置いているときに便利です。効果ごとに独立したスイッチなので、運用スタイルに合うものだけを有効にできます:',
+  log_qsl_list: `
+    <ul>
+      <li><strong>画面フラッシュ</strong> — 画面全体が一瞬光ります</li>
+      <li><strong>波紋エフェクト</strong> — 画面に広がる波紋を表示します</li>
+      <li><strong>ライト点滅</strong> — カメラのライトを点滅させ、離れていても分かります</li>
+      <li><strong>QRZ の写真を表示</strong> — 相手局が QRZ.com に写真を登録していれば表示します</li>
     </ul>`,
 },
 
@@ -160,6 +268,33 @@ en: {
       <li><strong>Журнал QRZ.com</strong> — включите автоматическую выгрузку (Настройки → QRZ.com); QRZ.com сам отмечает встречные связи подтверждёнными</li>
       <li><strong>Вручную</strong> — нажмите и удерживайте запись, затем выберите <em>Подтвердить вручную</em></li>
     </ul>`,
+
+  log_backup_title: 'Автоматическое резервное копирование',
+  log_backup_text:  'База журнала может копироваться сама, так что потерянный или сброшенный телефон не унесёт с собой ваши связи. Настраивается в Настройки → Автоматическое резервное копирование:',
+  log_backup_list: `
+    <ul>
+      <li><strong>Копировать при запуске</strong> — выполняется при старте приложения, больше ничего делать не нужно</li>
+      <li><strong>Интервал (дни)</strong> — через сколько дней делать следующую копию</li>
+      <li><strong>Хранить поколений</strong> — сколько прежних копий оставлять; всё сверх этого числа удаляется, начиная с самых старых</li>
+      <li><strong>Выбрать папку</strong> — куда записывать файлы; папка, синхронизируемая с облаком, заодно уносит копии с устройства</li>
+      <li><strong>Сделать копию</strong> и <strong>Восстановить из копии</strong> — создать копию немедленно либо выбрать и восстановить одну из прежних</li>
+    </ul>`,
+
+  log_activation_title: 'Режим активации (SOTA / POTA)',
+  log_activation_text:  'Если активируете вершину или парк вы сами, укажите свою ссылку в Настройки → Активация (SOTA/POTA) и включите режим активации. После этого ваши ссылки SOTA и POTA автоматически записываются в журнал при каждой связи — именно это требуется формату экспорта SOTA, и это куда проще, чем дописывать их потом в каждую запись.',
+
+  log_slideshow_title: 'Слайд-шоу журнала',
+  log_slideshow_text:  'Нажмите и удерживайте список журнала и выберите <em>Слайд-шоу</em>, чтобы просматривать связи по одной в полноэкранном виде — с фотографией оператора и оформлением в стиле QSL-карточки. Слайды сменяются через заданный интервал либо листаются вручную.',
+
+  log_qsl_title: 'Сигнал об успешном QSO',
+  log_qsl_text:  'Завершённую связь можно отметить заметным сигналом — удобно, когда телефон не в руках или стоит в другом конце шэка. Каждый эффект включается отдельно, так что можно оставить только подходящие вашему рабочему месту:',
+  log_qsl_list: `
+    <ul>
+      <li><strong>Вспышка экрана</strong> — короткая вспышка на весь экран</li>
+      <li><strong>Круги по воде</strong> — расходящаяся волна поверх экрана</li>
+      <li><strong>Мигание фонарика</strong> — мигает вспышка камеры, видно с другого конца комнаты</li>
+      <li><strong>Фото с QRZ</strong> — показывает фотографию корреспондента с QRZ.com, если она там есть</li>
+    </ul>`,
 },
 
 'pl': {
@@ -191,6 +326,33 @@ en: {
       <li><strong>LoTW</strong> — pobierz swój plik ADIF z <a href="https://lotw.arrl.org" target="_blank">lotw.arrl.org</a> i zaimportuj go; pasujące łączności zostaną oznaczone jako potwierdzone w LoTW</li>
       <li><strong>Dziennik QRZ.com</strong> — włącz automatyczne wysyłanie (Ustawienia → QRZ.com); QRZ.com sam oznacza obustronne łączności jako potwierdzone</li>
       <li><strong>Ręcznie</strong> — przytrzymaj dowolny wpis i wybierz <em>Potwierdzenie ręczne</em></li>
+    </ul>`,
+
+  log_backup_title: 'Kopia zapasowa',
+  log_backup_text:  'Baza dziennika potrafi tworzyć kopie sama, więc zgubiony lub zresetowany telefon nie zabierze ze sobą twoich łączności. Ustawisz to w Ustawienia → Kopia zapasowa:',
+  log_backup_list: `
+    <ul>
+      <li><strong>Kopia przy starcie</strong> — wykonywana przy uruchomieniu aplikacji, nic więcej nie trzeba robić</li>
+      <li><strong>Odstęp (dni)</strong> — po ilu dniach wykonać kolejną kopię</li>
+      <li><strong>Liczba kopii</strong> — ile starszych kopii zachować; nadmiarowe są kasowane począwszy od najstarszych</li>
+      <li><strong>Wybierz folder</strong> — gdzie zapisywać pliki; folder synchronizowany z chmurą od razu wynosi kopie poza urządzenie</li>
+      <li><strong>Wykonaj kopię</strong> i <strong>Przywróć kopię</strong> — utwórz kopię od razu albo wybierz i przywróć wcześniejszą</li>
+    </ul>`,
+
+  log_activation_title: 'Tryb aktywacji (SOTA / POTA)',
+  log_activation_text:  'Jeśli to ty aktywujesz szczyt lub park, wpisz własne oznaczenie w Ustawienia → Aktywacja (SOTA/POTA) i włącz tryb aktywacji. Od tej chwili twoje oznaczenia SOTA i POTA trafiają automatycznie do wpisów dziennika — właśnie tego wymaga format eksportu SOTA, a jest to znacznie wygodniejsze niż dopisywanie ich później do każdego wpisu.',
+
+  log_slideshow_title: 'Pokaz slajdów dziennika',
+  log_slideshow_text:  'Przytrzymaj listę dziennika i wybierz <em>Pokaz slajdów</em>, aby przeglądać łączności pojedynczo na pełnym ekranie — ze zdjęciem operatora i układem przypominającym kartę QSL. Slajdy zmieniają się co zadany czas albo przewijasz je ręcznie.',
+
+  log_qsl_title: 'Sygnał udanej łączności',
+  log_qsl_text:  'Zakończoną łączność można oznajmić w widoczny sposób — przydaje się, gdy telefon nie jest w ręku albo leży po drugiej stronie pomieszczenia. Każdy efekt to osobny przełącznik, więc włączysz tylko te pasujące do twojego stanowiska:',
+  log_qsl_list: `
+    <ul>
+      <li><strong>Błysk ekranu</strong> — krótki błysk na całym ekranie</li>
+      <li><strong>Efekt fali</strong> — rozchodząca się fala na ekranie</li>
+      <li><strong>Mignięcie latarki</strong> — miga dioda aparatu, widać z drugiego końca pokoju</li>
+      <li><strong>Zdjęcie z QRZ</strong> — pokazuje zdjęcie operatora z QRZ.com, jeśli je tam ma</li>
     </ul>`,
 },
 
@@ -224,6 +386,33 @@ en: {
       <li><strong>Libro de guardia de QRZ.com</strong> — activa la subida automática (Ajustes → QRZ.com); QRZ.com marca por sí solo los contactos mutuos como confirmados</li>
       <li><strong>Manual</strong> — mantén pulsada cualquier entrada y elige <em>Confirmación manual</em></li>
     </ul>`,
+
+  log_backup_title: 'Copia de seguridad automática',
+  log_backup_text:  'La base de datos del registro puede copiarse sola, de modo que un teléfono perdido o restablecido no se lleve tus contactos. Se configura en Ajustes → Copia automática:',
+  log_backup_list: `
+    <ul>
+      <li><strong>Copia al iniciar</strong> — se ejecuta al abrir la aplicación, sin más intervención</li>
+      <li><strong>Intervalo (días)</strong> — cuántos días esperar hasta la siguiente copia automática</li>
+      <li><strong>Copias a conservar</strong> — cuántas copias antiguas mantener; las que sobran se borran empezando por la más antigua</li>
+      <li><strong>Elegir carpeta</strong> — dónde se escriben los archivos; una carpeta sincronizada con la nube saca además las copias del dispositivo</li>
+      <li><strong>Copiar ahora</strong> y <strong>Restaurar copia</strong> — hacer una al momento, o examinar y restaurar una anterior</li>
+    </ul>`,
+
+  log_activation_title: 'Modo activación (SOTA / POTA)',
+  log_activation_text:  'Cuando el que activa una cima o un parque eres tú, introduce tu propia referencia en Ajustes → Activación (SOTA/POTA) y activa el modo. A partir de ahí, tus referencias SOTA y POTA se escriben solas en las entradas del registro conforme trabajas estaciones: es justo lo que necesita el formato de exportación SOTA y resulta mucho más cómodo que añadirlas después a cada contacto.',
+
+  log_slideshow_title: 'Pase de diapositivas del registro',
+  log_slideshow_text:  'Mantén pulsada la lista del registro y elige <em>Pase de diapositivas</em> para recorrer tus contactos a pantalla completa, uno a uno, con la foto del operador y un diseño al estilo de una tarjeta QSL. Las diapositivas avanzan según el intervalo que fijes, o puedes pasarlas a mano.',
+
+  log_qsl_title: 'Aviso de QSO completado',
+  log_qsl_text:  'Un QSO completado puede anunciarse de forma llamativa, algo útil cuando el teléfono no está en tu mano o queda al otro lado de la estación. Cada efecto es un conmutador independiente, así que puedes activar solo los que encajen con tu puesto:',
+  log_qsl_list: `
+    <ul>
+      <li><strong>Destello de pantalla</strong> — un destello breve a pantalla completa</li>
+      <li><strong>Efecto de onda</strong> — una onda que se expande sobre la pantalla</li>
+      <li><strong>Parpadeo del flash</strong> — parpadea el flash de la cámara, visible desde el otro extremo de la sala</li>
+      <li><strong>Foto de QRZ</strong> — muestra la foto del otro operador en QRZ.com, si la tiene</li>
+    </ul>`,
 },
 
 'el': {
@@ -255,6 +444,33 @@ en: {
       <li><strong>LoTW</strong> — κατεβάστε το αρχείο ADIF από το <a href="https://lotw.arrl.org" target="_blank">lotw.arrl.org</a> και εισαγάγετέ το· οι επαφές που ταιριάζουν σημειώνονται ως επιβεβαιωμένες από το LoTW</li>
       <li><strong>Ημερολόγιο QRZ.com</strong> — ενεργοποιήστε την αυτόματη αποστολή (Ρυθμίσεις → QRZ.com)· το QRZ.com σημειώνει μόνο του τις αμοιβαίες επαφές ως επιβεβαιωμένες</li>
       <li><strong>Χειροκίνητα</strong> — πατήστε παρατεταμένα μια εγγραφή και επιλέξτε <em>Χειροκίνητη επιβεβαίωση</em></li>
+    </ul>`,
+
+  log_backup_title: 'Αυτόματο αντίγραφο ασφαλείας',
+  log_backup_text:  'Η βάση του ημερολογίου μπορεί να κρατά μόνη της αντίγραφα, ώστε ένα χαμένο ή επαναφερμένο τηλέφωνο να μην πάρει μαζί του τις επαφές σας. Ρυθμίζεται στις Ρυθμίσεις → Αυτόματο αντίγραφο ασφαλείας:',
+  log_backup_list: `
+    <ul>
+      <li><strong>Αντίγραφο κατά την εκκίνηση</strong> — εκτελείται όταν ανοίγει η εφαρμογή, χωρίς άλλη ενέργεια</li>
+      <li><strong>Διάστημα (ημέρες)</strong> — πόσες ημέρες μεσολαβούν ως το επόμενο αυτόματο αντίγραφο</li>
+      <li><strong>Πλήθος εκδόσεων</strong> — πόσα παλαιότερα αντίγραφα διατηρούνται· ό,τι περισσεύει διαγράφεται ξεκινώντας από το παλαιότερο</li>
+      <li><strong>Επιλογή φακέλου</strong> — πού γράφονται τα αρχεία· ένας φάκελος συγχρονισμένος με το cloud βγάζει τα αντίγραφα και εκτός συσκευής</li>
+      <li><strong>Αντίγραφο τώρα</strong> και <strong>Επαναφορά αντιγράφου</strong> — δημιουργήστε ένα αμέσως ή επιλέξτε και επαναφέρετε παλαιότερο</li>
+    </ul>`,
+
+  log_activation_title: 'Λειτουργία ενεργοποίησης (SOTA / POTA)',
+  log_activation_text:  'Όταν εσείς είστε αυτός που ενεργοποιεί μια κορυφή ή ένα πάρκο, καταχωρίστε τον δικό σας κωδικό στις Ρυθμίσεις → Ενεργοποίηση (SOTA/POTA) και ενεργοποιήστε τη λειτουργία. Από εκεί και πέρα οι κωδικοί SOTA και POTA γράφονται αυτόματα στις εγγραφές του ημερολογίου καθώς κάνετε επαφές — ακριβώς αυτό απαιτεί η μορφή εξαγωγής SOTA και είναι πολύ πιο εύκολο από το να τους προσθέτετε εκ των υστέρων σε κάθε εγγραφή.',
+
+  log_slideshow_title: 'Προβολή διαφανειών ημερολογίου',
+  log_slideshow_text:  'Πατήστε παρατεταμένα τη λίστα του ημερολογίου και επιλέξτε <em>Προβολή διαφανειών</em> για να δείτε τις επαφές μία-μία σε πλήρη οθόνη, με τη φωτογραφία του χειριστή και διάταξη σε στιλ κάρτας QSL. Οι διαφάνειες αλλάζουν στο διάστημα που ορίζετε ή τις μετακινείτε χειροκίνητα.',
+
+  log_qsl_title: 'Ειδοποίηση επιτυχούς επαφής',
+  log_qsl_text:  'Μια ολοκληρωμένη επαφή μπορεί να το δηλώσει με εμφανή τρόπο — βολικό όταν το τηλέφωνο δεν είναι στο χέρι σας ή βρίσκεται στην άλλη άκρη του σταθμού. Κάθε εφέ έχει δικό του διακόπτη, ώστε να ενεργοποιείτε μόνο όσα ταιριάζουν στη θέση εργασίας σας:',
+  log_qsl_list: `
+    <ul>
+      <li><strong>Αναλαμπή οθόνης</strong> — σύντομη αναλαμπή σε όλη την οθόνη</li>
+      <li><strong>Εφέ κυματισμού</strong> — κύμα που απλώνεται πάνω στην οθόνη</li>
+      <li><strong>Αναβόσβημα φακού</strong> — αναβοσβήνει ο φακός της κάμερας, ορατό από την άλλη άκρη του δωματίου</li>
+      <li><strong>Φωτογραφία από QRZ</strong> — εμφανίζει τη φωτογραφία του άλλου χειριστή στο QRZ.com, αν υπάρχει</li>
     </ul>`,
 },
 

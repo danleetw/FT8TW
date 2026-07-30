@@ -14,12 +14,15 @@ en: {
       <li>Native <strong>C/C++ signal processing</strong> (LDPC, CRC, Kiss FFT) for high-performance encoding and decoding</li>
       <li>Automatic CQ response with configurable priority strategies</li>
       <li>QSO logging with ADIF export/import and log sharing</li>
-      <li>Integration with <strong>QRZ.com</strong> and <strong>PSKReporter</strong></li>
+      <li>Integration with <strong>QRZ.com</strong>, <strong>PSKReporter</strong> and <strong>Cloudlog / Wavelog</strong></li>
+      <li>Contest mode with grid exchange, and SOTA / POTA activation logging</li>
+      <li>Named setting profiles, and automatic backup of the log database</li>
       <li>Maidenhead grid tracker with OpenStreetMap overlay</li>
       <li>ITU, CQ zone, and DXCC statistics</li>
       <li>Light / Dark / System theme</li>
       <li>Requires Android 5.0 (API 21) or later</li>
     </ul>`,
+  intro_support: 'The app has a coffee link under About for anyone who wants to support development. It is entirely voluntary and unlocks nothing — every feature works the same either way.',
 },
 
 'zh-TW': {
@@ -34,12 +37,15 @@ en: {
       <li>使用原生 <strong>C/C++ 訊號處理</strong>（LDPC、CRC、Kiss FFT），編解碼效能優異</li>
       <li>自動回應 CQ，可設定優先策略</li>
       <li>通聯日誌管理，支援 ADIF 匯出／匯入及日誌分享</li>
-      <li>整合 <strong>QRZ.com</strong> 及 <strong>PSKReporter</strong></li>
+      <li>整合 <strong>QRZ.com</strong>、<strong>PSKReporter</strong> 及 <strong>Cloudlog／Wavelog</strong></li>
+      <li>競賽模式（交換網格），以及 SOTA／POTA 啟動記錄</li>
+      <li>多組具名設定檔，日誌資料庫可自動備份</li>
       <li>Maidenhead 網格追蹤器，結合 OpenStreetMap 顯示</li>
       <li>ITU、CQ 分區及 DXCC 統計</li>
       <li>淺色 / 深色 / 跟隨系統佈景</li>
       <li>需要 Android 5.0（API 21）或更新版本</li>
     </ul>`,
+  intro_support: 'App 的「關於」裡有一個請喝咖啡的連結，供想支持開發的人使用。純屬自願，也不會解鎖任何東西——所有功能給不給都一樣可用。',
 },
 
 'zh-CN': {
@@ -54,12 +60,15 @@ en: {
       <li>使用原生 <strong>C/C++ 信号处理</strong>（LDPC、CRC、Kiss FFT），编解码性能优异</li>
       <li>自动回应 CQ，可设置优先策略</li>
       <li>通联日志管理，支持 ADIF 导出／导入及日志分享</li>
-      <li>集成 <strong>QRZ.com</strong> 及 <strong>PSKReporter</strong></li>
+      <li>集成 <strong>QRZ.com</strong>、<strong>PSKReporter</strong> 及 <strong>Cloudlog／Wavelog</strong></li>
+      <li>竞赛模式（交换网格），以及 SOTA／POTA 启动记录</li>
+      <li>多组具名配置文件，日志数据库可自动备份</li>
       <li>Maidenhead 网格追踪器，结合 OpenStreetMap 显示</li>
       <li>ITU、CQ 分区及 DXCC 统计</li>
       <li>浅色 / 深色 / 跟随系统主题</li>
       <li>需要 Android 5.0（API 21）或更新版本</li>
     </ul>`,
+  intro_support: 'App 的「关于」里有一个请喝咖啡的链接，供想支持开发的人使用。纯属自愿，也不会解锁任何东西——所有功能给不给都一样可用。',
 },
 
 'ja': {
@@ -74,12 +83,15 @@ en: {
       <li>ネイティブの <strong>C/C++ 信号処理</strong>（LDPC、CRC、Kiss FFT）による高速なエンコード／デコード</li>
       <li>CQ への自動応答（優先条件を設定可能）</li>
       <li>交信ログ管理、ADIF のエクスポート／インポートとログ共有</li>
-      <li><strong>QRZ.com</strong> と <strong>PSKReporter</strong> との連携</li>
+      <li><strong>QRZ.com</strong>、<strong>PSKReporter</strong>、<strong>Cloudlog / Wavelog</strong> との連携</li>
+      <li>グリッド交換のコンテストモードと、SOTA / POTA のアクティベーション記録</li>
+      <li>名前付きの設定プロファイルと、ログデータベースの自動バックアップ</li>
       <li>OpenStreetMap を用いた Maidenhead グリッドトラッカー</li>
       <li>ITU ゾーン、CQ ゾーン、DXCC の統計</li>
       <li>ライト / ダーク / システムに従うテーマ</li>
       <li>Android 5.0（API 21）以降が必要</li>
     </ul>`,
+  intro_support: 'アプリの「情報」にはコーヒーをおごるためのリンクがあります。開発を応援したい方向けで、完全に任意です。何かが解放されることはなく、機能はどちらでも同じように使えます。',
 },
 
 'ru': {
@@ -94,12 +106,15 @@ en: {
       <li>Нативная <strong>обработка сигналов на C/C++</strong> (LDPC, CRC, Kiss FFT) для быстрого кодирования и декодирования</li>
       <li>Автоматический ответ на CQ с настраиваемыми правилами приоритета</li>
       <li>Ведение аппаратного журнала с экспортом/импортом ADIF и обменом записями</li>
-      <li>Интеграция с <strong>QRZ.com</strong> и <strong>PSKReporter</strong></li>
+      <li>Интеграция с <strong>QRZ.com</strong>, <strong>PSKReporter</strong> и <strong>Cloudlog / Wavelog</strong></li>
+      <li>Контестовый режим с обменом локаторами и запись активаций SOTA / POTA</li>
+      <li>Именованные профили настроек и автоматические резервные копии журнала</li>
       <li>Карта локаторов Maidenhead поверх OpenStreetMap</li>
       <li>Статистика по зонам ITU, CQ и по DXCC</li>
       <li>Светлая / тёмная / системная тема</li>
       <li>Требуется Android 5.0 (API 21) или новее</li>
     </ul>`,
+  intro_support: 'В разделе «О программе» есть ссылка «угостить кофе» для тех, кто хочет поддержать разработку. Это полностью добровольно и ничего не открывает — все возможности работают одинаково в любом случае.',
 },
 
 'pl': {
@@ -114,12 +129,15 @@ en: {
       <li>Natywne <strong>przetwarzanie sygnałów w C/C++</strong> (LDPC, CRC, Kiss FFT) zapewniające szybkie kodowanie i dekodowanie</li>
       <li>Automatyczna odpowiedź na CQ z konfigurowalnymi zasadami priorytetu</li>
       <li>Dziennik łączności z eksportem/importem ADIF i udostępnianiem</li>
-      <li>Integracja z <strong>QRZ.com</strong> i <strong>PSKReporter</strong></li>
+      <li>Integracja z <strong>QRZ.com</strong>, <strong>PSKReporter</strong> i <strong>Cloudlog / Wavelog</strong></li>
+      <li>Tryb zawodów z wymianą lokatorów oraz zapis aktywacji SOTA / POTA</li>
+      <li>Nazwane profile ustawień i automatyczne kopie zapasowe dziennika</li>
       <li>Mapa lokatorów Maidenhead na podkładzie OpenStreetMap</li>
       <li>Statystyki stref ITU, CQ i DXCC</li>
       <li>Motyw jasny / ciemny / zgodny z systemem</li>
       <li>Wymaga Androida 5.0 (API 21) lub nowszego</li>
     </ul>`,
+  intro_support: 'W sekcji „O programie” jest odnośnik na kawę dla osób, które chcą wesprzeć rozwój. Jest to całkowicie dobrowolne i niczego nie odblokowuje — wszystkie funkcje działają tak samo.',
 },
 
 'es': {
@@ -134,12 +152,15 @@ en: {
       <li><strong>Procesado de señal nativo en C/C++</strong> (LDPC, CRC, Kiss FFT) para codificar y decodificar con alto rendimiento</li>
       <li>Respuesta automática a CQ con estrategias de prioridad configurables</li>
       <li>Registro de contactos con exportación/importación ADIF y uso compartido</li>
-      <li>Integración con <strong>QRZ.com</strong> y <strong>PSKReporter</strong></li>
+      <li>Integración con <strong>QRZ.com</strong>, <strong>PSKReporter</strong> y <strong>Cloudlog / Wavelog</strong></li>
+      <li>Modo concurso con intercambio de localizador y registro de activaciones SOTA / POTA</li>
+      <li>Perfiles de ajustes con nombre y copia de seguridad automática del registro</li>
       <li>Mapa de localizadores Maidenhead sobre OpenStreetMap</li>
       <li>Estadísticas de zonas ITU, CQ y DXCC</li>
       <li>Tema claro / oscuro / según el sistema</li>
       <li>Requiere Android 5.0 (API 21) o posterior</li>
     </ul>`,
+  intro_support: 'En «Acerca de» hay un enlace para invitar a un café a quien quiera apoyar el desarrollo. Es totalmente voluntario y no desbloquea nada: todas las funciones funcionan igual en cualquier caso.',
 },
 
 'el': {
@@ -154,12 +175,15 @@ en: {
       <li>Εγγενής <strong>επεξεργασία σήματος σε C/C++</strong> (LDPC, CRC, Kiss FFT) για γρήγορη κωδικοποίηση και αποκωδικοποίηση</li>
       <li>Αυτόματη απάντηση σε CQ με ρυθμιζόμενες προτεραιότητες</li>
       <li>Ημερολόγιο επαφών με εξαγωγή/εισαγωγή ADIF και κοινή χρήση</li>
-      <li>Ενσωμάτωση με <strong>QRZ.com</strong> και <strong>PSKReporter</strong></li>
+      <li>Ενσωμάτωση με <strong>QRZ.com</strong>, <strong>PSKReporter</strong> και <strong>Cloudlog / Wavelog</strong></li>
+      <li>Λειτουργία διαγωνισμού με ανταλλαγή τετραγώνου και καταγραφή ενεργοποιήσεων SOTA / POTA</li>
+      <li>Ονομασμένα προφίλ ρυθμίσεων και αυτόματα αντίγραφα ασφαλείας του ημερολογίου</li>
       <li>Χάρτης τετραγώνων Maidenhead πάνω σε OpenStreetMap</li>
       <li>Στατιστικά ζωνών ITU, CQ και DXCC</li>
       <li>Φωτεινό / σκοτεινό θέμα ή σύμφωνα με το σύστημα</li>
       <li>Απαιτείται Android 5.0 (API 21) ή νεότερο</li>
     </ul>`,
+  intro_support: 'Στην ενότητα «Σχετικά» υπάρχει σύνδεσμος για έναν καφέ, για όποιον θέλει να στηρίξει την ανάπτυξη. Είναι εντελώς προαιρετικό και δεν ξεκλειδώνει τίποτα — όλες οι λειτουργίες δουλεύουν το ίδιο.',
 },
 
 }; /* end PAGE_T */
