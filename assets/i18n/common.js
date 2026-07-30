@@ -28,7 +28,7 @@ en: {
   print_button:  'Download PDF',
   print_back:    'Back to manual',
   print_loading: 'Assembling the full manual…',
-  print_hint:    'This page contains the complete manual in one document. Click <strong>Download PDF</strong>, then choose <strong>Save as PDF</strong> as the destination in your browser\'s print dialog. On Android Chrome and iOS Safari the same option is available under the share or print menu.',
+  print_hint:    'This page contains the complete manual in one document. Click <strong>Download PDF</strong>, then choose <strong>Save as PDF</strong> as the destination in your browser\'s print dialog. On Android Chrome and iOS Safari the same option is available under the share or print menu.<br>If the pages come out with no white space around the edges, open <strong>More settings</strong> in the print dialog and set <strong>Margins</strong> back to <strong>Default</strong>.',
 
   footer_text: 'FT8TW · Maintained by BV6LC · Fork of FT8CN by BG7YOZ · Released under open-source license',
 },
@@ -58,7 +58,7 @@ en: {
   print_button:  '下載 PDF',
   print_back:    '回到手冊',
   print_loading: '正在組合完整手冊…',
-  print_hint:    '本頁是把整本手冊串成一份文件。點<strong>下載 PDF</strong>後，在瀏覽器的列印對話框把目的地選成<strong>儲存為 PDF</strong>即可。Android Chrome 與 iOS Safari 也可在分享或列印選單中找到同樣的選項。',
+  print_hint:    '本頁是把整本手冊串成一份文件。點<strong>下載 PDF</strong>後，在瀏覽器的列印對話框把目的地選成<strong>儲存為 PDF</strong>即可。Android Chrome 與 iOS Safari 也可在分享或列印選單中找到同樣的選項。<br>若印出來四周沒有留白，請在列印對話框展開<strong>更多設定</strong>，把<strong>邊界</strong>改回<strong>預設</strong>。',
 
   footer_text: 'FT8TW · 由 BV6LC 維護 · 基於 BG7YOZ 開發的 FT8CN · 以開源授權發布',
 },

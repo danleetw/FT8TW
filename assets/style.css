@@ -432,7 +432,11 @@ footer {
 
 /* ── 列印輸出（print.html 與各章節頁共用）───────────────────────── */
 @media print {
-  @page { size: A4; margin: 16mm 14mm; }
+  /* 左右留白刻意交給下面的 padding，不放在 @page 裡：
+     部分瀏覽器（手機版、或列印對話框把邊界設成「無」時）會忽略 @page 的
+     margin，那時文字會整個貼到紙緣。padding 不受分頁影響，每一頁都算數。
+     上下留白沒有這種替代做法，只能靠 @page。 */
+  @page { size: A4; margin: 16mm 0; }
 
   /* 螢幕專用的介面元素一律不進 PDF */
   .no-print,
@@ -450,7 +454,7 @@ footer {
   .layout { display: block; margin-top: 0; min-height: 0; }
   .main-content, .print-body {
     margin: 0;
-    padding: 0;
+    padding: 0 14mm;      /* 左右留白（見上方 @page 的說明） */
     max-width: none;
     background: #fff;
   }
