@@ -22,7 +22,7 @@ en: {
       <li>Light / Dark / System theme</li>
       <li>Requires Android 5.0 (API 21) or later</li>
     </ul>`,
-  intro_support: 'The app has a coffee link under About for anyone who wants to support development. It is entirely voluntary and unlocks nothing — every feature works the same either way.',
+  intro_support: 'Development runs on voluntary support. There is a <a href="https://ko-fi.com/bv6lc" target="_blank">buy-me-a-coffee link</a> in the app under About, and here as well. It unlocks nothing — every feature works the same either way. FT8TW is a fork of FT8CN by BG7YOZ; thanks to the original author.',
 },
 
 'zh-TW': {
@@ -45,7 +45,7 @@ en: {
       <li>淺色 / 深色 / 跟隨系統佈景</li>
       <li>需要 Android 5.0（API 21）或更新版本</li>
     </ul>`,
-  intro_support: 'App 的「關於」裡有一個請喝咖啡的連結，供想支持開發的人使用。純屬自願，也不會解鎖任何東西——所有功能給不給都一樣可用。',
+  intro_support: '開發靠自願支持維持。App 的「關於」裡有一個<a href="https://ko-fi.com/bv6lc" target="_blank">請喝咖啡的連結</a>，這裡也放一份。它不會解鎖任何東西——所有功能給不給都一樣可用。FT8TW 基於 BG7YOZ 的 FT8CN，感謝原作者。',
 },
 
 'zh-CN': {
@@ -68,7 +68,7 @@ en: {
       <li>浅色 / 深色 / 跟随系统主题</li>
       <li>需要 Android 5.0（API 21）或更新版本</li>
     </ul>`,
-  intro_support: 'App 的「关于」里有一个请喝咖啡的链接，供想支持开发的人使用。纯属自愿，也不会解锁任何东西——所有功能给不给都一样可用。',
+  intro_support: '开发靠自愿支持维持。App 的「关于」里有一个<a href="https://ko-fi.com/bv6lc" target="_blank">请喝咖啡的链接</a>，这里也放一份。它不会解锁任何东西——所有功能给不给都一样可用。FT8TW 基于 BG7YOZ 的 FT8CN，感谢原作者。',
 },
 
 'ja': {
@@ -91,7 +91,7 @@ en: {
       <li>ライト / ダーク / システムに従うテーマ</li>
       <li>Android 5.0（API 21）以降が必要</li>
     </ul>`,
-  intro_support: 'アプリの「情報」にはコーヒーをおごるためのリンクがあります。開発を応援したい方向けで、完全に任意です。何かが解放されることはなく、機能はどちらでも同じように使えます。',
+  intro_support: '開発は任意の支援で成り立っています。アプリの「情報」に<a href="https://ko-fi.com/bv6lc" target="_blank">コーヒーをおごるリンク</a>があり、ここにも置いておきます。何かが解放されることはなく、機能はどちらでも同じように使えます。FT8TW は BG7YOZ の FT8CN のフォークです。原作者に感謝します。',
 },
 
 'ru': {
@@ -114,7 +114,7 @@ en: {
       <li>Светлая / тёмная / системная тема</li>
       <li>Требуется Android 5.0 (API 21) или новее</li>
     </ul>`,
-  intro_support: 'В разделе «О программе» есть ссылка «угостить кофе» для тех, кто хочет поддержать разработку. Это полностью добровольно и ничего не открывает — все возможности работают одинаково в любом случае.',
+  intro_support: 'Разработка держится на добровольной поддержке. <a href="https://ko-fi.com/bv6lc" target="_blank">Ссылка «угостить кофе»</a> есть в приложении в разделе «О программе», а также здесь. Она ничего не открывает — все возможности работают одинаково. FT8TW — форк FT8CN от BG7YOZ; спасибо автору оригинала.',
 },
 
 'pl': {
@@ -137,7 +137,7 @@ en: {
       <li>Motyw jasny / ciemny / zgodny z systemem</li>
       <li>Wymaga Androida 5.0 (API 21) lub nowszego</li>
     </ul>`,
-  intro_support: 'W sekcji „O programie” jest odnośnik na kawę dla osób, które chcą wesprzeć rozwój. Jest to całkowicie dobrowolne i niczego nie odblokowuje — wszystkie funkcje działają tak samo.',
+  intro_support: 'Rozwój opiera się na dobrowolnym wsparciu. <a href="https://ko-fi.com/bv6lc" target="_blank">Odnośnik na kawę</a> jest w aplikacji w sekcji „O programie”, a także tutaj. Niczego nie odblokowuje — wszystkie funkcje działają tak samo. FT8TW to fork FT8CN autorstwa BG7YOZ; podziękowania dla pierwotnego autora.',
 },
 
 'es': {
@@ -160,7 +160,7 @@ en: {
       <li>Tema claro / oscuro / según el sistema</li>
       <li>Requiere Android 5.0 (API 21) o posterior</li>
     </ul>`,
-  intro_support: 'En «Acerca de» hay un enlace para invitar a un café a quien quiera apoyar el desarrollo. Es totalmente voluntario y no desbloquea nada: todas las funciones funcionan igual en cualquier caso.',
+  intro_support: 'El desarrollo se sostiene con apoyo voluntario. Hay un <a href="https://ko-fi.com/bv6lc" target="_blank">enlace para invitar a un café</a> en la aplicación, en «Acerca de», y también aquí. No desbloquea nada: todas las funciones funcionan igual. FT8TW es un fork de FT8CN de BG7YOZ; gracias al autor original.',
 },
 
 'el': {
@@ -183,7 +183,7 @@ en: {
       <li>Φωτεινό / σκοτεινό θέμα ή σύμφωνα με το σύστημα</li>
       <li>Απαιτείται Android 5.0 (API 21) ή νεότερο</li>
     </ul>`,
-  intro_support: 'Στην ενότητα «Σχετικά» υπάρχει σύνδεσμος για έναν καφέ, για όποιον θέλει να στηρίξει την ανάπτυξη. Είναι εντελώς προαιρετικό και δεν ξεκλειδώνει τίποτα — όλες οι λειτουργίες δουλεύουν το ίδιο.',
+  intro_support: 'Η ανάπτυξη στηρίζεται σε εθελοντική υποστήριξη. Υπάρχει <a href="https://ko-fi.com/bv6lc" target="_blank">σύνδεσμος για έναν καφέ</a> στην εφαρμογή, στην ενότητα «Σχετικά», καθώς και εδώ. Δεν ξεκλειδώνει τίποτα — όλες οι λειτουργίες δουλεύουν το ίδιο. Το FT8TW είναι fork του FT8CN του BG7YOZ· ευχαριστούμε τον αρχικό δημιουργό.',
 },
 
 }; /* end PAGE_T */
