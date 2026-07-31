@@ -1,8 +1,0 @@
-{
-  "versionCode": 99,
-  "versionName": "26.0802-TEST",
-  "notes": {
-    "en": "Mandatory Update\nThis is a TEST entry. Transmission should be blocked until updated.",
-    "zh-TW": "必要更新\n這是測試項目。在更新前應無法發射。"
-  }
-}
