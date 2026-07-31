@@ -60,7 +60,7 @@ en: {
   op_watchdog_text:  'The TX watchdog automatically stops transmitting after a configurable time limit (in minutes) to prevent accidentally prolonged transmission. Set the limit in Settings → TX watchdog. Set to 0 to disable.',
 
   op_noresponse_title: 'No Response Limit',
-  op_noresponse_text:  'If the called station does not reply after a set number of TX cycles, the app stops calling automatically and frees the system for the next station. Configure the limit in Settings → No response.',
+  op_noresponse_text:  'If the called station does not reply after a set number of TX cycles, the app switches to calling CQ to look for someone else, rather than stopping transmission altogether. Configure the limit in Settings → No response.',
 
   op_freetext_title: 'Free Text Mode',
   op_freetext_text:  'Tap the free text icon in the Calling tab to enter a custom message up to 13 characters. Free text bypasses the standard FT8 QSO sequence — use it for special event messages or announcements. Switch back to Standard Message Mode to resume normal QSOs.',
@@ -127,7 +127,7 @@ en: {
   op_watchdog_text:  '發射監管功能在設定的分鐘數後自動停止發射，防止意外長時間佔用頻道。在設置 → 發射監管中設定時間限制，設為 0 表示停用。',
 
   op_noresponse_title: '沒回應次數限制',
-  op_noresponse_text:  '若被呼叫的電台在設定的週期數內均無回應，程式將自動停止呼叫，以便嘗試下一個目標。在設置 → 沒回應中設定次數限制。',
+  op_noresponse_text:  '若被呼叫的電台在設定的週期數內均無回應，程式會轉為呼叫 CQ 另尋對象，而不是停掉整個發射。在設置 → 沒回應中設定次數限制。',
 
   op_freetext_title: '自定義訊息模式',
   op_freetext_text:  '點選呼叫頁面的自定義訊息圖示，輸入最多 13 個字元的自由文字。自定義訊息會跳過標準 FT8 通聯流程，適用於特殊活動或公告。點選「標準訊息模式」可返回正常通聯。',
@@ -194,7 +194,7 @@ en: {
   op_watchdog_text:  '发射监管功能在设定的分钟数后自动停止发射，防止意外长时间占用频道。在设置 → 发射监管中设定时间限制，设为 0 表示停用。',
 
   op_noresponse_title: '无回应次数限制',
-  op_noresponse_text:  '若被呼叫的电台在设定的周期数内均无回应，程序将自动停止呼叫，以便尝试下一个目标。在设置 → 无回应中设定次数限制。',
+  op_noresponse_text:  '若被呼叫的电台在设定的周期数内均无回应，程序会转为呼叫 CQ 另寻对象，而不是停掉整个发射。在设置 → 无回应中设定次数限制。',
 
   op_freetext_title: '自定义消息模式',
   op_freetext_text:  '点击呼叫页面的自定义消息图标，输入最多 13 个字符的自由文本。自定义消息会跳过标准 FT8 通联流程，适用于特殊活动或公告。点击「标准消息模式」可返回正常通联。',
@@ -261,7 +261,7 @@ en: {
   op_watchdog_text:  '送信ウォッチドッグは設定した分数で送信を自動停止し、意図しない長時間送信を防ぎます。設定 → 送信ウォッチドッグ で上限を指定します。0 にすると無効です。',
 
   op_noresponse_title: '無応答回数の上限',
-  op_noresponse_text:  '呼び出した局が指定した回数の送信サイクル内に応答しない場合、アプリは自動的に呼び出しをやめ、次の局へ移れるようにします。上限は 設定 → 無応答 で設定します。',
+  op_noresponse_text:  '呼び出した局が指定した回数の送信サイクル内に応答しない場合、送信を止めるのではなく CQ を出して別の相手を探します。上限は 設定 → 無応答 で設定します。',
 
   op_freetext_title: 'フリーテキストモード',
   op_freetext_text:  '呼び出しタブのフリーテキストアイコンをタップすると、最大 13 文字の自由な電文を入力できます。フリーテキストは標準の FT8 シーケンスを飛ばすため、記念局の案内などに使います。通常の交信に戻るには標準電文モードに切り替えてください。',
@@ -328,7 +328,7 @@ en: {
   op_watchdog_text:  'Сторожевой таймер автоматически прекращает передачу по истечении заданного времени (в минутах), чтобы исключить случайно затянувшуюся передачу. Предел задаётся в Настройки → Сторожевой таймер. Значение 0 отключает его.',
 
   op_noresponse_title: 'Предел без ответа',
-  op_noresponse_text:  'Если вызываемая станция не отвечает в течение заданного числа циклов передачи, приложение само прекращает вызов и освобождает время для следующей станции. Предел задаётся в Настройки → Без ответа.',
+  op_noresponse_text:  'Если вызываемая станция не отвечает в течение заданного числа циклов, приложение переходит на вызов CQ в поисках другого корреспондента, а не прекращает передачу совсем. Предел задаётся в Настройки → Без ответа.',
 
   op_freetext_title: 'Режим свободного текста',
   op_freetext_text:  'Нажмите значок свободного текста на вкладке вызова, чтобы ввести собственное сообщение длиной до 13 символов. Свободный текст обходит стандартную последовательность QSO — используйте его для объявлений и специальных мероприятий. Чтобы вернуться к обычным связям, переключитесь в режим стандартных сообщений.',
@@ -395,7 +395,7 @@ en: {
   op_watchdog_text:  'Nadzorca nadawania automatycznie przerywa nadawanie po ustawionym czasie (w minutach), aby zapobiec przypadkowemu przedłużonemu nadawaniu. Limit ustawisz w Ustawienia → Nadzorca nadawania. Wartość 0 wyłącza tę funkcję.',
 
   op_noresponse_title: 'Limit braku odpowiedzi',
-  op_noresponse_text:  'Jeśli wywoływana stacja nie odpowie w zadanej liczbie cykli nadawania, aplikacja sama przerywa wywoływanie i zwalnia czas dla kolejnej stacji. Limit ustawisz w Ustawienia → Brak odpowiedzi.',
+  op_noresponse_text:  'Jeśli wywoływana stacja nie odpowie w zadanej liczbie cykli, aplikacja przechodzi do wywoływania CQ w poszukiwaniu kogoś innego, zamiast całkiem przerywać nadawanie. Limit ustawisz w Ustawienia → Brak odpowiedzi.',
 
   op_freetext_title: 'Tryb dowolnego tekstu',
   op_freetext_text:  'Dotknij ikony dowolnego tekstu w zakładce wywołania, aby wpisać własną wiadomość o długości do 13 znaków. Dowolny tekst pomija standardową sekwencję łączności FT8 — używaj go do ogłoszeń i imprez okolicznościowych. Aby wrócić do zwykłych łączności, przełącz się na tryb wiadomości standardowych.',
@@ -462,7 +462,7 @@ en: {
   op_watchdog_text:  'El vigilante de transmisión detiene automáticamente la emisión tras un límite de tiempo configurable (en minutos) para evitar transmisiones prolongadas por descuido. Fija el límite en Ajustes → Vigilante de TX. Ponlo a 0 para desactivarlo.',
 
   op_noresponse_title: 'Límite de intentos sin respuesta',
-  op_noresponse_text:  'Si la estación llamada no responde tras un número determinado de ciclos de transmisión, la aplicación deja de llamar automáticamente y libera el sistema para la siguiente estación. Configura el límite en Ajustes → Sin respuesta.',
+  op_noresponse_text:  'Si la estación llamada no responde tras un número determinado de ciclos, la aplicación pasa a llamar CQ para buscar a otra, en lugar de detener la transmisión por completo. Configura el límite en Ajustes → Sin respuesta.',
 
   op_freetext_title: 'Modo de texto libre',
   op_freetext_text:  'Pulsa el icono de texto libre en la pestaña de llamada para escribir un mensaje propio de hasta 13 caracteres. El texto libre omite la secuencia estándar de QSO de FT8: úsalo para anuncios o eventos especiales. Vuelve al modo de mensaje estándar para retomar los QSO normales.',
@@ -529,7 +529,7 @@ en: {
   op_watchdog_text:  'Ο επιτηρητής εκπομπής σταματά αυτόματα την εκπομπή μετά από ρυθμιζόμενο χρονικό όριο (σε λεπτά), ώστε να αποφεύγεται η κατά λάθος παρατεταμένη εκπομπή. Ορίστε το όριο στις Ρυθμίσεις → Επιτηρητής εκπομπής. Η τιμή 0 το απενεργοποιεί.',
 
   op_noresponse_title: 'Όριο χωρίς απάντηση',
-  op_noresponse_text:  'Αν ο σταθμός που καλείτε δεν απαντήσει μέσα σε καθορισμένο αριθμό κύκλων εκπομπής, η εφαρμογή σταματά αυτόματα την κλήση και ελευθερώνει τον χρόνο για τον επόμενο σταθμό. Ορίστε το όριο στις Ρυθμίσεις → Χωρίς απάντηση.',
+  op_noresponse_text:  'Αν ο σταθμός που καλείτε δεν απαντήσει μέσα σε καθορισμένο αριθμό κύκλων, η εφαρμογή περνά σε κλήση CQ για να βρει άλλον, αντί να σταματήσει τελείως την εκπομπή. Ορίστε το όριο στις Ρυθμίσεις → Χωρίς απάντηση.',
 
   op_freetext_title: 'Λειτουργία ελεύθερου κειμένου',
   op_freetext_text:  'Πατήστε το εικονίδιο ελεύθερου κειμένου στην καρτέλα κλήσης για να γράψετε δικό σας μήνυμα έως 13 χαρακτήρες. Το ελεύθερο κείμενο παρακάμπτει την τυπική ακολουθία επαφής FT8 — χρησιμοποιήστε το για ανακοινώσεις ή ειδικές εκδηλώσεις. Επιστρέψτε στη λειτουργία τυπικών μηνυμάτων για κανονικές επαφές.',

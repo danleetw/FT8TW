@@ -14,6 +14,7 @@ en: {
       <li>Adjust the radio's AF output level — audio should be clean and not clipping.</li>
       <li>Switch decode mode to <strong>Deep</strong> for marginal signal conditions.</li>
       <li>Ensure you are on the correct FT8 frequency for your band (e.g., 14.074 MHz for 20m).</li>
+      <li>If the app is recording but no audio is arriving at all, the decode screen shows a persistent <strong>⚠ No audio input</strong> notice. Tap it and the app lists the likely causes: microphone permission missing or another app (voice recorder, phone call) holding the microphone; a problem with the audio source itself (cable, radio volume, Bluetooth link); or a second copy of FT8TW installed on the same phone that has taken the microphone.</li>
     </ul>`,
 
   ts_noconn_title: 'Cannot Connect to Radio',
@@ -68,6 +69,7 @@ en: {
       <li>調整電台 AF 增益，音訊應清晰且不失真。失真會導致解碼失敗。</li>
       <li>弱訊號條件下改用<strong>多次</strong>解碼模式。</li>
       <li>確認所在頻率為該頻段的 FT8 標準頻率（例如 20m 為 14.074 MHz）。</li>
+      <li>若程式確實在錄音、卻完全收不到音訊，解碼畫面會常駐顯示<strong>「⚠ 沒有收到音訊」</strong>。點一下就會列出可能原因：麥克風權限未開啟，或被其他程式（錄音機、通話）佔用；音源本身有問題（連接線、電台音量、藍牙連線）；或這台手機還裝了另一個 FT8TW，麥克風被它拿走了。</li>
     </ul>`,
 
   ts_noconn_title: '無法連接電台',
@@ -122,6 +124,7 @@ en: {
       <li>调整电台 AF 增益，音频应清晰且不失真。失真会导致解码失败。</li>
       <li>弱信号条件下改用<strong>多次</strong>解码模式。</li>
       <li>确认所在频率为该频段的 FT8 标准频率（例如 20m 为 14.074 MHz）。</li>
+      <li>若程序确实在录音、却完全收不到音频，解码界面会常驻显示<strong>「⚠ 没有收到音频」</strong>。点一下就会列出可能原因：麦克风权限未开启，或被其他程序（录音机、通话）占用；音源本身有问题（连接线、电台音量、蓝牙连接）；或这台手机还装了另一个 FT8TW，麦克风被它拿走了。</li>
     </ul>`,
 
   ts_noconn_title: '无法连接电台',
@@ -176,6 +179,7 @@ en: {
       <li>無線機の AF 出力レベルを調整します。音声は歪みのない状態が理想です。</li>
       <li>信号が弱いときはデコードモードを<strong>多回</strong>に切り替えます。</li>
       <li>そのバンドの正しい FT8 周波数か確認します（例: 20m は 14.074 MHz）。</li>
+      <li>録音はできているのに音声がまったく届いていない場合、デコード画面に<strong>「⚠ 音声が入力されていません」</strong>が常時表示されます。タップすると原因の候補が並びます: マイクの権限がないか、他のアプリ（ボイスレコーダー、通話など）がマイクを使っている、音源側の問題（ケーブル、無線機の音量、Bluetooth 接続）、あるいは同じ端末にもう一つ FT8TW が入っていてマイクを取っている。</li>
     </ul>`,
 
   ts_noconn_title: '無線機に接続できない',
@@ -230,6 +234,7 @@ en: {
       <li>Отрегулируйте уровень НЧ-выхода трансивера — звук должен быть чистым, без ограничения.</li>
       <li>При слабых сигналах переключите декодирование в режим <strong>Deep</strong>.</li>
       <li>Убедитесь, что вы на правильной частоте FT8 для своего диапазона (например, 14,074 МГц на 20 м).</li>
+      <li>Если запись идёт, а звук вообще не поступает, на экране декодера постоянно висит предупреждение <strong>«⚠ Нет входного звука»</strong>. По нажатию приложение перечисляет вероятные причины: нет разрешения на микрофон либо его заняло другое приложение (диктофон, звонок); проблема с самим источником (кабель, громкость трансивера, связь Bluetooth); либо на том же телефоне установлена вторая копия FT8TW, забравшая микрофон.</li>
     </ul>`,
 
   ts_noconn_title: 'Не удаётся подключиться к трансиверу',
@@ -284,6 +289,7 @@ en: {
       <li>Wyreguluj poziom wyjścia m.cz. radia — dźwięk powinien być czysty i nieprzesterowany.</li>
       <li>Przy słabych sygnałach przełącz dekodowanie w tryb <strong>Deep</strong>.</li>
       <li>Upewnij się, że jesteś na właściwej częstotliwości FT8 dla swojego pasma (np. 14,074 MHz na 20 m).</li>
+      <li>Jeśli aplikacja nagrywa, ale dźwięk w ogóle nie dociera, na ekranie dekodowania widnieje stałe ostrzeżenie <strong>„⚠ Brak sygnału audio”</strong>. Po dotknięciu aplikacja wymienia prawdopodobne przyczyny: brak uprawnienia do mikrofonu albo zajęcie go przez inną aplikację (dyktafon, rozmowa); problem po stronie źródła dźwięku (kabel, głośność radia, połączenie Bluetooth); albo druga kopia FT8TW na tym samym telefonie, która przejęła mikrofon.</li>
     </ul>`,
 
   ts_noconn_title: 'Nie można połączyć się z radiem',
@@ -338,6 +344,7 @@ en: {
       <li>Ajusta el nivel de salida de AF del equipo: el audio debe ser limpio y sin recorte.</li>
       <li>Cambia el modo de decodificación a <strong>Deep</strong> cuando las señales estén al límite.</li>
       <li>Comprueba que estés en la frecuencia FT8 correcta para tu banda (por ejemplo, 14,074 MHz en 20 m).</li>
+      <li>Si la aplicación graba pero no llega audio alguno, la pantalla de decodificación muestra de forma permanente el aviso <strong>«⚠ Sin entrada de audio»</strong>. Al pulsarlo se enumeran las causas probables: falta el permiso de micrófono o lo tiene otra aplicación (grabadora, llamada); hay un problema en la propia fuente de audio (cable, volumen del equipo, enlace Bluetooth); o hay una segunda copia de FT8TW instalada en el mismo teléfono que se ha quedado con el micrófono.</li>
     </ul>`,
 
   ts_noconn_title: 'No se puede conectar con el equipo',
@@ -392,6 +399,7 @@ en: {
       <li>Ρυθμίστε τη στάθμη εξόδου AF του πομποδέκτη — ο ήχος πρέπει να είναι καθαρός και χωρίς ψαλίδισμα.</li>
       <li>Σε οριακές συνθήκες σήματος αλλάξτε τη λειτουργία αποκωδικοποίησης σε <strong>Deep</strong>.</li>
       <li>Βεβαιωθείτε ότι βρίσκεστε στη σωστή συχνότητα FT8 για τη μπάντα σας (π.χ. 14,074 MHz στα 20 m).</li>
+      <li>Αν η εφαρμογή καταγράφει αλλά δεν φτάνει καθόλου ήχος, η οθόνη αποκωδικοποίησης εμφανίζει μόνιμα την ειδοποίηση <strong>«⚠ Δεν υπάρχει είσοδος ήχου»</strong>. Με πάτημα εμφανίζονται οι πιθανές αιτίες: λείπει η άδεια μικροφώνου ή το κρατά άλλη εφαρμογή (ηχογράφος, κλήση)· πρόβλημα στην ίδια την πηγή (καλώδιο, ένταση πομποδέκτη, σύνδεση Bluetooth)· ή υπάρχει δεύτερο αντίγραφο του FT8TW στο ίδιο τηλέφωνο που πήρε το μικρόφωνο.</li>
     </ul>`,
 
   ts_noconn_title: 'Δεν γίνεται σύνδεση με τον πομποδέκτη',

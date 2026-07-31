@@ -11,7 +11,7 @@ en: {
   wspr_tx_list: `
     <ul>
       <li>Requires a standard-format callsign (a digit in the 2nd or 3rd position).</li>
-      <li>Just before each scheduled transmission, the radio's frequency automatically switches to the WSPR sub-band, then reverts to your normal operating frequency afterward.</li>
+      <li>Just before each scheduled transmission, the radio's frequency automatically switches to the WSPR sub-band. When the schedule stops, the radio stays on the WSPR frequency rather than reverting — switch back yourself when you want your previous band.</li>
       <li>Select TX power (dBm) to be encoded in the beacon message.</li>
       <li>The scheduler automatically disarms after a completed transmission and must be manually re-armed for the next one — this is intentional, to prevent unattended continuous beaconing.</li>
       <li>A countdown timer and a preview of the next scheduled message are shown on the WSPR tab.</li>
@@ -30,7 +30,7 @@ en: {
   wspr_tx_list: `
     <ul>
       <li>需使用標準格式呼號（第 2 或第 3 碼為數字）。</li>
-      <li>每次排程發射前，電台頻率會自動切到 WSPR 子頻段，發射結束後自動切回原本的操作頻率。</li>
+      <li>每次排程發射前，電台頻率會自動切到 WSPR 子頻段。排程停止後會留在 WSPR 頻率，不會自動切回原本的操作頻率——需要回原頻段時請自行切換。</li>
       <li>可選擇要編碼進信標訊息的發射功率（dBm）。</li>
       <li>排程在完成一次發射後會自動停用，須手動重新啟用才會進行下一次發射——這是刻意設計，避免無人看管下持續發射信標。</li>
       <li>WSPR 分頁會顯示倒數計時，以及下一則排程訊息的預覽。</li>
@@ -49,7 +49,7 @@ en: {
   wspr_tx_list: `
     <ul>
       <li>需使用标准格式呼号（第 2 或第 3 位为数字）。</li>
-      <li>每次计划发射前，电台频率会自动切到 WSPR 子频段，发射结束后自动切回原本的操作频率。</li>
+      <li>每次计划发射前，电台频率会自动切到 WSPR 子频段。计划停止后会留在 WSPR 频率，不会自动切回原本的操作频率——需要回原频段时请自行切换。</li>
       <li>可选择要编码进信标消息的发射功率（dBm）。</li>
       <li>计划在完成一次发射后会自动停用，须手动重新启用才会进行下一次发射——这是刻意设计，避免无人看管下持续发射信标。</li>
       <li>WSPR 分页会显示倒计时，以及下一条计划消息的预览。</li>
@@ -68,7 +68,7 @@ en: {
   wspr_tx_list: `
     <ul>
       <li>標準形式のコールサイン（2 文字目または 3 文字目が数字）が必要です。</li>
-      <li>各送信の直前に無線機の周波数が自動的に WSPR のサブバンドへ切り替わり、送信後は元の運用周波数へ戻ります。</li>
+      <li>各送信の直前に無線機の周波数が自動的に WSPR のサブバンドへ切り替わります。スケジュールを止めたあとは WSPR の周波数に留まり、元の運用周波数には戻りません。必要に応じてご自身で戻してください。</li>
       <li>ビーコン電文に載せる送信出力（dBm）を選択できます。</li>
       <li>1 回送信するとスケジュールは自動的に解除され、次回は手動で再設定する必要があります。無人での連続送信を防ぐための意図的な仕様です。</li>
       <li>WSPR タブにはカウントダウンと、次に送信される電文のプレビューが表示されます。</li>
@@ -87,7 +87,7 @@ en: {
   wspr_tx_list: `
     <ul>
       <li>Требуется позывной стандартного формата (цифра на 2-й или 3-й позиции).</li>
-      <li>Непосредственно перед каждой запланированной передачей частота трансивера автоматически переключается на участок WSPR, а затем возвращается к вашей рабочей частоте.</li>
+      <li>Непосредственно перед каждой запланированной передачей частота трансивера автоматически переключается на участок WSPR. После остановки расписания трансивер остаётся на частоте WSPR и не возвращается — при необходимости переключите его сами.</li>
       <li>Выберите мощность передачи (дБм), которая будет закодирована в сообщении маяка.</li>
       <li>После состоявшейся передачи расписание автоматически снимается и для следующей передачи его нужно взвести вручную — так сделано намеренно, чтобы исключить непрерывную работу маяка без присмотра.</li>
       <li>На вкладке WSPR показаны обратный отсчёт и предпросмотр следующего сообщения.</li>
@@ -106,7 +106,7 @@ en: {
   wspr_tx_list: `
     <ul>
       <li>Wymagany jest znak wywoławczy w formacie standardowym (cyfra na 2. lub 3. pozycji).</li>
-      <li>Tuż przed każdym zaplanowanym nadawaniem częstotliwość radia automatycznie przełącza się na podpasmo WSPR, a po nadaniu wraca do zwykłej częstotliwości pracy.</li>
+      <li>Tuż przed każdym zaplanowanym nadawaniem częstotliwość radia automatycznie przełącza się na podpasmo WSPR. Po zatrzymaniu harmonogramu radio pozostaje na częstotliwości WSPR i nie wraca samo — w razie potrzeby przestrój je ręcznie.</li>
       <li>Wybierz moc nadawania (dBm), która zostanie zakodowana w wiadomości latarni.</li>
       <li>Po wykonanym nadawaniu harmonogram automatycznie się rozbraja i przed kolejnym trzeba go uzbroić ręcznie — to celowe zabezpieczenie przed ciągłym nadawaniem bez nadzoru.</li>
       <li>Zakładka WSPR pokazuje odliczanie oraz podgląd następnej zaplanowanej wiadomości.</li>
@@ -125,7 +125,7 @@ en: {
   wspr_tx_list: `
     <ul>
       <li>Requiere un indicativo de formato estándar (un dígito en la 2.ª o 3.ª posición).</li>
-      <li>Justo antes de cada transmisión programada, la frecuencia del equipo cambia automáticamente a la subbanda WSPR y después vuelve a tu frecuencia de trabajo habitual.</li>
+      <li>Justo antes de cada transmisión programada, la frecuencia del equipo cambia automáticamente a la subbanda WSPR. Al detener la programación, el equipo se queda en la frecuencia WSPR y no vuelve solo: cámbialo tú cuando quieras tu banda anterior.</li>
       <li>Selecciona la potencia de transmisión (dBm) que se codificará en el mensaje de la baliza.</li>
       <li>Tras completar una transmisión, la programación se desarma automáticamente y hay que volver a armarla a mano para la siguiente: es intencionado, para evitar balizas continuas sin vigilancia.</li>
       <li>La pestaña WSPR muestra una cuenta atrás y una vista previa del siguiente mensaje programado.</li>
@@ -144,7 +144,7 @@ en: {
   wspr_tx_list: `
     <ul>
       <li>Απαιτείται διακριτικό τυπικής μορφής (ψηφίο στη 2η ή 3η θέση).</li>
-      <li>Λίγο πριν από κάθε προγραμματισμένη εκπομπή, η συχνότητα του πομποδέκτη αλλάζει αυτόματα στην υπομπάντα WSPR και στη συνέχεια επιστρέφει στη συνήθη συχνότητα εργασίας σας.</li>
+      <li>Λίγο πριν από κάθε προγραμματισμένη εκπομπή, η συχνότητα αλλάζει αυτόματα στην υπομπάντα WSPR. Όταν σταματήσει το πρόγραμμα, ο πομποδέκτης παραμένει στη συχνότητα WSPR και δεν επιστρέφει — αλλάξτε την μόνοι σας όταν χρειαστεί.</li>
       <li>Επιλέξτε την ισχύ εκπομπής (dBm) που θα κωδικοποιηθεί στο μήνυμα του φάρου.</li>
       <li>Μετά από μια ολοκληρωμένη εκπομπή το πρόγραμμα αφοπλίζεται αυτόματα και πρέπει να οπλιστεί ξανά χειροκίνητα — είναι σκόπιμο, ώστε να αποφεύγεται η συνεχής εκπομπή φάρου χωρίς επίβλεψη.</li>
       <li>Η καρτέλα WSPR εμφανίζει αντίστροφη μέτρηση και προεπισκόπηση του επόμενου προγραμματισμένου μηνύματος.</li>
