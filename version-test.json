@@ -1,8 +1,8 @@
 {
-  "versionCode": 98,
-  "versionName": "26.0801-TEST",
+  "versionCode": 99,
+  "versionName": "26.0802-TEST",
   "notes": {
-    "en": "This is a TEST entry used to verify the in-app update prompt. It is not a real release.",
-    "zh-TW": "這是用來驗證 App 更新提示的測試項目，並非真實版本。\n測試內容：更新說明可以多行顯示。"
+    "en": "Mandatory Update\nThis is a TEST entry. Transmission should be blocked until updated.",
+    "zh-TW": "必要更新\n這是測試項目。在更新前應無法發射。"
   }
 }
