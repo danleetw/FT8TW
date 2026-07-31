@@ -176,10 +176,12 @@ function applyLang(lang) {
 
   const badge = document.getElementById('view-badge');
   if (badge) {
-    const pageIds = { 'en': 'danleetw.FT8TW.en', 'zh-TW': 'danleetw.FT8TW.zhtw' };
-    const titles  = { 'en': 'EN+Visitors', 'zh-TW': 'ZH+Visitors' };
-    const pageId  = pageIds[lang] || 'danleetw.FT8TW';
-    const title   = titles[lang]  || 'Visitors';
+    /* 每個語系分開計數，用來判斷哪些語言版本值得繼續維護。
+       page_id 由語系代碼直接推導（zh-TW → zhtw），所以日後新增語系
+       不必再改這裡。en 與 zh-TW 推導出來的 ID 與先前寫死的相同，
+       之前累積的數字因此不會歸零；其餘語系從零開始各自計數。 */
+    const pageId = 'danleetw.FT8TW.' + lang.toLowerCase().replace(/-/g, '');
+    const title  = lang.toUpperCase() + '+Visitors';
     const newSrc  = `https://visitor-badge.laobi.icu/badge?page_id=${pageId}&title=${title}&color=blue&style=flat-square`;
 
     /* 顯示與否交給 class，不要寫 inline style：inline style 的優先序高過
