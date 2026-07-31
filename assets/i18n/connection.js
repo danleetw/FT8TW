@@ -4,7 +4,7 @@ const PAGE_T = {
 
 en: {
   conn_title: 'Radio Connection',
-  conn_intro: 'FT8TW supports four connection types: VOX, USB, Bluetooth and network. Pick yours in Settings → Connection type. The network option covers FlexRadio, ICOM RS-BA1 and Xiegu, which is why six sections follow below.',
+  conn_intro: 'FT8TW supports four connection types: VOX, USB, Bluetooth and network. Pick yours in Settings → Connection type. The network option covers FlexRadio, ICOM RS-BA1 and Xiegu, which is why six sections follow below. Once a connection is configured, the app connects to the radio by itself when it starts, so there is nothing to tap on each launch.',
 
   conn_vox_title: 'VOX (Audio Only)',
   conn_vox_text:  'The simplest setup. The phone\'s microphone receives audio and the speaker/headphone output drives the radio\'s microphone input. The radio must be switched to transmit manually or via its built-in VOX feature. No CAT control is available — the app cannot change frequency, read meters, or control PTT.',
@@ -59,7 +59,7 @@ en: {
 
 'zh-TW': {
   conn_title: '電台連線',
-  conn_intro: 'FT8TW 支援四種連線方式：VOX、有線（USB）、藍牙與網路，請在設置的「連接方式」中選擇。其中網路連接又涵蓋 FlexRadio、ICOM RS-BA1 與協谷 X6100，因此下方共有六個小節。',
+  conn_intro: 'FT8TW 支援四種連線方式：VOX、有線（USB）、藍牙與網路，請在設置的「連接方式」中選擇。其中網路連接又涵蓋 FlexRadio、ICOM RS-BA1 與協谷 X6100，因此下方共有六個小節。連線設定完成後，App 啟動時會自行連線電台一次，不必每次開啟都手動點一下。',
 
   conn_vox_title: 'VOX（僅音訊）',
   conn_vox_text:  '最簡單的連線方式。手機麥克風接收音訊，喇叭或耳機輸出驅動電台麥克風輸入。電台需手動切換至發射，或透過電台本身的 VOX 功能。無 CAT 控制，程式無法更改頻率或讀取儀表數值。',
@@ -114,7 +114,7 @@ en: {
 
 'zh-CN': {
   conn_title: '电台连接',
-  conn_intro: 'FT8TW 支持四种连接方式：VOX、有线（USB）、蓝牙与网络，请在设置的「连接方式」中选择。其中网络连接又涵盖 FlexRadio、ICOM RS-BA1 与协谷 X6100，因此下方共有六个小节。',
+  conn_intro: 'FT8TW 支持四种连接方式：VOX、有线（USB）、蓝牙与网络，请在设置的「连接方式」中选择。其中网络连接又涵盖 FlexRadio、ICOM RS-BA1 与协谷 X6100，因此下方共有六个小节。连接设置完成后，App 启动时会自行连接电台一次，不必每次打开都手动点一下。',
 
   conn_vox_title: 'VOX（仅音频）',
   conn_vox_text:  '最简单的连接方式。手机麦克风接收音频，扬声器或耳机输出驱动电台麦克风输入。电台需手动切换至发射，或通过电台自身的 VOX 功能。无 CAT 控制，程序无法更改频率或读取仪表数值。',
@@ -169,7 +169,7 @@ en: {
 
 'ja': {
   conn_title: '無線機との接続',
-  conn_intro: 'FT8TW は 4 種類の接続方式（VOX、USB、Bluetooth、ネットワーク）に対応しています。設定 → 接続方式 で選んでください。ネットワーク接続には FlexRadio、ICOM RS-BA1、Xiegu が含まれるため、以下は 6 つの節に分かれています。',
+  conn_intro: 'FT8TW は 4 種類の接続方式（VOX、USB、Bluetooth、ネットワーク）に対応しています。設定 → 接続方式 で選んでください。ネットワーク接続には FlexRadio、ICOM RS-BA1、Xiegu が含まれるため、以下は 6 つの節に分かれています。接続を設定しておけば、起動時にアプリが自動で無線機につながるため、毎回手動で接続する必要はありません。',
 
   conn_vox_title: 'VOX（音声のみ）',
   conn_vox_text:  'いちばん簡単な構成です。スマートフォンのマイクで音声を受け、スピーカーまたはイヤホン出力で無線機のマイク入力を駆動します。送信への切り替えは手動、または無線機側の VOX 機能で行います。CAT 制御はないため、アプリから周波数の変更やメーターの読み取り、PTT の制御はできません。',
@@ -224,7 +224,7 @@ en: {
 
 'ru': {
   conn_title: 'Подключение трансивера',
-  conn_intro: 'FT8TW поддерживает четыре способа подключения: VOX, USB, Bluetooth и сеть. Нужный выбирается в Настройки → Тип подключения. Сетевой вариант охватывает FlexRadio, ICOM RS-BA1 и Xiegu, поэтому ниже шесть разделов.',
+  conn_intro: 'FT8TW поддерживает четыре способа подключения: VOX, USB, Bluetooth и сеть. Нужный выбирается в Настройки → Тип подключения. Сетевой вариант охватывает FlexRadio, ICOM RS-BA1 и Xiegu, поэтому ниже шесть разделов. После настройки приложение само подключается к трансиверу при запуске — нажимать ничего не нужно.',
 
   conn_vox_title: 'VOX (только звук)',
   conn_vox_text:  'Самый простой вариант. Микрофон телефона принимает звук, а выход на динамик или наушники подаётся на микрофонный вход трансивера. На передачу трансивер переводится вручную или его собственным VOX. Управления CAT нет: приложение не может менять частоту, читать приборы или управлять PTT.',
@@ -279,7 +279,7 @@ en: {
 
 'pl': {
   conn_title: 'Połączenie z radiem',
-  conn_intro: 'FT8TW obsługuje cztery rodzaje połączeń: VOX, USB, Bluetooth i sieć. Wybierz swój w Ustawienia → Rodzaj połączenia. Wariant sieciowy obejmuje FlexRadio, ICOM RS-BA1 i Xiegu, dlatego poniżej jest sześć podrozdziałów.',
+  conn_intro: 'FT8TW obsługuje cztery rodzaje połączeń: VOX, USB, Bluetooth i sieć. Wybierz swój w Ustawienia → Rodzaj połączenia. Wariant sieciowy obejmuje FlexRadio, ICOM RS-BA1 i Xiegu, dlatego poniżej jest sześć podrozdziałów. Po skonfigurowaniu połączenia aplikacja sama łączy się z radiem przy starcie — nie trzeba nic dotykać przy każdym uruchomieniu.',
 
   conn_vox_title: 'VOX (tylko dźwięk)',
   conn_vox_text:  'Najprostsza konfiguracja. Mikrofon telefonu odbiera dźwięk, a wyjście głośnika lub słuchawek steruje wejściem mikrofonowym radia. Na nadawanie trzeba przełączyć ręcznie albo skorzystać z funkcji VOX w radiu. Nie ma sterowania CAT — aplikacja nie zmieni częstotliwości, nie odczyta wskaźników ani nie załączy PTT.',
@@ -334,7 +334,7 @@ en: {
 
 'es': {
   conn_title: 'Conexión del equipo',
-  conn_intro: 'FT8TW admite cuatro tipos de conexión: VOX, USB, Bluetooth y red. Elige el tuyo en Ajustes → Tipo de conexión. La opción de red abarca FlexRadio, ICOM RS-BA1 y Xiegu, por eso a continuación hay seis apartados.',
+  conn_intro: 'FT8TW admite cuatro tipos de conexión: VOX, USB, Bluetooth y red. Elige el tuyo en Ajustes → Tipo de conexión. La opción de red abarca FlexRadio, ICOM RS-BA1 y Xiegu, por eso a continuación hay seis apartados. Una vez configurada la conexión, la aplicación se conecta sola al equipo al arrancar, sin que haya que pulsar nada en cada inicio.',
 
   conn_vox_title: 'VOX (solo audio)',
   conn_vox_text:  'La configuración más sencilla. El micrófono del teléfono recibe el audio y la salida de altavoz o auriculares ataca la entrada de micrófono del equipo. El paso a transmisión se hace a mano o con la función VOX del propio equipo. No hay control CAT: la aplicación no puede cambiar de frecuencia, leer instrumentos ni controlar el PTT.',
@@ -389,7 +389,7 @@ en: {
 
 'el': {
   conn_title: 'Σύνδεση πομποδέκτη',
-  conn_intro: 'Το FT8TW υποστηρίζει τέσσερις τύπους σύνδεσης: VOX, USB, Bluetooth και δίκτυο. Επιλέξτε τον δικό σας στις Ρυθμίσεις → Τύπος σύνδεσης. Η επιλογή δικτύου καλύπτει FlexRadio, ICOM RS-BA1 και Xiegu, γι’ αυτό ακολουθούν έξι ενότητες.',
+  conn_intro: 'Το FT8TW υποστηρίζει τέσσερις τύπους σύνδεσης: VOX, USB, Bluetooth και δίκτυο. Επιλέξτε τον δικό σας στις Ρυθμίσεις → Τύπος σύνδεσης. Η επιλογή δικτύου καλύπτει FlexRadio, ICOM RS-BA1 και Xiegu, γι’ αυτό ακολουθούν έξι ενότητες. Όταν ρυθμιστεί η σύνδεση, η εφαρμογή συνδέεται μόνη της στον πομποδέκτη κατά την εκκίνηση — δεν χρειάζεται να πατήσετε τίποτα σε κάθε άνοιγμα.',
 
   conn_vox_title: 'VOX (μόνο ήχος)',
   conn_vox_text:  'Η απλούστερη διάταξη. Το μικρόφωνο του τηλεφώνου λαμβάνει τον ήχο και η έξοδος ηχείου ή ακουστικών οδηγεί την είσοδο μικροφώνου του πομποδέκτη. Η μετάβαση σε εκπομπή γίνεται χειροκίνητα ή με τη λειτουργία VOX του πομποδέκτη. Δεν υπάρχει έλεγχος CAT — η εφαρμογή δεν μπορεί να αλλάξει συχνότητα, να διαβάσει όργανα ή να ελέγξει το PTT.',

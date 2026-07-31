@@ -46,7 +46,7 @@ en: {
   screens_more_text:  'Beyond the core FT8/FT4 tabs, FT8TW includes several additional screens, accessible from the navigation menu or the floating shortcut window:',
   screens_more_list: `
     <ul>
-      <li><strong>Spectrum</strong> – Live waterfall and spectrum display of the receive audio, with adjustable color scheme and noise-floor-anchored contrast; also shows your own transmit audio during TX.</li>
+      <li><strong>Spectrum</strong> – Live waterfall and spectrum display of the receive audio, with adjustable color scheme and noise-floor-anchored contrast; also shows your own transmit audio during TX. A display adjustment panel adds <strong>Contrast</strong> and <strong>Reference (black level)</strong> sliders for when the automatic tracking does not suit the conditions; <strong>Auto</strong> hands control back.</li>
       <li><strong>JS8</strong> – Chat-style conversation screen for JS8 mode. See the <a href="js8.html">JS8 Chat Mode</a> section.</li>
       <li><strong>WSPR</strong> – Beacon scheduling screen for WSPR mode. See the <a href="wspr.html">WSPR Beacon</a> section.</li>
       <li><strong>SSB</strong> – Radio microphone, receive monitor and antenna tuning. See the <a href="ssb.html">SSB Voice</a> section.</li>
@@ -101,7 +101,7 @@ en: {
   screens_more_text:  '除了核心的 FT8/FT4 分頁之外，FT8TW 還有下列畫面，可從導覽選單或浮動快捷視窗開啟：',
   screens_more_list: `
     <ul>
-      <li><strong>頻譜（Spectrum）</strong> — 即時顯示接收音訊的瀑布圖與頻譜，色階可切換，黑點錨定雜訊地板以維持對比；發射時也會顯示自己的發射音訊。</li>
+      <li><strong>頻譜（Spectrum）</strong> — 即時顯示接收音訊的瀑布圖與頻譜，色階可切換，黑點錨定雜訊地板以維持對比；發射時也會顯示自己的發射音訊。另有「瀑布圖顯示調整」面板，在自動追蹤不合當下現場狀況時，可手動調<strong>對比</strong>與<strong>基準（黑色位準）</strong>；按<strong>自動</strong>即可交回給程式。</li>
       <li><strong>JS8</strong> — JS8 模式的聊天式對話畫面，詳見<a href="js8.html">「JS8 聊天模式」</a>章節。</li>
       <li><strong>WSPR</strong> — WSPR 模式的信標排程畫面，詳見<a href="wspr.html">「WSPR 信標」</a>章節。</li>
       <li><strong>SSB</strong> — 電台麥克風、收訊監聽與天線調諧，詳見<a href="ssb.html">「SSB 語音」</a>章節。</li>
@@ -156,7 +156,7 @@ en: {
   screens_more_text:  '除了核心的 FT8/FT4 分页之外，FT8TW 还有下列界面，可从导航菜单或悬浮快捷窗口打开：',
   screens_more_list: `
     <ul>
-      <li><strong>频谱（Spectrum）</strong> — 实时显示接收音频的瀑布图与频谱，色阶可切换，黑点锚定噪声基底以维持对比；发射时也会显示自己的发射音频。</li>
+      <li><strong>频谱（Spectrum）</strong> — 实时显示接收音频的瀑布图与频谱，色阶可切换，黑点锚定噪声基底以维持对比；发射时也会显示自己的发射音频。另有「瀑布图显示调整」面板，在自动跟踪不适合当下现场状况时，可手动调<strong>对比</strong>与<strong>基准（黑色电平）</strong>；按<strong>自动</strong>即可交回给程序。</li>
       <li><strong>JS8</strong> — JS8 模式的聊天式对话界面，详见<a href="js8.html">「JS8 聊天模式」</a>章节。</li>
       <li><strong>WSPR</strong> — WSPR 模式的信标计划界面，详见<a href="wspr.html">「WSPR 信标」</a>章节。</li>
       <li><strong>SSB</strong> — 电台麦克风、收听监听与天线调谐，详见<a href="ssb.html">「SSB 语音」</a>章节。</li>
@@ -211,7 +211,7 @@ en: {
   screens_more_text:  'FT8/FT4 の主要タブのほかに、ナビゲーションメニューまたはフローティングショートカットから開ける画面があります:',
   screens_more_list: `
     <ul>
-      <li><strong>スペクトラム</strong> — 受信音声のウォーターフォールとスペクトラムをリアルタイム表示します。配色は切り替え可能で、暗部はノイズフロアを基準にコントラストを保ちます。送信中は自局の送信音声も表示します。</li>
+      <li><strong>スペクトラム</strong> — 受信音声のウォーターフォールとスペクトラムをリアルタイム表示します。配色は切り替え可能で、暗部はノイズフロアを基準にコントラストを保ちます。送信中は自局の送信音声も表示します。自動追従がその場の状況に合わないときのために、<strong>コントラスト</strong>と<strong>基準（黒レベル）</strong>を手動調節できる表示調整パネルがあります。<strong>自動</strong>を押せば元に戻ります。</li>
       <li><strong>JS8</strong> — JS8 モードのチャット画面。<a href="js8.html">JS8 チャットモード</a>の章を参照してください。</li>
       <li><strong>WSPR</strong> — WSPR のビーコン予約画面。<a href="wspr.html">WSPR ビーコン</a>の章を参照してください。</li>
       <li><strong>SSB</strong> — 無線機用マイク、受信音のモニター、アンテナ調整。<a href="ssb.html">SSB 音声</a>の章を参照してください。</li>
@@ -266,7 +266,7 @@ en: {
   screens_more_text:  'Помимо основных вкладок FT8/FT4, в FT8TW есть дополнительные экраны, доступные из меню навигации или плавающего окна:',
   screens_more_list: `
     <ul>
-      <li><strong>Спектр</strong> — водопад и спектр принимаемого звука в реальном времени, с выбором цветовой схемы и контрастом, привязанным к уровню шума; во время передачи показывает и ваш сигнал.</li>
+      <li><strong>Спектр</strong> — водопад и спектр принимаемого звука в реальном времени, с выбором цветовой схемы и контрастом, привязанным к уровню шума; во время передачи показывает и ваш сигнал. Если автоматика не подходит к условиям, панель настройки отображения даёт ползунки <strong>Контраст</strong> и <strong>Опорный уровень (чёрный)</strong>; кнопка <strong>Авто</strong> возвращает автоматическое слежение.</li>
       <li><strong>JS8</strong> — экран чата для режима JS8. См. раздел <a href="js8.html">Режим чата JS8</a>.</li>
       <li><strong>WSPR</strong> — экран расписания маяка. См. раздел <a href="wspr.html">Маяк WSPR</a>.</li>
       <li><strong>SSB</strong> — микрофон для трансивера, прослушивание приёма и настройка антенны. См. раздел <a href="ssb.html">Голос SSB</a>.</li>
@@ -321,7 +321,7 @@ en: {
   screens_more_text:  'Poza podstawowymi zakładkami FT8/FT4 FT8TW ma kilka dodatkowych ekranów dostępnych z menu nawigacji lub z okna pływającego:',
   screens_more_list: `
     <ul>
-      <li><strong>Widmo</strong> — wodospad i widmo odbieranego dźwięku na żywo, z wyborem palety barw i kontrastem odniesionym do poziomu szumów; w czasie nadawania pokazuje także własny sygnał.</li>
+      <li><strong>Widmo</strong> — wodospad i widmo odbieranego dźwięku na żywo, z wyborem palety barw i kontrastem odniesionym do poziomu szumów; w czasie nadawania pokazuje także własny sygnał. Gdy automatyka nie pasuje do warunków, panel regulacji obrazu udostępnia suwaki <strong>Kontrast</strong> i <strong>Odniesienie (poziom czerni)</strong>; przycisk <strong>Auto</strong> przywraca automatyczne śledzenie.</li>
       <li><strong>JS8</strong> — ekran rozmowy w trybie JS8. Zobacz rozdział <a href="js8.html">Tryb czatu JS8</a>.</li>
       <li><strong>WSPR</strong> — ekran harmonogramu latarni. Zobacz rozdział <a href="wspr.html">Latarnia WSPR</a>.</li>
       <li><strong>SSB</strong> — mikrofon do radia, odsłuch odbioru i strojenie anteny. Zobacz rozdział <a href="ssb.html">Głos SSB</a>.</li>
@@ -376,7 +376,7 @@ en: {
   screens_more_text:  'Además de las pestañas básicas de FT8/FT4, FT8TW incluye varias pantallas adicionales, accesibles desde el menú de navegación o desde la ventana flotante:',
   screens_more_list: `
     <ul>
-      <li><strong>Espectro</strong> — cascada y espectro en vivo del audio recibido, con paleta de color ajustable y contraste anclado al nivel de ruido; durante la transmisión también muestra tu propio audio.</li>
+      <li><strong>Espectro</strong> — cascada y espectro en vivo del audio recibido, con paleta de color ajustable y contraste anclado al nivel de ruido; durante la transmisión también muestra tu propio audio. Cuando el seguimiento automático no encaja con las condiciones, el panel de ajuste ofrece los deslizadores <strong>Contraste</strong> y <strong>Referencia (nivel de negro)</strong>; <strong>Auto</strong> devuelve el control automático.</li>
       <li><strong>JS8</strong> — pantalla de conversación del modo JS8. Consulta la sección <a href="js8.html">Modo chat JS8</a>.</li>
       <li><strong>WSPR</strong> — pantalla de programación de la baliza. Consulta la sección <a href="wspr.html">Baliza WSPR</a>.</li>
       <li><strong>SSB</strong> — micrófono para el equipo, escucha de recepción y sintonización de antena. Consulta la sección <a href="ssb.html">Voz SSB</a>.</li>
@@ -431,7 +431,7 @@ en: {
   screens_more_text:  'Πέρα από τις βασικές καρτέλες FT8/FT4, το FT8TW περιλαμβάνει και άλλες οθόνες, προσβάσιμες από το μενού πλοήγησης ή από το αιωρούμενο παράθυρο:',
   screens_more_list: `
     <ul>
-      <li><strong>Φάσμα</strong> — ζωντανή προβολή καταρράκτη και φάσματος του ήχου λήψης, με εναλλάξιμη χρωματική κλίμακα και αντίθεση αγκυρωμένη στο επίπεδο θορύβου· κατά την εκπομπή δείχνει και τον δικό σας ήχο.</li>
+      <li><strong>Φάσμα</strong> — ζωντανή προβολή καταρράκτη και φάσματος του ήχου λήψης, με εναλλάξιμη χρωματική κλίμακα και αντίθεση αγκυρωμένη στο επίπεδο θορύβου· κατά την εκπομπή δείχνει και τον δικό σας ήχο. Όταν η αυτόματη παρακολούθηση δεν ταιριάζει στις συνθήκες, ο πίνακας ρύθμισης προσφέρει τα <strong>Αντίθεση</strong> και <strong>Αναφορά (στάθμη μαύρου)</strong>· το <strong>Αυτόματο</strong> επαναφέρει την αυτόματη παρακολούθηση.</li>
       <li><strong>JS8</strong> — οθόνη συνομιλίας για τη λειτουργία JS8. Δείτε το κεφάλαιο <a href="js8.html">Λειτουργία συνομιλίας JS8</a>.</li>
       <li><strong>WSPR</strong> — οθόνη προγραμματισμού φάρου. Δείτε το κεφάλαιο <a href="wspr.html">Φάρος WSPR</a>.</li>
       <li><strong>SSB</strong> — μικρόφωνο για τον πομποδέκτη, ακρόαση λήψης και συντονισμός κεραίας. Δείτε το κεφάλαιο <a href="ssb.html">Φωνή SSB</a>.</li>
