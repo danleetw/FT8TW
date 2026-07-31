@@ -1,13 +1,13 @@
-/* ── FT8TW User Manual – i18n: SSB Voice ─────────────────────────── */
+/* ── FT8TW User Manual – i18n: Radio Tool (SSB) ─────────────────────────── */
 
 const PAGE_T = {
 
 en: {
-  ssb_title: 'SSB Voice',
-  ssb_intro: 'Beyond digital modes, FT8TW can act as a simple radio microphone and monitor — the screen is called <em>Radio Tool</em> in the app. It reuses the radio connection already configured for FT8/FT4 and covers three things: push-to-talk voice, listening to the radio through the phone, and keying a carrier to tune an antenna.',
+  ssb_title: 'Radio Tool',
+  ssb_intro: 'Beyond digital modes, FT8TW can act as a simple radio microphone and monitor. It reuses the radio connection already configured for FT8/FT4 and covers three things: push-to-talk voice on SSB, listening to the radio through the phone, and keying a carrier to tune an antenna.',
 
   ssb_use_title: 'Push-to-Talk Operation',
-  ssb_use_text:  'Open the SSB tab and press and hold the talk button to transmit. The button reads <strong>HOLD TO TALK</strong>, and changes to <strong>TRANSMITTING</strong> while keyed:',
+  ssb_use_text:  'Open the Radio Tool tab and press and hold the talk button to transmit. The button reads <strong>HOLD TO TALK</strong>, and changes to <strong>TRANSMITTING</strong> while keyed:',
   ssb_use_list: `
     <ul>
       <li>Holding the button captures audio from the phone's microphone, asserts PTT via CAT command, and routes audio out through the connected USB sound card or Bluetooth SCO audio.</li>
@@ -46,11 +46,11 @@ en: {
 },
 
 'zh-TW': {
-  ssb_title: 'SSB 語音',
-  ssb_intro: '除了數位模式之外，FT8TW 也能當成簡易的電台麥克風與監聽器——這個畫面在 App 中名為<em>電台工具</em>。它沿用與 FT8/FT4 相同的電台連線設定，涵蓋三件事：按住通話語音、透過手機監聽電台，以及發射載波供天線調諧使用。',
+  ssb_title: '電台工具',
+  ssb_intro: '除了數位模式之外，FT8TW 也能當成簡易的無線電麥克風與監聽器。它沿用與 FT8/FT4 相同的電台連線設定，涵蓋三件事：SSB 按住通話語音、透過手機監聽電台，以及發射載波供天線調諧使用。',
 
   ssb_use_title: '按住通話操作',
-  ssb_use_text:  '開啟 SSB 分頁，按住通話按鈕即可發射。按鈕平時顯示 <strong>HOLD TO TALK</strong>，發射中會變為 <strong>TRANSMITTING</strong>：',
+  ssb_use_text:  '開啟電台工具分頁，按住通話按鈕即可發射。按鈕平時顯示 <strong>HOLD TO TALK</strong>，發射中會變為 <strong>TRANSMITTING</strong>：',
   ssb_use_list: `
     <ul>
       <li>按住按鈕時，程式會擷取手機麥克風音訊、透過 CAT 指令觸發 PTT，並將音訊輸出至已連接的 USB 音效卡或藍牙 SCO 音訊。</li>
@@ -89,11 +89,11 @@ en: {
 },
 
 'zh-CN': {
-  ssb_title: 'SSB 语音',
-  ssb_intro: '除了数字模式之外，FT8TW 也能当成简易的电台麦克风与监听器——这个界面在 App 中名为<em>电台工具</em>。它沿用与 FT8/FT4 相同的电台连接设置，涵盖三件事：按住通话语音、通过手机监听电台，以及发射载波供天线调谐使用。',
+  ssb_title: '电台工具',
+  ssb_intro: '除了数字模式之外，FT8TW 也能当成简易的无线电麦克风与监听器。它沿用与 FT8/FT4 相同的电台连接设置，涵盖三件事：SSB 按住通话语音、通过手机监听电台，以及发射载波供天线调谐使用。',
 
   ssb_use_title: '按住通话操作',
-  ssb_use_text:  '打开 SSB 分页，按住通话按钮即可发射。按钮平时显示 <strong>HOLD TO TALK</strong>，发射中会变为 <strong>TRANSMITTING</strong>：',
+  ssb_use_text:  '打开电台工具分页，按住通话按钮即可发射。按钮平时显示 <strong>HOLD TO TALK</strong>，发射中会变为 <strong>TRANSMITTING</strong>：',
   ssb_use_list: `
     <ul>
       <li>按住按钮时，程序会采集手机麦克风音频、通过 CAT 指令触发 PTT，并将音频输出至已连接的 USB 声卡或蓝牙 SCO 音频。</li>
@@ -132,11 +132,11 @@ en: {
 },
 
 'ja': {
-  ssb_title: 'SSB 音声',
+  ssb_title: '無線機ツール',
   ssb_intro: 'FT8TW はデジタルモードだけでなく、簡易的な無線機用マイク兼モニターとしても使えます。この画面はアプリ内では<em>ラジオツール</em>という名称です。FT8/FT4 用に設定済みの接続をそのまま利用し、プレストーク音声、スマートフォンでの受信音のモニター、アンテナ調整用のキャリア送出という 3 つの機能を備えます。',
 
   ssb_use_title: 'プレストーク操作',
-  ssb_use_text:  'SSB タブを開き、送話ボタンを押し続けると送信します。ボタンは通常 <strong>HOLD TO TALK</strong>、送信中は <strong>TRANSMITTING</strong> に変わります:',
+  ssb_use_text:  '無線機ツールタブを開き、送話ボタンを押し続けると送信します。ボタンは通常 <strong>HOLD TO TALK</strong>、送信中は <strong>TRANSMITTING</strong> に変わります:',
   ssb_use_list: `
     <ul>
       <li>ボタンを押している間、スマートフォンのマイクから音声を取り込み、CAT コマンドで PTT を制御し、接続された USB サウンドカードまたは Bluetooth SCO 経由で音声を出力します。</li>
@@ -175,11 +175,11 @@ en: {
 },
 
 'ru': {
-  ssb_title: 'Голос SSB',
-  ssb_intro: 'Помимо цифровых видов связи, FT8TW может служить простым микрофоном и монитором для трансивера — в приложении этот экран называется <em>Radio Tool</em>. Он использует то же подключение, что настроено для FT8/FT4, и охватывает три вещи: голос с кнопкой передачи, прослушивание трансивера через телефон и выдачу несущей для настройки антенны.',
+  ssb_title: 'Инструменты трансивера',
+  ssb_intro: 'Помимо цифровых видов связи, FT8TW может служить простым микрофоном и монитором для трансивера. Он использует то же подключение, что настроено для FT8/FT4, и охватывает три вещи: голос SSB с кнопкой передачи, прослушивание трансивера через телефон и выдачу несущей для настройки антенны.',
 
   ssb_use_title: 'Работа с кнопкой передачи',
-  ssb_use_text:  'Откройте вкладку SSB и удерживайте кнопку передачи. В покое на ней написано <strong>HOLD TO TALK</strong>, а во время передачи — <strong>TRANSMITTING</strong>:',
+  ssb_use_text:  'Откройте вкладку инструментов и удерживайте кнопку передачи. В покое на ней написано <strong>HOLD TO TALK</strong>, а во время передачи — <strong>TRANSMITTING</strong>:',
   ssb_use_list: `
     <ul>
       <li>Пока кнопка удерживается, приложение берёт звук с микрофона телефона, включает PTT командой CAT и выводит звук через подключённую USB-звуковую карту или Bluetooth SCO.</li>
@@ -218,11 +218,11 @@ en: {
 },
 
 'pl': {
-  ssb_title: 'Głos SSB',
-  ssb_intro: 'Poza emisjami cyfrowymi FT8TW może służyć jako prosty mikrofon i odsłuch do radia — w aplikacji ten ekran nosi nazwę <em>Radio Tool</em>. Korzysta z tego samego połączenia, które skonfigurowano dla FT8/FT4, i obejmuje trzy rzeczy: głos z przyciskiem nadawania, odsłuch radia przez telefon oraz nadanie nośnej do strojenia anteny.',
+  ssb_title: 'Narzędzia radia',
+  ssb_intro: 'Poza emisjami cyfrowymi FT8TW może służyć jako prosty mikrofon i odsłuch do radia. Korzysta z tego samego połączenia, które skonfigurowano dla FT8/FT4, i obejmuje trzy rzeczy: głos SSB z przyciskiem nadawania, odsłuch radia przez telefon oraz nadanie nośnej do strojenia anteny.',
 
   ssb_use_title: 'Nadawanie przyciskiem',
-  ssb_use_text:  'Otwórz zakładkę SSB i przytrzymaj przycisk nadawania. W spoczynku widnieje na nim <strong>HOLD TO TALK</strong>, a podczas nadawania <strong>TRANSMITTING</strong>:',
+  ssb_use_text:  'Otwórz zakładkę narzędzi radia i przytrzymaj przycisk nadawania. W spoczynku widnieje na nim <strong>HOLD TO TALK</strong>, a podczas nadawania <strong>TRANSMITTING</strong>:',
   ssb_use_list: `
     <ul>
       <li>Przytrzymanie przycisku pobiera dźwięk z mikrofonu telefonu, załącza PTT komendą CAT i kieruje dźwięk przez podłączoną kartę dźwiękową USB lub Bluetooth SCO.</li>
@@ -261,11 +261,11 @@ en: {
 },
 
 'es': {
-  ssb_title: 'Voz SSB',
-  ssb_intro: 'Además de los modos digitales, FT8TW puede hacer de micrófono y monitor sencillo para el equipo: esta pantalla se llama <em>Radio Tool</em> en la aplicación. Reutiliza la conexión ya configurada para FT8/FT4 y abarca tres cosas: voz con pulsar para hablar, escuchar el equipo por el teléfono y emitir una portadora para sintonizar la antena.',
+  ssb_title: 'Herramientas de radio',
+  ssb_intro: 'Además de los modos digitales, FT8TW puede hacer de micrófono y monitor sencillo para el equipo. Reutiliza la conexión ya configurada para FT8/FT4 y abarca tres cosas: voz SSB con pulsar para hablar, escuchar el equipo por el teléfono y emitir una portadora para sintonizar la antena.',
 
   ssb_use_title: 'Operación pulsar para hablar',
-  ssb_use_text:  'Abre la pestaña SSB y mantén pulsado el botón de transmisión. En reposo indica <strong>HOLD TO TALK</strong> y, mientras transmite, <strong>TRANSMITTING</strong>:',
+  ssb_use_text:  'Abre la pestaña de herramientas de radio y mantén pulsado el botón de transmisión. En reposo indica <strong>HOLD TO TALK</strong> y, mientras transmite, <strong>TRANSMITTING</strong>:',
   ssb_use_list: `
     <ul>
       <li>Al mantener el botón, la aplicación capta el audio del micrófono del teléfono, activa el PTT mediante comando CAT y envía el audio por la tarjeta de sonido USB conectada o por audio Bluetooth SCO.</li>
@@ -304,11 +304,11 @@ en: {
 },
 
 'el': {
-  ssb_title: 'Φωνή SSB',
-  ssb_intro: 'Πέρα από τους ψηφιακούς τρόπους λειτουργίας, το FT8TW μπορεί να λειτουργήσει ως απλό μικρόφωνο και ακροατήριο για τον πομποδέκτη — η οθόνη ονομάζεται <em>Radio Tool</em> μέσα στην εφαρμογή. Χρησιμοποιεί την ίδια σύνδεση που έχει ήδη ρυθμιστεί για FT8/FT4 και καλύπτει τρία πράγματα: φωνή με πλήκτρο εκπομπής, ακρόαση του πομποδέκτη μέσω του τηλεφώνου και εκπομπή φέροντος για τον συντονισμό κεραίας.',
+  ssb_title: 'Εργαλεία πομποδέκτη',
+  ssb_intro: 'Πέρα από τους ψηφιακούς τρόπους λειτουργίας, το FT8TW μπορεί να λειτουργήσει ως απλό μικρόφωνο και ακροατήριο για τον πομποδέκτη. Χρησιμοποιεί την ίδια σύνδεση που έχει ήδη ρυθμιστεί για FT8/FT4 και καλύπτει τρία πράγματα: φωνή SSB με πλήκτρο εκπομπής, ακρόαση του πομποδέκτη μέσω του τηλεφώνου και εκπομπή φέροντος για τον συντονισμό κεραίας.',
 
   ssb_use_title: 'Λειτουργία με πλήκτρο εκπομπής',
-  ssb_use_text:  'Ανοίξτε την καρτέλα SSB και κρατήστε πατημένο το πλήκτρο ομιλίας για εκπομπή. Σε ηρεμία γράφει <strong>HOLD TO TALK</strong> και κατά την εκπομπή <strong>TRANSMITTING</strong>:',
+  ssb_use_text:  'Ανοίξτε την καρτέλα εργαλείων και κρατήστε πατημένο το πλήκτρο ομιλίας για εκπομπή. Σε ηρεμία γράφει <strong>HOLD TO TALK</strong> και κατά την εκπομπή <strong>TRANSMITTING</strong>:',
   ssb_use_list: `
     <ul>
       <li>Όσο κρατάτε το πλήκτρο, η εφαρμογή καταγράφει ήχο από το μικρόφωνο του τηλεφώνου, ενεργοποιεί το PTT μέσω εντολής CAT και στέλνει τον ήχο στη συνδεδεμένη κάρτα ήχου USB ή μέσω Bluetooth SCO.</li>
