@@ -13,13 +13,33 @@ The client itself has **no dependencies** — standard library only — so a plu
 depend on it without dragging anything else in. `zeroconf` is needed only for
 `discover()`, and if you already know the phone's address you never need it.
 
+You do not need to install anything to try the examples — each one puts this
+directory on `sys.path` itself, so it runs from wherever you happen to be:
+
+```bash
+python -u examples/01_watch_decodes.py <phone-ip> <token>       # Linux / macOS
+python -u examples\01_watch_decodes.py <phone-ip> <token>       # Windows
+```
+
+Use `-u` for the streaming examples. Without it the output sits in a buffer and the
+program looks like it has hung, when in fact it is receiving normally.
+
 ## Get a token
 
-On the phone: **Config → Developer API**, turn it on, copy the **read-only** token.
-The same screen shows the address to connect to.
+On the phone: **Config → Developer API**, turn it on, and copy a token. The same
+screen shows the address to connect to.
 
-Everything in this release is read-only. Nothing here can transmit, change settings
-or control the radio.
+There are **two** tokens and they are not interchangeable:
+
+| Token | What it can do |
+|---|---|
+| read-only | Every query: decodes, QSO log, status, radio, spectrum, map tiles |
+| full | The above, plus the control endpoints — stop/start transmission, set the station to call, change band and mode, write a small set of settings |
+
+Reading is enough for most plugins; take the read-only token unless you actually
+need to change something. **The full token alone is still not enough to transmit** —
+the *Allow remote transmit control* switch in the app must also be on, and it is off
+by default. Two separate gates, so a leaked token cannot key your radio.
 
 ## Quick start
 

@@ -8,7 +8,12 @@ Discovery needs the optional extra:  pip install ft8tw-api[discovery]
 Worth it because the phone's address changes with DHCP, which is the usual reason
 a saved bookmark stops working.
 """
+import os
 import sys
+
+# 讓範例不必先安裝就能跑。用 __file__ 而不是 ".."：sys.path[0] 是腳本所在的
+# 目錄，不是工作目錄，所以相對路徑會隨著你從哪裡執行而失效。
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from ft8tw import CapabilityMissing, Ft8twClient, discover
 
