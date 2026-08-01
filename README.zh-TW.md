@@ -28,6 +28,8 @@
 
 🔓 **[JS8 UTX Unicode 編碼規格書](UTX_SPEC.zh-TW.md)** — JS8 模式 Unicode 文字編碼的完整位元層級公開規格，基於透明公開原則發布（這是公開文件化的編碼格式，並非隱匿內容的密碼）。
 
+🔌 **[外掛開發 API](api/)** — FT8TW 在手機本機提供 HTTP API，可用來開發自己的工具：即時解碼、通聯記錄、電台狀態、音訊頻譜與事件串流，另有範圍刻意保持狹窄的發射控制端點。完整說明（[中英對照](api/README.md)）另有 [Excel](api/FT8TW-API.xlsx) 與 [CSV](api/endpoints.csv) 版本。附 [Python SDK 與可執行範例](sdk/python)，手機本身也提供一個可用的網頁客戶端：`http://<手機IP>:7052/api_demo.html`。
+
 [🙏感謝FT8CN]
 感謝BG7YOZ跟N0BOY
 寫出並維護了一個如此有趣又方便的程式FT8CN，大幅減少了我在山上做SOTA的設備數量，以及纜線的數量，

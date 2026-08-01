@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ft8tw-api"
+version = "1.0.0"
+description = "Client for the FT8TW plugin API"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "GPL-3.0-or-later" }
+authors = [{ name = "BV6LC" }]
+keywords = ["ham radio", "amateur radio", "ft8", "ft8tw"]
+
+# No required dependencies: the client is standard library only, so a plugin can
+# depend on it without dragging anything else in.
+dependencies = []
+
+[project.optional-dependencies]
+# Only needed for discover(); pass the phone's IP directly and you never need it.
+discovery = ["zeroconf>=0.100"]
+
+[tool.setuptools.packages.find]
+include = ["ft8tw*"]

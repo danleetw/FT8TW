@@ -28,6 +28,8 @@
 
 🔓 **[JS8 UTX Unicode Encoding Specification](UTX_SPEC.md)** — full public bit-level spec for the Unicode text encoding used in JS8 mode, published in the interest of transparency (this is an open, documented encoding, not a cipher).
 
+🔌 **[Plugin API](api/)** — FT8TW serves a local HTTP API so you can build your own tools: live decodes, QSO log, radio state, audio spectrum and an event stream, plus a narrow transmit-control surface. Full reference in [English and 中文](api/README.md), also as [Excel](api/FT8TW-API.xlsx) and [CSV](api/endpoints.csv). A [Python SDK with runnable examples](sdk/python) is included, and the phone itself serves a working browser client at `http://<phone-ip>:7052/api_demo.html`.
+
 [🙏 Thanks to FT8CN]  
 Many thanks to BG7YOZ and N0BOY  
 for creating and maintaining such an interesting and convenient program, FT8CN.  
