@@ -35,21 +35,27 @@ Enable it in the app: **Config → Developer API**. The address and both tokens 
 |---|---|---|---|---|---|---|
 | 1 | `GET` | `/api/versions` | none | No | supported | Version and capability probe. |
 | 2 | `GET` | `/api/v1/whoami` | readonly | No | supported | Reports the scope of the presented token. |
-| 3 | `GET` | `/api/v1/status` | readonly | No | supported | Operating state: mode, callsign, grid, band, audio frequency, whether it is decoding or transmitting, the current target callsign, and the sequence numbers currently held in the event buffer. |
+| 3 | `GET` | `/api/v1/status` | readonly | No | supported | Operating state: mode, callsign, grid, band, audio frequency, whether it is decoding or transmitting, the current target callsign, the sequence numbers currently held in the event buffer, and inputLevel — the receive audio level for the slot that just finished (rmsDb, peakDb, clipPercent and crestFactorDb). |
 | 4 | `GET` | `/api/v1/messages` | readonly | No | supported | Decoded messages. |
 | 5 | `GET` | `/api/v1/qso` | readonly | No | supported | QSO log with filtering and paging. |
-| 6 | `GET` | `/api/v1/rig` | readonly | No | supported | Radio state: model, control and connection mode, frequency, SWR, power, PTT. |
-| 7 | `GET` | `/api/v1/logs` | readonly | No | supported | Application debug log. |
-| 8 | `GET` | `/api/v1/spectrum` | readonly | No | supported | Current audio spectrum for drawing a waterfall. |
-| 9 | `GET` | `/api/v1/callsign/{callsign}` | readonly | No | supported | What the app knows about a callsign: country, grid, distance, and whether it is already in the log. |
-| 10 | `GET` | `/api/v1/config` | readonly | No | supported | Selected settings, by whitelist. |
-| 11 | `GET` | `/api/v1/stream` | readonly | No | supported | Server-sent events. |
-| 12 | `GET` | `/api/v1/map/tile/{z}/{x}/{y}` | readonly | No | supported | Offline world map tile (JPEG) from the archive bundled in the app, so a map works with no internet connection. |
-| 13 | `GET` | `/api/v1/audit` | full | No | supported | Recent API access log, newest first. |
-| 14 | `GET` | `/api/v1/openapi.json` | readonly | No | supported | Machine-readable OpenAPI description of this API. |
-| 15 | `POST` | `/api/v1/tx/stop` | full | Yes | supported | Stop transmitting. |
-| 16 | `POST` | `/api/v1/tx/activate` | full | Yes | supported | Enable or disable transmission. |
-| 17 | `POST` | `/api/v1/tx/freetext` | full | Yes | **not implemented** | Always returns 501 not_implemented. |
+| 6 | `GET` | `/api/v1/bands` | readonly | No | supported | Frequencies available in the current mode, with the display name the app shows and a flag for the one in use. |
+| 7 | `GET` | `/api/v1/rig` | readonly | No | supported | Radio state: model, control and connection mode, frequency, SWR, power, PTT. |
+| 8 | `GET` | `/api/v1/logs` | readonly | No | supported | Application debug log. |
+| 9 | `GET` | `/api/v1/spectrum` | readonly | No | supported | Current audio spectrum for drawing a waterfall. |
+| 10 | `GET` | `/api/v1/callsign/{callsign}` | readonly | No | supported | What the app knows about a callsign: country, grid, distance, and whether it is already in the log. |
+| 11 | `GET` | `/api/v1/config` | readonly | No | supported | Selected settings, by whitelist. |
+| 12 | `GET` | `/api/v1/stream` | readonly | No | supported | Server-sent events. |
+| 13 | `GET` | `/api/v1/map/tile/{z}/{x}/{y}` | readonly | No | supported | Offline world map tile (JPEG) from the archive bundled in the app, so a map works with no internet connection. |
+| 14 | `GET` | `/api/v1/audit` | full | No | supported | Recent API access log, newest first. |
+| 15 | `GET` | `/api/v1/openapi.json` | readonly | No | supported | Machine-readable OpenAPI description of this API. |
+| 16 | `POST` | `/api/v1/tx/stop` | full | Yes | supported | Stop transmitting. |
+| 17 | `POST` | `/api/v1/tx/activate` | full | Yes | supported | Enable or disable transmission. |
+| 18 | `POST` | `/api/v1/tx/call` | full | Yes | supported | Set the station to call. |
+| 19 | `POST` | `/api/v1/tx/cq` | full | Yes | supported | Go back to calling CQ. |
+| 20 | `POST` | `/api/v1/control/band` | full | Yes | supported | Change the operating frequency. |
+| 21 | `POST` | `/api/v1/control/mode` | full | Yes | supported | Switch between FT8, FT4 and FT2. |
+| 22 | `POST` | `/api/v1/config` | full | Yes | supported | Change one setting. |
+| 23 | `POST` | `/api/v1/tx/freetext` | full | Yes | **not implemented** | Always returns 501 not_implemented. |
 
 `TX switch` = also requires the phone's *Allow remote transmit control* switch, which is **off by default**.
 
@@ -79,13 +85,13 @@ Reports the scope of the presented token. For full tokens it also returns contro
 
 ### `GET /api/v1/status`
 
-token: `readonly` · since `26.0801`
+token: `readonly` · capability: `input.level` · since `26.0801`
 
-Operating state: mode, callsign, grid, band, audio frequency, whether it is decoding or transmitting, the current target callsign, and the sequence numbers currently held in the event buffer.
+Operating state: mode, callsign, grid, band, audio frequency, whether it is decoding or transmitting, the current target callsign, the sequence numbers currently held in the event buffer, and inputLevel — the receive audio level for the slot that just finished (rmsDb, peakDb, clipPercent and crestFactorDb).
 
-運作狀態：模式、呼號、網格、波段、音訊頻率、是否正在解碼或發射、目前的呼叫對象，以及事件緩衝區目前持有的序號範圍。
+運作狀態：模式、呼號、網格、波段、音訊頻率、是否正在解碼或發射、目前的呼叫對象、事件緩衝區目前持有的序號範圍，以及 inputLevel——剛結束的那個時序的接收音訊電平（rmsDb、peakDb、clipPercent、crestFactorDb）。
 
-> latestSeq / oldestSeq 可用來判斷增量查詢的游標是否還在緩衝區內。
+> latestSeq / oldestSeq 可用來判斷增量查詢的游標是否還在緩衝區內。 inputLevel.available is false during transmit slots and in acoustic mode — 那時沒有可用的讀數，rmsDb 等欄位不會出現，不要當成 0 處理。 targetSetBy is 'api' or 'local': the phone and the API can both change the target and the last write wins — there is deliberately no locking, because the phone must stay in ultimate control. Watch this field to notice that the operator has taken over（外掛設了呼叫 A、使用者在手機上改成 B，不看這個欄位就會繼續按著 A 的劇本跑）。
 
 ### `GET /api/v1/messages`
 
@@ -110,6 +116,16 @@ QSO log with filtering and paging. Incremental sync uses since=<updated_at in ms
 通聯記錄，可篩選與分頁。增量同步用 since=<updated_at 毫秒> 而非 id：LotW 匯入、手動 QSL 確認與日誌編輯都是更新既有列，用 id 當游標抓不到。
 
 > from / to 為 ADIF 的 YYYYMMDD。回應的 hasMore 用於翻頁，nextSince 用於下一次增量查詢。
+
+### `GET /api/v1/bands`
+
+token: `readonly` · capability: `bands.list` · since `26.0801`
+
+Frequencies available in the current mode, with the display name the app shows and a flag for the one in use. POST /control/band only accepts values from this list, so query it first rather than assuming the standard FT8 frequencies — users can define their own frequency table.
+
+目前模式可用的頻率清單，含 App 畫面上顯示的名稱與「目前使用中」標記。POST /control/band 只接受這份清單裡的值，因此請先查詢，不要假設標準的 FT8 頻率——使用者可以自訂頻率表。
+
+> The list changes with the mode（FT8／FT4／FT2 各有一份），切換模式後要重新查。
 
 ### `GET /api/v1/rig`
 
@@ -233,6 +249,74 @@ Enable or disable transmission. The 'activated' field is required and is never d
 
 > Goes through the app's own state machine, so it inherits every guard already there — 不自行改旗標。
 
+### `POST /api/v1/tx/call`
+
+token: `full` · **requires the transmit-control switch** · capability: `control.tx` · since `26.0801`
+
+Parameters: `body: {"callsign": "JA1ABC", "activate": false}`
+
+Set the station to call. Only accepts a callsign that actually appears in the recent decodes — you can only call a station the app has heard. The slot, audio frequency and signal report are taken from that decode, so the caller supplies only the callsign.
+
+Does NOT start transmitting by default; pass activate:true for that.
+
+設定呼叫對象。只接受最近解碼中確實出現過的呼號——只能呼叫 App 實際聽到的電台。時序、音訊頻率與信號報告都取自那則解碼，呼叫者只需要給呼號。
+
+預設<b>不</b>開始發射，需要時帶 activate:true。
+
+> Allowing an arbitrary string would let one typo transmit at a station that is not there — 那不只是無效發射。回 bad_request 時訊息會說明是「沒聽到這個呼號」而非格式錯誤，呼叫者才知道該等下一輪解碼。遙測與自由文字訊息不可呼叫，與解碼畫面的規則相同。
+
+### `POST /api/v1/tx/cq`
+
+token: `full` · **requires the transmit-control switch** · capability: `control.tx` · since `26.0801`
+
+Parameters: `body: {"activate": false}`
+
+Go back to calling CQ. Does NOT start transmitting by default; pass activate:true for that.
+
+回到呼叫 CQ。預設<b>不</b>開始發射，需要時帶 activate:true。
+
+> Fails with busy if no callsign is configured in the app — resetToCQ() 在那種情況下會靜默跳過，回 ok 會讓呼叫者以為設定成功了。
+
+### `POST /api/v1/control/band`
+
+token: `full` · **requires the transmit-control switch** · capability: `control.radio` · since `26.0801`
+
+Parameters: `body: {"band": 14074000}`
+
+Change the operating frequency. Only accepts a frequency that exists in the band list for the current mode — allowing an arbitrary value would let a plugin put the radio outside the amateur bands, and the radio may well comply. Follows exactly the same path as the app's own frequency dialog, so it introduces no new per-model CAT risk. Refused while transmitting: changing frequency mid-transmission moves the carrier while it is on the air.
+
+切換操作頻率。只接受目前模式的波段清單中存在的頻率——允許任意值等於讓外掛把電台調到業餘頻段之外，而電台可能照做。走與 App 頻率清單完全相同的路徑，因此不會引入新的機型風險。發射中拒絕：發射途中改頻率會讓載波在空中位移。
+
+> radioCommanded tells you whether the radio was actually commanded — VOX/藍牙模式下 App 只改自己的設定，使用者仍須手動轉電台，不講清楚會以為換好了。
+
+### `POST /api/v1/control/mode`
+
+token: `full` · **requires the transmit-control switch** · capability: `control.radio` · since `26.0801`
+
+Parameters: `body: {"mode": "FT8"}`
+
+Switch between FT8, FT4 and FT2. This is the app's timing mode and sends no command to the radio, but it DOES change the operating frequency: each mode has its own band list and the nearest entry is selected. The response carries the resulting frequency so the caller need not guess. Refused while transmitting.
+
+切換 FT8／FT4／FT2。這是 App 內部的時序模式，不對電台送出指令，但會連帶改變操作頻率：各模式的波段清單不同，切換後會挑最接近的那一個。回應帶回新頻率，呼叫者不必自己猜。發射中拒絕。
+
+> Changing the timing mode mid-transmission would truncate the signal — 時序模式決定發射的長度與邊界。 CAUTION: switching modes back and forth DRIFTS the frequency. The nearest entry in the new mode's band list is chosen, so FT8 14.074 → FT4 → FT2 → FT8 lands on 14.090, not back on 14.074. This is the app's existing behaviour, not specific to the API — 但透過 API 快速連切會很明顯。Read the 'band' field in the response and set it explicitly with /control/band if you need a particular frequency.
+
+### `POST /api/v1/config`
+
+token: `full` · **requires the transmit-control switch** · capability: `config.write` · since `26.0801`
+
+Parameters: `body: {"key": "antenna", "value": "EFHW 20m"}`
+
+Change one setting. The writable list is deliberately much smaller than the readable one — being able to read a value does not mean it is safe for someone else to change it. Writable: noreplylimit, finishretrylimit, antenna.
+
+One key per request: a batch that half-succeeds leaves a state nobody can describe.
+
+修改一項設定。可寫清單刻意比可讀清單小得多——能讀不代表別人改掉它是安全的。可寫的是 noreplylimit、finishretrylimit、antenna。
+
+一次只改一個鍵：批次修改在部分失敗時會留下說不清的中間狀態。
+
+> Radio connection settings (model/baudrate/connectmode) are NOT writable — 改了會斷開電台連線而遠端無法接回來，等於自斷後路。callsign 是法規識別、功率上限與 SWR 告警是安全限制、pttdelay 影響發射時序，一律不開放。頻率請用 /control/band（走那裡才會連帶命令電台換頻）。回應的 value 是實際生效的值，可能已被夾到合法範圍內。
+
 ### `POST /api/v1/tx/freetext`
 
 token: `full` · **requires the transmit-control switch** · since `26.0801` · **Not implemented (by design)**
@@ -258,9 +342,20 @@ Always returns 501 not_implemented. Free text can put arbitrary content on the a
 | `bad_request` | 400 | A parameter is missing or malformed; see error.param. | 參數缺少或格式錯誤，見 error.param 欄位。 |
 | `session_changed` | 409 | The app restarted since your cursor was issued. Discard it and query in full. | App 在你取得游標之後重啟過。請丟棄游標並重新完整查詢。 |
 | `too_many_connections` | 429 | Connection limit reached (4 requests / 3 streams). Close an existing client. | 連線數已達上限（4 個請求／3 條串流）。請先關掉一個既有的客戶端。 |
+| `conflict` | 409 | The request is valid but the current state does not allow it (transmitting, or a frequency outside the band list). Satisfy the precondition and retry — the request itself needs no change. | 請求本身沒問題，但目前狀態不允許（發射中、頻率不在波段清單內）。滿足前提後重試即可，不需要修改請求。 |
 | `busy` | 503 | The app did not respond within 2 s. The action may or may not have been applied — query the status and retry. | App 在 2 秒內沒有回應。動作是否已執行不明，請查詢狀態後重試。 |
 | `internal_error` | 500 | Unexpected failure. | 未預期的錯誤。 |
 | `api_disabled` | 403 | The API is switched off in the app. | API 在 App 內被停用。 |
+
+### When a stream slot comes back / 串流名額何時歸還
+
+The app notices a client is gone by **failing to write to it**, so the slot is released on the next event or keepalive — within 15 s, usually much sooner. Closing the connection cleanly is enough.
+
+**If your process is killed rather than closed**, the socket can stay half-open: writes still succeed into the kernel buffer, the app never learns you are gone, and the slot stays held far longer. Restarting your plugin in a loop then gives you a steady stream of `429` that looks like an unstable connection but is your own zombie connection holding the slot. Close the stream in a `finally`, and back off rather than reconnecting every second.
+
+App 靠「寫入失敗」發現客戶端已離開，因此名額會在下一個事件或 keepalive 時歸還——15 秒內，通常快得多。正常關閉連線就夠了。
+
+**程序被強制終止而非正常關閉時**，socket 可能留在半開狀態：寫入仍會成功進入核心緩衝區，App 無從得知你已離開，名額會被佔住很久。此時若外掛不斷重啟重連，就會看到連續的 `429`——看起來像連線不穩，其實是自己的殭屍連線佔著名額。請在 `finally` 裡關閉串流，重連時採用退避而不是每秒重試。
 
 ## Capabilities
 
@@ -280,7 +375,11 @@ Probe with `GET /api/versions`. A capability means **this build implements the f
 | `map.tiles` | Offline map tiles | 離線地圖圖磚 |
 | `spectrum` | Audio spectrum for waterfalls | 音訊頻譜（瀑布圖用） |
 | `control.tx` | Transmit enable / stop | 發射開關與停止 |
+| `control.radio` | Band and mode switching | 切換波段與 FT8/FT4/FT2 模式 |
+| `bands.list` | Available frequencies for the current mode | 目前模式可用的頻率清單 |
+| `config.write` | Change a whitelisted setting | 修改白名單內的設定 |
 | `audit.read` | API access log | API 存取記錄 |
+| `input.level` | Receive audio level in /status | /status 內的接收音訊電平 |
 
 ## Transmit control / 發射控制
 

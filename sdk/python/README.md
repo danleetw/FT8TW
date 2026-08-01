@@ -42,6 +42,55 @@ for spot in api.follow_decodes():
 | `03_dashboard.py` | terminal dashboard |
 | `04_qso_sync.py` | mirror the QSO log into SQLite |
 | `05_find_and_stream.py` | mDNS discovery + SSE streaming |
+| `06_tx_watchdog.py` | stop transmission on high SWR or a stuck PTT |
+| `07_remote_control.py` | every control endpoint, and what each refusal means |
+
+`07` runs read-only unless you pass `--arm`; without it, the calls that would
+change your station are printed rather than executed.
+
+## Control endpoints
+
+Reading needs the read-only token. **Changing anything needs two things**: the
+full-access token AND the *Allow remote transmit control* switch in the app
+(Config → Developer API), which is **off by default**.
+
+```python
+api.tx_stop()                          # always succeeds, even if not transmitting
+api.tx_activate(True)                  # enable transmission
+api.tx_call("JA1ABC")                  # set the target; does NOT transmit
+api.tx_call("JA1ABC", activate=True)   # set target and enable in one step
+api.tx_cq()                            # back to calling CQ
+api.set_band(14074000)                 # change frequency (Hz)
+api.set_mode("FT4")                    # also changes the frequency — read it back
+api.set_config("antenna", "EFHW 20m")  # small whitelist only
+```
+
+The two refusals mean different things and need different fixes, so they are
+different exceptions:
+
+```python
+except ScopeRequired:    # you used the read-only token — copy the other one
+except ControlDisabled:  # the switch on the phone is off — nothing you can do remotely
+```
+
+Three properties worth relying on:
+
+**`tx_stop()` succeeds in every state**, including when nothing is transmitting
+and when the app is still starting up. Stopping converges on the safe state; it
+never fails on a precondition. Use `changed` to tell "I stopped something" from
+"it was already stopped".
+
+**Nothing transmits unless you ask.** `tx_call()` and `tx_cq()` set the target
+without keying the radio. Deciding who to call and putting a signal on the air are
+separate steps.
+
+**Every control call is idempotent.** A timeout does not cancel the action — the
+app may still apply it after the client gave up — so `Busy` is safe to retry.
+
+`set_mode()` deserves one warning: switching modes **moves the frequency**, because
+each mode has its own band list and the nearest entry wins. Going FT8 → FT4 → FT2 →
+FT8 does not return you to where you started. Read `band` from the response, or set
+it explicitly with `set_band()`.
 
 ## Three things that will bite you if ignored
 

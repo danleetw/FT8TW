@@ -52,6 +52,38 @@ class AuthError(ApiError):
     """Token missing, wrong, or regenerated since it was issued."""
 
 
+class ScopeRequired(ApiError):
+    """This endpoint needs the full-access token; you presented the read-only one.
+
+    Fixable by the caller: copy the other token from Config -> Developer API.
+    """
+
+
+class ControlDisabled(ApiError):
+    """The phone's "Allow remote transmit control" switch is off.
+
+    NOT fixable by the caller — it is a setting on the phone, and it is off by
+    default. Distinct from ScopeRequired because the two need completely different
+    instructions: fetch a different token, versus walk over to the phone.
+    """
+
+
+class Conflict(ApiError):
+    """The request is valid but the current state does not allow it.
+
+    Transmitting, or a frequency outside the band list. Satisfy the precondition
+    and retry — the request itself needs no change.
+    """
+
+
+class Busy(ApiError):
+    """The app did not respond in time.
+
+    The action may or may not have been applied. All control endpoints are
+    idempotent, so retrying is safe.
+    """
+
+
 class SessionChanged(ApiError):
     """The app restarted; sequence numbers restarted with it.
 
@@ -67,6 +99,31 @@ class CapabilityMissing(RuntimeError):
     Raised up front rather than letting the request 404, so the message says what is
     missing instead of just "not found".
     """
+
+
+def _from_status(http_status):
+    """Pick the right exception from the status line alone.
+
+    Used when the error body cannot be read — normally the JSON envelope carries
+    an ``error.code`` that maps exactly, but a reset connection leaves only the
+    status. Raising a generic ApiError in that case would quietly break the
+    caller's handling: their ``except AuthError`` would stop matching a 401, and
+    they would never find out why their token-refresh path stopped running.
+
+    The mapping is coarser than ``error.code`` — a 403 is either ScopeRequired or
+    ControlDisabled and we cannot tell which — so it picks the one whose absence
+    would hurt more. A caller told "wrong token" checks their token and finds it
+    fine; a caller told "control disabled" walks to the phone for nothing.
+    """
+    if http_status == 401:
+        return AuthError("unauthorized", "HTTP 401 (error body unreadable)")
+    if http_status == 403:
+        return ScopeRequired("scope_required", "HTTP 403 (error body unreadable)")
+    if http_status == 409:
+        return Conflict("conflict", "HTTP 409 (error body unreadable)")
+    if http_status == 503:
+        return Busy("busy", "HTTP 503 (error body unreadable)")
+    return ApiError("http_error", "HTTP %s" % http_status)
 
 
 @dataclass
@@ -133,14 +190,20 @@ class Ft8twClient:
 
     # ── plumbing ────────────────────────────────────────────
 
-    def _request(self, path: str, params: Optional[dict] = None) -> Any:
+    def _request(self, path: str, params: Optional[dict] = None,
+                 method: str = "GET", body: Optional[dict] = None) -> Any:
         url = f"{self.base}{path}"
         if params:
             clean = {k: v for k, v in params.items() if v is not None and v != ""}
             if clean:
                 url += "?" + urllib.parse.urlencode(clean)
 
-        req = urllib.request.Request(url, headers={"Authorization": f"Bearer {self.token}"})
+        headers = {"Authorization": f"Bearer {self.token}"}
+        data = None
+        if body is not None:
+            data = json.dumps(body).encode("utf-8")
+            headers["Content-Type"] = "application/json"
+        req = urllib.request.Request(url, data=data, headers=headers, method=method)
         try:
             with urllib.request.urlopen(req, timeout=self.timeout) as resp:
                 body = json.loads(resp.read().decode("utf-8"))
@@ -149,7 +212,13 @@ class Ft8twClient:
             try:
                 body = json.loads(e.read().decode("utf-8"))
             except Exception:
-                raise ApiError("http_error", f"HTTP {e.code}") from e
+                # Reading the error body can itself fail — the connection is
+                # sometimes reset before the body arrives. Falling back to a
+                # generic ApiError here would be worse than the missing detail:
+                # a caller's `except AuthError` would stop catching a 401, and
+                # the token-refresh path they wrote would silently never run.
+                # The status line is enough to pick the right type.
+                raise _from_status(e.code) from e
         except urllib.error.URLError as e:
             raise ApiError("unreachable", f"cannot reach {self.base}: {e.reason}") from e
 
@@ -161,6 +230,14 @@ class Ft8twClient:
                 raise AuthError(code, msg, err)
             if code == "session_changed":
                 raise SessionChanged(code, msg, err)
+            if code == "scope_required":
+                raise ScopeRequired(code, msg, err)
+            if code == "control_disabled":
+                raise ControlDisabled(code, msg, err)
+            if code == "conflict":
+                raise Conflict(code, msg, err)
+            if code == "busy":
+                raise Busy(code, msg, err)
             raise ApiError(code, msg, err)
 
         # A changed session means every cursor the caller holds is stale.
@@ -216,6 +293,15 @@ class Ft8twClient:
 
     def config(self) -> dict:
         return self._request("/api/v1/config")
+
+    def bands(self) -> dict:
+        """The frequencies :meth:`set_band` will accept, for the current mode.
+
+        ``set_band`` only takes a frequency that is in this list, and the list
+        differs per mode — 14074000 is valid on FT8 and rejected on FT4. Read
+        this first rather than hard-coding a number that happens to work today.
+        """
+        return self._request("/api/v1/bands")
 
     def callsign(self, call: str) -> dict:
         return self._request(f"/api/v1/callsign/{urllib.parse.quote(call)}")
@@ -319,6 +405,101 @@ class Ft8twClient:
                 yield record
             cursor = batch.get("nextSince", cursor)
             time.sleep(poll)
+
+    # ── control (needs the full token and the phone's switch) ──
+    #
+    # Every method here requires BOTH a full-access token AND the "Allow remote
+    # transmit control" switch in the app, which is off by default. Without the
+    # switch you get ControlDisabled — that is a setting on the phone, not
+    # something the caller can fix.
+    #
+    # All of them are idempotent: repeating a call has the same effect as making
+    # it once. That matters because a timeout does not cancel the action, so
+    # retrying after `busy` is safe.
+
+    def tx_stop(self) -> dict:
+        """Stop transmitting.
+
+        Succeeds in every state, including when nothing is transmitting. Check
+        ``changed`` to tell "I stopped a transmission" from "nothing was running".
+        """
+        return self._request("/api/v1/tx/stop", method="POST", body={})
+
+    def tx_activate(self, activated: bool) -> dict:
+        """Enable or disable transmission.
+
+        The response reports the ACTUAL state, not the request: the app can refuse
+        (for example while a mandatory update is pending), in which case
+        ``blocked`` is true and ``activated`` stays false.
+        """
+        if not isinstance(activated, bool):
+            raise ValueError("activated must be a bool, not %r" % type(activated).__name__)
+        return self._request("/api/v1/tx/activate", method="POST",
+                             body={"activated": activated})
+
+    def tx_call(self, callsign: str, activate: bool = False) -> dict:
+        """Set the station to call.
+
+        Only accepts a callsign that appears in the recent decodes — you can only
+        call a station the app has actually heard. The slot, audio frequency and
+        signal report come from that decode, so you supply only the callsign.
+
+        Does not start transmitting unless ``activate`` is true.
+        """
+        return self._request("/api/v1/tx/call", method="POST",
+                             body={"callsign": callsign, "activate": bool(activate)})
+
+    def tx_cq(self, activate: bool = False) -> dict:
+        """Go back to calling CQ. Does not transmit unless ``activate`` is true."""
+        return self._request("/api/v1/tx/cq", method="POST",
+                             body={"activate": bool(activate)})
+
+    def set_band(self, band_hz: int) -> dict:
+        """Change the operating frequency, in Hz.
+
+        Only frequencies present in the band list for the current mode are
+        accepted. ``radioCommanded`` in the response tells you whether the radio
+        was actually commanded — under VOX or Bluetooth the app only changes its
+        own setting and you still have to turn the dial yourself.
+
+        Refused with ``conflict`` while transmitting.
+        """
+        return self._request("/api/v1/control/band", method="POST",
+                             body={"band": int(band_hz)})
+
+    def set_mode(self, mode: str) -> dict:
+        """Switch between FT8, FT4 and FT2.
+
+        This also CHANGES THE FREQUENCY: each mode has its own band list and the
+        nearest entry is selected. Read ``band`` from the response rather than
+        assuming it stayed put — switching back and forth drifts upwards
+        (14.074 -> FT4 -> FT2 -> FT8 lands on 14.090).
+
+        Refused with ``conflict`` while transmitting.
+        """
+        return self._request("/api/v1/control/mode", method="POST",
+                             body={"mode": str(mode).upper()})
+
+    def set_config(self, key: str, value) -> dict:
+        """Change one setting.
+
+        Only a small whitelist is writable (noreplylimit, finishretrylimit,
+        antenna). Radio connection settings are deliberately excluded: changing
+        them remotely would disconnect the radio, and reconnecting needs someone
+        standing next to the phone.
+
+        The response carries ``value`` — what actually took effect, which may
+        have been clamped — alongside ``requested``.
+        """
+        return self._request("/api/v1/config", method="POST",
+                             body={"key": str(key), "value": value})
+
+    def audit(self, limit: int = 0) -> dict:
+        """Recent API access log. Needs a full token; entries contain caller IPs.
+
+        Reading it is itself recorded, so do not poll this.
+        """
+        return self._request("/api/v1/audit", {"limit": limit or None})
 
     def stream(self, events: str = "decode", reconnect: float = 3.0) -> Iterator[dict]:
         """Server-Sent Events, reconnecting on drop and resuming where it left off.
