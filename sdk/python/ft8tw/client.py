@@ -294,6 +294,25 @@ class Ft8twClient:
     def config(self) -> dict:
         return self._request("/api/v1/config")
 
+    def ui(self) -> dict:
+        """Which screen is showing, the text on it, and recent notices.
+
+        Answers the question the other endpoints cannot: not what the radio is
+        doing, but what the screen *says* — the red warning line, the notice that
+        just appeared. That is precisely what you cannot see when you are not
+        next to the phone.
+
+        The settings screen needs the full token, because it displays the API
+        tokens themselves and the CloudLog/QRZ keys. With a read-only token you
+        still learn that the user is on that screen (``redacted`` is true, with a
+        reason) but not what it says. Credentials are redacted on every screen
+        regardless of token, and input fields are never included.
+
+        Reading walks the app's view tree on its main thread, so a busy UI can
+        answer ``busy``. Retrying is safe — this call has no side effects.
+        """
+        return self._request("/api/v1/ui")
+
     def bands(self) -> dict:
         """The frequencies :meth:`set_band` will accept, for the current mode.
 

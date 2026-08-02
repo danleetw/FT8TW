@@ -227,4 +227,14 @@ if __name__ == "__main__":
     if len(sys.argv) < 3:
         print(__doc__)
         sys.exit(2)
-    sys.exit(main(sys.argv[1], sys.argv[2], "--arm" in sys.argv))
+    try:
+        sys.exit(main(sys.argv[1], sys.argv[2], "--arm" in sys.argv))
+    except ApiError as e:
+        print("", file=sys.stderr)
+        print(e, file=sys.stderr)
+        print("Check the phone address and token, and that the app is "
+              "running with the API switched on (Config -> Developer API).",
+              file=sys.stderr)
+        sys.exit(1)
+    except KeyboardInterrupt:
+        sys.exit(0)

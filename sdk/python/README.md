@@ -24,6 +24,34 @@ python -u examples\01_watch_decodes.py <phone-ip> <token>       # Windows
 Use `-u` for the streaming examples. Without it the output sits in a buffer and the
 program looks like it has hung, when in fact it is receiving normally.
 
+### Or just start the launcher
+
+`examples/run.bat` (Windows) and `examples/run.sh` (Linux, macOS) list the examples,
+ask for whatever they need, and add `-u` for you:
+
+```
+run.bat            pick from a menu
+run.bat 3          start example 3 directly
+run.sh 7 --arm     example 7, for real rather than a dry run
+```
+
+Set the address and token once and it stops asking:
+
+```bash
+set FT8TW_HOST=192.168.1.20         # Windows
+set FT8TW_TOKEN=your-token-here
+set FT8TW_BACKFILL=200              # optional: how far back example 1 starts
+
+export FT8TW_HOST=192.168.1.20      # Linux / macOS
+export FT8TW_TOKEN=your-token-here
+export FT8TW_BACKFILL=200           # optional: how far back example 1 starts
+```
+
+The launcher never writes your token to a file. A token in a file is one that gets
+committed, backed up, or read over someone's shoulder — and the full-access one can
+key your radio. Example 7 also stays a dry run unless you type `--arm` yourself:
+nothing should go on the air because someone pressed Enter on a menu.
+
 ## Get a token
 
 On the phone: **Config → Developer API**, turn it on, and copy a token. The same
@@ -57,13 +85,14 @@ for spot in api.follow_decodes():
 
 | | |
 |---|---|
-| `01_watch_decodes.py` | print decodes as they arrive |
-| `02_log_to_csv.py` | append to a CSV, resuming after a restart |
-| `03_dashboard.py` | terminal dashboard |
-| `04_qso_sync.py` | mirror the QSO log into SQLite |
-| `05_find_and_stream.py` | mDNS discovery + SSE streaming |
-| `06_tx_watchdog.py` | stop transmission on high SWR or a stuck PTT |
-| `07_remote_control.py` | every control endpoint, and what each refusal means |
+| `01_watch_decodes.py` | Scrolling list of decodes: UTC, report, DT, DF, message, with a rule between slots |
+| `02_log_to_csv.py` | The same data appended to a CSV, remembering where it stopped |
+| `03_dashboard.py` | One screen redrawn every 3 s: callsign, band, mode, TX/RX, radio link, SWR, power, and the 12 latest decodes |
+| `04_qso_sync.py` | Mirror the phone's contact log into a local SQLite file |
+| `05_find_and_stream.py` | Locate the phone on the network by itself, then stream decodes — the search needs `pip install zeroconf`, or set `FT8TW_HOST` to skip it |
+| `06_tx_watchdog.py` | Watch while transmitting and stop on high SWR or a stuck PTT — it only ever stops |
+| `07_remote_control.py` | Every control endpoint and what each refusal means |
+| `08_watch_screen.py` | Mirrors the phone's screen: every visible line, plus the notices it popped up. `--follow` logs only changes, `--ids` shows view ids — the settings screen needs the full token |
 
 `07` runs read-only unless you pass `--arm`; without it, the calls that would
 change your station are printed rather than executed.

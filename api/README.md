@@ -39,23 +39,24 @@ Enable it in the app: **Config → Developer API**. The address and both tokens 
 | 4 | `GET` | `/api/v1/messages` | readonly | No | supported | Decoded messages. |
 | 5 | `GET` | `/api/v1/qso` | readonly | No | supported | QSO log with filtering and paging. |
 | 6 | `GET` | `/api/v1/bands` | readonly | No | supported | Frequencies available in the current mode, with the display name the app shows and a flag for the one in use. |
-| 7 | `GET` | `/api/v1/rig` | readonly | No | supported | Radio state: model, control and connection mode, frequency, SWR, power, PTT. |
-| 8 | `GET` | `/api/v1/logs` | readonly | No | supported | Application debug log. |
-| 9 | `GET` | `/api/v1/spectrum` | readonly | No | supported | Current audio spectrum for drawing a waterfall. |
-| 10 | `GET` | `/api/v1/callsign/{callsign}` | readonly | No | supported | What the app knows about a callsign: country, grid, distance, and whether it is already in the log. |
-| 11 | `GET` | `/api/v1/config` | readonly | No | supported | Selected settings, by whitelist. |
-| 12 | `GET` | `/api/v1/stream` | readonly | No | supported | Server-sent events. |
-| 13 | `GET` | `/api/v1/map/tile/{z}/{x}/{y}` | readonly | No | supported | Offline world map tile (JPEG) from the archive bundled in the app, so a map works with no internet connection. |
-| 14 | `GET` | `/api/v1/audit` | full | No | supported | Recent API access log, newest first. |
-| 15 | `GET` | `/api/v1/openapi.json` | readonly | No | supported | Machine-readable OpenAPI description of this API. |
-| 16 | `POST` | `/api/v1/tx/stop` | full | Yes | supported | Stop transmitting. |
-| 17 | `POST` | `/api/v1/tx/activate` | full | Yes | supported | Enable or disable transmission. |
-| 18 | `POST` | `/api/v1/tx/call` | full | Yes | supported | Set the station to call. |
-| 19 | `POST` | `/api/v1/tx/cq` | full | Yes | supported | Go back to calling CQ. |
-| 20 | `POST` | `/api/v1/control/band` | full | Yes | supported | Change the operating frequency. |
-| 21 | `POST` | `/api/v1/control/mode` | full | Yes | supported | Switch between FT8, FT4 and FT2. |
-| 22 | `POST` | `/api/v1/config` | full | Yes | supported | Change one setting. |
-| 23 | `POST` | `/api/v1/tx/freetext` | full | Yes | **not implemented** | Always returns 501 not_implemented. |
+| 7 | `GET` | `/api/v1/ui` | readonly | No | supported | Which screen the app is showing, the visible text on it, and the recent notices it displayed to the operator. |
+| 8 | `GET` | `/api/v1/rig` | readonly | No | supported | Radio state: model, control and connection mode, frequency, SWR, power, PTT. |
+| 9 | `GET` | `/api/v1/logs` | readonly | No | supported | Application debug log. |
+| 10 | `GET` | `/api/v1/spectrum` | readonly | No | supported | Current audio spectrum for drawing a waterfall. |
+| 11 | `GET` | `/api/v1/callsign/{callsign}` | readonly | No | supported | What the app knows about a callsign: country, grid, distance, and whether it is already in the log. |
+| 12 | `GET` | `/api/v1/config` | readonly | No | supported | Selected settings, by whitelist. |
+| 13 | `GET` | `/api/v1/stream` | readonly | No | supported | Server-sent events. |
+| 14 | `GET` | `/api/v1/map/tile/{z}/{x}/{y}` | readonly | No | supported | Offline world map tile (JPEG) from the archive bundled in the app, so a map works with no internet connection. |
+| 15 | `GET` | `/api/v1/audit` | full | No | supported | Recent API access log, newest first. |
+| 16 | `GET` | `/api/v1/openapi.json` | readonly | No | supported | Machine-readable OpenAPI description of this API. |
+| 17 | `POST` | `/api/v1/tx/stop` | full | Yes | supported | Stop transmitting. |
+| 18 | `POST` | `/api/v1/tx/activate` | full | Yes | supported | Enable or disable transmission. |
+| 19 | `POST` | `/api/v1/tx/call` | full | Yes | supported | Set the station to call. |
+| 20 | `POST` | `/api/v1/tx/cq` | full | Yes | supported | Go back to calling CQ. |
+| 21 | `POST` | `/api/v1/control/band` | full | Yes | supported | Change the operating frequency. |
+| 22 | `POST` | `/api/v1/control/mode` | full | Yes | supported | Switch between FT8, FT4 and FT2. |
+| 23 | `POST` | `/api/v1/config` | full | Yes | supported | Change one setting. |
+| 24 | `POST` | `/api/v1/tx/freetext` | full | Yes | **not implemented** | Always returns 501 not_implemented. |
 
 `TX switch` = also requires the phone's *Allow remote transmit control* switch, which is **off by default**.
 
@@ -126,6 +127,16 @@ Frequencies available in the current mode, with the display name the app shows a
 目前模式可用的頻率清單，含 App 畫面上顯示的名稱與「目前使用中」標記。POST /control/band 只接受這份清單裡的值，因此請先查詢，不要假設標準的 FT8 頻率——使用者可以自訂頻率表。
 
 > The list changes with the mode（FT8／FT4／FT2 各有一份），切換模式後要重新查。
+
+### `GET /api/v1/ui`
+
+token: `readonly` · capability: `ui.state` · since `26.0801`
+
+Which screen the app is showing, the visible text on it, and the recent notices it displayed to the operator. The other endpoints answer what the radio is doing; this one answers what the screen says — the red warning line, the toast that just appeared — which is what you cannot see when you are not next to the phone.
+
+App 目前停在哪個畫面、畫面上看得見的文字，以及最近顯示給操作者的提示。其他端點回答的是電台在做什麼，這一個回答的是畫面上寫了什麼——那行紅字、剛跳出來的提示——也就是人不在手機旁邊時看不到的東西。
+
+> The settings screen needs a FULL token: it displays the complete API tokens and the CloudLog/QRZ keys, so a read-only caller gets only the screen name with redacted:true and a reason. Credentials are redacted on every screen regardless（任何看起來像憑證的長字串一律遮成 ***，不倚賴 id 清單——清單遲早會漏掉新加的欄位，而那種疏漏完全沒有徵兆）。 Input fields are never included: what the user is typing is not what the app is saying. Reading walks the view tree on the main thread, so a busy UI can return 503 busy — 重試即可，這個端點沒有副作用。
 
 ### `GET /api/v1/rig`
 
@@ -380,6 +391,7 @@ Probe with `GET /api/versions`. A capability means **this build implements the f
 | `config.write` | Change a whitelisted setting | 修改白名單內的設定 |
 | `audit.read` | API access log | API 存取記錄 |
 | `input.level` | Receive audio level in /status | /status 內的接收音訊電平 |
+| `ui.state` | Which screen is showing and the text on it | 目前顯示的畫面與畫面上的文字 |
 
 ## Transmit control / 發射控制
 

@@ -16,7 +16,7 @@ import time
 # 目錄，不是工作目錄，所以相對路徑會隨著你從哪裡執行而失效。
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from ft8tw import Ft8twClient
+from ft8tw import Ft8twClient, ApiError
 
 FIELDS = ["seq", "utc", "from", "to", "grid", "snr", "audio_hz", "mode", "text"]
 
@@ -78,4 +78,14 @@ def main(host, token, path):
 if __name__ == "__main__":
     if len(sys.argv) != 4:
         sys.exit(__doc__)
-    main(sys.argv[1], sys.argv[2], sys.argv[3])
+    try:
+        main(sys.argv[1], sys.argv[2], sys.argv[3])
+    except ApiError as e:
+        print("", file=sys.stderr)
+        print(e, file=sys.stderr)
+        print("Check the phone address and token, and that the app is "
+              "running with the API switched on (Config -> Developer API).",
+              file=sys.stderr)
+        sys.exit(1)
+    except KeyboardInterrupt:
+        sys.exit(0)
