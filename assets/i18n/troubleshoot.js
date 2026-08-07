@@ -70,6 +70,8 @@ en: {
       <li>弱訊號條件下改用<strong>多次</strong>解碼模式。</li>
       <li>確認所在頻率為該頻段的 FT8 標準頻率（例如 20m 為 14.074 MHz）。</li>
       <li>若程式確實在錄音、卻完全收不到音訊，解碼畫面會常駐顯示<strong>「⚠ 沒有收到音訊」</strong>。點一下就會列出可能原因：麥克風權限未開啟，或被其他程式（錄音機、通話）佔用；音源本身有問題（連接線、電台音量、藍牙連線）；或這台手機還裝了另一個 FT8TW，麥克風被它拿走了。</li>
+      <li><strong>用了 USB 音效卡（Digirig 等）卻好像收的是室內的聲音：</strong>到設置 → <strong>進階與開發者</strong>看「音訊裝置」目前實際在收哪一個裝置。若顯示的是內建麥克風，按<strong>重新偵測</strong>即可改用 USB 音效卡，不必重開 App。這一頁也會明講「找到 USB 音訊、但系統不接受路由要求，實際仍在收內建麥克風」這種情況，不必自己猜。</li>
+      <li><strong>電台的音量根本調不動時：</strong>用設置 → 電台與聲音的<strong>接收音訊增益</strong>在 App 內調整。QMX 這類純數位機的 USB 音訊電平是固定的，ICOM 的 USB 音量則藏在 SET 選單而不是 AF 旋鈕——這時從 App 這端調最快。</li>
     </ul>`,
 
   ts_noconn_title: '無法連接電台',
@@ -80,6 +82,7 @@ en: {
       <li>ICOM 電台需確認 <strong>CI-V 地址</strong>與電台選單設定一致（常見值為 0x94 或 0xA4）。</li>
       <li><strong>藍牙：</strong>請先在 Android 藍牙設定中完成配對，再於 FT8TW 中選取裝置，並確認藍牙模組已通電且在有效範圍內。</li>
       <li><strong>WiFi（FlexRadio / ICOM）：</strong>確認手機與電台連接至同一網路，並核對 IP 位址及埠號。</li>
+      <li>以上都對過還是沒反應時，請用電台工具頁最下方的<strong>電台測試工具</strong>逐項確認：按<strong>讀取頻率</strong>看電台有沒有回應、按 <strong>PTT 測試</strong>看能不能拉起發射。回應視窗會把送出的指令與收到的回覆原樣列出來，可以直接分辨是「指令沒送出去」、「送出去了但電台不回」還是「回了但格式不同」。詳見<a href="ssb.html">「電台工具」</a>。</li>
     </ul>`,
 
   ts_notx_title: '無法發射',
@@ -91,6 +94,8 @@ en: {
       <li>確認<strong>發射監管</strong>計時器是否已觸發停止發射。</li>
       <li>程式會拒絕在 <strong>WSPR-2 頻率</strong>發射 FT8 訊號以避免干擾。</li>
       <li>確認音訊輸出路由——藍牙耳機需確認為選定的音訊輸出裝置。</li>
+      <li>若程式提示有一個<strong>必要更新</strong>尚未安裝，在更新完成之前所有發射入口都會被擋下（FT8/FT4/FT2、WSPR、JS8、按住通話與調諧）。瀏覽、通聯記錄與設定則不受影響。詳見<a href="install.html">「安裝」</a>的版本更新說明。</li>
+      <li>用電台工具頁的<strong>電台測試工具</strong>按一下 <strong>PTT 測試</strong>：如果這裡能正常拉起與放開 PTT，代表 PTT 這條路本身是通的，問題就在發射流程的其他環節。</li>
     </ul>`,
 
   ts_timesync_title: '時間同步問題',

@@ -33,13 +33,15 @@ en: {
     <ul>
       <li>支援 <strong>FT8</strong>（15 秒時隙）、<strong>FT4</strong>（7.5 秒時隙）及實驗性的 <strong>FT2</strong> 數位模式</li>
       <li>另支援 <strong>JS8</strong> 聊天模式、<strong>WSPR</strong> 信標發射／解碼，以及 <strong>SSB</strong> 按住通話語音</li>
-      <li>透過 USB CAT、藍牙 SPP、FlexRadio WiFi、ICOM RS-BA1 或協谷 WiFi 控制 <strong>40+ 款電台</strong></li>
+      <li>透過 USB CAT、藍牙 SPP、FlexRadio WiFi、ICOM RS-BA1 或協谷 WiFi 控制 <strong>80 款以上的電台</strong></li>
       <li>使用原生 <strong>C/C++ 訊號處理</strong>（LDPC、CRC、Kiss FFT），編解碼效能優異</li>
       <li>自動回應 CQ，可設定優先策略</li>
       <li>通聯日誌管理，支援 ADIF 匯出／匯入及日誌分享</li>
       <li>整合 <strong>QRZ.com</strong>、<strong>PSKReporter</strong> 及 <strong>Cloudlog／Wavelog</strong></li>
       <li>競賽模式（交換網格），以及 SOTA／POTA 啟動記錄</li>
       <li>多組具名設定檔，日誌資料庫可自動備份</li>
+      <li>內建<strong>電台測試工具</strong>，可逐項驗證 CAT 與音訊路徑，並附上原文與 HEX 的回應記錄</li>
+      <li>可選的<strong>開發者 API</strong>，供自行開發的外掛在區域網路內讀取解碼、日誌與頻譜</li>
       <li>Maidenhead 網格追蹤器，結合 OpenStreetMap 顯示</li>
       <li>ITU、CQ 分區及 DXCC 統計</li>
       <li>淺色 / 深色 / 跟隨系統佈景</li>

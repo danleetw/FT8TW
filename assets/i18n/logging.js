@@ -45,7 +45,8 @@ en: {
     </ul>`,
 
   log_activation_title: 'Activation Mode (SOTA / POTA)',
-  log_activation_text:  'When you are the one activating a summit or a park, enter your own reference in Settings → Activation (SOTA/POTA) and turn on activation mode. Your SOTA and POTA references are then written into the log entries as you work stations, which is what the SOTA export format needs — far easier than adding them to every record afterwards.',
+  log_activation_text:  'When you are the one activating a summit or a park, enter your own reference in Settings → <strong>SOTA / POTA Activation</strong> and turn on activation mode. Your SOTA and POTA references are then written into the log entries as you work stations, which is what the SOTA export format needs — far easier than adding them to every record afterwards. Once a reference is entered, the park name and grid found for it are shown underneath, so you can check it was typed correctly.',
+  log_activation_multi: 'One spot often sits inside <strong>several POTA parks</strong> at once (an n-fer). Use <strong>+ Add park</strong> to enter them one by one, up to six. The export then switches to <strong>one ADIF per park, bundled into a single ZIP</strong> — POTA\'s convention is one log per park, uploaded separately, and several references crammed into one field will not be accepted. Each file contains only the records that really belong to that park; with a single park the export stays a single file.',
 
   log_slideshow_title: 'Log Slideshow',
   log_slideshow_text:  'Long-press the log list and choose <em>Show slideshow</em> to page through your contacts full-screen, one at a time, complete with the operator photo and a QSL-card style layout. Slides advance on a configurable interval, or you can scroll through them by hand.',
@@ -104,7 +105,8 @@ en: {
     </ul>`,
 
   log_activation_title: '出勤模式（SOTA / POTA）',
-  log_activation_text:  '當您是登山或到公園進行啟動的一方時，請在設置 → 出勤活動 (SOTA/POTA) 填入自己的編號，並開啟「出勤模式（將編號寫入記錄）」。之後每筆通聯都會自動把您的 SOTA、POTA 編號寫進日誌，這正是 SOTA 匯出格式需要的欄位——比事後逐筆補上輕鬆得多。',
+  log_activation_text:  '當您是登山或到公園進行啟動的一方時，請在設置 → <strong>SOTA / POTA 出勤</strong>填入自己的編號，並開啟「出勤模式（將編號寫入記錄）」。之後每筆通聯都會自動把您的 SOTA、POTA 編號寫進日誌，這正是 SOTA 匯出格式需要的欄位——比事後逐筆補上輕鬆得多。編號填好後，下方會顯示查到的園區名稱與網格，可用來確認沒有打錯。',
+  log_activation_multi: '同一個地點常常同時落在<strong>多個 POTA 園區</strong>（n-fer）。按<strong>＋ 新增園區</strong>可以逐一加入，最多六組。此時匯出會自動改為<strong>每座公園各一份 ADIF，打包成一個 ZIP</strong>——POTA 官方的慣例就是一座公園一份 log 分開上傳，把多個編號串在同一個欄位裡上傳系統不會接受。每一份只會收進真正屬於該座公園的紀錄；只填一座公園時，維持原本的單檔匯出。',
 
   log_slideshow_title: '日誌幻燈片',
   log_slideshow_text:  '長按日誌清單選擇<em>播放幻燈片</em>，即可全螢幕逐筆瀏覽通聯記錄，畫面包含對方的照片與仿 QSL 卡的版面。可設定每張停留的秒數自動播放，也可以手動捲動翻閱。',

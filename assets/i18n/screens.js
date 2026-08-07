@@ -16,6 +16,9 @@ en: {
     </ul>
     <p>Decode sensitivity (Fast / Standard / Deep) is a separate setting — see <a href="settings.html">Settings Reference</a>.</p>`,
 
+  screens_timebar_title: 'Timing Bar',
+  screens_timebar_text:  'The thin progress bar across the very top of the screen follows the UTC timing cycle, so you can see at a glance where you are within the slot. Its <strong>colour tells you whether audio is being received</strong>: <strong>yellow</strong> means recording is running, <strong>grey</strong> means it has stopped — the bar keeps moving either way, and the colour says plainly which of the two is happening. During your own transmit slot the bar\'s background changes colour as well.',
+
   screens_level_title: 'Input Level',
   screens_level_text:  'The status bar shows how loud the radio audio is by the time it reaches the app — what the decoder actually sees. Too loud clips and distorts; too quiet lets quantisation noise take a bigger share. Neither announces itself: both simply show up as a poor decode rate. The reading turns colour when it drifts out of range, and tapping it opens a fuller explanation. Alongside the average level it also tracks peaks, so brief overloads that an average would hide still show up; a warning that you have already dealt with can be collapsed out of the way.',
   screens_level_note: 'A useful working range is roughly <strong>−45 to −18 dBFS RMS</strong>. Too high — turn down the AF or DATA output on the radio, or the input gain of the audio interface; too low — turn it up the same way. The exact boundaries vary between radios, phones and USB codecs, so treat the numbers as a guide and judge by whether decoding is reliable. No level is shown during transmit slots or in acoustic mode, where the reading would be misleading.',
@@ -34,6 +37,26 @@ en: {
       <li><strong>CQ Modifier</strong> – Append a geographic or activity modifier to your CQ (e.g., <code>CQ DX</code>, <code>CQ EU</code>)</li>
       <li><strong>Free Text</strong> – Send a custom free-text message (max 13 characters)</li>
       <li><strong>Auto response CQ</strong> – Automatically reply to CQ calls; configure priority in Settings</li>
+    </ul>`,
+
+  screens_spectrum_title: 'Spectrum Tab',
+  screens_spectrum_text:  'A live waterfall and spectrum of the received audio; your own signal is shown while transmitting too. Two switches sit at the bottom of the screen:',
+  screens_spectrum_list: `
+    <ul>
+      <li><strong>DeNoise</strong> — suppresses broadband noise so weak signals stand out on the waterfall.</li>
+      <li><strong>Mark messages</strong> — labels each decoded message on the waterfall at its own frequency.</li>
+    </ul>
+    <p>Both switches are remembered across restarts, and every waterfall in the app — including the mini waterfall strips on the other tabs — shares the same setting. If you would rather not see the two buttons on the waterfall at all, they can be hidden from the display adjustment panel below.</p>`,
+
+  screens_wfadjust_title: 'Waterfall Display Adjustment',
+  screens_wfadjust_text:  '<strong>Long-press the waterfall</strong> to bring up the "Waterfall display adjustment" panel. The app normally tracks the noise floor automatically to decide the shading; this panel is how you take over when that automatic tracking does not suit the conditions in front of you:',
+  screens_wfadjust_list: `
+    <ul>
+      <li><strong>Zero (black level)</strong> — drag right to push more of the background noise down to black.</li>
+      <li><strong>Contrast</strong> — drag right to widen the difference between weak and strong signals.</li>
+      <li><strong>Auto</strong> — hand the decision back to the app.</li>
+      <li><strong>Show the DeNoise / Mark messages buttons</strong> — turn this off and the two buttons disappear from the waterfall, leaving a cleaner display. The change takes effect immediately.</li>
+      <li><strong>Copy diagnostics</strong> — copies the current levels and gain figures to the clipboard, to attach to a report about the display.</li>
     </ul>`,
 
   screens_logs_title: 'QSO Logs Tab',
@@ -71,11 +94,14 @@ en: {
     </ul>
     <p>解碼靈敏度（快速 / 標準 / 多次）是另一項獨立設定，詳見<a href="settings.html">「設定說明」</a>。</p>`,
 
+  screens_timebar_title: '時序計時條',
+  screens_timebar_text:  '畫面最上方那條細長的進度條走的是 UTC 時序，一個週期走完一次，讓您一眼看出目前落在時隙的哪個位置。它的<strong>顏色代表是否正在接收</strong>：<strong>黃色</strong>表示正在錄音收訊，<strong>灰色</strong>表示錄音已停止——計時條照跑但沒有在收，顏色會直接講明白，不會讓人誤以為還在接收。輪到自己發射的時段，整條的底色會另外變色標示。',
+
   screens_level_title: '輸入電平',
-  screens_level_text:  '狀態列會顯示電台音訊傳到 App 時的音量大小，也就是解碼器實際看到的訊號。太大會削峰失真，太小則讓量化雜訊佔掉更多比例。這兩種情況都不會主動報錯，只會表現為解碼率變差。數值超出合理範圍時會變色，點一下可展開完整說明。除了平均電平，也會一併量測峰值，因此被平均值掩蓋的瞬間過載一樣看得到；已經處理過的警示可以收合起來。',
+  screens_level_text:  '狀態列會顯示電台音訊傳到 App 時的音量大小，也就是解碼器實際看到的訊號。一切正常時顯示為 <strong>RX －○○dB</strong>；<strong>RX</strong> 是刻意加上去的，用來表示這是<em>接收</em>端的電平，與發射功率無關。超出合理範圍時會改成講明白的字樣，例如<strong>「接收電平太小」</strong>或<strong>「接收峰值逼近滿刻度」</strong>，並以警示色顯示。太大會削峰失真，太小則讓量化雜訊佔掉更多比例。這兩種情況都不會主動報錯，只會表現為解碼率變差。數值超出合理範圍時會變色，點一下可展開完整說明。除了平均電平，也會一併量測峰值，因此被平均值掩蓋的瞬間過載一樣看得到；已經處理過的警示可以收合起來。',
   screens_level_note: '合用的範圍大約是 <strong>−45 至 −18 dBFS RMS</strong>。太高就把電台的 AF 或 DATA 輸出調小，或降低音效介面的輸入增益；太低則反向調大。實際邊界會因電台、手機與 USB 音效晶片而異，所以請把數字當成參考，最終仍以解碼是否穩定為準。發射時段與聲學（喇叭麥克風）模式下不顯示數值，因為那時的讀數會誤導人。',
 
-  screens_level_caption: '狀態列上的輸入電平；圖中正處於過低的狀態，因此數值被特別標示。',
+  screens_level_caption: '狀態列上的輸入電平。數值前的 RX 表示這是接收端的電平；圖中的讀數偏低，因此以警示色顯示並加上 ⚠。',
   screens_miniwf_title: '小瀑布圖',
   screens_miniwf_text:  '解碼與呼叫兩個分頁都可以顯示一條精簡的瀑布圖，讓您不必離開清單切到完整的頻譜畫面，也能看到波段上的活動。兩個分頁在設置中各有獨立開關。',
 
@@ -91,6 +117,26 @@ en: {
       <li><strong>自動回應 CQ</strong> — 自動回應收到的 CQ，優先策略可在設置中設定</li>
     </ul>`,
 
+  screens_spectrum_title: '頻譜（Spectrum）',
+  screens_spectrum_text:  '即時顯示接收音訊的瀑布圖與頻譜；發射時也會顯示自己送出去的訊號。畫面下方有兩顆開關：',
+  screens_spectrum_list: `
+    <ul>
+      <li><strong>噪聲抑制</strong> — 壓低寬頻雜訊，弱訊號在瀑布圖上更容易看出來。</li>
+      <li><strong>標記訊息</strong> — 在瀑布圖上標出各筆解碼訊息的位置與內容。</li>
+    </ul>
+    <p>兩顆開關的狀態會被記住，重開 App 後維持不變，而且全 App 的頻譜畫面（含各分頁的小瀑布圖）共用同一份設定。若不想在瀑布圖上看到這兩顆按鈕，可在下面的顯示調整面板中把它們關掉。</p>`,
+
+  screens_wfadjust_title: '瀑布圖顯示調整',
+  screens_wfadjust_text:  '<strong>長按瀑布圖</strong>會叫出「瀑布圖顯示調整」面板。程式平常會自動追蹤雜訊地板來決定明暗，這個面板是在自動追蹤不合當下現場狀況時，讓您自己接手：',
+  screens_wfadjust_list: `
+    <ul>
+      <li><strong>基準（黑色位準）</strong> — 往右拉，把更多背景雜訊壓成黑色。</li>
+      <li><strong>對比</strong> — 往右拉，強弱訊號之間的差異更明顯。</li>
+      <li><strong>自動</strong> — 交回給程式自動決定。</li>
+      <li><strong>顯示「噪聲抑制／標記訊息」按鈕</strong> — 關掉之後瀑布圖上就看不到那兩顆按鈕，畫面更乾淨；切換後立刻生效，不必重進頁面。</li>
+      <li><strong>複製診斷資訊</strong> — 把目前的位準、增益等內部數值複製到剪貼簿，回報顯示相關問題時可一併附上。</li>
+    </ul>`,
+
   screens_logs_title: '通聯記錄（QSO Logs）',
   screens_logs_text:  '依時序顯示所有已完成的通聯記錄。每筆包含呼號、頻段、模式、UTC 時間、網格、RST 報告及確認狀態（未確認 / LoTW / QRZ / 手工確認）。點選記錄可查看詳情或確認通聯。',
 
@@ -101,14 +147,13 @@ en: {
   screens_more_text:  '除了核心的 FT8/FT4 分頁之外，FT8TW 還有下列畫面，可從導覽選單或浮動快捷視窗開啟：',
   screens_more_list: `
     <ul>
-      <li><strong>頻譜（Spectrum）</strong> — 即時顯示接收音訊的瀑布圖與頻譜，色階可切換，黑點錨定雜訊地板以維持對比；發射時也會顯示自己的發射音訊。另有「瀑布圖顯示調整」面板，在自動追蹤不合當下現場狀況時，可手動調<strong>對比</strong>與<strong>基準（黑色位準）</strong>；按<strong>自動</strong>即可交回給程式。</li>
       <li><strong>JS8</strong> — JS8 模式的聊天式對話畫面，詳見<a href="js8.html">「JS8 聊天模式」</a>章節。</li>
       <li><strong>WSPR</strong> — WSPR 模式的信標排程畫面，詳見<a href="wspr.html">「WSPR 信標」</a>章節。</li>
       <li><strong>電台工具</strong> — 電台麥克風、收訊監聽與天線調諧，詳見<a href="ssb.html">「電台工具」</a>章節。</li>
       <li><strong>網格追蹤（Grid Tracker）</strong> — 全螢幕地圖畫面，詳見<a href="gridtracker.html">「網格追蹤地圖」</a>章節。</li>
       <li><strong>統計（Count）</strong> — 依頻段、模式、DXCC、ITU/CQ 分區及時間區間統計 QSO 數量。</li>
       <li><strong>QRZ.com 查詢</strong> — 內嵌 QRZ.com 呼號查詢，顯示目前選定電台的資料。</li>
-      <li><strong>浮動視窗</strong> — 可選的常駐懸浮功能表（頻率、音量、網格追蹤等快捷按鈕），每個按鈕可在設置中個別開關。</li>
+      <li><strong>浮動視窗</strong> — 可選的常駐懸浮功能表，共八顆快捷按鈕：隱藏底部選單、頻率調整、音量調整、網格追蹤、電台工具、WSPR 信標、JS8 聊天，以及<strong>快速切換模式</strong>（一鍵在 FT8／FT4／FT2／JS8／WSPR 之間切換）。每顆都可在設置中個別開關。<strong>長按</strong>浮動選單可把它收合成單一按鈕，需要時再長按展開；收合狀態會維持到 App 結束為止。</li>
     </ul>`,
 },
 

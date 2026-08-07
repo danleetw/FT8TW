@@ -31,6 +31,17 @@ en: {
 
   third_psk_title: 'PSKReporter',
   third_psk_text:  '<a href="https://pskreporter.info" target="_blank">PSKReporter</a> is a worldwide propagation mapping service. FT8TW submits reception spots automatically — no account is required. Enable the feature in Settings → PSKReporter. Your callsign, grid, and received station data are submitted anonymously over HTTPS.',
+
+  third_api_title: 'Developer API (Add-ons)',
+  third_api_text:  'Turning on the <strong>Developer API</strong> in Settings → <strong>Advanced &amp; Developer</strong> starts a small web service on the phone, letting other programs <strong>on the same local network</strong> read decodes, log entries, the spectrum and the current status — enough to build your own add-ons and tools against. The access address is shown once it is enabled.',
+  third_api_list: `
+    <ul>
+      <li><strong>Demo page</strong> — open the address shown on screen in a desktop browser and you get a ready-made demonstration page showing what the API offers. That page <strong>has to be served by the phone itself</strong>; copying it to another site or opening it as a local file will be blocked by the browser's security rules.</li>
+      <li><strong>Read-only token</strong> — hand this one out when a tool only needs to read your decodes and log.</li>
+      <li><strong>Full-access token</strong> — needed only to control transmission; treat it as a password. <strong>Regenerate</strong> invalidates the old one immediately and disconnects any add-ons using it.</li>
+      <li><strong>Allow remote transmit control</strong> — a separate switch, off by default. Only while it is on can a program holding the full-access token start or stop transmission; everything else is read-only, and free-text transmission is deliberately not exposed at all.</li>
+    </ul>`,
+  third_api_warn: 'Anyone on the same network who obtains your token can read your log and your settings, so it is best to <strong>turn the API on only when you need it</strong>. Credentials for third-party services (Cloudlog, QRZ) are never exposed. If the port is already taken by another program the API will not start, and the screen says so.',
 },
 
 'zh-TW': {
@@ -61,7 +72,18 @@ en: {
   third_cloudlog_manual: '已經記錄過的通聯也能事後補傳：選定日期範圍後點<strong>手動上傳</strong>即可批次送出。完成後會回報成功與失敗的筆數，避免把只傳了一部分誤當成全部傳完。',
 
   third_psk_title: 'PSKReporter',
-  third_psk_text:  '<a href="https://pskreporter.info" target="_blank">PSKReporter</a> 是全球無線電傳播地圖服務。FT8TW 可自動提交收聽報告，無需帳號。在設置中開啟 PSKReporter 功能。您的呼號、網格及收聽到的電台資訊將透過 HTTPS 匿名提交。',
+  third_psk_text:  '<a href="https://pskreporter.info" target="_blank">PSKReporter</a> 是全球無線電傳播地圖服務。FT8TW 可自動提交收聽報告，無需帳號。在設置 → 上傳至第三方中開啟<strong>回報訊號到 PSK Reporter</strong>。您的呼號、網格及收聽到的電台資訊將透過 HTTPS 匿名提交。旁邊的<strong>天線資訊</strong>是隨報告一起送出的天線型號描述（例如 <code>Dipole</code>），純粹是給地圖看的說明文字。',
+
+  third_api_title: '開發者 API（外掛）',
+  third_api_text:  '在設置 → <strong>進階與開發者</strong>開啟<strong>開發者 API</strong>後，FT8TW 會在手機上開一個小型網頁服務，讓<strong>同一個區域網路內</strong>的其他程式讀取解碼結果、通聯記錄、頻譜與目前狀態，您可以據此開發自己的外掛與工具。開啟後畫面上會顯示存取網址。',
+  third_api_list: `
+    <ul>
+      <li><strong>示範網頁</strong> — 用電腦的瀏覽器打開畫面上顯示的網址，就會看到一個現成的示範頁面，可以直接看到 API 提供哪些資料。這個頁面<strong>必須由手機本身提供</strong>；把它複製到別的網站或存成本機檔案再開，都會被瀏覽器的安全限制擋下。</li>
+      <li><strong>唯讀 Token</strong> — 要讓某個工具讀取您的解碼與日誌時，給這一把。</li>
+      <li><strong>完整權限 Token</strong> — 控制發射時才需要，請當成密碼看待。<strong>重新產生</strong>會讓舊的立刻失效，所有連線中的外掛都會被中斷。</li>
+      <li><strong>允許遠端控制發射</strong> — 獨立的開關，預設為關。只有它開啟時，持有完整權限 Token 的程式才能開始或停止發射；其餘功能一律唯讀，自由文字發射則刻意完全不開放。</li>
+    </ul>`,
+  third_api_warn: '同一個網路內只要有人拿到您的 Token，就能讀取您的日誌與設定，因此建議<strong>需要時才打開</strong>。第三方服務的帳號密碼（Cloudlog、QRZ）不會被讀取。另外，若該通訊埠已被其他程式佔用，API 不會啟動，畫面上會直接說明。',
 },
 
 'zh-CN': {

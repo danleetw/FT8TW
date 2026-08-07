@@ -41,6 +41,23 @@ en: {
       <li>An independent watchdog releases PTT by force if anything else fails to stop the transmission.</li>
     </ul>`,
 
+  ssb_test_title: 'Radio Test Tool',
+  ssb_test_text:  'At the bottom of the Radio Tool page is a collapsed <strong>Radio Test Tool ▼</strong> section; tap the heading to open it. When the radio is connected but nothing happens, or you are unsure whether a particular model supports something, this lets you check one item at a time: each button performs exactly the action FT8TW itself would perform, and every command sent and every reply received is recorded verbatim.',
+  ssb_test_caption: 'The Radio Test Tool expanded: six test buttons on top, two input rows, and the response window below.',
+  ssb_test_list: `
+    <ul>
+      <li><strong>PTT test</strong> — one press keys the radio, another releases it. It releases automatically after 10 seconds, and also when you leave the page.</li>
+      <li><strong>Read frequency</strong> — asks the radio for its current frequency, confirming that the CAT read direction works.</li>
+      <li><strong>USB/DATA</strong> — asks the radio to switch to USB / Data mode.</li>
+      <li><strong>SWR/Power</strong> — shows the cached SWR and power readings. <strong>These only update while PTT is asserted</strong> — there is no uniform way to poll them across models, and polling during transmit is how FT8TW actually obtains them.</li>
+      <li><strong>USB test tone</strong> — sends a test tone through the sound card, using the same path as Tune above (including its three layers of automatic stop).</li>
+      <li><strong>CAT test tone</strong> — for models whose audio travels over CAT (the (tr)uSDX, for instance), sends a 5-second 1500 Hz tone. Models without it simply report that audio over CAT is unsupported.</li>
+      <li><strong>Frequency (MHz)</strong> — enter a frequency and press <strong>Set frequency</strong> to test the CAT write direction.</li>
+      <li><strong>Command</strong> — send an arbitrary CAT command. Text commands go in as they are (<code>FA;</code> on Kenwood/Yaesu, say); tick <strong>HEX</strong> to send hexadecimal instead, for binary protocols such as ICOM CI-V (<code>FE FE …</code>).</li>
+    </ul>`,
+  ssb_test_log: 'The response window logs each line as "<strong>time　direction　text　[HEX]</strong>", covering both what was sent and what came back. <strong>Clear</strong> empties the window and <strong>Copy</strong> puts the whole thing on the clipboard — pasting it into a problem report usually makes it obvious at a glance whether there was no reply, a differently formatted reply, or no command sent at all. If the automatic polling every few seconds swamps the view, tick <strong>Hide automatic polling</strong> to leave only the actions you triggered yourself.',
+  ssb_test_note: 'The test tool covers CAT over <strong>USB and Bluetooth</strong>. Network-connected radios — FlexRadio, ICOM RS-BA1 and the Xiegu X6100 — do not use this path and so will not appear in the response window.',
+
   ssb_safety_title: 'PTT-Stuck Protection',
   ssb_safety_text:  'The talk button uses a triple safety mechanism — release, touch-cancel, and a backstop timeout — so that a stuck or interrupted touch event cannot leave the radio transmitting indefinitely.',
 },
@@ -50,7 +67,7 @@ en: {
   ssb_intro: '除了數位模式之外，FT8TW 也能當成簡易的無線電麥克風與監聽器。它沿用與 FT8/FT4 相同的電台連線設定，涵蓋三件事：SSB 按住通話語音、透過手機監聽電台，以及發射載波供天線調諧使用。',
 
   ssb_use_title: '按住通話操作',
-  ssb_use_text:  '開啟電台工具分頁，按住通話按鈕即可發射。按鈕平時顯示 <strong>HOLD TO TALK</strong>，發射中會變為 <strong>TRANSMITTING</strong>：',
+  ssb_use_text:  '開啟電台工具分頁，按住通話按鈕即可發射。按鈕平時顯示<strong>按住發射</strong>，發射中會變為<strong>發射中</strong>：',
   ssb_use_list: `
     <ul>
       <li>按住按鈕時，程式會擷取手機麥克風音訊、透過 CAT 指令觸發 PTT，並將音訊輸出至已連接的 USB 音效卡或藍牙 SCO 音訊。</li>
@@ -72,10 +89,10 @@ en: {
     </ul>`,
 
   ssb_monitor_title: '電台監聽',
-  ssb_monitor_text:  '<strong>電台監聽</strong>開關會把電台收到的音訊透過手機播放，讓您用手機聽筒或耳機收聽，不必開電台喇叭。想留意頻率上的動靜又不想吵到整個房間時很好用。',
+  ssb_monitor_text:  '<strong>監聽無線電</strong>開關會把電台收到的音訊透過手機播放，讓您用手機聽筒或耳機收聽，不必開電台喇叭。想留意頻率上的動靜又不想吵到整個房間時很好用。',
 
   ssb_tune_title: '天線調諧（TUNE）',
-  ssb_tune_text:  '<strong>調諧</strong>區塊會按下 PTT 並送出連續單音，正是天線調諧器或量測駐波比所需要的訊號。設定持續時間與調諧音量後按 <strong>TUNE</strong>，按鈕會變成帶倒數的 <strong>STOP</strong>，計時結束就自動停止發射。',
+  ssb_tune_text:  '<strong>Tune 調諧（天調 / 駐波比）</strong>區塊會按下 PTT 並送出連續單音，正是天線調諧器或量測駐波比所需要的訊號。設定 <strong>Tune 時間</strong>與 <strong>Tune 音量</strong>後按<strong>開始 TUNE</strong>，按鈕會變成帶倒數的<strong>停止</strong>，計時結束就自動停止發射。',
   ssb_tune_warn: '<strong>請先把電台功率調低。</strong>這會送出連續載波——用全功率打進阻抗不匹配的天線，正是燒毀末級的典型情況。',
   ssb_tune_list: `
     <ul>
@@ -83,6 +100,23 @@ en: {
       <li>駐波比若攀升過高，調諧會立即中止並顯示原因。</li>
       <li>另有獨立的看門狗，萬一其他機制都沒能停下發射，它會強制放開 PTT。</li>
     </ul>`,
+
+  ssb_test_title: '電台測試工具',
+  ssb_test_text:  '電台工具頁最下方有一個<strong>電台測試工具 ▼</strong>的摺疊區塊，點一下標題就會展開。電台接上了卻沒反應、或不確定某個機種支不支援某項控制時，這裡可以逐項驗證：每一顆按鈕對應 FT8TW 平常真正會做的那個動作，送出的指令與電台的回應都會原樣記錄下來。',
+  ssb_test_caption: '展開後的電台測試工具：上排六顆逐項測試、中間兩列輸入欄，下方是回應視窗。',
+  ssb_test_list: `
+    <ul>
+      <li><strong>PTT 測試</strong> — 按一下拉起 PTT，再按一下放開。最多 10 秒就會自動放開，離開這一頁也會放開，不會忘了關。</li>
+      <li><strong>讀取頻率</strong> — 向電台問目前的頻率，可據以確認 CAT 讀取方向是通的。</li>
+      <li><strong>USB/DATA</strong> — 要電台切到 USB／Data 模式。</li>
+      <li><strong>SWR/功率</strong> — 顯示目前快取的駐波比與功率讀數。<strong>這兩個數值只有在 PTT 拉起時才會更新</strong>——各機種沒有統一的主動查詢方式，發射中的自動輪詢就是 FT8TW 實際的取值方式。</li>
+      <li><strong>USB 測試音</strong> — 經音效卡送出測試音，走的就是上面 Tune 那條路（含它的三層自動停止保險）。</li>
+      <li><strong>CAT 測試音</strong> — 對於音訊直接走 CAT 的機種（例如 (tr)uSDX），送出 5 秒 1500 Hz 單音。不支援的機種會直接回報「此電台不支援 audio over CAT」。</li>
+      <li><strong>頻率 (MHz)</strong> — 填入頻率後按<strong>設定頻率</strong>，測試 CAT 寫入方向。</li>
+      <li><strong>指令</strong> — 直接送出任意 CAT 指令。文字指令照打即可（例如 Kenwood／Yaesu 的 <code>FA;</code>）；勾選 <strong>HEX</strong> 則以十六進位送出，供 ICOM CI-V 這類二進位協定使用（例如 <code>FE FE …</code>）。</li>
+    </ul>`,
+  ssb_test_log: '下方的回應視窗以「<strong>時間　方向　原文　[HEX]</strong>」逐筆記錄，送出與收到的都看得到。<strong>清除</strong>可清空視窗，<strong>複製</strong>把整份內容放進剪貼簿——回報電台相關問題時，把這段一起貼上來，通常一眼就能看出是沒回應、回應格式不同，還是指令根本沒送出去。若畫面被每隔幾秒的自動輪詢洗版，勾選<strong>隱藏自動輪詢</strong>即可只留下您自己按出來的動作。',
+  ssb_test_note: '測試工具涵蓋 <strong>USB 與藍牙</strong>的 CAT 連線。FlexRadio、ICOM RS-BA1 與協谷 X6100 這類走網路的機種不經過這條路徑，因此不會出現在回應視窗中。',
 
   ssb_safety_title: 'PTT 卡住防護',
   ssb_safety_text:  '通話按鈕採用三重安全機制——放開、觸控取消、以及保底逾時——確保觸控事件卡住或被中斷時，電台不會無限期持續發射。',

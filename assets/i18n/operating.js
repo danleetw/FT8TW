@@ -5,6 +5,46 @@ const PAGE_T = {
 en: {
   op_title: 'Operating FT8 / FT4',
 
+  op_what_title: 'What FT8 / FT4 / FT2 Are',
+  op_what_text:  'FT8 is a <strong>weak-signal digital mode</strong>, published in 2017 by K1JT and K9AN, and now the most used mode on HF. Its goal is a narrow one: <strong>to complete a minimal contact under conditions where the signal is entirely inaudible</strong>. To manage that, it gives up a great deal:',
+  op_what_list: `
+    <ul>
+      <li><strong>Messages are short and rigidly formatted</strong> — one message holds little more than callsigns, a grid square and a signal report. There is no free conversation (free text is 13 characters at most). For typed conversation see <a href="js8.html">JS8 Chat Mode</a>.</li>
+      <li><strong>Time is cut into fixed slots</strong> — FT8 runs on 15-second slots, one station transmitting on even slots and the other on odd ones, alternating. Your <strong>phone's clock therefore has to be right</strong> (within about a second), or the two ends never line up.</li>
+      <li><strong>The signal is narrow</strong> — about 50 Hz, so dozens of stations can work at once on the same dial frequency, each at its own audio frequency. That is what the row of signals on the waterfall is.</li>
+      <li><strong>What you get in return is sensitivity</strong> — typically decoding down to around −21 dB SNR, roughly 20 dB below what the ear can pick out. That is why modest power and simple antennas still cross continents.</li>
+    </ul>`,
+  op_what_table: `
+    <table>
+      <tr><th>Mode</th><th>Slot</th><th>Notes</th></tr>
+      <tr><td><strong>FT8</strong></td><td>15 s</td><td>The general-purpose choice, and the most sensitive. Use this if unsure</td></tr>
+      <tr><td><strong>FT4</strong></td><td>7.5 s</td><td>Designed for contesting: twice the rate, slightly less sensitive. Good when signals are strong and volume matters</td></tr>
+      <tr><td><strong>FT2</strong></td><td>3.75 s</td><td>FT8TW's experimental mode, twice as fast again as FT4. Not yet proven in real contacts</td></tr>
+    </table>`,
+
+  op_quick_title: 'Quick Start: Your First FT8 Contact',
+  op_quick_text:  'The quickest way in is not to call CQ yourself but to <strong>answer someone else\'s CQ</strong> — they are already waiting for a reply, which makes success far more likely.',
+  op_quick_steps: `
+    <ol>
+      <li>In Settings → Basic Information, fill in <strong>your callsign</strong> and <strong>your grid</strong>. <strong>Without a callsign the app will not transmit.</strong></li>
+      <li>Check the radio is in <strong>USB mode</strong> (upper sideband) and connected (see <a href="connection.html">Radio Connection</a>).</li>
+      <li>Back on the <strong>Decode</strong> tab, start decoding. After a slot or two, messages begin to fill the list.</li>
+      <li>Find a <strong>green</strong> line — green means that station is calling CQ, i.e. waiting for someone to answer. <strong>Tap it</strong> to select it as your target.</li>
+      <li>Switch to the <strong>Calling</strong> tab and start transmitting.</li>
+      <li>The rest is automatic: the app works through the exchange below and writes the contact to the log when it finishes.</li>
+    </ol>`,
+  op_quick_seq: `
+    <table>
+      <tr><th>Slot</th><th>Who sends</th><th>Sent</th><th>Meaning</th></tr>
+      <tr><td>1</td><td>Them</td><td><code>CQ BX1AA PL04</code></td><td>"BX1AA here, in PL04, anyone about?"</td></tr>
+      <tr><td>2</td><td><strong>You</strong></td><td><code>BX1AA BV6LC PL03</code></td><td>"BX1AA, this is BV6LC, in PL03"</td></tr>
+      <tr><td>3</td><td>Them</td><td><code>BV6LC BX1AA −09</code></td><td>"Got you, your signal is −9 dB"</td></tr>
+      <tr><td>4</td><td><strong>You</strong></td><td><code>BX1AA BV6LC R−12</code></td><td>"Roger your report (R); yours is −12 dB"</td></tr>
+      <tr><td>5</td><td>Them</td><td><code>BV6LC BX1AA RR73</code></td><td>"All received, goodbye"</td></tr>
+      <tr><td>6</td><td><strong>You</strong></td><td><code>BX1AA BV6LC 73</code></td><td>"Goodbye" — contact complete and logged</td></tr>
+    </table>`,
+  op_quick_note: 'The whole thing takes about a minute and a half. The signal report is a <strong>dB figure</strong> (−09, −12 and so on); the more negative, the weaker, and the legal range is −30 to +20. It is not the 59-style RST used on SSB. If the other station never answers, the app gives up after the number of tries set under <strong>No response</strong> and moves on to another target, so there is no need to sit and watch.',
+
   op_rx_title:      'Receiving',
   op_rx_text:       'Tap <strong>Start decoding</strong> on the Decode tab. The app records audio and decodes FT8/FT4 messages at the start of each 15-second (FT8) or 7.5-second (FT4) slot. Decoded stations appear in the decode list.',
   op_rx_tips_label: 'Tips for good reception:',
@@ -65,12 +105,55 @@ en: {
   op_freetext_title: 'Free Text Mode',
   op_freetext_text:  'Tap the free text icon in the Calling tab to enter a custom message up to 13 characters. Free text bypasses the standard FT8 QSO sequence — use it for special event messages or announcements. Switch back to Standard Message Mode to resume normal QSOs.',
 
+  op_modeswitch_title: 'Switching Between FT8 / FT4 / FT2',
+  op_modeswitch_text:  'The mode can be changed in Settings → Basic Information under <strong>FT8/FT4/FT2 mode</strong>, or straight from the <strong>quick mode</strong> button in the floating window. <strong>The radio then retunes to the frequency for that mode by itself</strong> — there is no need to pick the frequency again afterwards. Switching from FT8 to FT4 on 20 m, for instance, moves the radio from 14.074 to 14.080 on its own. (This applies when PTT control is CAT, RTS or DTR; VOX has no control channel, so the radio still has to be retuned by hand.)',
+
   op_ft2_title: 'FT2 (Experimental)',
   op_ft2_text:  'FT8TW includes early support for FT2, a faster mode derived from FT4. FT2 should still be treated as experimental: it has not yet been proven over real contacts, so approach it as something to try rather than rely on.',
 },
 
 'zh-TW': {
   op_title: '操作 FT8 / FT4',
+
+  op_what_title: '什麼是 FT8／FT4／FT2',
+  op_what_text:  'FT8 是一種<strong>弱訊號數位模式</strong>，由 K1JT 與 K9AN 於 2017 年發表，如今是短波上最多人使用的模式。它的設計目標很單純：<strong>在人耳完全聽不到訊號的條件下，仍然完成一次最基本的通聯</strong>。為了做到這件事，它捨棄了很多東西：',
+  op_what_list: `
+    <ul>
+      <li><strong>訊息很短、格式固定</strong> — 一則訊息只裝得下呼號、網格與訊號報告這類內容，不能自由聊天（自由文字最多 13 個字元）。想打字對談請看<a href="js8.html">「JS8 聊天模式」</a>。</li>
+      <li><strong>時間切成固定的時隙</strong> — FT8 每 15 秒一輪，一方在偶數時隙送、另一方在奇數時隙送，輪流交替。因此<strong>手機時間必須準</strong>（誤差最好在 1 秒內），否則雙方對不上。</li>
+      <li><strong>訊號很窄</strong> — 一個訊號只佔約 50 Hz，所以同一個頻率上可以有數十台電台各據一個音訊頻率同時工作，彼此不打架。這就是瀑布圖上會看到一整排訊號的原因。</li>
+      <li><strong>換來的是靈敏度</strong> — 典型可解出到約 −21 dB 訊雜比，比人耳能辨識的門檻還低約 20 dB。這正是小功率、簡易天線也能跨洲通聯的原因。</li>
+    </ul>`,
+  op_what_table: `
+    <table>
+      <tr><th>模式</th><th>時隙長度</th><th>說明</th></tr>
+      <tr><td><strong>FT8</strong></td><td>15 秒</td><td>最通用，靈敏度最好。不確定該用哪個就用它</td></tr>
+      <tr><td><strong>FT4</strong></td><td>7.5 秒</td><td>為競賽設計，速度加倍、靈敏度略降。適合訊號好、要拚數量時</td></tr>
+      <tr><td><strong>FT2</strong></td><td>3.75 秒</td><td>FT8TW 的實驗性模式，比 FT4 再快一倍。尚未在實際通聯中獲得驗證</td></tr>
+    </table>`,
+
+  op_quick_title: '快速上手：完成第一次 FT8 通聯',
+  op_quick_text:  '最快的入門方式不是自己呼叫 CQ，而是<strong>去回應別人的 CQ</strong>——對方已經在等人回應，成功率高得多。',
+  op_quick_steps: `
+    <ol>
+      <li>設置 → 基本資訊，填好<strong>我的呼號</strong>與<strong>我的位置</strong>（網格）。<strong>沒填呼號不能發射。</strong></li>
+      <li>確認電台設在 <strong>USB 模式</strong>（上旁頻），而且已經連上（見<a href="connection.html">「電台連線」</a>）。</li>
+      <li>回到<strong>解碼</strong>分頁開始解碼。等一兩個時隙，清單就會陸續出現訊息。</li>
+      <li>找一列<strong>綠色</strong>的訊息——綠色代表那台電台正在呼叫 CQ，也就是正在等人回應。<strong>點它一下</strong>選為目標。</li>
+      <li>切到<strong>呼叫</strong>分頁，按下發射。</li>
+      <li>接下來完全自動：程式會照著下面的順序一來一往，收尾後自動寫進通聯記錄。</li>
+    </ol>`,
+  op_quick_seq: `
+    <table>
+      <tr><th>時隙</th><th>誰在送</th><th>送出的內容</th><th>意思</th></tr>
+      <tr><td>1</td><td>對方</td><td><code>CQ BX1AA PL04</code></td><td>「我是 BX1AA，在 PL04，有人嗎」</td></tr>
+      <tr><td>2</td><td><strong>您</strong></td><td><code>BX1AA BV6LC PL03</code></td><td>「BX1AA，我是 BV6LC，在 PL03」</td></tr>
+      <tr><td>3</td><td>對方</td><td><code>BV6LC BX1AA −09</code></td><td>「收到你了，你的訊號 −9 dB」</td></tr>
+      <tr><td>4</td><td><strong>您</strong></td><td><code>BX1AA BV6LC R−12</code></td><td>「收到你的報告（R），你的訊號 −12 dB」</td></tr>
+      <tr><td>5</td><td>對方</td><td><code>BV6LC BX1AA RR73</code></td><td>「都收到了，再見」</td></tr>
+      <tr><td>6</td><td><strong>您</strong></td><td><code>BX1AA BV6LC 73</code></td><td>「再見」— 通聯完成，自動記錄</td></tr>
+    </table>`,
+  op_quick_note: '整趟大約一分半鐘。訊號報告是 <strong>dB 值</strong>（例如 −09、−12），負得愈多代表訊號愈弱，合法範圍是 −30 到 +20——這與 SSB 講的 59 那種 RST 不是同一回事。若對方一直沒回應，程式會依<strong>沒回應</strong>的設定次數放棄，改去找下一個對象，不必守在旁邊等。',
 
   op_rx_title:      '接收',
   op_rx_text:       '點選<strong>解碼</strong>分頁的<strong>開始解碼</strong>。程式會開始錄製音訊，並在每個 15 秒（FT8）或 7.5 秒（FT4）時隙開始時進行解碼。解碼到的電台會顯示在解碼清單中。',
@@ -102,10 +185,10 @@ en: {
       <li><strong>距離短、強度強優先</strong> — 優先回應訊號強且距離近的電台</li>
       <li><strong>遠距優先</strong> — 優先回應最遠的電台（適合距離獎項追求者）</li>
       <li><strong>近距優先</strong> — 優先回應最近的電台</li>
-      <li><strong>區域最多優先（ITU/CQ/DX）</strong> — 優先回應呼叫數量最多的分區</li>
-      <li><strong>ITU / CQ / DX 分區優先</strong> — 依指定分區類型優先排序（適合獎項追求）</li>
+      <li><strong>區域最多優先(ITU/CQ/DX)</strong> — 優先回應呼叫數量最多的分區</li>
+      <li><strong>ITU 區域優先</strong>／<strong>CQ 區域優先</strong>／<strong>Dx 區域優先</strong> — 三個各自獨立的選項，分別依 ITU 分區、CQ 分區或 DXCC 排序（適合獎項追求）</li>
     </ul>`,
-  op_autocq_filter: '在設置中使用<strong>排除已通聯</strong>，可自動跳過在選定時間窗口內（1 小時、4 小時、今天、30 天、365 天）已通聯過的電台。',
+  op_autocq_filter: '在設置中使用<strong>排除已通聯</strong>，可自動跳過在選定時間窗口內已通聯過的電台：<strong>關閉（不排除）</strong>、<strong>所有</strong>、<strong>1 小時內</strong>、<strong>4 小時內</strong>、<strong>8 小時內</strong>、<strong>今天</strong>、<strong>30 天內</strong>或 <strong>365 天內</strong>。',
 
   op_autocq_lists: '另有兩份呼號清單可進一步調整：<strong>關注的呼號</strong>會讓指定的呼號持續留在視線內，一出現就能抓到；<strong>排除的呼號前綴</strong>則整批跳過您不想讓自動回應去回的前綴。',
 
@@ -132,12 +215,58 @@ en: {
   op_freetext_title: '自定義訊息模式',
   op_freetext_text:  '點選呼叫頁面的自定義訊息圖示，輸入最多 13 個字元的自由文字。自定義訊息會跳過標準 FT8 通聯流程，適用於特殊活動或公告。點選「標準訊息模式」可返回正常通聯。',
 
+  op_modeswitch_title: '切換 FT8 / FT4 / FT2',
+  op_modeswitch_text:  '模式可以在設置 → 基本資訊的 <strong>FT8/FT4/FT2 模式</strong>切換，也可以用浮動視窗的<strong>快速切換模式</strong>按鈕直接切。<strong>切換之後電台會自動跟著換到該模式對應的頻率</strong>，不必再自己去選一次頻率——例如從 FT8 切到 FT4，電台會自己從 14.074 移到 14.080。（使用 CAT／RTS／DTR 控制時才會自動換頻；VOX 沒有可控制的通道，仍需手動轉台。）',
+
   op_ft2_title: 'FT2（實驗性）',
-  op_ft2_text:  'FT8TW 已初步支援 FT2，這是由 FT4 衍生、速度更快的模式。FT2 目前仍應視為實驗性功能：尚未在實際通聯中獲得驗證，建議以嘗試的心態使用，而非倭賴它。',
+  op_ft2_text:  'FT8TW 已初步支援 FT2，這是由 FT4 衍生、速度更快的模式。FT2 目前仍應視為實驗性功能：尚未在實際通聯中獲得驗證，建議以嘗試的心態使用，而非倚賴它。',
 },
 
 'zh-CN': {
   op_title: '操作 FT8 / FT4',
+
+  op_what_title: '什么是 FT8／FT4／FT2',
+  op_what_text:  'FT8 是一种<strong>弱信号数字模式</strong>，由 K1JT 与 K9AN 于 2017 年发表，如今是短波上最多人使用的模式。它的设计目标很单纯：<strong>在人耳完全听不到信号的条件下，仍然完成一次最基本的通联</strong>。为了做到这件事，它舍弃了很多东西：',
+  op_what_list: `
+    <ul>
+      <li><strong>消息很短、格式固定</strong> — 一则消息只装得下呼号、网格与信号报告这类内容，不能自由聊天（自由文本最多 13 个字符）。想打字对谈请看<a href="js8.html">「JS8 聊天模式」</a>。</li>
+      <li><strong>时间切成固定的时隙</strong> — FT8 每 15 秒一轮，一方在偶数时隙送、另一方在奇数时隙送，轮流交替。因此<strong>手机时间必须准</strong>（误差最好在 1 秒内），否则双方对不上。</li>
+      <li><strong>信号很窄</strong> — 一个信号只占约 50 Hz，所以同一个频率上可以有数十台电台各据一个音频频率同时工作，彼此不打架。这就是瀑布图上会看到一整排信号的原因。</li>
+      <li><strong>换来的是灵敏度</strong> — 典型可解出到约 −21 dB 信噪比，比人耳能辨识的门槛还低约 20 dB。这正是小功率、简易天线也能跨洲通联的原因。</li>
+    </ul>`,
+  op_what_table: `
+    <table>
+      <tr><th>模式</th><th>时隙长度</th><th>说明</th></tr>
+      <tr><td><strong>FT8</strong></td><td>15 秒</td><td>最通用，灵敏度最好。不确定该用哪个就用它</td></tr>
+      <tr><td><strong>FT4</strong></td><td>7.5 秒</td><td>为竞赛设计，速度加倍、灵敏度略降。适合信号好、要拼数量时</td></tr>
+      <tr><td><strong>FT2</strong></td><td>3.75 秒</td><td>FT8TW 的实验性模式，比 FT4 再快一倍。尚未在实际通联中获得验证</td></tr>
+    </table>`,
+
+  op_quick_title: '快速上手：完成第一次 FT8 通联',
+  op_quick_text:  '最快的入门方式不是自己呼叫 CQ，而是<strong>去回应别人的 CQ</strong>——对方已经在等人回应，成功率高得多。',
+  op_quick_steps: `
+    <ol>
+      <li>设置 → 基本信息，填好<strong>我的呼号</strong>与<strong>我的位置</strong>（网格）。<strong>没填呼号不能发射。</strong></li>
+      <li>确认电台设在 <strong>USB 模式</strong>（上边带），而且已经连上（见<a href="connection.html">「电台连接」</a>）。</li>
+      <li>回到<strong>解码</strong>分页开始解码。等一两个时隙，列表就会陆续出现消息。</li>
+      <li>找一行<strong>绿色</strong>的消息——绿色代表那台电台正在呼叫 CQ，也就是正在等人回应。<strong>点它一下</strong>选为目标。</li>
+      <li>切到<strong>呼叫</strong>分页，按下发射。</li>
+      <li>接下来完全自动：程序会照着下面的顺序一来一往，收尾后自动写进通联日志。</li>
+    </ol>`,
+  op_quick_seq: `
+    <table>
+      <tr><th>时隙</th><th>谁在送</th><th>送出的内容</th><th>意思</th></tr>
+      <tr><td>1</td><td>对方</td><td><code>CQ BX1AA PL04</code></td><td>「我是 BX1AA，在 PL04，有人吗」</td></tr>
+      <tr><td>2</td><td><strong>您</strong></td><td><code>BX1AA BV6LC PL03</code></td><td>「BX1AA，我是 BV6LC，在 PL03」</td></tr>
+      <tr><td>3</td><td>对方</td><td><code>BV6LC BX1AA −09</code></td><td>「收到你了，你的信号 −9 dB」</td></tr>
+      <tr><td>4</td><td><strong>您</strong></td><td><code>BX1AA BV6LC R−12</code></td><td>「收到你的报告（R），你的信号 −12 dB」</td></tr>
+      <tr><td>5</td><td>对方</td><td><code>BV6LC BX1AA RR73</code></td><td>「都收到了，再见」</td></tr>
+      <tr><td>6</td><td><strong>您</strong></td><td><code>BX1AA BV6LC 73</code></td><td>「再见」— 通联完成，自动记录</td></tr>
+    </table>`,
+  op_quick_note: '整趟大约一分半钟。信号报告是 <strong>dB 值</strong>（例如 −09、−12），负得越多代表信号越弱，合法范围是 −30 到 +20——这与 SSB 讲的 59 那种 RST 不是同一回事。若对方一直没回应，程序会依<strong>无回应</strong>的设定次数放弃，改去找下一个对象，不必守在旁边等。',
+
+  op_modeswitch_title: '切换 FT8 / FT4 / FT2',
+  op_modeswitch_text:  '模式可以在设置 → 基本信息的 <strong>FT8/FT4/FT2 模式</strong>切换，也可以用悬浮窗口的<strong>快速切换模式</strong>按钮直接切。<strong>切换之后电台会自动跟着换到该模式对应的频率</strong>，不必再自己去选一次频率——例如从 FT8 切到 FT4，电台会自己从 14.074 移到 14.080。（使用 CAT／RTS／DTR 控制时才会自动换频；VOX 没有可控制的通道，仍需手动转台。）',
 
   op_rx_title:      '接收',
   op_rx_text:       '点击<strong>解码</strong>分页的<strong>开始解码</strong>。程序会开始录制音频，并在每个 15 秒（FT8）或 7.5 秒（FT4）时隙开始时进行解码。解码到的电台会显示在解码列表中。',
@@ -206,6 +335,49 @@ en: {
 'ja': {
   op_title: 'FT8 / FT4 の運用',
 
+  op_what_title: 'FT8／FT4／FT2 とは',
+  op_what_text:  'FT8 は 2017 年に K1JT と K9AN が発表した<strong>微弱信号用のデジタルモード</strong>で、いまや HF でもっとも使われているモードです。目的ははっきりしています。<strong>耳ではまったく聞こえない信号でも、最低限の交信を成立させること</strong>。そのために多くのものを捨てています。',
+  op_what_list: `
+    <ul>
+      <li><strong>電文は短く、形式は固定</strong> — 1 通に入るのはコールサイン、グリッド、シグナルレポート程度で、自由な会話はできません（フリーテキストは最大 13 文字）。文字で会話したい場合は<a href="js8.html">「JS8 チャットモード」</a>をご覧ください。</li>
+      <li><strong>時間が固定のスロットに区切られている</strong> — FT8 は 15 秒ごとに 1 回。一方が偶数スロット、もう一方が奇数スロットで交互に送信します。そのため<strong>端末の時計が正確である必要があります</strong>（誤差 1 秒以内が望ましい）。ずれていると相手とかみ合いません。</li>
+      <li><strong>信号が狭い</strong> — 1 つの信号が占める幅は約 50 Hz なので、同じ周波数上で数十局がそれぞれ別の音声周波数で同時に運用できます。ウォーターフォールに信号がずらりと並ぶのはこのためです。</li>
+      <li><strong>その代わりに得られるのが感度</strong> — おおむね −21 dB の SN 比まで復号でき、これは耳で聞き分けられる限界よりさらに約 20 dB 低い値です。小電力と簡単なアンテナで大陸間の交信ができるのはこのおかげです。</li>
+    </ul>`,
+  op_what_table: `
+    <table>
+      <tr><th>モード</th><th>スロット長</th><th>説明</th></tr>
+      <tr><td><strong>FT8</strong></td><td>15 秒</td><td>もっとも一般的で感度も最良。迷ったらこれ</td></tr>
+      <tr><td><strong>FT4</strong></td><td>7.5 秒</td><td>コンテスト向け。速度は倍で感度はやや低下。信号が強く数をこなしたいときに</td></tr>
+      <tr><td><strong>FT2</strong></td><td>3.75 秒</td><td>FT8TW の実験的モードで、FT4 のさらに倍の速さ。実際の交信ではまだ検証されていません</td></tr>
+    </table>`,
+
+  op_quick_title: 'クイックスタート：はじめての FT8 交信',
+  op_quick_text:  'いちばん手早いのは自分から CQ を出すことではなく、<strong>誰かの CQ に応答すること</strong>です。相手はすでに応答を待っているので、成功する可能性がずっと高くなります。',
+  op_quick_steps: `
+    <ol>
+      <li>設定 → 基本情報で<strong>自局コール</strong>と<strong>自局GL</strong>（グリッド）を入力します。<strong>コールサインがないと送信できません。</strong></li>
+      <li>無線機が <strong>USB モード</strong>（上側波帯）になっていて、接続済みであることを確認します（<a href="connection.html">「無線機との接続」</a>を参照）。</li>
+      <li><strong>デコード</strong>タブに戻ってデコードを開始します。1〜2 スロット待つと電文が並び始めます。</li>
+      <li><strong>緑色</strong>の行を探します。緑はその局が CQ を出している、つまり応答を待っている状態です。<strong>タップ</strong>して相手に選びます。</li>
+      <li><strong>コール</strong>タブに切り替えて送信を開始します。</li>
+      <li>あとは自動です。下の順序どおりにやり取りし、終わるとログに自動で記録されます。</li>
+    </ol>`,
+  op_quick_seq: `
+    <table>
+      <tr><th>スロット</th><th>送信側</th><th>送る内容</th><th>意味</th></tr>
+      <tr><td>1</td><td>相手</td><td><code>CQ BX1AA PL04</code></td><td>「BX1AA です、PL04 にいます、どなたか」</td></tr>
+      <tr><td>2</td><td><strong>あなた</strong></td><td><code>BX1AA BV6LC PL03</code></td><td>「BX1AA、こちら BV6LC、PL03 です」</td></tr>
+      <tr><td>3</td><td>相手</td><td><code>BV6LC BX1AA −09</code></td><td>「受信しました、信号は −9 dB」</td></tr>
+      <tr><td>4</td><td><strong>あなた</strong></td><td><code>BX1AA BV6LC R−12</code></td><td>「レポート了解（R）、そちらは −12 dB」</td></tr>
+      <tr><td>5</td><td>相手</td><td><code>BV6LC BX1AA RR73</code></td><td>「すべて受信しました、さようなら」</td></tr>
+      <tr><td>6</td><td><strong>あなた</strong></td><td><code>BX1AA BV6LC 73</code></td><td>「さようなら」— 交信成立、自動記録</td></tr>
+    </table>`,
+  op_quick_note: '全体で 1 分半ほどです。シグナルレポートは <strong>dB の値</strong>（−09、−12 など）で、マイナスが大きいほど弱く、有効範囲は −30〜+20 です。SSB でいう 59 のような RST とは別物です。相手から応答がない場合は、<strong>応答なし</strong>で設定した回数で見切りをつけて次の相手を探すので、そばで見ている必要はありません。',
+
+  op_modeswitch_title: 'FT8 / FT4 / FT2 の切り替え',
+  op_modeswitch_text:  'モードは設定 → 基本情報の <strong>FT8/FT4/FT2 モード</strong>で切り替えられるほか、フローティングウィンドウの<strong>クイックモード切替</strong>ボタンからも直接切り替えられます。<strong>切り替えると無線機もそのモードの周波数へ自動的に移動します</strong>ので、周波数を選び直す必要はありません。たとえば 20 m で FT8 から FT4 にすると、無線機は自分で 14.074 から 14.080 へ移ります。（自動で移動するのは PTT 制御が CAT・RTS・DTR のときです。VOX には制御線がないため、周波数は手動で合わせてください。）',
+
   op_rx_title:      '受信',
   op_rx_text:       '<strong>デコード</strong>タブで<strong>デコード開始</strong>をタップします。アプリが音声を録音し、15 秒（FT8）または 7.5 秒（FT4）の各スロットの先頭で FT8/FT4 の電文をデコードします。デコードした局はデコードの一覧に表示されます。',
   op_rx_tips_label: '良好な受信のためのヒント:',
@@ -272,6 +444,49 @@ en: {
 
 'ru': {
   op_title: 'Работа в FT8 / FT4',
+
+  op_what_title: 'Что такое FT8 / FT4 / FT2',
+  op_what_text:  'FT8 — это <strong>цифровой режим для слабых сигналов</strong>, опубликованный в 2017 году K1JT и K9AN и ставший самым используемым режимом на КВ. Его задача узкая: <strong>провести минимальную связь там, где сигнал вообще не слышен на слух</strong>. Ради этого пришлось многим пожертвовать:',
+  op_what_list: `
+    <ul>
+      <li><strong>Сообщения короткие и жёстко форматированные</strong> — в одно сообщение помещаются немногим больше, чем позывные, локатор и рапорт. Свободного разговора нет (произвольный текст — не более 13 знаков). Для переписки см. <a href="js8.html">«Режим чата JS8»</a>.</li>
+      <li><strong>Время разбито на фиксированные интервалы</strong> — FT8 работает интервалами по 15 секунд: одна станция передаёт в чётных, другая в нечётных, по очереди. Поэтому <strong>часы телефона должны быть точны</strong> (желательно в пределах секунды), иначе стороны не совпадут.</li>
+      <li><strong>Сигнал очень узкий</strong> — около 50 Гц, так что на одной частоте настройки одновременно работают десятки станций, каждая на своей звуковой частоте. Именно поэтому на водопаде виден целый ряд сигналов.</li>
+      <li><strong>Взамен получается чувствительность</strong> — обычно декодирование идёт примерно до −21 дБ отношения сигнал/шум, то есть примерно на 20 дБ ниже порога слышимости. Отсюда и связи между континентами при малой мощности и простых антеннах.</li>
+    </ul>`,
+  op_what_table: `
+    <table>
+      <tr><th>Режим</th><th>Интервал</th><th>Описание</th></tr>
+      <tr><td><strong>FT8</strong></td><td>15 с</td><td>Самый универсальный и самый чувствительный. Если сомневаетесь — выбирайте его</td></tr>
+      <tr><td><strong>FT4</strong></td><td>7,5 с</td><td>Создан для соревнований: вдвое быстрее, чувствительность чуть ниже. Подходит, когда сигналы сильные и важно количество</td></tr>
+      <tr><td><strong>FT2</strong></td><td>3,75 с</td><td>Экспериментальный режим FT8TW, ещё вдвое быстрее FT4. В реальных связях пока не проверен</td></tr>
+    </table>`,
+
+  op_quick_title: 'Быстрый старт: первая связь в FT8',
+  op_quick_text:  'Быстрее всего начать не с собственного CQ, а <strong>с ответа на чужой CQ</strong> — там уже ждут ответа, и шансов на успех гораздо больше.',
+  op_quick_steps: `
+    <ol>
+      <li>В настройках → Основные сведения заполните <strong>позывной</strong> и <strong>квадрат</strong>. <strong>Без позывного передача невозможна.</strong></li>
+      <li>Убедитесь, что трансивер стоит в режиме <strong>USB</strong> (верхняя боковая) и подключён (см. <a href="connection.html">«Подключение трансивера»</a>).</li>
+      <li>Вернитесь на вкладку <strong>декодера</strong> и запустите декодирование. Через один-два интервала список начнёт заполняться.</li>
+      <li>Найдите <strong>зелёную</strong> строку — зелёный означает, что станция даёт CQ, то есть ждёт ответа. <strong>Нажмите</strong> на неё, чтобы выбрать корреспондента.</li>
+      <li>Перейдите на вкладку <strong>вызова</strong> и включите передачу.</li>
+      <li>Дальше всё автоматически: приложение отработает приведённый ниже обмен и по завершении само запишет связь в журнал.</li>
+    </ol>`,
+  op_quick_seq: `
+    <table>
+      <tr><th>Интервал</th><th>Кто передаёт</th><th>Передаётся</th><th>Смысл</th></tr>
+      <tr><td>1</td><td>Он</td><td><code>CQ BX1AA PL04</code></td><td>«Здесь BX1AA, квадрат PL04, кто-нибудь?»</td></tr>
+      <tr><td>2</td><td><strong>Вы</strong></td><td><code>BX1AA BV6LC PL03</code></td><td>«BX1AA, здесь BV6LC, квадрат PL03»</td></tr>
+      <tr><td>3</td><td>Он</td><td><code>BV6LC BX1AA −09</code></td><td>«Принял вас, сигнал −9 дБ»</td></tr>
+      <tr><td>4</td><td><strong>Вы</strong></td><td><code>BX1AA BV6LC R−12</code></td><td>«Рапорт принял (R), ваш сигнал −12 дБ»</td></tr>
+      <tr><td>5</td><td>Он</td><td><code>BV6LC BX1AA RR73</code></td><td>«Всё принято, до свидания»</td></tr>
+      <tr><td>6</td><td><strong>Вы</strong></td><td><code>BX1AA BV6LC 73</code></td><td>«До свидания» — связь завершена и записана</td></tr>
+    </table>`,
+  op_quick_note: 'Весь обмен занимает около полутора минут. Рапорт — это <strong>значение в дБ</strong> (−09, −12 и т. д.): чем больше минус, тем слабее сигнал; допустимый диапазон от −30 до +20. Это не тот RST вида 59, что используется на SSB. Если корреспондент так и не ответит, приложение прекратит вызов после числа попыток, заданного в параметре <strong>Нет ответа</strong>, и перейдёт к другой станции — сидеть и следить не нужно.',
+
+  op_modeswitch_title: 'Переключение между FT8 / FT4 / FT2',
+  op_modeswitch_text:  'Режим меняется в настройках → Основные сведения в пункте <strong>Режим FT8/FT4/FT2</strong>, а также прямо кнопкой <strong>быстрой смены режима</strong> в плавающем окне. <strong>После переключения трансивер сам перестраивается на частоту этого режима</strong> — выбирать её заново не нужно. Например, на 20 м при переходе с FT8 на FT4 трансивер сам уйдёт с 14,074 на 14,080. (Это работает, когда управление PTT идёт через CAT, RTS или DTR; у VOX канала управления нет, поэтому частоту придётся сменить вручную.)',
 
   op_rx_title:      'Приём',
   op_rx_text:       'Нажмите <strong>Начать декодирование</strong> на вкладке декодера. Приложение записывает звук и декодирует сообщения FT8/FT4 в начале каждого интервала 15 с (FT8) или 7,5 с (FT4). Декодированные станции появляются в списке.',
@@ -340,6 +555,49 @@ en: {
 'pl': {
   op_title: 'Praca w FT8 / FT4',
 
+  op_what_title: 'Czym są FT8 / FT4 / FT2',
+  op_what_text:  'FT8 to <strong>cyfrowa emisja dla słabych sygnałów</strong>, opublikowana w 2017 roku przez K1JT i K9AN, dziś najczęściej używana emisja na falach krótkich. Jej cel jest wąski: <strong>przeprowadzić minimalną łączność tam, gdzie sygnału w ogóle nie słychać</strong>. Aby to osiągnąć, zrezygnowano z wielu rzeczy:',
+  op_what_list: `
+    <ul>
+      <li><strong>Wiadomości są krótkie i sztywno sformatowane</strong> — w jednej mieszczą się właściwie tylko znaki, lokator i raport. Swobodnej rozmowy nie ma (tekst dowolny to najwyżej 13 znaków). Do pisanej rozmowy służy <a href="js8.html">„Tryb czatu JS8"</a>.</li>
+      <li><strong>Czas jest podzielony na stałe okna</strong> — FT8 pracuje w oknach 15-sekundowych: jedna stacja nadaje w parzystych, druga w nieparzystych, na przemian. Dlatego <strong>zegar telefonu musi być dokładny</strong> (najlepiej w granicach sekundy), inaczej strony się nie zgrają.</li>
+      <li><strong>Sygnał jest wąski</strong> — zajmuje około 50 Hz, więc na jednej częstotliwości pracują jednocześnie dziesiątki stacji, każda na własnej częstotliwości audio. Stąd cały rząd sygnałów na wodospadzie.</li>
+      <li><strong>W zamian jest czułość</strong> — dekodowanie sięga zwykle około −21 dB stosunku sygnału do szumu, czyli mniej więcej 20 dB poniżej progu słyszalności. To dlatego mała moc i prosta antena wystarczają do łączności między kontynentami.</li>
+    </ul>`,
+  op_what_table: `
+    <table>
+      <tr><th>Emisja</th><th>Okno</th><th>Opis</th></tr>
+      <tr><td><strong>FT8</strong></td><td>15 s</td><td>Najbardziej uniwersalna i najczulsza. W razie wątpliwości wybierz ją</td></tr>
+      <tr><td><strong>FT4</strong></td><td>7,5 s</td><td>Stworzona na zawody: dwa razy szybsza, nieco mniej czuła. Dobra, gdy sygnały są mocne i liczy się tempo</td></tr>
+      <tr><td><strong>FT2</strong></td><td>3,75 s</td><td>Eksperymentalna emisja FT8TW, dwukrotnie szybsza od FT4. Nie sprawdzona jeszcze w rzeczywistych łącznościach</td></tr>
+    </table>`,
+
+  op_quick_title: 'Szybki start: pierwsza łączność FT8',
+  op_quick_text:  'Najszybciej zacząć nie od własnego CQ, lecz <strong>od odpowiedzi na cudze CQ</strong> — tam ktoś już czeka na odzew, więc szanse powodzenia są dużo większe.',
+  op_quick_steps: `
+    <ol>
+      <li>W Ustawieniach → Informacje podstawowe wpisz <strong>swój znak</strong> i <strong>kwadrat siatki</strong>. <strong>Bez znaku nadawanie jest niemożliwe.</strong></li>
+      <li>Sprawdź, że radio pracuje w trybie <strong>USB</strong> (górna wstęga) i jest połączone (zob. <a href="connection.html">„Połączenie z radiem"</a>).</li>
+      <li>Wróć na zakładkę <strong>dekodowania</strong> i uruchom dekodowanie. Po jednym–dwóch oknach lista zacznie się zapełniać.</li>
+      <li>Znajdź <strong>zielony</strong> wiersz — zielony oznacza, że stacja woła CQ, czyli czeka na odpowiedź. <strong>Dotknij go</strong>, aby wybrać ją jako korespondenta.</li>
+      <li>Przejdź na zakładkę <strong>wywołania</strong> i włącz nadawanie.</li>
+      <li>Reszta dzieje się sama: aplikacja przeprowadzi poniższą wymianę i po jej zakończeniu zapisze łączność w dzienniku.</li>
+    </ol>`,
+  op_quick_seq: `
+    <table>
+      <tr><th>Okno</th><th>Kto nadaje</th><th>Treść</th><th>Znaczenie</th></tr>
+      <tr><td>1</td><td>On</td><td><code>CQ BX1AA PL04</code></td><td>„Tu BX1AA, kwadrat PL04, jest tam kto?"</td></tr>
+      <tr><td>2</td><td><strong>Ty</strong></td><td><code>BX1AA BV6LC PL03</code></td><td>„BX1AA, tu BV6LC, kwadrat PL03"</td></tr>
+      <tr><td>3</td><td>On</td><td><code>BV6LC BX1AA −09</code></td><td>„Odebrałem, sygnał −9 dB"</td></tr>
+      <tr><td>4</td><td><strong>Ty</strong></td><td><code>BX1AA BV6LC R−12</code></td><td>„Raport przyjęty (R), twój sygnał −12 dB"</td></tr>
+      <tr><td>5</td><td>On</td><td><code>BV6LC BX1AA RR73</code></td><td>„Wszystko odebrane, do usłyszenia"</td></tr>
+      <tr><td>6</td><td><strong>Ty</strong></td><td><code>BX1AA BV6LC 73</code></td><td>„Do usłyszenia" — łączność zakończona i zapisana</td></tr>
+    </table>`,
+  op_quick_note: 'Całość trwa około półtorej minuty. Raport to <strong>wartość w dB</strong> (−09, −12 itd.): im większy minus, tym słabszy sygnał, a dopuszczalny zakres to −30 do +20. To nie jest RST typu 59 znany z SSB. Jeśli korespondent nie odpowie, aplikacja przerwie wywołanie po liczbie prób ustawionej w <strong>Brak odpowiedzi</strong> i poszuka kogoś innego — nie trzeba przy tym siedzieć.',
+
+  op_modeswitch_title: 'Przełączanie FT8 / FT4 / FT2',
+  op_modeswitch_text:  'Emisję zmienia się w Ustawieniach → Informacje podstawowe w pozycji <strong>Tryb FT8/FT4/FT2</strong>, a także bezpośrednio przyciskiem <strong>szybkiej zmiany trybu</strong> w pływającym oknie. <strong>Po przełączeniu radio samo przestraja się na częstotliwość danej emisji</strong> — nie trzeba jej wybierać ponownie. Na 20 m przejście z FT8 na FT4 samo przeniesie radio z 14,074 na 14,080. (Działa to, gdy PTT sterowane jest przez CAT, RTS lub DTR; VOX nie ma kanału sterowania, więc częstotliwość trzeba zmienić ręcznie.)',
+
   op_rx_title:      'Odbiór',
   op_rx_text:       'Dotknij <strong>Rozpocznij dekodowanie</strong> w zakładce dekodowania. Aplikacja nagrywa dźwięk i dekoduje wiadomości FT8/FT4 na początku każdego okna 15-sekundowego (FT8) lub 7,5-sekundowego (FT4). Zdekodowane stacje pojawiają się na liście.',
   op_rx_tips_label: 'Wskazówki dla dobrego odbioru:',
@@ -407,6 +665,49 @@ en: {
 'es': {
   op_title: 'Operar en FT8 / FT4',
 
+  op_what_title: 'Qué son FT8 / FT4 / FT2',
+  op_what_text:  'FT8 es un <strong>modo digital para señales débiles</strong>, publicado en 2017 por K1JT y K9AN, y hoy el modo más usado en HF. Su objetivo es muy concreto: <strong>completar un contacto mínimo en condiciones en las que la señal no se oye en absoluto</strong>. Para conseguirlo renuncia a muchas cosas:',
+  op_what_list: `
+    <ul>
+      <li><strong>Los mensajes son cortos y de formato rígido</strong> — en uno solo caben poco más que los indicativos, el locator y el reporte. No hay conversación libre (el texto libre admite 13 caracteres como mucho). Para conversar escribiendo, consulta <a href="js8.html">«Modo chat JS8»</a>.</li>
+      <li><strong>El tiempo se divide en intervalos fijos</strong> — FT8 trabaja en intervalos de 15 segundos: una estación transmite en los pares y la otra en los impares, alternándose. Por eso <strong>el reloj del teléfono debe estar en hora</strong> (mejor dentro de un segundo), o los dos extremos nunca coincidirán.</li>
+      <li><strong>La señal es muy estrecha</strong> — ocupa unos 50 Hz, así que decenas de estaciones pueden trabajar a la vez en la misma frecuencia de dial, cada una en su frecuencia de audio. De ahí la hilera de señales que se ve en la cascada.</li>
+      <li><strong>Lo que se gana a cambio es sensibilidad</strong> — normalmente decodifica hasta unos −21 dB de relación señal/ruido, alrededor de 20 dB por debajo del umbral del oído. Por eso bastan poca potencia y antenas sencillas para cruzar continentes.</li>
+    </ul>`,
+  op_what_table: `
+    <table>
+      <tr><th>Modo</th><th>Intervalo</th><th>Descripción</th></tr>
+      <tr><td><strong>FT8</strong></td><td>15 s</td><td>El más general y el más sensible. Si dudas, usa este</td></tr>
+      <tr><td><strong>FT4</strong></td><td>7,5 s</td><td>Pensado para concursos: el doble de rápido, algo menos sensible. Va bien cuando las señales son fuertes y prima el ritmo</td></tr>
+      <tr><td><strong>FT2</strong></td><td>3,75 s</td><td>Modo experimental de FT8TW, otra vez el doble de rápido que FT4. Todavía sin comprobar en contactos reales</td></tr>
+    </table>`,
+
+  op_quick_title: 'Inicio rápido: tu primer contacto en FT8',
+  op_quick_text:  'La forma más rápida de empezar no es llamar CQ tú, sino <strong>responder al CQ de otro</strong>: al otro lado ya están esperando respuesta, así que las probabilidades de éxito son mucho mayores.',
+  op_quick_steps: `
+    <ol>
+      <li>En Ajustes → Información básica, rellena <strong>tu indicativo</strong> y <strong>tu grid</strong>. <strong>Sin indicativo no se puede transmitir.</strong></li>
+      <li>Comprueba que el equipo está en <strong>modo USB</strong> (banda lateral superior) y conectado (ver <a href="connection.html">«Conexión del equipo»</a>).</li>
+      <li>Vuelve a la pestaña de <strong>decodificación</strong> e inicia la decodificación. Tras uno o dos intervalos la lista empezará a llenarse.</li>
+      <li>Busca una línea <strong>verde</strong>: el verde indica que esa estación está llamando CQ, es decir, esperando respuesta. <strong>Púlsala</strong> para elegirla como corresponsal.</li>
+      <li>Cambia a la pestaña de <strong>llamada</strong> y comienza a transmitir.</li>
+      <li>El resto es automático: la aplicación recorre el intercambio de abajo y, al terminar, anota el contacto en el registro.</li>
+    </ol>`,
+  op_quick_seq: `
+    <table>
+      <tr><th>Intervalo</th><th>Quién transmite</th><th>Se envía</th><th>Significado</th></tr>
+      <tr><td>1</td><td>Él</td><td><code>CQ BX1AA PL04</code></td><td>«Aquí BX1AA, en PL04, ¿hay alguien?»</td></tr>
+      <tr><td>2</td><td><strong>Tú</strong></td><td><code>BX1AA BV6LC PL03</code></td><td>«BX1AA, aquí BV6LC, en PL03»</td></tr>
+      <tr><td>3</td><td>Él</td><td><code>BV6LC BX1AA −09</code></td><td>«Te recibo, tu señal es −9 dB»</td></tr>
+      <tr><td>4</td><td><strong>Tú</strong></td><td><code>BX1AA BV6LC R−12</code></td><td>«Recibido tu reporte (R); el tuyo es −12 dB»</td></tr>
+      <tr><td>5</td><td>Él</td><td><code>BV6LC BX1AA RR73</code></td><td>«Todo recibido, hasta luego»</td></tr>
+      <tr><td>6</td><td><strong>Tú</strong></td><td><code>BX1AA BV6LC 73</code></td><td>«Hasta luego» — contacto completado y registrado</td></tr>
+    </table>`,
+  op_quick_note: 'Todo el intercambio dura alrededor de minuto y medio. El reporte es un <strong>valor en dB</strong> (−09, −12…): cuanto más negativo, más débil, y el rango válido va de −30 a +20. No es el RST tipo 59 que se usa en SSB. Si el corresponsal no responde, la aplicación abandona tras el número de intentos fijado en <strong>Ninguna respuesta</strong> y busca otra estación, así que no hace falta vigilarlo.',
+
+  op_modeswitch_title: 'Cambiar entre FT8 / FT4 / FT2',
+  op_modeswitch_text:  'El modo se cambia en Ajustes → Información básica, en <strong>Modo FT8/FT4/FT2</strong>, o directamente con el botón de <strong>cambio rápido de modo</strong> de la ventana flotante. <strong>Al cambiar, la radio se sintoniza sola en la frecuencia de ese modo</strong>; no hay que volver a elegirla. En 20 m, por ejemplo, pasar de FT8 a FT4 mueve la radio de 14,074 a 14,080 por sí sola. (Esto ocurre cuando el PTT se controla por CAT, RTS o DTR; VOX no tiene canal de control, así que ahí hay que cambiar la frecuencia a mano.)',
+
   op_rx_title:      'Recepción',
   op_rx_text:       'Pulsa <strong>Iniciar decodificación</strong> en la pestaña de decodificación. La aplicación graba audio y decodifica los mensajes FT8/FT4 al comienzo de cada intervalo de 15 segundos (FT8) o 7,5 segundos (FT4). Las estaciones decodificadas aparecen en la lista de decodificación.',
   op_rx_tips_label: 'Consejos para una buena recepción:',
@@ -473,6 +774,49 @@ en: {
 
 'el': {
   op_title: 'Λειτουργία FT8 / FT4',
+
+  op_what_title: 'Τι είναι τα FT8 / FT4 / FT2',
+  op_what_text:  'Το FT8 είναι μια <strong>ψηφιακή λειτουργία για ασθενή σήματα</strong>, που δημοσιεύθηκε το 2017 από τους K1JT και K9AN και σήμερα είναι η πιο διαδεδομένη λειτουργία στα βραχέα. Ο στόχος του είναι συγκεκριμένος: <strong>να ολοκληρώνει μια στοιχειώδη επαφή εκεί όπου το σήμα δεν ακούγεται καθόλου</strong>. Για να το πετύχει, θυσιάζει πολλά:',
+  op_what_list: `
+    <ul>
+      <li><strong>Τα μηνύματα είναι σύντομα και αυστηρά δομημένα</strong> — σε ένα μήνυμα χωρούν λίγο περισσότερα από τα διακριτικά, το τετράγωνο και την αναφορά σήματος. Ελεύθερη συνομιλία δεν υπάρχει (το ελεύθερο κείμενο φτάνει τους 13 χαρακτήρες). Για συνομιλία με πληκτρολόγιο δείτε τη <a href="js8.html">«Λειτουργία συνομιλίας JS8»</a>.</li>
+      <li><strong>Ο χρόνος χωρίζεται σε σταθερές χρονοθυρίδες</strong> — το FT8 δουλεύει σε θυρίδες 15 δευτερολέπτων: ο ένας σταθμός εκπέμπει στις ζυγές και ο άλλος στις μονές, εναλλάξ. Γι\' αυτό <strong>το ρολόι του τηλεφώνου πρέπει να είναι ακριβές</strong> (κατά προτίμηση μέσα σε ένα δευτερόλεπτο), αλλιώς οι δύο πλευρές δεν συγχρονίζονται.</li>
+      <li><strong>Το σήμα είναι πολύ στενό</strong> — καταλαμβάνει περίπου 50 Hz, οπότε δεκάδες σταθμοί δουλεύουν ταυτόχρονα στην ίδια συχνότητα, ο καθένας στη δική του συχνότητα ήχου. Αυτός είναι ο λόγος που στον καταρράκτη φαίνεται μια ολόκληρη σειρά σημάτων.</li>
+      <li><strong>Το αντάλλαγμα είναι η ευαισθησία</strong> — η αποκωδικοποίηση φτάνει συνήθως ως περίπου −21 dB λόγου σήματος προς θόρυβο, δηλαδή περίπου 20 dB κάτω από το κατώφλι της ακοής. Γι\' αυτό αρκούν μικρή ισχύς και απλές κεραίες για επαφές μεταξύ ηπείρων.</li>
+    </ul>`,
+  op_what_table: `
+    <table>
+      <tr><th>Λειτουργία</th><th>Χρονοθυρίδα</th><th>Περιγραφή</th></tr>
+      <tr><td><strong>FT8</strong></td><td>15 δ</td><td>Η πιο γενική και η πιο ευαίσθητη. Αν έχετε αμφιβολία, επιλέξτε αυτήν</td></tr>
+      <tr><td><strong>FT4</strong></td><td>7,5 δ</td><td>Σχεδιασμένη για αγώνες: διπλάσια ταχύτητα, ελαφρώς μικρότερη ευαισθησία. Ταιριάζει όταν τα σήματα είναι δυνατά και μετράει ο ρυθμός</td></tr>
+      <tr><td><strong>FT2</strong></td><td>3,75 δ</td><td>Πειραματική λειτουργία του FT8TW, διπλάσια ταχύτητα από το FT4. Δεν έχει ακόμη δοκιμαστεί σε πραγματικές επαφές</td></tr>
+    </table>`,
+
+  op_quick_title: 'Γρήγορη εκκίνηση: η πρώτη σας επαφή σε FT8',
+  op_quick_text:  'Ο γρηγορότερος τρόπος να ξεκινήσετε δεν είναι να καλέσετε εσείς CQ, αλλά <strong>να απαντήσετε στο CQ κάποιου άλλου</strong> — εκείνος ήδη περιμένει απάντηση, οπότε οι πιθανότητες επιτυχίας είναι πολύ μεγαλύτερες.',
+  op_quick_steps: `
+    <ol>
+      <li>Στις Ρυθμίσεις → Βασικές πληροφορίες συμπληρώστε το <strong>διακριτικό</strong> και το <strong>τετράγωνο</strong> σας. <strong>Χωρίς διακριτικό δεν γίνεται εκπομπή.</strong></li>
+      <li>Βεβαιωθείτε ότι ο πομποδέκτης είναι σε <strong>λειτουργία USB</strong> (άνω πλευρική) και συνδεδεμένος (δείτε <a href="connection.html">«Σύνδεση πομποδέκτη»</a>).</li>
+      <li>Επιστρέψτε στην καρτέλα <strong>αποκωδικοποίησης</strong> και ξεκινήστε την. Μετά από μία-δύο χρονοθυρίδες η λίστα αρχίζει να γεμίζει.</li>
+      <li>Βρείτε μια <strong>πράσινη</strong> γραμμή — το πράσινο σημαίνει ότι ο σταθμός καλεί CQ, δηλαδή περιμένει απάντηση. <strong>Πατήστε την</strong> για να τον επιλέξετε.</li>
+      <li>Πηγαίνετε στην καρτέλα <strong>κλήσης</strong> και ξεκινήστε την εκπομπή.</li>
+      <li>Τα υπόλοιπα γίνονται αυτόματα: η εφαρμογή εκτελεί την παρακάτω ανταλλαγή και στο τέλος καταγράφει την επαφή στο ημερολόγιο.</li>
+    </ol>`,
+  op_quick_seq: `
+    <table>
+      <tr><th>Θυρίδα</th><th>Ποιος εκπέμπει</th><th>Τι στέλνεται</th><th>Σημασία</th></tr>
+      <tr><td>1</td><td>Αυτός</td><td><code>CQ BX1AA PL04</code></td><td>«Εδώ BX1AA, στο PL04, είναι κανείς;»</td></tr>
+      <tr><td>2</td><td><strong>Εσείς</strong></td><td><code>BX1AA BV6LC PL03</code></td><td>«BX1AA, εδώ BV6LC, στο PL03»</td></tr>
+      <tr><td>3</td><td>Αυτός</td><td><code>BV6LC BX1AA −09</code></td><td>«Σας λαμβάνω, το σήμα σας είναι −9 dB»</td></tr>
+      <tr><td>4</td><td><strong>Εσείς</strong></td><td><code>BX1AA BV6LC R−12</code></td><td>«Έλαβα την αναφορά σας (R)· η δική σας είναι −12 dB»</td></tr>
+      <tr><td>5</td><td>Αυτός</td><td><code>BV6LC BX1AA RR73</code></td><td>«Όλα ελήφθησαν, γεια σας»</td></tr>
+      <tr><td>6</td><td><strong>Εσείς</strong></td><td><code>BX1AA BV6LC 73</code></td><td>«Γεια σας» — η επαφή ολοκληρώθηκε και καταγράφηκε</td></tr>
+    </table>`,
+  op_quick_note: 'Όλη η ανταλλαγή διαρκεί περίπου ενάμισι λεπτό. Η αναφορά είναι <strong>τιμή σε dB</strong> (−09, −12 κ.λπ.): όσο πιο αρνητική, τόσο ασθενέστερο το σήμα, και το επιτρεπτό εύρος είναι −30 έως +20. Δεν είναι το RST τύπου 59 που χρησιμοποιείται στο SSB. Αν ο ανταποκριτής δεν απαντήσει ποτέ, η εφαρμογή σταματά μετά από τον αριθμό προσπαθειών που ορίζει η <strong>Καμιά απόκριση</strong> και προχωρά σε άλλον σταθμό, οπότε δεν χρειάζεται να παρακολουθείτε.',
+
+  op_modeswitch_title: 'Εναλλαγή μεταξύ FT8 / FT4 / FT2',
+  op_modeswitch_text:  'Η λειτουργία αλλάζει στις Ρυθμίσεις → Βασικές πληροφορίες, στο <strong>Λειτουργία FT8/FT4/FT2</strong>, ή απευθείας με το κουμπί <strong>γρήγορης αλλαγής λειτουργίας</strong> στο αιωρούμενο παράθυρο. <strong>Μετά την εναλλαγή ο πομποδέκτης συντονίζεται μόνος του στη συχνότητα της λειτουργίας</strong> — δεν χρειάζεται να την επιλέξετε ξανά. Στα 20 m, για παράδειγμα, η μετάβαση από FT8 σε FT4 μετακινεί τον πομποδέκτη από τους 14,074 στους 14,080 από μόνη της. (Ισχύει όταν ο έλεγχος PTT γίνεται με CAT, RTS ή DTR· το VOX δεν έχει κανάλι ελέγχου, οπότε εκεί η συχνότητα αλλάζει χειροκίνητα.)',
 
   op_rx_title:      'Λήψη',
   op_rx_text:       'Πατήστε <strong>Έναρξη αποκωδικοποίησης</strong> στην καρτέλα αποκωδικοποίησης. Η εφαρμογή καταγράφει ήχο και αποκωδικοποιεί μηνύματα FT8/FT4 στην αρχή κάθε χρονοθυρίδας 15 δευτερολέπτων (FT8) ή 7,5 δευτερολέπτων (FT4). Οι σταθμοί που αποκωδικοποιούνται εμφανίζονται στη λίστα αποκωδικοποίησης.',

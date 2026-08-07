@@ -25,6 +25,10 @@ en: {
       <li>For ICOM radios, set the <strong>CI-V address</strong> to match the radio's menu setting.</li>
     </ol>`,
 
+  conn_audio_title: 'The Audio Path (USB Sound Cards)',
+  conn_audio_text:  'CAT control and audio are two separate paths. CAT handles frequency and PTT; audio decides what the decoder actually hears. With a USB sound card such as a Digirig, audio arrives through the sound card rather than the phone microphone — but nothing on the decode screen reveals which one is in use, because <strong>even when it is picking up the room, the display keeps running and the level meter keeps moving</strong>. To see which device is really being recorded, look at "Audio device" under Settings → <strong>Advanced &amp; Developer</strong>.',
+  conn_audio_note: 'The app detects USB sound cards being plugged and unplugged and follows automatically. If that page still shows the built-in microphone after you plug one in, press <strong>Re-detect</strong> — no need to restart the app. The page also distinguishes the case where a USB audio device was found but the system refused the routing request, so recording is still coming from the built-in microphone, and says so outright. Network-connected radios (FlexRadio, ICOM, Xiegu) take their audio over the network rather than the microphone, so plugging a sound card in or out does not affect them.',
+
   conn_bt_title: 'Bluetooth',
   conn_bt_text:  'FT8TW supports two Bluetooth operation modes:',
   conn_bt_modes: `
@@ -73,12 +77,16 @@ en: {
       <li>以 USB OTG 轉接頭接上手機，再插入連接線。</li>
       <li>Android 提示時授予 USB 裝置存取權限。</li>
       <li>在設置中將<strong>連接方式</strong>設為<em>有線連接（USB）</em>。</li>
-      <li>從支援清單（40+ 款）選擇您的<strong>電台型號</strong>。</li>
+      <li>從支援清單（80 款以上）選擇您的<strong>電台型號</strong>。</li>
       <li>選擇正確的<strong>連接埠</strong>裝置路徑。</li>
       <li>將<strong>傳輸速率（Baud rate）</strong>設為與電台 CAT 速度相符的數值。</li>
       <li>設定 <strong>PTT 控制</strong>：<em>CAT</em>（建議）、<em>RTS</em> 或 <em>DTR</em>。</li>
       <li>ICOM 電台需將 <strong>CI-V 地址</strong>設為與電台選單相同的值。</li>
     </ol>`,
+
+  conn_audio_title: '音訊路徑（USB 音效卡）',
+  conn_audio_text:  'CAT 控制與音訊是兩條各自獨立的路。CAT 負責頻率與 PTT，音訊則決定解碼器聽到什麼。使用 Digirig 這類 USB 音效卡時，音訊走的是音效卡而不是手機麥克風——但這件事沒辦法從解碼畫面上看出來，因為<strong>就算收的是室內的環境音，畫面照跑、電平也照動</strong>。要確認目前實際在收哪一個裝置，請到設置 → <strong>進階與開發者</strong>看「音訊裝置」。',
+  conn_audio_note: 'App 會自動偵測 USB 音效卡的插拔並跟著切換。若插上之後那一頁顯示的仍是內建麥克風，按一下<strong>重新偵測</strong>即可，不必重開 App。這一頁也會分辨「找到 USB 音訊，但系統不接受路由要求，實際仍在收內建麥克風」這種情況，並直接寫出來。網路連線的電台（FlexRadio、ICOM、協谷）音訊走網路而不是麥克風，因此插拔 USB 音效卡不會影響它們。',
 
   conn_bt_title: '藍牙',
   conn_bt_text:  'FT8TW 支援兩種藍牙操作模式：',

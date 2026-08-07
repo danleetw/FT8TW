@@ -20,6 +20,10 @@ en: {
       <li><strong>Allow unknown sources:</strong> Go to <em>Android Settings → Security → Install unknown apps</em> and grant permission to your browser or file manager.</li>
       <li><strong>Open</strong> the downloaded APK and tap <em>Install</em>.</li>
     </ol>`,
+  install_update_title: 'Update Notifications',
+  install_update_text:  'FT8TW checks at most once a day whether a newer version exists. When one does, it shows a prompt together with <strong>what actually changed in that release</strong>, so you can decide for yourself whether to update now. <strong>Update</strong> takes you to wherever you installed from: the Play Store for Play installs, GitHub Releases for everything else. If you dismiss it, you will only be reminded again once a still higher version appears.',
+  install_update_note: 'A small number of releases are marked as a <strong>mandatory update</strong> — usually because they fix something that affects what goes out on the air, or that corrupts data. In that case every <strong>transmit</strong> path is blocked until you have updated (FT8/FT4/FT2, WSPR, JS8, push-to-talk and tune). <strong>Receiving, the log, exporting and the settings are unaffected</strong> and the rest of the app works as usual.',
+
   install_perms_title: 'Required Permissions',
   install_perms: `
     <table>
@@ -49,6 +53,10 @@ en: {
       <li><strong>開啟未知來源安裝：</strong>進入<em>設定 → 安全性 → 安裝未知應用程式</em>，對瀏覽器或檔案管理員授予安裝權限。</li>
       <li>開啟下載的 APK 檔案，點選<em>安裝</em>。</li>
     </ol>`,
+  install_update_title: '版本更新提醒',
+  install_update_text:  'FT8TW 每天最多查詢一次是否有新版本，有的話會跳出提醒，並直接把<strong>這一版更新了什麼</strong>列給您看，讓您自己判斷要不要現在更新。按<strong>更新</strong>會依您當初的安裝來源前往正確的地方：從 Google Play 安裝的到 Play 商店，其餘一律到 GitHub Releases。選擇忽略的話，只有在線上又出現更高的版本時才會再提醒一次。',
+  install_update_note: '少數版本會被標示為<strong>必要更新</strong>——通常是修掉了會影響空中訊號或造成資料損壞的問題。這種情況下，在您更新完成之前，所有<strong>發射</strong>入口都會被擋下（FT8/FT4/FT2、WSPR、JS8、按住通話與調諧）。<strong>接收、通聯記錄、匯出與設定完全不受影響</strong>，程式其餘部分照常可用。',
+
   install_perms_title: '所需權限',
   install_perms: `
     <table>
