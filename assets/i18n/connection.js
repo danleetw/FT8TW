@@ -18,7 +18,7 @@ en: {
       <li>Attach a USB OTG (On-The-Go) adapter to your phone and plug in the cable.</li>
       <li>Grant USB device access when Android prompts you.</li>
       <li>In Settings, set <strong>Connection type</strong> to <em>USB</em>.</li>
-      <li>Select your <strong>Radio model</strong> from the supported list (40+ models).</li>
+      <li>Select your <strong>Radio model</strong> from the supported list (80+ models).</li>
       <li>Choose the correct <strong>Serial port</strong> device path.</li>
       <li>Set the <strong>Baud rate</strong> to match your radio's CAT speed.</li>
       <li>Set <strong>PTT control</strong>: <em>CAT</em> (preferred), <em>RTS</em>, or <em>DTR</em>.</li>
@@ -136,12 +136,16 @@ en: {
       <li>用 USB OTG 转接头接上手机，再插入连接线。</li>
       <li>Android 提示时授予 USB 设备访问权限。</li>
       <li>在设置中将<strong>连接方式</strong>设为<em>有线连接（USB）</em>。</li>
-      <li>从支持列表（40+ 款）选择您的<strong>电台型号</strong>。</li>
+      <li>从支持列表（80 款以上）选择您的<strong>电台型号</strong>。</li>
       <li>选择正确的<strong>串口</strong>设备路径。</li>
       <li>将<strong>波特率（Baud rate）</strong>设为与电台 CAT 速度相符的数值。</li>
       <li>设置 <strong>PTT 控制</strong>：<em>CAT</em>（推荐）、<em>RTS</em> 或 <em>DTR</em>。</li>
       <li>ICOM 电台需将 <strong>CI-V 地址</strong>设为与电台菜单相同的值。</li>
     </ol>`,
+
+  conn_audio_title: '音频路径（USB 声卡）',
+  conn_audio_text:  'CAT 控制与音频是两条各自独立的路。CAT 负责频率与 PTT，音频则决定解码器听到什么。使用 Digirig 这类 USB 声卡时，音频走的是声卡而不是手机麦克风——但这件事没办法从解码界面上看出来，因为<strong>就算收的是室内的环境音，界面照跑、电平也照动</strong>。要确认目前实际在收哪一个设备，请到设置 → <strong>高级与开发者</strong>看「音频设备」。',
+  conn_audio_note: 'App 会自动检测 USB 声卡的插拔并跟着切换。若插上之后那一页显示的仍是内置麦克风，按一下<strong>重新检测</strong>即可，不必重开 App。这一页也会分辨「找到 USB 音频，但系统不接受路由请求，实际仍在收内置麦克风」这种情况，并直接写出来。网络连接的电台（FlexRadio、ICOM、协谷）音频走网络而不是麦克风，因此插拔 USB 声卡不会影响它们。',
 
   conn_bt_title: '蓝牙',
   conn_bt_text:  'FT8TW 支持两种蓝牙操作模式：',
@@ -191,12 +195,16 @@ en: {
       <li>スマートフォンに USB OTG アダプターを取り付け、ケーブルを挿します。</li>
       <li>Android から確認が出たら USB デバイスへのアクセスを許可します。</li>
       <li>設定で<strong>接続方式</strong>を <em>USB</em> にします。</li>
-      <li>対応リスト（40 機種以上）から<strong>無線機の機種</strong>を選びます。</li>
+      <li>対応リスト（80 機種以上）から<strong>無線機の機種</strong>を選びます。</li>
       <li>正しい<strong>シリアルポート</strong>のデバイスパスを選びます。</li>
       <li><strong>ボーレート</strong>を無線機の CAT 速度に合わせます。</li>
       <li><strong>PTT 制御</strong>を設定します: <em>CAT</em>（推奨）、<em>RTS</em>、<em>DTR</em>。</li>
       <li>ICOM 機では <strong>CI-V アドレス</strong>を無線機のメニュー設定と一致させます。</li>
     </ol>`,
+
+  conn_audio_title: '音声の経路（USB サウンドカード）',
+  conn_audio_text:  'CAT 制御と音声は別々の経路です。CAT は周波数と PTT を担当し、音声はデコーダーが何を聞くかを決めます。Digirig のような USB サウンドカードを使うと、音声は端末のマイクではなくサウンドカードを通ります。ところがそれはデコード画面からは判別できません。<strong>部屋の音を拾っていても画面は動き続け、レベルメーターも振れる</strong>からです。実際にどのデバイスから録音しているかは、設定 → <strong>詳細設定と開発者</strong>の「オーディオデバイス」で確認できます。',
+  conn_audio_note: 'USB サウンドカードの抜き差しはアプリが自動的に検出して切り替えます。接続してもそのページに内蔵マイクと表示されたままなら、<strong>再検出</strong>を押せば切り替わり、アプリの再起動は不要です。「USB オーディオは見つかったが、システムが経路の変更を受け付けず、実際には内蔵マイクから録音している」という状態もこのページははっきり区別して表示します。ネットワーク接続の無線機（FlexRadio、ICOM、Xiegu）は音声がネットワーク経由なので、USB サウンドカードの抜き差しの影響を受けません。',
 
   conn_bt_title: 'Bluetooth',
   conn_bt_text:  'FT8TW は 2 通りの Bluetooth 運用に対応します:',
@@ -253,6 +261,10 @@ en: {
       <li>Для трансиверов ICOM задайте <strong>адрес CI-V</strong> так же, как в меню аппарата.</li>
     </ol>`,
 
+  conn_audio_title: 'Путь звука (звуковые карты USB)',
+  conn_audio_text:  'Управление CAT и звук — это два независимых пути. CAT отвечает за частоту и PTT, а звук определяет, что именно слышит декодер. При использовании звуковой карты USB (например, Digirig) звук идёт через неё, а не через микрофон телефона — но по экрану декодера этого не понять, потому что <strong>даже когда пишется комната, экран продолжает работать, а индикатор уровня — двигаться</strong>. Чтобы увидеть, с какого устройства идёт запись на самом деле, откройте «Аудиоустройство» в Настройки → <strong>Дополнительно и разработка</strong>.',
+  conn_audio_note: 'Приложение само определяет подключение и отключение звуковых карт USB и переключается за ними. Если после подключения там по-прежнему показан встроенный микрофон, нажмите <strong>Определить заново</strong> — перезапускать приложение не нужно. Эта же страница отдельно указывает случай, когда устройство USB найдено, но система отказалась перенаправить на него запись, и звук по-прежнему идёт со встроенного микрофона. Трансиверы с сетевым подключением (FlexRadio, ICOM, Xiegu) получают звук по сети, а не с микрофона, поэтому подключение звуковой карты на них не влияет.',
+
   conn_bt_title: 'Bluetooth',
   conn_bt_text:  'FT8TW поддерживает два режима работы по Bluetooth:',
   conn_bt_modes: `
@@ -301,12 +313,16 @@ en: {
       <li>Podłącz do telefonu przejściówkę USB OTG i wepnij kabel.</li>
       <li>Zezwól na dostęp do urządzenia USB, gdy Android o to poprosi.</li>
       <li>W ustawieniach ustaw <strong>Rodzaj połączenia</strong> na <em>USB</em>.</li>
-      <li>Wybierz swój <strong>model radia</strong> z listy obsługiwanych (ponad 40).</li>
+      <li>Wybierz swój <strong>model radia</strong> z listy obsługiwanych (ponad 80).</li>
       <li>Wskaż właściwą ścieżkę urządzenia <strong>portu szeregowego</strong>.</li>
       <li>Ustaw <strong>prędkość transmisji</strong> zgodnie z ustawieniem CAT w radiu.</li>
       <li>Ustaw <strong>sterowanie PTT</strong>: <em>CAT</em> (zalecane), <em>RTS</em> lub <em>DTR</em>.</li>
       <li>W radiach ICOM ustaw <strong>adres CI-V</strong> zgodny z menu urządzenia.</li>
     </ol>`,
+
+  conn_audio_title: 'Ścieżka dźwięku (karty dźwiękowe USB)',
+  conn_audio_text:  'Sterowanie CAT i dźwięk to dwie niezależne ścieżki. CAT odpowiada za częstotliwość i PTT, a dźwięk decyduje o tym, co naprawdę słyszy dekoder. Przy karcie dźwiękowej USB, takiej jak Digirig, dźwięk idzie przez nią, a nie przez mikrofon telefonu — ale po ekranie dekodowania tego nie widać, bo <strong>nawet gdy nagrywane jest pomieszczenie, ekran nadal pracuje, a wskaźnik poziomu się porusza</strong>. Aby zobaczyć, z którego urządzenia faktycznie idzie nagranie, sprawdź „Urządzenie audio" w Ustawienia → <strong>Zaawansowane i deweloper</strong>.',
+  conn_audio_note: 'Aplikacja sama wykrywa podłączenie i odłączenie kart dźwiękowych USB i przełącza się za nimi. Jeśli po podłączeniu nadal widnieje tam mikrofon wbudowany, naciśnij <strong>Wykryj ponownie</strong> — restart aplikacji nie jest potrzebny. Ta sama strona osobno wskazuje sytuację, w której urządzenie USB zostało znalezione, ale system odmówił przekierowania na nie nagrywania, więc dźwięk nadal pochodzi z mikrofonu wbudowanego. Radia z połączeniem sieciowym (FlexRadio, ICOM, Xiegu) pobierają dźwięk przez sieć, a nie z mikrofonu, więc podłączanie karty ich nie dotyczy.',
 
   conn_bt_title: 'Bluetooth',
   conn_bt_text:  'FT8TW obsługuje dwa tryby pracy przez Bluetooth:',
@@ -356,12 +372,16 @@ en: {
       <li>Acopla un adaptador USB OTG al teléfono y enchufa el cable.</li>
       <li>Concede el acceso al dispositivo USB cuando Android lo pida.</li>
       <li>En Ajustes, pon <strong>Tipo de conexión</strong> en <em>USB</em>.</li>
-      <li>Selecciona tu <strong>modelo de equipo</strong> en la lista de compatibles (más de 40).</li>
+      <li>Selecciona tu <strong>modelo de equipo</strong> en la lista de compatibles (más de 80).</li>
       <li>Elige la ruta del dispositivo de <strong>puerto serie</strong> correcta.</li>
       <li>Ajusta la <strong>velocidad en baudios</strong> para que coincida con la del CAT de tu equipo.</li>
       <li>Configura el <strong>control de PTT</strong>: <em>CAT</em> (preferible), <em>RTS</em> o <em>DTR</em>.</li>
       <li>En equipos ICOM, ajusta la <strong>dirección CI-V</strong> igual que en el menú del equipo.</li>
     </ol>`,
+
+  conn_audio_title: 'La ruta del audio (tarjetas de sonido USB)',
+  conn_audio_text:  'El control CAT y el audio son dos rutas independientes. El CAT se ocupa de la frecuencia y el PTT; el audio determina lo que oye realmente el decodificador. Con una tarjeta de sonido USB como un Digirig, el audio llega por ella y no por el micrófono del teléfono, pero eso no se aprecia en la pantalla de decodificación, porque <strong>aunque esté captando la habitación, la pantalla sigue funcionando y el medidor de nivel se mueve igual</strong>. Para ver de qué dispositivo se está grabando de verdad, mira «Dispositivo de audio» en Ajustes → <strong>Avanzado y desarrollador</strong>.',
+  conn_audio_note: 'La aplicación detecta por sí sola cuándo se conecta o desconecta una tarjeta de sonido USB y cambia en consecuencia. Si tras conectarla esa página sigue mostrando el micrófono integrado, pulsa <strong>Volver a detectar</strong>; no hace falta reiniciar la aplicación. Esa misma página distingue además el caso en que se encontró un dispositivo USB pero el sistema rechazó encaminar la grabación hacia él, de modo que se sigue grabando del micrófono integrado. Los equipos conectados por red (FlexRadio, ICOM, Xiegu) toman el audio por la red y no por el micrófono, así que conectar o quitar una tarjeta no les afecta.',
 
   conn_bt_title: 'Bluetooth',
   conn_bt_text:  'FT8TW admite dos modos de funcionamiento por Bluetooth:',
@@ -417,6 +437,10 @@ en: {
       <li>Ορίστε τον <strong>έλεγχο PTT</strong>: <em>CAT</em> (προτιμότερο), <em>RTS</em> ή <em>DTR</em>.</li>
       <li>Για πομποδέκτες ICOM ορίστε τη <strong>διεύθυνση CI-V</strong> ίδια με τη ρύθμιση στο μενού του μηχανήματος.</li>
     </ol>`,
+
+  conn_audio_title: 'Η διαδρομή του ήχου (κάρτες ήχου USB)',
+  conn_audio_text:  'Ο έλεγχος CAT και ο ήχος είναι δύο ανεξάρτητες διαδρομές. Το CAT αναλαμβάνει τη συχνότητα και το PTT, ενώ ο ήχος καθορίζει τι ακούει πραγματικά ο αποκωδικοποιητής. Με κάρτα ήχου USB, όπως το Digirig, ο ήχος περνά από εκείνη και όχι από το μικρόφωνο του τηλεφώνου — αυτό όμως δεν φαίνεται από την οθόνη αποκωδικοποίησης, γιατί <strong>ακόμη κι όταν καταγράφεται ο χώρος, η οθόνη συνεχίζει να δουλεύει και ο δείκτης στάθμης να κινείται</strong>. Για να δείτε από ποια συσκευή γίνεται στην πραγματικότητα η εγγραφή, δείτε τη «Συσκευή ήχου» στις Ρυθμίσεις → <strong>Για προχωρημένους</strong>.',
+  conn_audio_note: 'Η εφαρμογή εντοπίζει μόνη της τη σύνδεση και αποσύνδεση καρτών ήχου USB και ακολουθεί. Αν μετά τη σύνδεση εξακολουθεί να εμφανίζεται το ενσωματωμένο μικρόφωνο, πατήστε <strong>Νέος εντοπισμός</strong> — δεν χρειάζεται επανεκκίνηση. Η ίδια σελίδα ξεχωρίζει επίσης την περίπτωση όπου βρέθηκε συσκευή USB αλλά το σύστημα αρνήθηκε να δρομολογήσει σε αυτήν την εγγραφή, οπότε ο ήχος συνεχίζει να έρχεται από το ενσωματωμένο μικρόφωνο. Οι πομποδέκτες με σύνδεση δικτύου (FlexRadio, ICOM, Xiegu) παίρνουν τον ήχο από το δίκτυο και όχι από το μικρόφωνο, οπότε δεν επηρεάζονται.',
 
   conn_bt_title: 'Bluetooth',
   conn_bt_text:  'Το FT8TW υποστηρίζει δύο τρόπους λειτουργίας μέσω Bluetooth:',

@@ -15,6 +15,8 @@ en: {
       <li>Switch decode mode to <strong>Deep</strong> for marginal signal conditions.</li>
       <li>Ensure you are on the correct FT8 frequency for your band (e.g., 14.074 MHz for 20m).</li>
       <li>If the app is recording but no audio is arriving at all, the decode screen shows a persistent <strong>⚠ No audio input</strong> notice. Tap it and the app lists the likely causes: microphone permission missing or another app (voice recorder, phone call) holding the microphone; a problem with the audio source itself (cable, radio volume, Bluetooth link); or a second copy of FT8TW installed on the same phone that has taken the microphone.</li>
+      <li><strong>Using a USB sound card (a Digirig, say) but it sounds like the room is being recorded:</strong> look at "Audio device" under Settings → <strong>Advanced &amp; Developer</strong> to see which device is actually being recorded. If it shows the built-in microphone, press <strong>Re-detect</strong> to switch to the USB card without restarting the app. That page also states outright the case where USB audio was found but the system refused the routing request and recording is still coming from the built-in microphone, so there is nothing to guess at.</li>
+      <li><strong>When the radio's own output level cannot be changed:</strong> use <strong>Receive audio gain</strong> under Settings → Radio &amp; Audio. A QMX sends a fixed level over USB, and on ICOM radios the USB level lives in the set menu rather than on the AF knob — in those cases adjusting from the app side is the quickest route.</li>
     </ul>`,
 
   ts_noconn_title: 'Cannot Connect to Radio',
@@ -25,6 +27,7 @@ en: {
       <li>For ICOM: check the <strong>CI-V address</strong> matches the radio's menu setting (often 0x94 or 0xA4).</li>
       <li><strong>Bluetooth:</strong> Pair the adapter in Android Bluetooth settings before selecting it in FT8TW. Ensure the adapter is powered and within range.</li>
       <li><strong>WiFi (FlexRadio/ICOM):</strong> Confirm both phone and radio are on the same network. Check the IP address and port number.</li>
+      <li>If all of the above checks out and there is still no response, use the <strong>Radio Test Tool</strong> at the bottom of the Radio Tool page to work through it item by item: <strong>Read Freq</strong> shows whether the radio answers at all, and <strong>PTT Test</strong> whether it will key. The response window lists the commands sent and whatever came back verbatim, so you can tell straight away whether the command never went out, went out with no reply, or was answered in a different format. See <a href="ssb.html">Radio Tool</a>.</li>
     </ul>`,
 
   ts_notx_title: 'No Transmission',
@@ -36,6 +39,8 @@ en: {
       <li>Check whether the <strong>TX watchdog</strong> timer has stopped transmission.</li>
       <li>FT8TW will refuse to transmit on <strong>WSPR-2 frequencies</strong> to avoid interference.</li>
       <li>Verify audio output routing — for Bluetooth headsets, confirm the headset is the selected audio output.</li>
+      <li>If the app reports a pending <strong>mandatory update</strong>, every transmit path is blocked until you have installed it (FT8/FT4/FT2, WSPR, JS8, push-to-talk and tune). Browsing, the log and the settings are unaffected. See the update section in <a href="install.html">Installation</a>.</li>
+      <li>Press <strong>PTT Test</strong> in the <strong>Radio Test Tool</strong> on the Radio Tool page: if PTT keys and releases normally there, the PTT path itself is sound and the problem lies elsewhere in the transmit sequence.</li>
     </ul>`,
 
   ts_timesync_title: 'Time Synchronization Issues',
@@ -130,6 +135,8 @@ en: {
       <li>弱信号条件下改用<strong>多次</strong>解码模式。</li>
       <li>确认所在频率为该频段的 FT8 标准频率（例如 20m 为 14.074 MHz）。</li>
       <li>若程序确实在录音、却完全收不到音频，解码界面会常驻显示<strong>「⚠ 没有收到音频」</strong>。点一下就会列出可能原因：麦克风权限未开启，或被其他程序（录音机、通话）占用；音源本身有问题（连接线、电台音量、蓝牙连接）；或这台手机还装了另一个 FT8TW，麦克风被它拿走了。</li>
+      <li><strong>用了 USB 声卡（Digirig 等）却好像收的是室内的声音：</strong>到设置 → <strong>高级与开发者</strong>看「音频设备」目前实际在收哪一个设备。若显示的是内置麦克风，按<strong>重新检测</strong>即可改用 USB 声卡，不必重开 App。这一页也会明讲「找到 USB 音频、但系统不接受路由请求，实际仍在收内置麦克风」这种情况，不必自己猜。</li>
+      <li><strong>电台的音量根本调不动时：</strong>用设置 → 电台与声音的<strong>接收音频增益</strong>在 App 内调整。QMX 这类纯数字机的 USB 音频电平是固定的，ICOM 的 USB 音量则藏在 SET 菜单而不是 AF 旋钮——这时从 App 这端调最快。</li>
     </ul>`,
 
   ts_noconn_title: '无法连接电台',
@@ -140,6 +147,7 @@ en: {
       <li>ICOM 电台需确认 <strong>CI-V 地址</strong>与电台菜单设置一致（常见值为 0x94 或 0xA4）。</li>
       <li><strong>蓝牙：</strong>请先在 Android 蓝牙设置中完成配对，再于 FT8TW 中选取设备，并确认蓝牙模块已通电且在有效范围内。</li>
       <li><strong>WiFi（FlexRadio / ICOM）：</strong>确认手机与电台连接至同一网络，并核对 IP 地址及端口号。</li>
+      <li>以上都对过还是没反应时，请用电台工具页最下方的<strong>电台测试工具</strong>逐项确认：按<strong>读取频率</strong>看电台有没有回应、按 <strong>PTT 测试</strong>看能不能拉起发射。回应窗口会把送出的指令与收到的回复原样列出来，可以直接分辨是「指令没送出去」、「送出去了但电台不回」还是「回了但格式不同」。详见<a href="ssb.html">「电台工具」</a>。</li>
     </ul>`,
 
   ts_notx_title: '无法发射',
@@ -151,6 +159,8 @@ en: {
       <li>确认<strong>发射监管</strong>计时器是否已触发停止发射。</li>
       <li>程序会拒绝在 <strong>WSPR-2 频率</strong>发射 FT8 信号以避免干扰。</li>
       <li>确认音频输出路由——蓝牙耳机需确认为选定的音频输出设备。</li>
+      <li>若程序提示有一个<strong>必要更新</strong>尚未安装，在更新完成之前所有发射入口都会被挡下（FT8/FT4/FT2、WSPR、JS8、按住发射与调谐）。浏览、通联日志与设置则不受影响。详见<a href="install.html">「安装」</a>的版本更新说明。</li>
+      <li>用电台工具页的<strong>电台测试工具</strong>按一下 <strong>PTT 测试</strong>：如果这里能正常拉起与放开 PTT，代表 PTT 这条路本身是通的，问题就在发射流程的其他环节。</li>
     </ul>`,
 
   ts_timesync_title: '时间同步问题',
@@ -185,6 +195,8 @@ en: {
       <li>信号が弱いときはデコードモードを<strong>多回</strong>に切り替えます。</li>
       <li>そのバンドの正しい FT8 周波数か確認します（例: 20m は 14.074 MHz）。</li>
       <li>録音はできているのに音声がまったく届いていない場合、デコード画面に<strong>「⚠ 音声が入力されていません」</strong>が常時表示されます。タップすると原因の候補が並びます: マイクの権限がないか、他のアプリ（ボイスレコーダー、通話など）がマイクを使っている、音源側の問題（ケーブル、無線機の音量、Bluetooth 接続）、あるいは同じ端末にもう一つ FT8TW が入っていてマイクを取っている。</li>
+      <li><strong>USB サウンドカード（Digirig など）を使っているのに部屋の音を拾っているようなとき:</strong> 設定 → <strong>詳細設定と開発者</strong>の「オーディオデバイス」で、実際にどのデバイスから録音しているかを確認します。内蔵マイクと表示されていれば<strong>再検出</strong>を押せば USB サウンドカードに切り替わり、アプリの再起動は不要です。「USB オーディオは見つかったが、システムが経路の変更を受け付けず、実際には内蔵マイクから録音している」という状態もこのページがはっきり示すので、推測する必要はありません。</li>
+      <li><strong>無線機側の音量がどうしても変えられないとき:</strong> 設定 → 無線機と音声の<strong>受信音声ゲイン</strong>でアプリ内から調整します。QMX のようなデジタル機の USB 音声レベルは固定で、ICOM の USB 音量は AF つまみではなくセットメニューの中にあります。こうした場合はアプリ側で調整するのが早道です。</li>
     </ul>`,
 
   ts_noconn_title: '無線機に接続できない',
@@ -195,6 +207,7 @@ en: {
       <li>ICOM の場合は <strong>CI-V アドレス</strong>が無線機のメニュー設定と一致しているか確認します（0x94 や 0xA4 が多いです）。</li>
       <li><strong>Bluetooth:</strong> 先に Android の Bluetooth 設定でペアリングしてから FT8TW で選択します。アダプターに電源が入っていて、通信範囲内にあるかも確認してください。</li>
       <li><strong>WiFi（FlexRadio / ICOM）:</strong> スマートフォンと無線機が同じネットワークにあるか確認し、IP アドレスとポート番号を見直します。</li>
+      <li>以上をすべて確認しても反応がない場合は、無線機ツール画面の下部にある <strong>Radio Test Tool</strong> で 1 項目ずつ確かめてください。<strong>Read Freq</strong> で無線機が応答するか、<strong>PTT Test</strong> で送信に入れるかが分かります。応答ウィンドウには送ったコマンドと返ってきた内容がそのまま並ぶので、「コマンドが出ていない」「出ているが無線機が返さない」「返ってきたが形式が違う」のどれなのかを直接見分けられます。詳しくは<a href="ssb.html">「無線機ツール」</a>。</li>
     </ul>`,
 
   ts_notx_title: '送信できない',
@@ -206,6 +219,8 @@ en: {
       <li><strong>送信ウォッチドッグ</strong>のタイマーが送信を止めていないか確認します。</li>
       <li>混信を避けるため、FT8TW は <strong>WSPR-2 の周波数</strong>では送信しません。</li>
       <li>音声の出力先を確認します。Bluetooth ヘッドセットの場合は、それが選択中の音声出力になっているか確かめてください。</li>
+      <li><strong>必須更新</strong>が未適用であるとアプリが表示している場合、更新が完了するまで送信系の操作はすべて止まります（FT8/FT4/FT2、WSPR、JS8、プレストーク、チューン）。閲覧・ログ・設定には影響しません。詳しくは<a href="install.html">「インストール」</a>のバージョン更新の説明をご覧ください。</li>
+      <li>無線機ツール画面の <strong>Radio Test Tool</strong> で <strong>PTT Test</strong> を押してみてください。ここで PTT を入れて解除できるなら、PTT の経路そのものは通っており、問題は送信の流れの別の部分にあります。</li>
     </ul>`,
 
   ts_timesync_title: '時刻同期の問題',
@@ -240,6 +255,8 @@ en: {
       <li>При слабых сигналах переключите декодирование в режим <strong>Deep</strong>.</li>
       <li>Убедитесь, что вы на правильной частоте FT8 для своего диапазона (например, 14,074 МГц на 20 м).</li>
       <li>Если запись идёт, а звук вообще не поступает, на экране декодера постоянно висит предупреждение <strong>«⚠ Нет входного звука»</strong>. По нажатию приложение перечисляет вероятные причины: нет разрешения на микрофон либо его заняло другое приложение (диктофон, звонок); проблема с самим источником (кабель, громкость трансивера, связь Bluetooth); либо на том же телефоне установлена вторая копия FT8TW, забравшая микрофон.</li>
+      <li><strong>Используется звуковая карта USB (Digirig и т. п.), но похоже, что пишется комната:</strong> откройте «Аудиоустройство» в Настройки → <strong>Дополнительно и разработка</strong> и посмотрите, с какого устройства идёт запись. Если там встроенный микрофон, нажмите <strong>Определить заново</strong> — переключится на карту USB без перезапуска приложения. Эта же страница прямо сообщает о случае «устройство USB найдено, но система отказалась перенаправить запись, и звук по-прежнему идёт со встроенного микрофона», так что гадать не придётся.</li>
+      <li><strong>Когда уровень выхода самого трансивера изменить нельзя:</strong> воспользуйтесь параметром <strong>Усиление принимаемого звука</strong> в Настройки → Трансивер и звук. У QMX уровень по USB фиксирован, а у ICOM громкость USB находится в меню SET, а не на ручке AF — в таких случаях быстрее отрегулировать со стороны приложения.</li>
     </ul>`,
 
   ts_noconn_title: 'Не удаётся подключиться к трансиверу',
@@ -250,6 +267,7 @@ en: {
       <li>Для ICOM: проверьте, что <strong>адрес CI-V</strong> совпадает с настройкой в меню аппарата (часто 0x94 или 0xA4).</li>
       <li><strong>Bluetooth:</strong> выполните сопряжение адаптера в настройках Bluetooth Android до выбора его в FT8TW. Убедитесь, что адаптер запитан и находится в зоне действия.</li>
       <li><strong>WiFi (FlexRadio/ICOM):</strong> проверьте, что телефон и трансивер в одной сети, и сверьте IP-адрес и номер порта.</li>
+      <li>Если всё перечисленное проверено, а отклика нет, воспользуйтесь разделом <strong>Radio Test Tool</strong> внизу страницы инструментов трансивера и проверьте по пунктам: <strong>Read Freq</strong> покажет, отвечает ли трансивер, а <strong>PTT Test</strong> — удаётся ли перейти на передачу. В окне ответов отправленные команды и полученные ответы выводятся дословно, поэтому сразу видно, что именно произошло: команда не ушла, ушла но ответа нет, или ответ пришёл в другом формате. Подробнее см. <a href="ssb.html">«Инструменты трансивера»</a>.</li>
     </ul>`,
 
   ts_notx_title: 'Нет передачи',
@@ -261,6 +279,8 @@ en: {
       <li>Проверьте, не остановил ли передачу <strong>сторожевой таймер</strong>.</li>
       <li>Во избежание помех FT8TW не передаёт на <strong>частотах WSPR-2</strong>.</li>
       <li>Проверьте маршрут вывода звука: при использовании Bluetooth-гарнитуры убедитесь, что выбран именно этот выход.</li>
+      <li>Если приложение сообщает о неустановленном <strong>обязательном обновлении</strong>, все пути передачи блокируются до его установки (FT8/FT4/FT2, WSPR, JS8, передача по нажатию и настройка антенны). Просмотр, журнал и настройки при этом доступны. См. описание обновлений в разделе <a href="install.html">«Установка»</a>.</li>
+      <li>Нажмите <strong>PTT Test</strong> в разделе <strong>Radio Test Tool</strong> на странице инструментов трансивера: если PTT там включается и выключается нормально, сам путь PTT исправен, и причина лежит в другой части процесса передачи.</li>
     </ul>`,
 
   ts_timesync_title: 'Проблемы с синхронизацией времени',
@@ -295,6 +315,8 @@ en: {
       <li>Przy słabych sygnałach przełącz dekodowanie w tryb <strong>Deep</strong>.</li>
       <li>Upewnij się, że jesteś na właściwej częstotliwości FT8 dla swojego pasma (np. 14,074 MHz na 20 m).</li>
       <li>Jeśli aplikacja nagrywa, ale dźwięk w ogóle nie dociera, na ekranie dekodowania widnieje stałe ostrzeżenie <strong>„⚠ Brak sygnału audio”</strong>. Po dotknięciu aplikacja wymienia prawdopodobne przyczyny: brak uprawnienia do mikrofonu albo zajęcie go przez inną aplikację (dyktafon, rozmowa); problem po stronie źródła dźwięku (kabel, głośność radia, połączenie Bluetooth); albo druga kopia FT8TW na tym samym telefonie, która przejęła mikrofon.</li>
+      <li><strong>Używasz karty dźwiękowej USB (np. Digirig), a wygląda na to, że nagrywane jest pomieszczenie:</strong> sprawdź „Urządzenie audio” w Ustawienia → <strong>Zaawansowane i deweloper</strong>, aby zobaczyć, z którego urządzenia faktycznie idzie nagranie. Jeśli widnieje mikrofon wbudowany, naciśnij <strong>Wykryj ponownie</strong> — przełączy się na kartę USB bez restartu aplikacji. Ta sama strona wprost informuje o sytuacji „znaleziono urządzenie USB, ale system odmówił przekierowania nagrywania i dźwięk nadal pochodzi z mikrofonu wbudowanego”, więc nie trzeba zgadywać.</li>
+      <li><strong>Gdy poziomu wyjścia samego radia nie da się zmienić:</strong> skorzystaj z <strong>Wzmocnienia dźwięku odbioru</strong> w Ustawienia → Radio i dźwięk. QMX podaje przez USB stały poziom, a w radiach ICOM głośność USB jest w menu SET, a nie na gałce AF — wtedy najszybciej wyregulować to po stronie aplikacji.</li>
     </ul>`,
 
   ts_noconn_title: 'Nie można połączyć się z radiem',
@@ -305,6 +327,7 @@ en: {
       <li>W radiach ICOM sprawdź, czy <strong>adres CI-V</strong> zgadza się z ustawieniem w menu (często 0x94 lub 0xA4).</li>
       <li><strong>Bluetooth:</strong> sparuj adapter w ustawieniach Bluetooth Androida, zanim wybierzesz go w FT8TW. Upewnij się, że adapter ma zasilanie i jest w zasięgu.</li>
       <li><strong>WiFi (FlexRadio/ICOM):</strong> sprawdź, czy telefon i radio są w tej samej sieci, oraz zweryfikuj adres IP i numer portu.</li>
+      <li>Jeśli wszystko powyższe zostało sprawdzone, a radio nadal nie reaguje, użyj sekcji <strong>Radio Test Tool</strong> na dole strony narzędzi radia i sprawdź po kolei: <strong>Read Freq</strong> pokaże, czy radio odpowiada, a <strong>PTT Test</strong> — czy da się przejść na nadawanie. W oknie odpowiedzi wysłane polecenia i otrzymane odpowiedzi pojawiają się dosłownie, więc od razu widać, czy polecenie nie wyszło, wyszło ale nie ma odpowiedzi, czy odpowiedź przyszła w innym formacie. Zobacz <a href="ssb.html">„Narzędzia radia”</a>.</li>
     </ul>`,
 
   ts_notx_title: 'Brak nadawania',
@@ -316,6 +339,8 @@ en: {
       <li>Sprawdź, czy nadawania nie przerwał <strong>nadzorca nadawania</strong>.</li>
       <li>Aby uniknąć zakłóceń, FT8TW nie nadaje na <strong>częstotliwościach WSPR-2</strong>.</li>
       <li>Sprawdź trasę wyjścia dźwięku — przy zestawie Bluetooth upewnij się, że to on jest wybranym wyjściem audio.</li>
+      <li>Jeśli aplikacja zgłasza niezainstalowaną <strong>aktualizację obowiązkową</strong>, wszystkie drogi nadawania są zablokowane do czasu jej wykonania (FT8/FT4/FT2, WSPR, JS8, nadawanie przyciskiem i strojenie). Przeglądanie, dziennik i ustawienia pozostają dostępne. Zobacz opis aktualizacji w rozdziale <a href="install.html">„Instalacja”</a>.</li>
+      <li>Naciśnij <strong>PTT Test</strong> w sekcji <strong>Radio Test Tool</strong> na stronie narzędzi radia: jeśli PTT włącza się i zwalnia prawidłowo, sama ścieżka PTT jest sprawna, a przyczyna leży w innym miejscu procesu nadawania.</li>
     </ul>`,
 
   ts_timesync_title: 'Problemy z synchronizacją czasu',
@@ -350,6 +375,8 @@ en: {
       <li>Cambia el modo de decodificación a <strong>Deep</strong> cuando las señales estén al límite.</li>
       <li>Comprueba que estés en la frecuencia FT8 correcta para tu banda (por ejemplo, 14,074 MHz en 20 m).</li>
       <li>Si la aplicación graba pero no llega audio alguno, la pantalla de decodificación muestra de forma permanente el aviso <strong>«⚠ Sin entrada de audio»</strong>. Al pulsarlo se enumeran las causas probables: falta el permiso de micrófono o lo tiene otra aplicación (grabadora, llamada); hay un problema en la propia fuente de audio (cable, volumen del equipo, enlace Bluetooth); o hay una segunda copia de FT8TW instalada en el mismo teléfono que se ha quedado con el micrófono.</li>
+      <li><strong>Usas una tarjeta de sonido USB (un Digirig, por ejemplo) pero parece que se graba la habitación:</strong> mira «Dispositivo de audio» en Ajustes → <strong>Avanzado y desarrollador</strong> para ver de qué dispositivo se está grabando realmente. Si aparece el micrófono integrado, pulsa <strong>Volver a detectar</strong> y pasará a la tarjeta USB sin reiniciar la aplicación. Esa misma página indica claramente el caso de «se encontró un dispositivo USB pero el sistema rechazó encaminar la grabación y se sigue grabando del micrófono integrado», así que no hay que adivinar.</li>
+      <li><strong>Cuando no se puede cambiar el nivel de salida del propio equipo:</strong> usa la <strong>Ganancia de audio de recepción</strong> en Ajustes → Radio y audio. El QMX entrega un nivel fijo por USB y en los ICOM el volumen USB está en el menú SET y no en el mando de AF; en esos casos lo más rápido es ajustarlo desde la aplicación.</li>
     </ul>`,
 
   ts_noconn_title: 'No se puede conectar con el equipo',
@@ -360,6 +387,7 @@ en: {
       <li>Para ICOM: comprueba que la <strong>dirección CI-V</strong> coincida con la del menú del equipo (a menudo 0x94 o 0xA4).</li>
       <li><strong>Bluetooth:</strong> empareja el adaptador en los ajustes de Bluetooth de Android antes de seleccionarlo en FT8TW. Asegúrate de que tenga alimentación y esté dentro del alcance.</li>
       <li><strong>WiFi (FlexRadio/ICOM):</strong> confirma que el teléfono y el equipo estén en la misma red y revisa la dirección IP y el número de puerto.</li>
+      <li>Si has comprobado todo lo anterior y sigue sin responder, usa la sección <strong>Radio Test Tool</strong> al final de la página de herramientas de radio y verifica punto por punto: <strong>Read Freq</strong> muestra si el equipo responde y <strong>PTT Test</strong> si consigue pasar a transmisión. En la ventana de respuestas aparecen literalmente las órdenes enviadas y lo recibido, de modo que se distingue en el acto si la orden no salió, si salió pero no hay respuesta, o si la respuesta llegó con otro formato. Consulta <a href="ssb.html">«Herramientas de radio»</a>.</li>
     </ul>`,
 
   ts_notx_title: 'No transmite',
@@ -371,6 +399,8 @@ en: {
       <li>Comprueba si el <strong>vigilante de transmisión</strong> ha detenido la emisión.</li>
       <li>Para evitar interferencias, FT8TW no transmite en <strong>frecuencias de WSPR-2</strong>.</li>
       <li>Revisa el encaminamiento de la salida de audio; con auriculares Bluetooth, confirma que sean la salida seleccionada.</li>
+      <li>Si la aplicación avisa de una <strong>actualización obligatoria</strong> pendiente, todas las vías de transmisión quedan bloqueadas hasta instalarla (FT8/FT4/FT2, WSPR, JS8, pulsar para hablar y sintonía). La consulta, el registro y los ajustes siguen disponibles. Consulta la explicación de las actualizaciones en <a href="install.html">«Instalación»</a>.</li>
+      <li>Pulsa <strong>PTT Test</strong> en la sección <strong>Radio Test Tool</strong> de la página de herramientas de radio: si allí el PTT se activa y se suelta con normalidad, la vía del PTT en sí funciona y el problema está en otra parte del proceso de transmisión.</li>
     </ul>`,
 
   ts_timesync_title: 'Problemas de sincronización horaria',
@@ -405,6 +435,8 @@ en: {
       <li>Σε οριακές συνθήκες σήματος αλλάξτε τη λειτουργία αποκωδικοποίησης σε <strong>Deep</strong>.</li>
       <li>Βεβαιωθείτε ότι βρίσκεστε στη σωστή συχνότητα FT8 για τη μπάντα σας (π.χ. 14,074 MHz στα 20 m).</li>
       <li>Αν η εφαρμογή καταγράφει αλλά δεν φτάνει καθόλου ήχος, η οθόνη αποκωδικοποίησης εμφανίζει μόνιμα την ειδοποίηση <strong>«⚠ Δεν υπάρχει είσοδος ήχου»</strong>. Με πάτημα εμφανίζονται οι πιθανές αιτίες: λείπει η άδεια μικροφώνου ή το κρατά άλλη εφαρμογή (ηχογράφος, κλήση)· πρόβλημα στην ίδια την πηγή (καλώδιο, ένταση πομποδέκτη, σύνδεση Bluetooth)· ή υπάρχει δεύτερο αντίγραφο του FT8TW στο ίδιο τηλέφωνο που πήρε το μικρόφωνο.</li>
+      <li><strong>Χρησιμοποιείτε κάρτα ήχου USB (π.χ. Digirig) αλλά φαίνεται ότι καταγράφεται ο χώρος:</strong> δείτε τη «Συσκευή ήχου» στις Ρυθμίσεις → <strong>Για προχωρημένους</strong> για να διαπιστώσετε από ποια συσκευή γίνεται πράγματι η εγγραφή. Αν εμφανίζεται το ενσωματωμένο μικρόφωνο, πατήστε <strong>Νέος εντοπισμός</strong> και θα περάσει στην κάρτα USB χωρίς επανεκκίνηση. Η ίδια σελίδα δηλώνει ρητά και την περίπτωση «βρέθηκε συσκευή USB αλλά το σύστημα αρνήθηκε τη δρομολόγηση και η εγγραφή συνεχίζει από το ενσωματωμένο μικρόφωνο», οπότε δεν χρειάζεται να μαντεύετε.</li>
+      <li><strong>Όταν η στάθμη εξόδου του ίδιου του πομποδέκτη δεν αλλάζει:</strong> χρησιμοποιήστε την <strong>Απολαβή ήχου λήψης</strong> στις Ρυθμίσεις → Πομποδέκτης και ήχος. Ο QMX δίνει σταθερή στάθμη μέσω USB και στους ICOM η ένταση USB βρίσκεται στο μενού SET και όχι στο κουμπί AF· σε αυτές τις περιπτώσεις είναι ταχύτερο να ρυθμιστεί από την εφαρμογή.</li>
     </ul>`,
 
   ts_noconn_title: 'Δεν γίνεται σύνδεση με τον πομποδέκτη',
@@ -415,6 +447,7 @@ en: {
       <li>Για ICOM: ελέγξτε ότι η <strong>διεύθυνση CI-V</strong> ταιριάζει με τη ρύθμιση στο μενού (συχνά 0x94 ή 0xA4).</li>
       <li><strong>Bluetooth:</strong> κάντε πρώτα σύζευξη του αντάπτορα στις ρυθμίσεις Bluetooth του Android και μετά επιλέξτε τον στο FT8TW. Βεβαιωθείτε ότι τροφοδοτείται και βρίσκεται εντός εμβέλειας.</li>
       <li><strong>WiFi (FlexRadio/ICOM):</strong> επιβεβαιώστε ότι τηλέφωνο και πομποδέκτης είναι στο ίδιο δίκτυο και ελέγξτε τη διεύθυνση IP και τον αριθμό θύρας.</li>
+      <li>Αν έχετε ελέγξει όλα τα παραπάνω και εξακολουθεί να μην αποκρίνεται, χρησιμοποιήστε την ενότητα <strong>Radio Test Tool</strong> στο κάτω μέρος της σελίδας εργαλείων πομποδέκτη και ελέγξτε βήμα-βήμα: το <strong>Read Freq</strong> δείχνει αν ο πομποδέκτης απαντά και το <strong>PTT Test</strong> αν μπαίνει σε εκπομπή. Στο παράθυρο απαντήσεων οι εντολές που στάλθηκαν και όσα επέστρεψαν εμφανίζονται αυτούσια, οπότε ξεχωρίζετε αμέσως αν η εντολή δεν έφυγε, αν έφυγε χωρίς απάντηση, ή αν η απάντηση ήρθε σε άλλη μορφή. Δείτε τα <a href="ssb.html">«Εργαλεία πομποδέκτη»</a>.</li>
     </ul>`,
 
   ts_notx_title: 'Δεν γίνεται εκπομπή',
@@ -426,6 +459,8 @@ en: {
       <li>Ελέγξτε μήπως ο <strong>επιτηρητής εκπομπής</strong> σταμάτησε την εκπομπή.</li>
       <li>Για αποφυγή παρεμβολών, το FT8TW δεν εκπέμπει σε <strong>συχνότητες WSPR-2</strong>.</li>
       <li>Ελέγξτε τη διαδρομή εξόδου ήχου — με ακουστικά Bluetooth βεβαιωθείτε ότι αυτά είναι η επιλεγμένη έξοδος.</li>
+      <li>Αν η εφαρμογή αναφέρει εκκρεμή <strong>υποχρεωτική ενημέρωση</strong>, όλες οι διαδρομές εκπομπής μπλοκάρονται μέχρι να γίνει (FT8/FT4/FT2, WSPR, JS8, ομιλία με πάτημα και συντονισμός). Η περιήγηση, το ημερολόγιο και οι ρυθμίσεις παραμένουν διαθέσιμα. Δείτε την εξήγηση των ενημερώσεων στην <a href="install.html">«Εγκατάσταση»</a>.</li>
+      <li>Πατήστε το <strong>PTT Test</strong> στην ενότητα <strong>Radio Test Tool</strong> της σελίδας εργαλείων πομποδέκτη: αν εκεί το PTT ανοίγει και κλείνει κανονικά, η ίδια η διαδρομή PTT λειτουργεί και το πρόβλημα βρίσκεται σε άλλο σημείο της ροής εκπομπής.</li>
     </ul>`,
 
   ts_timesync_title: 'Προβλήματα συγχρονισμού ώρας',

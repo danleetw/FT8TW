@@ -86,6 +86,10 @@ en: {
       <li><strong>开启未知来源安装：</strong>进入<em>设置 → 安全 → 安装未知应用</em>，对浏览器或文件管理器授予安装权限。</li>
       <li>打开下载的 APK 文件，点击<em>安装</em>。</li>
     </ol>`,
+  install_update_title: '版本更新提醒',
+  install_update_text:  'FT8TW 每天最多查询一次是否有新版本，有的话会弹出提醒，并直接把<strong>这一版更新了什么</strong>列给您看，让您自己判断要不要现在更新。按<strong>更新</strong>会依您当初的安装来源前往正确的地方：从 Google Play 安装的到 Play 商店，其余一律到 GitHub Releases。选择忽略的话，只有在线上又出现更高的版本时才会再提醒一次。',
+  install_update_note: '少数版本会被标示为<strong>必要更新</strong>——通常是修掉了会影响空中信号或造成数据损坏的问题。这种情况下，在您更新完成之前，所有<strong>发射</strong>入口都会被挡下（FT8/FT4/FT2、WSPR、JS8、按住发射与调谐）。<strong>接收、通联日志、导出与设置完全不受影响</strong>，程序其余部分照常可用。',
+
   install_perms_title: '所需权限',
   install_perms: `
     <table>
@@ -115,6 +119,10 @@ en: {
       <li><strong>提供元不明のアプリを許可:</strong> <em>Android の設定 → セキュリティ → 不明なアプリのインストール</em>で、ブラウザーまたはファイルマネージャーに許可を与えます。</li>
       <li>ダウンロードした APK を<strong>開き</strong>、<em>インストール</em>をタップします。</li>
     </ol>`,
+  install_update_title: 'バージョン更新のお知らせ',
+  install_update_text:  'FT8TW は 1 日 1 回まで新しいバージョンの有無を確認します。新版があれば通知を表示し、<strong>そのリリースで何が変わったか</strong>も一緒に示すので、いま更新するかどうかはご自身で判断できます。<strong>更新</strong>を押すと、インストール元に応じた場所へ移動します。Google Play からインストールした場合は Play ストアへ、それ以外は GitHub Releases へ。いったん無視した場合は、さらに新しいバージョンが出たときにだけ再度通知されます。',
+  install_update_note: 'ごく一部のリリースは<strong>必須更新</strong>として扱われます。多くは電波に出る内容に影響する不具合や、データが壊れる不具合を修正した場合です。この場合、更新が完了するまで<strong>送信</strong>系の操作はすべて止まります（FT8/FT4/FT2、WSPR、JS8、プレストーク、チューン）。<strong>受信・ログ・エクスポート・設定にはまったく影響しません</strong>ので、それ以外は通常どおり使えます。',
+
   install_perms_title: '必要な権限',
   install_perms: `
     <table>
@@ -144,6 +152,10 @@ en: {
       <li><strong>Разрешите неизвестные источники:</strong> откройте <em>Настройки Android → Безопасность → Установка неизвестных приложений</em> и разрешите установку браузеру или файловому менеджеру.</li>
       <li><strong>Откройте</strong> скачанный APK и нажмите <em>Установить</em>.</li>
     </ol>`,
+  install_update_title: 'Уведомления об обновлениях',
+  install_update_text:  'FT8TW проверяет наличие новой версии не чаще раза в сутки. Если она есть, появляется уведомление вместе с описанием того, <strong>что именно изменилось в этом выпуске</strong>, чтобы вы сами решили, обновляться ли сейчас. Кнопка <strong>Обновить</strong> ведёт туда, откуда приложение было установлено: в Play Маркет для установок из Play и на GitHub Releases во всех остальных случаях. Если уведомление отклонить, оно появится снова только когда выйдет ещё более новая версия.',
+  install_update_note: 'Отдельные выпуски помечаются как <strong>обязательное обновление</strong> — обычно когда исправлено то, что влияет на излучаемый сигнал или портит данные. В этом случае до завершения обновления блокируются все пути <strong>передачи</strong> (FT8/FT4/FT2, WSPR, JS8, передача по нажатию и настройка антенны). <strong>Приём, журнал, экспорт и настройки не затрагиваются</strong>, остальная часть приложения работает как обычно.',
+
   install_perms_title: 'Необходимые разрешения',
   install_perms: `
     <table>
@@ -173,6 +185,10 @@ en: {
       <li><strong>Zezwól na nieznane źródła:</strong> przejdź do <em>Ustawienia Androida → Bezpieczeństwo → Instalowanie nieznanych aplikacji</em> i przyznaj uprawnienie przeglądarce lub menedżerowi plików.</li>
       <li><strong>Otwórz</strong> pobrany plik APK i dotknij <em>Zainstaluj</em>.</li>
     </ol>`,
+  install_update_title: 'Powiadomienia o aktualizacjach',
+  install_update_text:  'FT8TW sprawdza dostępność nowej wersji najwyżej raz dziennie. Jeśli taka jest, pokazuje powiadomienie wraz z opisem tego, <strong>co faktycznie zmieniło się w danym wydaniu</strong>, abyś sam zdecydował, czy aktualizować teraz. Przycisk <strong>Aktualizuj</strong> prowadzi tam, skąd aplikacja została zainstalowana: do Sklepu Play przy instalacji z Play, a w pozostałych przypadkach do GitHub Releases. Po odrzuceniu powiadomienie pojawi się ponownie dopiero wtedy, gdy ukaże się jeszcze nowsza wersja.',
+  install_update_note: 'Nieliczne wydania oznaczane są jako <strong>aktualizacja obowiązkowa</strong> — zwykle wtedy, gdy poprawiono coś, co wpływa na sygnał wychodzący w eter albo powoduje uszkodzenie danych. W takim przypadku do czasu aktualizacji zablokowane są wszystkie drogi <strong>nadawania</strong> (FT8/FT4/FT2, WSPR, JS8, nadawanie przyciskiem i strojenie). <strong>Odbiór, dziennik, eksport i ustawienia pozostają nienaruszone</strong>, a reszta aplikacji działa normalnie.',
+
   install_perms_title: 'Wymagane uprawnienia',
   install_perms: `
     <table>
@@ -202,6 +218,10 @@ en: {
       <li><strong>Permite orígenes desconocidos:</strong> ve a <em>Ajustes de Android → Seguridad → Instalar apps desconocidas</em> y concede el permiso a tu navegador o gestor de archivos.</li>
       <li><strong>Abre</strong> el APK descargado y pulsa <em>Instalar</em>.</li>
     </ol>`,
+  install_update_title: 'Aviso de nuevas versiones',
+  install_update_text:  'FT8TW comprueba como mucho una vez al día si hay una versión más reciente. Cuando la hay, muestra un aviso junto con <strong>lo que ha cambiado realmente en esa versión</strong>, para que decidas tú si actualizar ahora. <strong>Actualizar</strong> te lleva al sitio desde el que instalaste: a Play Store si fue una instalación de Play, y a GitHub Releases en los demás casos. Si lo descartas, solo se te volverá a avisar cuando aparezca una versión aún más nueva.',
+  install_update_note: 'Unas pocas versiones se marcan como <strong>actualización obligatoria</strong>, normalmente porque corrigen algo que afecta a lo que sale al aire o que corrompe datos. En ese caso, hasta que actualices quedan bloqueadas todas las vías de <strong>transmisión</strong> (FT8/FT4/FT2, WSPR, JS8, pulsar para hablar y sintonía). <strong>La recepción, el registro, la exportación y los ajustes no se ven afectados</strong> y el resto de la aplicación funciona con normalidad.',
+
   install_perms_title: 'Permisos necesarios',
   install_perms: `
     <table>
@@ -231,6 +251,10 @@ en: {
       <li><strong>Επιτρέψτε άγνωστες πηγές:</strong> μεταβείτε στις <em>Ρυθμίσεις Android → Ασφάλεια → Εγκατάσταση άγνωστων εφαρμογών</em> και δώστε άδεια στο πρόγραμμα περιήγησης ή στη διαχείριση αρχείων.</li>
       <li><strong>Ανοίξτε</strong> το APK που κατεβάσατε και πατήστε <em>Εγκατάσταση</em>.</li>
     </ol>`,
+  install_update_title: 'Ειδοποιήσεις ενημέρωσης',
+  install_update_text:  'Το FT8TW ελέγχει το πολύ μία φορά την ημέρα αν υπάρχει νεότερη έκδοση. Όταν υπάρχει, εμφανίζει ειδοποίηση μαζί με το <strong>τι άλλαξε πραγματικά σε εκείνη την έκδοση</strong>, ώστε να αποφασίσετε μόνοι σας αν θα ενημερώσετε τώρα. Το <strong>Ενημέρωση</strong> σας πηγαίνει εκεί από όπου έγινε η εγκατάσταση: στο Play Store για εγκαταστάσεις από το Play και στο GitHub Releases σε κάθε άλλη περίπτωση. Αν την απορρίψετε, θα ειδοποιηθείτε ξανά μόνο όταν εμφανιστεί ακόμη νεότερη έκδοση.',
+  install_update_note: 'Ελάχιστες εκδόσεις σημειώνονται ως <strong>υποχρεωτική ενημέρωση</strong> — συνήθως όταν διορθώνουν κάτι που επηρεάζει αυτό που βγαίνει στον αέρα ή που αλλοιώνει δεδομένα. Σε αυτή την περίπτωση, μέχρι να ενημερώσετε, μπλοκάρονται όλες οι διαδρομές <strong>εκπομπής</strong> (FT8/FT4/FT2, WSPR, JS8, ομιλία με πάτημα και συντονισμός). <strong>Η λήψη, το ημερολόγιο, η εξαγωγή και οι ρυθμίσεις δεν επηρεάζονται</strong> και η υπόλοιπη εφαρμογή λειτουργεί κανονικά.',
+
   install_perms_title: 'Απαιτούμενες άδειες',
   install_perms: `
     <table>

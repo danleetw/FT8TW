@@ -10,7 +10,7 @@ en: {
     <ul>
       <li>Supports <strong>FT8</strong> (15-second slots), <strong>FT4</strong> (7.5-second slots), and experimental <strong>FT2</strong> digital modes</li>
       <li>Also includes <strong>JS8</strong> chat mode, <strong>WSPR</strong> beacon transmission/decoding, and <strong>SSB</strong> push-to-talk voice</li>
-      <li>Connects to <strong>40+ radio models</strong> via USB CAT, Bluetooth SPP, FlexRadio WiFi, ICOM RS-BA1, or Xiegu WiFi</li>
+      <li>Connects to <strong>80+ radio models</strong> via USB CAT, Bluetooth SPP, FlexRadio WiFi, ICOM RS-BA1, or Xiegu WiFi</li>
       <li>Native <strong>C/C++ signal processing</strong> (LDPC, CRC, Kiss FFT) for high-performance encoding and decoding</li>
       <li>Automatic CQ response with configurable priority strategies</li>
       <li>QSO logging with ADIF export/import and log sharing</li>
@@ -58,13 +58,15 @@ en: {
     <ul>
       <li>支持 <strong>FT8</strong>（15 秒时隙）、<strong>FT4</strong>（7.5 秒时隙）及实验性的 <strong>FT2</strong> 数字模式</li>
       <li>另支持 <strong>JS8</strong> 聊天模式、<strong>WSPR</strong> 信标发射／解码，以及 <strong>SSB</strong> 按住通话语音</li>
-      <li>通过 USB CAT、蓝牙 SPP、FlexRadio WiFi、ICOM RS-BA1 或协谷 WiFi 控制 <strong>40+ 款电台</strong></li>
+      <li>通过 USB CAT、蓝牙 SPP、FlexRadio WiFi、ICOM RS-BA1 或协谷 WiFi 控制 <strong>80 款以上的电台</strong></li>
       <li>使用原生 <strong>C/C++ 信号处理</strong>（LDPC、CRC、Kiss FFT），编解码性能优异</li>
       <li>自动回应 CQ，可设置优先策略</li>
       <li>通联日志管理，支持 ADIF 导出／导入及日志分享</li>
       <li>集成 <strong>QRZ.com</strong>、<strong>PSKReporter</strong> 及 <strong>Cloudlog／Wavelog</strong></li>
       <li>竞赛模式（交换网格），以及 SOTA／POTA 启动记录</li>
       <li>多组具名配置文件，日志数据库可自动备份</li>
+      <li>内建<strong>电台测试工具</strong>，可逐项验证 CAT 与音频路径，并附上原文与 HEX 的回应记录</li>
+      <li>可选的<strong>开发者 API</strong>，供自行开发的插件在局域网内读取解码、日志与频谱</li>
       <li>Maidenhead 网格追踪器，结合 OpenStreetMap 显示</li>
       <li>ITU、CQ 分区及 DXCC 统计</li>
       <li>浅色 / 深色 / 跟随系统主题</li>
@@ -81,13 +83,15 @@ en: {
     <ul>
       <li><strong>FT8</strong>（15 秒スロット）、<strong>FT4</strong>（7.5 秒スロット）、実験的な <strong>FT2</strong> のデジタルモードに対応</li>
       <li><strong>JS8</strong> チャットモード、<strong>WSPR</strong> ビーコンの送信／デコード、<strong>SSB</strong> のプレストーク音声にも対応</li>
-      <li>USB CAT、Bluetooth SPP、FlexRadio WiFi、ICOM RS-BA1、Xiegu WiFi で <strong>40 機種以上の無線機</strong>を制御</li>
+      <li>USB CAT、Bluetooth SPP、FlexRadio WiFi、ICOM RS-BA1、Xiegu WiFi で <strong>80 機種以上の無線機</strong>を制御</li>
       <li>ネイティブの <strong>C/C++ 信号処理</strong>（LDPC、CRC、Kiss FFT）による高速なエンコード／デコード</li>
       <li>CQ への自動応答（優先条件を設定可能）</li>
       <li>交信ログ管理、ADIF のエクスポート／インポートとログ共有</li>
       <li><strong>QRZ.com</strong>、<strong>PSKReporter</strong>、<strong>Cloudlog / Wavelog</strong> との連携</li>
       <li>グリッド交換のコンテストモードと、SOTA / POTA のアクティベーション記録</li>
       <li>名前付きの設定プロファイルと、ログデータベースの自動バックアップ</li>
+      <li>CAT と音声の経路を 1 項目ずつ確認できる<strong>無線機テストツール</strong>を内蔵（原文と HEX の応答ログ付き）</li>
+      <li>任意で有効にできる<strong>開発者 API</strong>。自作アドオンが同一ネットワーク内からデコード・ログ・スペクトラムを読めます</li>
       <li>OpenStreetMap を用いた Maidenhead グリッドトラッカー</li>
       <li>ITU ゾーン、CQ ゾーン、DXCC の統計</li>
       <li>ライト / ダーク / システムに従うテーマ</li>
@@ -104,13 +108,15 @@ en: {
     <ul>
       <li>Поддержка <strong>FT8</strong> (интервалы 15 с), <strong>FT4</strong> (интервалы 7,5 с) и экспериментального режима <strong>FT2</strong></li>
       <li>Также чат <strong>JS8</strong>, передача и декодирование маяка <strong>WSPR</strong> и голос <strong>SSB</strong> с кнопкой передачи</li>
-      <li>Управление <strong>более чем 40 моделями трансиверов</strong> через USB CAT, Bluetooth SPP, FlexRadio WiFi, ICOM RS-BA1 или Xiegu WiFi</li>
+      <li>Управление <strong>более чем 80 моделями трансиверов</strong> через USB CAT, Bluetooth SPP, FlexRadio WiFi, ICOM RS-BA1 или Xiegu WiFi</li>
       <li>Нативная <strong>обработка сигналов на C/C++</strong> (LDPC, CRC, Kiss FFT) для быстрого кодирования и декодирования</li>
       <li>Автоматический ответ на CQ с настраиваемыми правилами приоритета</li>
       <li>Ведение аппаратного журнала с экспортом/импортом ADIF и обменом записями</li>
       <li>Интеграция с <strong>QRZ.com</strong>, <strong>PSKReporter</strong> и <strong>Cloudlog / Wavelog</strong></li>
       <li>Контестовый режим с обменом локаторами и запись активаций SOTA / POTA</li>
       <li>Именованные профили настроек и автоматические резервные копии журнала</li>
+      <li>Встроенный <strong>инструмент проверки трансивера</strong>: пошаговая проверка CAT и звукового тракта с журналом ответов в тексте и HEX</li>
+      <li>Необязательный <strong>API для разработчиков</strong>, позволяющий собственным дополнениям читать декоды, журнал и спектр по локальной сети</li>
       <li>Карта локаторов Maidenhead поверх OpenStreetMap</li>
       <li>Статистика по зонам ITU, CQ и по DXCC</li>
       <li>Светлая / тёмная / системная тема</li>
@@ -127,13 +133,15 @@ en: {
     <ul>
       <li>Obsługa <strong>FT8</strong> (okna 15-sekundowe), <strong>FT4</strong> (okna 7,5-sekundowe) i eksperymentalnego <strong>FT2</strong></li>
       <li>Dodatkowo czat <strong>JS8</strong>, nadawanie i dekodowanie latarni <strong>WSPR</strong> oraz głos <strong>SSB</strong> z przyciskiem nadawania</li>
-      <li>Sterowanie <strong>ponad 40 modelami radiotelefonów</strong> przez USB CAT, Bluetooth SPP, FlexRadio WiFi, ICOM RS-BA1 lub Xiegu WiFi</li>
+      <li>Sterowanie <strong>ponad 80 modelami radiotelefonów</strong> przez USB CAT, Bluetooth SPP, FlexRadio WiFi, ICOM RS-BA1 lub Xiegu WiFi</li>
       <li>Natywne <strong>przetwarzanie sygnałów w C/C++</strong> (LDPC, CRC, Kiss FFT) zapewniające szybkie kodowanie i dekodowanie</li>
       <li>Automatyczna odpowiedź na CQ z konfigurowalnymi zasadami priorytetu</li>
       <li>Dziennik łączności z eksportem/importem ADIF i udostępnianiem</li>
       <li>Integracja z <strong>QRZ.com</strong>, <strong>PSKReporter</strong> i <strong>Cloudlog / Wavelog</strong></li>
       <li>Tryb zawodów z wymianą lokatorów oraz zapis aktywacji SOTA / POTA</li>
       <li>Nazwane profile ustawień i automatyczne kopie zapasowe dziennika</li>
+      <li>Wbudowane <strong>narzędzie testowe radia</strong>: sprawdzanie CAT i ścieżki dźwięku po kolei, z zapisem odpowiedzi w tekście i HEX</li>
+      <li>Opcjonalne <strong>API dla deweloperów</strong>, dzięki któremu własne dodatki odczytują dekodowania, dziennik i widmo w sieci lokalnej</li>
       <li>Mapa lokatorów Maidenhead na podkładzie OpenStreetMap</li>
       <li>Statystyki stref ITU, CQ i DXCC</li>
       <li>Motyw jasny / ciemny / zgodny z systemem</li>
@@ -150,13 +158,15 @@ en: {
     <ul>
       <li>Admite <strong>FT8</strong> (intervalos de 15 s), <strong>FT4</strong> (intervalos de 7,5 s) y el modo experimental <strong>FT2</strong></li>
       <li>También incluye chat <strong>JS8</strong>, transmisión y decodificación de baliza <strong>WSPR</strong> y voz <strong>SSB</strong> con pulsar para hablar</li>
-      <li>Controla <strong>más de 40 modelos de equipos</strong> mediante USB CAT, Bluetooth SPP, FlexRadio WiFi, ICOM RS-BA1 o Xiegu WiFi</li>
+      <li>Controla <strong>más de 80 modelos de equipos</strong> mediante USB CAT, Bluetooth SPP, FlexRadio WiFi, ICOM RS-BA1 o Xiegu WiFi</li>
       <li><strong>Procesado de señal nativo en C/C++</strong> (LDPC, CRC, Kiss FFT) para codificar y decodificar con alto rendimiento</li>
       <li>Respuesta automática a CQ con estrategias de prioridad configurables</li>
       <li>Registro de contactos con exportación/importación ADIF y uso compartido</li>
       <li>Integración con <strong>QRZ.com</strong>, <strong>PSKReporter</strong> y <strong>Cloudlog / Wavelog</strong></li>
       <li>Modo concurso con intercambio de localizador y registro de activaciones SOTA / POTA</li>
       <li>Perfiles de ajustes con nombre y copia de seguridad automática del registro</li>
+      <li><strong>Herramienta de prueba del equipo</strong> integrada: comprobación paso a paso del CAT y de la ruta de audio, con registro de respuestas en texto y HEX</li>
+      <li><strong>API para desarrolladores</strong> opcional, para que tus propios complementos lean decodificaciones, registro y espectro en la red local</li>
       <li>Mapa de localizadores Maidenhead sobre OpenStreetMap</li>
       <li>Estadísticas de zonas ITU, CQ y DXCC</li>
       <li>Tema claro / oscuro / según el sistema</li>
@@ -173,13 +183,15 @@ en: {
     <ul>
       <li>Υποστήριξη <strong>FT8</strong> (χρονοθυρίδες 15 δευτ.), <strong>FT4</strong> (χρονοθυρίδες 7,5 δευτ.) και του πειραματικού <strong>FT2</strong></li>
       <li>Επίσης συνομιλία <strong>JS8</strong>, εκπομπή/αποκωδικοποίηση φάρου <strong>WSPR</strong> και φωνή <strong>SSB</strong> με πλήκτρο εκπομπής</li>
-      <li>Έλεγχος <strong>άνω των 40 μοντέλων πομποδεκτών</strong> μέσω USB CAT, Bluetooth SPP, FlexRadio WiFi, ICOM RS-BA1 ή Xiegu WiFi</li>
+      <li>Έλεγχος <strong>άνω των 80 μοντέλων πομποδεκτών</strong> μέσω USB CAT, Bluetooth SPP, FlexRadio WiFi, ICOM RS-BA1 ή Xiegu WiFi</li>
       <li>Εγγενής <strong>επεξεργασία σήματος σε C/C++</strong> (LDPC, CRC, Kiss FFT) για γρήγορη κωδικοποίηση και αποκωδικοποίηση</li>
       <li>Αυτόματη απάντηση σε CQ με ρυθμιζόμενες προτεραιότητες</li>
       <li>Ημερολόγιο επαφών με εξαγωγή/εισαγωγή ADIF και κοινή χρήση</li>
       <li>Ενσωμάτωση με <strong>QRZ.com</strong>, <strong>PSKReporter</strong> και <strong>Cloudlog / Wavelog</strong></li>
       <li>Λειτουργία διαγωνισμού με ανταλλαγή τετραγώνου και καταγραφή ενεργοποιήσεων SOTA / POTA</li>
       <li>Ονομασμένα προφίλ ρυθμίσεων και αυτόματα αντίγραφα ασφαλείας του ημερολογίου</li>
+      <li>Ενσωματωμένο <strong>εργαλείο ελέγχου πομποδέκτη</strong>: έλεγχος CAT και διαδρομής ήχου βήμα-βήμα, με καταγραφή απαντήσεων σε κείμενο και HEX</li>
+      <li>Προαιρετικό <strong>API προγραμματιστή</strong>, ώστε δικά σας πρόσθετα να διαβάζουν αποκωδικοποιήσεις, ημερολόγιο και φάσμα στο τοπικό δίκτυο</li>
       <li>Χάρτης τετραγώνων Maidenhead πάνω σε OpenStreetMap</li>
       <li>Στατιστικά ζωνών ITU, CQ και DXCC</li>
       <li>Φωτεινό / σκοτεινό θέμα ή σύμφωνα με το σύστημα</li>

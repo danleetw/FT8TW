@@ -72,13 +72,13 @@ en: {
   op_autocq_text:  'Enable <strong>Auto response CQ</strong> in the Calling tab to respond to CQ calls without manual intervention. Select a priority strategy in Settings → CQ method:',
   op_autocq_opts: `
     <ul>
-      <li><strong>Strong &amp; Nearby</strong> – Prioritize stations with strong signals and short distance</li>
-      <li><strong>Grid Distance: Far</strong> – Prefer distant stations (useful for distance award chasers)</li>
-      <li><strong>Grid Distance: Near</strong> – Prefer nearby stations</li>
-      <li><strong>More (ITU/CQ/DX) Zone</strong> – Prefer zones where most stations are calling</li>
-      <li><strong>ITU / CQ / DX Zone Priority</strong> – Prefer specific zone types for award chasing</li>
+      <li><strong>Strong &amp; Nearby</strong> — favours stations that are both loud and close</li>
+      <li><strong>Grid Distance: Far</strong> — favours the most distant station (for distance awards)</li>
+      <li><strong>Grid Distance: Near</strong> — favours the closest station</li>
+      <li><strong>More (ITU/CQ/DX) Zone</strong> — favours the zone with the most stations calling</li>
+      <li><strong>ITU Zone Priority</strong> / <strong>CQ Zone Priority</strong> / <strong>Dx Zone Priority</strong> — three separate options that order by ITU zone, CQ zone or DXCC respectively (useful when chasing awards)</li>
     </ul>`,
-  op_autocq_filter: 'Use <strong>Exclude QSOs</strong> in Settings to automatically skip stations already worked within a selected time window (1 hour, 4 hours, Today, 30 days, or 365 days).',
+  op_autocq_filter: 'Use <strong>Exclude QSOs</strong> in Settings to skip stations already worked within a chosen window: <strong>Off</strong>, <strong>All</strong>, <strong>1 hour</strong>, <strong>4 hours</strong>, <strong>8 hours</strong>, <strong>Today</strong>, <strong>30 days</strong> or <strong>365 days</strong>.',
 
   op_autocq_lists: 'Two callsign lists refine this further: <strong>Follow</strong> keeps specific callsigns in view so you can catch them when they appear, while <strong>Excluded prefixes</strong> skips whole prefixes you do not want the automation to answer.',
 
@@ -298,10 +298,10 @@ en: {
       <li><strong>距离短、强度强优先</strong> — 优先回应信号强且距离近的电台</li>
       <li><strong>远距优先</strong> — 优先回应最远的电台（适合距离奖项追求者）</li>
       <li><strong>近距优先</strong> — 优先回应最近的电台</li>
-      <li><strong>区域最多优先（ITU/CQ/DX）</strong> — 优先回应呼叫数量最多的分区</li>
-      <li><strong>ITU / CQ / DX 分区优先</strong> — 按指定分区类型优先排序（适合奖项追求）</li>
+      <li><strong>区域最多优先(ITU/CQ/DX)</strong> — 优先回应呼叫数量最多的分区</li>
+      <li><strong>ITU 区域优先</strong>／<strong>CQ 区域优先</strong>／<strong>Dx 区域优先</strong> — 三个各自独立的选项，分别依 ITU 分区、CQ 分区或 DXCC 排序（适合奖项追求）</li>
     </ul>`,
-  op_autocq_filter: '在设置中使用<strong>排除已通联</strong>，可自动跳过在选定时间窗口内（1 小时、4 小时、今天、30 天、365 天）已通联过的电台。',
+  op_autocq_filter: '在设置中使用<strong>排除已通联</strong>，可自动跳过在选定时间窗口内已通联过的电台：<strong>关闭（不排除）</strong>、<strong>所有</strong>、<strong>1 小时内</strong>、<strong>4 小时内</strong>、<strong>8 小时内</strong>、<strong>今天</strong>、<strong>30 天内</strong>或 <strong>365 天内</strong>。',
 
   op_autocq_lists: '另有两份呼号列表可进一步调整：<strong>关注的呼号</strong>会让指定的呼号持续留在视线内，一出现就能抓到；<strong>排除的呼号前缀</strong>则整批跳过您不想让自动回应去回的前缀。',
 
@@ -405,13 +405,13 @@ en: {
   op_autocq_text:  '呼び出しタブで<strong>CQ 自動応答</strong>を有効にすると、手を触れずに CQ へ応答します。優先条件は 設定 → CQ 応答方式 で選べます:',
   op_autocq_opts: `
     <ul>
-      <li><strong>近距離・強信号優先</strong> — 信号が強く距離の近い局を優先します</li>
-      <li><strong>遠距離優先</strong> — 遠い局を優先します（距離系アワード狙いに便利）</li>
-      <li><strong>近距離優先</strong> — 近い局を優先します</li>
-      <li><strong>ゾーン最多優先（ITU/CQ/DX）</strong> — 呼び出しの多いゾーンを優先します</li>
-      <li><strong>ITU / CQ / DX ゾーン優先</strong> — アワード狙いで特定のゾーン種別を優先します</li>
+      <li><strong>距離が近く信号が強い局を優先</strong> — 強くて近い局を優先します</li>
+      <li><strong>グリッド距離：遠い順</strong> — もっとも遠い局を優先します（距離系のアワード向け）</li>
+      <li><strong>グリッド距離：近い順</strong> — もっとも近い局を優先します</li>
+      <li><strong>ゾーンの局数が多い順 (ITU/CQ/DX)</strong> — 呼んでいる局がもっとも多いゾーンを優先します</li>
+      <li><strong>ITU ゾーン優先</strong>／<strong>CQ ゾーン優先</strong>／<strong>Dx ゾーン優先</strong> — それぞれ ITU ゾーン、CQ ゾーン、DXCC で並べ替える 3 つの独立した選択肢です（アワード狙いに向きます）</li>
     </ul>`,
-  op_autocq_filter: '設定の<strong>交信済みを除外</strong>を使うと、選んだ期間内（1 時間、4 時間、今日、30 日、365 日）にすでに交信した局を自動的に飛ばします。',
+  op_autocq_filter: '設定の<strong>交信済みを除外</strong>を使うと、選んだ期間内にすでに交信した局を自動的に飛ばします。<strong>オフ</strong>、<strong>すべて</strong>、<strong>1 時間</strong>、<strong>4 時間</strong>、<strong>8 時間</strong>、<strong>今日</strong>、<strong>30 日</strong>、<strong>365 日</strong>から選べます。',
 
   op_autocq_lists: 'さらに 2 つのコールサイン一覧で細かく調整できます。<strong>フォロー</strong>は指定した局を見失わないように表示し続け、<strong>除外プリフィックス</strong>は自動応答させたくないプリフィックスをまとめて飛ばします。',
 
@@ -515,13 +515,13 @@ en: {
   op_autocq_text:  'Включите <strong>Автоответ на CQ</strong> на вкладке вызова, чтобы отвечать на CQ без вашего участия. Правило приоритета выбирается в Настройки → Способ ответа на CQ:',
   op_autocq_opts: `
     <ul>
-      <li><strong>Сильные и близкие</strong> — приоритет станциям с сильным сигналом и небольшим расстоянием</li>
-      <li><strong>Дальние по локатору</strong> — предпочтение дальним станциям (удобно для дистанционных дипломов)</li>
-      <li><strong>Ближние по локатору</strong> — предпочтение ближним станциям</li>
-      <li><strong>Наибольшая зона (ITU/CQ/DX)</strong> — предпочтение зонам, откуда зовёт больше всего станций</li>
-      <li><strong>Приоритет зон ITU / CQ / DX</strong> — предпочтение определённым типам зон для охоты за дипломами</li>
+      <li><strong>Сильные и близкие</strong> — предпочтение станциям, которые и громкие, и рядом</li>
+      <li><strong>По локатору: дальние</strong> — предпочтение самой дальней станции (для дипломов на дальность)</li>
+      <li><strong>По локатору: ближние</strong> — предпочтение ближайшей станции</li>
+      <li><strong>Зона с наибольшим числом (ITU/CQ/DX)</strong> — предпочтение зоне, откуда зовёт больше всего станций</li>
+      <li><strong>Приоритет зоны ITU</strong> / <strong>Приоритет зоны CQ</strong> / <strong>Приоритет зоны Dx</strong> — три отдельных варианта, сортирующих соответственно по зоне ITU, зоне CQ или по DXCC (удобно при охоте за дипломами)</li>
     </ul>`,
-  op_autocq_filter: 'Параметр <strong>Исключать проведённые</strong> в настройках позволяет автоматически пропускать станции, с которыми связь уже была в выбранном интервале (1 час, 4 часа, сегодня, 30 дней или 365 дней).',
+  op_autocq_filter: 'Параметр <strong>Исключить QSO</strong> в настройках позволяет пропускать станции, отработанные в выбранном интервале: <strong>выкл.</strong>, <strong>все</strong>, <strong>1 час</strong>, <strong>4 часа</strong>, <strong>8 часов</strong>, <strong>сегодня</strong>, <strong>30 дней</strong> или <strong>365 дней</strong>.',
 
   op_autocq_lists: 'Уточнить выбор помогают два списка позывных: <strong>Отслеживать</strong> держит нужные позывные на виду, чтобы не пропустить их появление, а <strong>Исключаемые префиксы</strong> целиком пропускают префиксы, которым автоответ отвечать не должен.',
 
@@ -625,13 +625,13 @@ en: {
   op_autocq_text:  'Włącz <strong>Automatyczną odpowiedź na CQ</strong> w zakładce wywołania, aby odpowiadać na wywołania bez ręcznej obsługi. Zasadę priorytetu wybierz w Ustawienia → Sposób odpowiedzi na CQ:',
   op_autocq_opts: `
     <ul>
-      <li><strong>Silne i bliskie</strong> — priorytet dla stacji o mocnym sygnale i małej odległości</li>
-      <li><strong>Odległe wg lokatora</strong> — preferuje stacje dalekie (przydatne przy dyplomach za odległość)</li>
-      <li><strong>Bliskie wg lokatora</strong> — preferuje stacje bliskie</li>
-      <li><strong>Najliczniejsza strefa (ITU/CQ/DX)</strong> — preferuje strefy, z których woła najwięcej stacji</li>
-      <li><strong>Priorytet stref ITU / CQ / DX</strong> — preferuje wybrane rodzaje stref przy polowaniu na dyplomy</li>
+      <li><strong>Mocne i bliskie</strong> — preferuje stacje jednocześnie głośne i blisko</li>
+      <li><strong>Odległość: dalekie</strong> — preferuje najdalszą stację (przydatne przy dyplomach za odległość)</li>
+      <li><strong>Odległość: bliskie</strong> — preferuje stację najbliższą</li>
+      <li><strong>Strefa z największą liczbą (ITU/CQ/DX)</strong> — preferuje strefę, z której woła najwięcej stacji</li>
+      <li><strong>Priorytet strefy ITU</strong> / <strong>Priorytet strefy CQ</strong> / <strong>Priorytet strefy Dx</strong> — trzy osobne opcje sortujące odpowiednio według strefy ITU, strefy CQ lub DXCC (przydatne przy polowaniu na dyplomy)</li>
     </ul>`,
-  op_autocq_filter: 'Opcja <strong>Pomijaj przepracowane</strong> w ustawieniach automatycznie pomija stacje, z którymi łączność odbyła się w wybranym okresie (1 godzina, 4 godziny, dziś, 30 dni lub 365 dni).',
+  op_autocq_filter: 'Opcja <strong>Wyklucz QSO</strong> w ustawieniach pomija stacje pracowane w wybranym okresie: <strong>wyłączone</strong>, <strong>wszystkie</strong>, <strong>1 godzina</strong>, <strong>4 godziny</strong>, <strong>8 godzin</strong>, <strong>dzisiaj</strong>, <strong>30 dni</strong> lub <strong>365 dni</strong>.',
 
   op_autocq_lists: 'Wybór doprecyzowują dwie listy znaków: <strong>Obserwowane</strong> utrzymuje wskazane znaki na widoku, by nie przegapić ich pojawienia się, a <strong>Wykluczone prefiksy</strong> pomijają w całości prefiksy, na które automat nie ma odpowiadać.',
 
@@ -735,13 +735,13 @@ en: {
   op_autocq_text:  'Activa <strong>Respuesta automática a CQ</strong> en la pestaña de llamada para contestar las llamadas sin intervenir. Elige la estrategia de prioridad en Ajustes → Método de CQ:',
   op_autocq_opts: `
     <ul>
-      <li><strong>Fuertes y cercanas</strong> — da prioridad a las estaciones con señal fuerte y poca distancia</li>
-      <li><strong>Localizador: lejanas</strong> — prefiere estaciones lejanas (útil para diplomas por distancia)</li>
-      <li><strong>Localizador: cercanas</strong> — prefiere estaciones cercanas</li>
-      <li><strong>Zona más numerosa (ITU/CQ/DX)</strong> — prefiere las zonas desde las que llaman más estaciones</li>
-      <li><strong>Prioridad de zona ITU / CQ / DX</strong> — prefiere ciertos tipos de zona para la caza de diplomas</li>
+      <li><strong>Fuertes y cercanas</strong> — prefiere las estaciones a la vez potentes y próximas</li>
+      <li><strong>Distancia: lejanas</strong> — prefiere la estación más lejana (útil para diplomas de distancia)</li>
+      <li><strong>Distancia: cercanas</strong> — prefiere la estación más próxima</li>
+      <li><strong>Zona con más estaciones (ITU/CQ/DX)</strong> — prefiere la zona desde la que llaman más estaciones</li>
+      <li><strong>Prioridad zona ITU</strong> / <strong>Prioridad zona CQ</strong> / <strong>Prioridad zona Dx</strong> — tres opciones independientes que ordenan por zona ITU, zona CQ o DXCC respectivamente (útiles para cazar diplomas)</li>
     </ul>`,
-  op_autocq_filter: 'Usa <strong>Excluir QSO ya hechos</strong> en Ajustes para saltar automáticamente las estaciones ya trabajadas dentro del periodo elegido (1 hora, 4 horas, hoy, 30 días o 365 días).',
+  op_autocq_filter: 'Usa <strong>Excluir QSO</strong> en Ajustes para saltar las estaciones ya trabajadas dentro del periodo elegido: <strong>desactivado</strong>, <strong>todos</strong>, <strong>1 hora</strong>, <strong>4 horas</strong>, <strong>8 horas</strong>, <strong>hoy</strong>, <strong>30 días</strong> o <strong>365 días</strong>.',
 
   op_autocq_lists: 'Dos listas de indicativos afinan aún más el comportamiento: <strong>Seguir</strong> mantiene a la vista los indicativos que te interesan para no perderlos cuando aparezcan, y <strong>Prefijos excluidos</strong> salta por completo los prefijos a los que no quieres que conteste la automatización.',
 
@@ -845,13 +845,13 @@ en: {
   op_autocq_text:  'Ενεργοποιήστε την <strong>Αυτόματη απάντηση σε CQ</strong> στην καρτέλα κλήσης για να απαντάτε χωρίς χειροκίνητη παρέμβαση. Επιλέξτε στρατηγική προτεραιότητας στις Ρυθμίσεις → Μέθοδος CQ:',
   op_autocq_opts: `
     <ul>
-      <li><strong>Ισχυροί και κοντινοί</strong> — προτεραιότητα σε σταθμούς με ισχυρό σήμα και μικρή απόσταση</li>
-      <li><strong>Μακρινοί κατά τετράγωνο</strong> — προτιμά μακρινούς σταθμούς (χρήσιμο για διπλώματα απόστασης)</li>
-      <li><strong>Κοντινοί κατά τετράγωνο</strong> — προτιμά κοντινούς σταθμούς</li>
-      <li><strong>Περισσότεροι ανά ζώνη (ITU/CQ/DX)</strong> — προτιμά τις ζώνες από τις οποίες καλούν οι περισσότεροι σταθμοί</li>
-      <li><strong>Προτεραιότητα ζώνης ITU / CQ / DX</strong> — προτιμά συγκεκριμένους τύπους ζώνης για κυνήγι διπλωμάτων</li>
+      <li><strong>Δυνατοί και κοντινοί</strong> — προτιμά σταθμούς που είναι ταυτόχρονα δυνατοί και κοντά</li>
+      <li><strong>Απόσταση: μακρινοί</strong> — προτιμά τον πιο μακρινό σταθμό (χρήσιμο για διπλώματα απόστασης)</li>
+      <li><strong>Απόσταση: κοντινοί</strong> — προτιμά τον πλησιέστερο σταθμό</li>
+      <li><strong>Ζώνη με τους περισσότερους (ITU/CQ/DX)</strong> — προτιμά τη ζώνη από την οποία καλούν οι περισσότεροι σταθμοί</li>
+      <li><strong>Προτεραιότητα ζώνης ITU</strong> / <strong>Προτεραιότητα ζώνης CQ</strong> / <strong>Προτεραιότητα ζώνης Dx</strong> — τρεις ξεχωριστές επιλογές που ταξινομούν αντίστοιχα κατά ζώνη ITU, ζώνη CQ ή DXCC (χρήσιμες για κυνήγι διπλωμάτων)</li>
     </ul>`,
-  op_autocq_filter: 'Με την επιλογή <strong>Εξαίρεση ολοκληρωμένων επαφών</strong> στις Ρυθμίσεις παραλείπονται αυτόματα σταθμοί με τους οποίους έχει ήδη γίνει επαφή μέσα στο επιλεγμένο διάστημα (1 ώρα, 4 ώρες, σήμερα, 30 ημέρες ή 365 ημέρες).',
+  op_autocq_filter: 'Με την επιλογή <strong>Εξαίρεση QSO</strong> στις Ρυθμίσεις παραλείπονται σταθμοί με τους οποίους έχει ήδη γίνει επαφή μέσα στο επιλεγμένο διάστημα: <strong>ανενεργό</strong>, <strong>όλα</strong>, <strong>1 ώρα</strong>, <strong>4 ώρες</strong>, <strong>8 ώρες</strong>, <strong>σήμερα</strong>, <strong>30 ημέρες</strong> ή <strong>365 ημέρες</strong>.',
 
   op_autocq_lists: 'Δύο λίστες διακριτικών ρυθμίζουν περαιτέρω τη συμπεριφορά: η <strong>Παρακολούθηση</strong> κρατά συγκεκριμένα διακριτικά σε κοινή θέα ώστε να μην τα χάσετε όταν εμφανιστούν, ενώ τα <strong>Εξαιρούμενα προθέματα</strong> παρακάμπτουν ολόκληρα προθέματα στα οποία δεν θέλετε να απαντά ο αυτοματισμός.',
 

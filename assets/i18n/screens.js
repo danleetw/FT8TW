@@ -69,14 +69,13 @@ en: {
   screens_more_text:  'Beyond the core FT8/FT4 tabs, FT8TW includes several additional screens, accessible from the navigation menu or the floating shortcut window:',
   screens_more_list: `
     <ul>
-      <li><strong>Spectrum</strong> – Live waterfall and spectrum display of the receive audio, with adjustable color scheme and noise-floor-anchored contrast; also shows your own transmit audio during TX. A display adjustment panel adds <strong>Contrast</strong> and <strong>Reference (black level)</strong> sliders for when the automatic tracking does not suit the conditions; <strong>Auto</strong> hands control back.</li>
       <li><strong>JS8</strong> – Chat-style conversation screen for JS8 mode. See the <a href="js8.html">JS8 Chat Mode</a> section.</li>
       <li><strong>WSPR</strong> – Beacon scheduling screen for WSPR mode. See the <a href="wspr.html">WSPR Beacon</a> section.</li>
       <li><strong>Radio Tool</strong> – Radio microphone, receive monitor and antenna tuning. See the <a href="ssb.html">Radio Tool</a> section.</li>
       <li><strong>Grid Tracker</strong> – Full-screen map view. See the <a href="gridtracker.html">Grid Tracker</a> section.</li>
       <li><strong>Count</strong> – QSO statistics: totals by band, mode, DXCC, ITU/CQ zone, and time period.</li>
       <li><strong>QRZ.com Lookup</strong> – Embedded QRZ.com callsign lookup for the currently selected station.</li>
-      <li><strong>Floating Window</strong> – An optional always-on-top overlay with quick-access buttons (frequency, volume, grid tracker, and more), independently toggleable per button in Settings.</li>
+      <li><strong>Floating Window</strong> – An optional always-on-top overlay carrying eight shortcut buttons: hide bottom menu, frequency, volume, grid tracker, radio tool, WSPR beacon, JS8 chat and <strong>quick mode switch</strong> (one tap between FT8／FT4／FT2／JS8／WSPR). Each can be shown or hidden separately in Settings. <strong>Long-press</strong> the floating menu to collapse it to a single button, and long-press again to expand it; the collapsed state lasts until the app closes.</li>
     </ul>`,
 },
 
@@ -191,6 +190,29 @@ en: {
       <li><strong>自动回应 CQ</strong> — 自动回应收到的 CQ，优先策略可在设置中设定</li>
     </ul>`,
 
+  screens_timebar_title: '时序计时条',
+  screens_timebar_text:  '画面最上方那条细长的进度条走的是 UTC 时序，一个周期走完一次，让您一眼看出目前落在时隙的哪个位置。它的<strong>颜色代表是否正在接收</strong>：<strong>黄色</strong>表示正在录音收讯，<strong>灰色</strong>表示录音已停止——计时条照跑但没有在收，颜色会直接讲明白，不会让人误以为还在接收。轮到自己发射的时段，整条的底色会另外变色标示。',
+
+  screens_spectrum_title: '频谱（Spectrum）',
+  screens_spectrum_text:  '实时显示接收音频的瀑布图与频谱；发射时也会显示自己送出去的信号。画面下方有两个开关：',
+  screens_spectrum_list: `
+    <ul>
+      <li><strong>噪声抑制</strong> — 压低宽带噪声，弱信号在瀑布图上更容易看出来。</li>
+      <li><strong>标记消息</strong> — 在瀑布图上标出各条解码消息的位置与内容。</li>
+    </ul>
+    <p>两个开关的状态会被记住，重开 App 后维持不变，而且全 App 的频谱画面（含各分页的小瀑布图）共用同一份设置。若不想在瀑布图上看到这两个按钮，可在下面的显示调整面板中把它们关掉。</p>`,
+
+  screens_wfadjust_title: '瀑布图显示调整',
+  screens_wfadjust_text:  '<strong>长按瀑布图</strong>会叫出「瀑布图显示调整」面板。程序平常会自动追踪噪声底来决定明暗，这个面板是在自动追踪不合当下现场状况时，让您自己接手：',
+  screens_wfadjust_list: `
+    <ul>
+      <li><strong>基准（黑色电平）</strong> — 往右拉，把更多背景噪声压成黑色。</li>
+      <li><strong>对比度</strong> — 往右拉，强弱信号之间的差异更明显。</li>
+      <li><strong>自动</strong> — 交回给程序自动决定。</li>
+      <li><strong>显示“噪声抑制／标记消息”按钮</strong> — 关掉之后瀑布图上就看不到那两个按钮，画面更干净；切换后立刻生效，不必重进页面。</li>
+      <li><strong>复制诊断信息</strong> — 把目前的电平、增益等内部数值复制到剪贴板，回报显示相关问题时可一并附上。</li>
+    </ul>`,
+
   screens_logs_title: '通联日志（QSO Logs）',
   screens_logs_text:  '按时序显示所有已完成的通联记录。每条包含呼号、频段、模式、UTC 时间、网格、RST 报告及确认状态（未确认 / LoTW / QRZ / 手工确认）。点击记录可查看详情或确认通联。',
 
@@ -201,14 +223,13 @@ en: {
   screens_more_text:  '除了核心的 FT8/FT4 分页之外，FT8TW 还有下列界面，可从导航菜单或悬浮快捷窗口打开：',
   screens_more_list: `
     <ul>
-      <li><strong>频谱（Spectrum）</strong> — 实时显示接收音频的瀑布图与频谱，色阶可切换，黑点锚定噪声基底以维持对比；发射时也会显示自己的发射音频。另有「瀑布图显示调整」面板，在自动跟踪不适合当下现场状况时，可手动调<strong>对比</strong>与<strong>基准（黑色电平）</strong>；按<strong>自动</strong>即可交回给程序。</li>
       <li><strong>JS8</strong> — JS8 模式的聊天式对话界面，详见<a href="js8.html">「JS8 聊天模式」</a>章节。</li>
-      <li><strong>WSPR</strong> — WSPR 模式的信标计划界面，详见<a href="wspr.html">「WSPR 信标」</a>章节。</li>
-      <li><strong>电台工具</strong> — 电台麦克风、收听监听与天线调谐，详见<a href="ssb.html">「电台工具」</a>章节。</li>
+      <li><strong>WSPR</strong> — WSPR 模式的信标排程界面，详见<a href="wspr.html">「WSPR 信标」</a>章节。</li>
+      <li><strong>电台工具</strong> — 电台麦克风、收讯监听与天线调谐，详见<a href="ssb.html">「电台工具」</a>章节。</li>
       <li><strong>网格追踪（Grid Tracker）</strong> — 全屏地图界面，详见<a href="gridtracker.html">「网格追踪地图」</a>章节。</li>
       <li><strong>统计（Count）</strong> — 按频段、模式、DXCC、ITU/CQ 分区及时间区间统计 QSO 数量。</li>
       <li><strong>QRZ.com 查询</strong> — 内嵌 QRZ.com 呼号查询，显示当前选定电台的资料。</li>
-      <li><strong>悬浮窗口</strong> — 可选的常驻悬浮菜单（频率、音量、网格追踪等快捷按钮），每个按钮可在设置中单独开关。</li>
+      <li><strong>悬浮窗口</strong> — 可选的常驻悬浮菜单，共八个快捷按钮：隐藏底部菜单、频率调整、音量调整、网格追踪、电台工具、WSPR 信标、JS8 聊天，以及<strong>快速切换模式</strong>（一键在 FT8／FT4／FT2／JS8／WSPR 之间切换）。每个都可在设置中单独开关。<strong>长按</strong>悬浮菜单可把它收合成单一按钮，需要时再长按展开；收合状态会维持到 App 结束为止。</li>
     </ul>`,
 },
 
@@ -246,6 +267,29 @@ en: {
       <li><strong>CQ 自動応答</strong> — 受信した CQ に自動応答します。優先条件は設定で指定します</li>
     </ul>`,
 
+  screens_timebar_title: 'タイミングバー',
+  screens_timebar_text:  '画面のいちばん上にある細いバーは UTC のタイミングを表し、1 周期で 1 往復します。いまスロットのどこにいるのかが一目で分かります。<strong>色は受信中かどうかを示します</strong>。<strong>黄色</strong>は録音（受信）中、<strong>灰色</strong>は録音が止まっている状態です。バーはどちらでも動き続けるので、受信していないことは色が直接示します。自分の送信スロットでは、バーの背景色が変わって区別されます。',
+
+  screens_spectrum_title: 'スペクトラム',
+  screens_spectrum_text:  '受信音声のウォーターフォールとスペクトラムをリアルタイムに表示します。送信中は自分の信号も表示されます。画面下部に 2 つのスイッチがあります。',
+  screens_spectrum_list: `
+    <ul>
+      <li><strong>ノイズ抑制</strong> — 広帯域のノイズを抑え、弱い信号をウォーターフォール上で見つけやすくします。</li>
+      <li><strong>メッセージを示す</strong> — デコードした各メッセージを、その周波数の位置に表示します。</li>
+    </ul>
+    <p>2 つのスイッチの状態は記憶され、アプリを再起動しても保持されます。また、各タブのミニウォーターフォールを含め、アプリ内のすべてのウォーターフォールが同じ設定を共有します。ウォーターフォール上にこの 2 つのボタンを出したくない場合は、下の表示調整パネルで隠せます。</p>`,
+
+  screens_wfadjust_title: 'ウォーターフォール表示調整',
+  screens_wfadjust_text:  '<strong>ウォーターフォールを長押し</strong>すると「ウォーターフォール表示調整」パネルが開きます。通常はノイズフロアを自動追従して濃淡を決めていますが、その自動追従が目の前の状況に合わないときに、このパネルで自分で決められます。',
+  screens_wfadjust_list: `
+    <ul>
+      <li><strong>基準（黒レベル）</strong> — 右へ動かすほど、背景ノイズをより多く黒に落とします。</li>
+      <li><strong>コントラスト</strong> — 右へ動かすほど、強い信号と弱い信号の差がはっきりします。</li>
+      <li><strong>自動</strong> — 判断をアプリに戻します。</li>
+      <li><strong>「ノイズ抑制／メッセージ表示」ボタンを表示</strong> — オフにするとウォーターフォールからこの 2 つのボタンが消え、表示がすっきりします。切り替えは即座に反映されます。</li>
+      <li><strong>診断情報をコピー</strong> — 現在のレベルやゲインなどの内部値をクリップボードにコピーします。表示に関する報告に添えられます。</li>
+    </ul>`,
+
   screens_logs_title: '交信ログタブ',
   screens_logs_text:  '完了した交信を時系列で一覧表示します。各項目にはコールサイン、バンド、モード、日時（UTC）、グリッド、RST レポート、確認状況（未確認 / LoTW / QRZ / 手動）が表示されます。項目をタップすると詳細の確認や交信の確認ができます。',
 
@@ -256,14 +300,13 @@ en: {
   screens_more_text:  'FT8/FT4 の主要タブのほかに、ナビゲーションメニューまたはフローティングショートカットから開ける画面があります:',
   screens_more_list: `
     <ul>
-      <li><strong>スペクトラム</strong> — 受信音声のウォーターフォールとスペクトラムをリアルタイム表示します。配色は切り替え可能で、暗部はノイズフロアを基準にコントラストを保ちます。送信中は自局の送信音声も表示します。自動追従がその場の状況に合わないときのために、<strong>コントラスト</strong>と<strong>基準（黒レベル）</strong>を手動調節できる表示調整パネルがあります。<strong>自動</strong>を押せば元に戻ります。</li>
-      <li><strong>JS8</strong> — JS8 モードのチャット画面。<a href="js8.html">JS8 チャットモード</a>の章を参照してください。</li>
-      <li><strong>WSPR</strong> — WSPR のビーコン予約画面。<a href="wspr.html">WSPR ビーコン</a>の章を参照してください。</li>
-      <li><strong>無線機ツール</strong> — 無線機用マイク、受信音のモニター、アンテナ調整。<a href="ssb.html">無線機ツール</a>の章を参照してください。</li>
-      <li><strong>グリッドトラッカー</strong> — 全画面の地図表示。<a href="gridtracker.html">グリッドトラッカー</a>の章を参照してください。</li>
-      <li><strong>統計</strong> — バンド、モード、DXCC、ITU/CQ ゾーン、期間ごとの交信数を集計します。</li>
-      <li><strong>QRZ.com 検索</strong> — 選択中の局について QRZ.com のコールサイン検索を内蔵表示します。</li>
-      <li><strong>フローティングウィンドウ</strong> — 常に手前に表示できる任意のオーバーレイで、周波数・音量・グリッドトラッカーなどのボタンを備えます。ボタンごとに設定で表示/非表示を切り替えられます。</li>
+      <li><strong>JS8</strong> — JS8 モードのチャット形式の画面。<a href="js8.html">「JS8 チャットモード」</a>を参照してください。</li>
+      <li><strong>WSPR</strong> — WSPR モードのビーコン予約画面。<a href="wspr.html">「WSPR ビーコン」</a>を参照してください。</li>
+      <li><strong>無線機ツール</strong> — 無線機のマイク、受信モニター、アンテナ調整。<a href="ssb.html">「無線機ツール」</a>を参照してください。</li>
+      <li><strong>グリッドトラッカー</strong> — 全画面の地図表示。<a href="gridtracker.html">「グリッドトラッカー」</a>を参照してください。</li>
+      <li><strong>統計</strong> — バンド、モード、DXCC、ITU/CQ ゾーン、期間ごとの交信数。</li>
+      <li><strong>QRZ.com 検索</strong> — 選択中の局について、QRZ.com のコールサイン検索を内蔵表示します。</li>
+      <li><strong>フローティングウィンドウ</strong> — 常時最前面に表示できる任意のオーバーレイで、8 つのショートカットがあります：下部メニューを非表示、周波数調整、音量調整、グリッドトラッカー、無線機ツール、WSPR ビーコン、JS8チャット、そして<strong>クイックモード切替</strong>（FT8／FT4／FT2／JS8／WSPR をワンタップで切り替え）。それぞれ設定で個別に表示／非表示にできます。フローティングメニューを<strong>長押し</strong>すると 1 つのボタンに畳まれ、もう一度長押しすると戻ります。畳んだ状態はアプリを終了するまで保たれます。</li>
     </ul>`,
 },
 
@@ -301,6 +344,29 @@ en: {
       <li><strong>Автоответ на CQ</strong> — автоматический ответ на вызовы CQ; приоритет задаётся в настройках</li>
     </ul>`,
 
+  screens_timebar_title: 'Полоса тайминга',
+  screens_timebar_text:  'Тонкая полоса в самом верху экрана показывает ход UTC-интервала и проходит его целиком за один цикл, так что сразу видно, в каком месте интервала вы находитесь. <strong>Её цвет говорит, идёт ли приём</strong>: <strong>жёлтый</strong> — запись работает, <strong>серый</strong> — запись остановлена. Полоса движется в обоих случаях, и именно цвет прямо указывает, какой из них сейчас. Во время вашего интервала передачи меняется и цвет фона полосы.',
+
+  screens_spectrum_title: 'Вкладка спектра',
+  screens_spectrum_text:  'Водопад и спектр принимаемого звука в реальном времени; во время передачи показывается и ваш собственный сигнал. Внизу экрана расположены два переключателя:',
+  screens_spectrum_list: `
+    <ul>
+      <li><strong>Шумоподавл.</strong> — подавляет широкополосный шум, так что слабые сигналы заметнее на водопаде.</li>
+      <li><strong>Показать сообщ.</strong> — подписывает на водопаде каждое декодированное сообщение на его собственной частоте.</li>
+    </ul>
+    <p>Состояние обоих переключателей запоминается между запусками, и все водопады в приложении — включая мини-полосы на других вкладках — используют одну и ту же настройку. Если вы вообще не хотите видеть эти две кнопки на водопаде, их можно скрыть в панели настройки, описанной ниже.</p>`,
+
+  screens_wfadjust_title: 'Настройка водопада',
+  screens_wfadjust_text:  '<strong>Долгое нажатие на водопад</strong> открывает панель «Настройка водопада». Обычно приложение само отслеживает уровень шума и по нему выбирает яркость; эта панель нужна, когда автоматика не соответствует тому, что происходит в эфире:',
+  screens_wfadjust_list: `
+    <ul>
+      <li><strong>Опорный уровень (чёрный)</strong> — сдвиг вправо переводит в чёрный больше фонового шума.</li>
+      <li><strong>Контраст</strong> — сдвиг вправо увеличивает разницу между слабыми и сильными сигналами.</li>
+      <li><strong>Авто</strong> — вернуть решение приложению.</li>
+      <li><strong>Показывать кнопки шумоподавления и сообщений</strong> — если выключить, эти две кнопки исчезают с водопада и изображение становится чище. Изменение действует сразу.</li>
+      <li><strong>Копировать</strong> — копирует текущие уровни и коэффициенты усиления в буфер обмена, чтобы приложить их к сообщению о проблеме с отображением.</li>
+    </ul>`,
+
   screens_logs_title: 'Вкладка журнала',
   screens_logs_text:  'Хронологический список всех завершённых связей. В каждой записи видны позывной, диапазон, вид работы, дата и время (UTC), локатор, рапорты RST и статус подтверждения (не подтверждено / LoTW / QRZ / вручную). Нажмите запись, чтобы открыть подробности или подтвердить связь.',
 
@@ -311,14 +377,13 @@ en: {
   screens_more_text:  'Помимо основных вкладок FT8/FT4, в FT8TW есть дополнительные экраны, доступные из меню навигации или плавающего окна:',
   screens_more_list: `
     <ul>
-      <li><strong>Спектр</strong> — водопад и спектр принимаемого звука в реальном времени, с выбором цветовой схемы и контрастом, привязанным к уровню шума; во время передачи показывает и ваш сигнал. Если автоматика не подходит к условиям, панель настройки отображения даёт ползунки <strong>Контраст</strong> и <strong>Опорный уровень (чёрный)</strong>; кнопка <strong>Авто</strong> возвращает автоматическое слежение.</li>
-      <li><strong>JS8</strong> — экран чата для режима JS8. См. раздел <a href="js8.html">Режим чата JS8</a>.</li>
-      <li><strong>WSPR</strong> — экран расписания маяка. См. раздел <a href="wspr.html">Маяк WSPR</a>.</li>
-      <li><strong>Инструменты трансивера</strong> — микрофон для трансивера, прослушивание приёма и настройка антенны. См. раздел <a href="ssb.html">Инструменты трансивера</a>.</li>
-      <li><strong>Карта локаторов</strong> — полноэкранная карта. См. раздел <a href="gridtracker.html">Карта локаторов</a>.</li>
-      <li><strong>Статистика</strong> — количество QSO по диапазонам, видам работы, DXCC, зонам ITU/CQ и периодам.</li>
-      <li><strong>Поиск на QRZ.com</strong> — встроенный поиск позывного выбранной станции.</li>
-      <li><strong>Плавающее окно</strong> — необязательный слой поверх других приложений с кнопками быстрого доступа (частота, громкость, карта локаторов и др.); каждую кнопку можно включить или выключить в настройках.</li>
+      <li><strong>JS8</strong> — экран разговора в виде чата для режима JS8. См. раздел <a href="js8.html">«Режим чата JS8»</a>.</li>
+      <li><strong>WSPR</strong> — экран планирования маяка WSPR. См. раздел <a href="wspr.html">«Маяк WSPR»</a>.</li>
+      <li><strong>Инструменты трансивера</strong> — микрофон, мониторинг приёма и настройка антенны. См. раздел <a href="ssb.html">«Инструменты трансивера»</a>.</li>
+      <li><strong>Карта локаторов</strong> — полноэкранная карта. См. раздел <a href="gridtracker.html">«Карта локаторов»</a>.</li>
+      <li><strong>Статистика</strong> — количество QSO по диапазонам, режимам, DXCC, зонам ITU/CQ и периодам.</li>
+      <li><strong>Поиск на QRZ.com</strong> — встроенный поиск позывного на QRZ.com для выбранной станции.</li>
+      <li><strong>Плавающее окно</strong> — необязательная панель поверх других окон с восемью кнопками: скрыть нижнее меню, частота, громкость, карта локаторов, инструменты трансивера, маяк WSPR, чат JS8 и <strong>быстрая смена режима</strong> (одно нажатие для перехода между FT8／FT4／FT2／JS8／WSPR). Каждую можно показать или скрыть отдельно в настройках. <strong>Долгое нажатие</strong> на плавающее меню сворачивает его в одну кнопку, повторное — разворачивает; свёрнутое состояние сохраняется до закрытия приложения.</li>
     </ul>`,
 },
 
@@ -356,6 +421,29 @@ en: {
       <li><strong>Automatyczna odpowiedź na CQ</strong> — automatycznie odpowiada na wywołania CQ; priorytet ustawia się w ustawieniach</li>
     </ul>`,
 
+  screens_timebar_title: 'Pasek taktowania',
+  screens_timebar_text:  'Cienki pasek na samej górze ekranu pokazuje przebieg okna czasowego UTC i przechodzi je w całości raz na cykl, więc od razu widać, w którym miejscu okna jesteś. <strong>Jego kolor mówi, czy trwa odbiór</strong>: <strong>żółty</strong> oznacza, że nagrywanie działa, <strong>szary</strong> — że zostało zatrzymane. Pasek porusza się w obu przypadkach, a to kolor wprost wskazuje, który stan jest aktualny. W twoim oknie nadawania zmienia się dodatkowo kolor tła paska.',
+
+  screens_spectrum_title: 'Zakładka widma',
+  screens_spectrum_text:  'Wodospad i widmo odbieranego dźwięku na żywo; podczas nadawania widać także własny sygnał. Na dole ekranu są dwa przełączniki:',
+  screens_spectrum_list: `
+    <ul>
+      <li><strong>Odszumianie</strong> — tłumi szerokopasmowy szum, dzięki czemu słabe sygnały lepiej wyróżniają się na wodospadzie.</li>
+      <li><strong>Pokaż wiad.</strong> — opisuje na wodospadzie każdą zdekodowaną wiadomość w miejscu jej częstotliwości.</li>
+    </ul>
+    <p>Stan obu przełączników jest zapamiętywany między uruchomieniami, a wszystkie wodospady w aplikacji — łącznie z mini paskami na innych zakładkach — korzystają z tego samego ustawienia. Jeśli wolisz w ogóle nie widzieć tych dwóch przycisków na wodospadzie, można je ukryć w opisanym niżej panelu regulacji.</p>`,
+
+  screens_wfadjust_title: 'Regulacja wodospadu',
+  screens_wfadjust_text:  '<strong>Długie naciśnięcie wodospadu</strong> otwiera panel „Regulacja wodospadu". Zwykle aplikacja sama śledzi poziom szumu i na tej podstawie dobiera jasność; ten panel służy do przejęcia sterowania, gdy automatyka nie pasuje do bieżących warunków:',
+  screens_wfadjust_list: `
+    <ul>
+      <li><strong>Poziom odniesienia (czerń)</strong> — przesunięcie w prawo spycha do czerni więcej szumu tła.</li>
+      <li><strong>Kontrast</strong> — przesunięcie w prawo powiększa różnicę między sygnałami słabymi a silnymi.</li>
+      <li><strong>Auto</strong> — oddaje decyzję z powrotem aplikacji.</li>
+      <li><strong>Pokaż przyciski odszumiania i wiadomości</strong> — po wyłączeniu te dwa przyciski znikają z wodospadu, a obraz staje się czystszy. Zmiana działa natychmiast.</li>
+      <li><strong>Kopiuj</strong> — kopiuje bieżące poziomy i wzmocnienia do schowka, aby dołączyć je do zgłoszenia dotyczącego wyświetlania.</li>
+    </ul>`,
+
   screens_logs_title: 'Zakładka dziennika',
   screens_logs_text:  'Chronologiczna lista wszystkich zakończonych łączności. Każdy wpis pokazuje znak wywoławczy, pasmo, emisję, datę i godzinę (UTC), lokator, raporty RST oraz status potwierdzenia (niepotwierdzone / LoTW / QRZ / ręcznie). Dotknij wpisu, aby zobaczyć szczegóły lub potwierdzić łączność.',
 
@@ -366,14 +454,13 @@ en: {
   screens_more_text:  'Poza podstawowymi zakładkami FT8/FT4 FT8TW ma kilka dodatkowych ekranów dostępnych z menu nawigacji lub z okna pływającego:',
   screens_more_list: `
     <ul>
-      <li><strong>Widmo</strong> — wodospad i widmo odbieranego dźwięku na żywo, z wyborem palety barw i kontrastem odniesionym do poziomu szumów; w czasie nadawania pokazuje także własny sygnał. Gdy automatyka nie pasuje do warunków, panel regulacji obrazu udostępnia suwaki <strong>Kontrast</strong> i <strong>Odniesienie (poziom czerni)</strong>; przycisk <strong>Auto</strong> przywraca automatyczne śledzenie.</li>
-      <li><strong>JS8</strong> — ekran rozmowy w trybie JS8. Zobacz rozdział <a href="js8.html">Tryb czatu JS8</a>.</li>
-      <li><strong>WSPR</strong> — ekran harmonogramu latarni. Zobacz rozdział <a href="wspr.html">Latarnia WSPR</a>.</li>
-      <li><strong>Narzędzia radia</strong> — mikrofon do radia, odsłuch odbioru i strojenie anteny. Zobacz rozdział <a href="ssb.html">Narzędzia radia</a>.</li>
-      <li><strong>Mapa lokatorów</strong> — pełnoekranowa mapa. Zobacz rozdział <a href="gridtracker.html">Mapa lokatorów</a>.</li>
-      <li><strong>Statystyki</strong> — liczba łączności według pasm, emisji, DXCC, stref ITU/CQ i okresów.</li>
-      <li><strong>Wyszukiwanie QRZ.com</strong> — wbudowane wyszukiwanie znaku wybranej stacji.</li>
-      <li><strong>Okno pływające</strong> — opcjonalna nakładka zawsze na wierzchu z przyciskami szybkiego dostępu (częstotliwość, głośność, mapa lokatorów i inne); każdy przycisk można osobno włączyć w ustawieniach.</li>
+      <li><strong>JS8</strong> — ekran rozmowy w formie czatu dla trybu JS8. Zobacz rozdział <a href="js8.html">„Tryb czatu JS8"</a>.</li>
+      <li><strong>WSPR</strong> — ekran planowania latarni WSPR. Zobacz rozdział <a href="wspr.html">„Latarnia WSPR"</a>.</li>
+      <li><strong>Narzędzia radia</strong> — mikrofon, podsłuch odbioru i strojenie anteny. Zobacz rozdział <a href="ssb.html">„Narzędzia radia"</a>.</li>
+      <li><strong>Mapa lokatorów</strong> — pełnoekranowy widok mapy. Zobacz rozdział <a href="gridtracker.html">„Mapa lokatorów"</a>.</li>
+      <li><strong>Statystyki</strong> — liczba QSO według pasma, emisji, DXCC, strefy ITU/CQ i okresu.</li>
+      <li><strong>Wyszukiwanie QRZ.com</strong> — wbudowane wyszukiwanie znaku na QRZ.com dla aktualnie wybranej stacji.</li>
+      <li><strong>Pływające okno</strong> — opcjonalna nakładka zawsze na wierzchu z ośmioma przyciskami skrótów: ukryj dolne menu, częstotliwość, głośność, mapa lokatorów, narzędzia radia, latarnia WSPR, czat JS8 oraz <strong>szybka zmiana trybu</strong> (jedno dotknięcie między FT8／FT4／FT2／JS8／WSPR). Każdy można osobno pokazać lub ukryć w ustawieniach. <strong>Długie naciśnięcie</strong> pływającego menu zwija je do jednego przycisku, kolejne rozwija; stan zwinięcia utrzymuje się do zamknięcia aplikacji.</li>
     </ul>`,
 },
 
@@ -411,6 +498,29 @@ en: {
       <li><strong>Respuesta automática a CQ</strong> — contesta automáticamente a las llamadas CQ; la prioridad se configura en Ajustes</li>
     </ul>`,
 
+  screens_timebar_title: 'Barra de temporización',
+  screens_timebar_text:  'La barra fina que cruza la parte superior de la pantalla sigue el intervalo UTC y lo recorre entero una vez por ciclo, de modo que se ve de un vistazo en qué punto del intervalo estás. <strong>Su color indica si se está recibiendo</strong>: <strong>amarillo</strong> significa que la grabación está en marcha y <strong>gris</strong> que se ha detenido. La barra se mueve en ambos casos, así que es el color el que dice cuál de los dos ocurre. Durante tu intervalo de transmisión cambia además el color de fondo de la barra.',
+
+  screens_spectrum_title: 'Pestaña de espectro',
+  screens_spectrum_text:  'Cascada y espectro del audio recibido en tiempo real; durante la transmisión se muestra también tu propia señal. En la parte inferior hay dos interruptores:',
+  screens_spectrum_list: `
+    <ul>
+      <li><strong>Eliminar ruido</strong> — atenúa el ruido de banda ancha para que las señales débiles destaquen más en la cascada.</li>
+      <li><strong>Mostrar mensaje</strong> — rotula en la cascada cada mensaje decodificado en su propia frecuencia.</li>
+    </ul>
+    <p>El estado de ambos interruptores se recuerda entre arranques, y todas las cascadas de la aplicación —incluidas las mini cascadas de las otras pestañas— comparten el mismo ajuste. Si prefieres no ver esos dos botones sobre la cascada, pueden ocultarse desde el panel de ajuste que se describe a continuación.</p>`,
+
+  screens_wfadjust_title: 'Ajuste de cascada',
+  screens_wfadjust_text:  '<strong>Mantén pulsada la cascada</strong> para abrir el panel «Ajuste de cascada». Normalmente la aplicación sigue por sí sola el nivel de ruido para decidir el sombreado; este panel es la forma de tomar el control cuando ese seguimiento automático no encaja con las condiciones que tienes delante:',
+  screens_wfadjust_list: `
+    <ul>
+      <li><strong>Referencia (nivel de negro)</strong> — al desplazarlo a la derecha, más ruido de fondo pasa a negro.</li>
+      <li><strong>Contraste</strong> — al desplazarlo a la derecha, aumenta la diferencia entre señales débiles y fuertes.</li>
+      <li><strong>Auto</strong> — devuelve la decisión a la aplicación.</li>
+      <li><strong>Mostrar botones de ruido y mensajes</strong> — al desactivarlo, esos dos botones desaparecen de la cascada y la vista queda más limpia. El cambio surte efecto de inmediato.</li>
+      <li><strong>Copiar</strong> — copia al portapapeles los niveles y ganancias actuales, para adjuntarlos a un informe sobre la visualización.</li>
+    </ul>`,
+
   screens_logs_title: 'Pestaña de registro',
   screens_logs_text:  'Lista cronológica de todos los QSO completados. Cada entrada muestra indicativo, banda, modo, fecha y hora (UTC), localizador, informes RST y estado de confirmación (sin confirmar / LoTW / QRZ / manual). Pulsa una entrada para ver todos los detalles o confirmar el contacto.',
 
@@ -421,14 +531,13 @@ en: {
   screens_more_text:  'Además de las pestañas básicas de FT8/FT4, FT8TW incluye varias pantallas adicionales, accesibles desde el menú de navegación o desde la ventana flotante:',
   screens_more_list: `
     <ul>
-      <li><strong>Espectro</strong> — cascada y espectro en vivo del audio recibido, con paleta de color ajustable y contraste anclado al nivel de ruido; durante la transmisión también muestra tu propio audio. Cuando el seguimiento automático no encaja con las condiciones, el panel de ajuste ofrece los deslizadores <strong>Contraste</strong> y <strong>Referencia (nivel de negro)</strong>; <strong>Auto</strong> devuelve el control automático.</li>
-      <li><strong>JS8</strong> — pantalla de conversación del modo JS8. Consulta la sección <a href="js8.html">Modo chat JS8</a>.</li>
-      <li><strong>WSPR</strong> — pantalla de programación de la baliza. Consulta la sección <a href="wspr.html">Baliza WSPR</a>.</li>
-      <li><strong>Herramientas de radio</strong> — micrófono para el equipo, escucha de recepción y sintonización de antena. Consulta la sección <a href="ssb.html">Herramientas de radio</a>.</li>
-      <li><strong>Mapa de localizadores</strong> — vista de mapa a pantalla completa. Consulta la sección <a href="gridtracker.html">Mapa de localizadores</a>.</li>
-      <li><strong>Estadísticas</strong> — totales de QSO por banda, modo, DXCC, zona ITU/CQ y periodo.</li>
-      <li><strong>Búsqueda en QRZ.com</strong> — búsqueda integrada del indicativo de la estación seleccionada.</li>
-      <li><strong>Ventana flotante</strong> — capa opcional siempre visible con botones de acceso rápido (frecuencia, volumen, mapa de localizadores y más); cada botón se activa por separado en Ajustes.</li>
+      <li><strong>JS8</strong> — pantalla de conversación tipo chat para el modo JS8. Consulta <a href="js8.html">«Modo chat JS8»</a>.</li>
+      <li><strong>WSPR</strong> — pantalla de programación de balizas WSPR. Consulta <a href="wspr.html">«Baliza WSPR»</a>.</li>
+      <li><strong>Herramientas de radio</strong> — micrófono, monitor de recepción y sintonía de antena. Consulta <a href="ssb.html">«Herramientas de radio»</a>.</li>
+      <li><strong>Mapa de localizadores</strong> — vista de mapa a pantalla completa. Consulta <a href="gridtracker.html">«Mapa de localizadores»</a>.</li>
+      <li><strong>Estadísticas</strong> — recuento de QSO por banda, modo, DXCC, zona ITU/CQ y periodo.</li>
+      <li><strong>Búsqueda en QRZ.com</strong> — búsqueda de indicativo integrada de QRZ.com para la estación seleccionada.</li>
+      <li><strong>Ventana flotante</strong> — superposición opcional siempre visible con ocho botones de acceso rápido: ocultar menú inferior, frecuencia, volumen, mapa de localizadores, herramientas de radio, baliza WSPR, chat JS8 y <strong>cambio rápido de modo</strong> (un toque para pasar entre FT8／FT4／FT2／JS8／WSPR). Cada uno se muestra u oculta por separado en Ajustes. Una <strong>pulsación larga</strong> sobre el menú flotante lo pliega a un solo botón, y otra lo despliega; el estado plegado dura hasta que se cierra la aplicación.</li>
     </ul>`,
 },
 
@@ -466,6 +575,29 @@ en: {
       <li><strong>Αυτόματη απάντηση σε CQ</strong> — απαντά αυτόματα σε κλήσεις CQ· η προτεραιότητα ορίζεται στις Ρυθμίσεις</li>
     </ul>`,
 
+  screens_timebar_title: 'Μπάρα χρονισμού',
+  screens_timebar_text:  'Η λεπτή μπάρα στην κορυφή της οθόνης ακολουθεί τον κύκλο χρονισμού UTC και τον διανύει ολόκληρο μία φορά ανά κύκλο, ώστε να βλέπετε αμέσως σε ποιο σημείο της χρονοθυρίδας βρίσκεστε. <strong>Το χρώμα της δείχνει αν γίνεται λήψη</strong>: <strong>κίτρινο</strong> σημαίνει ότι η εγγραφή τρέχει, <strong>γκρι</strong> ότι έχει σταματήσει. Η μπάρα κινείται και στις δύο περιπτώσεις, οπότε το χρώμα είναι αυτό που δηλώνει ποια από τις δύο ισχύει. Στη δική σας χρονοθυρίδα εκπομπής αλλάζει επιπλέον το χρώμα φόντου της μπάρας.',
+
+  screens_spectrum_title: 'Καρτέλα φάσματος',
+  screens_spectrum_text:  'Καταρράκτης και φάσμα του ήχου λήψης σε πραγματικό χρόνο· κατά την εκπομπή εμφανίζεται και το δικό σας σήμα. Στο κάτω μέρος υπάρχουν δύο διακόπτες:',
+  screens_spectrum_list: `
+    <ul>
+      <li><strong>Αφαίρεση θόρυβου</strong> — καταστέλλει τον ευρυζωνικό θόρυβο, ώστε τα ασθενή σήματα να ξεχωρίζουν καλύτερα στον καταρράκτη.</li>
+      <li><strong>Δείξε μήνυμα</strong> — σημειώνει στον καταρράκτη κάθε αποκωδικοποιημένο μήνυμα στη δική του συχνότητα.</li>
+    </ul>
+    <p>Η κατάσταση και των δύο διακοπτών θυμάται μεταξύ εκκινήσεων, ενώ όλοι οι καταρράκτες της εφαρμογής — μαζί με τις μικρές λωρίδες στις άλλες καρτέλες — μοιράζονται την ίδια ρύθμιση. Αν προτιμάτε να μη βλέπετε καθόλου αυτά τα δύο κουμπιά πάνω στον καταρράκτη, μπορούν να κρυφτούν από τον πίνακα ρύθμισης που περιγράφεται παρακάτω.</p>`,
+
+  screens_wfadjust_title: 'Ρύθμιση καταρράκτη',
+  screens_wfadjust_text:  '<strong>Παρατεταμένο πάτημα στον καταρράκτη</strong> ανοίγει τον πίνακα «Ρύθμιση καταρράκτη». Κανονικά η εφαρμογή παρακολουθεί μόνη της τη στάθμη θορύβου για να αποφασίσει τη σκίαση· αυτός ο πίνακας είναι ο τρόπος να πάρετε εσείς τον έλεγχο όταν η αυτόματη παρακολούθηση δεν ταιριάζει με τις συνθήκες:',
+  screens_wfadjust_list: `
+    <ul>
+      <li><strong>Στάθμη αναφοράς (μαύρο)</strong> — σύροντας δεξιά, περισσότερος θόρυβος υποβάθρου γίνεται μαύρος.</li>
+      <li><strong>Αντίθεση</strong> — σύροντας δεξιά, μεγαλώνει η διαφορά ανάμεσα σε ασθενή και ισχυρά σήματα.</li>
+      <li><strong>Αυτόματο</strong> — επιστρέφει την απόφαση στην εφαρμογή.</li>
+      <li><strong>Εμφάνιση κουμπιών θορύβου και μηνυμάτων</strong> — αν το απενεργοποιήσετε, τα δύο κουμπιά εξαφανίζονται από τον καταρράκτη και η εικόνα γίνεται καθαρότερη. Η αλλαγή ισχύει αμέσως.</li>
+      <li><strong>Αντιγραφή</strong> — αντιγράφει στο πρόχειρο τις τρέχουσες στάθμες και απολαβές, για να τις επισυνάψετε σε αναφορά σχετικά με την εμφάνιση.</li>
+    </ul>`,
+
   screens_logs_title: 'Καρτέλα ημερολογίου',
   screens_logs_text:  'Χρονολογική λίστα όλων των ολοκληρωμένων επαφών. Κάθε εγγραφή δείχνει διακριτικό, μπάντα, τρόπο λειτουργίας, ημερομηνία και ώρα (UTC), τετράγωνο, αναφορές RST και κατάσταση επιβεβαίωσης (ανεπιβεβαίωτη / LoTW / QRZ / χειροκίνητη). Πατήστε μια εγγραφή για πλήρη στοιχεία ή για επιβεβαίωση.',
 
@@ -476,14 +608,13 @@ en: {
   screens_more_text:  'Πέρα από τις βασικές καρτέλες FT8/FT4, το FT8TW περιλαμβάνει και άλλες οθόνες, προσβάσιμες από το μενού πλοήγησης ή από το αιωρούμενο παράθυρο:',
   screens_more_list: `
     <ul>
-      <li><strong>Φάσμα</strong> — ζωντανή προβολή καταρράκτη και φάσματος του ήχου λήψης, με εναλλάξιμη χρωματική κλίμακα και αντίθεση αγκυρωμένη στο επίπεδο θορύβου· κατά την εκπομπή δείχνει και τον δικό σας ήχο. Όταν η αυτόματη παρακολούθηση δεν ταιριάζει στις συνθήκες, ο πίνακας ρύθμισης προσφέρει τα <strong>Αντίθεση</strong> και <strong>Αναφορά (στάθμη μαύρου)</strong>· το <strong>Αυτόματο</strong> επαναφέρει την αυτόματη παρακολούθηση.</li>
-      <li><strong>JS8</strong> — οθόνη συνομιλίας για τη λειτουργία JS8. Δείτε το κεφάλαιο <a href="js8.html">Λειτουργία συνομιλίας JS8</a>.</li>
-      <li><strong>WSPR</strong> — οθόνη προγραμματισμού φάρου. Δείτε το κεφάλαιο <a href="wspr.html">Φάρος WSPR</a>.</li>
-      <li><strong>Εργαλεία πομποδέκτη</strong> — μικρόφωνο για τον πομποδέκτη, ακρόαση λήψης και συντονισμός κεραίας. Δείτε το κεφάλαιο <a href="ssb.html">Εργαλεία πομποδέκτη</a>.</li>
-      <li><strong>Χάρτης τετραγώνων</strong> — προβολή χάρτη σε πλήρη οθόνη. Δείτε το κεφάλαιο <a href="gridtracker.html">Χάρτης τετραγώνων</a>.</li>
-      <li><strong>Στατιστικά</strong> — σύνολα επαφών ανά μπάντα, τρόπο λειτουργίας, DXCC, ζώνη ITU/CQ και χρονική περίοδο.</li>
-      <li><strong>Αναζήτηση QRZ.com</strong> — ενσωματωμένη αναζήτηση διακριτικού για τον επιλεγμένο σταθμό.</li>
-      <li><strong>Αιωρούμενο παράθυρο</strong> — προαιρετική επικάλυψη πάντα σε πρώτο πλάνο με πλήκτρα γρήγορης πρόσβασης (συχνότητα, ένταση, χάρτης τετραγώνων κ.ά.)· κάθε πλήκτρο ενεργοποιείται ξεχωριστά στις Ρυθμίσεις.</li>
+      <li><strong>JS8</strong> — οθόνη συνομιλίας τύπου chat για τη λειτουργία JS8. Δείτε τη <a href="js8.html">«Λειτουργία συνομιλίας JS8»</a>.</li>
+      <li><strong>WSPR</strong> — οθόνη προγραμματισμού φάρου WSPR. Δείτε τον <a href="wspr.html">«Φάρο WSPR»</a>.</li>
+      <li><strong>Εργαλεία πομποδέκτη</strong> — μικρόφωνο, παρακολούθηση λήψης και συντονισμός κεραίας. Δείτε τα <a href="ssb.html">«Εργαλεία πομποδέκτη»</a>.</li>
+      <li><strong>Χάρτης τετραγώνων</strong> — προβολή χάρτη σε πλήρη οθόνη. Δείτε τον <a href="gridtracker.html">«Χάρτη τετραγώνων»</a>.</li>
+      <li><strong>Στατιστικά</strong> — πλήθος QSO ανά μπάντα, λειτουργία, DXCC, ζώνη ITU/CQ και χρονική περίοδο.</li>
+      <li><strong>Αναζήτηση QRZ.com</strong> — ενσωματωμένη αναζήτηση διακριτικού στο QRZ.com για τον επιλεγμένο σταθμό.</li>
+      <li><strong>Αιωρούμενο παράθυρο</strong> — προαιρετική επικάλυψη πάντα σε πρώτο πλάνο με οκτώ κουμπιά συντόμευσης: απόκρυψη κάτω μενού, συχνότητα, ένταση, χάρτης τετραγώνων, εργαλεία πομποδέκτη, φάρος WSPR, συνομιλία JS8 και <strong>γρήγορη αλλαγή λειτουργίας</strong> (με ένα πάτημα ανάμεσα σε FT8／FT4／FT2／JS8／WSPR). Καθένα εμφανίζεται ή κρύβεται ξεχωριστά στις Ρυθμίσεις. Το <strong>παρατεταμένο πάτημα</strong> στο αιωρούμενο μενού το διπλώνει σε ένα μόνο κουμπί και ένα ακόμη το ξεδιπλώνει· η διπλωμένη κατάσταση διατηρείται μέχρι να κλείσει η εφαρμογή.</li>
     </ul>`,
 },
 

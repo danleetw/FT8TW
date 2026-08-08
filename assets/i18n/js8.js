@@ -169,14 +169,15 @@ en: {
   js8_intro: 'JS8 是构建在 FT8 信号结构上的键盘对键盘聊天模式，除了标准 QSO 之外，还能进行自由对话、存储转发消息及类似网络指令的操作。打开 JS8 分页即可进入聊天界面。',
 
   js8_speed_title: '速度模式',
-  js8_speed_text:  'JS8 提供四种速度／子模式组合，在灵敏度与传输量之间权衡：',
+  js8_speed_text:  'JS8 提供五种速度／子模式，在灵敏度与传输量之间权衡。所有人必须用<strong>同一种速度</strong>才收得到彼此：',
   js8_speed_table: `
     <table>
       <tr><th>模式</th><th>时隙长度</th><th>特性</th></tr>
-      <tr><td>Normal</td><td>15 秒</td><td>灵敏度最佳，传输量标准</td></tr>
-      <tr><td>Fast</td><td>10 秒</td><td>传输量较高，灵敏度略降</td></tr>
-      <tr><td>Turbo</td><td>6 秒</td><td>传输量最高，灵敏度较低——适合信号强劲的近距离通联</td></tr>
-      <tr><td>Slow</td><td>30 秒</td><td>灵敏度最高，传输量最低——适合微弱信号的远距 DX</td></tr>
+      <tr><td>NORMAL</td><td>15 秒</td><td>灵敏度最佳，传输量标准。<strong>最通用，默认用这个</strong></td></tr>
+      <tr><td>FAST</td><td>10 秒</td><td>传输量较高，灵敏度略降</td></tr>
+      <tr><td>TURBO</td><td>6 秒</td><td>传输量最高，灵敏度较低——适合信号强劲的近距离通联</td></tr>
+      <tr><td>SLOW</td><td>30 秒</td><td>灵敏度最高，传输量最低——适合微弱信号的远距 DX</td></tr>
+      <tr><td>FT8TW</td><td>4 秒</td><td><strong>FT8TW 专属的加速模式，与原版 JS8Call 不互通。</strong>只有同样使用 FT8TW 并选了这个模式的人收得到，适合自己人之间的短距离测试</td></tr>
     </table>`,
 
   js8_msg_title: '消息类型',
@@ -188,6 +189,48 @@ en: {
       <li><strong>自由文本</strong> — 完整长度的对话消息，程序会自动拆分成所需的多个发射 frame。</li>
       <li><strong>存储转发指令（MSG / MSG TO:）</strong> — 带校验码的缓冲指令，用于转发消息给当前不在监听的电台。</li>
     </ul>`,
+
+  js8_what_title: '什么是 JS8',
+  js8_what_text:  'JS8 由 KN4CRD 提出，把 <a href="operating.html">FT8</a> 的信号结构借过来，换掉上面那层固定格式的消息，改成<strong>可以自由打字的键盘对键盘模式</strong>。也就是说：它保留了 FT8「弱到听不见也解得出来」的能力，但您可以真的讲话，而不是只能交换呼号与报告。',
+  js8_what_list: `
+    <ul>
+      <li><strong>能自由打字</strong> — 想写多长就多长。程序会自动把消息拆成多个 frame 连续发射，所以<strong>长消息要等比较久</strong>：一条 Normal 模式的消息每 15 秒才送出一段。</li>
+      <li><strong>对话是异步的</strong> — 不像语音那样实时。送出后要等对方在下一个时隙收到、再打字回复，一来一往以分钟计。</li>
+      <li><strong>可以留言与查询</strong> — 支持 heartbeat（定期广播「我在」）、指定指令（问对方 SNR、网格、信息）与存转留言（留话给现在不在的人）。</li>
+      <li><strong>与 FT8 不互通</strong> — 虽然底层信号结构相同，但这是两套独立的模式，要在 JS8 的频率上用 JS8 才能对得上。</li>
+    </ul>`,
+
+  js8_quick_title: '快速上手：发出第一条 JS8 消息',
+  js8_quick_text:  'JS8 没有 FT8 那种自动跑完的通联流程——它就是聊天，什么时候说什么都由您决定。',
+  js8_quick_steps: `
+    <ol>
+      <li>先确认设置里填好了<strong>我的呼号</strong>，并把电台调到该波段的 JS8 惯用频率（例如 20m 是 14.078 MHz）。</li>
+      <li>从主菜单或悬浮窗口打开 <strong>JS8</strong> 分页。</li>
+      <li>速度选 <strong>NORMAL 15s</strong>——这是最多人用的，先从它开始。</li>
+      <li>确认<strong>接收解码</strong>是开着的，先看几分钟有没有别人的消息进来，确认频率没选错。</li>
+      <li>在下方输入框打字，按<strong>发送</strong>。消息会排在下一个时隙开始发射；发射中还可以再打下一条，它会排队等前一条送完。</li>
+      <li>对方的回复会以聊天气泡出现。长按气泡可以复制或删除。</li>
+    </ol>`,
+  js8_quick_seq: `
+    <table>
+      <tr><th>步骤</th><th>送出的内容</th><th>说明</th></tr>
+      <tr><td>1</td><td><code>CQ CQ CQ BV6LC PL03</code></td><td>呼叫 CQ。按 CQ 键会自动带入您的呼号与网格</td></tr>
+      <tr><td>2</td><td>（对方）<code>BV6LC: BX1AA SNR -07</code></td><td>对方回应，并附上他收到您的信号强度</td></tr>
+      <tr><td>3</td><td><code>BX1AA: BV6LC HI OM TNX FOR CALL. RIG IS QMX 5W, ANT IS DIPOLE</code></td><td>自由文本。从这里开始就是一般聊天了</td></tr>
+      <tr><td>4</td><td>（对方）<code>BV6LC: BX1AA FB! WX HERE IS RAINY. 73</code></td><td>对方回复</td></tr>
+      <tr><td>5</td><td><code>BX1AA: BV6LC TNX QSO 73</code></td><td>结束</td></tr>
+    </table>`,
+  js8_quick_note: '常用的消息不必每次重打——<strong>常用消息</strong>按钮里有现成的回复（回 SNR、回 INFO、回 STATUS）。另外，消息内容一律转成大写的有限字符集；要送中文或其他非 ASCII 内容，请看下面的 <strong>Unicode 文本（UTX）</strong>。',
+
+  js8_bubble_title: '聊天气泡的长按菜单',
+  js8_bubble_text:  '长按聊天界面中的任何一个气泡，会弹出一份菜单：',
+  js8_bubble_list: `
+    <ul>
+      <li><strong>复制消息内容</strong> — 只复制消息正文。</li>
+      <li><strong>复制完整内容</strong> — 连同上方的信息行（时间、TX 或对方呼号、信号报告、频率）一起复制，与画面上看到的完全一致。</li>
+      <li><strong>删除消息</strong> — 把该条消息从聊天记录中移除。这个动作<strong>无法撤销</strong>，因此会先弹出确认。</li>
+    </ul>
+    <p>正在接收中、还没收完的气泡只提供复制，不能删除——它还没进入正式记录。另外，因为长按被用来叫出这份菜单，消息文本不再能够用拖拽的方式选取部分内容，需要文本时请用上面两个复制项目。</p>`,
 
   js8_hb_title: 'Heartbeat',
   js8_hb_text:  '可设置 heartbeat 广播间隔（10、15 或 30 分钟），即使没有进行中的通联，也能让其他电台知道您正在监听。',
@@ -207,14 +250,15 @@ en: {
   js8_intro: 'JS8 は FT8 の信号構造の上に作られたキーボード交信モードで、定型的な交信に加えて自由な会話、蓄積転送メッセージ、ネットワーク的なコマンドが使えます。JS8 タブを開くとチャット画面になります。',
 
   js8_speed_title: 'スピードモード',
-  js8_speed_text:  'JS8 には感度と伝送量を天秤にかけた 4 つのスピード（サブモード）があります:',
+  js8_speed_text:  'JS8 には 5 つの速度（サブモード）があり、感度とスループットのどちらを取るかで選びます。互いに受信するには<strong>全員が同じ速度</strong>である必要があります。',
   js8_speed_table: `
     <table>
-      <tr><th>モード</th><th>スロット長</th><th>特徴</th></tr>
-      <tr><td>Normal</td><td>15 秒</td><td>感度が最も良く、伝送量は標準</td></tr>
-      <tr><td>Fast</td><td>10 秒</td><td>伝送量が多く、感度はやや低下</td></tr>
-      <tr><td>Turbo</td><td>6 秒</td><td>伝送量は最大、感度は低め — 近距離の強い信号向け</td></tr>
-      <tr><td>Slow</td><td>30 秒</td><td>感度は最高、伝送量は最小 — ぎりぎりの DX 向け</td></tr>
+      <tr><th>モード</th><th>スロット長</th><th>特性</th></tr>
+      <tr><td>NORMAL</td><td>15 秒</td><td>感度が最良で、スループットは標準。<strong>もっとも一般的で、まずはこれ</strong></td></tr>
+      <tr><td>FAST</td><td>10 秒</td><td>スループットは高め、感度はやや低下</td></tr>
+      <tr><td>TURBO</td><td>6 秒</td><td>スループット最大、感度は低め。信号の強い近距離向け</td></tr>
+      <tr><td>SLOW</td><td>30 秒</td><td>感度最高、スループット最小。信号の弱い遠距離 DX 向け</td></tr>
+      <tr><td>FT8TW</td><td>4 秒</td><td><strong>FT8TW 専用の高速モードで、本家 JS8Call とは互換性がありません。</strong>同じく FT8TW でこのモードを選んだ相手にしか届かないため、身内どうしの近距離テスト向けです</td></tr>
     </table>`,
 
   js8_msg_title: 'メッセージの種類',
@@ -226,6 +270,48 @@ en: {
       <li><strong>フリーテキスト</strong> — 長さの制限がない会話電文。必要な数の送信フレームへ自動的に分割されます。</li>
       <li><strong>蓄積転送（MSG / MSG TO:）</strong> — チェックサム付きのバッファされたコマンドで、今は受信していない局へメッセージを中継します。</li>
     </ul>`,
+
+  js8_what_title: 'JS8 とは',
+  js8_what_text:  'JS8 は KN4CRD が考案したもので、<a href="operating.html">FT8</a> の信号構造をそのまま借り、その上に載っていた固定形式の電文を<strong>自由に打てるキーボード同士のやり取り</strong>に置き換えたものです。つまり、耳では聞こえないほど弱い信号でも復号できるという FT8 の性質はそのままに、コールサインとレポートの交換だけでなく、実際に文章でやり取りできます。',
+  js8_what_list: `
+    <ul>
+      <li><strong>自由に打てる</strong> — 長さの制限は実質ありません。アプリがメッセージを複数のフレームに分割して続けて送信するため、<strong>長い文章は時間がかかります</strong>。Normal モードでは 15 秒に 1 フレームずつです。</li>
+      <li><strong>会話はリアルタイムではありません</strong> — 音声とは違い、送信後に相手が次のスロットで受信し、それから返信を打つので、往復には数分かかります。</li>
+      <li><strong>伝言や問い合わせもできます</strong> — heartbeat（自分がいることを定期的に知らせる）、指定コマンド（相手の SNR・グリッド・情報を尋ねる）、その場にいない相手への蓄積転送メッセージに対応しています。</li>
+      <li><strong>FT8 とは通信できません</strong> — 下層の信号構造は共通ですが別々のモードです。JS8 の周波数で JS8 を使って初めて相手と合います。</li>
+    </ul>`,
+
+  js8_quick_title: 'クイックスタート：最初の JS8 メッセージを送る',
+  js8_quick_text:  'JS8 には FT8 のような自動で進む交信手順はありません。あくまで会話であり、いつ何を言うかはご自身で決めます。',
+  js8_quick_steps: `
+    <ol>
+      <li>設定で<strong>自局コール</strong>が入力されていることを確認し、無線機をそのバンドの JS8 常用周波数（20 m なら 14.078 MHz）に合わせます。</li>
+      <li>メインメニューまたはフローティングウィンドウから <strong>JS8</strong> タブを開きます。</li>
+      <li>速度は <strong>NORMAL 15s</strong> を選びます。もっとも使われている設定なので、まずはここから。</li>
+      <li><strong>受信デコード</strong>がオンになっていることを確認し、数分ほど様子を見ます。他局の通信が見えれば周波数は合っています。</li>
+      <li>下の入力欄に文章を打ち、<strong>送信</strong>を押します。メッセージは次のスロットに予約されます。送信中に次の文章を打っておくこともでき、その場合は順番を待ちます。</li>
+      <li>返信はチャットの吹き出しとして表示されます。吹き出しを長押しするとコピーや削除ができます。</li>
+    </ol>`,
+  js8_quick_seq: `
+    <table>
+      <tr><th>手順</th><th>送る内容</th><th>説明</th></tr>
+      <tr><td>1</td><td><code>CQ CQ CQ BV6LC PL03</code></td><td>CQ を出します。CQ ボタンを押すとコールサインとグリッドが自動的に入ります</td></tr>
+      <tr><td>2</td><td>（相手）<code>BV6LC: BX1AA SNR -07</code></td><td>相手が応答し、こちらの信号強度も併せて知らせてきます</td></tr>
+      <tr><td>3</td><td><code>BX1AA: BV6LC HI OM TNX FOR CALL. RIG IS QMX 5W, ANT IS DIPOLE</code></td><td>フリーテキスト。ここから先は普通の会話です</td></tr>
+      <tr><td>4</td><td>（相手）<code>BV6LC: BX1AA FB! WX HERE IS RAINY. 73</code></td><td>相手からの返信</td></tr>
+      <tr><td>5</td><td><code>BX1AA: BV6LC TNX QSO 73</code></td><td>締めくくり</td></tr>
+    </table>`,
+  js8_quick_note: 'よく使う返事は毎回打ち直す必要はありません。<strong>クイックメッセージ</strong>ボタンに定型の返信（SNR・INFO・STATUS を返す）が用意されています。なお、電文は大文字の限られた文字集合に丸められます。日本語などの非 ASCII を送りたい場合は、下の <strong>Unicode テキスト（UTX）</strong>をご覧ください。',
+
+  js8_bubble_title: 'チャット吹き出しの長押しメニュー',
+  js8_bubble_text:  'チャット画面の吹き出しを長押しすると、メニューが開きます。',
+  js8_bubble_list: `
+    <ul>
+      <li><strong>本文をコピー</strong> — 電文の本文だけをコピーします。</li>
+      <li><strong>詳細付きでコピー</strong> — 上部の情報行（時刻、TX または相手のコールサイン、信号レポート、周波数）も含めて、画面表示とまったく同じ形でコピーします。</li>
+      <li><strong>メッセージを削除</strong> — そのメッセージをチャット履歴から削除します。この操作は<strong>取り消せない</strong>ため、先に確認が表示されます。</li>
+    </ul>
+    <p>まだ受信中の吹き出しはコピーのみで、削除はできません。正式な記録に入っていないためです。また、長押しがこのメニューに割り当てられたため、電文の一部をドラッグして選択することはできなくなりました。文字が必要なときは上の 2 つのコピー項目をお使いください。</p>`,
 
   js8_hb_title: 'Heartbeat',
   js8_hb_text:  'Heartbeat の送信間隔（10、15、30 分）を設定しておくと、交信していないときでもワッチ中であることを他局に知らせられます。',
@@ -245,14 +331,15 @@ en: {
   js8_intro: 'JS8 — режим клавиатурного общения, построенный на структуре сигнала FT8. Помимо формализованных QSO он позволяет вести свободный разговор, передавать сообщения с промежуточным хранением и использовать команды сетевого типа. Экран чата открывается на вкладке JS8.',
 
   js8_speed_title: 'Скоростные режимы',
-  js8_speed_text:  'В JS8 есть четыре сочетания скорости и подрежима — компромисс между чувствительностью и объёмом передаваемого текста:',
+  js8_speed_text:  'В JS8 пять субрежимов скорости, каждый из которых меняет чувствительность на пропускную способность. Чтобы слышать друг друга, все должны быть на <strong>одной скорости</strong>:',
   js8_speed_table: `
     <table>
-      <tr><th>Режим</th><th>Длина интервала</th><th>Особенности</th></tr>
-      <tr><td>Normal</td><td>15 с</td><td>Лучшая чувствительность, обычная скорость передачи</td></tr>
-      <tr><td>Fast</td><td>10 с</td><td>Выше скорость, чувствительность немного ниже</td></tr>
-      <tr><td>Turbo</td><td>6 с</td><td>Максимальная скорость, чувствительность ниже — для сильных местных сигналов</td></tr>
-      <tr><td>Slow</td><td>30 с</td><td>Максимальная чувствительность, минимальная скорость — для трудного DX</td></tr>
+      <tr><th>Режим</th><th>Интервал</th><th>Особенности</th></tr>
+      <tr><td>NORMAL</td><td>15 с</td><td>Лучшая чувствительность, обычная пропускная способность. <strong>Основной выбор — начните с него</strong></td></tr>
+      <tr><td>FAST</td><td>10 с</td><td>Выше пропускная способность, чувствительность немного ниже</td></tr>
+      <tr><td>TURBO</td><td>6 с</td><td>Наибольшая пропускная способность, пониженная чувствительность — для сильных сигналов вблизи</td></tr>
+      <tr><td>SLOW</td><td>30 с</td><td>Наибольшая чувствительность, наименьшая пропускная способность — для слабого DX</td></tr>
+      <tr><td>FT8TW</td><td>4 с</td><td><strong>Режим, существующий только в FT8TW и несовместимый со стандартным JS8Call.</strong> Вас услышит лишь тот, кто тоже работает в FT8TW с этой настройкой, — удобно для проверок между своими станциями на небольшом расстоянии</td></tr>
     </table>`,
 
   js8_msg_title: 'Типы сообщений',
@@ -264,6 +351,48 @@ en: {
       <li><strong>Свободный текст</strong> — разговорные сообщения полной длины, автоматически разбиваемые на нужное число передаваемых кадров.</li>
       <li><strong>Хранение и пересылка (MSG / MSG TO:)</strong> — буферизованные команды с контрольной суммой для передачи сообщения станции, которая сейчас не слушает.</li>
     </ul>`,
+
+  js8_what_title: 'Что такое JS8',
+  js8_what_text:  'JS8, предложенный KN4CRD, заимствует структуру сигнала <a href="operating.html">FT8</a> и заменяет жёсткий формат сообщений над ней <strong>свободным набором текста с клавиатуры на клавиатуру</strong>. Иначе говоря, он сохраняет способность FT8 декодироваться там, где сигнал слишком слаб, чтобы его услышать, но позволяет действительно разговаривать, а не только обмениваться позывными и рапортами.',
+  js8_what_list: `
+    <ul>
+      <li><strong>Можно писать свободно</strong> — любой длины. Приложение само разбивает сообщение на кадры и передаёт их подряд, поэтому <strong>длинные сообщения идут долго</strong>: в режиме Normal один кадр уходит каждые 15 секунд.</li>
+      <li><strong>Разговор не в реальном времени</strong> — в отличие от голоса. После отправки корреспондент должен принять текст в следующем интервале и лишь затем набрать ответ; обмен измеряется минутами.</li>
+      <li><strong>Сообщения и запросы</strong> — поддерживаются heartbeat (периодическое объявление о своём присутствии), адресованные команды (запрос SNR, локатора или сведений у другой станции) и сообщения с хранением для тех, кто сейчас не слушает.</li>
+      <li><strong>С FT8 не совместим</strong> — структура сигнала общая, но это две разные моды; чтобы кого-то встретить, нужен JS8 на частоте JS8.</li>
+    </ul>`,
+
+  js8_quick_title: 'Быстрый старт: первое сообщение JS8',
+  js8_quick_text:  'В JS8 нет автоматической последовательности связи, как в FT8: это разговор, и что и когда сказать — решаете вы.',
+  js8_quick_steps: `
+    <ol>
+      <li>Убедитесь, что <strong>позывной</strong> задан, и поставьте трансивер на обычную частоту JS8 для этого диапазона (например, 14,078 МГц на 20 м).</li>
+      <li>Откройте вкладку <strong>JS8</strong> из главного меню или плавающего окна.</li>
+      <li>Скорость выберите <strong>NORMAL 15s</strong> — её используют чаще всего, начните с неё.</li>
+      <li>Проверьте, что <strong>приём/декодирование</strong> включены, и понаблюдайте несколько минут: чужой трафик подтвердит, что частота выбрана верно.</li>
+      <li>Наберите текст в поле внизу и нажмите <strong>Отправить</strong>. Сообщение встанет в очередь на ближайший интервал; можно набирать следующее, пока идёт первое, — оно дождётся своей очереди.</li>
+      <li>Ответы появляются в виде облачков чата. Долгое нажатие на облачко позволяет скопировать или удалить его.</li>
+    </ol>`,
+  js8_quick_seq: `
+    <table>
+      <tr><th>Шаг</th><th>Передаётся</th><th>Примечание</th></tr>
+      <tr><td>1</td><td><code>CQ CQ CQ BV6LC PL03</code></td><td>Вызов CQ. Кнопка CQ сама подставляет ваш позывной и локатор</td></tr>
+      <tr><td>2</td><td>(он) <code>BV6LC: BX1AA SNR -07</code></td><td>Отвечает и сообщает, с какой силой вас слышит</td></tr>
+      <tr><td>3</td><td><code>BX1AA: BV6LC HI OM TNX FOR CALL. RIG IS QMX 5W, ANT IS DIPOLE</code></td><td>Произвольный текст — дальше идёт обычный разговор</td></tr>
+      <tr><td>4</td><td>(он) <code>BV6LC: BX1AA FB! WX HERE IS RAINY. 73</code></td><td>Его ответ</td></tr>
+      <tr><td>5</td><td><code>BX1AA: BV6LC TNX QSO 73</code></td><td>Завершение</td></tr>
+    </table>`,
+  js8_quick_note: 'Часто используемые ответы не нужно набирать заново — в кнопке <strong>Быстрые сообщения</strong> есть готовые (ответить SNR, ответить INFO, ответить STATUS). Учтите также, что текст приводится к ограниченному набору заглавных символов; чтобы отправить кириллицу или любой другой не-ASCII текст, см. раздел <strong>Текст Unicode (UTX)</strong> ниже.',
+
+  js8_bubble_title: 'Меню по долгому нажатию на облачко чата',
+  js8_bubble_text:  'Долгое нажатие на любое облачко в чате открывает меню:',
+  js8_bubble_list: `
+    <ul>
+      <li><strong>Копировать текст</strong> — копирует только текст сообщения.</li>
+      <li><strong>Копировать с деталями</strong> — копирует и строку сведений (время, TX или позывной корреспондента, рапорт, частота) ровно в том виде, в каком она показана на экране.</li>
+      <li><strong>Удалить сообщение</strong> — убирает сообщение из истории чата. Это действие <strong>нельзя отменить</strong>, поэтому сначала запрашивается подтверждение.</li>
+    </ul>
+    <p>Облачко, которое ещё принимается, можно только копировать: оно пока не входит в постоянную запись. Обратите внимание и на то, что долгое нажатие теперь открывает это меню, поэтому выделить часть текста перетаскиванием больше нельзя — пользуйтесь двумя пунктами копирования.</p>`,
 
   js8_hb_title: 'Heartbeat',
   js8_hb_text:  'Включите объявления heartbeat с выбранным интервалом (10, 15 или 30 минут), чтобы другие станции знали, что вы на приёме, даже без активного QSO.',
@@ -283,14 +412,15 @@ en: {
   js8_intro: 'JS8 to tryb rozmowy z klawiatury zbudowany na strukturze sygnału FT8. Poza sformalizowanymi łącznościami pozwala na swobodną rozmowę, przesyłanie wiadomości z zapisem pośrednim oraz komendy w stylu sieciowym. Ekran czatu otwiera zakładka JS8.',
 
   js8_speed_title: 'Tryby prędkości',
-  js8_speed_text:  'JS8 oferuje cztery kombinacje prędkości i podtrybu, będące kompromisem między czułością a przepustowością:',
+  js8_speed_text:  'JS8 oferuje pięć trybów prędkości, w których czułość wymienia się na przepustowość. Aby się wzajemnie słyszeć, wszyscy muszą używać <strong>tej samej prędkości</strong>:',
   js8_speed_table: `
     <table>
-      <tr><th>Tryb</th><th>Długość okna</th><th>Charakterystyka</th></tr>
-      <tr><td>Normal</td><td>15 s</td><td>Najlepsza czułość, standardowa przepustowość</td></tr>
-      <tr><td>Fast</td><td>10 s</td><td>Większa przepustowość, nieco mniejsza czułość</td></tr>
-      <tr><td>Turbo</td><td>6 s</td><td>Największa przepustowość, mniejsza czułość — do silnych sygnałów lokalnych</td></tr>
-      <tr><td>Slow</td><td>30 s</td><td>Najwyższa czułość, najmniejsza przepustowość — do trudnego DX</td></tr>
+      <tr><th>Tryb</th><th>Okno</th><th>Cechy</th></tr>
+      <tr><td>NORMAL</td><td>15 s</td><td>Najlepsza czułość, standardowa przepustowość. <strong>Wybór podstawowy — zacznij od niego</strong></td></tr>
+      <tr><td>FAST</td><td>10 s</td><td>Wyższa przepustowość, nieco mniejsza czułość</td></tr>
+      <tr><td>TURBO</td><td>6 s</td><td>Największa przepustowość, obniżona czułość — do mocnych sygnałów lokalnych</td></tr>
+      <tr><td>SLOW</td><td>30 s</td><td>Największa czułość, najmniejsza przepustowość — do słabego DX</td></tr>
+      <tr><td>FT8TW</td><td>4 s</td><td><strong>Tryb dostępny wyłącznie w FT8TW, niezgodny ze standardowym JS8Call.</strong> Usłyszy cię tylko ktoś, kto również pracuje w FT8TW z tym ustawieniem — przydatne do testów między własnymi stacjami na krótkim dystansie</td></tr>
     </table>`,
 
   js8_msg_title: 'Rodzaje wiadomości',
@@ -302,6 +432,48 @@ en: {
       <li><strong>Dowolny tekst</strong> — wiadomości konwersacyjne pełnej długości, automatycznie dzielone na potrzebną liczbę ramek nadawczych.</li>
       <li><strong>Zapis i przekazanie (MSG / MSG TO:)</strong> — buforowane komendy z sumą kontrolną, służące do przekazania wiadomości stacji, która akurat nie nasłuchuje.</li>
     </ul>`,
+
+  js8_what_title: 'Czym jest JS8',
+  js8_what_text:  'JS8, opracowany przez KN4CRD, zapożycza strukturę sygnału <a href="operating.html">FT8</a> i zastępuje sztywną warstwę wiadomości <strong>swobodnie wpisywanym tekstem, z klawiatury na klawiaturę</strong>. Innymi słowy: zachowuje zdolność FT8 do dekodowania sygnałów zbyt słabych, by je usłyszeć, ale pozwala naprawdę rozmawiać, a nie tylko wymieniać znaki i raporty.',
+  js8_what_list: `
+    <ul>
+      <li><strong>Można pisać swobodnie</strong> — dowolnie długo. Aplikacja sama dzieli wiadomość na ramki nadawane jedna po drugiej, więc <strong>długie wiadomości trwają</strong>: w trybie Normal jedna ramka wychodzi co 15 sekund.</li>
+      <li><strong>Rozmowa nie jest na żywo</strong> — inaczej niż głosem. Po wysłaniu korespondent musi odebrać tekst w kolejnym oknie i dopiero potem odpisać; wymiana liczy się w minutach.</li>
+      <li><strong>Wiadomości i zapytania</strong> — obsługiwane są heartbeat (okresowe ogłaszanie swojej obecności), polecenia kierowane (pytanie innej stacji o SNR, lokator czy informacje) oraz wiadomości przechowywane dla stacji, które akurat nie słuchają.</li>
+      <li><strong>Nie łączy się z FT8</strong> — struktura sygnału jest wspólna, ale to dwie osobne emisje; aby kogoś spotkać, trzeba użyć JS8 na częstotliwości JS8.</li>
+    </ul>`,
+
+  js8_quick_title: 'Szybki start: pierwsza wiadomość JS8',
+  js8_quick_text:  'JS8 nie ma automatycznej sekwencji łączności jak FT8 — to rozmowa, a co i kiedy powiesz, zależy od ciebie.',
+  js8_quick_steps: `
+    <ol>
+      <li>Sprawdź, że <strong>twój znak</strong> jest ustawiony, i ustaw radio na typową częstotliwość JS8 danego pasma (np. 14,078 MHz na 20 m).</li>
+      <li>Otwórz zakładkę <strong>JS8</strong> z menu głównego lub pływającego okna.</li>
+      <li>Ustaw prędkość na <strong>NORMAL 15s</strong> — z niej korzysta najwięcej osób, więc zacznij od niej.</li>
+      <li>Upewnij się, że <strong>odbiór/dekodowanie</strong> są włączone, i poobserwuj kilka minut; ruch innych stacji potwierdzi, że częstotliwość jest właściwa.</li>
+      <li>Wpisz tekst w polu na dole i naciśnij <strong>Wyślij</strong>. Wiadomość trafi do kolejki na najbliższe okno; kolejną można pisać w trakcie nadawania pierwszej — poczeka na swoją kolej.</li>
+      <li>Odpowiedzi pojawiają się jako dymki czatu. Długie naciśnięcie dymka pozwala go skopiować lub usunąć.</li>
+    </ol>`,
+  js8_quick_seq: `
+    <table>
+      <tr><th>Krok</th><th>Treść</th><th>Uwagi</th></tr>
+      <tr><td>1</td><td><code>CQ CQ CQ BV6LC PL03</code></td><td>Wywołanie CQ. Przycisk CQ sam wstawia twój znak i lokator</td></tr>
+      <tr><td>2</td><td>(on) <code>BV6LC: BX1AA SNR -07</code></td><td>Odpowiada, podając siłę, z jaką cię słyszy</td></tr>
+      <tr><td>3</td><td><code>BX1AA: BV6LC HI OM TNX FOR CALL. RIG IS QMX 5W, ANT IS DIPOLE</code></td><td>Tekst dowolny — od tej chwili to zwykła rozmowa</td></tr>
+      <tr><td>4</td><td>(on) <code>BV6LC: BX1AA FB! WX HERE IS RAINY. 73</code></td><td>Jego odpowiedź</td></tr>
+      <tr><td>5</td><td><code>BX1AA: BV6LC TNX QSO 73</code></td><td>Zakończenie</td></tr>
+    </table>`,
+  js8_quick_note: 'Często używanych odpowiedzi nie trzeba wpisywać od nowa — przycisk <strong>Szybkie wiadomości</strong> zawiera gotowe (odpowiedz SNR, odpowiedz INFO, odpowiedz STATUS). Pamiętaj też, że tekst jest sprowadzany do ograniczonego zestawu wielkich liter; aby wysłać polskie znaki lub inną treść spoza ASCII, zobacz <strong>Tekst Unicode (UTX)</strong> poniżej.',
+
+  js8_bubble_title: 'Menu długiego naciśnięcia na dymkach czatu',
+  js8_bubble_text:  'Długie naciśnięcie dowolnego dymka w widoku czatu otwiera menu:',
+  js8_bubble_list: `
+    <ul>
+      <li><strong>Kopiuj tekst</strong> — kopiuje samą treść wiadomości.</li>
+      <li><strong>Kopiuj ze szczegółami</strong> — kopiuje także wiersz informacyjny (czas, TX lub znak korespondenta, raport, częstotliwość), dokładnie tak, jak widać na ekranie.</li>
+      <li><strong>Usuń wiadomość</strong> — usuwa wiadomość z historii czatu. Tej operacji <strong>nie można cofnąć</strong>, dlatego najpierw pojawia się potwierdzenie.</li>
+    </ul>
+    <p>Dymek, który jest jeszcze odbierany, można tylko kopiować — nie trafił jeszcze do trwałego zapisu. Zwróć też uwagę, że skoro długie naciśnięcie otwiera teraz to menu, nie da się już zaznaczyć fragmentu tekstu przeciągnięciem; skorzystaj z dwóch pozycji kopiowania.</p>`,
 
   js8_hb_title: 'Heartbeat',
   js8_hb_text:  'Włącz ogłoszenia heartbeat z wybranym odstępem (10, 15 lub 30 minut), aby inne stacje wiedziały, że nasłuchujesz, nawet bez trwającej łączności.',
@@ -321,14 +493,15 @@ en: {
   js8_intro: 'JS8 es un modo de conversación por teclado construido sobre la estructura de señal de FT8. Además de los QSO estructurados permite charla libre, mensajes con almacenamiento y reenvío y comandos de estilo de red. Abre la pestaña JS8 para acceder a la pantalla de chat.',
 
   js8_speed_title: 'Modos de velocidad',
-  js8_speed_text:  'JS8 ofrece cuatro combinaciones de velocidad y submodo, que equilibran sensibilidad y volumen de texto transmitido:',
+  js8_speed_text:  'JS8 ofrece cinco submodos de velocidad que cambian sensibilidad por rendimiento. Para oírse mutuamente, todos han de estar en <strong>la misma velocidad</strong>:',
   js8_speed_table: `
     <table>
-      <tr><th>Modo</th><th>Duración del intervalo</th><th>Características</th></tr>
-      <tr><td>Normal</td><td>15 s</td><td>Mejor sensibilidad, rendimiento estándar</td></tr>
-      <tr><td>Fast</td><td>10 s</td><td>Mayor rendimiento, sensibilidad algo menor</td></tr>
-      <tr><td>Turbo</td><td>6 s</td><td>Máximo rendimiento, menor sensibilidad: ideal para señales locales fuertes</td></tr>
-      <tr><td>Slow</td><td>30 s</td><td>Máxima sensibilidad, mínimo rendimiento: ideal para DX al límite</td></tr>
+      <tr><th>Modo</th><th>Intervalo</th><th>Características</th></tr>
+      <tr><td>NORMAL</td><td>15 s</td><td>La mejor sensibilidad, rendimiento estándar. <strong>La opción general: empieza por aquí</strong></td></tr>
+      <tr><td>FAST</td><td>10 s</td><td>Más rendimiento, sensibilidad ligeramente menor</td></tr>
+      <tr><td>TURBO</td><td>6 s</td><td>Máximo rendimiento, sensibilidad reducida: para señales locales fuertes</td></tr>
+      <tr><td>SLOW</td><td>30 s</td><td>Máxima sensibilidad, mínimo rendimiento: para DX marginal</td></tr>
+      <tr><td>FT8TW</td><td>4 s</td><td><strong>Modo exclusivo de FT8TW que no interopera con el JS8Call estándar.</strong> Solo te oirá quien también use FT8TW con este ajuste; resulta útil para pruebas de corta distancia entre estaciones propias</td></tr>
     </table>`,
 
   js8_msg_title: 'Tipos de mensaje',
@@ -340,6 +513,48 @@ en: {
       <li><strong>Texto libre</strong> — mensajes de conversación de longitud completa, divididos automáticamente en tantas tramas de transmisión como haga falta.</li>
       <li><strong>Almacenar y reenviar (MSG / MSG TO:)</strong> — comandos almacenados con suma de comprobación, para hacer llegar un mensaje a una estación que ahora mismo no está a la escucha.</li>
     </ul>`,
+
+  js8_what_title: 'Qué es JS8',
+  js8_what_text:  'JS8, ideado por KN4CRD, toma prestada la estructura de señal de <a href="operating.html">FT8</a> y sustituye la capa rígida de mensajes por <strong>texto escrito libremente, de teclado a teclado</strong>. Dicho de otro modo: conserva la capacidad de FT8 de decodificar señales demasiado débiles para oírlas, pero permite conversar de verdad y no solo intercambiar indicativos y reportes.',
+  js8_what_list: `
+    <ul>
+      <li><strong>Puedes escribir libremente</strong> — con la extensión que quieras. La aplicación divide el mensaje en tramas que envía una tras otra, así que <strong>los mensajes largos tardan</strong>: en modo Normal sale una trama cada 15 segundos.</li>
+      <li><strong>La conversación no es en directo</strong> — a diferencia de la voz. Tras enviar, el otro operador ha de recibirlo en el intervalo siguiente y solo entonces teclear su respuesta; los intercambios se miden en minutos.</li>
+      <li><strong>Mensajes y consultas</strong> — admite heartbeat (anunciar periódicamente que estás ahí), órdenes dirigidas (preguntar a otra estación su SNR, su locator o su información) y mensajes almacenados para estaciones que en ese momento no escuchan.</li>
+      <li><strong>No interopera con FT8</strong> — la estructura de señal es común, pero son dos modos distintos; hay que usar JS8 en una frecuencia JS8 para encontrarse con alguien.</li>
+    </ul>`,
+
+  js8_quick_title: 'Inicio rápido: tu primer mensaje JS8',
+  js8_quick_text:  'JS8 no tiene una secuencia de QSO automática como FT8: es una conversación, y qué decir y cuándo lo decides tú.',
+  js8_quick_steps: `
+    <ol>
+      <li>Comprueba que <strong>tu indicativo</strong> está configurado y pon la radio en la frecuencia JS8 habitual de la banda (por ejemplo 14,078 MHz en 20 m).</li>
+      <li>Abre la pestaña <strong>JS8</strong> desde el menú principal o la ventana flotante.</li>
+      <li>Pon la velocidad en <strong>NORMAL 15s</strong>: es la que usa más gente, así que empieza por ahí.</li>
+      <li>Asegúrate de que <strong>recepción/decodificación</strong> está activa y observa unos minutos; ver tráfico de otros confirma que la frecuencia es la correcta.</li>
+      <li>Escribe en el cuadro inferior y pulsa <strong>Enviar</strong>. El mensaje queda en cola para el siguiente intervalo; puedes escribir el siguiente mientras sale el primero, y esperará su turno.</li>
+      <li>Las respuestas llegan como burbujas de chat. Una pulsación larga sobre una burbuja permite copiarla o borrarla.</li>
+    </ol>`,
+  js8_quick_seq: `
+    <table>
+      <tr><th>Paso</th><th>Se envía</th><th>Notas</th></tr>
+      <tr><td>1</td><td><code>CQ CQ CQ BV6LC PL03</code></td><td>Llamada CQ. El botón CQ rellena por ti el indicativo y el locator</td></tr>
+      <tr><td>2</td><td>(él) <code>BV6LC: BX1AA SNR -07</code></td><td>Responde e indica con qué fuerza te oye</td></tr>
+      <tr><td>3</td><td><code>BX1AA: BV6LC HI OM TNX FOR CALL. RIG IS QMX 5W, ANT IS DIPOLE</code></td><td>Texto libre: a partir de aquí es una conversación normal</td></tr>
+      <tr><td>4</td><td>(él) <code>BV6LC: BX1AA FB! WX HERE IS RAINY. 73</code></td><td>Su respuesta</td></tr>
+      <tr><td>5</td><td><code>BX1AA: BV6LC TNX QSO 73</code></td><td>Despedida</td></tr>
+    </table>`,
+  js8_quick_note: 'Las respuestas habituales no hay que reescribirlas: el botón <strong>Mensajes rápidos</strong> incluye algunas ya preparadas (responder SNR, responder INFO, responder STATUS). Ten en cuenta además que el texto se reduce a un juego limitado de mayúsculas; para enviar acentos o cualquier contenido fuera de ASCII, consulta <strong>Texto Unicode (UTX)</strong> más abajo.',
+
+  js8_bubble_title: 'Menú de pulsación larga en las burbujas de chat',
+  js8_bubble_text:  'Una pulsación larga sobre cualquier burbuja del chat abre un menú:',
+  js8_bubble_list: `
+    <ul>
+      <li><strong>Copiar texto</strong> — copia solo el texto del mensaje.</li>
+      <li><strong>Copiar con detalles</strong> — copia también la línea de información (hora, TX o indicativo del corresponsal, reporte, frecuencia), exactamente como se ve en pantalla.</li>
+      <li><strong>Eliminar mensaje</strong> — quita ese mensaje del historial del chat. Esta acción <strong>no se puede deshacer</strong>, por lo que pide confirmación antes.</li>
+    </ul>
+    <p>Una burbuja que todavía se está recibiendo solo permite copiar: aún no forma parte del registro permanente. Ten en cuenta también que, al usarse ahora la pulsación larga para este menú, ya no se puede arrastrar para seleccionar parte del texto; usa los dos elementos de copia.</p>`,
 
   js8_hb_title: 'Heartbeat',
   js8_hb_text:  'Activa los anuncios heartbeat con el intervalo que prefieras (10, 15 o 30 minutos) para que otras estaciones sepan que estás a la escucha, incluso sin un QSO en curso.',
@@ -359,14 +574,15 @@ en: {
   js8_intro: 'Το JS8 είναι τρόπος συνομιλίας από πληκτρολόγιο, χτισμένος πάνω στη δομή σήματος του FT8. Πέρα από τις τυποποιημένες επαφές επιτρέπει ελεύθερη συζήτηση, μηνύματα με αποθήκευση και προώθηση, καθώς και εντολές δικτυακού τύπου. Ανοίξτε την καρτέλα JS8 για την οθόνη συνομιλίας.',
 
   js8_speed_title: 'Λειτουργίες ταχύτητας',
-  js8_speed_text:  'Το JS8 προσφέρει τέσσερις συνδυασμούς ταχύτητας/υπολειτουργίας, με αντιστάθμισμα μεταξύ ευαισθησίας και όγκου μηνυμάτων:',
+  js8_speed_text:  'Το JS8 προσφέρει πέντε υπολειτουργίες ταχύτητας, που ανταλλάσσουν ευαισθησία με ρυθμό μετάδοσης. Για να ακούγεστε μεταξύ σας, όλοι πρέπει να είναι στην <strong>ίδια ταχύτητα</strong>:',
   js8_speed_table: `
     <table>
-      <tr><th>Λειτουργία</th><th>Διάρκεια χρονοθυρίδας</th><th>Χαρακτηριστικά</th></tr>
-      <tr><td>Normal</td><td>15 δευτ.</td><td>Καλύτερη ευαισθησία, τυπικός ρυθμός</td></tr>
-      <tr><td>Fast</td><td>10 δευτ.</td><td>Μεγαλύτερος ρυθμός, ελαφρώς μειωμένη ευαισθησία</td></tr>
-      <tr><td>Turbo</td><td>6 δευτ.</td><td>Μέγιστος ρυθμός, μειωμένη ευαισθησία — για ισχυρά τοπικά σήματα</td></tr>
-      <tr><td>Slow</td><td>30 δευτ.</td><td>Μέγιστη ευαισθησία, ελάχιστος ρυθμός — για οριακό DX</td></tr>
+      <tr><th>Λειτουργία</th><th>Χρονοθυρίδα</th><th>Χαρακτηριστικά</th></tr>
+      <tr><td>NORMAL</td><td>15 δ</td><td>Καλύτερη ευαισθησία, τυπικός ρυθμός. <strong>Η γενική επιλογή — ξεκινήστε από εδώ</strong></td></tr>
+      <tr><td>FAST</td><td>10 δ</td><td>Μεγαλύτερος ρυθμός, ελαφρώς μικρότερη ευαισθησία</td></tr>
+      <tr><td>TURBO</td><td>6 δ</td><td>Μέγιστος ρυθμός, μειωμένη ευαισθησία — για δυνατά τοπικά σήματα</td></tr>
+      <tr><td>SLOW</td><td>30 δ</td><td>Μέγιστη ευαισθησία, ελάχιστος ρυθμός — για οριακό DX</td></tr>
+      <tr><td>FT8TW</td><td>4 δ</td><td><strong>Λειτουργία αποκλειστικά του FT8TW, ασύμβατη με το κανονικό JS8Call.</strong> Θα σας ακούσει μόνο όποιος τρέχει επίσης FT8TW με αυτή τη ρύθμιση — χρήσιμο για δοκιμές μικρής απόστασης ανάμεσα σε δικούς σας σταθμούς</td></tr>
     </table>`,
 
   js8_msg_title: 'Τύποι μηνυμάτων',
@@ -378,6 +594,48 @@ en: {
       <li><strong>Ελεύθερο κείμενο</strong> — μηνύματα συνομιλίας πλήρους μήκους, που χωρίζονται αυτόματα σε όσα πλαίσια εκπομπής χρειάζονται.</li>
       <li><strong>Αποθήκευση και προώθηση (MSG / MSG TO:)</strong> — εντολές με άθροισμα ελέγχου, για μεταβίβαση μηνύματος σε σταθμό που δεν ακούει αυτή τη στιγμή.</li>
     </ul>`,
+
+  js8_what_title: 'Τι είναι το JS8',
+  js8_what_text:  'Το JS8, ιδέα του KN4CRD, δανείζεται τη δομή σήματος του <a href="operating.html">FT8</a> και αντικαθιστά το άκαμπτο επίπεδο μηνυμάτων από πάνω με <strong>ελεύθερα πληκτρολογημένο κείμενο, από πληκτρολόγιο σε πληκτρολόγιο</strong>. Με άλλα λόγια: διατηρεί την ικανότητα του FT8 να αποκωδικοποιεί σήματα πολύ ασθενή για να ακουστούν, αλλά σας επιτρέπει να μιλήσετε πραγματικά και όχι μόνο να ανταλλάξετε διακριτικά και αναφορές.',
+  js8_what_list: `
+    <ul>
+      <li><strong>Μπορείτε να γράφετε ελεύθερα</strong> — σε όποια έκταση θέλετε. Η εφαρμογή χωρίζει μόνη της το μήνυμα σε πλαίσια που στέλνονται το ένα μετά το άλλο, οπότε <strong>τα μεγάλα μηνύματα αργούν</strong>: στη λειτουργία Normal φεύγει ένα πλαίσιο κάθε 15 δευτερόλεπτα.</li>
+      <li><strong>Η συνομιλία δεν είναι ζωντανή</strong> — σε αντίθεση με τη φωνή. Μετά την αποστολή, ο άλλος πρέπει να τη λάβει στην επόμενη χρονοθυρίδα και μόνο τότε να απαντήσει· οι ανταλλαγές μετρώνται σε λεπτά.</li>
+      <li><strong>Μηνύματα και ερωτήματα</strong> — υποστηρίζονται heartbeat (περιοδική ανακοίνωση ότι είστε εκεί), κατευθυνόμενες εντολές (ερώτηση σε άλλον σταθμό για SNR, τετράγωνο ή πληροφορίες) και μηνύματα αποθήκευσης-προώθησης για σταθμούς που δεν ακούν εκείνη τη στιγμή.</li>
+      <li><strong>Δεν συνεργάζεται με το FT8</strong> — η δομή σήματος είναι κοινή, αλλά πρόκειται για δύο ξεχωριστές λειτουργίες· χρειάζεστε JS8 σε συχνότητα JS8 για να βρείτε κάποιον.</li>
+    </ul>`,
+
+  js8_quick_title: 'Γρήγορη εκκίνηση: το πρώτο σας μήνυμα JS8',
+  js8_quick_text:  'Το JS8 δεν έχει αυτόματη ακολουθία επαφής όπως το FT8 — είναι συνομιλία, και το τι και πότε θα πείτε το αποφασίζετε εσείς.',
+  js8_quick_steps: `
+    <ol>
+      <li>Βεβαιωθείτε ότι έχει οριστεί το <strong>διακριτικό</strong> σας και βάλτε τον πομποδέκτη στη συνήθη συχνότητα JS8 της μπάντας (π.χ. 14,078 MHz στα 20 m).</li>
+      <li>Ανοίξτε την καρτέλα <strong>JS8</strong> από το κύριο μενού ή το αιωρούμενο παράθυρο.</li>
+      <li>Βάλτε ταχύτητα <strong>NORMAL 15s</strong> — τη χρησιμοποιούν οι περισσότεροι, οπότε ξεκινήστε από εκεί.</li>
+      <li>Βεβαιωθείτε ότι η <strong>λήψη/αποκωδικοποίηση</strong> είναι ενεργή και παρακολουθήστε για λίγα λεπτά· η κίνηση άλλων σταθμών επιβεβαιώνει ότι η συχνότητα είναι σωστή.</li>
+      <li>Γράψτε στο πλαίσιο κάτω και πατήστε <strong>Αποστολή</strong>. Το μήνυμα μπαίνει σε ουρά για την επόμενη χρονοθυρίδα· μπορείτε να γράψετε και το επόμενο ενώ φεύγει το πρώτο, και θα περιμένει τη σειρά του.</li>
+      <li>Οι απαντήσεις εμφανίζονται ως συννεφάκια συνομιλίας. Το παρατεταμένο πάτημα σε ένα συννεφάκι επιτρέπει αντιγραφή ή διαγραφή.</li>
+    </ol>`,
+  js8_quick_seq: `
+    <table>
+      <tr><th>Βήμα</th><th>Τι στέλνεται</th><th>Σημειώσεις</th></tr>
+      <tr><td>1</td><td><code>CQ CQ CQ BV6LC PL03</code></td><td>Κλήση CQ. Το κουμπί CQ συμπληρώνει μόνο του το διακριτικό και το τετράγωνό σας</td></tr>
+      <tr><td>2</td><td>(αυτός) <code>BV6LC: BX1AA SNR -07</code></td><td>Απαντά και δηλώνει με τι ένταση σας ακούει</td></tr>
+      <tr><td>3</td><td><code>BX1AA: BV6LC HI OM TNX FOR CALL. RIG IS QMX 5W, ANT IS DIPOLE</code></td><td>Ελεύθερο κείμενο — από εδώ και πέρα είναι μια συνηθισμένη συνομιλία</td></tr>
+      <tr><td>4</td><td>(αυτός) <code>BV6LC: BX1AA FB! WX HERE IS RAINY. 73</code></td><td>Η απάντησή του</td></tr>
+      <tr><td>5</td><td><code>BX1AA: BV6LC TNX QSO 73</code></td><td>Κλείσιμο</td></tr>
+    </table>`,
+  js8_quick_note: 'Τις συνηθισμένες απαντήσεις δεν χρειάζεται να τις ξαναγράφετε — το κουμπί <strong>Γρήγορα μηνύματα</strong> περιέχει έτοιμες (απάντηση SNR, απάντηση INFO, απάντηση STATUS). Σημειώστε επίσης ότι το κείμενο μετατρέπεται σε περιορισμένο σύνολο κεφαλαίων χαρακτήρων· για να στείλετε ελληνικά ή οποιοδήποτε άλλο περιεχόμενο εκτός ASCII, δείτε το <strong>Κείμενο Unicode (UTX)</strong> παρακάτω.',
+
+  js8_bubble_title: 'Μενού παρατεταμένου πατήματος στα συννεφάκια',
+  js8_bubble_text:  'Το παρατεταμένο πάτημα σε οποιοδήποτε συννεφάκι της συνομιλίας ανοίγει ένα μενού:',
+  js8_bubble_list: `
+    <ul>
+      <li><strong>Αντιγραφή κειμένου</strong> — αντιγράφει μόνο το κείμενο του μηνύματος.</li>
+      <li><strong>Αντιγραφή με λεπτομέρειες</strong> — αντιγράφει και τη γραμμή πληροφοριών (ώρα, TX ή το διακριτικό του άλλου, αναφορά σήματος, συχνότητα), ακριβώς όπως φαίνεται στην οθόνη.</li>
+      <li><strong>Διαγραφή μηνύματος</strong> — αφαιρεί το μήνυμα από το ιστορικό της συνομιλίας. Η ενέργεια <strong>δεν αναιρείται</strong>, γι\' αυτό ζητείται πρώτα επιβεβαίωση.</li>
+    </ul>
+    <p>Ένα συννεφάκι που ακόμη λαμβάνεται επιτρέπει μόνο αντιγραφή: δεν έχει μπει ακόμη στη μόνιμη καταγραφή. Σημειώστε επίσης ότι, επειδή το παρατεταμένο πάτημα ανοίγει πλέον αυτό το μενού, δεν μπορείτε πια να επιλέξετε μέρος του κειμένου σύροντας· χρησιμοποιήστε τα δύο στοιχεία αντιγραφής.</p>`,
 
   js8_hb_title: 'Heartbeat',
   js8_hb_text:  'Ενεργοποιήστε τις ανακοινώσεις heartbeat με ρυθμιζόμενο διάστημα (10, 15 ή 30 λεπτά), ώστε οι άλλοι σταθμοί να γνωρίζουν ότι παρακολουθείτε, ακόμη και χωρίς ενεργή επαφή.',

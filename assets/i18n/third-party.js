@@ -113,6 +113,17 @@ en: {
   third_cloudlog_note: '<strong>API 密钥必须是可读写的。</strong>只读密钥能通过连接测试却无法上传——测试会明确指出这一点，让您在真正依赖它之前就先修正。',
   third_cloudlog_manual: '已经记录过的通联也能事后补传：选定日期范围后点<strong>手动上传</strong>即可批量发出。完成后会报告成功与失败的条数，避免把只传了一部分误当成全部传完。',
 
+  third_api_title: '开发者 API（插件）',
+  third_api_text:  '在设置 → <strong>高级与开发者</strong>开启<strong>开发者 API</strong>后，FT8TW 会在手机上开一个小型网页服务，让<strong>同一个局域网内</strong>的其他程序读取解码结果、通联日志、频谱与目前状态，您可以据此开发自己的插件与工具。开启后画面上会显示访问网址。',
+  third_api_list: `
+    <ul>
+      <li><strong>示范网页</strong> — 用电脑的浏览器打开画面上显示的网址，就会看到一个现成的示范页面，可以直接看到 API 提供哪些数据。这个页面<strong>必须由手机本身提供</strong>；把它复制到别的网站或存成本地文件再打开，都会被浏览器的安全限制挡下。</li>
+      <li><strong>只读 Token</strong> — 要让某个工具读取您的解码与日志时，给这一把。</li>
+      <li><strong>完整权限 Token</strong> — 控制发射时才需要，请当成密码看待。<strong>重新生成</strong>会让旧的立即失效，所有连接中的插件都会被中断。</li>
+      <li><strong>允许远程控制发射</strong> — 独立的开关，默认为关。只有它开启时，持有完整权限 Token 的程序才能开始或停止发射；其余功能一律只读，自由文本发射则刻意完全不开放。</li>
+    </ul>`,
+  third_api_warn: '同一个网络内只要有人拿到您的 Token，就能读取您的日志与设置，因此建议<strong>需要时才打开</strong>。第三方服务的账号密码（Cloudlog、QRZ）不会被读取。另外，若该端口已被其他程序占用，API 不会启动，画面上会直接说明。',
+
   third_psk_title: 'PSKReporter',
   third_psk_text:  '<a href="https://pskreporter.info" target="_blank">PSKReporter</a> 是全球无线电传播地图服务。FT8TW 可自动提交收听报告，无需账号。在设置中开启 PSKReporter 功能。您的呼号、网格及收听到的电台信息将通过 HTTPS 匿名提交。',
 },
@@ -143,6 +154,17 @@ en: {
     </ol>`,
   third_cloudlog_note: '<strong>API キーは読み書き可能なものが必要です。</strong>読み取り専用のキーは接続テストには通りますがアップロードできません。テストがその旨をはっきり知らせるので、本番で頼る前に修正できます。',
   third_cloudlog_manual: 'すでに記録済みの交信も後から送れます。日付の範囲を選べばまとめてアップロードでき、完了後に成功と失敗の件数が表示されるので、一部しか送れていないのに全部送れたと勘違いすることがありません。',
+
+  third_api_title: '開発者 API（アドオン）',
+  third_api_text:  '設定 → <strong>詳細設定と開発者</strong>で<strong>開発者 API</strong> をオンにすると、FT8TW は端末上に小さな Web サービスを立ち上げます。<strong>同じローカルネットワーク上</strong>の他のプログラムから、デコード結果・交信ログ・スペクトラム・現在の状態を読み取れるようになり、自分用のアドオンやツールを作れます。オンにするとアクセス用のアドレスが画面に表示されます。',
+  third_api_list: `
+    <ul>
+      <li><strong>デモページ</strong> — 表示されたアドレスをパソコンのブラウザーで開くと、API がどんなデータを返すのかがすぐ分かるデモページが用意されています。このページは<strong>端末自身から配信される必要があります</strong>。別のサイトにコピーしたり、ローカルファイルとして開いたりすると、ブラウザーのセキュリティ制限でブロックされます。</li>
+      <li><strong>読み取り専用トークン</strong> — デコードやログを読ませたいツールには、こちらを渡します。</li>
+      <li><strong>フルアクセストークン</strong> — 送信を制御する場合にだけ必要です。パスワードと同じ扱いにしてください。<strong>再生成</strong>すると古いトークンは直ちに無効になり、接続中のアドオンはすべて切断されます。</li>
+      <li><strong>送信のリモート操作を許可</strong> — 独立したスイッチで、既定はオフです。これがオンのときにだけ、フルアクセストークンを持つプログラムが送信を開始・停止できます。それ以外はすべて読み取り専用で、フリーテキスト送信は意図的にまったく公開していません。</li>
+    </ul>`,
+  third_api_warn: '同じネットワーク上でトークンを入手した人は、あなたのログや設定を読めてしまいます。<strong>必要なときだけオンにする</strong>ことをおすすめします。外部サービスの認証情報（Cloudlog、QRZ）が読み取られることはありません。また、ポートが他のプログラムに使われている場合、API は起動せず、その旨が画面に表示されます。',
 
   third_psk_title: 'PSKReporter',
   third_psk_text:  '<a href="https://pskreporter.info" target="_blank">PSKReporter</a> は世界規模の電波伝搬マッピングサービスです。FT8TW は受信レポートを自動送信します。アカウントは不要です。設定 → PSKReporter で機能を有効にしてください。自局のコールサイン、グリッド、受信した局の情報は HTTPS 経由で匿名送信されます。',
@@ -175,6 +197,17 @@ en: {
   third_cloudlog_note: '<strong>Ключ API должен быть с правом записи.</strong> Ключ только для чтения проходит проверку соединения, но выгружать им нельзя — проверка сообщает об этом прямо, чтобы вы исправили это заранее.',
   third_cloudlog_manual: 'Уже записанные связи тоже можно отправить позже: выберите диапазон дат и выгрузите их пакетом. По окончании показывается, сколько записей выгружено и сколько не удалось, так что частичная выгрузка не будет принята за полную.',
 
+  third_api_title: 'API для разработчиков (дополнения)',
+  third_api_text:  'Если включить <strong>API для разработчиков</strong> в Настройки → <strong>Дополнительно и разработка</strong>, FT8TW поднимает на телефоне небольшой веб-сервис. Другие программы <strong>в той же локальной сети</strong> смогут читать декодированные сообщения, журнал, спектр и текущее состояние — этого достаточно, чтобы писать собственные дополнения и инструменты. После включения на экране показывается адрес доступа.',
+  third_api_list: `
+    <ul>
+      <li><strong>Демонстрационная страница</strong> — откройте показанный адрес в браузере на компьютере, и вы получите готовую страницу, показывающую, что именно отдаёт API. Эта страница <strong>должна отдаваться самим телефоном</strong>: копия, размещённая на другом сайте или открытая как локальный файл, будет заблокирована правилами безопасности браузера.</li>
+      <li><strong>Токен только для чтения</strong> — выдавайте его инструменту, которому нужно лишь читать ваши декоды и журнал.</li>
+      <li><strong>Токен полного доступа</strong> — нужен только для управления передачей; относитесь к нему как к паролю. <strong>Создание заново</strong> немедленно делает старый недействительным и отключает все подключённые дополнения.</li>
+      <li><strong>Разрешить удалённое управление передачей</strong> — отдельный переключатель, по умолчанию выключен. Только когда он включён, программа с токеном полного доступа может начинать и останавливать передачу; всё остальное доступно только для чтения, а передача произвольного текста намеренно не предоставляется вовсе.</li>
+    </ul>`,
+  third_api_warn: 'Любой в той же сети, кто получит ваш токен, сможет прочитать ваш журнал и настройки, поэтому <strong>включайте API только тогда, когда он нужен</strong>. Учётные данные внешних сервисов (Cloudlog, QRZ) никогда не раскрываются. Если порт уже занят другой программой, API не запустится, и об этом будет сказано на экране.',
+
   third_psk_title: 'PSKReporter',
   third_psk_text:  '<a href="https://pskreporter.info" target="_blank">PSKReporter</a> — всемирный сервис карт прохождения. FT8TW отправляет отчёты о приёме автоматически, учётная запись не нужна. Включите эту функцию в Настройки → PSKReporter. Ваш позывной, локатор и данные о принятых станциях передаются анонимно по HTTPS.',
 },
@@ -205,6 +238,17 @@ en: {
     </ol>`,
   third_cloudlog_note: '<strong>Klucz API musi mieć prawo zapisu.</strong> Klucz tylko do odczytu przechodzi test połączenia, ale nie pozwala wysyłać — test wyraźnie o tym informuje, więc poprawisz to zawczasu.',
   third_cloudlog_manual: 'Wcześniej zapisane łączności także można wysłać później: wybierz zakres dat i prześlij je zbiorczo. Po zakończeniu podawana jest liczba wysłanych i nieudanych wpisów, więc częściowe wysłanie nie zostanie wzięte za kompletne.',
+
+  third_api_title: 'API dla deweloperów (dodatki)',
+  third_api_text:  'Włączenie <strong>API dla deweloperów</strong> w Ustawienia → <strong>Zaawansowane i deweloper</strong> uruchamia w telefonie niewielką usługę sieciową. Inne programy <strong>w tej samej sieci lokalnej</strong> mogą wtedy odczytywać zdekodowane wiadomości, dziennik, widmo i bieżący stan — tyle wystarczy, aby napisać własne dodatki i narzędzia. Po włączeniu na ekranie pojawia się adres dostępu.',
+  third_api_list: `
+    <ul>
+      <li><strong>Strona demonstracyjna</strong> — otwórz pokazany adres w przeglądarce na komputerze, a zobaczysz gotową stronę pokazującą, co udostępnia API. Ta strona <strong>musi być serwowana przez sam telefon</strong>; kopia umieszczona na innej witrynie lub otwarta jako plik lokalny zostanie zablokowana przez zabezpieczenia przeglądarki.</li>
+      <li><strong>Token tylko do odczytu</strong> — przekaż go narzędziu, które ma jedynie czytać twoje dekodowania i dziennik.</li>
+      <li><strong>Token pełnego dostępu</strong> — potrzebny wyłącznie do sterowania nadawaniem; traktuj go jak hasło. <strong>Wygenerowanie ponownie</strong> natychmiast unieważnia stary i rozłącza wszystkie podłączone dodatki.</li>
+      <li><strong>Zezwól na zdalne sterowanie nadawaniem</strong> — osobny przełącznik, domyślnie wyłączony. Tylko gdy jest włączony, program z tokenem pełnego dostępu może rozpoczynać i zatrzymywać nadawanie; reszta pozostaje tylko do odczytu, a nadawanie tekstu dowolnego celowo nie jest udostępniane wcale.</li>
+    </ul>`,
+  third_api_warn: 'Każdy w tej samej sieci, kto zdobędzie twój token, może odczytać twój dziennik i ustawienia, dlatego lepiej <strong>włączać API tylko wtedy, gdy jest potrzebne</strong>. Dane logowania do usług zewnętrznych (Cloudlog, QRZ) nigdy nie są udostępniane. Jeśli port jest już zajęty przez inny program, API się nie uruchomi, a ekran o tym poinformuje.',
 
   third_psk_title: 'PSKReporter',
   third_psk_text:  '<a href="https://pskreporter.info" target="_blank">PSKReporter</a> to światowy serwis map propagacji. FT8TW wysyła raporty odbioru automatycznie — konto nie jest potrzebne. Włącz tę funkcję w Ustawienia → PSKReporter. Twój znak, lokator i dane odebranych stacji są przesyłane anonimowo przez HTTPS.',
@@ -237,6 +281,17 @@ en: {
   third_cloudlog_note: '<strong>La clave API debe ser de lectura y escritura.</strong> Una clave de solo lectura supera la prueba de conexión pero no puede subir nada; la prueba lo indica de forma explícita para que lo corrijas antes de confiar en ella.',
   third_cloudlog_manual: 'Los QSO ya registrados también pueden enviarse después: elige un intervalo de fechas y súbelos en bloque. Al terminar se indica cuántos se subieron y cuántos fallaron, de modo que una subida parcial no se confunda con una completa.',
 
+  third_api_title: 'API para desarrolladores (complementos)',
+  third_api_text:  'Al activar la <strong>API para desarrolladores</strong> en Ajustes → <strong>Avanzado y desarrollador</strong>, FT8TW levanta en el teléfono un pequeño servicio web. Otros programas <strong>de la misma red local</strong> pueden entonces leer las decodificaciones, el registro, el espectro y el estado actual, que es cuanto hace falta para crear tus propios complementos y herramientas. Al activarla se muestra en pantalla la dirección de acceso.',
+  third_api_list: `
+    <ul>
+      <li><strong>Página de demostración</strong> — abre en el navegador del ordenador la dirección que aparece en pantalla y obtendrás una página lista que muestra lo que ofrece la API. Esa página <strong>tiene que servirla el propio teléfono</strong>; una copia alojada en otro sitio o abierta como archivo local será bloqueada por las reglas de seguridad del navegador.</li>
+      <li><strong>Token de solo lectura</strong> — dáselo a la herramienta que únicamente necesita leer tus decodificaciones y tu registro.</li>
+      <li><strong>Token de acceso completo</strong> — solo hace falta para controlar la transmisión; trátalo como una contraseña. <strong>Regenerarlo</strong> invalida el anterior de inmediato y desconecta todos los complementos conectados.</li>
+      <li><strong>Permitir control remoto de transmisión</strong> — interruptor aparte, desactivado por defecto. Solo mientras está activado puede un programa con el token de acceso completo iniciar o detener la transmisión; todo lo demás es de solo lectura, y la transmisión de texto libre no se expone deliberadamente en absoluto.</li>
+    </ul>`,
+  third_api_warn: 'Cualquiera en la misma red que consiga tu token podrá leer tu registro y tus ajustes, así que conviene <strong>activar la API solo cuando la necesites</strong>. Las credenciales de servicios externos (Cloudlog, QRZ) nunca quedan expuestas. Si el puerto ya está ocupado por otro programa, la API no arrancará y la pantalla lo indicará.',
+
   third_psk_title: 'PSKReporter',
   third_psk_text:  '<a href="https://pskreporter.info" target="_blank">PSKReporter</a> es un servicio mundial de mapas de propagación. FT8TW envía los informes de recepción automáticamente; no hace falta cuenta. Activa la función en Ajustes → PSKReporter. Tu indicativo, tu localizador y los datos de las estaciones recibidas se envían de forma anónima por HTTPS.',
 },
@@ -267,6 +322,17 @@ en: {
     </ol>`,
   third_cloudlog_note: '<strong>Το κλειδί API πρέπει να έχει δικαίωμα εγγραφής.</strong> Ένα κλειδί μόνο για ανάγνωση περνά τον έλεγχο σύνδεσης αλλά δεν μπορεί να ανεβάσει — ο έλεγχος το αναφέρει ρητά, ώστε να το διορθώσετε προτού το εμπιστευτείτε.',
   third_cloudlog_manual: 'Και οι ήδη καταχωρημένες επαφές μπορούν να σταλούν εκ των υστέρων: επιλέξτε εύρος ημερομηνιών και ανεβάστε τες μαζικά. Στο τέλος αναφέρεται πόσες ανέβηκαν και πόσες απέτυχαν, ώστε μια μερική αποστολή να μην εκληφθεί ως πλήρης.',
+
+  third_api_title: 'API προγραμματιστή (πρόσθετα)',
+  third_api_text:  'Ενεργοποιώντας το <strong>API προγραμματιστή</strong> στις Ρυθμίσεις → <strong>Για προχωρημένους</strong>, το FT8TW ξεκινά στο τηλέφωνο μια μικρή υπηρεσία web. Άλλα προγράμματα <strong>στο ίδιο τοπικό δίκτυο</strong> μπορούν έτσι να διαβάζουν αποκωδικοποιήσεις, το ημερολόγιο, το φάσμα και την τρέχουσα κατάσταση — αρκετά για να φτιάξετε τα δικά σας πρόσθετα και εργαλεία. Μόλις ενεργοποιηθεί, εμφανίζεται στην οθόνη η διεύθυνση πρόσβασης.',
+  third_api_list: `
+    <ul>
+      <li><strong>Σελίδα επίδειξης</strong> — ανοίξτε τη διεύθυνση που εμφανίζεται σε έναν browser στον υπολογιστή και θα δείτε μια έτοιμη σελίδα που δείχνει τι προσφέρει το API. Η σελίδα αυτή <strong>πρέπει να σερβίρεται από το ίδιο το τηλέφωνο</strong>· ένα αντίγραφο σε άλλον ιστότοπο ή ανοιγμένο ως τοπικό αρχείο θα μπλοκαριστεί από τους κανόνες ασφαλείας του browser.</li>
+      <li><strong>Διακριτικό μόνο για ανάγνωση</strong> — δώστε το σε εργαλείο που χρειάζεται μόνο να διαβάζει τις αποκωδικοποιήσεις και το ημερολόγιό σας.</li>
+      <li><strong>Διακριτικό πλήρους πρόσβασης</strong> — χρειάζεται μόνο για τον έλεγχο της εκπομπής· αντιμετωπίστε το σαν κωδικό. Η <strong>αναδημιουργία</strong> ακυρώνει αμέσως το παλιό και αποσυνδέει όλα τα συνδεδεμένα πρόσθετα.</li>
+      <li><strong>Να επιτρέπεται ο απομακρυσμένος έλεγχος εκπομπής</strong> — ξεχωριστός διακόπτης, ανενεργός εξ ορισμού. Μόνο όσο είναι ενεργός μπορεί πρόγραμμα με το διακριτικό πλήρους πρόσβασης να ξεκινά ή να σταματά την εκπομπή· όλα τα υπόλοιπα είναι μόνο για ανάγνωση, ενώ η εκπομπή ελεύθερου κειμένου σκόπιμα δεν διατίθεται καθόλου.</li>
+    </ul>`,
+  third_api_warn: 'Οποιοσδήποτε στο ίδιο δίκτυο αποκτήσει το διακριτικό σας μπορεί να διαβάσει το ημερολόγιο και τις ρυθμίσεις σας, γι\' αυτό είναι προτιμότερο να <strong>ενεργοποιείτε το API μόνο όταν το χρειάζεστε</strong>. Τα διαπιστευτήρια εξωτερικών υπηρεσιών (Cloudlog, QRZ) δεν εκτίθενται ποτέ. Αν η θύρα χρησιμοποιείται ήδη από άλλο πρόγραμμα, το API δεν θα ξεκινήσει και η οθόνη θα το αναφέρει.',
 
   third_psk_title: 'PSKReporter',
   third_psk_text:  'Το <a href="https://pskreporter.info" target="_blank">PSKReporter</a> είναι παγκόσμια υπηρεσία χαρτογράφησης διάδοσης. Το FT8TW υποβάλλει αναφορές λήψης αυτόματα — δεν χρειάζεται λογαριασμός. Ενεργοποιήστε τη λειτουργία στις Ρυθμίσεις → PSKReporter. Το διακριτικό σας, το τετράγωνό σας και τα δεδομένα των σταθμών που λάβατε υποβάλλονται ανώνυμα μέσω HTTPS.',

@@ -167,6 +167,8 @@ en: {
   log_activation_title: '出勤模式（SOTA / POTA）',
   log_activation_text:  '当您是登山或到公园进行启动的一方时，请在设置 → 出勤活动 (SOTA/POTA) 填入自己的编号，并开启「出勤模式（将编号写入记录）」。之后每笔通联都会自动把您的 SOTA、POTA 编号写进日志，这正是 SOTA 导出格式需要的字段——比事后逐条补上轻松得多。',
 
+  log_activation_multi: '同一个地点常常同时落在<strong>多个 POTA 园区</strong>（n-fer）。按<strong>＋ 新增园区</strong>可以逐一加入，最多六组。此时导出会自动改为<strong>每座公园各一份 ADIF，打包成一个 ZIP</strong>——POTA 官方的惯例就是一座公园一份 log 分开上传，把多个编号串在同一个字段里上传系统不会接受。每一份只会收进真正属于该座公园的记录；只填一座公园时，维持原本的单文件导出。',
+
   log_slideshow_title: '日志幻灯片',
   log_slideshow_text:  '长按日志列表选择<em>播放幻灯片</em>，即可全屏逐条浏览通联记录，画面包含对方的照片与仿 QSL 卡的版面。可设置每张停留的秒数自动播放，也可以手动滚动翻阅。',
 
@@ -225,6 +227,8 @@ en: {
 
   log_activation_title: 'アクティベーションモード（SOTA / POTA）',
   log_activation_text:  '自分が山や公園からアクティベートする側のときは、設定 → アクティベーション（SOTA/POTA）に自局のリファレンスを入力し、アクティベーションモードを有効にします。以後の交信では SOTA・POTA のリファレンスがログに自動的に書き込まれます。SOTA の書き出し形式が必要とする項目なので、あとから 1 件ずつ追記するより格段に楽です。',
+
+  log_activation_multi: '同じ場所が<strong>複数の POTA 公園</strong>に重なっていること（n-fer）はよくあります。<strong>＋ 公園を追加</strong>で 1 つずつ、最大 6 件まで入力できます。その場合エクスポートは<strong>公園ごとに ADIF を 1 つ作り、まとめて ZIP にする</strong>方式へ自動的に切り替わります。POTA の慣習は公園ごとにログを分けてアップロードすることで、複数の参照番号を 1 つの項目に詰め込んだものは受け付けられません。各ファイルにはその公園に本当に属する交信だけが入ります。公園が 1 つだけのときは、これまでどおり単一ファイルで出力されます。',
 
   log_slideshow_title: 'ログのスライドショー',
   log_slideshow_text:  'ログ一覧を長押しして<em>スライドショー</em>を選ぶと、交信記録を全画面で 1 件ずつ表示できます。相手局の写真と QSL カード風のレイアウト付きです。切り替え間隔を指定して自動送りにも、手でスクロールして見ることもできます。',
@@ -285,6 +289,8 @@ en: {
   log_activation_title: 'Режим активации (SOTA / POTA)',
   log_activation_text:  'Если активируете вершину или парк вы сами, укажите свою ссылку в Настройки → Активация (SOTA/POTA) и включите режим активации. После этого ваши ссылки SOTA и POTA автоматически записываются в журнал при каждой связи — именно это требуется формату экспорта SOTA, и это куда проще, чем дописывать их потом в каждую запись.',
 
+  log_activation_multi: 'Одна и та же точка нередко относится сразу к <strong>нескольким паркам POTA</strong> (n-fer). Кнопкой <strong>+ Добавить парк</strong> их можно вводить по одному, до шести. В этом случае экспорт автоматически переключается на <strong>один ADIF на каждый парк, упакованные в ZIP</strong>: по принятой в POTA практике на каждый парк загружается отдельный журнал, а несколько ссылок в одном поле приняты не будут. В каждый файл попадают только те связи, которые действительно относятся к этому парку. Если парк один, экспорт остаётся одним файлом.',
+
   log_slideshow_title: 'Слайд-шоу журнала',
   log_slideshow_text:  'Нажмите и удерживайте список журнала и выберите <em>Слайд-шоу</em>, чтобы просматривать связи по одной в полноэкранном виде — с фотографией оператора и оформлением в стиле QSL-карточки. Слайды сменяются через заданный интервал либо листаются вручную.',
 
@@ -343,6 +349,8 @@ en: {
 
   log_activation_title: 'Tryb aktywacji (SOTA / POTA)',
   log_activation_text:  'Jeśli to ty aktywujesz szczyt lub park, wpisz własne oznaczenie w Ustawienia → Aktywacja (SOTA/POTA) i włącz tryb aktywacji. Od tej chwili twoje oznaczenia SOTA i POTA trafiają automatycznie do wpisów dziennika — właśnie tego wymaga format eksportu SOTA, a jest to znacznie wygodniejsze niż dopisywanie ich później do każdego wpisu.',
+
+  log_activation_multi: 'To samo miejsce często leży jednocześnie w <strong>kilku parkach POTA</strong> (n-fer). Przyciskiem <strong>+ Dodaj park</strong> można je wpisywać pojedynczo, maksymalnie sześć. Eksport przełącza się wtedy na <strong>jeden ADIF na park, spakowane w ZIP</strong> — przyjętą w POTA praktyką jest osobny dziennik dla każdego parku, a kilka oznaczeń w jednym polu nie zostanie przyjętych. Każdy plik zawiera tylko te łączności, które naprawdę należą do danego parku. Przy jednym parku eksport pozostaje pojedynczym plikiem.',
 
   log_slideshow_title: 'Pokaz slajdów dziennika',
   log_slideshow_text:  'Przytrzymaj listę dziennika i wybierz <em>Pokaz slajdów</em>, aby przeglądać łączności pojedynczo na pełnym ekranie — ze zdjęciem operatora i układem przypominającym kartę QSL. Slajdy zmieniają się co zadany czas albo przewijasz je ręcznie.',
@@ -403,6 +411,8 @@ en: {
   log_activation_title: 'Modo activación (SOTA / POTA)',
   log_activation_text:  'Cuando el que activa una cima o un parque eres tú, introduce tu propia referencia en Ajustes → Activación (SOTA/POTA) y activa el modo. A partir de ahí, tus referencias SOTA y POTA se escriben solas en las entradas del registro conforme trabajas estaciones: es justo lo que necesita el formato de exportación SOTA y resulta mucho más cómodo que añadirlas después a cada contacto.',
 
+  log_activation_multi: 'Un mismo punto suele estar a la vez en <strong>varios parques POTA</strong> (un n-fer). Con <strong>+ Añadir parque</strong> se introducen de uno en uno, hasta seis. La exportación pasa entonces a <strong>un ADIF por parque, empaquetados en un ZIP</strong>: la práctica habitual en POTA es un registro por parque, subido por separado, y varias referencias en un mismo campo no se aceptan. Cada archivo contiene solo los contactos que pertenecen realmente a ese parque. Con un solo parque, la exportación sigue siendo un único archivo.',
+
   log_slideshow_title: 'Pase de diapositivas del registro',
   log_slideshow_text:  'Mantén pulsada la lista del registro y elige <em>Pase de diapositivas</em> para recorrer tus contactos a pantalla completa, uno a uno, con la foto del operador y un diseño al estilo de una tarjeta QSL. Las diapositivas avanzan según el intervalo que fijes, o puedes pasarlas a mano.',
 
@@ -461,6 +471,8 @@ en: {
 
   log_activation_title: 'Λειτουργία ενεργοποίησης (SOTA / POTA)',
   log_activation_text:  'Όταν εσείς είστε αυτός που ενεργοποιεί μια κορυφή ή ένα πάρκο, καταχωρίστε τον δικό σας κωδικό στις Ρυθμίσεις → Ενεργοποίηση (SOTA/POTA) και ενεργοποιήστε τη λειτουργία. Από εκεί και πέρα οι κωδικοί SOTA και POTA γράφονται αυτόματα στις εγγραφές του ημερολογίου καθώς κάνετε επαφές — ακριβώς αυτό απαιτεί η μορφή εξαγωγής SOTA και είναι πολύ πιο εύκολο από το να τους προσθέτετε εκ των υστέρων σε κάθε εγγραφή.',
+
+  log_activation_multi: 'Το ίδιο σημείο συχνά ανήκει ταυτόχρονα σε <strong>πολλά πάρκα POTA</strong> (n-fer). Με το <strong>+ Προσθήκη πάρκου</strong> τα εισάγετε ένα-ένα, έως έξι. Τότε η εξαγωγή αλλάζει αυτόματα σε <strong>ένα ADIF ανά πάρκο, συσκευασμένα σε ZIP</strong>: η καθιερωμένη πρακτική στο POTA είναι ένα ημερολόγιο ανά πάρκο, που ανεβαίνει χωριστά, και πολλοί κωδικοί στο ίδιο πεδίο δεν γίνονται δεκτοί. Κάθε αρχείο περιέχει μόνο τις επαφές που ανήκουν πραγματικά σε εκείνο το πάρκο. Με ένα μόνο πάρκο, η εξαγωγή παραμένει ένα αρχείο.',
 
   log_slideshow_title: 'Προβολή διαφανειών ημερολογίου',
   log_slideshow_text:  'Πατήστε παρατεταμένα τη λίστα του ημερολογίου και επιλέξτε <em>Προβολή διαφανειών</em> για να δείτε τις επαφές μία-μία σε πλήρη οθόνη, με τη φωτογραφία του χειριστή και διάταξη σε στιλ κάρτας QSL. Οι διαφάνειες αλλάζουν στο διάστημα που ορίζετε ή τις μετακινείτε χειροκίνητα.',
