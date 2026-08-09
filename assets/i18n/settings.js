@@ -105,7 +105,7 @@ en: {
       <tr><td>Waterfall colour scheme</td><td>Classic or rainbow colour mapping for the spectrum and waterfall</td></tr>
       <tr><td>QSO success: screen flash / ripple / flashlight / QRZ photo</td><td>Four independent ways to announce a completed QSO; see <a href="logging.html">QSO Logging</a></td></tr>
       <tr><td>Show floating window</td><td>Master switch for the floating shortcut menu</td></tr>
-      <tr><td>The individual floating buttons</td><td>Hide bottom menu, frequency, volume, grid tracker, radio tool, WSPR beacon, JS8 chat and quick mode switch — eight buttons, each shown or hidden independently</td></tr>
+      <tr><td>The individual floating buttons</td><td>Hide bottom menu, frequency, volume, grid tracker, radio tool, WSPR, JS8 chat and quick mode switch — eight buttons, each shown or hidden independently</td></tr>
       <tr><td>Language</td><td>Interface language, independent of the system setting</td></tr>
     </table>`,
 
@@ -261,7 +261,7 @@ en: {
       <tr><td>瀑布圖色階</td><td>頻譜／瀑布圖採經典色階或彩虹色階</td></tr>
       <tr><td>通聯成功：畫面閃爍／水波紋／閃光燈閃爍／顯示對方 QRZ 照片</td><td>四種各自獨立的完成提示，詳見<a href="logging.html">「通聯記錄」</a></td></tr>
       <tr><td>顯示浮動視窗</td><td>浮動快捷選單的總開關</td></tr>
-      <tr><td>浮動視窗的各顆按鈕</td><td>隱藏底部選單、頻率調整、音量調整、網格追蹤、電台工具、WSPR 信標、JS8 聊天、快速切換模式，共八顆各自可獨立顯示或隱藏</td></tr>
+      <tr><td>浮動視窗的各顆按鈕</td><td>隱藏底部選單、頻率調整、音量調整、網格追蹤、電台工具、WSPR、JS8 聊天、快速切換模式，共八顆各自可獨立顯示或隱藏</td></tr>
       <tr><td>語言</td><td>介面語言，與系統語言各自獨立</td></tr>
     </table>`,
 
