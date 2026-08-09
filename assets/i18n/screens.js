@@ -70,12 +70,12 @@ en: {
   screens_more_list: `
     <ul>
       <li><strong>JS8</strong> – Chat-style conversation screen for JS8 mode. See the <a href="js8.html">JS8 Chat Mode</a> section.</li>
-      <li><strong>WSPR</strong> – Beacon scheduling screen for WSPR mode. See the <a href="wspr.html">WSPR Beacon</a> section.</li>
+      <li><strong>WSPR</strong> – Transmission scheduling screen for WSPR mode. See the <a href="wspr.html">WSPR</a> section.</li>
       <li><strong>Radio Tool</strong> – Radio microphone, receive monitor and antenna tuning. See the <a href="ssb.html">Radio Tool</a> section.</li>
       <li><strong>Grid Tracker</strong> – Full-screen map view. See the <a href="gridtracker.html">Grid Tracker</a> section.</li>
       <li><strong>Count</strong> – QSO statistics: totals by band, mode, DXCC, ITU/CQ zone, and time period.</li>
       <li><strong>QRZ.com Lookup</strong> – Embedded QRZ.com callsign lookup for the currently selected station.</li>
-      <li><strong>Floating Window</strong> – An optional always-on-top overlay carrying eight shortcut buttons: hide bottom menu, frequency, volume, grid tracker, radio tool, WSPR beacon, JS8 chat and <strong>quick mode switch</strong> (one tap between FT8／FT4／FT2／JS8／WSPR). Each can be shown or hidden separately in Settings. <strong>Long-press</strong> the floating menu to collapse it to a single button, and long-press again to expand it; the collapsed state lasts until the app closes.</li>
+      <li><strong>Floating Window</strong> – An optional always-on-top overlay carrying eight shortcut buttons: hide bottom menu, frequency, volume, grid tracker, radio tool, WSPR, JS8 chat and <strong>quick mode switch</strong> (one tap between FT8／FT4／FT2／JS8／WSPR). Each can be shown or hidden separately in Settings. <strong>Long-press</strong> the floating menu to collapse it to a single button, and long-press again to expand it; the collapsed state lasts until the app closes.</li>
     </ul>`,
 },
 
@@ -147,12 +147,12 @@ en: {
   screens_more_list: `
     <ul>
       <li><strong>JS8</strong> — JS8 模式的聊天式對話畫面，詳見<a href="js8.html">「JS8 聊天模式」</a>章節。</li>
-      <li><strong>WSPR</strong> — WSPR 模式的信標排程畫面，詳見<a href="wspr.html">「WSPR 信標」</a>章節。</li>
+      <li><strong>WSPR</strong> — WSPR 模式的發射排程畫面，詳見<a href="wspr.html">「WSPR」</a>章節。</li>
       <li><strong>電台工具</strong> — 電台麥克風、收訊監聽與天線調諧，詳見<a href="ssb.html">「電台工具」</a>章節。</li>
       <li><strong>網格追蹤（Grid Tracker）</strong> — 全螢幕地圖畫面，詳見<a href="gridtracker.html">「網格追蹤地圖」</a>章節。</li>
       <li><strong>統計（Count）</strong> — 依頻段、模式、DXCC、ITU/CQ 分區及時間區間統計 QSO 數量。</li>
       <li><strong>QRZ.com 查詢</strong> — 內嵌 QRZ.com 呼號查詢，顯示目前選定電台的資料。</li>
-      <li><strong>浮動視窗</strong> — 可選的常駐懸浮功能表，共八顆快捷按鈕：隱藏底部選單、頻率調整、音量調整、網格追蹤、電台工具、WSPR 信標、JS8 聊天，以及<strong>快速切換模式</strong>（一鍵在 FT8／FT4／FT2／JS8／WSPR 之間切換）。每顆都可在設置中個別開關。<strong>長按</strong>浮動選單可把它收合成單一按鈕，需要時再長按展開；收合狀態會維持到 App 結束為止。</li>
+      <li><strong>浮動視窗</strong> — 可選的常駐懸浮功能表，共八顆快捷按鈕：隱藏底部選單、頻率調整、音量調整、網格追蹤、電台工具、WSPR、JS8 聊天，以及<strong>快速切換模式</strong>（一鍵在 FT8／FT4／FT2／JS8／WSPR 之間切換）。每顆都可在設置中個別開關。<strong>長按</strong>浮動選單可把它收合成單一按鈕，需要時再長按展開；收合狀態會維持到 App 結束為止。</li>
     </ul>`,
 },
 
