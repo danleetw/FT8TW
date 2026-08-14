@@ -41,6 +41,7 @@ en: {
       <li>Verify audio output routing — for Bluetooth headsets, confirm the headset is the selected audio output.</li>
       <li>If the app reports a pending <strong>mandatory update</strong>, every transmit path is blocked until you have installed it (FT8/FT4/FT2, WSPR, JS8, push-to-talk and tune). Browsing, the log and the settings are unaffected. See the update section in <a href="install.html">Installation</a>.</li>
       <li>Press <strong>PTT Test</strong> in the <strong>Radio Test Tool</strong> on the Radio Tool page: if PTT keys and releases normally there, the PTT path itself is sound and the problem lies elsewhere in the transmit sequence.</li>
+      <li><strong>Yaesu FTX-1:</strong> if the radio transmits what its microphone picks up instead of the audio sent over the USB cable, set <strong>MENU → RADIO SETTING → MODE DATA → MOD SOURCE</strong> to <strong>USB</strong>. The factory value is AUTO, which uses the microphone whenever transmission is not started by CAT/RTS/DTR. Version 26.0814-2 and later set this for you when the radio connects.</li>
     </ul>`,
 
   ts_timesync_title: 'Time Synchronization Issues',
@@ -101,6 +102,7 @@ en: {
       <li>確認音訊輸出路由——藍牙耳機需確認為選定的音訊輸出裝置。</li>
       <li>若程式提示有一個<strong>必要更新</strong>尚未安裝，在更新完成之前所有發射入口都會被擋下（FT8/FT4/FT2、WSPR、JS8、按住通話與調諧）。瀏覽、通聯記錄與設定則不受影響。詳見<a href="install.html">「安裝」</a>的版本更新說明。</li>
       <li>用電台工具頁的<strong>電台測試工具</strong>按一下 <strong>PTT 測試</strong>：如果這裡能正常拉起與放開 PTT，代表 PTT 這條路本身是通的，問題就在發射流程的其他環節。</li>
+      <li><strong>Yaesu FTX-1：</strong>若電台發出去的是麥克風收到的聲音、而不是 USB 線送來的音訊，請將電台的 <strong>MENU → RADIO SETTING → MODE DATA → MOD SOURCE</strong> 設為 <strong>USB</strong>。原廠值是 AUTO，只要不是由 CAT/RTS/DTR 觸發發射就會改用麥克風。26.0814-2 以後的版本會在連線時自動設定。</li>
     </ul>`,
 
   ts_timesync_title: '時間同步問題',
@@ -161,6 +163,7 @@ en: {
       <li>确认音频输出路由——蓝牙耳机需确认为选定的音频输出设备。</li>
       <li>若程序提示有一个<strong>必要更新</strong>尚未安装，在更新完成之前所有发射入口都会被挡下（FT8/FT4/FT2、WSPR、JS8、按住发射与调谐）。浏览、通联日志与设置则不受影响。详见<a href="install.html">「安装」</a>的版本更新说明。</li>
       <li>用电台工具页的<strong>电台测试工具</strong>按一下 <strong>PTT 测试</strong>：如果这里能正常拉起与放开 PTT，代表 PTT 这条路本身是通的，问题就在发射流程的其他环节。</li>
+      <li><strong>Yaesu FTX-1：</strong>若电台发出去的是麦克风收到的声音、而不是 USB 线送来的音频，请将电台的 <strong>MENU → RADIO SETTING → MODE DATA → MOD SOURCE</strong> 设为 <strong>USB</strong>。原厂值是 AUTO，只要不是由 CAT/RTS/DTR 触发发射就会改用麦克风。26.0814-2 以后的版本会在连接时自动设定。</li>
     </ul>`,
 
   ts_timesync_title: '时间同步问题',
@@ -221,6 +224,7 @@ en: {
       <li>音声の出力先を確認します。Bluetooth ヘッドセットの場合は、それが選択中の音声出力になっているか確かめてください。</li>
       <li><strong>必須更新</strong>が未適用であるとアプリが表示している場合、更新が完了するまで送信系の操作はすべて止まります（FT8/FT4/FT2、WSPR、JS8、プレストーク、チューン）。閲覧・ログ・設定には影響しません。詳しくは<a href="install.html">「インストール」</a>のバージョン更新の説明をご覧ください。</li>
       <li>無線機ツール画面の <strong>Radio Test Tool</strong> で <strong>PTT Test</strong> を押してみてください。ここで PTT を入れて解除できるなら、PTT の経路そのものは通っており、問題は送信の流れの別の部分にあります。</li>
+      <li><strong>Yaesu FTX-1:</strong> USB で送った音声ではなくマイクが拾った音が送信される場合は、無線機の <strong>MENU → RADIO SETTING → MODE DATA → MOD SOURCE</strong> を <strong>USB</strong> に設定してください。工場出荷時は AUTO で、CAT/RTS/DTR 以外で送信を開始するとマイクが使われます。26.0814-2 以降のバージョンでは接続時に自動で設定します。</li>
     </ul>`,
 
   ts_timesync_title: '時刻同期の問題',
@@ -281,6 +285,7 @@ en: {
       <li>Проверьте маршрут вывода звука: при использовании Bluetooth-гарнитуры убедитесь, что выбран именно этот выход.</li>
       <li>Если приложение сообщает о неустановленном <strong>обязательном обновлении</strong>, все пути передачи блокируются до его установки (FT8/FT4/FT2, WSPR, JS8, передача по нажатию и настройка антенны). Просмотр, журнал и настройки при этом доступны. См. описание обновлений в разделе <a href="install.html">«Установка»</a>.</li>
       <li>Нажмите <strong>PTT Test</strong> в разделе <strong>Radio Test Tool</strong> на странице инструментов трансивера: если PTT там включается и выключается нормально, сам путь PTT исправен, и причина лежит в другой части процесса передачи.</li>
+      <li><strong>Yaesu FTX-1:</strong> если трансивер передаёт звук с микрофона вместо аудио, отправленного по USB, установите на трансивере <strong>MENU → RADIO SETTING → MODE DATA → MOD SOURCE</strong> в <strong>USB</strong>. Заводское значение — AUTO: микрофон используется всегда, когда передача начата не по CAT/RTS/DTR. Версия 26.0814-2 и новее устанавливает это автоматически при подключении.</li>
     </ul>`,
 
   ts_timesync_title: 'Проблемы с синхронизацией времени',
@@ -341,6 +346,7 @@ en: {
       <li>Sprawdź trasę wyjścia dźwięku — przy zestawie Bluetooth upewnij się, że to on jest wybranym wyjściem audio.</li>
       <li>Jeśli aplikacja zgłasza niezainstalowaną <strong>aktualizację obowiązkową</strong>, wszystkie drogi nadawania są zablokowane do czasu jej wykonania (FT8/FT4/FT2, WSPR, JS8, nadawanie przyciskiem i strojenie). Przeglądanie, dziennik i ustawienia pozostają dostępne. Zobacz opis aktualizacji w rozdziale <a href="install.html">„Instalacja”</a>.</li>
       <li>Naciśnij <strong>PTT Test</strong> w sekcji <strong>Radio Test Tool</strong> na stronie narzędzi radia: jeśli PTT włącza się i zwalnia prawidłowo, sama ścieżka PTT jest sprawna, a przyczyna leży w innym miejscu procesu nadawania.</li>
+      <li><strong>Yaesu FTX-1:</strong> jeśli radio nadaje dźwięk z mikrofonu zamiast dźwięku wysłanego przez USB, ustaw w radiu <strong>MENU → RADIO SETTING → MODE DATA → MOD SOURCE</strong> na <strong>USB</strong>. Wartość fabryczna to AUTO, przy której mikrofon jest używany zawsze, gdy nadawanie nie zostało uruchomione przez CAT/RTS/DTR. Wersja 26.0814-2 i nowsze ustawiają to automatycznie po połączeniu.</li>
     </ul>`,
 
   ts_timesync_title: 'Problemy z synchronizacją czasu',
@@ -401,6 +407,7 @@ en: {
       <li>Revisa el encaminamiento de la salida de audio; con auriculares Bluetooth, confirma que sean la salida seleccionada.</li>
       <li>Si la aplicación avisa de una <strong>actualización obligatoria</strong> pendiente, todas las vías de transmisión quedan bloqueadas hasta instalarla (FT8/FT4/FT2, WSPR, JS8, pulsar para hablar y sintonía). La consulta, el registro y los ajustes siguen disponibles. Consulta la explicación de las actualizaciones en <a href="install.html">«Instalación»</a>.</li>
       <li>Pulsa <strong>PTT Test</strong> en la sección <strong>Radio Test Tool</strong> de la página de herramientas de radio: si allí el PTT se activa y se suelta con normalidad, la vía del PTT en sí funciona y el problema está en otra parte del proceso de transmisión.</li>
+      <li><strong>Yaesu FTX-1:</strong> si el equipo transmite el sonido del micrófono en lugar del audio enviado por USB, ajusta en el equipo <strong>MENU → RADIO SETTING → MODE DATA → MOD SOURCE</strong> a <strong>USB</strong>. El valor de fábrica es AUTO, que usa el micrófono siempre que la transmisión no se inicie por CAT/RTS/DTR. La versión 26.0814-2 y posteriores lo ajustan automáticamente al conectar.</li>
     </ul>`,
 
   ts_timesync_title: 'Problemas de sincronización horaria',
@@ -461,6 +468,7 @@ en: {
       <li>Ελέγξτε τη διαδρομή εξόδου ήχου — με ακουστικά Bluetooth βεβαιωθείτε ότι αυτά είναι η επιλεγμένη έξοδος.</li>
       <li>Αν η εφαρμογή αναφέρει εκκρεμή <strong>υποχρεωτική ενημέρωση</strong>, όλες οι διαδρομές εκπομπής μπλοκάρονται μέχρι να γίνει (FT8/FT4/FT2, WSPR, JS8, ομιλία με πάτημα και συντονισμός). Η περιήγηση, το ημερολόγιο και οι ρυθμίσεις παραμένουν διαθέσιμα. Δείτε την εξήγηση των ενημερώσεων στην <a href="install.html">«Εγκατάσταση»</a>.</li>
       <li>Πατήστε το <strong>PTT Test</strong> στην ενότητα <strong>Radio Test Tool</strong> της σελίδας εργαλείων πομποδέκτη: αν εκεί το PTT ανοίγει και κλείνει κανονικά, η ίδια η διαδρομή PTT λειτουργεί και το πρόβλημα βρίσκεται σε άλλο σημείο της ροής εκπομπής.</li>
+      <li><strong>Yaesu FTX-1:</strong> αν ο πομποδέκτης εκπέμπει τον ήχο του μικροφώνου αντί για τον ήχο που στέλνεται μέσω USB, ρυθμίστε στον πομποδέκτη <strong>MENU → RADIO SETTING → MODE DATA → MOD SOURCE</strong> σε <strong>USB</strong>. Η εργοστασιακή τιμή είναι AUTO, που χρησιμοποιεί το μικρόφωνο όποτε η εκπομπή δεν ξεκινά από CAT/RTS/DTR. Η έκδοση 26.0814-2 και νεότερες το ρυθμίζουν αυτόματα κατά τη σύνδεση.</li>
     </ul>`,
 
   ts_timesync_title: 'Προβλήματα συγχρονισμού ώρας',
