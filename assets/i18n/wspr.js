@@ -41,6 +41,7 @@ en: {
       <li>Select TX power (dBm) to be encoded in the beacon message.</li>
       <li>The audio frequency can be set by hand, or you can enable <strong>random TX audio frequency</strong> so each transmission lands somewhere different in the WSPR window, reducing the chance of sitting on top of another beacon.</li>
       <li>It automatically switches itself off after a completed transmission and must be switched on again by hand for the next one — this is intentional, to prevent unattended continuous beaconing. The one exception is a compound callsign, which transmits twice in a row so that its two messages form a complete set.</li>
+      <li><strong>WSPR and FT8/FT4/FT2 transmission are mutually exclusive</strong> (26.0815-2 and later). They share one radio and one audio path, so enabling WSPR switches FT8 transmission off first and tells you it has done so; conversely, switching FT8 transmission on while a WSPR run is in progress is blocked, with an explanation of how to clear it. <strong>FT8 is not switched back on when WSPR finishes</strong> — restore it yourself when you want it, since doing so quietly would amount to an unexpected transmission.</li>
       <li>A countdown timer and a preview of the next scheduled message are shown on the WSPR tab.</li>
     </ul>`,
 
@@ -91,6 +92,7 @@ en: {
       <li>可選擇要編碼進信標訊息的發射功率（dBm）。</li>
       <li>發射音頻可以自己指定，也可以開啟<strong>自動亂數發射音頻</strong>，讓每次落在 WSPR 頻窗內的不同位置，減少與其他信標互相蓋台的機會。</li>
       <li>完成一次發射後會自動關閉，須手動重新開啟才會進行下一次發射——這是刻意設計，避免無人看管下持續發射。唯一的例外是複合呼號，它會自動連發兩次，讓兩則訊息湊成完整的一組。</li>
+      <li><strong>WSPR 與 FT8／FT4／FT2 的發射互斥</strong>（26.0815-2 起）：兩者共用同一具電台與同一條音訊路徑，所以啟用 WSPR 時若 FT8 的發射是開著的，程式會先把它關掉並告知；反過來，WSPR 排程進行中要開啟 FT8 發射會被擋下並說明解除方式。<strong>WSPR 結束後不會自動把 FT8 開回來</strong>，需要時請自行重新啟動——悄悄恢復等於製造一次沒人預期的自動發射。</li>
       <li>WSPR 分頁會顯示倒數計時，以及下一則排程訊息的預覽。</li>
     </ul>`,
 

@@ -96,6 +96,28 @@ en: {
     </ol>`,
   op_contest_note: 'The exchange is one transmit slot shorter than an ordinary FT8 QSO, so contest runs go faster. Incoming <code>R + grid</code> messages are always understood whether or not this switch is on — it only changes what <em>you</em> send.',
 
+  op_fd_title: 'Field Day Mode (ARRL Field Day)',
+  op_fd_text:  'ARRL Field Day exchanges a <strong>number of transmitters, a class and a section</strong> (for example <code>10C IN</code>) rather than a signal report. Switch on <strong>Field Day mode (ARRL FD exchange)</strong> under Settings → Basic information and the 2nd and 3rd transmissions carry that exchange in place of the report.',
+  op_fd_steps: `
+    <ol>
+      <li>Settings → Basic information → turn on <strong>Field Day mode (ARRL FD exchange)</strong>.</li>
+      <li>Enter the <strong>number of transmitters</strong> (1–32) and choose your <strong>class</strong> (A–F) and <strong>section</strong>.</li>
+      <li>A live <strong>"Will send: …"</strong> preview appears below the switch — check it once against what you intend to send. If no section is chosen the app says so rather than sending something incomplete.</li>
+      <li>Turning it on sets the <strong>CQ modifier to FD</strong> automatically and restores your previous value when you turn it off.</li>
+    </ol>`,
+  op_fd_seq: `
+    <table>
+      <tr><th>Slot</th><th>Sender</th><th>Message</th><th>Meaning</th></tr>
+      <tr><td>1</td><td>Them</td><td><code>CQ FD W1AW EM37</code></td><td>A Field Day CQ</td></tr>
+      <tr><td>2</td><td><strong>You</strong></td><td><code>W1AW BV6LC 10C IN</code></td><td>"10 transmitters, class C, section IN" — in place of the report</td></tr>
+      <tr><td>3</td><td>Them</td><td><code>BV6LC W1AW R 2B EMA</code></td><td>"Roger; 2 transmitters, class B, section EMA"</td></tr>
+      <tr><td>4</td><td><strong>You</strong></td><td><code>W1AW BV6LC RR73</code></td><td>Complete — logged automatically</td></tr>
+    </table>`,
+  op_fd_note: 'A few limits worth knowing. <strong>Class must be A–F and the transmitter count 1–32</strong>: that is the capacity of the protocol itself, which is why the Winter Field Day classes I, O and H cannot be sent. <strong>Receiving</strong> a Field Day exchange always works regardless of this switch — it only changes what <em>you</em> send. In the log, the other station\'s class and section are stored in the ADIF <code>CLASS</code> and <code>ARRL_SECT</code> fields, both visible and editable in the QSO edit dialog, and the mode filter in the export dialog offers <strong>Field Day only</strong> so you can submit just those contacts (the option appears once you have Field Day contacts to export).',
+
+  op_single_title: 'Calling a Single Station (Swipe Left)',
+  op_single_text:  'Swiping left on a row in the decode list means "call this one station". If transmission was <strong>off</strong> at that moment, the app enters <strong>single-QSO mode</strong>: it stops transmitting once that contact finishes and will not pick up other stations calling you in the meantime. If transmission was <strong>already on</strong> when you swiped, the normal automatic sequence continues unchanged — that is what you asked for by having it running. If the station never replies, the <strong>No response</strong> limit still applies and transmission stops.',
+
   op_watchdog_title: 'TX Watchdog',
   op_watchdog_text:  'The TX watchdog automatically stops transmitting after a configurable time limit (in minutes) to prevent accidentally prolonged transmission. Set the limit in Settings → TX watchdog. Set to 0 to disable.',
 
@@ -205,6 +227,28 @@ en: {
       <li>對方確認後完成通聯並記錄。</li>
     </ol>`,
   op_contest_note: '這樣的交換比一般 FT8 通聯少一個發射時段，競賽時節奏更快。收到的 <code>R + 網格</code> 訊息無論此開關是否開啟都能正確辨識——它只改變<em>您自己</em>送出的內容。',
+
+  op_fd_title: '野外日模式（ARRL Field Day）',
+  op_fd_text:  'ARRL Field Day 交換的不是訊號報告，而是<strong>台數＋等級＋分區</strong>（例如 <code>10C IN</code>）。在設置 → 基本資訊開啟<strong>野外日模式（ARRL FD 交換）</strong>後，第 2、3 則發射會改送這組交換內容取代訊號報告。',
+  op_fd_steps: `
+    <ol>
+      <li>設置 → 基本資訊 → 開啟<strong>野外日模式（ARRL FD 交換）</strong>。</li>
+      <li>填入<strong>發射台數</strong>（1~32）、選擇<strong>等級</strong>（A~F）與<strong>分區</strong>。</li>
+      <li>開關下方會即時顯示<strong>「將送出：…」</strong>，請對照確認一次。分區沒選會直接提示無法送出。</li>
+      <li>開啟時 <strong>CQ 對象自動改為 FD</strong>，關閉時還原成原本的值，不必自己去改。</li>
+    </ol>`,
+  op_fd_seq: `
+    <table>
+      <tr><th>時隙</th><th>誰在送</th><th>送出的內容</th><th>意思</th></tr>
+      <tr><td>1</td><td>對方</td><td><code>CQ FD W1AW EM37</code></td><td>野外日的 CQ</td></tr>
+      <tr><td>2</td><td><strong>您</strong></td><td><code>W1AW BV6LC 10C IN</code></td><td>「我是 10 台、C 級、IN 分區」——取代訊號報告</td></tr>
+      <tr><td>3</td><td>對方</td><td><code>BV6LC W1AW R 2B EMA</code></td><td>「收到（R），我是 2 台、B 級、EMA 分區」</td></tr>
+      <tr><td>4</td><td><strong>您</strong></td><td><code>W1AW BV6LC RR73</code></td><td>完成，自動寫進通聯記錄</td></tr>
+    </table>`,
+  op_fd_note: '幾個限制與注意事項：<strong>等級只能是 A~F、台數只能是 1~32</strong>，這是協定本身的容量上限，所以 Winter Field Day 的 I／O／H 等級送不出去。<strong>收到</strong>對方的野外日交換一律能正確辨識，不受這個開關影響——它只改變<em>您自己</em>送出的內容。通聯記錄方面，對方的等級與分區會存進 ADIF 的 <code>CLASS</code> 與 <code>ARRL_SECT</code> 欄位，兩者都可以在 QSO 編輯畫面裡查看與修改；匯出時在模式篩選裡選<strong>「僅野外日」</strong>就能單獨挑出野外日的紀錄交件（有野外日紀錄時才會出現這個選項）。',
+
+  op_single_title: '只呼叫一個人（左滑）',
+  op_single_text:  '在解碼清單上<strong>左滑</strong>一列的語意是「我只要呼叫這一個人」。若左滑當下發射是<strong>關閉</strong>的，程式會進入<strong>單次通聯模式</strong>：這一場結束就自動停止發射，期間也不會接手其他呼叫您的人。若左滑時發射<strong>已經開著</strong>，則維持原本的自動流程不變——那代表您本來就要它持續運作。對方一直沒回應時，仍依<strong>沒回應</strong>的設定次數收尾並停止發射。',
 
   op_watchdog_title: '發射監管（TX Watchdog）',
   op_watchdog_text:  '發射監管功能在設定的分鐘數後自動停止發射，防止意外長時間佔用頻道。在設置 → 發射監管中設定時間限制，設為 0 表示停用。',

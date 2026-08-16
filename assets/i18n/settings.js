@@ -139,7 +139,8 @@ en: {
     <table>
       <tr><th>Setting</th><th>Description</th></tr>
       <tr><td>Audio device</td><td>Shows which device is actually being recorded (built-in microphone or USB sound card) and at what sample rate. If a USB audio device was found but the recording could not be routed to it, this says so plainly instead of leaving you to guess</td></tr>
-      <tr><td>Re-detect</td><td>Press after plugging in a USB sound card (a Digirig, say) to switch to it without restarting the app. Hot-plugging is normally detected automatically; this is the fallback when it is not</td></tr>
+      <tr><td>Re-detect</td><td>Press after plugging in a USB sound card (a Digirig, say) to switch to it without restarting the app. Hot-plugging is normally detected automatically; this is the fallback when it is not. It does nothing when audio comes from a network radio, and says why</td></tr>
+      <tr><td>Diagnostic detail (six lines)</td><td>The status line says which device we picked; these six ask <strong>the recorder itself what it is actually capturing</strong>: <code>Device type</code> (the device actually routed to — <code>BUILTIN_MIC</code> with a USB card attached means the room is still being recorded), <code>Sample rate</code>, <code>Channel count</code> (both actual values; the system may ignore what we asked for), <code>Record source</code>, <code>SCO state</code> (the real Bluetooth link state) and <code>SCO requested</code> (the flag the app asked for). A mismatch between the two SCO lines means Bluetooth has quietly dropped. Include all six when reporting a problem</td></tr>
       <tr><td>Developer API (for add-ons)</td><td>Opens an HTTP interface on the phone so other programs on the same network can read decodes, log entries and the spectrum. The address is shown once enabled</td></tr>
       <tr><td>Read-only token</td><td>Credential that can only read. Can be copied or regenerated</td></tr>
       <tr><td>Full-access token</td><td>Credential that can control the app — <strong>keep it private</strong>. Regenerating it invalidates the old one immediately</td></tr>
@@ -284,7 +285,8 @@ en: {
     <table>
       <tr><th>設定項目</th><th>說明</th></tr>
       <tr><td>音訊裝置</td><td>顯示目前實際在收哪一個裝置（內建麥克風或 USB 音效卡）及其取樣率。若偵測到 USB 音訊卻無法把錄音導過去，這裡會直接講明「實際仍在收內建麥克風」，不必自己猜</td></tr>
-      <tr><td>重新偵測</td><td>插上 USB 音效卡（例如 Digirig）之後按一下即可改用它，不必重開 App。多數情況下 App 會自動偵測到插拔，這顆是自動偵測不管用時的後路</td></tr>
+      <tr><td>重新偵測</td><td>插上 USB 音效卡（例如 Digirig）之後按一下即可改用它，不必重開 App。多數情況下 App 會自動偵測到插拔，這顆是自動偵測不管用時的後路。音訊來自網路電台時按下去不會有動作，並會直接說明原因</td></tr>
+      <tr><td>診斷細節（六行）</td><td>狀態文字說的是「我們挑到哪個裝置」，這六行問的是<strong>錄音物件本人現在真的在收什麼</strong>：<code>Device type</code>（實際路由到的裝置，接了 USB 卻顯示 <code>BUILTIN_MIC</code> 就是還在收室內聲音）、<code>Sample rate</code>、<code>Channel count</code>（都是實際值，系統可以不照要求辦）、<code>Record source</code>、<code>SCO state</code>（藍牙鏈路的真實狀態）、<code>SCO requested</code>（程式要求過的旗標）。兩個 SCO 欄位不一致，就是藍牙悄悄斷線了。回報問題時把這六行一起附上</td></tr>
       <tr><td>開發者 API（供外掛使用）</td><td>在手機上開一個唯讀／可控制的 HTTP 介面，讓同一個網路上的其他程式讀取解碼結果、通聯記錄與頻譜。開啟後會顯示存取網址</td></tr>
       <tr><td>唯讀 Token</td><td>只能讀資料的憑證，可<strong>複製</strong>或<strong>重新產生</strong></td></tr>
       <tr><td>完整權限 Token</td><td>可以控制 App 的憑證，<strong>請勿外流</strong>。同樣可複製或重新產生；重新產生後舊的立即失效</td></tr>

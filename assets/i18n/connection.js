@@ -24,10 +24,11 @@ en: {
       <li>Set <strong>PTT control</strong>: <em>CAT</em> (preferred), <em>RTS</em>, or <em>DTR</em>.</li>
       <li>For ICOM radios, set the <strong>CI-V address</strong> to match the radio's menu setting.</li>
     </ol>`,
+  conn_usb_note: 'A few things worth knowing up front. The device list appears above the decode screen only when a <strong>serial device has been detected, the connection type is USB, and no radio is connected yet</strong>. Automatic connection at startup happens only when <strong>exactly one serial device</strong> is present; with two or more you still pick one by hand. The list filters out sound cards, keyboards and flash drives, which cannot be serial ports, so a Digirig shows only its serial entry. Tapping Allow in the permission dialog connects straight away, with no second tap needed; unplugging disconnects immediately and plugging back in reconnects after a second or two. Note that <strong>the phone has to switch itself into USB host mode (OTG)</strong>, which is not the same as plugging into a PC — if the same cable works on a computer but the phone shows no list at all, see the USB section of <a href="troubleshoot.html">Troubleshooting</a>.',
 
   conn_audio_title: 'The Audio Path (USB Sound Cards)',
   conn_audio_text:  'CAT control and audio are two separate paths. CAT handles frequency and PTT; audio decides what the decoder actually hears. With a USB sound card such as a Digirig, audio arrives through the sound card rather than the phone microphone — but nothing on the decode screen reveals which one is in use, because <strong>even when it is picking up the room, the display keeps running and the level meter keeps moving</strong>. To see which device is really being recorded, look at "Audio device" under Settings → <strong>Advanced &amp; Developer</strong>.',
-  conn_audio_note: 'The app detects USB sound cards being plugged and unplugged and follows automatically. If that page still shows the built-in microphone after you plug one in, press <strong>Re-detect</strong> — no need to restart the app. The page also distinguishes the case where a USB audio device was found but the system refused the routing request, so recording is still coming from the built-in microphone, and says so outright. Network-connected radios (FlexRadio, ICOM, Xiegu) take their audio over the network rather than the microphone, so plugging a sound card in or out does not affect them.',
+  conn_audio_note: 'The app detects USB sound cards being plugged and unplugged and follows automatically (Android 6 and later). If that page still shows the built-in microphone after you plug one in, press <strong>Re-detect</strong> — no need to restart the app. The page also distinguishes the case where a USB audio device was found but the system refused the routing request, so recording is still coming from the built-in microphone, and says so outright. <strong>Three cases deliberately do not switch:</strong> network-connected radios (FlexRadio, ICOM, Xiegu) take their audio over the network rather than the microphone, so plugging a sound card in or out does not affect them; acoustic link mode always uses the built-in microphone; and while transmitting the switch is deferred, for up to 30 seconds. That page also carries six diagnostic fields showing what the recorder is really capturing — see <a href="troubleshoot.html">Troubleshooting</a> for how to read them.',
 
   conn_bt_title: 'Bluetooth',
   conn_bt_text:  'FT8TW supports two Bluetooth operation modes:',
@@ -83,10 +84,11 @@ en: {
       <li>設定 <strong>PTT 控制</strong>：<em>CAT</em>（建議）、<em>RTS</em> 或 <em>DTR</em>。</li>
       <li>ICOM 電台需將 <strong>CI-V 地址</strong>設為與電台選單相同的值。</li>
     </ol>`,
+  conn_usb_note: '幾件值得先知道的事：裝置清單只在<strong>偵測到序列埠裝置、連接方式為 USB、且尚未連線</strong>時才會出現在解碼畫面上方；只有<strong>剛好一個序列埠裝置</strong>時才會在啟動時自動連線，接了兩條以上仍需手動點一次。清單會濾掉音效卡、鍵盤、隨身碟這類明確不可能是序列埠的裝置，所以 Digirig 只會出現序列埠那一項。授權對話框按下「允許」後會直接連線，不必再點第二次；拔掉線會主動斷開，重新插上約一兩秒自動接回。<strong>手機必須自己切換成 USB 主機（OTG）</strong>，這與插在電腦上不同——同一條線在電腦上正常、手機卻連清單都沒有時，請看<a href="troubleshoot.html">「問題排除」</a>的 USB 一節。',
 
   conn_audio_title: '音訊路徑（USB 音效卡）',
   conn_audio_text:  'CAT 控制與音訊是兩條各自獨立的路。CAT 負責頻率與 PTT，音訊則決定解碼器聽到什麼。使用 Digirig 這類 USB 音效卡時，音訊走的是音效卡而不是手機麥克風——但這件事沒辦法從解碼畫面上看出來，因為<strong>就算收的是室內的環境音，畫面照跑、電平也照動</strong>。要確認目前實際在收哪一個裝置，請到設置 → <strong>進階與開發者</strong>看「音訊裝置」。',
-  conn_audio_note: 'App 會自動偵測 USB 音效卡的插拔並跟著切換。若插上之後那一頁顯示的仍是內建麥克風，按一下<strong>重新偵測</strong>即可，不必重開 App。這一頁也會分辨「找到 USB 音訊，但系統不接受路由要求，實際仍在收內建麥克風」這種情況，並直接寫出來。網路連線的電台（FlexRadio、ICOM、協谷）音訊走網路而不是麥克風，因此插拔 USB 音效卡不會影響它們。',
+  conn_audio_note: 'App 會自動偵測 USB 音效卡的插拔並跟著切換（Android 6 以上）。若插上之後那一頁顯示的仍是內建麥克風，按一下<strong>重新偵測</strong>即可，不必重開 App。這一頁也會分辨「找到 USB 音訊，但系統不接受路由要求，實際仍在收內建麥克風」這種情況，並直接寫出來。<strong>有三種情況刻意不自動切換</strong>：網路連線的電台（FlexRadio、ICOM、協谷）音訊走網路而不是麥克風，插拔音效卡不會影響它們；聲學隱形連結模式固定使用內建麥克風；發射中會延後處理，最多讓路 30 秒。另外，那一頁還有六行診斷細節可以看出「錄音物件現在真的在收什麼」，判讀方式見<a href="troubleshoot.html">「問題排除」</a>。',
 
   conn_bt_title: '藍牙',
   conn_bt_text:  'FT8TW 支援兩種藍牙操作模式：',

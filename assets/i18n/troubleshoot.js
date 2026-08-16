@@ -14,9 +14,7 @@ en: {
       <li>Adjust the radio's AF output level — audio should be clean and not clipping.</li>
       <li>Switch decode mode to <strong>Deep</strong> for marginal signal conditions.</li>
       <li>Ensure you are on the correct FT8 frequency for your band (e.g., 14.074 MHz for 20m).</li>
-      <li>If the app is recording but no audio is arriving at all, the decode screen shows a persistent <strong>⚠ No audio input</strong> notice. Tap it and the app lists the likely causes: microphone permission missing or another app (voice recorder, phone call) holding the microphone; a problem with the audio source itself (cable, radio volume, Bluetooth link); or a second copy of FT8TW installed on the same phone that has taken the microphone.</li>
-      <li><strong>Using a USB sound card (a Digirig, say) but it sounds like the room is being recorded:</strong> look at "Audio device" under Settings → <strong>Advanced &amp; Developer</strong> to see which device is actually being recorded. If it shows the built-in microphone, press <strong>Re-detect</strong> to switch to the USB card without restarting the app. That page also states outright the case where USB audio was found but the system refused the routing request and recording is still coming from the built-in microphone, so there is nothing to guess at.</li>
-      <li><strong>When the radio's own output level cannot be changed:</strong> use <strong>Receive audio gain</strong> under Settings → Radio &amp; Audio. A QMX sends a fixed level over USB, and on ICOM radios the USB level lives in the set menu rather than on the AF knob — in those cases adjusting from the app side is the quickest route.</li>
+      <li>If no audio is arriving at all, or you suspect the app is recording the room rather than the radio (most common with a USB sound card or Bluetooth), see <strong>Audio Device and USB Sound Cards</strong> below for how to confirm the actual recording source.</li>
     </ul>`,
 
   ts_noconn_title: 'Cannot Connect to Radio',
@@ -28,6 +26,41 @@ en: {
       <li><strong>Bluetooth:</strong> Pair the adapter in Android Bluetooth settings before selecting it in FT8TW. Ensure the adapter is powered and within range.</li>
       <li><strong>WiFi (FlexRadio/ICOM):</strong> Confirm both phone and radio are on the same network. Check the IP address and port number.</li>
       <li>If all of the above checks out and there is still no response, use the <strong>Radio Test Tool</strong> at the bottom of the Radio Tool page to work through it item by item: <strong>Read Freq</strong> shows whether the radio answers at all, and <strong>PTT Test</strong> whether it will key. The response window lists the commands sent and whatever came back verbatim, so you can tell straight away whether the command never went out, went out with no reply, or was answered in a different format. See <a href="ssb.html">Radio Tool</a>.</li>
+      <li>If you are on USB and the test tool says <strong>the radio is not connected</strong>, read the next section — that message means something much narrower than it appears to.</li>
+    </ul>`,
+
+  ts_usb_title: 'USB Connection (CAT Control)',
+  ts_usb_intro: 'Keep the two paths apart. <strong>CAT control</strong> runs over the USB serial port and decides whether the app can read and set the frequency and key PTT. <strong>Audio</strong> travels a separate path and decides what the decoder hears. They are independent — one can work while the other does not. When the Radio Test Tool says <strong>the radio is not connected</strong>, it means exactly one thing: <strong>the serial port was never opened</strong>. Baud rate, data bits, parity, radio model and PTT method are <em>not involved at all</em> — none of them come into play until the port is open. So when you see that message, work through the list below rather than going back to the CAT settings.',
+  ts_usb_list: `
+    <ul>
+      <li><strong>No USB device list appears on the main screen.</strong> The list is shown above the decode screen only when a serial device was detected, the connection type is USB, and no radio is connected yet. It lists whatever Android reports and needs <strong>no permission and no recognised chipset</strong> to show an entry — so if the list never appears, the phone is almost certainly <strong>not enumerating the device at all</strong>, rather than the app declining to list it. Quick check: unplug and replug the cable. Android should offer to "Open FT8TW". If nothing happens at all, the phone cannot see the device.</li>
+      <li><strong>The same cable works on a PC but not on the phone.</strong> A PC's USB-A port is always the host and negotiates nothing; a phone has to switch itself into USB host mode (OTG) and supply 5 V. The most common failure is a <strong>USB-C to USB-C</strong> connection: many CH340 and CP2102 boards with a USB-C socket omit the 5.1 kΩ CC pull-down resistors, so the phone decides nothing is attached and never enters host mode. Use <strong>phone → USB-C OTG adapter (with a USB-A socket) → your existing USB-A cable → radio</strong> instead; a USB-A-to-C cable carries that resistor in its C plug, so this path works even with boards that leave it out. A "USB Device Info" style app will also tell you directly whether the phone sees the device.</li>
+      <li><strong>You tapped Allow and nothing happened.</strong> Versions before 26.0815-2 had a bug that discarded the permission result Android sent back: no reaction on screen, not even a toast. The workaround was to <strong>tap the same device in the list a second time</strong>. From 26.0815-2 the app connects as soon as permission is granted, so the second tap is no longer needed.</li>
+      <li><strong>Devices that are not radios show up in the list.</strong> Before 26.0815-2, anything whose chipset was not recognised was listed as a serial port, so sound cards, keyboards and flash drives all appeared. A Digirig, being a serial port plus a sound card, produced two entries and it was easy to pick the wrong one. Newer versions filter out audio, HID, storage and hub devices, which cannot be serial ports.</li>
+      <li><strong>No automatic connection at startup.</strong> Automatic connection requires <strong>exactly one serial device</strong> to be present. The bug above meant Digirig users could never satisfy that condition, so automatic connection silently stopped working; 26.0815-2 restores it. If you genuinely have two or more serial devices attached, you still need to pick one from the list.</li>
+      <li><strong>Still shows connected after unplugging, or will not reconnect when plugged back in.</strong> From 26.0815-2, unplugging the device in use disconnects the radio immediately, and plugging it back in reconnects after a second or two. Older versions only noticed the missing cable when the next read or write failed; until then the screen still said connected, and that stale state then blocked the reconnect, which is why automatic reconnection used to be hit and miss.</li>
+      <li><strong>Decoding successfully is not evidence that USB works.</strong> The phone's microphone will happily pick up the radio's speaker, and that path needs no USB at all. There is a one-move test: <strong>unplug the USB cable completely</strong>. If decodes continue, the audio was always acoustic. This matters most with <strong>(tr)uSDX audio over CAT</strong>: in that mode receive audio arrives <em>as serial data over the CAT link itself</em>, and only after the app has sent the radio a CAT command to start the stream. With the port closed there can be no audio, so "the test tool says not connected" and "the audio is coming over USB" cannot both be true.</li>
+    </ul>`,
+
+  ts_audio_title: 'Audio Device and USB Sound Cards',
+  ts_audio_intro: 'The trap with a USB sound card (a Digirig, say) is that <strong>the decode screen keeps running and the level meter keeps moving even when the app is recording the room</strong>. Nothing on screen gives it away. To see which device is actually in use, open Settings → <strong>Advanced &amp; Developer</strong> and look at "Audio device": one status line, followed by six diagnostic fields. All six ask the recorder itself rather than reporting the values we requested.',
+  ts_audio_fields: `
+    <table>
+      <tr><th>Field</th><th>How to read it</th></tr>
+      <tr><td><code>Device type</code></td><td>The device audio is <strong>actually routed to right now</strong>. A USB sound card that reads <code>BUILTIN_MIC</code> means the room is still being recorded; it should read <code>USB_DEVICE</code>, <code>USB_HEADSET</code> or <code>USB_ACCESSORY</code></td></tr>
+      <tr><td><code>Sample rate</code></td><td>The actual rate. The system is free to ignore what we asked for, and USB sound cards often do (48k requested, 44.1k delivered)</td></tr>
+      <tr><td><code>Channel count</code></td><td>The actual channel count, likewise (mono requested, stereo delivered is common)</td></tr>
+      <tr><td><code>Record source</code></td><td>The capture source constant, e.g. <code>MIC</code>, <code>VOICE_RECOGNITION</code>, <code>UNPROCESSED</code></td></tr>
+      <tr><td><code>SCO state</code></td><td>The <strong>real</strong> Bluetooth SCO state as reported by the system broadcast</td></tr>
+      <tr><td><code>SCO requested</code></td><td>The flag the app <strong>asked</strong> for. <code>requested=true</code> with <code>state=DISCONNECTED</code> is a Bluetooth adapter that has quietly dropped the link — the mismatch is the clue</td></tr>
+    </table>`,
+  ts_audio_list: `
+    <ul>
+      <li>If the status line reads <strong>"USB audio … found, but the system did not accept the routing request; still recording from the built-in microphone"</strong>, the device was found but the routing never moved. Press <strong>Re-detect</strong> first; if that does not help, unplug and replug the sound card and make sure no other app (voice recorder, a call in progress, a second copy of FT8TW) is holding the microphone.</li>
+      <li><strong>Plugging and unplugging switches automatically</strong> on Android 6 and later, with three deliberate exceptions: audio coming from a <strong>network radio</strong> (FlexRadio / ICOM / Xiegu) is left alone, otherwise the source would be snatched back to the microphone; <strong>acoustic link</strong> mode always uses the built-in microphone; and <strong>while transmitting</strong> the switch is deferred, for up to 30 seconds. In the first case, pressing Re-detect tells you plainly that audio is coming from a network radio.</li>
+      <li><strong>It says it is recording but not a single sample arrives.</strong> Before 26.0815-2, if the recorder failed to start the app still showed "recording", the timer still ran and the log even said recording had begun, while no audio would ever arrive. Newer versions report the failure instead, and the watchdog now also covers the one case it previously could not: a recorder that never started in the first place.</li>
+      <li>If the decode screen shows a persistent <strong>⚠ No audio input</strong> notice, tap it — the app lists the likely causes: microphone permission missing or held by another app, a problem with the audio source itself (cable, radio volume, Bluetooth link), or a second copy of FT8TW on the same phone that has taken the microphone.</li>
+      <li><strong>When the radio's own output level cannot be changed</strong>, use <strong>Receive audio gain</strong> under Settings → Radio &amp; Audio. A QMX sends a fixed level over USB, and on ICOM radios the USB level lives in the set menu rather than on the AF knob.</li>
     </ul>`,
 
   ts_notx_title: 'No Transmission',
@@ -41,6 +74,8 @@ en: {
       <li>Verify audio output routing — for Bluetooth headsets, confirm the headset is the selected audio output.</li>
       <li>If the app reports a pending <strong>mandatory update</strong>, every transmit path is blocked until you have installed it (FT8/FT4/FT2, WSPR, JS8, push-to-talk and tune). Browsing, the log and the settings are unaffected. See the update section in <a href="install.html">Installation</a>.</li>
       <li>Press <strong>PTT Test</strong> in the <strong>Radio Test Tool</strong> on the Radio Tool page: if PTT keys and releases normally there, the PTT path itself is sound and the problem lies elsewhere in the transmit sequence.</li>
+      <li><strong>A WSPR run blocks FT8/FT4/FT2 transmission</strong> (26.0815-2 and later). Both share one radio and one audio path, and previously FT8 carried on transmitting slot after slot during the gaps while WSPR waited for an even UTC minute. Enabling WSPR now switches FT8 transmission off first and tells you so; conversely, starting FT8 while a WSPR run is in progress is blocked with an explanation. <strong>FT8 is not switched back on when WSPR finishes</strong> — deliberately, since restoring it quietly would produce an unexpected transmission.</li>
+      <li><strong>Transmission stopped by itself and did not return to calling CQ.</strong> Check whether you selected the station by <strong>swiping left</strong>. A left swipe means "call this one station": if transmission was off at that moment, the app enters single-QSO mode, stops transmitting when that contact finishes, and does not pick up other stations calling you in the meantime. To keep it running, switch transmission on before swiping, or select the station by tapping instead.</li>
       <li><strong>Yaesu FTX-1:</strong> if the radio transmits what its microphone picks up instead of the audio sent over the USB cable, set <strong>MENU → RADIO SETTING → MODE DATA → MOD SOURCE</strong> to <strong>USB</strong>. The factory value is AUTO, which uses the microphone whenever transmission is not started by CAT/RTS/DTR. Version 26.0814-2 and later set this for you when the radio connects.</li>
     </ul>`,
 
@@ -60,7 +95,21 @@ en: {
       <li>After connecting a Bluetooth headset, wait a few seconds for audio routing to switch automatically.</li>
       <li>If recording fails, your headset may not support the <strong>HFP (Hands-Free Profile)</strong> required for microphone input. Use a wired headset instead.</li>
       <li>Some Android devices do not support Bluetooth audio recording. In that case, use the built-in microphone or a wired connection for receiving and Bluetooth only for transmit audio.</li>
+      <li>If you suspect the Bluetooth audio link has quietly dropped, check the <code>SCO state</code> and <code>SCO requested</code> lines under Settings → <strong>Advanced &amp; Developer</strong> → Audio device. <code>requested=true</code> with <code>state=DISCONNECTED</code> is exactly that: the link is gone while the app still believes it is up.</li>
     </ul>`,
+
+  ts_report_title: 'What to Include When Reporting a Problem',
+  ts_report_intro: 'The <strong>ISSUE</strong> button at the bottom of the Settings page opens the issue tracker directly (<a href="https://github.com/danleetw/FT8TW/issues" target="_blank">GitHub Issues</a>). Items 1 and 2 are needed almost every time. Without a version number we cannot tell whether you have hit something already fixed, and more than one build may be released on the same day, so "the latest version" is not specific enough. Add the rest according to the kind of problem.',
+  ts_report_list: `
+    <ol>
+      <li><strong>The version number.</strong> It is on the welcome screen at startup, and in the top right of any help (<strong>?</strong>) dialog. Please copy it in full, <strong>including any suffix</strong> (for example <code>26.0815-2</code>) — two builds from the same day are not the same, and dropping the <code>-2</code> can point us at the wrong one.</li>
+      <li><strong>The error information (Debug screen).</strong> The <strong>Debug</strong> button at the bottom of the Settings page opens the "Last error dump" screen. The upper part is the <strong>runtime diagnostic report</strong>: decoding that has silently stalled, a dead recording thread, a decode lock timeout — faults that never crash the app and give no on-screen warning, and that can be seen nowhere else. The lower part is the last crash log, including the version and run time at the time. <strong>Copy Error Message</strong> puts the whole thing on the clipboard, ready to paste. Even a bare <code>No issues detected.</code> is useful information. The report itself is always in English, whatever the interface language, so that reports from anywhere can be read.</li>
+      <li><strong>Phone model and Android version</strong>, plus the <strong>radio model</strong> and <strong>connection type</strong> (VOX / USB / Bluetooth / network).</li>
+      <li><strong>For connection or CAT problems:</strong> include the contents of the response window in the <strong>Radio Test Tool</strong> on the Radio Tool page — it has a <strong>Copy</strong> button. It lists every command sent and every reply received, which usually shows at a glance whether the command never went out, the radio did not answer, or it answered in a different format.</li>
+      <li><strong>For decoding or missing audio:</strong> include the status line and the six diagnostic fields from Settings → <strong>Advanced &amp; Developer</strong> → Audio device. A screenshot is fine.</li>
+      <li><strong>For display or waterfall problems:</strong> <strong>Copy diagnostics</strong> in the waterfall adjustment panel puts the current levels, gains and other internal values on the clipboard.</li>
+    </ol>`,
+  ts_report_note: 'Nothing on the Debug screen is sent anywhere automatically. It leaves your phone only when you copy it and paste it yourself.',
 },
 
 'zh-TW': {
@@ -75,9 +124,7 @@ en: {
       <li>調整電台 AF 增益，音訊應清晰且不失真。失真會導致解碼失敗。</li>
       <li>弱訊號條件下改用<strong>多次</strong>解碼模式。</li>
       <li>確認所在頻率為該頻段的 FT8 標準頻率（例如 20m 為 14.074 MHz）。</li>
-      <li>若程式確實在錄音、卻完全收不到音訊，解碼畫面會常駐顯示<strong>「⚠ 沒有收到音訊」</strong>。點一下就會列出可能原因：麥克風權限未開啟，或被其他程式（錄音機、通話）佔用；音源本身有問題（連接線、電台音量、藍牙連線）；或這台手機還裝了另一個 FT8TW，麥克風被它拿走了。</li>
-      <li><strong>用了 USB 音效卡（Digirig 等）卻好像收的是室內的聲音：</strong>到設置 → <strong>進階與開發者</strong>看「音訊裝置」目前實際在收哪一個裝置。若顯示的是內建麥克風，按<strong>重新偵測</strong>即可改用 USB 音效卡，不必重開 App。這一頁也會明講「找到 USB 音訊、但系統不接受路由要求，實際仍在收內建麥克風」這種情況，不必自己猜。</li>
-      <li><strong>電台的音量根本調不動時：</strong>用設置 → 電台與聲音的<strong>接收音訊增益</strong>在 App 內調整。QMX 這類純數位機的 USB 音訊電平是固定的，ICOM 的 USB 音量則藏在 SET 選單而不是 AF 旋鈕——這時從 App 這端調最快。</li>
+      <li>完全收不到音訊、或懷疑收的其實是室內的環境音（用了 USB 音效卡、藍牙時最常見），請看下面的<strong>「音訊裝置與 USB 音效卡」</strong>一節，那裡有怎麼確認實際錄音來源的方法。</li>
     </ul>`,
 
   ts_noconn_title: '無法連接電台',
@@ -89,6 +136,41 @@ en: {
       <li><strong>藍牙：</strong>請先在 Android 藍牙設定中完成配對，再於 FT8TW 中選取裝置，並確認藍牙模組已通電且在有效範圍內。</li>
       <li><strong>WiFi（FlexRadio / ICOM）：</strong>確認手機與電台連接至同一網路，並核對 IP 位址及埠號。</li>
       <li>以上都對過還是沒反應時，請用電台工具頁最下方的<strong>電台測試工具</strong>逐項確認：按<strong>讀取頻率</strong>看電台有沒有回應、按 <strong>PTT 測試</strong>看能不能拉起發射。回應視窗會把送出的指令與收到的回覆原樣列出來，可以直接分辨是「指令沒送出去」、「送出去了但電台不回」還是「回了但格式不同」。詳見<a href="ssb.html">「電台工具」</a>。</li>
+      <li>用 USB 連線而測試工具顯示<strong>「電台未連線」</strong>時，請看下一節——那句話的意思比它看起來的窄很多。</li>
+    </ul>`,
+
+  ts_usb_title: 'USB 連線（CAT 控制）',
+  ts_usb_intro: '先把兩條路分開：<strong>CAT 控制</strong>走 USB 序列埠，決定程式能不能讀寫頻率、能不能拉 PTT；<strong>音訊</strong>走另一條路，決定解碼器聽到什麼。兩者互相獨立，可以一條通、另一條不通。電台測試工具顯示<strong>「電台未連線」</strong>時只代表一件事：<strong>序列埠沒有開起來</strong>。這與傳輸速率、資料位、同位元、電台型號、PTT 方式<em>全都無關</em>——那些參數要等序列埠開了才輪得到。所以看到這句話請往下面查，不要回頭調 CAT 參數。',
+  ts_usb_list: `
+    <ul>
+      <li><strong>主畫面沒有出現 USB 裝置清單。</strong>這份清單要「偵測到序列埠裝置、連接方式為 USB、且尚未連線」三者同時成立，才會出現在解碼畫面上方。它列的是 Android 回報的裝置，<strong>不需要授權、也不必先認得晶片</strong>就會列出來——所以看不到清單，通常代表<strong>手機根本沒有列舉到這個裝置</strong>，而不是程式沒把它列進去。判斷方法：把線拔掉重插，Android 應該跳出「要開啟 FT8TW 嗎？」。完全沒有任何反應，就是手機沒看到它。</li>
+      <li><strong>同一條線在電腦上正常、在手機上看不到。</strong>電腦的 USB-A 埠永遠是主機端，什麼都不必協商；手機則必須自己切換成 USB 主機（OTG）並供應 5 V。最常見的失敗是 <strong>USB-C 對 USB-C 直連</strong>：很多 CH340／CP2102 的 USB-C 板子沒有做 CC 腳的 5.1 kΩ 下拉電阻，手機判定「這裡沒有裝置」而不切換到主機模式。改走<strong>手機 → USB-C OTG 轉接頭（帶 USB-A 母座）→ 原本那條 USB-A 的線 → 電台</strong>就會正常，因為 USB-A 對 USB-C 的線在 C 端插頭裡本來就有那顆電阻。也可以裝一個「USB Device Info」之類的工具程式，直接確認手機到底有沒有看到這顆裝置。</li>
+      <li><strong>按了「允許」卻毫無反應。</strong>26.0815-2 以前有一個 bug：Android 送回來的授權結果整包收不到，畫面完全沒有動靜，連提示都不會出現。當時的解法是<strong>在清單上再點一次同一個裝置</strong>，第二次才會連上。26.0815-2 起授權完成即自動連線，不必再點第二次。</li>
+      <li><strong>清單裡出現不是電台的東西。</strong>26.0815-2 以前，只要晶片不在已知清單內就一律被當成序列埠列出來，音效卡、鍵盤、隨身碟都會冒出來。Digirig 這種「序列埠＋音效卡」的介面因此會出現兩項，很容易點到錯的那一項。新版已濾掉音訊、HID、儲存、集線器等明確不可能是序列埠的裝置。</li>
+      <li><strong>開機沒有自動連線。</strong>自動連線的條件是<strong>「剛好只有一個序列埠裝置」</strong>。上一條那個 bug 會讓 Digirig 使用者永遠湊不齊這個條件，自動連線於是靜默失效；升到 26.0815-2 即恢復。若您本來就同時接了兩條以上的序列線，仍需手動在清單點一次。</li>
+      <li><strong>拔線後仍顯示已連線、重插又沒反應。</strong>26.0815-2 起，拔掉正在使用的那一顆會主動斷線，重新插上約一兩秒後自動接回。舊版要等下一次讀寫真的失敗才會發現線不見了，在那之前畫面仍顯示已連線，而重插時又會被這個過期狀態擋掉，於是自動重連時靈時不靈。</li>
+      <li><strong>「解得開」不能當成 USB 有通的證據。</strong>手機麥克風會拾取電台喇叭的聲音，這條路完全不需要 USB。要一刀切開很簡單：<strong>把 USB 線整條拔掉</strong>——若照樣解碼，音訊本來就是走麥克風。選用 <strong>(tr)uSDX audio over CAT</strong> 的人尤其要注意：那個模式的接收音訊是<em>以序列資料的形式從 CAT 這條線送過來的</em>，而且要先由程式送出 CAT 指令才會開始串流。序列埠沒開就不可能有音訊，所以「測試工具說未連線」與「音訊從 USB 來」不可能同時成立。</li>
+    </ul>`,
+
+  ts_audio_title: '音訊裝置與 USB 音效卡',
+  ts_audio_intro: '用了 USB 音效卡（Digirig 這類）之後最容易踩的坑是：<strong>就算收的是室內的環境音，解碼畫面照跑、電平也照動</strong>，畫面上完全沒有徵兆。要確認實際在收哪一個裝置，請到設置 → <strong>進階與開發者</strong>看「音訊裝置」——上面一行是狀態文字，下面六行是診斷細節，問的都是錄音物件本人，而不是我們送進去的參數。',
+  ts_audio_fields: `
+    <table>
+      <tr><th>欄位</th><th>怎麼看</th></tr>
+      <tr><td><code>Device type</code></td><td>錄音<strong>當下實際</strong>路由到的裝置。接了 USB 音效卡卻顯示 <code>BUILTIN_MIC</code>，就代表還在收室內的聲音；正常應該是 <code>USB_DEVICE</code>、<code>USB_HEADSET</code> 或 <code>USB_ACCESSORY</code></td></tr>
+      <tr><td><code>Sample rate</code></td><td>實際取樣率。系統可以不照我們要求的辦，USB 音效卡尤其常見（要求 48k 實際給 44.1k）</td></tr>
+      <tr><td><code>Channel count</code></td><td>實際聲道數，同上（要求單聲道實際給雙聲道也很常見）</td></tr>
+      <tr><td><code>Record source</code></td><td>錄音來源常數，例如 <code>MIC</code>、<code>VOICE_RECOGNITION</code>、<code>UNPROCESSED</code></td></tr>
+      <tr><td><code>SCO state</code></td><td>藍牙 SCO 由系統廣播回報的<strong>真實</strong>狀態</td></tr>
+      <tr><td><code>SCO requested</code></td><td>程式<strong>要求</strong>過的旗標。<code>requested=true</code> 而 <code>state=DISCONNECTED</code>，就是藍牙模組悄悄斷線了——這個落差本身就是線索</td></tr>
+    </table>`,
+  ts_audio_list: `
+    <ul>
+      <li>狀態文字若顯示<strong>「找到 USB 音訊 …，但系統未接受路由要求，實際仍在收內建麥克風」</strong>，代表裝置找到了、路由卻沒切過去。先按<strong>重新偵測</strong>；仍然不行就把音效卡拔插一次，並確認沒有別的程式（錄音機、通話中、另一個 FT8TW）佔著麥克風。</li>
+      <li><strong>插拔會自動切換</strong>（Android 6 以上），但有三種情況刻意不切：音訊來自<strong>網路電台</strong>（FlexRadio／ICOM／協谷）時不切，否則會把音源搶回麥克風；<strong>聲學隱形連結</strong>模式固定使用內建麥克風；<strong>發射中</strong>會延後處理，最多讓路 30 秒。第一種情況按下重新偵測會直接告訴您「音訊來自網路電台」。</li>
+      <li><strong>畫面顯示錄音中，卻一筆音訊都沒有。</strong>26.0815-2 以前，錄音啟動失敗時程式仍會顯示錄音中、計時器照跑、記錄也寫了「開始錄音」，實際上永遠不會有音訊進來。新版起不來就會直接反映出來，看門狗也補上了「從第一秒就沒起來」這個先前唯一救不到的死角。</li>
+      <li>解碼畫面若常駐顯示<strong>「⚠ 沒有收到音訊」</strong>，點一下會列出可能原因：麥克風權限未開或被其他程式佔用、音源本身有問題（連接線、電台音量、藍牙連線），或這台手機還裝了另一個 FT8TW 把麥克風拿走了。</li>
+      <li><strong>電台的音量根本調不動時</strong>，用設置 → 電台與聲音的<strong>接收音訊增益</strong>從 App 這端調最快。QMX 這類純數位機的 USB 音訊電平是固定的，ICOM 的 USB 音量則藏在 SET 選單而不是 AF 旋鈕。</li>
     </ul>`,
 
   ts_notx_title: '無法發射',
@@ -102,6 +184,8 @@ en: {
       <li>確認音訊輸出路由——藍牙耳機需確認為選定的音訊輸出裝置。</li>
       <li>若程式提示有一個<strong>必要更新</strong>尚未安裝，在更新完成之前所有發射入口都會被擋下（FT8/FT4/FT2、WSPR、JS8、按住通話與調諧）。瀏覽、通聯記錄與設定則不受影響。詳見<a href="install.html">「安裝」</a>的版本更新說明。</li>
       <li>用電台工具頁的<strong>電台測試工具</strong>按一下 <strong>PTT 測試</strong>：如果這裡能正常拉起與放開 PTT，代表 PTT 這條路本身是通的，問題就在發射流程的其他環節。</li>
+      <li><strong>WSPR 排程進行中會擋下 FT8／FT4／FT2 的發射</strong>（26.0815-2 起）。兩者共用同一具電台與同一條音訊路徑，先前「發一次 WSPR」的等待空檔裡 FT8 仍會一輪一輪照發。現在開啟 WSPR 會先把 FT8 的發射關掉並告知，反過來 WSPR 進行中要開 FT8 也會被擋下並說明解除方式。<strong>WSPR 結束後不會自動幫您把 FT8 開回來</strong>——這是刻意的，悄悄恢復等於製造一次沒人預期的自動發射。</li>
+      <li><strong>發射自己停了、而且沒有回去呼叫 CQ</strong>：檢查是不是用<strong>左滑</strong>選的對象。左滑的語意是「我只要呼叫這一個人」，若左滑當下發射是關著的，程式會進入單次通聯模式——這一場結束就停止發射，期間也不接手其他呼叫您的人。想要持續運作，請先開啟發射再左滑，或改用點選的方式。</li>
       <li><strong>Yaesu FTX-1：</strong>若電台發出去的是麥克風收到的聲音、而不是 USB 線送來的音訊，請將電台的 <strong>MENU → RADIO SETTING → MODE DATA → MOD SOURCE</strong> 設為 <strong>USB</strong>。原廠值是 AUTO，只要不是由 CAT/RTS/DTR 觸發發射就會改用麥克風。26.0814-2 以後的版本會在連線時自動設定。</li>
     </ul>`,
 
@@ -121,7 +205,21 @@ en: {
       <li>連接藍牙耳機後請稍候數秒，等待音訊路由自動切換。</li>
       <li>若錄音失敗，耳機可能不支援麥克風輸入所需的 <strong>HFP（免持聽筒協議）</strong>，請改用有線耳機。</li>
       <li>部分 Android 裝置不支援藍牙錄音，此時可使用內建麥克風或有線連線接收，藍牙僅用於發射音訊輸出。</li>
+      <li>懷疑藍牙音訊悄悄斷了，就到設置 → <strong>進階與開發者</strong>看「音訊裝置」的 <code>SCO state</code> 與 <code>SCO requested</code> 兩行：<code>requested=true</code> 而 <code>state=DISCONNECTED</code> 正是鏈路已斷、程式卻還以為連著的樣態。</li>
     </ul>`,
+
+  ts_report_title: '回報問題時請附上這些資訊',
+  ts_report_intro: '設置頁最下方的<strong>回報</strong>鍵會直接開啟問題回報頁（<a href="https://github.com/danleetw/FT8TW/issues" target="_blank">GitHub Issues</a>）。下面第 1、2 兩項幾乎一定用得到：沒有版本號，我們無法判斷您遇到的是不是已經修掉的問題；而同一天可能不只發布一個版本，光說「最新版」並不足以辨識。其餘幾項依問題類型附上即可。',
+  ts_report_list: `
+    <ol>
+      <li><strong>版本號。</strong>App 啟動時的歡迎畫面上就有；任何一個說明（<strong>?</strong>）對話框的右上角也會顯示。請完整照抄，<strong>包含後面的尾碼</strong>（例如 <code>26.0815-2</code>）——同一天的兩個版本內容並不相同，少抄一個 <code>-2</code> 就可能對到錯的版本。</li>
+      <li><strong>錯誤訊息（Debug 畫面）。</strong>設置頁最下方的 <strong>Debug</strong> 鍵會開啟「最後一次錯誤訊息」畫面。上半部是<strong>執行期異常診斷</strong>（<code>Runtime diagnostics</code>）——解碼靜默停擺、錄音執行緒死亡、解碼鎖逾時這類<em>不會當機、畫面也不會有任何提示</em>的故障，只有這裡看得到；下半部是最後一次當機的完整記錄，含當時的版本與運行時間。按 <strong>Copy Error Message</strong> 就整份複製到剪貼簿，直接貼過來即可。就算它只顯示 <code>No issues detected.</code>，那也是有用的資訊。報告內容一律是英文，不隨介面語言改變——這樣我們收到哪一國的回報都讀得懂。</li>
+      <li><strong>手機型號與 Android 版本</strong>，以及<strong>電台型號</strong>與<strong>連線方式</strong>（VOX／USB／藍牙／網路）。</li>
+      <li><strong>電台連不上、CAT 沒反應時</strong>：附上電台工具頁<strong>電台測試工具</strong>回應視窗的內容（該視窗有<strong>複製</strong>鍵）。它逐筆列出送出的指令與收到的回覆，通常一眼就能分辨是指令沒送出去、電台不回應，還是回了但格式不同。</li>
+      <li><strong>解不開、收不到音訊時</strong>：附上設置 → <strong>進階與開發者</strong>「音訊裝置」的狀態文字與那六行診斷細節，截圖即可。</li>
+      <li><strong>顯示或瀑布圖相關</strong>：瀑布圖調整面板裡的<strong>複製診斷資訊</strong>會把目前的位準、增益等內部數值複製到剪貼簿。</li>
+    </ol>`,
+  ts_report_note: 'Debug 畫面裡的內容不會自動傳送到任何地方——只有在您按下複製、並自己貼出來時才會離開手機。',
 },
 
 'zh-CN': {
