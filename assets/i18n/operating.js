@@ -141,8 +141,8 @@ en: {
     </table>`,
   op_fd_note: 'A few limits worth knowing. <strong>Class must be A–F and the transmitter count 1–32</strong>: that is the capacity of the protocol itself, which is why the Winter Field Day classes I, O and H cannot be sent. <strong>Receiving</strong> a Field Day exchange always works regardless of this switch — it only changes what <em>you</em> send. In the log, the other station\'s class and section are stored in the ADIF <code>CLASS</code> and <code>ARRL_SECT</code> fields, both visible and editable in the QSO edit dialog, and the mode filter in the export dialog offers <strong>Field Day only</strong> so you can submit just those contacts (the option appears once you have Field Day contacts to export).',
 
-  op_single_title: 'Calling a Single Station (Swipe Left)',
-  op_single_text:  'Swiping left on a row in the decode list means "call this one station". If transmission was <strong>off</strong> at that moment, the app enters <strong>single-QSO mode</strong>: it stops transmitting once that contact finishes and will not pick up other stations calling you in the meantime. If transmission was <strong>already on</strong> when you swiped, the normal automatic sequence continues unchanged — that is what you asked for by having it running. If the station never replies, the <strong>No response</strong> limit still applies and transmission stops.',
+  op_single_title: 'Calling One Station Only',
+  op_single_text:  'Four actions mean "call this one station": swiping left on a row in the <strong>decode list</strong>, swiping left on a row in the <strong>transmit list</strong>, tapping a callsign and choosing <strong>Call</strong> or <strong>Reply</strong>, and <strong>typing a callsign in manually</strong>. All four switch transmission on for you, and what happens after that contact finishes depends on one thing only — whether transmission was already on when you started.<br><br><strong>Transmission was off</strong>: the app enters <strong>single-QSO mode</strong>. It stops transmitting as soon as that contact finishes, and while it is running it will not pick up other stations calling you.<br><br><strong>Transmission was already on</strong>: the normal automatic sequence continues unchanged, including calling CQ afterwards. Having transmission running is how you ask for continuous operation, so it is left running.<br><br>The <strong>Auto answer CQ</strong> setting does not change this. That setting controls whether the app answers other stations calling CQ; it has nothing to do with whether a single call stops afterwards. If the station never replies, the <strong>No response</strong> limit still applies and transmission stops.',
 
   op_watchdog_title: 'TX Watchdog',
   op_watchdog_text:  'The TX watchdog automatically stops transmitting after a configurable time limit (in minutes) to prevent accidentally prolonged transmission. Set the limit in Settings → TX watchdog. Set to 0 to disable.',
@@ -299,8 +299,8 @@ en: {
     </table>`,
   op_fd_note: '幾個限制與注意事項：<strong>等級只能是 A~F、台數只能是 1~32</strong>，這是協定本身的容量上限，所以 Winter Field Day 的 I／O／H 等級送不出去。<strong>收到</strong>對方的野外日交換一律能正確辨識，不受這個開關影響——它只改變<em>您自己</em>送出的內容。通聯記錄方面，對方的等級與分區會存進 ADIF 的 <code>CLASS</code> 與 <code>ARRL_SECT</code> 欄位，兩者都可以在 QSO 編輯畫面裡查看與修改；匯出時在模式篩選裡選<strong>「僅野外日」</strong>就能單獨挑出野外日的紀錄交件（有野外日紀錄時才會出現這個選項）。',
 
-  op_single_title: '只呼叫一個人（左滑）',
-  op_single_text:  '在解碼清單上<strong>左滑</strong>一列的語意是「我只要呼叫這一個人」。若左滑當下發射是<strong>關閉</strong>的，程式會進入<strong>單次通聯模式</strong>：這一場結束就自動停止發射，期間也不會接手其他呼叫您的人。若左滑時發射<strong>已經開著</strong>，則維持原本的自動流程不變——那代表您本來就要它持續運作。對方一直沒回應時，仍依<strong>沒回應</strong>的設定次數收尾並停止發射。',
+  op_single_title: '只呼叫一個人',
+  op_single_text:  '有四個動作的語意是「我只要呼叫這一個人」：在<strong>解碼清單</strong>上左滑一列、在<strong>發射清單</strong>上左滑一列、點呼號後選<strong>呼叫</strong>或<strong>回覆</strong>、以及<strong>手動輸入呼號</strong>。這四個動作都會替您把發射打開，而這一場通聯結束後會怎麼樣，只看一件事——您動作的當下發射原本是不是開著的。<br><br><strong>發射原本是關的</strong>：程式進入<strong>單次通聯模式</strong>，這一場一結束就自動停止發射，期間也不會接手其他呼叫您的人。<br><br><strong>發射原本已經開著</strong>：維持原本的自動流程不變，包含結束後繼續呼叫 CQ。發射開著就是您要求持續運作的方式，所以不會替您關掉。<br><br><strong>自動回應 CQ</strong> 這個設定不影響上面的判斷。那個設定管的是要不要去回應別人發出的 CQ，跟「單次呼叫結束後要不要停」是兩件事。對方一直沒回應時，仍依<strong>沒回應</strong>的設定次數收尾並停止發射。',
 
   op_watchdog_title: '發射監管（TX Watchdog）',
   op_watchdog_text:  '發射監管功能在設定的分鐘數後自動停止發射，防止意外長時間佔用頻道。在設置 → 發射監管中設定時間限制，設為 0 表示停用。',
@@ -441,6 +441,8 @@ en: {
     </ol>`,
   op_contest_note: '这样的交换比一般 FT8 通联少一个发射时隙，竞赛时节奏更快。收到的 <code>R + 网格</code> 消息无论此开关是否开启都能正确识别——它只改变<em>您自己</em>送出的内容。',
 
+  op_single_title: '只呼叫一个人',
+  op_single_text:  '有四个动作的语意是「我只要呼叫这一个人」：在<strong>解码列表</strong>上左滑一列、在<strong>发射列表</strong>上左滑一列、点呼号后选<strong>呼叫</strong>或<strong>回复</strong>，以及<strong>手动输入呼号</strong>。这四个动作都会替您把发射打开，而这一场通联结束后会怎么样，只看一件事——您动作的当下发射原本是不是开着的。<br><br><strong>发射原本是关的</strong>：程序进入<strong>单次通联模式</strong>，这一场一结束就自动停止发射，期间也不会接手其他呼叫您的人。<br><br><strong>发射原本已经开着</strong>：维持原本的自动流程不变，包含结束后继续呼叫 CQ。发射开着就是您要求持续运作的方式，所以不会替您关掉。<br><br><strong>自动回应 CQ</strong> 这个设置不影响上面的判断。那个设置管的是要不要去回应别人发出的 CQ，跟「单次呼叫结束后要不要停」是两件事。对方一直没回应时，仍依<strong>没回应</strong>的设置次数收尾并停止发射。',
   op_watchdog_title: '发射监管（TX Watchdog）',
   op_watchdog_text:  '发射监管功能在设定的分钟数后自动停止发射，防止意外长时间占用频道。在设置 → 发射监管中设定时间限制，设为 0 表示停用。',
 
@@ -577,6 +579,8 @@ en: {
     </ol>`,
   op_contest_note: 'この交換は通常の FT8 交信より送信スロットが 1 つ少なく、コンテストではその分テンポが上がります。受信した <code>R + グリッド</code> はこのスイッチの状態に関係なく常に正しく解釈されます。変わるのは<em>自分が送る内容</em>だけです。',
 
+  op_single_title: '1局だけを呼び出す',
+  op_single_text:  '「この局だけを呼びたい」という意味の操作が4つあります：<strong>デコード一覧</strong>の行を左スワイプ、<strong>送信一覧</strong>の行を左スワイプ、コールサインをタップして<strong>呼出</strong>または<strong>応答</strong>を選ぶ、そして<strong>コールサインを手入力</strong>する。いずれも送信を自動的にオンにします。その交信が終わったあとの動作は、操作した時点で送信がすでにオンだったかどうかだけで決まります。<br><br><strong>送信がオフだった場合</strong>：<strong>単発交信モード</strong>に入り、その交信が終わると送信を停止します。その間、自分を呼ぶ他局には応答しません。<br><br><strong>送信がすでにオンだった場合</strong>：終了後のCQ送信を含め、通常の自動シーケンスがそのまま続きます。送信をオンにしていること自体が連続運用の指示だからです。<br><br><strong>CQ自動応答</strong>の設定はこの判断に影響しません。あの設定は他局のCQに応答するかどうかを決めるもので、単発呼び出しのあとに停止するかどうかとは別です。相手から応答がない場合は、<strong>無応答</strong>の回数設定に従って送信を停止します。',
   op_watchdog_title: '送信ウォッチドッグ',
   op_watchdog_text:  '送信ウォッチドッグは設定した分数で送信を自動停止し、意図しない長時間送信を防ぎます。設定 → 送信ウォッチドッグ で上限を指定します。0 にすると無効です。',
 
@@ -713,6 +717,8 @@ en: {
     </ol>`,
   op_contest_note: 'Такой обмен на один интервал передачи короче обычного QSO в FT8, поэтому в соревновании темп выше. Приходящие сообщения <code>R + локатор</code> распознаются всегда, независимо от этого переключателя: он меняет только то, что передаёте <em>вы</em>.',
 
+  op_single_title: 'Вызов только одной станции',
+  op_single_text:  'Четыре действия означают «вызвать именно эту станцию»: свайп влево по строке в <strong>списке декодирования</strong>, свайп влево по строке в <strong>списке передачи</strong>, нажатие на позывной с выбором <strong>Вызов</strong> или <strong>Ответ</strong>, и <strong>ручной ввод позывного</strong>. Все четыре включают передачу за вас. Что произойдёт после завершения связи, зависит только от одного — была ли передача уже включена в момент действия.<br><br><strong>Передача была выключена</strong>: приложение переходит в <strong>режим одиночной связи</strong> — по завершении QSO передача останавливается, и в это время другие вызывающие вас станции не подхватываются.<br><br><strong>Передача уже была включена</strong>: обычная автоматическая последовательность продолжается без изменений, включая вызов CQ после связи. Включённая передача и есть ваш запрос на непрерывную работу.<br><br>Настройка <strong>Автоответ на CQ</strong> на это не влияет: она определяет, отвечать ли на CQ других станций, а не то, останавливаться ли после одиночного вызова. Если станция не отвечает, действует ограничение <strong>Нет ответа</strong> и передача прекращается.',
   op_watchdog_title: 'Сторожевой таймер передачи',
   op_watchdog_text:  'Сторожевой таймер автоматически прекращает передачу по истечении заданного времени (в минутах), чтобы исключить случайно затянувшуюся передачу. Предел задаётся в Настройки → Сторожевой таймер. Значение 0 отключает его.',
 
@@ -849,6 +855,8 @@ en: {
     </ol>`,
   op_contest_note: 'Taka wymiana jest o jeden okres nadawania krótsza od zwykłej łączności FT8, więc w zawodach tempo rośnie. Odbierane wiadomości <code>R + lokator</code> są rozpoznawane zawsze, niezależnie od tego przełącznika — zmienia on tylko to, co nadajesz <em>ty</em>.',
 
+  op_single_title: 'Wywołanie tylko jednej stacji',
+  op_single_text:  'Cztery czynności oznaczają „chcę wywołać tę jedną stację”: przesunięcie w lewo na wierszu <strong>listy dekodowania</strong>, przesunięcie w lewo na wierszu <strong>listy nadawania</strong>, dotknięcie znaku i wybranie <strong>Wywołaj</strong> lub <strong>Odpowiedz</strong> oraz <strong>ręczne wpisanie znaku</strong>. Każda z nich włącza nadawanie za Ciebie. To, co stanie się po zakończeniu łączności, zależy wyłącznie od jednego — czy nadawanie było już włączone w momencie wykonania czynności.<br><br><strong>Nadawanie było wyłączone</strong>: aplikacja przechodzi w <strong>tryb pojedynczej łączności</strong> — po zakończeniu QSO nadawanie zostaje zatrzymane, a w międzyczasie inne stacje wywołujące Ciebie nie są obsługiwane.<br><br><strong>Nadawanie było już włączone</strong>: normalna sekwencja automatyczna trwa bez zmian, łącznie z wywoływaniem CQ po łączności. Włączone nadawanie jest właśnie prośbą o pracę ciągłą.<br><br>Ustawienie <strong>Automatyczna odpowiedź na CQ</strong> nie ma tu znaczenia: decyduje ono o odpowiadaniu na CQ innych stacji, a nie o zatrzymaniu po pojedynczym wywołaniu. Jeśli stacja nie odpowiada, nadal obowiązuje limit <strong>Brak odpowiedzi</strong> i nadawanie zostaje zatrzymane.',
   op_watchdog_title: 'Nadzorca nadawania',
   op_watchdog_text:  'Nadzorca nadawania automatycznie przerywa nadawanie po ustawionym czasie (w minutach), aby zapobiec przypadkowemu przedłużonemu nadawaniu. Limit ustawisz w Ustawienia → Nadzorca nadawania. Wartość 0 wyłącza tę funkcję.',
 
@@ -985,6 +993,8 @@ en: {
     </ol>`,
   op_contest_note: 'El intercambio es un intervalo de transmisión más corto que un QSO normal de FT8, así que el ritmo del concurso es más rápido. Los mensajes <code>R + localizador</code> que recibas se interpretan siempre, esté o no activado este conmutador: solo cambia lo que envías <em>tú</em>.',
 
+  op_single_title: 'Llamar a una sola estación',
+  op_single_text:  'Cuatro acciones significan «quiero llamar a esta estación»: deslizar a la izquierda una fila de la <strong>lista de decodificación</strong>, deslizar a la izquierda una fila de la <strong>lista de transmisión</strong>, tocar un indicativo y elegir <strong>Llamar</strong> o <strong>Responder</strong>, y <strong>escribir un indicativo a mano</strong>. Las cuatro activan la transmisión por usted. Lo que ocurre al terminar ese contacto depende de una sola cosa: si la transmisión ya estaba activada en ese momento.<br><br><strong>La transmisión estaba desactivada</strong>: la aplicación entra en <strong>modo de contacto único</strong>. Deja de transmitir en cuanto termina ese contacto y, mientras tanto, no atiende a otras estaciones que le llamen.<br><br><strong>La transmisión ya estaba activada</strong>: la secuencia automática normal continúa sin cambios, incluida la llamada de CQ posterior. Tener la transmisión activada es precisamente cómo se pide el funcionamiento continuo.<br><br>El ajuste <strong>Respuesta automática a CQ</strong> no afecta a esto: ese ajuste decide si se responde a los CQ de otras estaciones, no si una llamada única se detiene después. Si la estación no responde, se sigue aplicando el límite <strong>Sin respuesta</strong> y la transmisión se detiene.',
   op_watchdog_title: 'Vigilante de transmisión',
   op_watchdog_text:  'El vigilante de transmisión detiene automáticamente la emisión tras un límite de tiempo configurable (en minutos) para evitar transmisiones prolongadas por descuido. Fija el límite en Ajustes → Vigilante de TX. Ponlo a 0 para desactivarlo.',
 
@@ -1121,6 +1131,8 @@ en: {
     </ol>`,
   op_contest_note: 'Η ανταλλαγή είναι μία χρονοθυρίδα εκπομπής συντομότερη από μια συνηθισμένη επαφή FT8, οπότε ο ρυθμός στον διαγωνισμό ανεβαίνει. Τα εισερχόμενα μηνύματα <code>R + τετράγωνο</code> αναγνωρίζονται πάντα, ανεξάρτητα από αυτόν τον διακόπτη — αλλάζει μόνο αυτό που στέλνετε <em>εσείς</em>.',
 
+  op_single_title: 'Κλήση μόνο ενός σταθμού',
+  op_single_text:  'Τέσσερις ενέργειες σημαίνουν «θέλω να καλέσω αυτόν τον σταθμό»: σύρσιμο προς τα αριστερά σε μια γραμμή της <strong>λίστας αποκωδικοποίησης</strong>, σύρσιμο προς τα αριστερά σε μια γραμμή της <strong>λίστας εκπομπής</strong>, πάτημα ενός διακριτικού και επιλογή <strong>Κλήση</strong> ή <strong>Απάντηση</strong>, και <strong>χειροκίνητη πληκτρολόγηση διακριτικού</strong>. Και οι τέσσερις ενεργοποιούν την εκπομπή για εσάς. Το τι θα γίνει μετά την ολοκλήρωση της επαφής εξαρτάται από ένα μόνο πράγμα: αν η εκπομπή ήταν ήδη ενεργή εκείνη τη στιγμή.<br><br><strong>Η εκπομπή ήταν κλειστή</strong>: η εφαρμογή μπαίνει σε <strong>λειτουργία μονής επαφής</strong>. Σταματά να εκπέμπει μόλις ολοκληρωθεί η επαφή και στο μεταξύ δεν αναλαμβάνει άλλους σταθμούς που σας καλούν.<br><br><strong>Η εκπομπή ήταν ήδη ενεργή</strong>: η κανονική αυτόματη ακολουθία συνεχίζεται αμετάβλητη, μαζί με την κλήση CQ μετά την επαφή. Το να έχετε την εκπομπή ενεργή είναι ακριβώς ο τρόπος να ζητήσετε συνεχή λειτουργία.<br><br>Η ρύθμιση <strong>Αυτόματη απάντηση σε CQ</strong> δεν το επηρεάζει αυτό: αφορά το αν θα απαντάτε σε CQ άλλων σταθμών, όχι το αν μια μεμονωμένη κλήση σταματά μετά. Αν ο σταθμός δεν απαντήσει ποτέ, ισχύει το όριο <strong>Καμία απάντηση</strong> και η εκπομπή σταματά.',
   op_watchdog_title: 'Επιτηρητής εκπομπής',
   op_watchdog_text:  'Ο επιτηρητής εκπομπής σταματά αυτόματα την εκπομπή μετά από ρυθμιζόμενο χρονικό όριο (σε λεπτά), ώστε να αποφεύγεται η κατά λάθος παρατεταμένη εκπομπή. Ορίστε το όριο στις Ρυθμίσεις → Επιτηρητής εκπομπής. Η τιμή 0 το απενεργοποιεί.',
 
