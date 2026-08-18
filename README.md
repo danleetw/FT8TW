@@ -57,6 +57,8 @@ You can download the app from the following page (I divide releases into three t
 
 https://github.com/danleetw/FT8TW/releases
 
+https://github.com/danleetw/FT8TW/releases#release-Beta (Newest Beta)
+
 You can also download the app from the official Google Play Store.  
 Other than GitHub and Google Play, I strongly recommend *not* downloading this app from any other source,  
 as those versions may be modified by attackers.
