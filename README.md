@@ -115,6 +115,7 @@ I am looking for friends who can help write the user manual. I’m really too bu
 [🌈 Acknowledgements]  
 Thanks to the following OMs for helping with testing (if I missed anyone, please kindly remind me).<BR>
 BU2GF(Tim)<BR>
+G1HMO(Tony)<BR>
 N7OMI(Charlie Ketchum)<BR>
 SQ2RBY(Grzegorz Błoński-Kubiak)<BR>
 TA1MHS(Muhsin Doğrular)<BR>
