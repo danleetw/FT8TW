@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FT8TW User Manual</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="radios">
+
+  <div class="layout">
+    <main class="main-content" id="mainContent">
+
+      <section id="radios">
+        <h2 data-i18n="radios_title"></h2>
+        <p data-i18n="radios_intro"></p>
+        <div data-i18n-html="radios_howto"></div>
+
+        <h3 data-i18n="radios_list_title"></h3>
+        <p data-i18n="radios_variants_note"></p>
+
+        <!-- 機型名稱與 App 的電台清單（assets/rigaddress.txt）一字不差，
+             這樣使用者在手冊上找到的字串可以直接拿去下拉選單裡對。
+             型號本身不分語系，所以清單不放進 i18n，只有說明文字才翻譯。 -->
+        <div class="radio-brands">
+      <section class="radio-brand">
+        <h3>ICOM <span class="radio-count">31</span></h3>
+        <ul class="radio-list"><li>IC-703</li><li>IC-705</li><li>IC-706MKIIG</li><li>IC-706MKII</li><li>IC-707(725A)</li><li>IC-718</li><li>IC-725</li><li>IC-746PRO</li><li>IC-756PRO3</li><li>IC-775</li><li>IC-746</li><li>IC-756PRO</li><li>IC-756PRO2</li><li>IC-7000</li><li>IC-7100</li><li>IC-7200</li><li>IC-7300</li><li>IC-7400</li><li>IC-7410</li><li>IC-7600</li><li>IC-7610</li><li>IC-7700</li><li>IC-7800</li><li>IC-7850</li><li>IC-7851</li><li>IC-9100</li><li>IC-9700</li><li>IC-R8600</li><li>IC-910H</li><li>IC-78</li><li>ID-52A</li></ul>
+      </section>
+      <section class="radio-brand">
+        <h3>YAESU <span class="radio-count">17</span></h3>
+        <ul class="radio-list"><li>FT-450(D)</li><li>FT-817</li><li>FT-818</li><li>FT-847</li><li>FT-857</li><li>FT-891(USB)</li><li>FT-891(DATA-USB)</li><li>FT-991(USB)</li><li>FT-991(DATA-USB)</li><li>FT-897(D)</li><li>FT-950</li><li>FT-2000(D)</li><li>FT-710</li><li>FT-DX10</li><li>FT-DX101</li><li>FT-DX Other series</li><li>FTX1</li></ul>
+      </section>
+      <section class="radio-brand">
+        <h3>KENWOOD <span class="radio-count">6</span></h3>
+        <ul class="radio-list"><li>TK-90</li><li>TS-440</li><li>TS-480</li><li>TS-570</li><li>TS-590</li><li>TS-2000</li></ul>
+      </section>
+      <section class="radio-brand">
+        <h3>XIEGU 協谷 <span class="radio-count">8</span></h3>
+        <ul class="radio-list"><li>X6100(U-DIG)</li><li>X6200(U-DIG)</li><li>G90S(U-DIG)</li><li>G90S(USB)</li><li>G106C(U-DIG)</li><li>G106C(USB)</li><li>X5105</li><li>X108</li></ul>
+      </section>
+      <section class="radio-brand">
+        <h3>Elecraft <span class="radio-count">4</span></h3>
+        <ul class="radio-list"><li>K3</li><li>K3S</li><li>KX2</li><li>KX3</li></ul>
+      </section>
+      <section class="radio-brand">
+        <h3>QRP Labs <span class="radio-count">3</span></h3>
+        <ul class="radio-list"><li>QDX</li><li>QMX</li><li>QMX+</li></ul>
+      </section>
+      <section class="radio-brand">
+        <h3>GUOHE 國赫 <span class="radio-count">2</span></h3>
+        <ul class="radio-list"><li>Q900</li><li>PMR-171</li></ul>
+      </section>
+      <section class="radio-brand">
+        <h3>UA3REO <span class="radio-count">2</span></h3>
+        <ul class="radio-list"><li>Wolf SDR(DIGU)</li><li>Wolf SDR(USB)</li></ul>
+      </section>
+      <section class="radio-brand">
+        <h3>WB2CBA <span class="radio-count">2</span></h3>
+        <ul class="radio-list"><li>TDX</li><li>TinyDX</li></ul>
+      </section>
+      <section class="radio-brand">
+        <h3>FlexRadio <span class="radio-count">1</span></h3>
+        <ul class="radio-list"><li>6000 series</li></ul>
+      </section>
+      <section class="radio-brand">
+        <h3>Lab599 <span class="radio-count">1</span></h3>
+        <ul class="radio-list"><li>TX-500MP</li></ul>
+      </section>
+      <section class="radio-brand">
+        <h3>BG2FX <span class="radio-count">1</span></h3>
+        <ul class="radio-list"><li>FX-4CR</li></ul>
+      </section>
+      <section class="radio-brand">
+        <h3>(tr)uSDX <span class="radio-count">2</span></h3>
+        <ul class="radio-list"><li>(tr)uSDX (audio over cat)</li><li>(tr)uSDX (TS-480)</li></ul>
+      </section>
+      <section class="radio-brand">
+        <h3>Other <span class="radio-count">3</span></h3>
+        <ul class="radio-list"><li>mcHF-QRP sdr</li><li>OTHER KN990</li><li>QuantumSDR</li></ul>
+      </section>
+        </div>
+
+        <p data-i18n="radios_missing_note"></p>
+      </section>
+
+      <footer>
+        <p data-i18n="footer_text"></p>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="assets/i18n/common.js"></script>
+  <script src="assets/i18n/radios.js"></script>
+  <script src="assets/layout.js"></script>
+</body>
+</html>
