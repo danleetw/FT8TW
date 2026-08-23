@@ -77,6 +77,7 @@ en: {
       <tr><td>Bit depth</td><td>16-bit integer or 32-bit float audio output</td></tr>
       <tr><td>Sample rate</td><td>12 kHz (default), 24 kHz or 48 kHz</td></tr>
       <tr><td>SWR / ALC alert</td><td>Warn when SWR or ALC exceeds safe limits; when off it reads "Do not alert on SWR/ALC"</td></tr>
+      <tr><td>Transmit level</td><td>How loud the transmit audio is when it leaves the app. There are <strong>two separate outputs, each keeping its own value</strong>: the <strong>network radio</strong> (ICOM / Flex / Xiegu Wi-Fi) and the <strong>sound card</strong> path (phone audio output, USB audio interface, (tr)uSDX audio over CAT). The slider always shows whichever one the current connection type uses, and the line above it says which, so you never adjust a slider that has no effect. Network radios had no level control at all in earlier versions and always transmitted at full scale. Stored per profile, since radios differ in input sensitivity. On ICOM radios watch the ALC reading while transmitting — the ALC zone ends at 120, so bring the level down until the reading sits comfortably inside it, then set your output with the radio's RF POWER control</td></tr>
       <tr><td>Receive audio gain</td><td>Amplify or attenuate the received audio inside the app. Useful when the radio's own output cannot be changed — a QMX sends a fixed level over USB, and on ICOM radios the USB level is in the set menu rather than on the AF knob</td></tr>
     </table>`,
 
@@ -100,6 +101,7 @@ en: {
       <tr><td>Theme</td><td>Device setting, Light or Dark</td></tr>
       <tr><td>Message mode</td><td><strong>Standard</strong> (full detail per row) or <strong>Simple</strong> (one compact line) layout for the decode list</td></tr>
       <tr><td>List font size</td><td>Text size in the decode and log lists</td></tr>
+      <tr><td>Frequency marker line</td><td>The solid line and the two dashed lines drawn on the spectrum when you tap a frequency. <strong>Hide after a while</strong> (default, about ten seconds), <strong>Keep on screen</strong>, or <strong>Keep on screen, in bright yellow</strong>. When set to stay, the line is drawn as soon as you open the spectrum screen, without tapping first</td></tr>
       <tr><td>Keep screen on</td><td>Prevent the screen from turning off during operation</td></tr>
       <tr><td>Mini waterfall on Decode / Call</td><td>Show a compact waterfall strip on either tab; two independent switches</td></tr>
       <tr><td>Waterfall colour scheme</td><td>Classic or rainbow colour mapping for the spectrum and waterfall</td></tr>
@@ -223,6 +225,7 @@ en: {
       <tr><td>位深</td><td>16 位整型或 32 位浮點音訊輸出</td></tr>
       <tr><td>取樣頻率</td><td>12 kHz（預設）、24 kHz 或 48 kHz</td></tr>
       <tr><td>提示SWR/ALC警報</td><td>駐波比或 ALC 超出安全值時顯示警告；關閉時顯示為「不提示SWR/ALC警報」</td></tr>
+      <tr><td>發射電平</td><td>發射音訊離開 App 時的大小。輸出有<strong>兩條，各自記住自己的值</strong>：<strong>網路電台</strong>（ICOM／Flex／協谷 WiFi）與<strong>音效卡</strong>路徑（手機音訊輸出、USB 音效介面、(tr)uSDX 的 audio over CAT）。滑桿永遠顯示目前連接方式實際會用到的那一條，上方那行文字會寫明是哪一條，所以不會調到一個沒有作用的滑桿。網路電台在舊版完全沒有電平可調，一律以滿刻度發射。此項隨設定組儲存，因為每部電台的輸入靈敏度不同。ICOM 電台請在發射時看 ALC 讀數——ALC 區間到 120 為止，把電平降到讀數穩穩落在區間內，再用電台的 RF POWER 決定輸出功率</td></tr>
       <tr><td>接收音訊增益</td><td>在 App 內把收到的音訊放大或縮小。電台本身的輸出電平調不動時特別有用——例如 QMX 這類純數位機的 USB 音訊是固定的，ICOM 的 USB 音量則藏在 SET 選單裡而不是 AF 旋鈕</td></tr>
     </table>`,
 
@@ -257,6 +260,7 @@ en: {
       <tr><td>佈景模式</td><td>裝置設定、淺色或深色</td></tr>
       <tr><td>顯示模式</td><td>解碼清單採<strong>標準</strong>（每列完整資訊）或<strong>簡要</strong>（單行精簡）版面</td></tr>
       <tr><td>列表字型大小</td><td>解碼與日誌清單的文字大小</td></tr>
+      <tr><td>頻率標示線</td><td>點選聲音頻率後，畫在頻譜圖上的那條實線與左右兩條虛線。可選<strong>一段時間後消失</strong>（預設，約十秒）、<strong>一直顯示</strong>，或<strong>一直顯示，並改成顯目黃色</strong>。選擇一直顯示時，進入頻譜畫面就會直接畫出來，不必先點一下</td></tr>
       <tr><td>防止螢幕關閉</td><td>操作中防止螢幕自動熄滅</td></tr>
       <tr><td>解碼／呼叫介面顯示小瀑布圖</td><td>在兩個分頁各顯示一條精簡瀑布圖，兩者為獨立開關</td></tr>
       <tr><td>瀑布圖色階</td><td>頻譜／瀑布圖採經典色階或彩虹色階</td></tr>
@@ -369,6 +373,7 @@ en: {
       <tr><td>位深</td><td>16 位整型或 32 位浮点音频输出</td></tr>
       <tr><td>采样频率</td><td>12 kHz（默认）、24 kHz 或 48 kHz</td></tr>
       <tr><td>提示SWR/ALC警报</td><td>驻波比或 ALC 超出安全值时显示警告；关闭时显示为「不提示SWR/ALC警报」</td></tr>
+      <tr><td>发射电平</td><td>发射音频离开 App 时的大小。输出有<strong>两条，各自记住自己的值</strong>：<strong>网络电台</strong>（ICOM／Flex／协谷 WiFi）与<strong>声卡</strong>路径（手机音频输出、USB 音频接口、(tr)uSDX 的 audio over CAT）。滑块永远显示目前连接方式实际会用到的那一条，上方那行文字会写明是哪一条，所以不会调到一个没有作用的滑块。网络电台在旧版完全没有电平可调，一律以满刻度发射。此项随设置组保存，因为每部电台的输入灵敏度不同。ICOM 电台请在发射时看 ALC 读数——ALC 区间到 120 为止，把电平降到读数稳稳落在区间内，再用电台的 RF POWER 决定输出功率</td></tr>
       <tr><td>接收音频增益</td><td>在 App 内把收到的音频放大或缩小。电台本身的输出电平调不动时特别有用——例如 QMX 这类纯数字机的 USB 音频是固定的，ICOM 的 USB 音量则藏在 SET 菜单里而不是 AF 旋钮</td></tr>
     </table>`,
 
@@ -403,12 +408,13 @@ en: {
       <tr><td>主题模式</td><td>设备设置、浅色或深色</td></tr>
       <tr><td>消息模式</td><td>解码列表采<strong>标准</strong>（每行完整信息）或<strong>精简</strong>（单行精简）版面</td></tr>
       <tr><td>列表字体大小</td><td>解码与日志列表的文字大小</td></tr>
+      <tr><td>频率标示线</td><td>点选声音频率后，画在频谱图上的那条实线与左右两条虚线。可选<strong>一段时间后消失</strong>（默认，约十秒）、<strong>一直显示</strong>，或<strong>一直显示，并改为醒目黄色</strong>。选择一直显示时，进入频谱画面就会直接画出来，不必先点一下</td></tr>
       <tr><td>防止屏幕关闭</td><td>操作中防止屏幕自动熄灭</td></tr>
       <tr><td>解码／呼叫界面显示小瀑布图</td><td>在两个分页各显示一条精简瀑布图，两者为独立开关</td></tr>
       <tr><td>瀑布图色阶</td><td>频谱／瀑布图采经典色阶或彩虹色阶</td></tr>
       <tr><td>通联成功：画面闪烁／水波纹／闪光灯闪烁／显示对方 QRZ 照片</td><td>四种各自独立的完成提示，详见<a href="logging.html">「通联日志」</a></td></tr>
       <tr><td>显示悬浮窗口</td><td>悬浮快捷菜单的总开关</td></tr>
-      <tr><td>悬浮窗口的各个按钮</td><td>隐藏底部菜单、频率调整、音量调整、网格追踪、电台工具、WSPR 信标、JS8 聊天、快速切换模式，共八个各自可独立显示或隐藏</td></tr>
+      <tr><td>悬浮窗口的各个按钮</td><td>隐藏底部菜单、频率调整、音量调整、网格追踪、电台工具、WSPR、JS8 聊天、快速切换模式，共八个各自可独立显示或隐藏</td></tr>
       <tr><td>语言</td><td>界面语言，与系统语言各自独立</td></tr>
     </table>`,
 
@@ -431,7 +437,8 @@ en: {
     <table>
       <tr><th>设置项</th><th>说明</th></tr>
       <tr><td>音频设备</td><td>显示目前实际在收哪一个设备（内置麦克风或 USB 声卡）及其采样率。若检测到 USB 音频却无法把录音导过去，这里会直接讲明「实际仍在收内置麦克风」，不必自己猜</td></tr>
-      <tr><td>重新检测</td><td>插上 USB 声卡（例如 Digirig）之后按一下即可改用它，不必重开 App。多数情况下 App 会自动检测到插拔，这个按钮是自动检测不管用时的后路</td></tr>
+      <tr><td>重新检测</td><td>插上 USB 声卡（例如 Digirig）之后按一下即可改用它，不必重开 App。多数情况下 App 会自动检测到插拔，这个按钮是自动检测不管用时的后路。音频来自网络电台时按下去不会有动作，并会直接说明原因</td></tr>
+      <tr><td>诊断细节（六行）</td><td>状态文字说的是「我们挑到哪个设备」，这六行问的是<strong>录音对象本人现在真的在收什么</strong>：<code>Device type</code>（实际路由到的设备，接了 USB 却显示 <code>BUILTIN_MIC</code> 就是还在收室内声音）、<code>Sample rate</code>、<code>Channel count</code>（都是实际值，系统可以不照要求办）、<code>Record source</code>、<code>SCO state</code>（蓝牙链路的真实状态）、<code>SCO requested</code>（程序要求过的标志）。两个 SCO 字段不一致，就是蓝牙悄悄断线了。回报问题时把这六行一起附上</td></tr>
       <tr><td>开发者 API（供插件使用）</td><td>在手机上开一个只读／可控制的 HTTP 接口，让同一个网络上的其他程序读取解码结果、通联记录与频谱。开启后会显示访问网址</td></tr>
       <tr><td>只读 Token</td><td>只能读数据的凭证，可<strong>复制</strong>或<strong>重新生成</strong></td></tr>
       <tr><td>完整权限 Token</td><td>可以控制 App 的凭证，<strong>请勿外流</strong>。同样可复制或重新生成；重新生成后旧的立即失效</td></tr>
@@ -514,6 +521,7 @@ en: {
       <tr><td>ビット深度</td><td>16 ビット整数または 32 ビット浮動小数の音声出力</td></tr>
       <tr><td>サンプルレート</td><td>12 kHz（既定）、24 kHz、48 kHz</td></tr>
       <tr><td>SWR/ALC警報</td><td>SWR または ALC が安全な範囲を超えたときに警告します。オフのときは「(X) SWR/ALC警報なし」と表示されます</td></tr>
+      <tr><td>送信レベル</td><td>アプリから出ていく送信音声の大きさです。出力は<strong>2 系統あり、それぞれ別の値を保持します</strong>。<strong>ネットワーク無線機</strong>（ICOM／Flex／Xiegu の WiFi）と<strong>サウンドカード</strong>系統（スマートフォンの音声出力、USB オーディオインターフェース、(tr)uSDX の audio over CAT）です。スライダーは常に現在の接続方式が実際に使う側を表示し、その上の行にどちらかが書かれているので、効かないスライダーを動かすことはありません。ネットワーク無線機は旧版ではレベル調整そのものがなく、常にフルスケールで送信していました。無線機ごとに入力感度が違うため、この設定は設定組ごとに保存されます。ICOM 機では送信中の ALC を見てください。ALC ゾーンは 120 までなので、読みがゾーン内に十分収まるまでレベルを下げ、出力は無線機の RF POWER で決めます</td></tr>
       <tr><td>受信音声ゲイン</td><td>受信した音声をアプリ内で大きく／小さくします。無線機側の出力レベルを変えられないときに便利です。たとえば QMX のようなデジタル機の USB 音声は固定で、ICOM の USB レベルは AF つまみではなくセットメニューの中にあります</td></tr>
     </table>`,
 
@@ -548,12 +556,13 @@ en: {
       <tr><td>テーマ</td><td>端末の設定、ライト、ダーク</td></tr>
       <tr><td>表示</td><td>デコード一覧を<strong>標準表示</strong>（1 行に全情報）または<strong>簡易表示</strong>（1 行にまとめる）で表示します</td></tr>
       <tr><td>リストの文字サイズ</td><td>デコードとログの一覧の文字の大きさ</td></tr>
+      <tr><td>周波数マーカー</td><td>周波数をタップしたときにスペクトラムに描かれる実線と左右の破線です。<strong>しばらくすると消える</strong>（既定、約10秒）、<strong>表示したままにする</strong>、<strong>表示したまま、目立つ黄色にする</strong> から選べます。表示したままにすると、タップしなくてもスペクトラム画面を開いた時点で線が描かれます</td></tr>
       <tr><td>画面を常時オン</td><td>運用中に画面が自動で消えないようにします</td></tr>
       <tr><td>デコード／コール画面にミニウォーターフォール表示</td><td>2 つのタブにそれぞれ簡易ウォーターフォールを表示します。互いに独立したスイッチです</td></tr>
       <tr><td>ウォーターフォール配色</td><td>スペクトラム／ウォーターフォールをクラシックまたはレインボーの配色で表示します</td></tr>
       <tr><td>交信成功：画面フラッシュ／波紋エフェクト／ライト点滅／QRZ写真を表示</td><td>交信完了を知らせる 4 種類の独立した方法。詳しくは<a href="logging.html">「交信ログ」</a></td></tr>
       <tr><td>フローティングウィンドウを表示</td><td>フローティングのショートカットメニュー全体のスイッチ</td></tr>
-      <tr><td>フローティングウィンドウの各ボタン</td><td>下部メニューを非表示、周波数調整、音量調整、グリッドトラッカー、無線機ツール、WSPR ビーコン、JS8チャット、クイックモード切替の 8 つを、それぞれ個別に表示／非表示できます</td></tr>
+      <tr><td>フローティングウィンドウの各ボタン</td><td>下部メニューを非表示、周波数調整、音量調整、グリッドトラッカー、無線機ツール、WSPR、JS8チャット、クイックモード切替の 8 つを、それぞれ個別に表示／非表示できます</td></tr>
       <tr><td>言語</td><td>アプリの表示言語。システムの言語とは別に設定できます</td></tr>
     </table>`,
 
@@ -576,7 +585,8 @@ en: {
     <table>
       <tr><th>設定項目</th><th>説明</th></tr>
       <tr><td>オーディオデバイス</td><td>実際にどのデバイス（内蔵マイクか USB サウンドカード）から録音しているか、そのサンプルレートとともに表示します。USB オーディオを見つけたのに録音をそちらへ回せなかった場合は、「実際には内蔵マイクから録音している」とはっきり表示されるので、推測する必要はありません</td></tr>
-      <tr><td>再検出</td><td>USB サウンドカード（Digirig など）を接続したあとにタップすれば、アプリを再起動せずに切り替わります。抜き差しは通常自動で検出されるので、これは自動検出がうまくいかないときの手段です</td></tr>
+      <tr><td>再検出</td><td>USB サウンドカード（Digirig など）を接続したあとにタップすれば、アプリを再起動せずに切り替わります。抜き差しは通常自動で検出されるので、これは自動検出がうまくいかないときの手段です。音声がネットワーク無線機から来ている場合は押しても何も起こらず、その理由がそのまま表示されます</td></tr>
+      <tr><td>診断の詳細（6 行）</td><td>ステータス文が示すのは「アプリがどのデバイスを選んだか」ですが、この 6 行が問うのは<strong>録音オブジェクト自身が今、実際に何を拾っているか</strong>です：<code>Device type</code>（実際にルーティングされたデバイス。USB を挿しているのに <code>BUILTIN_MIC</code> と出ていれば、まだ部屋の音を録っています）、<code>Sample rate</code>、<code>Channel count</code>（いずれも実測値。システムは要求どおりにしないことがあります）、<code>Record source</code>、<code>SCO state</code>（Bluetooth リンクの実際の状態）、<code>SCO requested</code>（アプリが要求したフラグ）。2 つの SCO 欄が食い違っていれば、Bluetooth が黙って切れています。不具合を報告するときは、この 6 行も一緒に添えてください</td></tr>
       <tr><td>開発者 API（アドオン用）</td><td>端末上に読み取り／制御用の HTTP インターフェースを開き、同じネットワーク上の他のプログラムからデコード結果・交信ログ・スペクトラムを読めるようにします。オンにするとアクセス用のアドレスが表示されます</td></tr>
       <tr><td>読み取り専用トークン</td><td>読み取りだけができる資格情報。<strong>コピー</strong>と<strong>再生成</strong>ができます</td></tr>
       <tr><td>フルアクセストークン</td><td>アプリを操作できる資格情報です。<strong>他人に渡さないでください。</strong>同様にコピー・再生成でき、再生成すると古いものは直ちに無効になります</td></tr>
@@ -659,6 +669,7 @@ en: {
       <tr><td>Разрядность</td><td>16-битный целочисленный или 32-битный вещественный вывод звука</td></tr>
       <tr><td>Частота дискретизации</td><td>12 кГц (по умолчанию), 24 кГц или 48 кГц</td></tr>
       <tr><td>Оповещение КСВ/ALC</td><td>Предупреждать, когда КСВ или ALC выходят за безопасные пределы; в выключенном состоянии подпись «(X) Без оповещения КСВ/ALC»</td></tr>
+      <tr><td>Уровень передачи</td><td>Громкость передаваемого звука на выходе из приложения. Выходов <strong>два, и каждый хранит своё значение</strong>: <strong>сетевой трансивер</strong> (ICOM / Flex / Xiegu по WiFi) и тракт <strong>звуковой карты</strong> (аудиовыход телефона, USB-аудиоинтерфейс, audio over CAT у (tr)uSDX). Ползунок всегда показывает тот, который используется текущим типом подключения, а строка над ним говорит какой — так что вы никогда не крутите ползунок, ни на что не влияющий. У сетевых трансиверов в прежних версиях регулировки не было вовсе, передача всегда шла на полной шкале. Значение хранится в профиле, поскольку у трансиверов разная входная чувствительность. На аппаратах ICOM следите за показанием ALC при передаче: зона ALC заканчивается на 120, поэтому снижайте уровень, пока показание не окажется уверенно внутри зоны, а выходную мощность задавайте регулятором RF POWER</td></tr>
       <tr><td>Усиление принимаемого звука</td><td>Усилить или ослабить принятый звук внутри приложения. Полезно, когда уровень выхода самого трансивера изменить нельзя: у QMX уровень по USB фиксирован, а у ICOM он находится в меню SET, а не на ручке AF</td></tr>
     </table>`,
 
@@ -693,12 +704,13 @@ en: {
       <tr><td>Тема</td><td>Как на устройстве, светлая или тёмная</td></tr>
       <tr><td>Режим сообщений</td><td>Список декодирования в виде <strong>Стандартный</strong> (полная информация в строке) или <strong>Простой</strong> (одна компактная строка)</td></tr>
       <tr><td>Размер шрифта списка</td><td>Размер текста в списках декодирования и журнала</td></tr>
+      <tr><td>Маркер частоты</td><td>Сплошная линия и две пунктирные линии, которые рисуются на спектре при нажатии на частоту. Варианты: <strong>исчезает через некоторое время</strong> (по умолчанию, около десяти секунд), <strong>всегда на экране</strong> или <strong>всегда на экране, ярко-жёлтым</strong>. В режиме постоянного показа линия появляется сразу при открытии экрана спектра, без нажатия</td></tr>
       <tr><td>Не гасить экран</td><td>Не давать экрану гаснуть во время работы</td></tr>
       <tr><td>Мини-водопад на экранах Декод. / Вызов</td><td>Показывать компактную полосу водопада на обеих вкладках; два независимых переключателя</td></tr>
       <tr><td>Цветовая схема водопада</td><td>Классическая или радужная раскраска спектра и водопада</td></tr>
       <tr><td>Успешное QSO: вспышка экрана / волны / фонарик / фото QRZ</td><td>Четыре независимых способа сообщить о завершённом QSO; см. <a href="logging.html">«Аппаратный журнал»</a></td></tr>
       <tr><td>Показать плавающее окно</td><td>Общий выключатель плавающего меню быстрого доступа</td></tr>
-      <tr><td>Отдельные кнопки плавающего окна</td><td>Скрыть нижнее меню, частота, громкость, карта локаторов, инструменты трансивера, маяк WSPR, чат JS8 и быстрая смена режима — восемь кнопок, каждая показывается или скрывается независимо</td></tr>
+      <tr><td>Отдельные кнопки плавающего окна</td><td>Скрыть нижнее меню, частота, громкость, карта локаторов, инструменты трансивера, WSPR, чат JS8 и быстрая смена режима — восемь кнопок, каждая показывается или скрывается независимо</td></tr>
       <tr><td>Язык</td><td>Язык интерфейса, независимо от языка системы</td></tr>
     </table>`,
 
@@ -721,7 +733,8 @@ en: {
     <table>
       <tr><th>Настройка</th><th>Описание</th></tr>
       <tr><td>Аудиоустройство</td><td>Показывает, с какого устройства на самом деле идёт запись (встроенный микрофон или звуковая карта USB) и с какой частотой дискретизации. Если устройство USB найдено, но переключить на него запись не удалось, здесь прямо написано, что запись по-прежнему идёт со встроенного микрофона</td></tr>
-      <tr><td>Определить заново</td><td>Нажмите после подключения звуковой карты USB (например, Digirig), чтобы перейти на неё без перезапуска приложения. Обычно подключение определяется автоматически; эта кнопка — запасной вариант</td></tr>
+      <tr><td>Определить заново</td><td>Нажмите после подключения звуковой карты USB (например, Digirig), чтобы перейти на неё без перезапуска приложения. Обычно подключение определяется автоматически; эта кнопка — запасной вариант. Если звук приходит от сетевого трансивера, нажатие ничего не даёт, и приложение прямо объясняет почему</td></tr>
+      <tr><td>Подробности диагностики (шесть строк)</td><td>Строка состояния говорит, какое устройство выбрало приложение; эти шесть строк спрашивают <strong>у самого рекордера, что он записывает на самом деле</strong>: <code>Device type</code> (устройство, на которое реально направлена запись; <code>BUILTIN_MIC</code> при подключённой карте USB означает, что пишется комната), <code>Sample rate</code>, <code>Channel count</code> (оба — фактические значения, система вправе не выполнить запрос), <code>Record source</code>, <code>SCO state</code> (реальное состояние Bluetooth-канала), <code>SCO requested</code> (флаг, который выставило приложение). Расхождение двух полей SCO означает, что Bluetooth тихо отвалился. Сообщая о проблеме, приложите эти шесть строк</td></tr>
       <tr><td>API для разработчиков</td><td>Открывает на телефоне HTTP-интерфейс, чтобы другие программы в той же сети могли читать декодированные сообщения, журнал и спектр. После включения показывается адрес доступа</td></tr>
       <tr><td>Токен только для чтения</td><td>Учётные данные только для чтения; можно <strong>копировать</strong> и <strong>создать заново</strong></td></tr>
       <tr><td>Токен полного доступа</td><td>Учётные данные, позволяющие управлять приложением — <strong>не передавайте его</strong>. После повторного создания старый перестаёт работать немедленно</td></tr>
@@ -804,6 +817,7 @@ en: {
       <tr><td>Głębia bitowa</td><td>Wyjście dźwięku 16-bitowe całkowite lub 32-bitowe zmiennoprzecinkowe</td></tr>
       <tr><td>Częst. próbkowania</td><td>12 kHz (domyślnie), 24 kHz lub 48 kHz</td></tr>
       <tr><td>Alarm SWR/ALC</td><td>Ostrzegaj, gdy SWR lub ALC przekroczy bezpieczne wartości; wyłączony pokazuje „(X) Bez alarmu SWR/ALC"</td></tr>
+      <tr><td>Poziom nadawania</td><td>Głośność dźwięku nadawania w chwili, gdy opuszcza aplikację. Wyjścia są <strong>dwa i każde pamięta własną wartość</strong>: <strong>radio sieciowe</strong> (ICOM / Flex / Xiegu po WiFi) oraz ścieżka <strong>karty dźwiękowej</strong> (wyjście audio telefonu, interfejs USB audio, audio over CAT w (tr)uSDX). Suwak zawsze pokazuje to wyjście, którego używa bieżący typ połączenia, a wiersz nad nim mówi które — nigdy więc nie regulujesz suwaka bez efektu. Radia sieciowe we wcześniejszych wersjach nie miały żadnej regulacji i nadawały zawsze na pełnej skali. Wartość zapisywana jest w profilu, bo radia różnią się czułością wejścia. W radiach ICOM obserwuj wskazanie ALC podczas nadawania: strefa ALC kończy się na 120, więc zmniejszaj poziom, aż wskazanie osiądzie pewnie w strefie, a moc wyjściową ustaw pokrętłem RF POWER</td></tr>
       <tr><td>Wzmocnienie dźwięku odbioru</td><td>Wzmocnij lub osłab odbierany dźwięk wewnątrz aplikacji. Przydatne, gdy poziomu wyjścia samego radia nie da się zmienić — QMX podaje przez USB stały poziom, a w radiach ICOM poziom USB jest w menu SET, a nie na gałce AF</td></tr>
     </table>`,
 
@@ -838,12 +852,13 @@ en: {
       <tr><td>Motyw</td><td>Jak w urządzeniu, jasny lub ciemny</td></tr>
       <tr><td>Tryb wiadomości</td><td>Lista dekodowania w układzie <strong>Standardowy</strong> (pełne informacje w wierszu) lub <strong>Prosty</strong> (jeden zwarty wiersz)</td></tr>
       <tr><td>Rozmiar czcionki listy</td><td>Wielkość tekstu na listach dekodowania i dziennika</td></tr>
+      <tr><td>Znacznik częstotliwości</td><td>Linia ciągła i dwie linie przerywane rysowane na widmie po dotknięciu częstotliwości. Do wyboru: <strong>znika po chwili</strong> (domyślnie, około dziesięciu sekund), <strong>pozostaje na ekranie</strong> lub <strong>pozostaje na ekranie, w jaskrawej żółci</strong>. Przy stałym wyświetlaniu linia pojawia się od razu po otwarciu ekranu widma, bez dotykania</td></tr>
       <tr><td>Nie wygaszaj ekranu</td><td>Zapobiega wygaszaniu ekranu podczas pracy</td></tr>
       <tr><td>Mini wodospad na ekranie Dekod. / Wywołanie</td><td>Pokazuje zwarty pasek wodospadu na obu kartach; dwa niezależne przełączniki</td></tr>
       <tr><td>Schemat kolorów wodospadu</td><td>Klasyczne lub tęczowe odwzorowanie kolorów widma i wodospadu</td></tr>
       <tr><td>Udane QSO: błysk ekranu / fale / latarka / zdjęcie QRZ</td><td>Cztery niezależne sposoby zasygnalizowania zakończonego QSO; zob. <a href="logging.html">„Dziennik łączności"</a></td></tr>
       <tr><td>Pokaż pływające okno</td><td>Główny przełącznik pływającego menu skrótów</td></tr>
-      <tr><td>Poszczególne przyciski pływającego okna</td><td>Ukryj dolne menu, częstotliwość, głośność, mapa lokatorów, narzędzia radia, latarnia WSPR, czat JS8 i szybka zmiana trybu — osiem przycisków, każdy pokazywany lub ukrywany osobno</td></tr>
+      <tr><td>Poszczególne przyciski pływającego okna</td><td>Ukryj dolne menu, częstotliwość, głośność, mapa lokatorów, narzędzia radia, WSPR, czat JS8 i szybka zmiana trybu — osiem przycisków, każdy pokazywany lub ukrywany osobno</td></tr>
       <tr><td>Język</td><td>Język interfejsu, niezależny od ustawienia systemu</td></tr>
     </table>`,
 
@@ -866,7 +881,8 @@ en: {
     <table>
       <tr><th>Ustawienie</th><th>Opis</th></tr>
       <tr><td>Urządzenie audio</td><td>Pokazuje, z którego urządzenia faktycznie nagrywany jest dźwięk (mikrofon wbudowany czy karta dźwiękowa USB) i z jaką częstotliwością próbkowania. Jeśli urządzenie USB zostało znalezione, ale nie udało się przekierować na nie nagrywania, jest to napisane wprost</td></tr>
-      <tr><td>Wykryj ponownie</td><td>Naciśnij po podłączeniu karty dźwiękowej USB (np. Digirig), aby przełączyć się na nią bez restartu aplikacji. Podłączenie jest zwykle wykrywane automatycznie; ten przycisk to rozwiązanie awaryjne</td></tr>
+      <tr><td>Wykryj ponownie</td><td>Naciśnij po podłączeniu karty dźwiękowej USB (np. Digirig), aby przełączyć się na nią bez restartu aplikacji. Podłączenie jest zwykle wykrywane automatycznie; ten przycisk to rozwiązanie awaryjne. Gdy dźwięk pochodzi z radia sieciowego, naciśnięcie nic nie robi, a aplikacja wprost wyjaśnia dlaczego</td></tr>
+      <tr><td>Szczegóły diagnostyczne (sześć wierszy)</td><td>Wiersz stanu mówi, które urządzenie wybrała aplikacja; te sześć wierszy pyta <strong>sam rejestrator, co naprawdę nagrywa</strong>: <code>Device type</code> (urządzenie, na które faktycznie skierowano nagrywanie — <code>BUILTIN_MIC</code> przy podłączonej karcie USB oznacza, że nadal nagrywane jest pomieszczenie), <code>Sample rate</code>, <code>Channel count</code> (oba to wartości rzeczywiste; system nie musi spełnić żądania), <code>Record source</code>, <code>SCO state</code> (rzeczywisty stan łącza Bluetooth), <code>SCO requested</code> (flaga ustawiona przez aplikację). Rozbieżność obu pól SCO oznacza, że Bluetooth po cichu się rozłączył. Zgłaszając problem, dołącz te sześć wierszy</td></tr>
       <tr><td>API dla deweloperów</td><td>Uruchamia w telefonie interfejs HTTP, dzięki któremu inne programy w tej samej sieci mogą odczytywać dekodowane wiadomości, dziennik i widmo. Po włączeniu wyświetlany jest adres dostępu</td></tr>
       <tr><td>Token tylko do odczytu</td><td>Poświadczenie wyłącznie do odczytu; można je <strong>kopiować</strong> i <strong>wygenerować ponownie</strong></td></tr>
       <tr><td>Token pełnego dostępu</td><td>Poświadczenie pozwalające sterować aplikacją — <strong>nie udostępniaj go</strong>. Ponowne wygenerowanie natychmiast unieważnia poprzedni</td></tr>
@@ -949,6 +965,7 @@ en: {
       <tr><td>Prof. bits</td><td>Salida de audio entera de 16 bits o de coma flotante de 32 bits</td></tr>
       <tr><td>Frec. muestreo</td><td>12 kHz (por defecto), 24 kHz o 48 kHz</td></tr>
       <tr><td>Aviso SWR/ALC</td><td>Avisa cuando el SWR o el ALC superan límites seguros; desactivado muestra «(X) Sin aviso SWR/ALC»</td></tr>
+      <tr><td>Nivel de transmisión</td><td>Con qué volumen sale el audio de transmisión de la aplicación. Hay <strong>dos salidas y cada una guarda su propio valor</strong>: el <strong>equipo en red</strong> (ICOM / Flex / Xiegu por WiFi) y la ruta de <strong>tarjeta de sonido</strong> (salida de audio del teléfono, interfaz de audio USB, audio over CAT en el (tr)uSDX). El deslizador muestra siempre la que usa el tipo de conexión actual, y la línea superior indica cuál es, así que nunca ajustas un deslizador que no hace nada. En versiones anteriores los equipos en red no tenían ningún ajuste de nivel y transmitían siempre a fondo de escala. El valor se guarda por perfil, ya que cada equipo tiene distinta sensibilidad de entrada. En equipos ICOM, vigila la lectura de ALC mientras transmites: la zona de ALC termina en 120, así que baja el nivel hasta que la lectura quede holgadamente dentro de la zona y fija la salida con el mando RF POWER del equipo</td></tr>
       <tr><td>Ganancia de audio de recepción</td><td>Amplifica o atenúa el audio recibido dentro de la aplicación. Útil cuando no se puede cambiar el nivel de salida del propio equipo: el QMX entrega un nivel fijo por USB, y en los ICOM el nivel USB está en el menú SET y no en el mando de AF</td></tr>
     </table>`,
 
@@ -983,12 +1000,13 @@ en: {
       <tr><td>Tema</td><td>Según el dispositivo, claro u oscuro</td></tr>
       <tr><td>Modo de mensajes</td><td>Lista de decodificación en formato <strong>Estándar</strong> (información completa por fila) o <strong>Simple</strong> (una línea compacta)</td></tr>
       <tr><td>Tamaño de fuente de lista</td><td>Tamaño del texto en las listas de decodificación y de registro</td></tr>
+      <tr><td>Marcador de frecuencia</td><td>La línea continua y las dos líneas discontinuas que se dibujan en el espectro al tocar una frecuencia. Opciones: <strong>ocultar tras unos segundos</strong> (por defecto, unos diez segundos), <strong>mantener en pantalla</strong> o <strong>mantener en pantalla, en amarillo brillante</strong>. Si se mantiene, la línea aparece nada más abrir la pantalla de espectro, sin tocar antes</td></tr>
       <tr><td>Mantener pantalla encendida</td><td>Evita que la pantalla se apague durante la operación</td></tr>
       <tr><td>Mini cascada en Decodif. / Llamada</td><td>Muestra una franja compacta de cascada en ambas pestañas; dos interruptores independientes</td></tr>
       <tr><td>Esquema de color de cascada</td><td>Colores clásicos o arcoíris para el espectro y la cascada</td></tr>
       <tr><td>QSO con éxito: destello / onda / linterna / foto QRZ</td><td>Cuatro formas independientes de anunciar un QSO completado; ver <a href="logging.html">«Registro de contactos»</a></td></tr>
       <tr><td>Mostrar ventana flotante</td><td>Interruptor general del menú flotante de accesos directos</td></tr>
-      <tr><td>Los botones de la ventana flotante</td><td>Ocultar menú inferior, frecuencia, volumen, mapa de locators, herramientas de radio, baliza WSPR, chat JS8 y cambio rápido de modo: ocho botones, cada uno visible u oculto por separado</td></tr>
+      <tr><td>Los botones de la ventana flotante</td><td>Ocultar menú inferior, frecuencia, volumen, mapa de locators, herramientas de radio, WSPR, chat JS8 y cambio rápido de modo: ocho botones, cada uno visible u oculto por separado</td></tr>
       <tr><td>Idioma</td><td>Idioma de la interfaz, independiente del ajuste del sistema</td></tr>
     </table>`,
 
@@ -1011,7 +1029,8 @@ en: {
     <table>
       <tr><th>Ajuste</th><th>Descripción</th></tr>
       <tr><td>Dispositivo de audio</td><td>Muestra desde qué dispositivo se está grabando realmente (micrófono integrado o tarjeta de sonido USB) y a qué frecuencia de muestreo. Si se encontró un dispositivo USB pero no se pudo encaminar la grabación hacia él, aquí se indica claramente que se sigue grabando del micrófono integrado</td></tr>
-      <tr><td>Volver a detectar</td><td>Púlsalo tras conectar una tarjeta de sonido USB (por ejemplo un Digirig) para pasar a ella sin reiniciar la aplicación. La conexión suele detectarse sola; este botón es la alternativa cuando no ocurre</td></tr>
+      <tr><td>Volver a detectar</td><td>Púlsalo tras conectar una tarjeta de sonido USB (por ejemplo un Digirig) para pasar a ella sin reiniciar la aplicación. La conexión suele detectarse sola; este botón es la alternativa cuando no ocurre. Si el audio viene de un equipo en red, pulsarlo no hace nada y la aplicación explica directamente por qué</td></tr>
+      <tr><td>Detalle de diagnóstico (seis líneas)</td><td>La línea de estado dice qué dispositivo eligió la aplicación; estas seis preguntan <strong>al propio grabador qué está capturando en realidad</strong>: <code>Device type</code> (el dispositivo al que se encaminó de verdad la grabación; <code>BUILTIN_MIC</code> con una tarjeta USB conectada significa que se sigue grabando la habitación), <code>Sample rate</code>, <code>Channel count</code> (ambos son valores reales; el sistema puede no atender la petición), <code>Record source</code>, <code>SCO state</code> (estado real del enlace Bluetooth) y <code>SCO requested</code> (la marca que pidió la aplicación). Si los dos campos SCO no coinciden, el Bluetooth se ha desconectado en silencio. Al informar de un problema, adjunta estas seis líneas</td></tr>
       <tr><td>API para desarrolladores (para complementos)</td><td>Abre en el teléfono una interfaz HTTP para que otros programas de la misma red puedan leer decodificaciones, registro y espectro. Al activarla se muestra la dirección de acceso</td></tr>
       <tr><td>Token de solo lectura</td><td>Credencial que solo permite leer; se puede <strong>copiar</strong> y <strong>regenerar</strong></td></tr>
       <tr><td>Token de acceso completo</td><td>Credencial que permite controlar la aplicación: <strong>no lo compartas</strong>. Al regenerarlo, el anterior deja de servir de inmediato</td></tr>
@@ -1094,6 +1113,7 @@ en: {
       <tr><td>Βάθος bit</td><td>Έξοδος ήχου 16 bit ακέραιου ή 32 bit κινητής υποδιαστολής</td></tr>
       <tr><td>Ρυθμός δειγμ.</td><td>12 kHz (προεπιλογή), 24 kHz ή 48 kHz</td></tr>
       <tr><td>Ειδοποίηση SWR/ALC</td><td>Προειδοποιεί όταν το SWR ή το ALC ξεπερνούν τα ασφαλή όρια· ανενεργό εμφανίζεται ως «(X) Χωρίς ειδοπ. SWR/ALC»</td></tr>
+      <tr><td>Στάθμη εκπομπής</td><td>Πόσο δυνατά φεύγει ο ήχος εκπομπής από την εφαρμογή. Οι έξοδοι είναι <strong>δύο και καθεμία κρατά τη δική της τιμή</strong>: ο <strong>δικτυακός πομποδέκτης</strong> (ICOM / Flex / Xiegu μέσω WiFi) και η διαδρομή της <strong>κάρτας ήχου</strong> (έξοδος ήχου του τηλεφώνου, διεπαφή ήχου USB, audio over CAT στο (tr)uSDX). Το ρυθμιστικό δείχνει πάντα εκείνη που χρησιμοποιεί ο τρέχων τύπος σύνδεσης, και η γραμμή από πάνω λέει ποια είναι — έτσι δεν ρυθμίζετε ποτέ ένα ρυθμιστικό χωρίς αποτέλεσμα. Στις παλαιότερες εκδόσεις οι δικτυακοί πομποδέκτες δεν είχαν καθόλου ρύθμιση στάθμης και εξέπεμπαν πάντα σε πλήρη κλίμακα. Η τιμή αποθηκεύεται ανά προφίλ, καθώς κάθε πομποδέκτης έχει διαφορετική ευαισθησία εισόδου. Σε μηχανήματα ICOM παρακολουθείτε την ένδειξη ALC κατά την εκπομπή: η ζώνη ALC τελειώνει στο 120, οπότε χαμηλώστε τη στάθμη ώσπου η ένδειξη να κάθεται άνετα μέσα στη ζώνη και ορίστε την έξοδο με το RF POWER του μηχανήματος</td></tr>
       <tr><td>Απολαβή ήχου λήψης</td><td>Ενισχύει ή εξασθενεί τον ήχο λήψης μέσα στην εφαρμογή. Χρήσιμο όταν η στάθμη εξόδου του ίδιου του πομποδέκτη δεν αλλάζει: ο QMX δίνει σταθερή στάθμη μέσω USB και στους ICOM η στάθμη USB βρίσκεται στο μενού SET και όχι στο κουμπί AF</td></tr>
     </table>`,
 
@@ -1128,12 +1148,13 @@ en: {
       <tr><td>Θέμα</td><td>Σύμφωνα με τη συσκευή, ανοιχτό ή σκούρο</td></tr>
       <tr><td>Λειτουργία μηνυμάτων</td><td>Η λίστα αποκωδικοποίησης σε διάταξη <strong>Τυπική</strong> (πλήρη στοιχεία ανά γραμμή) ή <strong>Απλή</strong> (μία συμπαγής γραμμή)</td></tr>
       <tr><td>Μέγεθος γραμμ.</td><td>Μέγεθος κειμένου στις λίστες αποκωδικοποίησης και ημερολογίου</td></tr>
+      <tr><td>Δείκτης συχνότητας</td><td>Η συνεχής γραμμή και οι δύο διακεκομμένες γραμμές που σχεδιάζονται στο φάσμα όταν πατάτε μια συχνότητα. Επιλογές: <strong>εξαφάνιση μετά από λίγο</strong> (προεπιλογή, περίπου δέκα δευτερόλεπτα), <strong>να παραμένει στην οθόνη</strong> ή <strong>να παραμένει στην οθόνη, σε έντονο κίτρινο</strong>. Όταν παραμένει, η γραμμή σχεδιάζεται μόλις ανοίξετε την οθόνη φάσματος, χωρίς να πατήσετε</td></tr>
       <tr><td>Διατήρηση οθόνης αναμμένης</td><td>Εμποδίζει την οθόνη να σβήνει κατά τη λειτουργία</td></tr>
       <tr><td>Mini καταρράκτης στην Αποκωδικοπ. / Κλήση</td><td>Εμφανίζει μια συμπαγή λωρίδα καταρράκτη και στις δύο καρτέλες· δύο ανεξάρτητοι διακόπτες</td></tr>
       <tr><td>Χρωματικό σχήμα καταρράκτη</td><td>Κλασικό ή ουράνιο τόξο για το φάσμα και τον καταρράκτη</td></tr>
       <tr><td>Επιτυχία QSO: αναλαμπή / κυματισμός / φακός / φωτογραφία QRZ</td><td>Τέσσερις ανεξάρτητοι τρόποι να ανακοινωθεί ένα ολοκληρωμένο QSO· δείτε <a href="logging.html">«Ημερολόγιο επαφών»</a></td></tr>
       <tr><td>Εμφάνιση αιωρούμενου παραθύρου</td><td>Ο γενικός διακόπτης του αιωρούμενου μενού συντομεύσεων</td></tr>
-      <tr><td>Τα επιμέρους κουμπιά του αιωρούμενου παραθύρου</td><td>Απόκρυψη κάτω μενού, συχνότητα, ένταση, χάρτης τετραγώνων, εργαλεία πομποδέκτη, φάρος WSPR, συνομιλία JS8 και γρήγορη αλλαγή λειτουργίας — οκτώ κουμπιά, καθένα εμφανίζεται ή κρύβεται ξεχωριστά</td></tr>
+      <tr><td>Τα επιμέρους κουμπιά του αιωρούμενου παραθύρου</td><td>Απόκρυψη κάτω μενού, συχνότητα, ένταση, χάρτης τετραγώνων, εργαλεία πομποδέκτη, WSPR, συνομιλία JS8 και γρήγορη αλλαγή λειτουργίας — οκτώ κουμπιά, καθένα εμφανίζεται ή κρύβεται ξεχωριστά</td></tr>
       <tr><td>Γλώσσα</td><td>Η γλώσσα του περιβάλλοντος, ανεξάρτητη από τη ρύθμιση του συστήματος</td></tr>
     </table>`,
 
@@ -1156,7 +1177,8 @@ en: {
     <table>
       <tr><th>Ρύθμιση</th><th>Περιγραφή</th></tr>
       <tr><td>Συσκευή ήχου</td><td>Δείχνει από ποια συσκευή γίνεται στην πραγματικότητα η εγγραφή (ενσωματωμένο μικρόφωνο ή κάρτα ήχου USB) και με ποιον ρυθμό δειγματοληψίας. Αν βρέθηκε συσκευή USB αλλά δεν ήταν δυνατή η δρομολόγηση της εγγραφής σε αυτήν, αναφέρεται ρητά ότι η εγγραφή συνεχίζει από το ενσωματωμένο μικρόφωνο</td></tr>
-      <tr><td>Νέος εντοπισμός</td><td>Πατήστε το αφού συνδέσετε κάρτα ήχου USB (π.χ. Digirig) για να περάσετε σε αυτήν χωρίς επανεκκίνηση της εφαρμογής. Η σύνδεση συνήθως εντοπίζεται αυτόματα· αυτό το κουμπί είναι η εναλλακτική λύση</td></tr>
+      <tr><td>Νέος εντοπισμός</td><td>Πατήστε το αφού συνδέσετε κάρτα ήχου USB (π.χ. Digirig) για να περάσετε σε αυτήν χωρίς επανεκκίνηση της εφαρμογής. Η σύνδεση συνήθως εντοπίζεται αυτόματα· αυτό το κουμπί είναι η εναλλακτική λύση. Αν ο ήχος έρχεται από δικτυακό πομποδέκτη, το πάτημα δεν κάνει τίποτα και η εφαρμογή εξηγεί ευθέως γιατί</td></tr>
+      <tr><td>Λεπτομέρειες διαγνωστικών (έξι γραμμές)</td><td>Η γραμμή κατάστασης λέει ποια συσκευή επέλεξε η εφαρμογή· αυτές οι έξι γραμμές ρωτούν <strong>τον ίδιο τον εγγραφέα τι καταγράφει στην πραγματικότητα</strong>: <code>Device type</code> (η συσκευή στην οποία δρομολογήθηκε πράγματι η εγγραφή — <code>BUILTIN_MIC</code> με συνδεδεμένη κάρτα USB σημαίνει ότι εξακολουθεί να ηχογραφείται το δωμάτιο), <code>Sample rate</code>, <code>Channel count</code> (και τα δύο πραγματικές τιμές· το σύστημα μπορεί να μην ικανοποιήσει το αίτημα), <code>Record source</code>, <code>SCO state</code> (η πραγματική κατάσταση της ζεύξης Bluetooth) και <code>SCO requested</code> (η σημαία που ζήτησε η εφαρμογή). Αν τα δύο πεδία SCO διαφέρουν, το Bluetooth αποσυνδέθηκε σιωπηλά. Όταν αναφέρετε πρόβλημα, επισυνάψτε και αυτές τις έξι γραμμές</td></tr>
       <tr><td>API προγραμματιστή (για πρόσθετα)</td><td>Ανοίγει στο τηλέφωνο μια διεπαφή HTTP ώστε άλλα προγράμματα στο ίδιο δίκτυο να διαβάζουν αποκωδικοποιήσεις, ημερολόγιο και φάσμα. Μόλις ενεργοποιηθεί εμφανίζεται η διεύθυνση πρόσβασης</td></tr>
       <tr><td>Διακριτικό μόνο για ανάγνωση</td><td>Διαπιστευτήριο μόνο για ανάγνωση· μπορεί να <strong>αντιγραφεί</strong> και να <strong>αναδημιουργηθεί</strong></td></tr>
       <tr><td>Διακριτικό πλήρους πρόσβασης</td><td>Διαπιστευτήριο που επιτρέπει τον έλεγχο της εφαρμογής — <strong>μην το κοινοποιείτε</strong>. Η αναδημιουργία ακυρώνει αμέσως το παλιό</td></tr>
