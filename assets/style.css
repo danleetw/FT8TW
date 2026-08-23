@@ -504,7 +504,9 @@ footer {
   position: relative; font-size: .95em;
 }
 .radio-list li::before {
-  content: "2"; position: absolute; left: 0; opacity: .45;
+  /* 直接用字面上的圓點，不要寫成 2 之類的轉義——產生這個檔的腳本會先
+     把它當成八進位轉義吃掉，畫面上就變成一個控制字元加一個「2」。BV6LC */
+  content: "•"; position: absolute; left: 0; opacity: .45;
 }
 @media print {
   .radio-list { columns: 3; }
