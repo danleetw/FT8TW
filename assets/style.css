@@ -482,6 +482,35 @@ footer {
 }
 
 /* ── 列印輸出（print.html 與各章節頁共用）───────────────────────── */
+
+/* ── 支援電台清單（radios.html）──────────────────────────────────────
+   一個廠牌一塊，型號用多欄流排。欄寬給 11em：最長的型號是
+   「FT-DX Other series」與「Wolf SDR(DIGU)」，11em 放得下而不換行；
+   窄螢幕自動掉成單欄，不必另外寫斷點。BV6LC */
+.radio-brands { margin-top: 8px; }
+.radio-brand { margin: 0 0 18px; }
+.radio-brand h3 { margin: 0 0 6px; }
+.radio-count {
+  font-size: .75em; font-weight: normal; opacity: .65;
+  border: 1px solid currentColor; border-radius: 10px;
+  padding: 0 .5em; margin-left: .5em; vertical-align: middle;
+}
+.radio-list {
+  list-style: none; margin: 0; padding: 0;
+  columns: 11em; column-gap: 24px;
+}
+.radio-list li {
+  break-inside: avoid; padding: 2px 0 2px 12px;
+  position: relative; font-size: .95em;
+}
+.radio-list li::before {
+  content: "2"; position: absolute; left: 0; opacity: .45;
+}
+@media print {
+  .radio-list { columns: 3; }
+  .radio-brand { break-inside: avoid; }
+}
+
 @media print {
   /* 左右留白刻意交給下面的 padding，不放在 @page 裡：
      部分瀏覽器（手機版、或列印對話框把邊界設成「無」時）會忽略 @page 的
