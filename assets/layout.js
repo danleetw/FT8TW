@@ -11,6 +11,7 @@ const NAV_ITEMS = [
   { id: 'first-setup',  file: 'first-setup.html',  key: 'nav_first_setup'  },
   { id: 'screens',      file: 'screens.html',      key: 'nav_screens'      },
   { id: 'connection',   file: 'connection.html',   key: 'nav_connection'   },
+  { id: 'radios',       file: 'radios.html',       key: 'nav_radios'       },
   { id: 'operating',    file: 'operating.html',    key: 'nav_operating'    },
   { id: 'js8',          file: 'js8.html',          key: 'nav_js8'          },
   { id: 'wspr',         file: 'wspr.html',         key: 'nav_wspr'         },
