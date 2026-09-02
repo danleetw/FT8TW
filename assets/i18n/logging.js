@@ -18,7 +18,8 @@ en: {
       <li><strong>CSV</strong> – Comma-separated values for spreadsheet analysis</li>
       <li><strong>TEXT</strong> – Human-readable plain text</li>
       <li><strong>SOTA</strong> – Summits on the Air format (requires SOTA summit reference)</li>
-    </ul>`,
+    </ul>
+    <p>The export dialog can also narrow what goes into the file. Alongside the usual mode filter, an <strong>ARRL Field Day only</strong> entry appears in the mode dropdown once the log actually contains Field Day contacts — Field Day is not a mode of its own (those contacts are still FT8), but an entry submission needs them on their own, and picking them out by hand afterwards is tedious. The entry stays hidden while there are no such contacts, so that choosing it can never hand you an empty file.</p>`,
   log_share_text: 'Alternatively, use <strong>Share logs</strong> (in the Logs menu) to send an ADIF file directly via Android\'s share sheet — email, cloud storage, messaging apps, etc.',
 
   log_import_title: 'Importing Logs',
@@ -48,8 +49,12 @@ en: {
   log_activation_text:  'When you are the one activating a summit or a park, enter your own reference in Settings → <strong>SOTA / POTA Activation</strong> and turn on activation mode. Your SOTA and POTA references are then written into the log entries as you work stations, which is what the SOTA export format needs — far easier than adding them to every record afterwards. Once a reference is entered, the park name and grid found for it are shown underneath, so you can check it was typed correctly.',
   log_activation_multi: 'One spot often sits inside <strong>several POTA parks</strong> at once (an n-fer). Use <strong>+ Add park</strong> to enter them one by one, up to six. The export then switches to <strong>one ADIF per park, bundled into a single ZIP</strong> — POTA\'s convention is one log per park, uploaded separately, and several references crammed into one field will not be accepted. Each file contains only the records that really belong to that park; with a single park the export stays a single file.',
 
+  log_quicklog_title: 'Quick Log (summits and parks)',
+  log_quicklog_text:  'Tap <strong>Quick Log</strong> at the bottom of the <strong>QSO Logs</strong> page to open the manual entry screen built for SOTA and POTA activations. The fields that stay the same all activation (your callsign, the summit or park, frequency and mode) are tucked into an expandable card at the top and only need opening when you change band or location; the fields that change with every contact stay within thumb reach. The time is stamped when you save, and the signal report is pre-filled by mode (599 for CW, 59 for voice, blank for digital modes), so from the second contact onwards it is usually just: type their callsign, press Save and next.',
+  log_quicklog_list:  '<ul><li><strong>Summits or parks</strong> — the title at the top left is a dropdown: switch between Summit log and Park log. Your choice is remembered for next time.</li><li><strong>Duplicate warning</strong> — while you type a callsign it tells you whether you have already worked that station during this activation, with the time, band and mode of the previous contact.</li><li><strong>Running count</strong> — the top right shows how many contacts you have logged this activation, and your last three are listed below. Tap one to open it in the full editor.</li><li><strong>Stays open after saving</strong> — only the per-contact fields are cleared; the header and mode are kept. If you save by mistake you have five seconds to press <em>Undo</em>.</li><li><strong>Back</strong> — the arrow at the bottom left returns to the QSO log.</li></ul>',
+  log_quicklog_park:  'An activation means <strong>the same day, the same callsign of yours and the same location</strong> — walking two summits or two parks in one day counts as two activations, each with its own count and duplicate check. Park mode lets you enter <strong>several park references</strong> for one spot (n-fer); add them one at a time with the add park button. When the other station is also on a summit or in a park, the <strong>S2S</strong> or <strong>P2P</strong> button beside their callsign opens a field for their reference, and it is written into your exported files. Reference fields suggest matches while you type: enter <code>TW-</code> and the parks appear with their names, with the ones you have already activated listed first so they are still there without a network connection.',
   log_slideshow_title: 'Log Slideshow',
-  log_slideshow_text:  'Long-press the log list and choose <em>Show slideshow</em> to page through your contacts full-screen, one at a time, complete with the operator photo and a QSL-card style layout. Slides advance on a configurable interval, or you can scroll through them by hand.',
+  log_slideshow_text:  'Tap <strong>Slideshow</strong> at the bottom of the <strong>QSO Logs</strong> page to browse your contacts one by one, full screen, with the QRZ photo of the other station above a QSL-card style panel. You can also long-press a row in the list and choose <em>Show slideshow</em> to start from that contact. Swipe left or right to move by hand, tap once to close. <strong>Press and hold the screen</strong> for options: skip cards without a photo, how long each card stays (1 to 30 seconds), and end slideshow. Your choices are remembered.',
 
   log_qsl_title: 'QSO Success Feedback',
   log_qsl_text:  'A completed QSO can announce itself, which helps when the phone is not in your hand or is across the shack. Each effect is a separate switch in Settings, so you can enable only what suits your operating position:',
@@ -78,7 +83,8 @@ en: {
       <li><strong>CSV</strong> — 逗號分隔格式，可用試算表軟體分析</li>
       <li><strong>TEXT</strong> — 純文字格式</li>
       <li><strong>SOTA</strong> — 山峰通聯（Summits on the Air）格式（需填入山峰編號）</li>
-    </ul>`,
+    </ul>
+    <p>匯出對話框也可以先篩選要放進檔案的內容。除了原本的模式篩選之外，日誌中真的有野外日通聯時，模式下拉裡會多出一項<strong>只匯出野外日</strong>——野外日本身不是一種模式（那些通聯照樣是 FT8），但交件時需要單獨挑出來，事後自己一筆筆篩很費工。沒有野外日紀錄時這一項不會出現，以免選了只拿到一個空檔案。</p>`,
   log_share_text: '也可使用<strong>分享通聯紀錄</strong>功能（記錄選單中），透過 Android 分享介面直接傳送 ADIF 檔案——電子郵件、雲端儲存、通訊軟體等均可使用。',
 
   log_import_title: '匯入日誌',
@@ -108,8 +114,12 @@ en: {
   log_activation_text:  '當您是登山或到公園進行啟動的一方時，請在設置 → <strong>SOTA / POTA 出勤</strong>填入自己的編號，並開啟「出勤模式（將編號寫入記錄）」。之後每筆通聯都會自動把您的 SOTA、POTA 編號寫進日誌，這正是 SOTA 匯出格式需要的欄位——比事後逐筆補上輕鬆得多。編號填好後，下方會顯示查到的園區名稱與網格，可用來確認沒有打錯。',
   log_activation_multi: '同一個地點常常同時落在<strong>多個 POTA 園區</strong>（n-fer）。按<strong>＋ 新增園區</strong>可以逐一加入，最多六組。此時匯出會自動改為<strong>每座公園各一份 ADIF，打包成一個 ZIP</strong>——POTA 官方的慣例就是一座公園一份 log 分開上傳，把多個編號串在同一個欄位裡上傳系統不會接受。每一份只會收進真正屬於該座公園的紀錄；只填一座公園時，維持原本的單檔匯出。',
 
+  log_quicklog_title: '快速紀錄（山頂／公園）',
+  log_quicklog_text:  '在<strong>通聯記錄</strong>頁下方按<strong>快速紀錄</strong>，會開啟專為 SOTA／POTA 出勤設計的手動輸入頁。整場不會變的欄位（我方呼號、山峰或園區、頻率、模式）收在最上方可展開的卡片裡，只有換頻或換地點時才需要打開；每筆會變的欄位留在拇指構得到的地方。時間在存檔當下自動戳記，訊號報告依模式預先填好（CW 599、語音 59，數位模式留空），所以第二筆起通常就只是：打對方呼號、按存檔並繼續。',
+  log_quicklog_list:  '<ul><li><strong>山頂或公園</strong> — 左上角的標題是下拉選單，可切換「山頂紀錄」與「公園紀錄」，下次進來會回到上次選的那一種。</li><li><strong>重複提示</strong> — 邊打呼號邊顯示這一場是否已經通聯過這台，並附上上一次的時間、頻段與模式。</li><li><strong>本場計數</strong> — 右上角顯示這一場已經記了幾筆，下方列出最近三筆；點任一筆可以用完整表單打開來補資料。</li><li><strong>存檔後不關閉</strong> — 只清掉每筆會變的欄位，抬頭與模式保留。存錯的話五秒內可以按<em>復原</em>。</li><li><strong>返回</strong> — 左下角的箭頭回到通聯記錄頁。</li></ul>',
+  log_quicklog_park:  '「這一場」的判定是<strong>同一天＋同一個我方呼號＋同一個地點</strong>——一天連走兩座山或兩個園區算成兩場活動，計數與重複判斷各自獨立。公園模式可以為同一個地點輸入<strong>多個園區編號</strong>（n-fer），按新增園區逐一加入。對方也在山上或園區時，按呼號右邊的 <strong>S2S</strong> 或 <strong>P2P</strong> 就會展開欄位記下對方的編號，那會一起寫進匯出的檔案。編號欄位會邊打邊列出符合的項目：輸入 <code>TW-</code> 就會出現公園清單與名稱，曾經活化過的排在最前面，所以沒有網路時一樣找得到。',
   log_slideshow_title: '日誌幻燈片',
-  log_slideshow_text:  '長按日誌清單選擇<em>播放幻燈片</em>，即可全螢幕逐筆瀏覽通聯記錄，畫面包含對方的照片與仿 QSL 卡的版面。可設定每張停留的秒數自動播放，也可以手動捲動翻閱。',
+  log_slideshow_text:  '在<strong>通聯記錄</strong>頁下方按<strong>幻燈片</strong>，即可全螢幕逐筆瀏覽通聯記錄，畫面上半是對方的 QRZ 照片，下半是仿 QSL 卡的版面。也可以長按清單中的某一筆選<em>顯示幻燈片</em>，從那一筆開始播。左右滑動可手動翻閱，點一下畫面即結束。<strong>長按畫面</strong>可開啟選項：略過沒有照片的卡片、每張停留幾秒（1 至 30 秒）、結束幻燈片；設定會被記住。',
 
   log_qsl_title: '通聯成功提示',
   log_qsl_text:  '完成一筆通聯時可以主動提示您，手機不在手上或放在對面桌上時特別有用。每種效果都是獨立開關，可依操作位置只開需要的：',
@@ -138,7 +148,8 @@ en: {
       <li><strong>CSV</strong> — 逗号分隔格式，可用电子表格软件分析</li>
       <li><strong>TEXT</strong> — 纯文本格式</li>
       <li><strong>SOTA</strong> — 山峰通联（Summits on the Air）格式（需填入山峰编号）</li>
-    </ul>`,
+    </ul>
+    <p>导出对话框也可以先筛选要放进文件的内容。除了原本的模式筛选之外，日志中真的有野外日通联时，模式下拉里会多出一项<strong>仅野外日</strong>——野外日本身不是一种模式（那些通联照样是 FT8），但交件时需要单独挑出来，事后自己一笔笔筛很费工。没有野外日记录时这一项不会出现，以免选了只拿到一个空文件。</p>`,
   log_share_text: '也可使用<strong>分享通联记录</strong>功能（日志菜单中），通过 Android 分享界面直接发送 ADIF 文件——电子邮件、云存储、通信软件等均可使用。',
 
   log_import_title: '导入日志',
@@ -165,12 +176,16 @@ en: {
     </ul>`,
 
   log_activation_title: '出勤模式（SOTA / POTA）',
-  log_activation_text:  '当您是登山或到公园进行启动的一方时，请在设置 → 出勤活动 (SOTA/POTA) 填入自己的编号，并开启「出勤模式（将编号写入记录）」。之后每笔通联都会自动把您的 SOTA、POTA 编号写进日志，这正是 SOTA 导出格式需要的字段——比事后逐条补上轻松得多。',
+  log_activation_text:  '当您是登山或到公园进行启动的一方时，请在设置 → <strong>SOTA / POTA 出勤</strong>填入自己的编号，并开启「出勤模式（将编号写入记录）」。之后每笔通联都会自动把您的 SOTA、POTA 编号写进日志，这正是 SOTA 导出格式需要的字段——比事后逐条补上轻松得多。编号填好后，下方会显示查到的园区名称与网格，可用来确认没有打错。',
 
   log_activation_multi: '同一个地点常常同时落在<strong>多个 POTA 园区</strong>（n-fer）。按<strong>＋ 新增园区</strong>可以逐一加入，最多六组。此时导出会自动改为<strong>每座公园各一份 ADIF，打包成一个 ZIP</strong>——POTA 官方的惯例就是一座公园一份 log 分开上传，把多个编号串在同一个字段里上传系统不会接受。每一份只会收进真正属于该座公园的记录；只填一座公园时，维持原本的单文件导出。',
 
+  log_quicklog_title: '快速记录（山顶／公园）',
+  log_quicklog_text:  '在<strong>通联记录</strong>页下方按<strong>快速记录</strong>，会打开专为 SOTA／POTA 出勤设计的手动输入页。整场不会变的字段（本站呼号、山峰或园区、频率、模式）收在最上方可展开的卡片里，只有换频或换地点时才需要打开；每条会变的字段留在拇指够得到的地方。时间在存档当下自动戳记，信号报告依模式预先填好（CW 599、语音 59，数字模式留空），所以第二条起通常就只是：打对方呼号、按存档并继续。',
+  log_quicklog_list:  '<ul><li><strong>山顶或公园</strong> — 左上角的标题是下拉菜单，可切换“山顶记录”与“公园记录”，下次进来会回到上次选的那一种。</li><li><strong>重复提示</strong> — 边打呼号边显示这一场是否已经通联过这台，并附上上一次的时间、频段与模式。</li><li><strong>本场计数</strong> — 右上角显示这一场已经记了几条，下方列出最近三条；点任一条可以用完整表单打开来补资料。</li><li><strong>存档后不关闭</strong> — 只清掉每条会变的字段，抬头与模式保留。存错的话五秒内可以按<em>撤销</em>。</li><li><strong>返回</strong> — 左下角的箭头回到通联记录页。</li></ul>',
+  log_quicklog_park:  '“这一场”的判定是<strong>同一天＋同一个本站呼号＋同一个地点</strong>——一天连走两座山或两个园区算成两场活动，计数与重复判断各自独立。公园模式可以为同一个地点输入<strong>多个园区编号</strong>（n-fer），按新增园区逐一加入。对方也在山上或园区时，按呼号右边的 <strong>S2S</strong> 或 <strong>P2P</strong> 就会展开字段记下对方的编号，那会一起写进导出的文件。编号字段会边打边列出符合的项目：输入 <code>TW-</code> 就会出现公园列表与名称，曾经活化过的排在最前面，所以没有网络时一样找得到。',
   log_slideshow_title: '日志幻灯片',
-  log_slideshow_text:  '长按日志列表选择<em>播放幻灯片</em>，即可全屏逐条浏览通联记录，画面包含对方的照片与仿 QSL 卡的版面。可设置每张停留的秒数自动播放，也可以手动滚动翻阅。',
+  log_slideshow_text:  '在<strong>通联记录</strong>页下方按<strong>幻灯片</strong>，即可全屏逐条浏览通联记录，画面上半是对方的 QRZ 照片，下半是仿 QSL 卡的版面。也可以长按列表中的某一条选<em>显示幻灯片</em>，从那一条开始播。左右滑动可手动翻阅，点一下画面即结束。<strong>长按画面</strong>可开启选项：跳过没有照片的卡片、每张停留几秒（1 至 30 秒）、结束幻灯片；设置会被记住。',
 
   log_qsl_title: '通联成功提示',
   log_qsl_text:  '完成一笔通联时可以主动提示您，手机不在手上或放在对面桌上时特别有用。每种效果都是独立开关，可按操作位置只开需要的：',
@@ -199,7 +214,8 @@ en: {
       <li><strong>CSV</strong> — 表計算ソフトで分析できるカンマ区切り形式</li>
       <li><strong>TEXT</strong> — そのまま読めるプレーンテキスト</li>
       <li><strong>SOTA</strong> — Summits on the Air 形式（SOTA の山岳リファレンスが必要）</li>
-    </ul>`,
+    </ul>
+    <p>書き出しダイアログでは、ファイルに含める範囲を絞ることもできます。通常のモードフィルターに加えて、ログにフィールドデーの交信が実際にある場合だけ、モードの一覧に<strong>フィールドデーのみ</strong>が現れます。フィールドデーはそれ自体がモードではなく（該当する交信も FT8 のままです）、それでも提出時には切り出す必要があり、あとから 1 件ずつ選ぶのは骨が折れます。該当する交信がないときはこの項目自体が出ないので、選んだ結果が空のファイルになることはありません。</p>`,
   log_share_text: 'ログメニューの<strong>ログを共有</strong>を使えば、Android の共有機能から ADIF ファイルを直接送ることもできます（メール、クラウドストレージ、メッセージアプリなど）。',
 
   log_import_title: 'ログの取り込み',
@@ -226,12 +242,16 @@ en: {
     </ul>`,
 
   log_activation_title: 'アクティベーションモード（SOTA / POTA）',
-  log_activation_text:  '自分が山や公園からアクティベートする側のときは、設定 → アクティベーション（SOTA/POTA）に自局のリファレンスを入力し、アクティベーションモードを有効にします。以後の交信では SOTA・POTA のリファレンスがログに自動的に書き込まれます。SOTA の書き出し形式が必要とする項目なので、あとから 1 件ずつ追記するより格段に楽です。',
+  log_activation_text:  '自分が山や公園からアクティベートする側のときは、設定 → <strong>SOTA / POTA 運用</strong>に自局のリファレンスを入力し、「運用モード（参照番号をログに記録）」を有効にします。以後の交信では SOTA・POTA のリファレンスがログに自動的に書き込まれます。SOTA の書き出し形式が必要とする項目なので、あとから 1 件ずつ追記するより格段に楽です。リファレンスを入力すると、その下に照会された公園名とグリッドが表示されるので、打ち間違いがないか確認できます。',
 
   log_activation_multi: '同じ場所が<strong>複数の POTA 公園</strong>に重なっていること（n-fer）はよくあります。<strong>＋ 公園を追加</strong>で 1 つずつ、最大 6 件まで入力できます。その場合エクスポートは<strong>公園ごとに ADIF を 1 つ作り、まとめて ZIP にする</strong>方式へ自動的に切り替わります。POTA の慣習は公園ごとにログを分けてアップロードすることで、複数の参照番号を 1 つの項目に詰め込んだものは受け付けられません。各ファイルにはその公園に本当に属する交信だけが入ります。公園が 1 つだけのときは、これまでどおり単一ファイルで出力されます。',
 
+  log_quicklog_title: 'クイックログ（山岳・公園）',
+  log_quicklog_text:  '<strong>交信記録</strong>ページ下部の<strong>クイックログ</strong>を押すと、SOTA／POTA の運用向けに作られた手入力画面が開きます。運用中ずっと変わらない項目（自局コールサイン、山岳または公園、周波数、モード）は上部の折りたたみカードにまとめてあり、バンドや場所を変えるときだけ開けば済みます。交信ごとに変わる項目は親指の届く位置に置いてあります。時刻は保存した瞬間に記録され、レポートはモードに応じてあらかじめ入ります（CW は 599、音声は 59、デジタルモードは空欄）。そのため 2 局目からは、相手のコールサインを入力して「保存して次へ」を押すだけで済みます。',
+  log_quicklog_list:  '<ul><li><strong>山岳と公園</strong> — 左上のタイトルはドロップダウンです。「山岳ログ」と「公園ログ」を切り替えられ、選んだ種類は次回も引き継がれます。</li><li><strong>重複の警告</strong> — コールサインを入力していくと、この運用中にすでに交信済みかどうかを表示し、前回の時刻・バンド・モードも示します。</li><li><strong>交信数</strong> — 右上にこの運用での交信数、下に直近 3 件が出ます。どれかを押すと詳細フォームで開けます。</li><li><strong>保存しても閉じない</strong> — 交信ごとに変わる項目だけが消え、ヘッダーとモードは残ります。誤って保存しても 5 秒以内なら<em>元に戻す</em>を押せます。</li><li><strong>戻る</strong> — 左下の矢印で交信記録に戻ります。</li></ul>',
+  log_quicklog_park:  '1 回の運用は<strong>同じ日・同じ自局コールサイン・同じ場所</strong>で区切られます。1 日に 2 つの山や 2 つの公園を回れば別々の運用として扱われ、交信数も重複判定もそれぞれ独立します。公園モードでは同じ場所に対して<strong>複数の公園番号</strong>（n-fer）を入力できます。公園を追加するボタンで 1 つずつ足してください。相手局も山や公園にいる場合は、コールサインの右にある <strong>S2S</strong> または <strong>P2P</strong> を押すと相手の番号を入れる欄が開き、書き出すファイルにも反映されます。番号欄は入力しながら候補を出します。<code>TW-</code> と入れると公園の一覧と名称が表示され、すでに運用したことのある公園が先に並ぶため、通信圏外でも見つけられます。',
   log_slideshow_title: 'ログのスライドショー',
-  log_slideshow_text:  'ログ一覧を長押しして<em>スライドショー</em>を選ぶと、交信記録を全画面で 1 件ずつ表示できます。相手局の写真と QSL カード風のレイアウト付きです。切り替え間隔を指定して自動送りにも、手でスクロールして見ることもできます。',
+  log_slideshow_text:  '<strong>交信記録</strong>ページ下部の<strong>スライドショー</strong>を押すと、全画面で 1 件ずつ交信記録を表示します。上半分は相手局の QRZ 写真、下半分は QSL カード風のパネルです。一覧の行を長押しして<em>スライドショーを表示</em>を選べば、その交信から再生できます。左右にスワイプすると手動で送れ、画面を 1 回タップすると終了します。<strong>画面を長押し</strong>すると設定が開きます。写真のないカードを飛ばす、1 枚あたりの秒数（1〜30 秒）、スライドショーの終了。設定は記憶されます。',
 
   log_qsl_title: '交信成立の通知',
   log_qsl_text:  '交信が成立したことを知らせる演出を有効にできます。端末を手に持っていないときや離れた場所に置いているときに便利です。効果ごとに独立したスイッチなので、運用スタイルに合うものだけを有効にできます:',
@@ -260,7 +280,8 @@ en: {
       <li><strong>CSV</strong> — значения через запятую для анализа в таблицах</li>
       <li><strong>TEXT</strong> — простой текст для чтения</li>
       <li><strong>SOTA</strong> — формат Summits on the Air (нужен номер вершины SOTA)</li>
-    </ul>`,
+    </ul>
+    <p>Диалог экспорта позволяет и сузить то, что попадёт в файл. Помимо обычного фильтра по виду работы, в выпадающем списке появляется пункт <strong>Только ARRL Field Day</strong> — но только тогда, когда в журнале действительно есть связи Field Day. Сам Field Day видом работы не является (те связи по-прежнему FT8), однако для отправки отчёта их нужно выделить отдельно, а отбирать вручную утомительно. Пока таких связей нет, пункт не показывается, поэтому выбрать его и получить пустой файл невозможно.</p>`,
   log_share_text: 'Можно также выбрать <strong>Поделиться журналом</strong> в меню журнала и отправить файл ADIF напрямую через стандартное меню Android — по почте, в облако, в мессенджер и т. д.',
 
   log_import_title: 'Импорт журнала',
@@ -287,12 +308,16 @@ en: {
     </ul>`,
 
   log_activation_title: 'Режим активации (SOTA / POTA)',
-  log_activation_text:  'Если активируете вершину или парк вы сами, укажите свою ссылку в Настройки → Активация (SOTA/POTA) и включите режим активации. После этого ваши ссылки SOTA и POTA автоматически записываются в журнал при каждой связи — именно это требуется формату экспорта SOTA, и это куда проще, чем дописывать их потом в каждую запись.',
+  log_activation_text:  'Если активируете вершину или парк вы сами, укажите свою ссылку в Настройки → <strong>Активация SOTA / POTA</strong> и включите «Режим активации (запись в лог)». После этого ваши ссылки SOTA и POTA автоматически записываются в журнал при каждой связи — именно это требуется формату экспорта SOTA, и это куда проще, чем дописывать их потом в каждую запись. Как только ссылка введена, ниже показываются найденные название парка и локатор — по ним удобно убедиться, что вы не ошиблись при вводе.',
 
   log_activation_multi: 'Одна и та же точка нередко относится сразу к <strong>нескольким паркам POTA</strong> (n-fer). Кнопкой <strong>+ Добавить парк</strong> их можно вводить по одному, до шести. В этом случае экспорт автоматически переключается на <strong>один ADIF на каждый парк, упакованные в ZIP</strong>: по принятой в POTA практике на каждый парк загружается отдельный журнал, а несколько ссылок в одном поле приняты не будут. В каждый файл попадают только те связи, которые действительно относятся к этому парку. Если парк один, экспорт остаётся одним файлом.',
 
+  log_quicklog_title: 'Быстрый журнал (вершины и парки)',
+  log_quicklog_text:  'Нажмите <strong>Быстрый журнал</strong> внизу страницы <strong>Журнал связей</strong>, чтобы открыть экран ручного ввода, сделанный для активаций SOTA и POTA. Поля, которые не меняются в течение всей активации (ваш позывной, вершина или парк, частота и вид излучения), убраны в раскрывающуюся карточку сверху и нужны только при смене диапазона или места; поля, меняющиеся с каждой связью, остаются под большим пальцем. Время ставится в момент сохранения, а рапорт подставляется по виду излучения (599 для CW, 59 для телефона, пусто для цифровых видов), поэтому со второй связи обычно достаточно: ввести позывной корреспондента и нажать Сохранить и далее.',
+  log_quicklog_list:  '<ul><li><strong>Вершины или парки</strong> — заголовок сверху слева — выпадающий список: переключение между журналом вершины и журналом парка. Выбор запоминается до следующего раза.</li><li><strong>Предупреждение о повторе</strong> — по мере ввода позывного показывается, работали ли вы уже с этой станцией в этой активации, с временем, диапазоном и видом излучения прошлой связи.</li><li><strong>Счётчик</strong> — сверху справа показано число связей за эту активацию, ниже перечислены последние три. Нажатие открывает связь в полном редакторе.</li><li><strong>Не закрывается после сохранения</strong> — очищаются только поля отдельной связи, шапка и вид излучения сохраняются. Если сохранили по ошибке, есть пять секунд, чтобы нажать <em>Отменить</em>.</li><li><strong>Назад</strong> — стрелка снизу слева возвращает в журнал связей.</li></ul>',
+  log_quicklog_park:  'Активацией считается <strong>один и тот же день, один и тот же ваш позывной и одно и то же место</strong>: две вершины или два парка за день — это две активации, каждая со своим счётчиком и своей проверкой повторов. В режиме парка можно ввести <strong>несколько номеров парков</strong> для одной точки (n-fer), добавляя их по одному кнопкой добавления парка. Если корреспондент тоже на вершине или в парке, кнопка <strong>S2S</strong> или <strong>P2P</strong> рядом с его позывным открывает поле для его номера, и он попадает в выгружаемые файлы. Поля номеров подсказывают совпадения по мере ввода: наберите <code>TW-</code> и появится список парков с названиями, причём те, которые вы уже активировали, идут первыми, поэтому они доступны и без сети.',
   log_slideshow_title: 'Слайд-шоу журнала',
-  log_slideshow_text:  'Нажмите и удерживайте список журнала и выберите <em>Слайд-шоу</em>, чтобы просматривать связи по одной в полноэкранном виде — с фотографией оператора и оформлением в стиле QSL-карточки. Слайды сменяются через заданный интервал либо листаются вручную.',
+  log_slideshow_text:  'Нажмите <strong>Слайд-шоу</strong> внизу страницы <strong>Журнал связей</strong>, чтобы просматривать связи по одной в полноэкранном режиме: сверху фотография корреспондента с QRZ, снизу панель в стиле QSL-карточки. Можно также удерживать строку списка и выбрать <em>Показать слайд-шоу</em>, чтобы начать с этой связи. Свайп влево или вправо листает вручную, одно касание закрывает. <strong>Удержание экрана</strong> открывает настройки: пропускать карточки без фотографии, сколько секунд показывать каждую (от 1 до 30) и завершить слайд-шоу. Выбор запоминается.',
 
   log_qsl_title: 'Сигнал об успешном QSO',
   log_qsl_text:  'Завершённую связь можно отметить заметным сигналом — удобно, когда телефон не в руках или стоит в другом конце шэка. Каждый эффект включается отдельно, так что можно оставить только подходящие вашему рабочему месту:',
@@ -321,7 +346,8 @@ en: {
       <li><strong>CSV</strong> — wartości rozdzielone przecinkami do analizy w arkuszu</li>
       <li><strong>TEXT</strong> — czytelny zwykły tekst</li>
       <li><strong>SOTA</strong> — format Summits on the Air (wymaga oznaczenia szczytu SOTA)</li>
-    </ul>`,
+    </ul>
+    <p>Okno eksportu pozwala też zawęzić to, co trafi do pliku. Poza zwykłym filtrem emisji na liście pojawia się pozycja <strong>Tylko ARRL Field Day</strong> — ale dopiero wtedy, gdy w dzienniku rzeczywiście są łączności z Field Day. Sam Field Day nie jest osobną emisją (te łączności nadal są FT8), lecz do wysłania zgłoszenia trzeba je wydzielić, a ręczne przebieranie jest żmudne. Dopóki takich łączności nie ma, pozycja się nie pokazuje, więc nie da się wybrać jej i dostać pustego pliku.</p>`,
   log_share_text: 'Możesz też użyć opcji <strong>Udostępnij dziennik</strong> (w menu dziennika), aby wysłać plik ADIF bezpośrednio przez systemowe udostępnianie Androida — pocztą, do chmury, komunikatorem itp.',
 
   log_import_title: 'Import dziennika',
@@ -348,12 +374,16 @@ en: {
     </ul>`,
 
   log_activation_title: 'Tryb aktywacji (SOTA / POTA)',
-  log_activation_text:  'Jeśli to ty aktywujesz szczyt lub park, wpisz własne oznaczenie w Ustawienia → Aktywacja (SOTA/POTA) i włącz tryb aktywacji. Od tej chwili twoje oznaczenia SOTA i POTA trafiają automatycznie do wpisów dziennika — właśnie tego wymaga format eksportu SOTA, a jest to znacznie wygodniejsze niż dopisywanie ich później do każdego wpisu.',
+  log_activation_text:  'Jeśli to ty aktywujesz szczyt lub park, wpisz własne oznaczenie w Ustawienia → <strong>Aktywacja SOTA / POTA</strong> i włącz „Tryb aktywacji (zapis referencji do dziennika)". Od tej chwili twoje oznaczenia SOTA i POTA trafiają automatycznie do wpisów dziennika — właśnie tego wymaga format eksportu SOTA, a jest to znacznie wygodniejsze niż dopisywanie ich później do każdego wpisu. Po wpisaniu oznaczenia poniżej pojawia się odnaleziona nazwa parku i lokator — łatwo po nich sprawdzić, że nie ma literówki.',
 
   log_activation_multi: 'To samo miejsce często leży jednocześnie w <strong>kilku parkach POTA</strong> (n-fer). Przyciskiem <strong>+ Dodaj park</strong> można je wpisywać pojedynczo, maksymalnie sześć. Eksport przełącza się wtedy na <strong>jeden ADIF na park, spakowane w ZIP</strong> — przyjętą w POTA praktyką jest osobny dziennik dla każdego parku, a kilka oznaczeń w jednym polu nie zostanie przyjętych. Każdy plik zawiera tylko te łączności, które naprawdę należą do danego parku. Przy jednym parku eksport pozostaje pojedynczym plikiem.',
 
+  log_quicklog_title: 'Szybki dziennik (szczyty i parki)',
+  log_quicklog_text:  'Naciśnij <strong>Szybki dziennik</strong> na dole strony <strong>Dziennik QSO</strong>, aby otworzyć ekran ręcznego wpisywania przygotowany pod aktywacje SOTA i POTA. Pola, które nie zmieniaja sie przez cala aktywacje (Twój znak, szczyt lub park, częstotliwość i emisja), są schowane w rozwijanej karcie u góry i trzeba je otwierać tylko przy zmianie pasma albo miejsca; pola zmieniające się przy każdej łączności zostają w zasięgu kciuka. Czas jest zapisywany w chwili zapisu, a raport jest wstępnie wypełniany według emisji (599 dla CW, 59 dla fonii, pusto dla emisji cyfrowych), więc od drugiej łączności zwykle wystarczy: wpisać znak korespondenta i nacisnąć Zapisz i dalej.',
+  log_quicklog_list:  '<ul><li><strong>Szczyty albo parki</strong> — tytuł u góry po lewej jest listą rozwijaną: przełącza między dziennikiem szczytu a dziennikiem parku. Wybór jest zapamiętywany na następny raz.</li><li><strong>Ostrzeżenie o duplikacie</strong> — w trakcie wpisywania znaku widać, czy ta stacja była już pracowana w tej aktywacji, wraz z czasem, pasmem i emisją poprzedniej łączności.</li><li><strong>Licznik</strong> — u góry po prawej widać liczbę łączności w tej aktywacji, a poniżej trzy ostatnie. Naciśnięcie otwiera łączność w pełnym edytorze.</li><li><strong>Nie zamyka się po zapisie</strong> — czyszczone są tylko pola danej łączności, nagłówek i emisja zostają. Po omyłkowym zapisie masz pięć sekund na naciśnięcie <em>Cofnij</em>.</li><li><strong>Powrót</strong> — strzałka na dole po lewej wraca do dziennika QSO.</li></ul>',
+  log_quicklog_park:  'Aktywacja to <strong>ten sam dzień, ten sam Twój znak i to samo miejsce</strong> — dwa szczyty albo dwa parki jednego dnia liczą się jako dwie aktywacje, każda z własnym licznikiem i własnym sprawdzaniem duplikatów. Tryb parku pozwala wpisać <strong>kilka numerów parków</strong> dla jednego miejsca (n-fer); dodaje się je pojedynczo przyciskiem dodania parku. Gdy korespondent też jest na szczycie albo w parku, przycisk <strong>S2S</strong> lub <strong>P2P</strong> obok jego znaku otwiera pole na jego numer, który trafia do eksportowanych plików. Pola numerów podpowiadają w trakcie pisania: wpisz <code>TW-</code>, a pojawi się lista parków z nazwami, przy czym te już przez Ciebie aktywowane są na początku, więc są dostępne także bez sieci.',
   log_slideshow_title: 'Pokaz slajdów dziennika',
-  log_slideshow_text:  'Przytrzymaj listę dziennika i wybierz <em>Pokaz slajdów</em>, aby przeglądać łączności pojedynczo na pełnym ekranie — ze zdjęciem operatora i układem przypominającym kartę QSL. Slajdy zmieniają się co zadany czas albo przewijasz je ręcznie.',
+  log_slideshow_text:  'Naciśnij <strong>Pokaz slajdów</strong> na dole strony <strong>Dziennik QSO</strong>, aby przeglądać łączności jedna po drugiej na pełnym ekranie: u góry zdjęcie korespondenta z QRZ, poniżej panel w stylu karty QSL. Możesz też przytrzymać wiersz na liście i wybrać <em>Pokaż pokaz slajdów</em>, aby zacząć od tej łączności. Przesuwanie w lewo lub w prawo przewija ręcznie, jedno dotknięcie zamyka. <strong>Przytrzymanie ekranu</strong> otwiera opcje: pomijanie kart bez zdjęcia, czas wyświetlania karty (od 1 do 30 sekund) oraz zakończenie pokazu. Ustawienia są zapamiętywane.',
 
   log_qsl_title: 'Sygnał udanej łączności',
   log_qsl_text:  'Zakończoną łączność można oznajmić w widoczny sposób — przydaje się, gdy telefon nie jest w ręku albo leży po drugiej stronie pomieszczenia. Każdy efekt to osobny przełącznik, więc włączysz tylko te pasujące do twojego stanowiska:',
@@ -382,7 +412,8 @@ en: {
       <li><strong>CSV</strong> — valores separados por comas para analizar en hojas de cálculo</li>
       <li><strong>TEXT</strong> — texto sencillo legible</li>
       <li><strong>SOTA</strong> — formato Summits on the Air (requiere la referencia de la cima SOTA)</li>
-    </ul>`,
+    </ul>
+    <p>El diálogo de exportación permite además acotar lo que entra en el archivo. Junto al filtro de modo habitual, en el desplegable aparece la entrada <strong>Solo ARRL Field Day</strong>, pero solo cuando el registro contiene realmente contactos de Field Day. Field Day no es un modo en sí (esos contactos siguen siendo FT8), pero para enviar la participación hay que separarlos, y hacerlo a mano después resulta tedioso. Mientras no haya contactos de ese tipo la entrada no se muestra, de modo que elegirla nunca puede devolverte un archivo vacío.</p>`,
   log_share_text: 'También puedes usar <strong>Compartir registro</strong> (en el menú del registro) para enviar un archivo ADIF directamente con el menú de compartir de Android: correo, almacenamiento en la nube, mensajería, etc.',
 
   log_import_title: 'Importar registros',
@@ -409,12 +440,16 @@ en: {
     </ul>`,
 
   log_activation_title: 'Modo activación (SOTA / POTA)',
-  log_activation_text:  'Cuando el que activa una cima o un parque eres tú, introduce tu propia referencia en Ajustes → Activación (SOTA/POTA) y activa el modo. A partir de ahí, tus referencias SOTA y POTA se escriben solas en las entradas del registro conforme trabajas estaciones: es justo lo que necesita el formato de exportación SOTA y resulta mucho más cómodo que añadirlas después a cada contacto.',
+  log_activation_text:  'Cuando el que activa una cima o un parque eres tú, introduce tu propia referencia en Ajustes → <strong>Activación SOTA / POTA</strong> y activa «Modo de activación (guardar refs en el registro)». A partir de ahí, tus referencias SOTA y POTA se escriben solas en las entradas del registro conforme trabajas estaciones: es justo lo que necesita el formato de exportación SOTA y resulta mucho más cómodo que añadirlas después a cada contacto. Una vez introducida la referencia, debajo aparecen el nombre del parque y el localizador encontrados, con lo que puedes comprobar que no la has tecleado mal.',
 
   log_activation_multi: 'Un mismo punto suele estar a la vez en <strong>varios parques POTA</strong> (un n-fer). Con <strong>+ Añadir parque</strong> se introducen de uno en uno, hasta seis. La exportación pasa entonces a <strong>un ADIF por parque, empaquetados en un ZIP</strong>: la práctica habitual en POTA es un registro por parque, subido por separado, y varias referencias en un mismo campo no se aceptan. Cada archivo contiene solo los contactos que pertenecen realmente a ese parque. Con un solo parque, la exportación sigue siendo un único archivo.',
 
+  log_quicklog_title: 'Registro rapido (cumbres y parques)',
+  log_quicklog_text:  'Pulse <strong>Registro rapido</strong> en la parte inferior de la página <strong>Registro de QSO</strong> para abrir la pantalla de entrada manual pensada para activaciones de SOTA y POTA. Los campos que no cambian en toda la activación (su indicativo, la cumbre o el parque, la frecuencia y el modo) quedan recogidos en una tarjeta desplegable arriba y solo hay que abrirla al cambiar de banda o de lugar; los campos que cambian en cada contacto quedan al alcance del pulgar. La hora se marca al guardar y el informe de señal se rellena según el modo (599 en CW, 59 en fonía, vacío en modos digitales), de modo que a partir del segundo contacto suele bastar con: escribir su indicativo y pulsar Guardar y siguiente.',
+  log_quicklog_list:  '<ul><li><strong>Cumbres o parques</strong> — el título de arriba a la izquierda es un desplegable: cambia entre Registro de cumbre y Registro de parque. Su elección se recuerda para la próxima vez.</li><li><strong>Aviso de duplicado</strong> — mientras escribe un indicativo le indica si ya ha trabajado esa estación durante esta activación, con la hora, la banda y el modo del contacto anterior.</li><li><strong>Contador</strong> — arriba a la derecha se ve cuántos contactos lleva en esta activación y debajo se listan los tres últimos. Al pulsar uno se abre en el editor completo.</li><li><strong>No se cierra al guardar</strong> — solo se limpian los campos de cada contacto; la cabecera y el modo se mantienen. Si guarda por error dispone de cinco segundos para pulsar <em>Deshacer</em>.</li><li><strong>Volver</strong> — la flecha de abajo a la izquierda regresa al registro de QSO.</li></ul>',
+  log_quicklog_park:  'Una activación es <strong>el mismo día, su mismo indicativo y el mismo lugar</strong>: subir dos cumbres o visitar dos parques en un día cuenta como dos activaciones, cada una con su propio recuento y su propia comprobación de duplicados. El modo de parque permite introducir <strong>varias referencias de parque</strong> para un mismo sitio (n-fer); se añaden de una en una con el botón de añadir parque. Cuando la otra estación también está en una cumbre o en un parque, el botón <strong>S2S</strong> o <strong>P2P</strong> junto a su indicativo abre un campo para su referencia, que se escribe en los archivos exportados. Los campos de referencia sugieren coincidencias mientras escribe: introduzca <code>TW-</code> y aparecerán los parques con sus nombres, con los que ya ha activado en primer lugar, de modo que siguen estando ahí sin conexión de red.',
   log_slideshow_title: 'Pase de diapositivas del registro',
-  log_slideshow_text:  'Mantén pulsada la lista del registro y elige <em>Pase de diapositivas</em> para recorrer tus contactos a pantalla completa, uno a uno, con la foto del operador y un diseño al estilo de una tarjeta QSL. Las diapositivas avanzan según el intervalo que fijes, o puedes pasarlas a mano.',
+  log_slideshow_text:  'Pulse <strong>Presentación</strong> en la parte inferior de la página <strong>Registro de QSO</strong> para ver los contactos uno a uno a pantalla completa, con la foto de QRZ de la otra estación arriba y un panel al estilo de una tarjeta QSL debajo. También puede mantener pulsada una fila de la lista y elegir <em>Mostrar presentación</em> para empezar por ese contacto. Deslice a izquierda o derecha para pasar a mano y toque una vez para salir. <strong>Mantenga pulsada la pantalla</strong> para abrir las opciones: omitir las tarjetas sin foto, cuántos segundos permanece cada una (de 1 a 30) y terminar la presentación. Sus preferencias se recuerdan.',
 
   log_qsl_title: 'Aviso de QSO completado',
   log_qsl_text:  'Un QSO completado puede anunciarse de forma llamativa, algo útil cuando el teléfono no está en tu mano o queda al otro lado de la estación. Cada efecto es un conmutador independiente, así que puedes activar solo los que encajen con tu puesto:',
@@ -443,7 +478,8 @@ en: {
       <li><strong>CSV</strong> — τιμές χωρισμένες με κόμμα για ανάλυση σε υπολογιστικό φύλλο</li>
       <li><strong>TEXT</strong> — απλό αναγνώσιμο κείμενο</li>
       <li><strong>SOTA</strong> — μορφή Summits on the Air (απαιτείται ο κωδικός κορυφής SOTA)</li>
-    </ul>`,
+    </ul>
+    <p>Ο διάλογος εξαγωγής μπορεί επίσης να περιορίσει το τι μπαίνει στο αρχείο. Πέρα από το συνηθισμένο φίλτρο τρόπου λειτουργίας, στην αναπτυσσόμενη λίστα εμφανίζεται η επιλογή <strong>Μόνο ARRL Field Day</strong> — αλλά μόνο όταν το log περιέχει πράγματι επαφές Field Day. Το Field Day δεν είναι τρόπος λειτουργίας από μόνο του (οι επαφές αυτές παραμένουν FT8), όμως για την υποβολή συμμετοχής πρέπει να ξεχωρίσουν, και το να τις διαλέγετε έναν έναν μετά είναι κουραστικό. Όσο δεν υπάρχουν τέτοιες επαφές η επιλογή δεν εμφανίζεται, ώστε να μην μπορεί να σας δώσει άδειο αρχείο.</p>`,
   log_share_text: 'Εναλλακτικά, με την επιλογή <strong>Κοινή χρήση ημερολογίου</strong> (στο μενού του ημερολογίου) στέλνετε αρχείο ADIF απευθείας μέσω του μενού κοινοποίησης του Android — email, αποθήκευση στο cloud, εφαρμογές μηνυμάτων κ.λπ.',
 
   log_import_title: 'Εισαγωγή ημερολογίου',
@@ -470,12 +506,16 @@ en: {
     </ul>`,
 
   log_activation_title: 'Λειτουργία ενεργοποίησης (SOTA / POTA)',
-  log_activation_text:  'Όταν εσείς είστε αυτός που ενεργοποιεί μια κορυφή ή ένα πάρκο, καταχωρίστε τον δικό σας κωδικό στις Ρυθμίσεις → Ενεργοποίηση (SOTA/POTA) και ενεργοποιήστε τη λειτουργία. Από εκεί και πέρα οι κωδικοί SOTA και POTA γράφονται αυτόματα στις εγγραφές του ημερολογίου καθώς κάνετε επαφές — ακριβώς αυτό απαιτεί η μορφή εξαγωγής SOTA και είναι πολύ πιο εύκολο από το να τους προσθέτετε εκ των υστέρων σε κάθε εγγραφή.',
+  log_activation_text:  'Όταν εσείς είστε αυτός που ενεργοποιεί μια κορυφή ή ένα πάρκο, καταχωρίστε τον δικό σας κωδικό στις Ρυθμίσεις → <strong>Ενεργοποίηση SOTA / POTA</strong> και ενεργοποιήστε τη «Λειτουργία ενεργοποίησης (καταγραφή αναφορών στο log)». Από εκεί και πέρα οι κωδικοί SOTA και POTA γράφονται αυτόματα στις εγγραφές του ημερολογίου καθώς κάνετε επαφές — ακριβώς αυτό απαιτεί η μορφή εξαγωγής SOTA και είναι πολύ πιο εύκολο από το να τους προσθέτετε εκ των υστέρων σε κάθε εγγραφή. Μόλις καταχωρηθεί ο κωδικός, από κάτω εμφανίζονται το όνομα του πάρκου και το τετράγωνο που βρέθηκαν, ώστε να βεβαιωθείτε ότι δεν κάνατε λάθος στην πληκτρολόγηση.',
 
   log_activation_multi: 'Το ίδιο σημείο συχνά ανήκει ταυτόχρονα σε <strong>πολλά πάρκα POTA</strong> (n-fer). Με το <strong>+ Προσθήκη πάρκου</strong> τα εισάγετε ένα-ένα, έως έξι. Τότε η εξαγωγή αλλάζει αυτόματα σε <strong>ένα ADIF ανά πάρκο, συσκευασμένα σε ZIP</strong>: η καθιερωμένη πρακτική στο POTA είναι ένα ημερολόγιο ανά πάρκο, που ανεβαίνει χωριστά, και πολλοί κωδικοί στο ίδιο πεδίο δεν γίνονται δεκτοί. Κάθε αρχείο περιέχει μόνο τις επαφές που ανήκουν πραγματικά σε εκείνο το πάρκο. Με ένα μόνο πάρκο, η εξαγωγή παραμένει ένα αρχείο.',
 
+  log_quicklog_title: 'Γρήγορο αρχείο (κορυφές και πάρκα)',
+  log_quicklog_text:  'Πατήστε <strong>Γρήγορο αρχείο</strong> στο κάτω μέρος της σελίδας <strong>Αρχείο επαφών</strong> για να ανοίξετε την οθόνη χειροκίνητης καταχώρισης που φτιάχτηκε για ενεργοποιήσεις SOTA και POTA. Τα πεδία που μένουν ίδια σε όλη την ενεργοποίηση (το διακριτικό σας, η κορυφή ή το πάρκο, η συχνότητα και ο τρόπος εκπομπής) είναι μαζεμένα σε μια αναδιπλούμενη κάρτα επάνω και χρειάζεται να ανοίξουν μόνο όταν αλλάζετε μπάντα ή τοποθεσία. Τα πεδία που αλλάζουν σε κάθε επαφή μένουν εκεί που φτάνει ο αντίχειρας. Η ώρα καταγράφεται τη στιγμή της αποθήκευσης και η αναφορά σήματος συμπληρώνεται ανάλογα με τον τρόπο εκπομπής (599 για CW, 59 για φωνή, κενό για ψηφιακούς), οπότε από τη δεύτερη επαφή αρκεί συνήθως να γράψετε το διακριτικό τους και να πατήσετε Αποθήκευση και επόμενο.',
+  log_quicklog_list:  '<ul><li><strong>Κορυφές ή πάρκα</strong> — ο τίτλος επάνω αριστερά είναι αναπτυσσόμενη λίστα: εναλλαγή ανάμεσα σε Αρχείο κορυφής και Αρχείο πάρκου. Η επιλογή σας θυμάται για την επόμενη φορά.</li><li><strong>Προειδοποίηση διπλοεγγραφής</strong> — καθώς πληκτρολογείτε ένα διακριτικό σας λέει αν έχετε ήδη κάνει επαφή με αυτόν τον σταθμό σε αυτή την ενεργοποίηση, με την ώρα, τη μπάντα και τον τρόπο εκπομπής της προηγούμενης επαφής.</li><li><strong>Μετρητής</strong> — επάνω δεξιά φαίνεται πόσες επαφές έχετε καταγράψει σε αυτή την ενεργοποίηση και από κάτω οι τρεις τελευταίες. Πατώντας μία ανοίγει στην πλήρη φόρμα.</li><li><strong>Δεν κλείνει μετά την αποθήκευση</strong> — καθαρίζονται μόνο τα πεδία της κάθε επαφής, η κεφαλίδα και ο τρόπος εκπομπής μένουν. Αν αποθηκεύσετε κατά λάθος, έχετε πέντε δευτερόλεπτα να πατήσετε <em>Αναίρεση</em>.</li><li><strong>Πίσω</strong> — το βέλος κάτω αριστερά επιστρέφει στο αρχείο επαφών.</li></ul>',
+  log_quicklog_park:  'Μια ενεργοποίηση σημαίνει <strong>την ίδια ημέρα, το ίδιο δικό σας διακριτικό και την ίδια τοποθεσία</strong>: δύο κορυφές ή δύο πάρκα μέσα σε μία ημέρα μετρούν ως δύο ενεργοποιήσεις, καθεμία με τον δικό της μετρητή και τον δικό της έλεγχο διπλοεγγραφών. Η λειτουργία πάρκου επιτρέπει να καταχωρίσετε <strong>πολλούς κωδικούς πάρκων</strong> για την ίδια τοποθεσία (n-fer). Προστίθενται ένας-ένας με το κουμπί προσθήκης πάρκου. Όταν ο ανταποκριτής βρίσκεται και αυτός σε κορυφή ή σε πάρκο, το κουμπί <strong>S2S</strong> ή <strong>P2P</strong> δίπλα στο διακριτικό του ανοίγει πεδίο για τον κωδικό του, ο οποίος γράφεται και στα αρχεία που εξάγετε. Τα πεδία κωδικών προτείνουν αντιστοιχίες καθώς πληκτρολογείτε: γράψτε <code>TW-</code> και εμφανίζονται τα πάρκα με τα ονόματά τους, με όσα έχετε ήδη ενεργοποιήσει πρώτα, ώστε να τα βρίσκετε και χωρίς σύνδεση.',
   log_slideshow_title: 'Προβολή διαφανειών ημερολογίου',
-  log_slideshow_text:  'Πατήστε παρατεταμένα τη λίστα του ημερολογίου και επιλέξτε <em>Προβολή διαφανειών</em> για να δείτε τις επαφές μία-μία σε πλήρη οθόνη, με τη φωτογραφία του χειριστή και διάταξη σε στιλ κάρτας QSL. Οι διαφάνειες αλλάζουν στο διάστημα που ορίζετε ή τις μετακινείτε χειροκίνητα.',
+  log_slideshow_text:  'Πατήστε <strong>Προβολή διαφανειών</strong> στο κάτω μέρος της σελίδας <strong>Αρχείο επαφών</strong> για να δείτε τις επαφές μία προς μία σε πλήρη οθόνη, με τη φωτογραφία QRZ του ανταποκριτή επάνω και έναν πίνακα σε στυλ κάρτας QSL από κάτω. Μπορείτε επίσης να κρατήσετε πατημένη μια γραμμή της λίστας και να επιλέξετε <em>Εμφάνιση προβολής</em> για να ξεκινήσετε από εκείνη την επαφή. Σύρετε αριστερά ή δεξιά για χειροκίνητη εναλλαγή, ένα πάτημα κλείνει. <strong>Παρατεταμένο πάτημα στην οθόνη</strong> ανοίγει τις επιλογές: παράλειψη καρτών χωρίς φωτογραφία, διάρκεια κάθε κάρτας (1 έως 30 δευτερόλεπτα) και τερματισμός προβολής. Οι επιλογές σας αποθηκεύονται.',
 
   log_qsl_title: 'Ειδοποίηση επιτυχούς επαφής',
   log_qsl_text:  'Μια ολοκληρωμένη επαφή μπορεί να το δηλώσει με εμφανή τρόπο — βολικό όταν το τηλέφωνο δεν είναι στο χέρι σας ή βρίσκεται στην άλλη άκρη του σταθμού. Κάθε εφέ έχει δικό του διακόπτη, ώστε να ενεργοποιείτε μόνο όσα ταιριάζουν στη θέση εργασίας σας:',
