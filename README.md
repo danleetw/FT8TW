@@ -63,7 +63,7 @@ You can also download the app from the official Google Play Store.
 Other than GitHub and Google Play, I strongly recommend *not* downloading this app from any other source,  
 as those versions may be modified by attackers.
 
-https://play.google.com/store/apps/details?id=com.bg7yoz.ft8tw
+https://play.google.com/store/apps/details?id=com.bv6lc.ft8tw
 
 
 [🐞 Issue Reporting]  
