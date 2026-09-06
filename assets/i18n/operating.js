@@ -142,7 +142,7 @@ en: {
   op_fd_note: 'A few limits worth knowing. <strong>Class must be A–F and the transmitter count 1–32</strong>: that is the capacity of the protocol itself, which is why the Winter Field Day classes I, O and H cannot be sent. <strong>Receiving</strong> a Field Day exchange always works regardless of this switch — it only changes what <em>you</em> send. In the log, the other station\'s class and section are stored in the ADIF <code>CLASS</code> and <code>ARRL_SECT</code> fields, both visible and editable in the QSO edit dialog, and the mode filter in the export dialog offers <strong>Field Day only</strong> so you can submit just those contacts (the option appears once you have Field Day contacts to export).',
 
   op_single_title: 'Calling One Station Only',
-  op_single_text:  'Four actions mean "call this one station": swiping left on a row in the <strong>decode list</strong>, swiping left on a row in the <strong>transmit list</strong>, tapping a callsign and choosing <strong>Call</strong> or <strong>Reply</strong>, and <strong>typing a callsign in manually</strong>. All four switch transmission on for you, and what happens after that contact finishes depends on one thing only — whether transmission was already on when you started.<br><br><strong>Transmission was off</strong>: the app enters <strong>single-QSO mode</strong>. It stops transmitting as soon as that contact finishes, and while it is running it will not pick up other stations calling you.<br><br><strong>Transmission was already on</strong>: the normal automatic sequence continues unchanged, including calling CQ afterwards. Having transmission running is how you ask for continuous operation, so it is left running.<br><br>The <strong>Auto answer CQ</strong> setting does not change this. That setting controls whether the app answers other stations calling CQ; it has nothing to do with whether a single call stops afterwards. If the station never replies, the <strong>No response</strong> limit still applies and transmission stops.',
+  op_single_text:  'Four actions mean "call this one station": swiping left on a row in the <strong>decode list</strong>, swiping left on a row in the <strong>transmit list</strong>, tapping a callsign and choosing <strong>Call</strong> or <strong>Reply</strong>, and <strong>typing a callsign in manually</strong>. All four switch transmission on for you, and what happens after that contact finishes depends on one thing only — whether transmission was already on when you started.<br><br><strong>Transmission was off</strong>: the app enters <strong>single-QSO mode</strong>. It stops transmitting as soon as that contact finishes, and while it is running it will not pick up other stations calling you.<br><br><strong>Transmission was already on</strong>: the normal automatic sequence continues unchanged, including calling CQ afterwards. Having transmission running is how you ask for continuous operation, so it is left running.<br><br>The <strong>Auto answer CQ</strong> setting does not change this. That setting controls whether the app answers other stations calling CQ; it has nothing to do with whether a single call stops afterwards. If the station never replies, the <strong>No response</strong> limit still applies and transmission stops.<br><br>When a single-station call ends — whether the contact completes or you give up on that station — the target returns to <strong>CQ</strong> instead of leaving the callsign of the other station sitting there (26.0906 and later). Otherwise the screen still looked as if you were calling them, and the next time you enabled transmit it would go straight back to that same station.',
 
   op_watchdog_title: 'TX Watchdog',
   op_watchdog_text:  'The TX watchdog automatically stops transmitting after a configurable time limit (in minutes) to prevent accidentally prolonged transmission. Set the limit in Settings → TX watchdog. Set to 0 to disable.',
@@ -300,7 +300,7 @@ en: {
   op_fd_note: '幾個限制與注意事項：<strong>等級只能是 A~F、台數只能是 1~32</strong>，這是協定本身的容量上限，所以 Winter Field Day 的 I／O／H 等級送不出去。<strong>收到</strong>對方的野外日交換一律能正確辨識，不受這個開關影響——它只改變<em>您自己</em>送出的內容。通聯記錄方面，對方的等級與分區會存進 ADIF 的 <code>CLASS</code> 與 <code>ARRL_SECT</code> 欄位，兩者都可以在 QSO 編輯畫面裡查看與修改；匯出時在模式篩選裡選<strong>「僅野外日」</strong>就能單獨挑出野外日的紀錄交件（有野外日紀錄時才會出現這個選項）。',
 
   op_single_title: '只呼叫一個人',
-  op_single_text:  '有四個動作的語意是「我只要呼叫這一個人」：在<strong>解碼清單</strong>上左滑一列、在<strong>發射清單</strong>上左滑一列、點呼號後選<strong>呼叫</strong>或<strong>回覆</strong>、以及<strong>手動輸入呼號</strong>。這四個動作都會替您把發射打開，而這一場通聯結束後會怎麼樣，只看一件事——您動作的當下發射原本是不是開著的。<br><br><strong>發射原本是關的</strong>：程式進入<strong>單次通聯模式</strong>，這一場一結束就自動停止發射，期間也不會接手其他呼叫您的人。<br><br><strong>發射原本已經開著</strong>：維持原本的自動流程不變，包含結束後繼續呼叫 CQ。發射開著就是您要求持續運作的方式，所以不會替您關掉。<br><br><strong>自動回應 CQ</strong> 這個設定不影響上面的判斷。那個設定管的是要不要去回應別人發出的 CQ，跟「單次呼叫結束後要不要停」是兩件事。對方一直沒回應時，仍依<strong>沒回應</strong>的設定次數收尾並停止發射。',
+  op_single_text:  '有四個動作的語意是「我只要呼叫這一個人」：在<strong>解碼清單</strong>上左滑一列、在<strong>發射清單</strong>上左滑一列、點呼號後選<strong>呼叫</strong>或<strong>回覆</strong>、以及<strong>手動輸入呼號</strong>。這四個動作都會替您把發射打開，而這一場通聯結束後會怎麼樣，只看一件事——您動作的當下發射原本是不是開著的。<br><br><strong>發射原本是關的</strong>：程式進入<strong>單次通聯模式</strong>，這一場一結束就自動停止發射，期間也不會接手其他呼叫您的人。<br><br><strong>發射原本已經開著</strong>：維持原本的自動流程不變，包含結束後繼續呼叫 CQ。發射開著就是您要求持續運作的方式，所以不會替您關掉。<br><br><strong>自動回應 CQ</strong> 這個設定不影響上面的判斷。那個設定管的是要不要去回應別人發出的 CQ，跟「單次呼叫結束後要不要停」是兩件事。對方一直沒回應時，仍依<strong>沒回應</strong>的設定次數收尾並停止發射。<br><br>單次呼叫結束後——不論是通聯完成還是放棄那一台——呼叫對象都會回到 <strong>CQ</strong>，不再留著剛才那台的呼號（26.0906 起）。否則畫面看起來像還在呼叫他，而且下一次您打開發射就會直接對他發出去。',
 
   op_watchdog_title: '發射監管（TX Watchdog）',
   op_watchdog_text:  '發射監管功能在設定的分鐘數後自動停止發射，防止意外長時間佔用頻道。在設置 → 發射監管中設定時間限制，設為 0 表示停用。',
@@ -441,8 +441,27 @@ en: {
     </ol>`,
   op_contest_note: '这样的交换比一般 FT8 通联少一个发射时隙，竞赛时节奏更快。收到的 <code>R + 网格</code> 消息无论此开关是否开启都能正确识别——它只改变<em>您自己</em>送出的内容。',
 
+  op_fd_title: '野外日模式（ARRL Field Day）',
+  op_fd_text:  'ARRL Field Day 交换的不是信号报告，而是<strong>台数＋等级＋分区</strong>（例如 <code>10C IN</code>）。在设置 → 基本信息开启<strong>野外日模式（ARRL FD 交换）</strong>后，第 2、3 条发射会改送这组交换内容取代信号报告。',
+  op_fd_steps: `
+    <ol>
+      <li>设置 → 基本信息 → 开启<strong>野外日模式（ARRL FD 交换）</strong>。</li>
+      <li>填入<strong>发射台数</strong>（1~32）、选择<strong>等级</strong>（A~F）与<strong>分区</strong>。</li>
+      <li>开关下方会实时显示<strong>「将送出：…」</strong>，请对照确认一次。分区没选会直接提示无法送出。</li>
+      <li>开启时 <strong>CQ 修饰符自动改为 FD</strong>，关闭时还原成原本的值，不必自己去改。</li>
+    </ol>`,
+  op_fd_seq: `
+    <table>
+      <tr><th>时隙</th><th>谁在送</th><th>送出的内容</th><th>意思</th></tr>
+      <tr><td>1</td><td>对方</td><td><code>CQ FD W1AW EM37</code></td><td>野外日的 CQ</td></tr>
+      <tr><td>2</td><td><strong>您</strong></td><td><code>W1AW BV6LC 10C IN</code></td><td>「我是 10 台、C 级、IN 分区」——取代信号报告</td></tr>
+      <tr><td>3</td><td>对方</td><td><code>BV6LC W1AW R 2B EMA</code></td><td>「收到（R），我是 2 台、B 级、EMA 分区」</td></tr>
+      <tr><td>4</td><td><strong>您</strong></td><td><code>W1AW BV6LC RR73</code></td><td>完成，自动写进通联记录</td></tr>
+    </table>`,
+  op_fd_note: '几个限制与注意事项：<strong>等级只能是 A~F、台数只能是 1~32</strong>，这是协议本身的容量上限，所以 Winter Field Day 的 I／O／H 等级送不出去。<strong>收到</strong>对方的野外日交换一律能正确识别，不受这个开关影响——它只改变<em>您自己</em>送出的内容。通联记录方面，对方的等级与分区会存进 ADIF 的 <code>CLASS</code> 与 <code>ARRL_SECT</code> 字段，两者都可以在 QSO 编辑画面里查看与修改；导出时在模式筛选里选<strong>「仅野外日」</strong>就能单独挑出野外日的记录交件（有野外日记录时才会出现这个选项）。',
+
   op_single_title: '只呼叫一个人',
-  op_single_text:  '有四个动作的语意是「我只要呼叫这一个人」：在<strong>解码列表</strong>上左滑一列、在<strong>发射列表</strong>上左滑一列、点呼号后选<strong>呼叫</strong>或<strong>回复</strong>，以及<strong>手动输入呼号</strong>。这四个动作都会替您把发射打开，而这一场通联结束后会怎么样，只看一件事——您动作的当下发射原本是不是开着的。<br><br><strong>发射原本是关的</strong>：程序进入<strong>单次通联模式</strong>，这一场一结束就自动停止发射，期间也不会接手其他呼叫您的人。<br><br><strong>发射原本已经开着</strong>：维持原本的自动流程不变，包含结束后继续呼叫 CQ。发射开着就是您要求持续运作的方式，所以不会替您关掉。<br><br><strong>自动回应 CQ</strong> 这个设置不影响上面的判断。那个设置管的是要不要去回应别人发出的 CQ，跟「单次呼叫结束后要不要停」是两件事。对方一直没回应时，仍依<strong>没回应</strong>的设置次数收尾并停止发射。',
+  op_single_text:  '有四个动作的语意是「我只要呼叫这一个人」：在<strong>解码列表</strong>上左滑一列、在<strong>发射列表</strong>上左滑一列、点呼号后选<strong>呼叫</strong>或<strong>回复</strong>，以及<strong>手动输入呼号</strong>。这四个动作都会替您把发射打开，而这一场通联结束后会怎么样，只看一件事——您动作的当下发射原本是不是开着的。<br><br><strong>发射原本是关的</strong>：程序进入<strong>单次通联模式</strong>，这一场一结束就自动停止发射，期间也不会接手其他呼叫您的人。<br><br><strong>发射原本已经开着</strong>：维持原本的自动流程不变，包含结束后继续呼叫 CQ。发射开着就是您要求持续运作的方式，所以不会替您关掉。<br><br><strong>自动回应 CQ</strong> 这个设置不影响上面的判断。那个设置管的是要不要去回应别人发出的 CQ，跟「单次呼叫结束后要不要停」是两件事。对方一直没回应时，仍依<strong>没回应</strong>的设置次数收尾并停止发射。<br><br>单次呼叫结束后——不论是通联完成还是放弃那一台——呼叫对象都会回到 <strong>CQ</strong>，不再留着刚才那台的呼号（26.0906 起）。否则画面看起来像还在呼叫他，而且下一次您打开发射就会直接对他发出去。',
   op_watchdog_title: '发射监管（TX Watchdog）',
   op_watchdog_text:  '发射监管功能在设定的分钟数后自动停止发射，防止意外长时间占用频道。在设置 → 发射监管中设定时间限制，设为 0 表示停用。',
 
@@ -579,8 +598,27 @@ en: {
     </ol>`,
   op_contest_note: 'この交換は通常の FT8 交信より送信スロットが 1 つ少なく、コンテストではその分テンポが上がります。受信した <code>R + グリッド</code> はこのスイッチの状態に関係なく常に正しく解釈されます。変わるのは<em>自分が送る内容</em>だけです。',
 
+  op_fd_title: 'フィールドデーモード（ARRL Field Day）',
+  op_fd_text:  'ARRL Field Day で交換するのはシグナルレポートではなく、<strong>送信機数＋クラス＋セクション</strong>（例：<code>10C IN</code>）です。設定 → 基本情報で<strong>フィールドデーモード（ARRL FD 交換）</strong>をオンにすると、2 通目と 3 通目の送信がシグナルレポートに代えてこの交換内容になります。',
+  op_fd_steps: `
+    <ol>
+      <li>設定 → 基本情報 → <strong>フィールドデーモード（ARRL FD 交換）</strong>をオンにします。</li>
+      <li><strong>送信機数</strong>（1〜32）を入力し、<strong>クラス</strong>（A〜F）と<strong>セクション</strong>を選びます。</li>
+      <li>スイッチの下に<strong>「送信内容：…」</strong>がその場で表示されるので、一度照合してください。セクションが未選択なら送信できない旨がそのまま表示されます。</li>
+      <li>オンにすると <strong>CQ 修飾子が自動的に FD</strong> になり、オフにすると元の値へ戻ります。自分で変更する必要はありません。</li>
+    </ol>`,
+  op_fd_seq: `
+    <table>
+      <tr><th>スロット</th><th>送信側</th><th>送信内容</th><th>意味</th></tr>
+      <tr><td>1</td><td>相手</td><td><code>CQ FD W1AW EM37</code></td><td>フィールドデーの CQ</td></tr>
+      <tr><td>2</td><td><strong>自分</strong></td><td><code>W1AW BV6LC 10C IN</code></td><td>「10 台、クラス C、IN セクション」——シグナルレポートの代わり</td></tr>
+      <tr><td>3</td><td>相手</td><td><code>BV6LC W1AW R 2B EMA</code></td><td>「受信しました（R）、こちらは 2 台、クラス B、EMA セクション」</td></tr>
+      <tr><td>4</td><td><strong>自分</strong></td><td><code>W1AW BV6LC RR73</code></td><td>完了。交信ログへ自動的に記録されます</td></tr>
+    </table>`,
+  op_fd_note: 'いくつかの制限と注意点があります。<strong>クラスは A〜F、送信機数は 1〜32</strong> に限られます。これはプロトコル自体の容量の上限で、そのため Winter Field Day の I／O／H クラスは送信できません。相手からのフィールドデー交換の<strong>受信</strong>は常に正しく認識され、このスイッチの影響を受けません——変わるのは<em>自分が</em>送る内容だけです。ログについては、相手のクラスとセクションが ADIF の <code>CLASS</code> と <code>ARRL_SECT</code> フィールドに保存され、どちらも QSO 編集画面で確認・修正できます。書き出すときはモードフィルターで<strong>「フィールドデーのみ」</strong>を選べば、提出用にフィールドデーの記録だけを取り出せます（該当する記録があるときにだけ現れる項目です）。',
+
   op_single_title: '1局だけを呼び出す',
-  op_single_text:  '「この局だけを呼びたい」という意味の操作が4つあります：<strong>デコード一覧</strong>の行を左スワイプ、<strong>送信一覧</strong>の行を左スワイプ、コールサインをタップして<strong>呼出</strong>または<strong>応答</strong>を選ぶ、そして<strong>コールサインを手入力</strong>する。いずれも送信を自動的にオンにします。その交信が終わったあとの動作は、操作した時点で送信がすでにオンだったかどうかだけで決まります。<br><br><strong>送信がオフだった場合</strong>：<strong>単発交信モード</strong>に入り、その交信が終わると送信を停止します。その間、自分を呼ぶ他局には応答しません。<br><br><strong>送信がすでにオンだった場合</strong>：終了後のCQ送信を含め、通常の自動シーケンスがそのまま続きます。送信をオンにしていること自体が連続運用の指示だからです。<br><br><strong>CQ自動応答</strong>の設定はこの判断に影響しません。あの設定は他局のCQに応答するかどうかを決めるもので、単発呼び出しのあとに停止するかどうかとは別です。相手から応答がない場合は、<strong>無応答</strong>の回数設定に従って送信を停止します。',
+  op_single_text:  '「この局だけを呼びたい」という意味の操作が4つあります：<strong>デコード一覧</strong>の行を左スワイプ、<strong>送信一覧</strong>の行を左スワイプ、コールサインをタップして<strong>呼出</strong>または<strong>応答</strong>を選ぶ、そして<strong>コールサインを手入力</strong>する。いずれも送信を自動的にオンにします。その交信が終わったあとの動作は、操作した時点で送信がすでにオンだったかどうかだけで決まります。<br><br><strong>送信がオフだった場合</strong>：<strong>単発交信モード</strong>に入り、その交信が終わると送信を停止します。その間、自分を呼ぶ他局には応答しません。<br><br><strong>送信がすでにオンだった場合</strong>：終了後のCQ送信を含め、通常の自動シーケンスがそのまま続きます。送信をオンにしていること自体が連続運用の指示だからです。<br><br><strong>CQ自動応答</strong>の設定はこの判断に影響しません。あの設定は他局のCQに応答するかどうかを決めるもので、単発呼び出しのあとに停止するかどうかとは別です。相手から応答がない場合は、<strong>無応答</strong>の回数設定に従って送信を停止します。<br><br>単発呼び出しが終わると——交信が成立しても、その局をあきらめても——呼び出し相手は <strong>CQ</strong> に戻り、直前の局のコールサインは残りません（26.0906 以降）。残っていると、まだ呼んでいるように見えるうえ、次に送信を有効にしたときそのまま同じ局へ送ってしまいます。',
   op_watchdog_title: '送信ウォッチドッグ',
   op_watchdog_text:  '送信ウォッチドッグは設定した分数で送信を自動停止し、意図しない長時間送信を防ぎます。設定 → 送信ウォッチドッグ で上限を指定します。0 にすると無効です。',
 
@@ -717,8 +755,27 @@ en: {
     </ol>`,
   op_contest_note: 'Такой обмен на один интервал передачи короче обычного QSO в FT8, поэтому в соревновании темп выше. Приходящие сообщения <code>R + локатор</code> распознаются всегда, независимо от этого переключателя: он меняет только то, что передаёте <em>вы</em>.',
 
+  op_fd_title: 'Режим Field Day (ARRL Field Day)',
+  op_fd_text:  'В ARRL Field Day обмениваются не рапортом, а <strong>числом передатчиков, классом и секцией</strong> (например, <code>10C IN</code>). После включения <strong>режима Field Day (обмен ARRL FD)</strong> в Настройки → Основные сведения вторая и третья передачи отправляют этот обмен вместо рапорта.',
+  op_fd_steps: `
+    <ol>
+      <li>Настройки → Основные сведения → включите <strong>Режим Field Day (обмен ARRL FD)</strong>.</li>
+      <li>Укажите <strong>число передатчиков</strong> (1–32), выберите <strong>класс</strong> (A–F) и <strong>секцию</strong>.</li>
+      <li>Под переключателем сразу показывается <strong>«Будет отправлено: …»</strong> — сверьтесь с этой строкой. Если секция не выбрана, приложение прямо сообщит, что отправка невозможна.</li>
+      <li>При включении <strong>модификатор CQ автоматически меняется на FD</strong>, при выключении возвращается прежнее значение — менять вручную ничего не нужно.</li>
+    </ol>`,
+  op_fd_seq: `
+    <table>
+      <tr><th>Интервал</th><th>Кто передаёт</th><th>Передано</th><th>Значение</th></tr>
+      <tr><td>1</td><td>Он</td><td><code>CQ FD W1AW EM37</code></td><td>CQ в Field Day</td></tr>
+      <tr><td>2</td><td><strong>Вы</strong></td><td><code>W1AW BV6LC 10C IN</code></td><td>«У меня 10 передатчиков, класс C, секция IN» — вместо рапорта</td></tr>
+      <tr><td>3</td><td>Он</td><td><code>BV6LC W1AW R 2B EMA</code></td><td>«Принято (R), у меня 2 передатчика, класс B, секция EMA»</td></tr>
+      <tr><td>4</td><td><strong>Вы</strong></td><td><code>W1AW BV6LC RR73</code></td><td>Готово, связь автоматически записана в журнал</td></tr>
+    </table>`,
+  op_fd_note: 'Несколько ограничений и замечаний. <strong>Класс возможен только A–F, число передатчиков — только 1–32</strong>: это предел ёмкости самого протокола, поэтому классы I/O/H из Winter Field Day отправить нельзя. <strong>Приём</strong> чужого обмена Field Day распознаётся всегда и от этого переключателя не зависит — он меняет только то, что передаёте <em>вы сами</em>. В журнале класс и секция корреспондента сохраняются в полях ADIF <code>CLASS</code> и <code>ARRL_SECT</code>; оба можно посмотреть и исправить на экране редактирования QSO. При экспорте выберите в фильтре вида работы пункт <strong>Только ARRL Field Day</strong>, чтобы выделить для отчёта только связи Field Day (пункт появляется лишь тогда, когда такие связи есть).',
+
   op_single_title: 'Вызов только одной станции',
-  op_single_text:  'Четыре действия означают «вызвать именно эту станцию»: свайп влево по строке в <strong>списке декодирования</strong>, свайп влево по строке в <strong>списке передачи</strong>, нажатие на позывной с выбором <strong>Вызов</strong> или <strong>Ответ</strong>, и <strong>ручной ввод позывного</strong>. Все четыре включают передачу за вас. Что произойдёт после завершения связи, зависит только от одного — была ли передача уже включена в момент действия.<br><br><strong>Передача была выключена</strong>: приложение переходит в <strong>режим одиночной связи</strong> — по завершении QSO передача останавливается, и в это время другие вызывающие вас станции не подхватываются.<br><br><strong>Передача уже была включена</strong>: обычная автоматическая последовательность продолжается без изменений, включая вызов CQ после связи. Включённая передача и есть ваш запрос на непрерывную работу.<br><br>Настройка <strong>Автоответ на CQ</strong> на это не влияет: она определяет, отвечать ли на CQ других станций, а не то, останавливаться ли после одиночного вызова. Если станция не отвечает, действует ограничение <strong>Нет ответа</strong> и передача прекращается.',
+  op_single_text:  'Четыре действия означают «вызвать именно эту станцию»: свайп влево по строке в <strong>списке декодирования</strong>, свайп влево по строке в <strong>списке передачи</strong>, нажатие на позывной с выбором <strong>Вызов</strong> или <strong>Ответ</strong>, и <strong>ручной ввод позывного</strong>. Все четыре включают передачу за вас. Что произойдёт после завершения связи, зависит только от одного — была ли передача уже включена в момент действия.<br><br><strong>Передача была выключена</strong>: приложение переходит в <strong>режим одиночной связи</strong> — по завершении QSO передача останавливается, и в это время другие вызывающие вас станции не подхватываются.<br><br><strong>Передача уже была включена</strong>: обычная автоматическая последовательность продолжается без изменений, включая вызов CQ после связи. Включённая передача и есть ваш запрос на непрерывную работу.<br><br>Настройка <strong>Автоответ на CQ</strong> на это не влияет: она определяет, отвечать ли на CQ других станций, а не то, останавливаться ли после одиночного вызова. Если станция не отвечает, действует ограничение <strong>Нет ответа</strong> и передача прекращается.<br><br>После завершения одиночного вызова — независимо от того, состоялась связь или вы отказались от этой станции — цель возвращается к <strong>CQ</strong>, а позывной предыдущей станции больше не остаётся на экране (начиная с 26.0906). Иначе казалось бы, что вы всё ещё его вызываете, и при следующем включении передачи вызов ушёл бы прямо к нему.',
   op_watchdog_title: 'Сторожевой таймер передачи',
   op_watchdog_text:  'Сторожевой таймер автоматически прекращает передачу по истечении заданного времени (в минутах), чтобы исключить случайно затянувшуюся передачу. Предел задаётся в Настройки → Сторожевой таймер. Значение 0 отключает его.',
 
@@ -855,8 +912,27 @@ en: {
     </ol>`,
   op_contest_note: 'Taka wymiana jest o jeden okres nadawania krótsza od zwykłej łączności FT8, więc w zawodach tempo rośnie. Odbierane wiadomości <code>R + lokator</code> są rozpoznawane zawsze, niezależnie od tego przełącznika — zmienia on tylko to, co nadajesz <em>ty</em>.',
 
+  op_fd_title: 'Tryb Field Day (ARRL Field Day)',
+  op_fd_text:  'W ARRL Field Day wymienia się nie raport sygnału, lecz <strong>liczbę nadajników, klasę i sekcję</strong> (na przykład <code>10C IN</code>). Po włączeniu <strong>trybu Field Day (wymiana ARRL FD)</strong> w Ustawienia → Informacje podstawowe druga i trzecia transmisja wysyłają tę wymianę zamiast raportu.',
+  op_fd_steps: `
+    <ol>
+      <li>Ustawienia → Informacje podstawowe → włącz <strong>Tryb Field Day (wymiana ARRL FD)</strong>.</li>
+      <li>Wpisz <strong>liczbę nadajników</strong> (1–32), wybierz <strong>klasę</strong> (A–F) i <strong>sekcję</strong>.</li>
+      <li>Pod przełącznikiem na bieżąco widnieje <strong>„Zostanie wysłane: …"</strong> — sprawdź tę linię. Gdy sekcja nie jest wybrana, aplikacja wprost napisze, że wysłanie nie jest możliwe.</li>
+      <li>Włączenie ustawia <strong>modyfikator CQ na FD</strong>, a wyłączenie przywraca poprzednią wartość — nie trzeba zmieniać tego ręcznie.</li>
+    </ol>`,
+  op_fd_seq: `
+    <table>
+      <tr><th>Slot</th><th>Kto nadaje</th><th>Wysłane</th><th>Znaczenie</th></tr>
+      <tr><td>1</td><td>Oni</td><td><code>CQ FD W1AW EM37</code></td><td>CQ w Field Day</td></tr>
+      <tr><td>2</td><td><strong>Ty</strong></td><td><code>W1AW BV6LC 10C IN</code></td><td>„Mam 10 nadajników, klasa C, sekcja IN" — zamiast raportu</td></tr>
+      <tr><td>3</td><td>Oni</td><td><code>BV6LC W1AW R 2B EMA</code></td><td>„Odebrane (R), u mnie 2 nadajniki, klasa B, sekcja EMA"</td></tr>
+      <tr><td>4</td><td><strong>Ty</strong></td><td><code>W1AW BV6LC RR73</code></td><td>Gotowe, łączność zapisuje się automatycznie w dzienniku</td></tr>
+    </table>`,
+  op_fd_note: 'Kilka ograniczeń i uwag. <strong>Klasa może być tylko A–F, a liczba nadajników tylko 1–32</strong> — to limit pojemności samego protokołu, dlatego klas I/O/H z Winter Field Day nie da się wysłać. <strong>Odbiór</strong> cudzej wymiany Field Day jest zawsze rozpoznawany i nie zależy od tego przełącznika — zmienia on wyłącznie to, co nadajesz <em>ty sam</em>. W dzienniku klasa i sekcja korespondenta trafiają do pól ADIF <code>CLASS</code> i <code>ARRL_SECT</code>; oba można obejrzeć i poprawić na ekranie edycji QSO. Przy eksporcie wybierz w filtrze emisji pozycję <strong>Tylko ARRL Field Day</strong>, aby wydzielić do zgłoszenia same łączności Field Day (pozycja pojawia się tylko wtedy, gdy takie łączności istnieją).',
+
   op_single_title: 'Wywołanie tylko jednej stacji',
-  op_single_text:  'Cztery czynności oznaczają „chcę wywołać tę jedną stację”: przesunięcie w lewo na wierszu <strong>listy dekodowania</strong>, przesunięcie w lewo na wierszu <strong>listy nadawania</strong>, dotknięcie znaku i wybranie <strong>Wywołaj</strong> lub <strong>Odpowiedz</strong> oraz <strong>ręczne wpisanie znaku</strong>. Każda z nich włącza nadawanie za Ciebie. To, co stanie się po zakończeniu łączności, zależy wyłącznie od jednego — czy nadawanie było już włączone w momencie wykonania czynności.<br><br><strong>Nadawanie było wyłączone</strong>: aplikacja przechodzi w <strong>tryb pojedynczej łączności</strong> — po zakończeniu QSO nadawanie zostaje zatrzymane, a w międzyczasie inne stacje wywołujące Ciebie nie są obsługiwane.<br><br><strong>Nadawanie było już włączone</strong>: normalna sekwencja automatyczna trwa bez zmian, łącznie z wywoływaniem CQ po łączności. Włączone nadawanie jest właśnie prośbą o pracę ciągłą.<br><br>Ustawienie <strong>Automatyczna odpowiedź na CQ</strong> nie ma tu znaczenia: decyduje ono o odpowiadaniu na CQ innych stacji, a nie o zatrzymaniu po pojedynczym wywołaniu. Jeśli stacja nie odpowiada, nadal obowiązuje limit <strong>Brak odpowiedzi</strong> i nadawanie zostaje zatrzymane.',
+  op_single_text:  'Cztery czynności oznaczają „chcę wywołać tę jedną stację”: przesunięcie w lewo na wierszu <strong>listy dekodowania</strong>, przesunięcie w lewo na wierszu <strong>listy nadawania</strong>, dotknięcie znaku i wybranie <strong>Wywołaj</strong> lub <strong>Odpowiedz</strong> oraz <strong>ręczne wpisanie znaku</strong>. Każda z nich włącza nadawanie za Ciebie. To, co stanie się po zakończeniu łączności, zależy wyłącznie od jednego — czy nadawanie było już włączone w momencie wykonania czynności.<br><br><strong>Nadawanie było wyłączone</strong>: aplikacja przechodzi w <strong>tryb pojedynczej łączności</strong> — po zakończeniu QSO nadawanie zostaje zatrzymane, a w międzyczasie inne stacje wywołujące Ciebie nie są obsługiwane.<br><br><strong>Nadawanie było już włączone</strong>: normalna sekwencja automatyczna trwa bez zmian, łącznie z wywoływaniem CQ po łączności. Włączone nadawanie jest właśnie prośbą o pracę ciągłą.<br><br>Ustawienie <strong>Automatyczna odpowiedź na CQ</strong> nie ma tu znaczenia: decyduje ono o odpowiadaniu na CQ innych stacji, a nie o zatrzymaniu po pojedynczym wywołaniu. Jeśli stacja nie odpowiada, nadal obowiązuje limit <strong>Brak odpowiedzi</strong> i nadawanie zostaje zatrzymane.<br><br>Po zakończeniu pojedynczego wywołania — czy łączność doszła do skutku, czy zrezygnowałeś z tej stacji — cel wraca do <strong>CQ</strong>, a znak poprzedniej stacji nie zostaje na ekranie (od 26.0906). Inaczej wyglądałoby to tak, jakbyś wciąż go wywoływał, a po ponownym włączeniu nadawania wywołanie poszłoby prosto do niego.',
   op_watchdog_title: 'Nadzorca nadawania',
   op_watchdog_text:  'Nadzorca nadawania automatycznie przerywa nadawanie po ustawionym czasie (w minutach), aby zapobiec przypadkowemu przedłużonemu nadawaniu. Limit ustawisz w Ustawienia → Nadzorca nadawania. Wartość 0 wyłącza tę funkcję.',
 
@@ -993,8 +1069,27 @@ en: {
     </ol>`,
   op_contest_note: 'El intercambio es un intervalo de transmisión más corto que un QSO normal de FT8, así que el ritmo del concurso es más rápido. Los mensajes <code>R + localizador</code> que recibas se interpretan siempre, esté o no activado este conmutador: solo cambia lo que envías <em>tú</em>.',
 
+  op_fd_title: 'Modo Field Day (ARRL Field Day)',
+  op_fd_text:  'En el ARRL Field Day no se intercambia un informe de señal, sino el <strong>número de transmisores, la clase y la sección</strong> (por ejemplo <code>10C IN</code>). Al activar el <strong>modo Field Day (intercambio ARRL FD)</strong> en Ajustes → Información básica, la 2.ª y la 3.ª transmisión envían ese intercambio en lugar del informe.',
+  op_fd_steps: `
+    <ol>
+      <li>Ajustes → Información básica → activa el <strong>Modo Field Day (intercambio ARRL FD)</strong>.</li>
+      <li>Introduce el <strong>número de transmisores</strong> (1–32) y elige la <strong>clase</strong> (A–F) y la <strong>sección</strong>.</li>
+      <li>Debajo del interruptor aparece en tiempo real <strong>«Se enviará: …»</strong>; contrástalo una vez. Si no has elegido sección, la aplicación avisa directamente de que no puede enviarse.</li>
+      <li>Al activarlo, el <strong>modificador de CQ pasa automáticamente a FD</strong>, y al desactivarlo se restaura el valor anterior: no hace falta cambiarlo a mano.</li>
+    </ol>`,
+  op_fd_seq: `
+    <table>
+      <tr><th>Ranura</th><th>Quién envía</th><th>Enviado</th><th>Significado</th></tr>
+      <tr><td>1</td><td>Ellos</td><td><code>CQ FD W1AW EM37</code></td><td>CQ de Field Day</td></tr>
+      <tr><td>2</td><td><strong>Tú</strong></td><td><code>W1AW BV6LC 10C IN</code></td><td>«Tengo 10 transmisores, clase C, sección IN»: sustituye al informe</td></tr>
+      <tr><td>3</td><td>Ellos</td><td><code>BV6LC W1AW R 2B EMA</code></td><td>«Recibido (R); aquí 2 transmisores, clase B, sección EMA»</td></tr>
+      <tr><td>4</td><td><strong>Tú</strong></td><td><code>W1AW BV6LC RR73</code></td><td>Listo; el contacto se anota solo en el registro</td></tr>
+    </table>`,
+  op_fd_note: 'Algunas limitaciones y advertencias. <strong>La clase solo puede ser A–F y el número de transmisores solo 1–32</strong>: es el límite de capacidad del propio protocolo, así que las clases I/O/H del Winter Field Day no pueden enviarse. La <strong>recepción</strong> del intercambio Field Day ajeno se reconoce siempre y no depende de este interruptor: solo cambia lo que envías <em>tú</em>. En el registro, la clase y la sección del corresponsal se guardan en los campos ADIF <code>CLASS</code> y <code>ARRL_SECT</code>; ambos pueden consultarse y corregirse en la pantalla de edición del QSO. Al exportar, elige en el filtro de modo la entrada <strong>Solo ARRL Field Day</strong> para separar únicamente los contactos de Field Day para la participación (esa entrada solo aparece cuando existen contactos así).',
+
   op_single_title: 'Llamar a una sola estación',
-  op_single_text:  'Cuatro acciones significan «quiero llamar a esta estación»: deslizar a la izquierda una fila de la <strong>lista de decodificación</strong>, deslizar a la izquierda una fila de la <strong>lista de transmisión</strong>, tocar un indicativo y elegir <strong>Llamar</strong> o <strong>Responder</strong>, y <strong>escribir un indicativo a mano</strong>. Las cuatro activan la transmisión por usted. Lo que ocurre al terminar ese contacto depende de una sola cosa: si la transmisión ya estaba activada en ese momento.<br><br><strong>La transmisión estaba desactivada</strong>: la aplicación entra en <strong>modo de contacto único</strong>. Deja de transmitir en cuanto termina ese contacto y, mientras tanto, no atiende a otras estaciones que le llamen.<br><br><strong>La transmisión ya estaba activada</strong>: la secuencia automática normal continúa sin cambios, incluida la llamada de CQ posterior. Tener la transmisión activada es precisamente cómo se pide el funcionamiento continuo.<br><br>El ajuste <strong>Respuesta automática a CQ</strong> no afecta a esto: ese ajuste decide si se responde a los CQ de otras estaciones, no si una llamada única se detiene después. Si la estación no responde, se sigue aplicando el límite <strong>Sin respuesta</strong> y la transmisión se detiene.',
+  op_single_text:  'Cuatro acciones significan «quiero llamar a esta estación»: deslizar a la izquierda una fila de la <strong>lista de decodificación</strong>, deslizar a la izquierda una fila de la <strong>lista de transmisión</strong>, tocar un indicativo y elegir <strong>Llamar</strong> o <strong>Responder</strong>, y <strong>escribir un indicativo a mano</strong>. Las cuatro activan la transmisión por usted. Lo que ocurre al terminar ese contacto depende de una sola cosa: si la transmisión ya estaba activada en ese momento.<br><br><strong>La transmisión estaba desactivada</strong>: la aplicación entra en <strong>modo de contacto único</strong>. Deja de transmitir en cuanto termina ese contacto y, mientras tanto, no atiende a otras estaciones que le llamen.<br><br><strong>La transmisión ya estaba activada</strong>: la secuencia automática normal continúa sin cambios, incluida la llamada de CQ posterior. Tener la transmisión activada es precisamente cómo se pide el funcionamiento continuo.<br><br>El ajuste <strong>Respuesta automática a CQ</strong> no afecta a esto: ese ajuste decide si se responde a los CQ de otras estaciones, no si una llamada única se detiene después. Si la estación no responde, se sigue aplicando el límite <strong>Sin respuesta</strong> y la transmisión se detiene.<br><br>Cuando termina una llamada a una sola estación — tanto si el contacto se completa como si abandona esa estación — el objetivo vuelve a <strong>CQ</strong> en lugar de dejar ahí el indicativo de la otra estación (desde 26.0906). De lo contrario la pantalla parecería indicar que sigue llamándole, y la próxima vez que activara la transmisión iría directamente a esa misma estación.',
   op_watchdog_title: 'Vigilante de transmisión',
   op_watchdog_text:  'El vigilante de transmisión detiene automáticamente la emisión tras un límite de tiempo configurable (en minutos) para evitar transmisiones prolongadas por descuido. Fija el límite en Ajustes → Vigilante de TX. Ponlo a 0 para desactivarlo.',
 
@@ -1131,8 +1226,27 @@ en: {
     </ol>`,
   op_contest_note: 'Η ανταλλαγή είναι μία χρονοθυρίδα εκπομπής συντομότερη από μια συνηθισμένη επαφή FT8, οπότε ο ρυθμός στον διαγωνισμό ανεβαίνει. Τα εισερχόμενα μηνύματα <code>R + τετράγωνο</code> αναγνωρίζονται πάντα, ανεξάρτητα από αυτόν τον διακόπτη — αλλάζει μόνο αυτό που στέλνετε <em>εσείς</em>.',
 
+  op_fd_title: 'Λειτουργία Field Day (ARRL Field Day)',
+  op_fd_text:  'Στο ARRL Field Day δεν ανταλλάσσεται αναφορά σήματος, αλλά <strong>αριθμός πομπών, κατηγορία και τμήμα</strong> (για παράδειγμα <code>10C IN</code>). Αφού ενεργοποιήσετε τη <strong>λειτουργία Field Day (ανταλλαγή ARRL FD)</strong> στις Ρυθμίσεις → Βασικές πληροφορίες, η 2η και η 3η εκπομπή στέλνουν αυτή την ανταλλαγή αντί για την αναφορά.',
+  op_fd_steps: `
+    <ol>
+      <li>Ρυθμίσεις → Βασικές πληροφορίες → ενεργοποιήστε τη <strong>Λειτουργία Field Day (ανταλλαγή ARRL FD)</strong>.</li>
+      <li>Συμπληρώστε τον <strong>αριθμό πομπών</strong> (1–32) και επιλέξτε <strong>κατηγορία</strong> (A–F) και <strong>τμήμα</strong>.</li>
+      <li>Κάτω από τον διακόπτη εμφανίζεται σε πραγματικό χρόνο το <strong>«Θα σταλεί: …»</strong>· ελέγξτε το μία φορά. Αν δεν έχει επιλεγεί τμήμα, η εφαρμογή σας λέει ευθέως ότι δεν μπορεί να σταλεί.</li>
+      <li>Με την ενεργοποίηση ο <strong>τροποποιητής CQ γίνεται αυτόματα FD</strong> και με την απενεργοποίηση επανέρχεται η προηγούμενη τιμή — δεν χρειάζεται να το αλλάξετε μόνοι σας.</li>
+    </ol>`,
+  op_fd_seq: `
+    <table>
+      <tr><th>Χρονοθυρίδα</th><th>Ποιος στέλνει</th><th>Στάλθηκε</th><th>Σημασία</th></tr>
+      <tr><td>1</td><td>Αυτοί</td><td><code>CQ FD W1AW EM37</code></td><td>CQ του Field Day</td></tr>
+      <tr><td>2</td><td><strong>Εσείς</strong></td><td><code>W1AW BV6LC 10C IN</code></td><td>«Έχω 10 πομπούς, κατηγορία C, τμήμα IN» — αντικαθιστά την αναφορά</td></tr>
+      <tr><td>3</td><td>Αυτοί</td><td><code>BV6LC W1AW R 2B EMA</code></td><td>«Ελήφθη (R), εδώ 2 πομποί, κατηγορία B, τμήμα EMA»</td></tr>
+      <tr><td>4</td><td><strong>Εσείς</strong></td><td><code>W1AW BV6LC RR73</code></td><td>Ολοκληρώθηκε· η επαφή γράφεται αυτόματα στο log</td></tr>
+    </table>`,
+  op_fd_note: 'Μερικοί περιορισμοί και σημειώσεις. <strong>Η κατηγορία μπορεί να είναι μόνο A–F και ο αριθμός πομπών μόνο 1–32</strong>: είναι το όριο χωρητικότητας του ίδιου του πρωτοκόλλου, γι᾽ αυτό οι κατηγορίες I/O/H του Winter Field Day δεν μπορούν να σταλούν. Η <strong>λήψη</strong> της ανταλλαγής Field Day του άλλου αναγνωρίζεται πάντα και δεν εξαρτάται από αυτόν τον διακόπτη — αλλάζει μόνο αυτό που στέλνετε <em>εσείς</em>. Στο log, η κατηγορία και το τμήμα του ανταποκριτή αποθηκεύονται στα πεδία ADIF <code>CLASS</code> και <code>ARRL_SECT</code>· και τα δύο μπορείτε να τα δείτε και να τα διορθώσετε στην οθόνη επεξεργασίας QSO. Κατά την εξαγωγή, επιλέξτε στο φίλτρο τρόπου λειτουργίας το <strong>Μόνο ARRL Field Day</strong> για να ξεχωρίσετε μόνο τις επαφές Field Day προς υποβολή (η επιλογή εμφανίζεται μόνο όταν υπάρχουν τέτοιες επαφές).',
+
   op_single_title: 'Κλήση μόνο ενός σταθμού',
-  op_single_text:  'Τέσσερις ενέργειες σημαίνουν «θέλω να καλέσω αυτόν τον σταθμό»: σύρσιμο προς τα αριστερά σε μια γραμμή της <strong>λίστας αποκωδικοποίησης</strong>, σύρσιμο προς τα αριστερά σε μια γραμμή της <strong>λίστας εκπομπής</strong>, πάτημα ενός διακριτικού και επιλογή <strong>Κλήση</strong> ή <strong>Απάντηση</strong>, και <strong>χειροκίνητη πληκτρολόγηση διακριτικού</strong>. Και οι τέσσερις ενεργοποιούν την εκπομπή για εσάς. Το τι θα γίνει μετά την ολοκλήρωση της επαφής εξαρτάται από ένα μόνο πράγμα: αν η εκπομπή ήταν ήδη ενεργή εκείνη τη στιγμή.<br><br><strong>Η εκπομπή ήταν κλειστή</strong>: η εφαρμογή μπαίνει σε <strong>λειτουργία μονής επαφής</strong>. Σταματά να εκπέμπει μόλις ολοκληρωθεί η επαφή και στο μεταξύ δεν αναλαμβάνει άλλους σταθμούς που σας καλούν.<br><br><strong>Η εκπομπή ήταν ήδη ενεργή</strong>: η κανονική αυτόματη ακολουθία συνεχίζεται αμετάβλητη, μαζί με την κλήση CQ μετά την επαφή. Το να έχετε την εκπομπή ενεργή είναι ακριβώς ο τρόπος να ζητήσετε συνεχή λειτουργία.<br><br>Η ρύθμιση <strong>Αυτόματη απάντηση σε CQ</strong> δεν το επηρεάζει αυτό: αφορά το αν θα απαντάτε σε CQ άλλων σταθμών, όχι το αν μια μεμονωμένη κλήση σταματά μετά. Αν ο σταθμός δεν απαντήσει ποτέ, ισχύει το όριο <strong>Καμία απάντηση</strong> και η εκπομπή σταματά.',
+  op_single_text:  'Τέσσερις ενέργειες σημαίνουν «θέλω να καλέσω αυτόν τον σταθμό»: σύρσιμο προς τα αριστερά σε μια γραμμή της <strong>λίστας αποκωδικοποίησης</strong>, σύρσιμο προς τα αριστερά σε μια γραμμή της <strong>λίστας εκπομπής</strong>, πάτημα ενός διακριτικού και επιλογή <strong>Κλήση</strong> ή <strong>Απάντηση</strong>, και <strong>χειροκίνητη πληκτρολόγηση διακριτικού</strong>. Και οι τέσσερις ενεργοποιούν την εκπομπή για εσάς. Το τι θα γίνει μετά την ολοκλήρωση της επαφής εξαρτάται από ένα μόνο πράγμα: αν η εκπομπή ήταν ήδη ενεργή εκείνη τη στιγμή.<br><br><strong>Η εκπομπή ήταν κλειστή</strong>: η εφαρμογή μπαίνει σε <strong>λειτουργία μονής επαφής</strong>. Σταματά να εκπέμπει μόλις ολοκληρωθεί η επαφή και στο μεταξύ δεν αναλαμβάνει άλλους σταθμούς που σας καλούν.<br><br><strong>Η εκπομπή ήταν ήδη ενεργή</strong>: η κανονική αυτόματη ακολουθία συνεχίζεται αμετάβλητη, μαζί με την κλήση CQ μετά την επαφή. Το να έχετε την εκπομπή ενεργή είναι ακριβώς ο τρόπος να ζητήσετε συνεχή λειτουργία.<br><br>Η ρύθμιση <strong>Αυτόματη απάντηση σε CQ</strong> δεν το επηρεάζει αυτό: αφορά το αν θα απαντάτε σε CQ άλλων σταθμών, όχι το αν μια μεμονωμένη κλήση σταματά μετά. Αν ο σταθμός δεν απαντήσει ποτέ, ισχύει το όριο <strong>Καμία απάντηση</strong> και η εκπομπή σταματά.<br><br>Όταν τελειώσει μια μεμονωμένη κλήση — είτε ολοκληρωθεί η επαφή είτε εγκαταλείψετε τον σταθμό — ο στόχος επιστρέφει σε <strong>CQ</strong> αντί να μένει το διακριτικό του άλλου σταθμού (από 26.0906). Διαφορετικά η οθόνη θα έδειχνε σαν να τον καλείτε ακόμη, και την επόμενη φορά που θα ενεργοποιούσατε την εκπομπή θα πήγαινε κατευθείαν στον ίδιο σταθμό.',
   op_watchdog_title: 'Επιτηρητής εκπομπής',
   op_watchdog_text:  'Ο επιτηρητής εκπομπής σταματά αυτόματα την εκπομπή μετά από ρυθμιζόμενο χρονικό όριο (σε λεπτά), ώστε να αποφεύγεται η κατά λάθος παρατεταμένη εκπομπή. Ορίστε το όριο στις Ρυθμίσεις → Επιτηρητής εκπομπής. Η τιμή 0 το απενεργοποιεί.',
 
