@@ -50,6 +50,7 @@ https://github.com/danleetw/FT8TW/releases
 
 各位也可以從Google的官方網站下載APP，除了GitHub這個位置跟Google官方網站，建議不要從別的地方下載APP，可能會下載到駭客加工過的版本。
 https://play.google.com/store/apps/details?id=com.bv6lc.ft8tw
+https://play.google.com/store/apps/details?id=com.bg7yoz.ft8tw 這是舊版，相對穩定一點，可以下載當成備援
 
 [🐞問題回報]
 我主要會留意臉書的社群內容，以及Git Hub上的反應，因為我還沒有退休，小孩也還在求學中，所以可能沒有辦法把全部的時間跟力氣放在這個APP上面，
