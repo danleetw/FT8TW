@@ -59,7 +59,7 @@ en: {
   ssb_test_note: 'The test tool covers CAT over <strong>USB and Bluetooth</strong>. Network-connected radios — FlexRadio, ICOM RS-BA1 and the Xiegu X6100 — do not use this path and so will not appear in the response window.',
 
   ssb_safety_title: 'PTT-Stuck Protection',
-  ssb_safety_text:  'The talk button uses a triple safety mechanism — release, touch-cancel, and a backstop timeout — so that a stuck or interrupted touch event cannot leave the radio transmitting indefinitely.',
+  ssb_safety_text:  'The talk button uses a triple safety mechanism — release, touch-cancel, and a backstop timeout — so that a stuck or interrupted touch event cannot leave the radio transmitting indefinitely. <strong>Opening this screen also stops FT8 transmitting and decoding</strong> (26.0817 and later): PTT, Tune and the CAT tests each take the radio for themselves, and the earlier guard only stopped you pressing the buttons while FT8 was transmitting — it could not stop FT8 from starting a transmission halfway through a test. Decoding resumes by itself when you leave the screen.',
 },
 
 'zh-TW': {
@@ -119,7 +119,7 @@ en: {
   ssb_test_note: '測試工具涵蓋 <strong>USB 與藍牙</strong>的 CAT 連線。FlexRadio、ICOM RS-BA1 與協谷 X6100 這類走網路的機種不經過這條路徑，因此不會出現在回應視窗中。',
 
   ssb_safety_title: 'PTT 卡住防護',
-  ssb_safety_text:  '通話按鈕採用三重安全機制——放開、觸控取消、以及保底逾時——確保觸控事件卡住或被中斷時，電台不會無限期持續發射。',
+  ssb_safety_text:  '通話按鈕採用三重安全機制——放開、觸控取消、以及保底逾時——確保觸控事件卡住或被中斷時，電台不會無限期持續發射。<strong>進入這個畫面也會停掉 FT8 的發射與解碼</strong>（26.0817 起）：PTT、Tune 與 CAT 測試都會獨佔電台，而先前的防護只做到「FT8 發射中不讓您按按鈕」，擋不住測試進行到一半 FT8 才開始發射。離開畫面後解碼會自己接回來。',
 },
 
 'zh-CN': {
@@ -127,7 +127,7 @@ en: {
   ssb_intro: '除了数字模式之外，FT8TW 也能当成简易的无线电麦克风与监听器。它沿用与 FT8/FT4 相同的电台连接设置，涵盖三件事：SSB 按住通话语音、通过手机监听电台，以及发射载波供天线调谐使用。',
 
   ssb_use_title: '按住通话操作',
-  ssb_use_text:  '打开电台工具分页，按住通话按钮即可发射。按钮平时显示 <strong>HOLD TO TALK</strong>，发射中会变为 <strong>TRANSMITTING</strong>：',
+  ssb_use_text:  '打开电台工具分页，按住通话按钮即可发射。按钮平时显示<strong>按住发射</strong>，发射中会变为<strong>发射中</strong>：',
   ssb_use_list: `
     <ul>
       <li>按住按钮时，程序会采集手机麦克风音频、通过 CAT 指令触发 PTT，并将音频输出至已连接的 USB 声卡或蓝牙 SCO 音频。</li>
@@ -149,10 +149,10 @@ en: {
     </ul>`,
 
   ssb_monitor_title: '电台监听',
-  ssb_monitor_text:  '<strong>电台监听</strong>开关会把电台收到的音频通过手机播放，让您用手机听筒或耳机收听，不必开电台扬声器。如此可持续留意频率，又不必让电台扬声器充满整个房间。',
+  ssb_monitor_text:  '<strong>监听无线电</strong>开关会把电台收到的音频通过手机播放，让您用手机听筒或耳机收听，不必开电台扬声器。如此可持续留意频率，又不必让电台扬声器充满整个房间。',
 
   ssb_tune_title: '天线调谐（TUNE）',
-  ssb_tune_text:  '<strong>调谐</strong>区块会按下 PTT 并送出连续单音，正是天线调谐器或测量驻波比所需要的信号。设置持续时间与调谐音量后按 <strong>TUNE</strong>，按钮会变成带倒计时的 <strong>STOP</strong>，计时结束就自动停止发射。',
+  ssb_tune_text:  '<strong>Tune 调谐（天调 / 驻波比）</strong>区块会按下 PTT 并送出连续单音，正是天线调谐器或测量驻波比所需要的信号。设置 <strong>Tune 时间</strong>与 <strong>Tune 音量</strong>后按<strong>开始 TUNE</strong>，按钮会变成带倒计时的<strong>停止</strong>，计时结束就自动停止发射。',
   ssb_tune_warn: '<strong>请先把电台功率调低。</strong>这会送出连续载波——用全功率打进阻抗不匹配的天线，正是烧毁末级的典型情况。',
   ssb_tune_list: `
     <ul>
@@ -179,7 +179,7 @@ en: {
   ssb_test_note: '测试工具涵盖 <strong>USB 与蓝牙</strong>的 CAT 连接。FlexRadio、ICOM RS-BA1 与协谷 X6100 这类走网络的机型不经过这条路径，因此不会出现在回应窗口中。',
 
   ssb_safety_title: 'PTT 卡住防护',
-  ssb_safety_text:  '通话按钮采用三重安全机制——松开、触摸取消、以及保底超时——确保触摸事件卡住或被中断时，电台不会无限期持续发射。',
+  ssb_safety_text:  '通话按钮采用三重安全机制——松开、触摸取消、以及保底超时——确保触摸事件卡住或被中断时，电台不会无限期持续发射。<strong>进入这个画面也会停掉 FT8 的发射与解码</strong>（26.0817 起）：PTT、Tune 与 CAT 测试都会独占电台，而先前的防护只做到「FT8 发射中不让您按按钮」，挡不住测试进行到一半 FT8 才开始发射。离开画面后解码会自己接回来。',
 },
 
 'ja': {
@@ -187,7 +187,7 @@ en: {
   ssb_intro: 'FT8TW はデジタルモードだけでなく、簡易的な無線機用マイク兼モニターとしても使えます。この画面はアプリ内では<em>ラジオツール</em>という名称です。FT8/FT4 用に設定済みの接続をそのまま利用し、プレストーク音声、スマートフォンでの受信音のモニター、アンテナ調整用のキャリア送出という 3 つの機能を備えます。',
 
   ssb_use_title: 'プレストーク操作',
-  ssb_use_text:  '無線機ツールタブを開き、送話ボタンを押し続けると送信します。ボタンは通常 <strong>HOLD TO TALK</strong>、送信中は <strong>TRANSMITTING</strong> に変わります:',
+  ssb_use_text:  '無線機ツールタブを開き、送話ボタンを押し続けると送信します。ボタンは通常 <strong>押して送信</strong>、送信中は <strong>送信中</strong> に変わります:',
   ssb_use_list: `
     <ul>
       <li>ボタンを押している間、スマートフォンのマイクから音声を取り込み、CAT コマンドで PTT を制御し、接続された USB サウンドカードまたは Bluetooth SCO 経由で音声を出力します。</li>
@@ -212,7 +212,7 @@ en: {
   ssb_monitor_text:  '<strong>ラジオモニター</strong>のスイッチを入れると、無線機の受信音をスマートフォンから鳴らせます。無線機のスピーカーではなく本体の受話口やヘッドセットで聞けるので、部屋中に音を響かせずに周波数を聞き続けられます。',
 
   ssb_tune_title: 'アンテナ調整（TUNE）',
-  ssb_tune_text:  '<strong>チューン</strong>の欄では PTT を入れて連続したトーンを送出します。アンテナチューナーの調整や SWR の測定に必要な信号です。送信時間とチューン音量を設定して <strong>TUNE</strong> を押すと、ボタンがカウントダウン付きの <strong>STOP</strong> に変わり、時間が来れば自動的に送信を終えます。',
+  ssb_tune_text:  '<strong>チューン</strong>の欄では PTT を入れて連続したトーンを送出します。アンテナチューナーの調整や SWR の測定に必要な信号です。送信時間とチューン音量を設定して <strong>チューン開始</strong> を押すと、ボタンがカウントダウン付きの <strong>停止</strong> に変わり、時間が来れば自動的に送信を終えます。',
   ssb_tune_warn: '<strong>先に無線機の出力を下げてください。</strong>連続キャリアを送出します。整合の取れていないアンテナへフルパワーを流すのは、ファイナルを壊す典型的な状況です。',
   ssb_tune_list: `
     <ul>
@@ -222,7 +222,7 @@ en: {
     </ul>`,
 
   ssb_test_title: '無線機テストツール',
-  ssb_test_text:  '無線機ツール画面のいちばん下に <strong>Radio Test Tool ▼</strong> という折りたたみセクションがあり、見出しをタップすると開きます。無線機はつないだのに反応がない、あるいはその機種が特定の制御に対応しているか分からない、というときにここで 1 項目ずつ確認できます。各ボタンは FT8TW が普段実際に行う動作そのものを実行し、送ったコマンドと無線機の応答はそのまま記録されます。',
+  ssb_test_text:  '無線機ツール画面のいちばん下に <strong>無線機テストツール ▼</strong> という折りたたみセクションがあり、見出しをタップすると開きます。無線機はつないだのに反応がない、あるいはその機種が特定の制御に対応しているか分からない、というときにここで 1 項目ずつ確認できます。各ボタンは FT8TW が普段実際に行う動作そのものを実行し、送ったコマンドと無線機の応答はそのまま記録されます。',
   ssb_test_caption: '展開したテストツール：上段に 6 つのテストボタン、中央に 2 行の入力欄、下に応答ウィンドウ。（表示は英語のままです）',
   ssb_test_list: `
     <ul>
@@ -239,7 +239,7 @@ en: {
   ssb_test_note: 'このテストツールが対象とするのは <strong>USB と Bluetooth</strong> の CAT 接続です。FlexRadio、ICOM RS-BA1、Xiegu X6100 のようなネットワーク接続の機種はこの経路を通らないため、応答ウィンドウには表示されません。',
 
   ssb_safety_title: 'PTT 固着の防止',
-  ssb_safety_text:  '送話ボタンには「離す」「タッチのキャンセル」「保険としてのタイムアウト」という三重の安全機構があり、タッチイベントが固まったり中断されたりしても、無線機が送信し続けることはありません。',
+  ssb_safety_text:  '送話ボタンには「離す」「タッチのキャンセル」「保険としてのタイムアウト」という三重の安全機構があり、タッチイベントが固まったり中断されたりしても、無線機が送信し続けることはありません。<strong>この画面を開くと FT8 の送信とデコードも停止します</strong>（26.0817 以降）。PTT・チューン・CAT テストはいずれも無線機を占有しますが、従来の保護は「FT8 の送信中はボタンを押させない」までで、テストの途中から FT8 が送信を始めるのは防げませんでした。画面を離れるとデコードは自動的に再開します。',
 },
 
 'ru': {
@@ -247,7 +247,7 @@ en: {
   ssb_intro: 'Помимо цифровых видов связи, FT8TW может служить простым микрофоном и монитором для трансивера. Он использует то же подключение, что настроено для FT8/FT4, и охватывает три вещи: голос SSB с кнопкой передачи, прослушивание трансивера через телефон и выдачу несущей для настройки антенны.',
 
   ssb_use_title: 'Работа с кнопкой передачи',
-  ssb_use_text:  'Откройте вкладку инструментов и удерживайте кнопку передачи. В покое на ней написано <strong>HOLD TO TALK</strong>, а во время передачи — <strong>TRANSMITTING</strong>:',
+  ssb_use_text:  'Откройте вкладку инструментов и удерживайте кнопку передачи. В покое на ней написано <strong>УДЕРЖИВАЙТЕ ДЛЯ ПЕРЕДАЧИ</strong>, а во время передачи — <strong>ПЕРЕДАЧА</strong>:',
   ssb_use_list: `
     <ul>
       <li>Пока кнопка удерживается, приложение берёт звук с микрофона телефона, включает PTT командой CAT и выводит звук через подключённую USB-звуковую карту или Bluetooth SCO.</li>
@@ -272,7 +272,7 @@ en: {
   ssb_monitor_text:  'Переключатель <strong>прослушивания</strong> выводит принимаемый звук трансивера через телефон, так что слушать можно в разговорный динамик или гарнитуру, а не через динамик аппарата. Так частота остаётся на слуху, а динамик трансивера не заполняет шумом комнату.',
 
   ssb_tune_title: 'Настройка антенны (TUNE)',
-  ssb_tune_text:  'Раздел <strong>настройки</strong> включает передачу и выдаёт непрерывный тон — именно это нужно антенному тюнеру или для измерения КСВ. Задайте длительность и громкость тона, затем нажмите <strong>TUNE</strong>: кнопка станет <strong>STOP</strong> с обратным отсчётом, а по истечении времени передача прекратится сама.',
+  ssb_tune_text:  'Раздел <strong>настройки</strong> включает передачу и выдаёт непрерывный тон — именно это нужно антенному тюнеру или для измерения КСВ. Задайте длительность и громкость тона, затем нажмите <strong>НАСТРОЙКА</strong>: кнопка станет <strong>СТОП</strong> с обратным отсчётом, а по истечении времени передача прекратится сама.',
   ssb_tune_warn: '<strong>Сначала убавьте мощность трансивера.</strong> Здесь идёт непрерывная несущая, а полная мощность в несогласованную антенну — как раз тот случай, когда выходной каскад выходит из строя.',
   ssb_tune_list: `
     <ul>
@@ -282,7 +282,7 @@ en: {
     </ul>`,
 
   ssb_test_title: 'Инструмент проверки трансивера',
-  ssb_test_text:  'В самом низу страницы инструментов трансивера есть свёрнутый раздел <strong>Radio Test Tool ▼</strong> — нажмите на заголовок, чтобы открыть его. Когда трансивер подключён, но ничего не происходит, или вы не уверены, поддерживает ли конкретная модель ту или иную команду, здесь можно проверить всё по пунктам: каждая кнопка выполняет ровно то действие, которое выполняет само приложение, а каждая отправленная команда и каждый ответ трансивера записываются дословно.',
+  ssb_test_text:  'В самом низу страницы инструментов трансивера есть свёрнутый раздел <strong>Тестер трансивера ▼</strong> — нажмите на заголовок, чтобы открыть его. Когда трансивер подключён, но ничего не происходит, или вы не уверены, поддерживает ли конкретная модель ту или иную команду, здесь можно проверить всё по пунктам: каждая кнопка выполняет ровно то действие, которое выполняет само приложение, а каждая отправленная команда и каждый ответ трансивера записываются дословно.',
   ssb_test_caption: 'Развёрнутый инструмент проверки: шесть кнопок сверху, две строки ввода и окно ответов внизу. (Подписи остаются английскими.)',
   ssb_test_list: `
     <ul>
@@ -299,7 +299,7 @@ en: {
   ssb_test_note: 'Инструмент охватывает CAT через <strong>USB и Bluetooth</strong>. Трансиверы с сетевым подключением — FlexRadio, ICOM RS-BA1 и Xiegu X6100 — этот путь не используют и в окне ответов не появятся.',
 
   ssb_safety_title: 'Защита от залипания PTT',
-  ssb_safety_text:  'Кнопка передачи защищена тройным механизмом — отпускание, отмена касания и страховочный тайм-аут, — поэтому зависшее или прерванное касание не оставит трансивер в передаче навсегда.',
+  ssb_safety_text:  'Кнопка передачи защищена тройным механизмом — отпускание, отмена касания и страховочный тайм-аут, — поэтому зависшее или прерванное касание не оставит трансивер в передаче навсегда. <strong>Открытие этого экрана также останавливает передачу и декодирование FT8</strong> (с 26.0817): PTT, Tune и тесты CAT забирают трансивер себе, а прежняя защита умела лишь не давать нажать кнопку во время передачи FT8 — помешать самому FT8 начать передачу в середине теста она не могла. При уходе с экрана декодирование возобновляется само.',
 },
 
 'pl': {
@@ -307,7 +307,7 @@ en: {
   ssb_intro: 'Poza emisjami cyfrowymi FT8TW może służyć jako prosty mikrofon i odsłuch do radia. Korzysta z tego samego połączenia, które skonfigurowano dla FT8/FT4, i obejmuje trzy rzeczy: głos SSB z przyciskiem nadawania, odsłuch radia przez telefon oraz nadanie nośnej do strojenia anteny.',
 
   ssb_use_title: 'Nadawanie przyciskiem',
-  ssb_use_text:  'Otwórz zakładkę narzędzi radia i przytrzymaj przycisk nadawania. W spoczynku widnieje na nim <strong>HOLD TO TALK</strong>, a podczas nadawania <strong>TRANSMITTING</strong>:',
+  ssb_use_text:  'Otwórz zakładkę narzędzi radia i przytrzymaj przycisk nadawania. W spoczynku widnieje na nim <strong>PRZYTRZYMAJ, ABY NADAWAĆ</strong>, a podczas nadawania <strong>NADAWANIE</strong>:',
   ssb_use_list: `
     <ul>
       <li>Przytrzymanie przycisku pobiera dźwięk z mikrofonu telefonu, załącza PTT komendą CAT i kieruje dźwięk przez podłączoną kartę dźwiękową USB lub Bluetooth SCO.</li>
@@ -332,7 +332,7 @@ en: {
   ssb_monitor_text:  'Przełącznik <strong>odsłuchu</strong> odtwarza dźwięk odbierany przez radio w telefonie, dzięki czemu można słuchać przez słuchawkę telefonu lub zestaw zamiast głośnika radia. Dzięki temu pasmo pozostaje słyszalne, a głośnik radia nie wypełnia hałasem pomieszczenia.',
 
   ssb_tune_title: 'Strojenie anteny (TUNE)',
-  ssb_tune_text:  'Sekcja <strong>strojenia</strong> załącza nadawanie i wysyła ciągły ton — dokładnie to, czego potrzebuje skrzynka antenowa albo pomiar SWR. Ustaw czas trwania i głośność tonu, a następnie naciśnij <strong>TUNE</strong>; przycisk zmieni się w <strong>STOP</strong> z odliczaniem, a po upływie czasu nadawanie samo się zakończy.',
+  ssb_tune_text:  'Sekcja <strong>strojenia</strong> załącza nadawanie i wysyła ciągły ton — dokładnie to, czego potrzebuje skrzynka antenowa albo pomiar SWR. Ustaw czas trwania i głośność tonu, a następnie naciśnij <strong>STROJENIE</strong>; przycisk zmieni się w <strong>STOP</strong> z odliczaniem, a po upływie czasu nadawanie samo się zakończy.',
   ssb_tune_warn: '<strong>Najpierw zmniejsz moc radia.</strong> Wysyłana jest ciągła fala nośna, a pełna moc w niedopasowaną antenę to właśnie sytuacja, w której pada stopień końcowy.',
   ssb_tune_list: `
     <ul>
@@ -342,7 +342,7 @@ en: {
     </ul>`,
 
   ssb_test_title: 'Narzędzie testowe radia',
-  ssb_test_text:  'Na samym dole strony narzędzi radia znajduje się zwinięta sekcja <strong>Radio Test Tool ▼</strong> — dotknij nagłówka, aby ją otworzyć. Gdy radio jest podłączone, a nic się nie dzieje, albo nie masz pewności, czy dany model obsługuje określoną funkcję, można tu sprawdzić wszystko po kolei: każdy przycisk wykonuje dokładnie tę czynność, którą wykonuje sama aplikacja, a każde wysłane polecenie i każda odpowiedź radia są zapisywane dosłownie.',
+  ssb_test_text:  'Na samym dole strony narzędzi radia znajduje się zwinięta sekcja <strong>Narzędzie testowe radia ▼</strong> — dotknij nagłówka, aby ją otworzyć. Gdy radio jest podłączone, a nic się nie dzieje, albo nie masz pewności, czy dany model obsługuje określoną funkcję, można tu sprawdzić wszystko po kolei: każdy przycisk wykonuje dokładnie tę czynność, którą wykonuje sama aplikacja, a każde wysłane polecenie i każda odpowiedź radia są zapisywane dosłownie.',
   ssb_test_caption: 'Rozwinięte narzędzie testowe: sześć przycisków u góry, dwa wiersze wprowadzania i okno odpowiedzi poniżej. (Opisy pozostają po angielsku.)',
   ssb_test_list: `
     <ul>
@@ -359,7 +359,7 @@ en: {
   ssb_test_note: 'Narzędzie obejmuje CAT przez <strong>USB i Bluetooth</strong>. Radia z połączeniem sieciowym — FlexRadio, ICOM RS-BA1 i Xiegu X6100 — nie korzystają z tej drogi i nie pojawią się w oknie odpowiedzi.',
 
   ssb_safety_title: 'Zabezpieczenie przed zablokowanym PTT',
-  ssb_safety_text:  'Przycisk nadawania ma potrójne zabezpieczenie — zwolnienie, anulowanie dotyku oraz awaryjny limit czasu — dzięki czemu zawieszone lub przerwane zdarzenie dotyku nie pozostawi radia w nadawaniu bez końca.',
+  ssb_safety_text:  'Przycisk nadawania ma potrójne zabezpieczenie — zwolnienie, anulowanie dotyku oraz awaryjny limit czasu — dzięki czemu zawieszone lub przerwane zdarzenie dotyku nie pozostawi radia w nadawaniu bez końca. <strong>Otwarcie tego ekranu zatrzymuje też nadawanie i dekodowanie FT8</strong> (od 26.0817): PTT, Tune i testy CAT zajmują radio na wyłączność, a wcześniejsze zabezpieczenie potrafiło jedynie nie pozwolić nacisnąć przycisku w trakcie nadawania FT8 — nie powstrzymywało samego FT8 przed rozpoczęciem nadawania w połowie testu. Po opuszczeniu ekranu dekodowanie wraca samo.',
 },
 
 'es': {
@@ -367,7 +367,7 @@ en: {
   ssb_intro: 'Además de los modos digitales, FT8TW puede hacer de micrófono y monitor sencillo para el equipo. Reutiliza la conexión ya configurada para FT8/FT4 y abarca tres cosas: voz SSB con pulsar para hablar, escuchar el equipo por el teléfono y emitir una portadora para sintonizar la antena.',
 
   ssb_use_title: 'Operación pulsar para hablar',
-  ssb_use_text:  'Abre la pestaña de herramientas de radio y mantén pulsado el botón de transmisión. En reposo indica <strong>HOLD TO TALK</strong> y, mientras transmite, <strong>TRANSMITTING</strong>:',
+  ssb_use_text:  'Abre la pestaña de herramientas de radio y mantén pulsado el botón de transmisión. En reposo indica <strong>MANTÉN PULSADO PARA HABLAR</strong> y, mientras transmite, <strong>TRANSMITIENDO</strong>:',
   ssb_use_list: `
     <ul>
       <li>Al mantener el botón, la aplicación capta el audio del micrófono del teléfono, activa el PTT mediante comando CAT y envía el audio por la tarjeta de sonido USB conectada o por audio Bluetooth SCO.</li>
@@ -392,7 +392,7 @@ en: {
   ssb_monitor_text:  'El conmutador de <strong>escucha</strong> reproduce en el teléfono el audio recibido por el equipo, de modo que puedes oírlo por el auricular del teléfono o unos cascos en lugar del altavoz del equipo. Así la frecuencia sigue audible sin que el altavoz del equipo llene de ruido la sala.',
 
   ssb_tune_title: 'Sintonizar la antena (TUNE)',
-  ssb_tune_text:  'La sección de <strong>sintonía</strong> pasa el equipo a transmisión y envía un tono continuo, que es justo lo que necesita un acoplador de antena o una medida de ROE. Fija la duración y el volumen del tono y pulsa <strong>TUNE</strong>; el botón pasa a <strong>STOP</strong> con una cuenta atrás y la transmisión termina sola al agotarse el tiempo.',
+  ssb_tune_text:  'La sección de <strong>sintonía</strong> pasa el equipo a transmisión y envía un tono continuo, que es justo lo que necesita un acoplador de antena o una medida de ROE. Fija la duración y el volumen del tono y pulsa <strong>SINTONÍA</strong>; el botón pasa a <strong>PARAR</strong> con una cuenta atrás y la transmisión termina sola al agotarse el tiempo.',
   ssb_tune_warn: '<strong>Baja primero la potencia del equipo.</strong> Esto transmite una portadora continua, y meter plena potencia en una antena desadaptada es precisamente la situación que estropea la etapa final.',
   ssb_tune_list: `
     <ul>
@@ -402,7 +402,7 @@ en: {
     </ul>`,
 
   ssb_test_title: 'Herramienta de prueba del equipo',
-  ssb_test_text:  'Al final de la página de herramientas de radio hay una sección plegada, <strong>Radio Test Tool ▼</strong>; toca el encabezado para abrirla. Cuando el equipo está conectado pero no pasa nada, o no sabes si un modelo concreto admite algo, aquí puedes comprobarlo punto por punto: cada botón ejecuta exactamente la acción que ejecutaría la propia aplicación, y cada orden enviada y cada respuesta del equipo quedan registradas literalmente.',
+  ssb_test_text:  'Al final de la página de herramientas de radio hay una sección plegada, <strong>Herramienta de prueba del equipo ▼</strong>; toca el encabezado para abrirla. Cuando el equipo está conectado pero no pasa nada, o no sabes si un modelo concreto admite algo, aquí puedes comprobarlo punto por punto: cada botón ejecuta exactamente la acción que ejecutaría la propia aplicación, y cada orden enviada y cada respuesta del equipo quedan registradas literalmente.',
   ssb_test_caption: 'La herramienta de prueba desplegada: seis botones arriba, dos filas de entrada y la ventana de respuestas debajo. (Los rótulos siguen en inglés.)',
   ssb_test_list: `
     <ul>
@@ -419,7 +419,7 @@ en: {
   ssb_test_note: 'La herramienta cubre CAT por <strong>USB y Bluetooth</strong>. Los equipos conectados por red —FlexRadio, ICOM RS-BA1 y Xiegu X6100— no usan esta vía y por tanto no aparecerán en la ventana de respuestas.',
 
   ssb_safety_title: 'Protección contra PTT bloqueado',
-  ssb_safety_text:  'El botón de transmisión usa un triple mecanismo de seguridad —soltar, cancelación del toque y un tiempo límite de respaldo— para que un evento táctil bloqueado o interrumpido no deje el equipo transmitiendo indefinidamente.',
+  ssb_safety_text:  'El botón de transmisión usa un triple mecanismo de seguridad —soltar, cancelación del toque y un tiempo límite de respaldo— para que un evento táctil bloqueado o interrumpido no deje el equipo transmitiendo indefinidamente. <strong>Abrir esta pantalla también detiene la transmisión y la decodificación de FT8</strong> (desde 26.0817): PTT, Tune y las pruebas CAT se apropian del equipo, y la protección anterior solo llegaba a impedir que pulsaras los botones mientras FT8 transmitía; no evitaba que FT8 empezara a transmitir a mitad de una prueba. Al salir de la pantalla, la decodificación se reanuda sola.',
 },
 
 'el': {
@@ -427,7 +427,7 @@ en: {
   ssb_intro: 'Πέρα από τους ψηφιακούς τρόπους λειτουργίας, το FT8TW μπορεί να λειτουργήσει ως απλό μικρόφωνο και ακροατήριο για τον πομποδέκτη. Χρησιμοποιεί την ίδια σύνδεση που έχει ήδη ρυθμιστεί για FT8/FT4 και καλύπτει τρία πράγματα: φωνή SSB με πλήκτρο εκπομπής, ακρόαση του πομποδέκτη μέσω του τηλεφώνου και εκπομπή φέροντος για τον συντονισμό κεραίας.',
 
   ssb_use_title: 'Λειτουργία με πλήκτρο εκπομπής',
-  ssb_use_text:  'Ανοίξτε την καρτέλα εργαλείων και κρατήστε πατημένο το πλήκτρο ομιλίας για εκπομπή. Σε ηρεμία γράφει <strong>HOLD TO TALK</strong> και κατά την εκπομπή <strong>TRANSMITTING</strong>:',
+  ssb_use_text:  'Ανοίξτε την καρτέλα εργαλείων και κρατήστε πατημένο το πλήκτρο ομιλίας για εκπομπή. Σε ηρεμία γράφει <strong>ΚΡΑΤΗΣΤΕ ΓΙΑ ΕΚΠΟΜΠΗ</strong> και κατά την εκπομπή <strong>ΕΚΠΟΜΠΗ</strong>:',
   ssb_use_list: `
     <ul>
       <li>Όσο κρατάτε το πλήκτρο, η εφαρμογή καταγράφει ήχο από το μικρόφωνο του τηλεφώνου, ενεργοποιεί το PTT μέσω εντολής CAT και στέλνει τον ήχο στη συνδεδεμένη κάρτα ήχου USB ή μέσω Bluetooth SCO.</li>
@@ -452,7 +452,7 @@ en: {
   ssb_monitor_text:  'Ο διακόπτης <strong>ακρόασης</strong> αναπαράγει τον ήχο λήψης του πομποδέκτη μέσα από το τηλέφωνο, ώστε να ακούτε από το ακουστικό του τηλεφώνου ή από ακουστικά αντί για το ηχείο του πομποδέκτη. Έτσι η συχνότητα παραμένει ακουστή χωρίς το ηχείο του πομποδέκτη να γεμίζει τον χώρο με θόρυβο.',
 
   ssb_tune_title: 'Συντονισμός κεραίας (TUNE)',
-  ssb_tune_text:  'Η ενότητα <strong>συντονισμού</strong> ενεργοποιεί την εκπομπή και στέλνει συνεχή τόνο — ακριβώς ό,τι χρειάζεται ένας συζευκτήρας κεραίας ή μια μέτρηση SWR. Ορίστε διάρκεια και ένταση τόνου και πατήστε <strong>TUNE</strong>· το πλήκτρο γίνεται <strong>STOP</strong> με αντίστροφη μέτρηση και η εκπομπή σταματά μόνη της όταν τελειώσει ο χρόνος.',
+  ssb_tune_text:  'Η ενότητα <strong>συντονισμού</strong> ενεργοποιεί την εκπομπή και στέλνει συνεχή τόνο — ακριβώς ό,τι χρειάζεται ένας συζευκτήρας κεραίας ή μια μέτρηση SWR. Ορίστε διάρκεια και ένταση τόνου και πατήστε <strong>ΣΥΝΤΟΝΙΣΜΟΣ</strong>· το πλήκτρο γίνεται <strong>ΔΙΑΚΟΠΗ</strong> με αντίστροφη μέτρηση και η εκπομπή σταματά μόνη της όταν τελειώσει ο χρόνος.',
   ssb_tune_warn: '<strong>Χαμηλώστε πρώτα την ισχύ του πομποδέκτη.</strong> Εδώ εκπέμπεται συνεχές φέρον, και η πλήρης ισχύς σε κεραία χωρίς προσαρμογή είναι ακριβώς η περίπτωση που καταστρέφει το τελικό στάδιο.',
   ssb_tune_list: `
     <ul>
@@ -462,7 +462,7 @@ en: {
     </ul>`,
 
   ssb_test_title: 'Εργαλείο ελέγχου πομποδέκτη',
-  ssb_test_text:  'Στο κάτω μέρος της σελίδας εργαλείων πομποδέκτη υπάρχει μια διπλωμένη ενότητα <strong>Radio Test Tool ▼</strong>· πατήστε την επικεφαλίδα για να ανοίξει. Όταν ο πομποδέκτης είναι συνδεδεμένος αλλά δεν συμβαίνει τίποτα, ή δεν είστε σίγουροι αν ένα συγκεκριμένο μοντέλο υποστηρίζει κάτι, εδώ μπορείτε να το ελέγξετε βήμα-βήμα: κάθε κουμπί εκτελεί ακριβώς την ενέργεια που θα έκανε η ίδια η εφαρμογή, και κάθε εντολή που στέλνεται και κάθε απάντηση του πομποδέκτη καταγράφονται αυτούσιες.',
+  ssb_test_text:  'Στο κάτω μέρος της σελίδας εργαλείων πομποδέκτη υπάρχει μια διπλωμένη ενότητα <strong>Εργαλείο δοκιμής πομποδέκτη ▼</strong>· πατήστε την επικεφαλίδα για να ανοίξει. Όταν ο πομποδέκτης είναι συνδεδεμένος αλλά δεν συμβαίνει τίποτα, ή δεν είστε σίγουροι αν ένα συγκεκριμένο μοντέλο υποστηρίζει κάτι, εδώ μπορείτε να το ελέγξετε βήμα-βήμα: κάθε κουμπί εκτελεί ακριβώς την ενέργεια που θα έκανε η ίδια η εφαρμογή, και κάθε εντολή που στέλνεται και κάθε απάντηση του πομποδέκτη καταγράφονται αυτούσιες.',
   ssb_test_caption: 'Το εργαλείο ελέγχου ανοιγμένο: έξι κουμπιά επάνω, δύο γραμμές εισαγωγής και το παράθυρο απαντήσεων από κάτω. (Οι ετικέτες παραμένουν στα αγγλικά.)',
   ssb_test_list: `
     <ul>
@@ -479,7 +479,7 @@ en: {
   ssb_test_note: 'Το εργαλείο καλύπτει CAT μέσω <strong>USB και Bluetooth</strong>. Οι πομποδέκτες με σύνδεση δικτύου — FlexRadio, ICOM RS-BA1 και Xiegu X6100 — δεν χρησιμοποιούν αυτή τη διαδρομή και δεν θα εμφανιστούν στο παράθυρο απαντήσεων.',
 
   ssb_safety_title: 'Προστασία από κολλημένο PTT',
-  ssb_safety_text:  'Το πλήκτρο ομιλίας διαθέτει τριπλό μηχανισμό ασφαλείας — απελευθέρωση, ακύρωση αφής και εφεδρικό χρονικό όριο — ώστε ένα κολλημένο ή διακοπτόμενο συμβάν αφής να μην αφήνει τον πομποδέκτη σε συνεχή εκπομπή.',
+  ssb_safety_text:  'Το πλήκτρο ομιλίας διαθέτει τριπλό μηχανισμό ασφαλείας — απελευθέρωση, ακύρωση αφής και εφεδρικό χρονικό όριο — ώστε ένα κολλημένο ή διακοπτόμενο συμβάν αφής να μην αφήνει τον πομποδέκτη σε συνεχή εκπομπή. <strong>Το άνοιγμα αυτής της οθόνης σταματά επίσης την εκπομπή και την αποκωδικοποίηση FT8</strong> (από 26.0817): το PTT, το Tune και οι δοκιμές CAT δεσμεύουν αποκλειστικά τον πομποδέκτη, ενώ η προηγούμενη προστασία έφτανε μόνο ως το «μην πατάτε τα κουμπιά όσο εκπέμπει το FT8» — δεν εμπόδιζε το ίδιο το FT8 να αρχίσει εκπομπή στη μέση μιας δοκιμής. Μόλις φύγετε από την οθόνη, η αποκωδικοποίηση επανέρχεται μόνη της.',
 },
 
 }; /* end PAGE_T */
