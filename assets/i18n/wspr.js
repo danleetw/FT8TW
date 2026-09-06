@@ -37,11 +37,12 @@ en: {
   wspr_tx_list: `
     <ul>
       <li>Arming the schedule sends <strong>one</strong> 110.6-second transmission, starting at the next <strong>even UTC minute</strong>. It does not repeat.</li>
-      <li>Just before each scheduled transmission, the radio's frequency automatically switches to the WSPR sub-band. When the schedule stops, the radio stays on the WSPR frequency rather than reverting — switch back yourself when you want your previous band.</li>
+      <li>Just before each scheduled transmission, the radio's frequency automatically switches to the WSPR sub-band. Stopping the schedule leaves the radio on the WSPR frequency, so that another transmission is one tap away; the frequency you came in on is restored when you <strong>leave the WSPR screen</strong>.</li>
       <li>Select TX power (dBm) to be encoded in the beacon message.</li>
       <li>The audio frequency can be set by hand, or you can enable <strong>random TX audio frequency</strong> so each transmission lands somewhere different in the WSPR window, reducing the chance of sitting on top of another beacon.</li>
       <li>It automatically switches itself off after a completed transmission and must be switched on again by hand for the next one — this is intentional, to prevent unattended continuous beaconing. The one exception is a compound callsign, which transmits twice in a row so that its two messages form a complete set.</li>
       <li><strong>WSPR and FT8/FT4/FT2 transmission are mutually exclusive</strong> (26.0815-2 and later). They share one radio and one audio path, so enabling WSPR switches FT8 transmission off first and tells you it has done so; conversely, switching FT8 transmission on while a WSPR run is in progress is blocked, with an explanation of how to clear it. <strong>FT8 is not switched back on when WSPR finishes</strong> — restore it yourself when you want it, since doing so quietly would amount to an unexpected transmission.</li>
+      <li><strong>Opening the WSPR screen stops FT8 transmitting and decoding</strong> (26.0817 and later). While you are on this screen the radio is already — or is about to be — on the WSPR frequency, so those background FT8 transmissions are not what you intended and anything decoded there means nothing. Decoding resumes by itself when you leave. If the schedule is still armed when you leave, it is stopped too, and the radio returns to the frequency you came in on.</li>
       <li>A countdown timer and a preview of the next scheduled message are shown on the WSPR tab.</li>
     </ul>`,
 
@@ -88,11 +89,12 @@ en: {
   wspr_tx_list: `
     <ul>
       <li>啟用排程後會從下一個<strong>偶數 UTC 分鐘</strong>開始發射<strong>一次</strong>，長度 110.6 秒，不會重複。</li>
-      <li>每次排程發射前，電台頻率會自動切到 WSPR 子頻段。排程停止後會留在 WSPR 頻率，不會自動切回原本的操作頻率——需要回原頻段時請自行切換。</li>
+      <li>每次排程發射前，電台頻率會自動切到 WSPR 子頻段。停止排程後會留在 WSPR 頻率，方便您接著再發一次；<strong>離開 WSPR 畫面</strong>時才會切回進入畫面前的頻率。</li>
       <li>可選擇要編碼進信標訊息的發射功率（dBm）。</li>
       <li>發射音頻可以自己指定，也可以開啟<strong>自動亂數發射音頻</strong>，讓每次落在 WSPR 頻窗內的不同位置，減少與其他信標互相蓋台的機會。</li>
       <li>完成一次發射後會自動關閉，須手動重新開啟才會進行下一次發射——這是刻意設計，避免無人看管下持續發射。唯一的例外是複合呼號，它會自動連發兩次，讓兩則訊息湊成完整的一組。</li>
       <li><strong>WSPR 與 FT8／FT4／FT2 的發射互斥</strong>（26.0815-2 起）：兩者共用同一具電台與同一條音訊路徑，所以啟用 WSPR 時若 FT8 的發射是開著的，程式會先把它關掉並告知；反過來，WSPR 排程進行中要開啟 FT8 發射會被擋下並說明解除方式。<strong>WSPR 結束後不會自動把 FT8 開回來</strong>，需要時請自行重新啟動——悄悄恢復等於製造一次沒人預期的自動發射。</li>
+      <li><strong>進入 WSPR 畫面就會停掉 FT8 的發射與解碼</strong>（26.0817 起）：人在這個畫面時，電台已經（或即將）在 WSPR 頻率上，背景那些 FT8 發射並不是您的本意，在那裡解出來的東西也沒有意義。離開畫面後解碼會自己接回來；若離開時排程還開著，會一併停掉，並把電台切回進入畫面前的頻率。</li>
       <li>WSPR 分頁會顯示倒數計時，以及下一則排程訊息的預覽。</li>
     </ul>`,
 
@@ -113,10 +115,12 @@ en: {
   wspr_tx_list: `
     <ul>
       <li>开启后会从下一个<strong>偶数 UTC 分钟</strong>开始发射<strong>一次</strong>，长度 110.6 秒，不会重复。</li>
-      <li>每次计划发射前，电台频率会自动切到 WSPR 子频段。计划停止后会留在 WSPR 频率，不会自动切回原本的操作频率——需要回原频段时请自行切换。</li>
+      <li>每次计划发射前，电台频率会自动切到 WSPR 子频段。停止计划后会留在 WSPR 频率，方便您接着再发一次；<strong>离开 WSPR 画面</strong>时才会切回进入画面前的频率。</li>
       <li>可选择要编码进信标消息的发射功率（dBm）。</li>
       <li>发射音频可以自己指定，也可以开启<strong>自动随机发射音频</strong>，让每次落在 WSPR 频窗内的不同位置，减少与其他信标互相盖台的机会。</li>
       <li>完成一次发射后会自动关闭，须手动重新开启才会进行下一次发射——这是刻意设计，避免无人看管下持续发射。唯一的例外是复合呼号，它会自动连发两次，让两则消息凑成完整的一组。</li>
+      <li><strong>WSPR 与 FT8／FT4／FT2 的发射互斥</strong>（26.0815-2 起）：两者共用同一具电台与同一条音频路径，所以启用 WSPR 时若 FT8 的发射是开着的，程序会先把它关掉并告知；反过来，WSPR 计划进行中要开启 FT8 发射会被挡下并说明解除方式。<strong>WSPR 结束后不会自动把 FT8 开回来</strong>，需要时请自行重新启动——悄悄恢复等于制造一次没人预期的自动发射。</li>
+      <li><strong>进入 WSPR 画面就会停掉 FT8 的发射与解码</strong>（26.0817 起）：人在这个画面时，电台已经（或即将）在 WSPR 频率上，后台那些 FT8 发射并不是您的本意，在那里解出来的东西也没有意义。离开画面后解码会自己接回来；若离开时计划还开着，会一并停掉，并把电台切回进入画面前的频率。</li>
       <li>WSPR 分页会显示倒计时，以及下一条计划消息的预览。</li>
     </ul>`,
 
@@ -163,10 +167,12 @@ en: {
   wspr_tx_list: `
     <ul>
       <li>オンにすると次の <strong>UTC 偶数分</strong>から 110.6 秒の送信を<strong>1 回だけ</strong>行います。繰り返しません。</li>
-      <li>各送信の直前に無線機の周波数が自動的に WSPR のサブバンドへ切り替わります。スケジュールを止めたあとは WSPR の周波数に留まり、元の運用周波数には戻りません。必要に応じてご自身で戻してください。</li>
+      <li>各送信の直前に無線機の周波数が自動的に WSPR のサブバンドへ切り替わります。スケジュールを止めたあとも WSPR の周波数に留まるので、続けてもう 1 回送信するのが簡単です。元の周波数へは<strong>WSPR 画面を離れたとき</strong>に戻ります。</li>
       <li>ビーコン電文に載せる送信出力（dBm）を選択できます。</li>
       <li>送信音声周波数は手動で指定できるほか、<strong>送信音声周波数を自動でランダム化</strong>を有効にすると、毎回 WSPR の窓の中の別の位置に出るため、他のビーコンと重なりにくくなります。</li>
       <li>1 回送信すると自動的にオフになり、次回は手動でオンにし直す必要があります。無人での連続送信を防ぐための意図的な仕様です。唯一の例外は複合コールサインで、2 通の電文が 1 組の完全な情報になるよう 2 回続けて送信します。</li>
+      <li><strong>WSPR と FT8／FT4／FT2 の送信は排他です</strong>（26.0815-2 以降）。同じ無線機と同じ音声経路を共有するため、WSPR を有効にしたときに FT8 の送信がオンなら、先にそれをオフにしてお知らせします。逆に WSPR のスケジュール中に FT8 の送信を入れようとすると、解除方法を示したうえで止められます。<strong>WSPR が終わっても FT8 は自動では戻りません</strong>。必要なときはご自身で入れ直してください——黙って戻すのは、誰も予期しない送信を 1 回作り出すのと同じだからです。</li>
+      <li><strong>WSPR 画面を開くと FT8 の送信とデコードが止まります</strong>（26.0817 以降）。この画面にいる間、無線機はすでに（あるいはこれから）WSPR の周波数にいます。背景で続く FT8 の送信は本意ではありませんし、そこでデコードされたものにも意味がありません。画面を離れればデコードは自動的に戻ります。離れる時点でスケジュールがまだ有効なら、それも停止し、無線機は画面に入る前の周波数へ戻ります。</li>
       <li>WSPR タブにはカウントダウンと、次に送信される電文のプレビューが表示されます。</li>
     </ul>`,
 
@@ -213,10 +219,12 @@ en: {
   wspr_tx_list: `
     <ul>
       <li>После включения передача начинается в ближайшую <strong>чётную минуту UTC</strong> и длится 110,6 секунды — <strong>один раз</strong>, без повторов.</li>
-      <li>Непосредственно перед каждой запланированной передачей частота трансивера автоматически переключается на участок WSPR. После остановки расписания трансивер остаётся на частоте WSPR и не возвращается — при необходимости переключите его сами.</li>
+      <li>Непосредственно перед каждой запланированной передачей частота трансивера автоматически переключается на участок WSPR. После остановки расписания трансивер остаётся на частоте WSPR, чтобы следующая передача была в одно касание; на частоту, с которой вы пришли, он возвращается <strong>при уходе с экрана WSPR</strong>. При необходимости переключите его сами.</li>
       <li>Выберите мощность передачи (дБм), которая будет закодирована в сообщении маяка.</li>
       <li>Звуковую частоту передачи можно задать вручную либо включить <strong>автослучайную частоту передачи</strong>, чтобы каждая передача попадала в разное место окна WSPR и реже накладывалась на другие маяки.</li>
       <li>После состоявшейся передачи всё автоматически отключается, и для следующей передачи нужно включить снова вручную — так сделано намеренно, чтобы исключить непрерывную работу маяка без присмотра. Единственное исключение — составной позывной: он передаётся дважды подряд, чтобы два сообщения составили полный комплект.</li>
+      <li><strong>Передача WSPR и передача FT8／FT4／FT2 взаимно исключаются</strong> (с 26.0815-2): они используют один трансивер и один звуковой тракт, поэтому при включении WSPR передача FT8, если она была включена, сначала выключается — с уведомлением; и наоборот, попытка включить передачу FT8 во время запланированной передачи WSPR будет отклонена с пояснением, как это снять. <strong>После WSPR передача FT8 сама не возвращается</strong> — включите её вручную, когда понадобится: тихое восстановление означало бы одну никем не ожидаемую передачу.</li>
+      <li><strong>Открытие экрана WSPR останавливает передачу и декодирование FT8</strong> (с 26.0817): пока вы на этом экране, трансивер уже (или вот-вот будет) на частоте WSPR, поэтому фоновые передачи FT8 не соответствуют вашему намерению, а декодированное там ничего не значит. При уходе с экрана декодирование возобновляется само; если расписание к этому моменту ещё включено, оно тоже останавливается, а трансивер возвращается на частоту, с которой вы пришли.</li>
       <li>На вкладке WSPR показаны обратный отсчёт и предпросмотр следующего сообщения.</li>
     </ul>`,
 
@@ -263,10 +271,12 @@ en: {
   wspr_tx_list: `
     <ul>
       <li>Po włączeniu nadawanie rusza w najbliższą <strong>parzystą minutę UTC</strong> i trwa 110,6 sekundy — <strong>jeden raz</strong>, bez powtórzeń.</li>
-      <li>Tuż przed każdym zaplanowanym nadawaniem częstotliwość radia automatycznie przełącza się na podpasmo WSPR. Po zatrzymaniu harmonogramu radio pozostaje na częstotliwości WSPR i nie wraca samo — w razie potrzeby przestrój je ręcznie.</li>
+      <li>Tuż przed każdym zaplanowanym nadawaniem częstotliwość radia automatycznie przełącza się na podpasmo WSPR. Po zatrzymaniu harmonogramu radio zostaje na częstotliwości WSPR, dzięki czemu kolejne nadawanie jest o jedno dotknięcie; na częstotliwość sprzed wejścia wraca <strong>przy opuszczeniu ekranu WSPR</strong>.</li>
       <li>Wybierz moc nadawania (dBm), która zostanie zakodowana w wiadomości latarni.</li>
       <li>Częstotliwość audio nadawania można ustawić ręcznie albo włączyć <strong>automatycznie losową częstotliwość nadawania</strong>, dzięki czemu każda transmisja trafia w inne miejsce okna WSPR i rzadziej nakłada się na inne latarnie.</li>
       <li>Po wykonanym nadawaniu wszystko wyłącza się automatycznie i przed kolejnym trzeba włączyć je ręcznie — to celowe zabezpieczenie przed ciągłym nadawaniem bez nadzoru. Jedynym wyjątkiem jest znak złożony, który nadaje dwa razy pod rząd, aby obie wiadomości utworzyły komplet.</li>
+      <li><strong>Nadawanie WSPR i nadawanie FT8／FT4／FT2 wzajemnie się wykluczają</strong> (od 26.0815-2): korzystają z tego samego radia i tej samej ścieżki dźwiękowej, więc przy włączeniu WSPR nadawanie FT8, jeśli było włączone, zostaje najpierw wyłączone wraz z komunikatem; odwrotnie, próba włączenia nadawania FT8 w trakcie zaplanowanego nadawania WSPR zostanie zablokowana z wyjaśnieniem, jak to zdjąć. <strong>Po zakończeniu WSPR nadawanie FT8 nie wraca samo</strong> — włącz je ręcznie, gdy będzie potrzebne: ciche przywrócenie oznaczałoby jedno nadawanie, którego nikt się nie spodziewa.</li>
+      <li><strong>Otwarcie ekranu WSPR zatrzymuje nadawanie i dekodowanie FT8</strong> (od 26.0817): kiedy jesteś na tym ekranie, radio już jest (albo zaraz będzie) na częstotliwości WSPR, więc nadawanie FT8 w tle nie jest tym, o co ci chodziło, a to, co się tam zdekoduje, nic nie znaczy. Po opuszczeniu ekranu dekodowanie wraca samo; jeśli harmonogram jest wtedy nadal włączony, również zostaje zatrzymany, a radio wraca na częstotliwość sprzed wejścia.</li>
       <li>Zakładka WSPR pokazuje odliczanie oraz podgląd następnej zaplanowanej wiadomości.</li>
     </ul>`,
 
@@ -313,10 +323,12 @@ en: {
   wspr_tx_list: `
     <ul>
       <li>Al activarlo, la transmisión arranca en el siguiente <strong>minuto UTC par</strong> y dura 110,6 segundos: <strong>una sola vez</strong>, sin repetirse.</li>
-      <li>Justo antes de cada transmisión programada, la frecuencia del equipo cambia automáticamente a la subbanda WSPR. Al detener la programación, el equipo se queda en la frecuencia WSPR y no vuelve solo: cámbialo tú cuando quieras tu banda anterior.</li>
+      <li>Justo antes de cada transmisión programada, la frecuencia del equipo cambia automáticamente a la subbanda WSPR. Al detener la programación, el equipo se queda en la frecuencia WSPR, de modo que otra transmisión queda a un toque; a la frecuencia con la que entraste vuelve <strong>al salir de la pantalla WSPR</strong>.</li>
       <li>Selecciona la potencia de transmisión (dBm) que se codificará en el mensaje de la baliza.</li>
       <li>La frecuencia de audio de transmisión puede fijarse a mano o puedes activar la <strong>frecuencia de transmisión aleatoria automática</strong>, para que cada transmisión caiga en un punto distinto de la ventana WSPR y se solape menos con otras balizas.</li>
       <li>Tras completar una transmisión, todo se desactiva automáticamente y hay que volver a activarlo a mano para la siguiente: es intencionado, para evitar balizas continuas sin vigilancia. La única excepción es un indicativo compuesto, que transmite dos veces seguidas para que sus dos mensajes formen un conjunto completo.</li>
+      <li><strong>La transmisión de WSPR y la de FT8／FT4／FT2 son excluyentes</strong> (desde 26.0815-2): comparten el mismo equipo y la misma ruta de audio, así que al activar WSPR, si la transmisión de FT8 estaba encendida, se apaga primero y se te avisa; a la inversa, intentar activar la transmisión de FT8 durante una programación WSPR queda bloqueado con la explicación de cómo levantarlo. <strong>Al terminar WSPR, FT8 no vuelve a encenderse solo</strong>: reactívalo tú cuando lo necesites, porque restaurarlo en silencio equivaldría a provocar una transmisión que nadie espera.</li>
+      <li><strong>Abrir la pantalla de WSPR detiene la transmisión y la decodificación de FT8</strong> (desde 26.0817): mientras estás en ella, el equipo ya está —o está a punto de estar— en la frecuencia de WSPR, de modo que esas transmisiones de FT8 en segundo plano no son lo que pretendías y lo que allí se decodifique no significa nada. Al salir, la decodificación se reanuda sola; si al salir la programación sigue activa, también se detiene y el equipo vuelve a la frecuencia desde la que entraste.</li>
       <li>La pestaña WSPR muestra una cuenta atrás y una vista previa del siguiente mensaje programado.</li>
     </ul>`,
 
@@ -363,10 +375,12 @@ en: {
   wspr_tx_list: `
     <ul>
       <li>Με την ενεργοποίηση, η εκπομπή ξεκινά στο επόμενο <strong>ζυγό λεπτό UTC</strong> και διαρκεί 110,6 δευτερόλεπτα — <strong>μία μόνο φορά</strong>, χωρίς επαναλήψεις.</li>
-      <li>Λίγο πριν από κάθε προγραμματισμένη εκπομπή, η συχνότητα αλλάζει αυτόματα στην υπομπάντα WSPR. Όταν σταματήσει το πρόγραμμα, ο πομποδέκτης παραμένει στη συχνότητα WSPR και δεν επιστρέφει — αλλάξτε την μόνοι σας όταν χρειαστεί.</li>
+      <li>Λίγο πριν από κάθε προγραμματισμένη εκπομπή, η συχνότητα αλλάζει αυτόματα στην υπομπάντα WSPR. Όταν σταματήσει το πρόγραμμα, ο πομποδέκτης παραμένει στη συχνότητα WSPR, ώστε μια ακόμη εκπομπή να απέχει ένα πάτημα· στη συχνότητα από την οποία μπήκατε επιστρέφει <strong>όταν φύγετε από την οθόνη WSPR</strong>. Αλλάξτε την μόνοι σας όταν χρειαστεί.</li>
       <li>Επιλέξτε την ισχύ εκπομπής (dBm) που θα κωδικοποιηθεί στο μήνυμα του φάρου.</li>
       <li>Η συχνότητα ήχου εκπομπής μπορεί να οριστεί χειροκίνητα ή να ενεργοποιήσετε την <strong>αυτόματη τυχαία συχνότητα ήχου εκπομπής</strong>, ώστε κάθε εκπομπή να πέφτει σε διαφορετικό σημείο του παραθύρου WSPR και να επικαλύπτεται λιγότερο με άλλους φάρους.</li>
       <li>Μετά από μια ολοκληρωμένη εκπομπή όλα απενεργοποιούνται αυτόματα και πρέπει να τα ενεργοποιήσετε ξανά χειροκίνητα — είναι σκόπιμο, ώστε να αποφεύγεται η συνεχής εκπομπή φάρου χωρίς επίβλεψη. Η μοναδική εξαίρεση είναι το σύνθετο διακριτικό, που εκπέμπει δύο φορές στη σειρά ώστε τα δύο μηνύματά του να αποτελέσουν ένα πλήρες σύνολο.</li>
+      <li><strong>Η εκπομπή WSPR και η εκπομπή FT8／FT4／FT2 αλληλοαποκλείονται</strong> (από 26.0815-2): μοιράζονται τον ίδιο πομποδέκτη και την ίδια διαδρομή ήχου, οπότε όταν ενεργοποιείτε το WSPR, αν η εκπομπή FT8 ήταν ανοιχτή, κλείνει πρώτα και ενημερώνεστε· αντίστροφα, η προσπάθεια να ανοίξετε εκπομπή FT8 ενώ τρέχει προγραμματισμένη εκπομπή WSPR εμποδίζεται, με εξήγηση για το πώς αίρεται. <strong>Μετά το WSPR η εκπομπή FT8 δεν επανέρχεται μόνη της</strong> — ανοίξτε την ξανά όταν τη χρειαστείτε: η σιωπηλή επαναφορά θα ισοδυναμούσε με μία εκπομπή που κανείς δεν περιμένει.</li>
+      <li><strong>Το άνοιγμα της οθόνης WSPR σταματά την εκπομπή και την αποκωδικοποίηση FT8</strong> (από 26.0817): όσο βρίσκεστε εκεί, ο πομποδέκτης είναι ήδη (ή πρόκειται να είναι) στη συχνότητα WSPR, οπότε οι εκπομπές FT8 στο παρασκήνιο δεν είναι αυτό που θέλατε και ό,τι αποκωδικοποιείται εκεί δεν έχει νόημα. Φεύγοντας, η αποκωδικοποίηση επανέρχεται μόνη της· αν το πρόγραμμα είναι ακόμη ενεργό τη στιγμή που φεύγετε, σταματά κι αυτό, και ο πομποδέκτης γυρίζει στη συχνότητα από την οποία μπήκατε.</li>
       <li>Η καρτέλα WSPR εμφανίζει αντίστροφη μέτρηση και προεπισκόπηση του επόμενου προγραμματισμένου μηνύματος.</li>
     </ul>`,
 
