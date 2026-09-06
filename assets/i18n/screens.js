@@ -20,8 +20,8 @@ en: {
   screens_timebar_text:  'The thin progress bar across the very top of the screen follows the UTC timing cycle, so you can see at a glance where you are within the slot. Its <strong>colour tells you whether audio is being received</strong>: <strong>yellow</strong> means recording is running, <strong>grey</strong> means it has stopped — the bar keeps moving either way, and the colour says plainly which of the two is happening. During your own transmit slot the bar\'s background changes colour as well.',
 
   screens_level_title: 'Input Level',
-  screens_level_text:  'The status bar shows how loud the radio audio is by the time it reaches the app — what the decoder actually sees. Too loud clips and distorts; too quiet lets quantisation noise take a bigger share. Neither announces itself: both simply show up as a poor decode rate. The reading turns colour when it drifts out of range, and tapping it opens a fuller explanation. Alongside the average level it also tracks peaks, so brief overloads that an average would hide still show up; a warning that you have already dealt with can be collapsed out of the way.',
-  screens_level_note: 'A useful working range is roughly <strong>−45 to −18 dBFS RMS</strong>. Too high — turn down the AF or DATA output on the radio, or the input gain of the audio interface; too low — turn it up the same way. The exact boundaries vary between radios, phones and USB codecs, so treat the numbers as a guide and judge by whether decoding is reliable. No level is shown during transmit slots or in acoustic mode, where the reading would be misleading.',
+  screens_level_text:  'The status bar shows how loud the radio audio is by the time it reaches the app — what the decoder actually sees. When all is well it reads <strong>RX −○○dB</strong>; the <strong>RX</strong> is there deliberately, to mark this as a <em>receive</em> level with nothing to do with transmit power. Once the reading leaves the sensible range the wording becomes explicit instead — <strong>"RX audio low"</strong>, <strong>"RX audio near full scale"</strong> or <strong>"RX audio clipping"</strong> — shown in a warning colour. Too loud clips and distorts; too quiet lets quantisation noise take a bigger share. Neither announces itself: both simply show up as a poor decode rate. Tapping the reading opens a fuller explanation. Alongside the average level it also tracks peaks, so brief overloads that an average would hide still show up; a warning that you have already dealt with can be collapsed out of the way.',
+  screens_level_note: 'A useful working range is roughly <strong>−45 to −18 dBFS RMS</strong>. Too high — turn down the AF or DATA output on the radio, or the input gain of the audio interface; too low — turn it up the same way. The exact boundaries vary between radios, phones and USB codecs, so treat the numbers as a guide and judge by whether decoding is reliable. No level is shown during transmit slots, where the reading would be misleading.',
 
   screens_level_caption: 'The status bar showing the input level. The <strong>RX</strong> prefix marks it as the <em>receive</em> level; here it reads −24 dB, comfortably inside the usable range, so it appears in the normal colour. Outside that range the wording changes to something explicit such as "RX audio low".',
   screens_miniwf_title: 'Mini Waterfall',
@@ -37,6 +37,7 @@ en: {
       <li><strong>CQ Modifier</strong> – Append a geographic or activity modifier to your CQ (e.g., <code>CQ DX</code>, <code>CQ EU</code>)</li>
       <li><strong>Free Text</strong> – Send a custom free-text message (max 13 characters)</li>
       <li><strong>Auto response CQ</strong> – Automatically reply to CQ calls; configure priority in Settings</li>
+      <li><strong>SWR / receive level</strong> – While transmitting this box shows the SWR reported by the radio. The rest of the time it shows a seven-segment receive level meter (26.0906 and later), updated five times a second, so you can see at a glance whether the audio coming in is too weak or close to clipping. It is the audio level reaching the app, not the radio&#39;s S-meter.</li>
     </ul>`,
 
   screens_spectrum_title: 'Spectrum Tab',
@@ -98,7 +99,7 @@ en: {
 
   screens_level_title: '輸入電平',
   screens_level_text:  '狀態列會顯示電台音訊傳到 App 時的音量大小，也就是解碼器實際看到的訊號。一切正常時顯示為 <strong>RX －○○dB</strong>；<strong>RX</strong> 是刻意加上去的，用來表示這是<em>接收</em>端的電平，與發射功率無關。超出合理範圍時會改成講明白的字樣，例如<strong>「接收電平太小」</strong>或<strong>「接收峰值逼近滿刻度」</strong>，並以警示色顯示。太大會削峰失真，太小則讓量化雜訊佔掉更多比例。這兩種情況都不會主動報錯，只會表現為解碼率變差。數值超出合理範圍時會變色，點一下可展開完整說明。除了平均電平，也會一併量測峰值，因此被平均值掩蓋的瞬間過載一樣看得到；已經處理過的警示可以收合起來。',
-  screens_level_note: '合用的範圍大約是 <strong>−45 至 −18 dBFS RMS</strong>。太高就把電台的 AF 或 DATA 輸出調小，或降低音效介面的輸入增益；太低則反向調大。實際邊界會因電台、手機與 USB 音效晶片而異，所以請把數字當成參考，最終仍以解碼是否穩定為準。發射時段與聲學（喇叭麥克風）模式下不顯示數值，因為那時的讀數會誤導人。',
+  screens_level_note: '合用的範圍大約是 <strong>−45 至 −18 dBFS RMS</strong>。太高就把電台的 AF 或 DATA 輸出調小，或降低音效介面的輸入增益；太低則反向調大。實際邊界會因電台、手機與 USB 音效晶片而異，所以請把數字當成參考，最終仍以解碼是否穩定為準。發射時段不顯示數值，因為那時的讀數會誤導人。',
 
   screens_level_caption: '狀態列上的輸入電平。數值前的 RX 表示這是接收端的電平；圖中的讀數偏低，因此以警示色顯示並加上 ⚠。',
   screens_miniwf_title: '小瀑布圖',
@@ -114,6 +115,7 @@ en: {
       <li><strong>CQ 對象</strong> — 在 CQ 呼叫後附加地理或活動修飾詞（如 <code>CQ DX</code>、<code>CQ EU</code>）</li>
       <li><strong>自定義訊息</strong> — 發送最多 13 個字元的自由文字</li>
       <li><strong>自動回應 CQ</strong> — 自動回應收到的 CQ，優先策略可在設置中設定</li>
+      <li><strong>SWR／接收電平</strong> – 發射時這一格顯示電台回報的 SWR，其餘時間顯示七段式的接收電平表（26.0906 起），每秒更新五次，一眼就能看出進來的音訊是太弱還是接近削波。它反映的是送進 App 的音訊電平，不是電台的 S 表。</li>
     </ul>`,
 
   screens_spectrum_title: '頻譜（Spectrum）',
@@ -171,10 +173,10 @@ en: {
     <p>解码灵敏度（快速 / 标准 / 多次）是另一项独立设置，详见<a href="settings.html">「设置说明」</a>。</p>`,
 
   screens_level_title: '输入电平',
-  screens_level_text:  '状态栏会显示电台音频传到 App 时的音量大小，也就是解码器实际看到的信号。太大会削峰失真，太小则让量化噪声占掉更多比例。这两种情况都不会主动报错，只会表现为解码率变差。数值超出合理范围时会变色，点一下可展开完整说明。除了平均电平，也会一并测量峰值，因此被平均值掩盖的瞬间过载一样看得到；已经处理过的警示可以收起来。',
-  screens_level_note: '合用的范围大约是 <strong>−45 至 −18 dBFS RMS</strong>。太高就把电台的 AF 或 DATA 输出调小，或降低音频接口的输入增益；太低则反向调大。实际边界会因电台、手机与 USB 音频芯片而异，所以请把数字当成参考，最终仍以解码是否稳定为准。发射时隙与声学（扬声器麦克风）模式下不显示数值，因为那时的读数会误导人。',
+  screens_level_text:  '状态栏会显示电台音频传到 App 时的音量大小，也就是解码器实际看到的信号。一切正常时显示为 <strong>RX －○○dB</strong>；<strong>RX</strong> 是刻意加上去的，用来表示这是<em>接收</em>端的电平，与发射功率无关。超出合理范围时会改成讲明白的字样，例如<strong>「接收电平太小」</strong>或<strong>「接收峰值逼近满刻度」</strong>，并以警示色显示。太大会削峰失真，太小则让量化噪声占掉更多比例。这两种情况都不会主动报错，只会表现为解码率变差。数值超出合理范围时会变色，点一下可展开完整说明。除了平均电平，也会一并测量峰值，因此被平均值掩盖的瞬间过载一样看得到；已经处理过的警示可以收起来。',
+  screens_level_note: '合用的范围大约是 <strong>−45 至 −18 dBFS RMS</strong>。太高就把电台的 AF 或 DATA 输出调小，或降低音频接口的输入增益；太低则反向调大。实际边界会因电台、手机与 USB 音频芯片而异，所以请把数字当成参考，最终仍以解码是否稳定为准。发射时隙不显示数值，因为那时的读数会误导人。',
 
-  screens_level_caption: '状态栏上的输入电平；图中正处于过低的状态，因此数值被特别标示。（截图为繁体中文界面。）',
+  screens_level_caption: '状态栏上的输入电平。数值前的 RX 表示这是接收端的电平；图中的读数偏低，因此以警示色显示并加上 ⚠。',
   screens_miniwf_title: '小瀑布图',
   screens_miniwf_text:  '解码与呼叫两个分页都可以显示一条精简的瀑布图，让您不必离开列表切到完整的频谱界面，也能看到波段上的活动。两个分页在设置中各有独立开关。',
 
@@ -188,6 +190,7 @@ en: {
       <li><strong>CQ 对象</strong> — 在 CQ 呼叫后附加地理或活动修饰词（如 <code>CQ DX</code>、<code>CQ EU</code>）</li>
       <li><strong>自定义消息</strong> — 发送最多 13 个字符的自由文本</li>
       <li><strong>自动回应 CQ</strong> — 自动回应收到的 CQ，优先策略可在设置中设定</li>
+      <li><strong>SWR／接收电平</strong> – 发射时这一格显示电台回报的 SWR，其余时间显示七段式的接收电平表（26.0906 起），每秒更新五次，一眼就能看出进来的音频是太弱还是接近削波。它反映的是送进 App 的音频电平，不是电台的 S 表。</li>
     </ul>`,
 
   screens_timebar_title: '时序计时条',
@@ -224,12 +227,12 @@ en: {
   screens_more_list: `
     <ul>
       <li><strong>JS8</strong> — JS8 模式的聊天式对话界面，详见<a href="js8.html">「JS8 聊天模式」</a>章节。</li>
-      <li><strong>WSPR</strong> — WSPR 模式的信标排程界面，详见<a href="wspr.html">「WSPR 信标」</a>章节。</li>
+      <li><strong>WSPR</strong> — WSPR 模式的发射排程界面，详见<a href="wspr.html">「WSPR」</a>章节。</li>
       <li><strong>电台工具</strong> — 电台麦克风、收讯监听与天线调谐，详见<a href="ssb.html">「电台工具」</a>章节。</li>
       <li><strong>网格追踪（Grid Tracker）</strong> — 全屏地图界面，详见<a href="gridtracker.html">「网格追踪地图」</a>章节。</li>
       <li><strong>统计（Count）</strong> — 按频段、模式、DXCC、ITU/CQ 分区及时间区间统计 QSO 数量。</li>
       <li><strong>QRZ.com 查询</strong> — 内嵌 QRZ.com 呼号查询，显示当前选定电台的资料。</li>
-      <li><strong>悬浮窗口</strong> — 可选的常驻悬浮菜单，共八个快捷按钮：隐藏底部菜单、频率调整、音量调整、网格追踪、电台工具、WSPR 信标、JS8 聊天，以及<strong>快速切换模式</strong>（一键在 FT8／FT4／FT2／JS8／WSPR 之间切换）。每个都可在设置中单独开关。<strong>长按</strong>悬浮菜单可把它收合成单一按钮，需要时再长按展开；收合状态会维持到 App 结束为止。</li>
+      <li><strong>悬浮窗口</strong> — 可选的常驻悬浮菜单，共八个快捷按钮：隐藏底部菜单、频率调整、音量调整、网格追踪、电台工具、WSPR、JS8 聊天，以及<strong>快速切换模式</strong>（一键在 FT8／FT4／FT2／JS8／WSPR 之间切换）。每个都可在设置中单独开关。<strong>长按</strong>悬浮菜单可把它收合成单一按钮，需要时再长按展开；收合状态会维持到 App 结束为止。</li>
     </ul>`,
 },
 
@@ -248,8 +251,8 @@ en: {
     <p>デコード感度（高速 / 標準 / 多回）は別の設定項目です。<a href="settings.html">設定リファレンス</a>を参照してください。</p>`,
 
   screens_level_title: '入力レベル',
-  screens_level_text:  'ステータスバーには、無線機の音声がアプリに届いた時点での大きさ、つまりデコーダーが実際に見ている信号のレベルが表示されます。大きすぎるとクリップして歪み、小さすぎると量子化ノイズの割合が増えます。どちらもエラーとしては現れず、デコード率の低下という形でしか分かりません。適正範囲から外れると表示色が変わり、タップすると詳しい説明が開きます。平均レベルだけでなくピークも見ているため、平均では埋もれてしまう瞬間的な過入力も分かります。対処済みの警告はたたんでおけます。',
-  screens_level_note: '目安となる範囲はおよそ <strong>−45〜−18 dBFS RMS</strong> です。大きすぎる場合は無線機の AF または DATA 出力を絞るか、オーディオインターフェースの入力ゲインを下げます。小さすぎる場合は逆に上げます。実際の境目は無線機・スマートフォン・USB コーデックによって変わるため、数値は目安と考え、最終的にはデコードが安定しているかどうかで判断してください。送信スロット中と音響（スピーカーとマイク）モードでは、読み取り値が誤解を招くため表示されません。',
+  screens_level_text:  'ステータスバーには、無線機の音声がアプリに届いた時点での大きさ、つまりデコーダーが実際に見ている信号のレベルが表示されます。正常なときは <strong>RX －○○dB</strong> と表示されます。<strong>RX</strong> はあえて付けてあるもので、これが<em>受信</em>側のレベルであり送信出力とは関係がないことを示します。適正範囲を外れると表現が明確に変わり、<strong>「受信レベル小」</strong>や<strong>「受信ピークがフルスケール付近」</strong>のように警告色で表示されます。大きすぎるとクリップして歪み、小さすぎると量子化ノイズの割合が増えます。どちらもエラーとしては現れず、デコード率の低下という形でしか分かりません。適正範囲から外れると表示色が変わり、タップすると詳しい説明が開きます。平均レベルだけでなくピークも見ているため、平均では埋もれてしまう瞬間的な過入力も分かります。対処済みの警告はたたんでおけます。',
+  screens_level_note: '目安となる範囲はおよそ <strong>−45〜−18 dBFS RMS</strong> です。大きすぎる場合は無線機の AF または DATA 出力を絞るか、オーディオインターフェースの入力ゲインを下げます。小さすぎる場合は逆に上げます。実際の境目は無線機・スマートフォン・USB コーデックによって変わるため、数値は目安と考え、最終的にはデコードが安定しているかどうかで判断してください。送信スロット中は、読み取り値が誤解を招くため表示されません。',
 
   screens_level_caption: 'ステータスバーの入力レベル。頭に付く <strong>RX</strong> は<em>受信</em>側のレベルであることを示します。ここでは −24 dB で使用可能な範囲に十分収まっているため、通常の色で表示されています。範囲を外れると「RX audio low」のようにはっきりした表現に変わります。（スクリーンショットは英語表示のものです。）',
   screens_miniwf_title: 'ミニウォーターフォール',
@@ -265,6 +268,7 @@ en: {
       <li><strong>CQ の対象</strong> — CQ に地域や運用の識別語を付けます（例: <code>CQ DX</code>、<code>CQ EU</code>）</li>
       <li><strong>フリーテキスト</strong> — 最大 13 文字の自由な電文を送ります</li>
       <li><strong>CQ 自動応答</strong> — 受信した CQ に自動応答します。優先条件は設定で指定します</li>
+      <li><strong>SWR／受信レベル</strong> – 送信中はこの欄に無線機が報告する SWR が出ます。それ以外のときは 7 段の受信レベルメーターになり（26.0906 以降）、毎秒 5 回更新されるので、入力音声が弱すぎないか、クリップ寸前でないかが一目で分かります。表示されるのはアプリに届く音声レベルで、無線機の S メーターではありません。</li>
     </ul>`,
 
   screens_timebar_title: 'タイミングバー',
@@ -301,12 +305,12 @@ en: {
   screens_more_list: `
     <ul>
       <li><strong>JS8</strong> — JS8 モードのチャット形式の画面。<a href="js8.html">「JS8 チャットモード」</a>を参照してください。</li>
-      <li><strong>WSPR</strong> — WSPR モードのビーコン予約画面。<a href="wspr.html">「WSPR ビーコン」</a>を参照してください。</li>
+      <li><strong>WSPR</strong> — WSPR モードの送信予約画面。<a href="wspr.html">「WSPR」</a>を参照してください。</li>
       <li><strong>無線機ツール</strong> — 無線機のマイク、受信モニター、アンテナ調整。<a href="ssb.html">「無線機ツール」</a>を参照してください。</li>
       <li><strong>グリッドトラッカー</strong> — 全画面の地図表示。<a href="gridtracker.html">「グリッドトラッカー」</a>を参照してください。</li>
       <li><strong>統計</strong> — バンド、モード、DXCC、ITU/CQ ゾーン、期間ごとの交信数。</li>
       <li><strong>QRZ.com 検索</strong> — 選択中の局について、QRZ.com のコールサイン検索を内蔵表示します。</li>
-      <li><strong>フローティングウィンドウ</strong> — 常時最前面に表示できる任意のオーバーレイで、8 つのショートカットがあります：下部メニューを非表示、周波数調整、音量調整、グリッドトラッカー、無線機ツール、WSPR ビーコン、JS8チャット、そして<strong>クイックモード切替</strong>（FT8／FT4／FT2／JS8／WSPR をワンタップで切り替え）。それぞれ設定で個別に表示／非表示にできます。フローティングメニューを<strong>長押し</strong>すると 1 つのボタンに畳まれ、もう一度長押しすると戻ります。畳んだ状態はアプリを終了するまで保たれます。</li>
+      <li><strong>フローティングウィンドウ</strong> — 常時最前面に表示できる任意のオーバーレイで、8 つのショートカットがあります：下部メニューを非表示、周波数調整、音量調整、グリッドトラッカー、無線機ツール、WSPR、JS8チャット、そして<strong>クイックモード切替</strong>（FT8／FT4／FT2／JS8／WSPR をワンタップで切り替え）。それぞれ設定で個別に表示／非表示にできます。フローティングメニューを<strong>長押し</strong>すると 1 つのボタンに畳まれ、もう一度長押しすると戻ります。畳んだ状態はアプリを終了するまで保たれます。</li>
     </ul>`,
 },
 
@@ -325,8 +329,8 @@ en: {
     <p>Чувствительность декодирования (быстро / стандарт / глубоко) — отдельная настройка, см. <a href="settings.html">описание настроек</a>.</p>`,
 
   screens_level_title: 'Уровень входного сигнала',
-  screens_level_text:  'В строке состояния показано, насколько громким звук трансивера доходит до приложения, то есть что реально видит декодер. Слишком громкий сигнал ограничивается и искажается, слишком тихий отдаёт большую долю шуму квантования. Ни то, ни другое не объявляет о себе прямо: заметно лишь по ухудшению декодирования. При выходе за пределы показание меняет цвет, а по нажатию открывается подробное пояснение. Кроме среднего уровня отслеживаются и пики, так что короткие перегрузки, которые среднее скрыло бы, всё равно заметны; уже отработанное предупреждение можно свернуть.',
-  screens_level_note: 'Рабочий диапазон — примерно <strong>от −45 до −18 dBFS RMS</strong>. Слишком высоко — убавьте выход AF или DATA на трансивере либо входное усиление звукового интерфейса; слишком низко — прибавьте тем же способом. Точные границы зависят от трансивера, телефона и USB-кодека, поэтому считайте числа ориентиром и судите по тому, надёжно ли идёт декодирование. Во время интервалов передачи и в акустическом режиме уровень не показывается: там показание вводило бы в заблуждение.',
+  screens_level_text:  'В строке состояния показано, насколько громким звук трансивера доходит до приложения, то есть что реально видит декодер. Когда всё в порядке, показывается <strong>RX −○○dB</strong>; пометка <strong>RX</strong> стоит намеренно — это уровень <em>приёма</em>, к мощности передачи он отношения не имеет. При выходе за разумные пределы формулировка становится явной: <strong>«Низкий уровень приёма»</strong> или <strong>«Пик приёма у полной шкалы»</strong>, выделенные предупреждающим цветом. Слишком громкий сигнал ограничивается и искажается, слишком тихий отдаёт большую долю шуму квантования. Ни то, ни другое не объявляет о себе прямо: заметно лишь по ухудшению декодирования. При выходе за пределы показание меняет цвет, а по нажатию открывается подробное пояснение. Кроме среднего уровня отслеживаются и пики, так что короткие перегрузки, которые среднее скрыло бы, всё равно заметны; уже отработанное предупреждение можно свернуть.',
+  screens_level_note: 'Рабочий диапазон — примерно <strong>от −45 до −18 dBFS RMS</strong>. Слишком высоко — убавьте выход AF или DATA на трансивере либо входное усиление звукового интерфейса; слишком низко — прибавьте тем же способом. Точные границы зависят от трансивера, телефона и USB-кодека, поэтому считайте числа ориентиром и судите по тому, надёжно ли идёт декодирование. Во время интервалов передачи уровень не показывается: там показание вводило бы в заблуждение.',
 
   screens_level_caption: 'Строка состояния с уровнем входа. Префикс <strong>RX</strong> указывает, что это уровень <em>приёма</em>. Здесь он равен −24 дБ и уверенно укладывается в рабочий диапазон, поэтому показан обычным цветом. За пределами диапазона надпись меняется на явную, например «RX audio low». (На снимке экрана — интерфейс на английском.)',
   screens_miniwf_title: 'Мини-водопад',
@@ -342,6 +346,7 @@ en: {
       <li><strong>Уточнение CQ</strong> — добавляет к вызову географическое или тематическое уточнение (например, <code>CQ DX</code>, <code>CQ EU</code>)</li>
       <li><strong>Свободный текст</strong> — отправка собственного сообщения (до 13 символов)</li>
       <li><strong>Автоответ на CQ</strong> — автоматический ответ на вызовы CQ; приоритет задаётся в настройках</li>
+      <li><strong>КСВ / уровень приёма</strong> – Во время передачи здесь показан КСВ, сообщаемый трансивером. В остальное время — семисегментный индикатор уровня приёма (начиная с 26.0906), обновляемый пять раз в секунду, так что сразу видно, слишком ли слаб входной сигнал или близок к ограничению. Это уровень звука, доходящий до приложения, а не S-метр трансивера.</li>
     </ul>`,
 
   screens_timebar_title: 'Полоса тайминга',
@@ -378,12 +383,12 @@ en: {
   screens_more_list: `
     <ul>
       <li><strong>JS8</strong> — экран разговора в виде чата для режима JS8. См. раздел <a href="js8.html">«Режим чата JS8»</a>.</li>
-      <li><strong>WSPR</strong> — экран планирования маяка WSPR. См. раздел <a href="wspr.html">«Маяк WSPR»</a>.</li>
+      <li><strong>WSPR</strong> — экран планирования передачи WSPR. См. раздел <a href="wspr.html">«WSPR»</a>.</li>
       <li><strong>Инструменты трансивера</strong> — микрофон, мониторинг приёма и настройка антенны. См. раздел <a href="ssb.html">«Инструменты трансивера»</a>.</li>
       <li><strong>Карта локаторов</strong> — полноэкранная карта. См. раздел <a href="gridtracker.html">«Карта локаторов»</a>.</li>
       <li><strong>Статистика</strong> — количество QSO по диапазонам, режимам, DXCC, зонам ITU/CQ и периодам.</li>
       <li><strong>Поиск на QRZ.com</strong> — встроенный поиск позывного на QRZ.com для выбранной станции.</li>
-      <li><strong>Плавающее окно</strong> — необязательная панель поверх других окон с восемью кнопками: скрыть нижнее меню, частота, громкость, карта локаторов, инструменты трансивера, маяк WSPR, чат JS8 и <strong>быстрая смена режима</strong> (одно нажатие для перехода между FT8／FT4／FT2／JS8／WSPR). Каждую можно показать или скрыть отдельно в настройках. <strong>Долгое нажатие</strong> на плавающее меню сворачивает его в одну кнопку, повторное — разворачивает; свёрнутое состояние сохраняется до закрытия приложения.</li>
+      <li><strong>Плавающее окно</strong> — необязательная панель поверх других окон с восемью кнопками: скрыть нижнее меню, частота, громкость, карта локаторов, инструменты трансивера, WSPR, чат JS8 и <strong>быстрая смена режима</strong> (одно нажатие для перехода между FT8／FT4／FT2／JS8／WSPR). Каждую можно показать или скрыть отдельно в настройках. <strong>Долгое нажатие</strong> на плавающее меню сворачивает его в одну кнопку, повторное — разворачивает; свёрнутое состояние сохраняется до закрытия приложения.</li>
     </ul>`,
 },
 
@@ -402,8 +407,8 @@ en: {
     <p>Czułość dekodowania (szybko / standardowo / głęboko) to osobne ustawienie — zobacz <a href="settings.html">opis ustawień</a>.</p>`,
 
   screens_level_title: 'Poziom wejściowy',
-  screens_level_text:  'Pasek stanu pokazuje, jak głośny jest dźwięk z radia w chwili, gdy dociera do aplikacji — czyli to, co naprawdę widzi dekoder. Za głośny sygnał się obcina i zniekształca, za cichy oddaje większą część szumowi kwantyzacji. Żadne z tego nie zgłasza się samo: objawia się wyłącznie gorszą skutecznością dekodowania. Po wyjściu poza zakres odczyt zmienia kolor, a dotknięcie otwiera pełniejsze wyjaśnienie. Obok poziomu średniego śledzone są też szczyty, więc krótkie przesterowania, które średnia by ukryła, nadal widać; obsłużone ostrzeżenie można zwinąć.',
-  screens_level_note: 'Praktyczny zakres to mniej więcej <strong>od −45 do −18 dBFS RMS</strong>. Za wysoko — zmniejsz wyjście AF lub DATA w radiu albo wzmocnienie wejściowe interfejsu audio; za nisko — zwiększ w ten sam sposób. Dokładne granice zależą od radia, telefonu i kodeka USB, więc traktuj liczby orientacyjnie i oceniaj po tym, czy dekodowanie jest niezawodne. W czasie nadawania oraz w trybie akustycznym poziom nie jest pokazywany, bo odczyt byłby mylący.',
+  screens_level_text:  'Pasek stanu pokazuje, jak głośny jest dźwięk z radia w chwili, gdy dociera do aplikacji — czyli to, co naprawdę widzi dekoder. Gdy wszystko jest w porządku, widnieje <strong>RX −○○dB</strong>; oznaczenie <strong>RX</strong> jest tam celowo — to poziom <em>odbioru</em>, niemający nic wspólnego z mocą nadawania. Po wyjściu poza rozsądny zakres pojawia się wyraźny opis: <strong>„Niski poziom odbioru"</strong> albo <strong>„Szczyt odbioru przy pełnej skali"</strong>, w kolorze ostrzegawczym. Za głośny sygnał się obcina i zniekształca, za cichy oddaje większą część szumowi kwantyzacji. Żadne z tego nie zgłasza się samo: objawia się wyłącznie gorszą skutecznością dekodowania. Po wyjściu poza zakres odczyt zmienia kolor, a dotknięcie otwiera pełniejsze wyjaśnienie. Obok poziomu średniego śledzone są też szczyty, więc krótkie przesterowania, które średnia by ukryła, nadal widać; obsłużone ostrzeżenie można zwinąć.',
+  screens_level_note: 'Praktyczny zakres to mniej więcej <strong>od −45 do −18 dBFS RMS</strong>. Za wysoko — zmniejsz wyjście AF lub DATA w radiu albo wzmocnienie wejściowe interfejsu audio; za nisko — zwiększ w ten sam sposób. Dokładne granice zależą od radia, telefonu i kodeka USB, więc traktuj liczby orientacyjnie i oceniaj po tym, czy dekodowanie jest niezawodne. W czasie nadawania poziom nie jest pokazywany, bo odczyt byłby mylący.',
 
   screens_level_caption: 'Pasek stanu z poziomem wejściowym. Przedrostek <strong>RX</strong> oznacza, że jest to poziom <em>odbioru</em>. Tutaj wynosi −24 dB i mieści się z zapasem w użytecznym zakresie, więc pokazany jest normalnym kolorem. Poza tym zakresem napis zmienia się na jednoznaczny, na przykład „RX audio low". (Zrzut przedstawia interfejs w języku angielskim.)',
   screens_miniwf_title: 'Mały wodospad',
@@ -419,6 +424,7 @@ en: {
       <li><strong>Dopisek do CQ</strong> — dodaje do wywołania określenie geograficzne lub tematyczne (np. <code>CQ DX</code>, <code>CQ EU</code>)</li>
       <li><strong>Dowolny tekst</strong> — wysyła własną wiadomość (do 13 znaków)</li>
       <li><strong>Automatyczna odpowiedź na CQ</strong> — automatycznie odpowiada na wywołania CQ; priorytet ustawia się w ustawieniach</li>
+      <li><strong>SWR / poziom odbioru</strong> – Podczas nadawania pole pokazuje SWR zgłaszany przez radio. Poza nadawaniem widać siedmiosegmentowy wskaźnik poziomu odbioru (od 26.0906), odświeżany pięć razy na sekundę, więc od razu widać, czy sygnał wejściowy jest za słaby, czy bliski przesterowania. To poziom dźwięku docierający do aplikacji, a nie S-metr radia.</li>
     </ul>`,
 
   screens_timebar_title: 'Pasek taktowania',
@@ -455,12 +461,12 @@ en: {
   screens_more_list: `
     <ul>
       <li><strong>JS8</strong> — ekran rozmowy w formie czatu dla trybu JS8. Zobacz rozdział <a href="js8.html">„Tryb czatu JS8"</a>.</li>
-      <li><strong>WSPR</strong> — ekran planowania latarni WSPR. Zobacz rozdział <a href="wspr.html">„Latarnia WSPR"</a>.</li>
+      <li><strong>WSPR</strong> — ekran planowania nadawania WSPR. Zobacz rozdział <a href="wspr.html">„WSPR"</a>.</li>
       <li><strong>Narzędzia radia</strong> — mikrofon, podsłuch odbioru i strojenie anteny. Zobacz rozdział <a href="ssb.html">„Narzędzia radia"</a>.</li>
       <li><strong>Mapa lokatorów</strong> — pełnoekranowy widok mapy. Zobacz rozdział <a href="gridtracker.html">„Mapa lokatorów"</a>.</li>
       <li><strong>Statystyki</strong> — liczba QSO według pasma, emisji, DXCC, strefy ITU/CQ i okresu.</li>
       <li><strong>Wyszukiwanie QRZ.com</strong> — wbudowane wyszukiwanie znaku na QRZ.com dla aktualnie wybranej stacji.</li>
-      <li><strong>Pływające okno</strong> — opcjonalna nakładka zawsze na wierzchu z ośmioma przyciskami skrótów: ukryj dolne menu, częstotliwość, głośność, mapa lokatorów, narzędzia radia, latarnia WSPR, czat JS8 oraz <strong>szybka zmiana trybu</strong> (jedno dotknięcie między FT8／FT4／FT2／JS8／WSPR). Każdy można osobno pokazać lub ukryć w ustawieniach. <strong>Długie naciśnięcie</strong> pływającego menu zwija je do jednego przycisku, kolejne rozwija; stan zwinięcia utrzymuje się do zamknięcia aplikacji.</li>
+      <li><strong>Pływające okno</strong> — opcjonalna nakładka zawsze na wierzchu z ośmioma przyciskami skrótów: ukryj dolne menu, częstotliwość, głośność, mapa lokatorów, narzędzia radia, WSPR, czat JS8 oraz <strong>szybka zmiana trybu</strong> (jedno dotknięcie między FT8／FT4／FT2／JS8／WSPR). Każdy można osobno pokazać lub ukryć w ustawieniach. <strong>Długie naciśnięcie</strong> pływającego menu zwija je do jednego przycisku, kolejne rozwija; stan zwinięcia utrzymuje się do zamknięcia aplikacji.</li>
     </ul>`,
 },
 
@@ -479,8 +485,8 @@ en: {
     <p>La sensibilidad de decodificación (rápida / estándar / profunda) es un ajuste aparte; consulta la <a href="settings.html">referencia de ajustes</a>.</p>`,
 
   screens_level_title: 'Nivel de entrada',
-  screens_level_text:  'La barra de estado muestra con qué volumen llega el audio del equipo a la aplicación, es decir, lo que ve realmente el decodificador. Si es demasiado alto recorta y distorsiona; si es demasiado bajo, el ruido de cuantificación se lleva una parte mayor. Ninguno de los dos casos se anuncia solo: únicamente se nota como una peor tasa de decodificación. La lectura cambia de color al salirse del margen y, al pulsarla, se abre una explicación más completa. Además del nivel medio se siguen los picos, de modo que las sobrecargas breves que la media ocultaría también se ven; un aviso ya atendido puede plegarse.',
-  screens_level_note: 'Un margen práctico ronda los <strong>−45 a −18 dBFS RMS</strong>. Demasiado alto: baja la salida de AF o DATA del equipo, o la ganancia de entrada de la interfaz de audio; demasiado bajo: súbela del mismo modo. Los límites exactos varían según el equipo, el teléfono y el códec USB, así que toma las cifras como orientación y juzga por si la decodificación es fiable. Durante los intervalos de transmisión y en modo acústico no se muestra nivel, porque la lectura sería engañosa.',
+  screens_level_text:  'La barra de estado muestra con qué volumen llega el audio del equipo a la aplicación, es decir, lo que ve realmente el decodificador. Cuando todo va bien se lee <strong>RX −○○dB</strong>; la <strong>RX</strong> está puesta a propósito, para marcar que es un nivel de <em>recepción</em> y no tiene nada que ver con la potencia de transmisión. Al salirse del margen razonable el texto pasa a ser explícito: <strong>«Nivel de recepción bajo»</strong> o <strong>«Pico de recepción cerca de fondo de escala»</strong>, en color de aviso. Si es demasiado alto recorta y distorsiona; si es demasiado bajo, el ruido de cuantificación se lleva una parte mayor. Ninguno de los dos casos se anuncia solo: únicamente se nota como una peor tasa de decodificación. La lectura cambia de color al salirse del margen y, al pulsarla, se abre una explicación más completa. Además del nivel medio se siguen los picos, de modo que las sobrecargas breves que la media ocultaría también se ven; un aviso ya atendido puede plegarse.',
+  screens_level_note: 'Un margen práctico ronda los <strong>−45 a −18 dBFS RMS</strong>. Demasiado alto: baja la salida de AF o DATA del equipo, o la ganancia de entrada de la interfaz de audio; demasiado bajo: súbela del mismo modo. Los límites exactos varían según el equipo, el teléfono y el códec USB, así que toma las cifras como orientación y juzga por si la decodificación es fiable. Durante los intervalos de transmisión no se muestra nivel, porque la lectura sería engañosa.',
 
   screens_level_caption: 'La barra de estado con el nivel de entrada. El prefijo <strong>RX</strong> indica que es el nivel de <em>recepción</em>; aquí marca −24 dB, holgadamente dentro del margen útil, por lo que aparece con el color normal. Fuera de ese margen el texto cambia a algo explícito como «RX audio low». (La captura muestra la interfaz en inglés.)',
   screens_miniwf_title: 'Mini cascada',
@@ -496,6 +502,7 @@ en: {
       <li><strong>Modificador de CQ</strong> — añade a tu CQ un modificador geográfico o de actividad (por ejemplo, <code>CQ DX</code>, <code>CQ EU</code>)</li>
       <li><strong>Texto libre</strong> — envía un mensaje propio (máximo 13 caracteres)</li>
       <li><strong>Respuesta automática a CQ</strong> — contesta automáticamente a las llamadas CQ; la prioridad se configura en Ajustes</li>
+      <li><strong>ROE / nivel de recepción</strong> – Durante la transmisión esta casilla muestra la ROE indicada por la radio. El resto del tiempo muestra un medidor de nivel de recepción de siete segmentos (desde 26.0906), actualizado cinco veces por segundo, para ver de un vistazo si el audio entrante es demasiado débil o está cerca del recorte. Es el nivel de audio que llega a la aplicación, no el S-metro de la radio.</li>
     </ul>`,
 
   screens_timebar_title: 'Barra de temporización',
@@ -532,12 +539,12 @@ en: {
   screens_more_list: `
     <ul>
       <li><strong>JS8</strong> — pantalla de conversación tipo chat para el modo JS8. Consulta <a href="js8.html">«Modo chat JS8»</a>.</li>
-      <li><strong>WSPR</strong> — pantalla de programación de balizas WSPR. Consulta <a href="wspr.html">«Baliza WSPR»</a>.</li>
+      <li><strong>WSPR</strong> — pantalla de programación de transmisión WSPR. Consulta <a href="wspr.html">«WSPR»</a>.</li>
       <li><strong>Herramientas de radio</strong> — micrófono, monitor de recepción y sintonía de antena. Consulta <a href="ssb.html">«Herramientas de radio»</a>.</li>
       <li><strong>Mapa de localizadores</strong> — vista de mapa a pantalla completa. Consulta <a href="gridtracker.html">«Mapa de localizadores»</a>.</li>
       <li><strong>Estadísticas</strong> — recuento de QSO por banda, modo, DXCC, zona ITU/CQ y periodo.</li>
       <li><strong>Búsqueda en QRZ.com</strong> — búsqueda de indicativo integrada de QRZ.com para la estación seleccionada.</li>
-      <li><strong>Ventana flotante</strong> — superposición opcional siempre visible con ocho botones de acceso rápido: ocultar menú inferior, frecuencia, volumen, mapa de localizadores, herramientas de radio, baliza WSPR, chat JS8 y <strong>cambio rápido de modo</strong> (un toque para pasar entre FT8／FT4／FT2／JS8／WSPR). Cada uno se muestra u oculta por separado en Ajustes. Una <strong>pulsación larga</strong> sobre el menú flotante lo pliega a un solo botón, y otra lo despliega; el estado plegado dura hasta que se cierra la aplicación.</li>
+      <li><strong>Ventana flotante</strong> — superposición opcional siempre visible con ocho botones de acceso rápido: ocultar menú inferior, frecuencia, volumen, mapa de localizadores, herramientas de radio, WSPR, chat JS8 y <strong>cambio rápido de modo</strong> (un toque para pasar entre FT8／FT4／FT2／JS8／WSPR). Cada uno se muestra u oculta por separado en Ajustes. Una <strong>pulsación larga</strong> sobre el menú flotante lo pliega a un solo botón, y otra lo despliega; el estado plegado dura hasta que se cierra la aplicación.</li>
     </ul>`,
 },
 
@@ -556,8 +563,8 @@ en: {
     <p>Η ευαισθησία αποκωδικοποίησης (γρήγορη / τυπική / βαθιά) είναι ξεχωριστή ρύθμιση — δείτε τον <a href="settings.html">οδηγό ρυθμίσεων</a>.</p>`,
 
   screens_level_title: 'Στάθμη εισόδου',
-  screens_level_text:  'Η γραμμή κατάστασης δείχνει πόσο δυνατός φτάνει ο ήχος του πομποδέκτη στην εφαρμογή — δηλαδή τι βλέπει πραγματικά ο αποκωδικοποιητής. Πολύ δυνατός ψαλιδίζεται και παραμορφώνεται· πολύ χαμηλός αφήνει μεγαλύτερο μερίδιο στον θόρυβο κβαντισμού. Κανένα από τα δύο δεν δηλώνεται ρητά: φαίνονται μόνο ως χειρότερο ποσοστό αποκωδικοποίησης. Όταν η τιμή βγει εκτός ορίων αλλάζει χρώμα, και με πάτημα ανοίγει πληρέστερη εξήγηση. Εκτός από τη μέση στάθμη παρακολουθούνται και οι κορυφές, ώστε να φαίνονται και σύντομες υπερφορτώσεις που θα έκρυβε ο μέσος όρος· μια προειδοποίηση που ήδη αντιμετωπίσατε μπορεί να συμπτυχθεί.',
-  screens_level_note: 'Ένα πρακτικό εύρος είναι περίπου <strong>−45 έως −18 dBFS RMS</strong>. Πολύ ψηλά — χαμηλώστε την έξοδο AF ή DATA του πομποδέκτη ή την ενίσχυση εισόδου της κάρτας ήχου· πολύ χαμηλά — ανεβάστε την αντίστοιχα. Τα ακριβή όρια διαφέρουν ανά πομποδέκτη, τηλέφωνο και codec USB, οπότε πάρτε τους αριθμούς ως οδηγό και κρίνετε από το αν η αποκωδικοποίηση είναι αξιόπιστη. Κατά τις χρονοθυρίδες εκπομπής και στην ακουστική λειτουργία δεν εμφανίζεται στάθμη, γιατί η ένδειξη θα ήταν παραπλανητική.',
+  screens_level_text:  'Η γραμμή κατάστασης δείχνει πόσο δυνατός φτάνει ο ήχος του πομποδέκτη στην εφαρμογή — δηλαδή τι βλέπει πραγματικά ο αποκωδικοποιητής. Όταν όλα είναι εντάξει εμφανίζεται <strong>RX −○○dB</strong>· το <strong>RX</strong> μπαίνει σκόπιμα, για να δηλώνει ότι πρόκειται για στάθμη <em>λήψης</em> και δεν σχετίζεται με την ισχύ εκπομπής. Μόλις η ένδειξη βγει από το λογικό εύρος η διατύπωση γίνεται ρητή: <strong>«Χαμηλή στάθμη λήψης»</strong> ή <strong>«Κορυφή λήψης κοντά στην πλήρη κλίμακα»</strong>, με χρώμα προειδοποίησης. Πολύ δυνατός ψαλιδίζεται και παραμορφώνεται· πολύ χαμηλός αφήνει μεγαλύτερο μερίδιο στον θόρυβο κβαντισμού. Κανένα από τα δύο δεν δηλώνεται ρητά: φαίνονται μόνο ως χειρότερο ποσοστό αποκωδικοποίησης. Όταν η τιμή βγει εκτός ορίων αλλάζει χρώμα, και με πάτημα ανοίγει πληρέστερη εξήγηση. Εκτός από τη μέση στάθμη παρακολουθούνται και οι κορυφές, ώστε να φαίνονται και σύντομες υπερφορτώσεις που θα έκρυβε ο μέσος όρος· μια προειδοποίηση που ήδη αντιμετωπίσατε μπορεί να συμπτυχθεί.',
+  screens_level_note: 'Ένα πρακτικό εύρος είναι περίπου <strong>−45 έως −18 dBFS RMS</strong>. Πολύ ψηλά — χαμηλώστε την έξοδο AF ή DATA του πομποδέκτη ή την ενίσχυση εισόδου της κάρτας ήχου· πολύ χαμηλά — ανεβάστε την αντίστοιχα. Τα ακριβή όρια διαφέρουν ανά πομποδέκτη, τηλέφωνο και codec USB, οπότε πάρτε τους αριθμούς ως οδηγό και κρίνετε από το αν η αποκωδικοποίηση είναι αξιόπιστη. Κατά τις χρονοθυρίδες εκπομπής δεν εμφανίζεται στάθμη, γιατί η ένδειξη θα ήταν παραπλανητική.',
 
   screens_level_caption: 'Η γραμμή κατάστασης με τη στάθμη εισόδου. Το πρόθεμα <strong>RX</strong> δηλώνει ότι πρόκειται για τη στάθμη <em>λήψης</em>· εδώ δείχνει −24 dB, άνετα μέσα στο χρήσιμο εύρος, γι\' αυτό εμφανίζεται με το κανονικό χρώμα. Εκτός αυτού του εύρους το κείμενο αλλάζει σε κάτι σαφές, όπως «RX audio low». (Το στιγμιότυπο δείχνει το περιβάλλον στα αγγλικά.)',
   screens_miniwf_title: 'Μικρός καταρράκτης',
@@ -573,6 +580,7 @@ en: {
       <li><strong>Προσδιορισμός CQ</strong> — προσθέτει γεωγραφικό ή θεματικό προσδιορισμό στην κλήση σας (π.χ. <code>CQ DX</code>, <code>CQ EU</code>)</li>
       <li><strong>Ελεύθερο κείμενο</strong> — αποστολή δικού σας μηνύματος (έως 13 χαρακτήρες)</li>
       <li><strong>Αυτόματη απάντηση σε CQ</strong> — απαντά αυτόματα σε κλήσεις CQ· η προτεραιότητα ορίζεται στις Ρυθμίσεις</li>
+      <li><strong>SWR / στάθμη λήψης</strong> – Κατά την εκπομπή το πλαίσιο δείχνει τον λόγο στασίμων που αναφέρει ο πομποδέκτης. Τον υπόλοιπο χρόνο δείχνει ένδειξη στάθμης λήψης επτά τμημάτων (από 26.0906), που ανανεώνεται πέντε φορές το δευτερόλεπτο, ώστε να φαίνεται αμέσως αν ο ήχος που μπαίνει είναι πολύ αδύναμος ή κοντά στον κορεσμό. Είναι η στάθμη ήχου που φτάνει στην εφαρμογή, όχι το S-meter του πομποδέκτη.</li>
     </ul>`,
 
   screens_timebar_title: 'Μπάρα χρονισμού',
@@ -609,12 +617,12 @@ en: {
   screens_more_list: `
     <ul>
       <li><strong>JS8</strong> — οθόνη συνομιλίας τύπου chat για τη λειτουργία JS8. Δείτε τη <a href="js8.html">«Λειτουργία συνομιλίας JS8»</a>.</li>
-      <li><strong>WSPR</strong> — οθόνη προγραμματισμού φάρου WSPR. Δείτε τον <a href="wspr.html">«Φάρο WSPR»</a>.</li>
+      <li><strong>WSPR</strong> — οθόνη προγραμματισμού εκπομπής WSPR. Δείτε το <a href="wspr.html">«WSPR»</a>.</li>
       <li><strong>Εργαλεία πομποδέκτη</strong> — μικρόφωνο, παρακολούθηση λήψης και συντονισμός κεραίας. Δείτε τα <a href="ssb.html">«Εργαλεία πομποδέκτη»</a>.</li>
       <li><strong>Χάρτης τετραγώνων</strong> — προβολή χάρτη σε πλήρη οθόνη. Δείτε τον <a href="gridtracker.html">«Χάρτη τετραγώνων»</a>.</li>
       <li><strong>Στατιστικά</strong> — πλήθος QSO ανά μπάντα, λειτουργία, DXCC, ζώνη ITU/CQ και χρονική περίοδο.</li>
       <li><strong>Αναζήτηση QRZ.com</strong> — ενσωματωμένη αναζήτηση διακριτικού στο QRZ.com για τον επιλεγμένο σταθμό.</li>
-      <li><strong>Αιωρούμενο παράθυρο</strong> — προαιρετική επικάλυψη πάντα σε πρώτο πλάνο με οκτώ κουμπιά συντόμευσης: απόκρυψη κάτω μενού, συχνότητα, ένταση, χάρτης τετραγώνων, εργαλεία πομποδέκτη, φάρος WSPR, συνομιλία JS8 και <strong>γρήγορη αλλαγή λειτουργίας</strong> (με ένα πάτημα ανάμεσα σε FT8／FT4／FT2／JS8／WSPR). Καθένα εμφανίζεται ή κρύβεται ξεχωριστά στις Ρυθμίσεις. Το <strong>παρατεταμένο πάτημα</strong> στο αιωρούμενο μενού το διπλώνει σε ένα μόνο κουμπί και ένα ακόμη το ξεδιπλώνει· η διπλωμένη κατάσταση διατηρείται μέχρι να κλείσει η εφαρμογή.</li>
+      <li><strong>Αιωρούμενο παράθυρο</strong> — προαιρετική επικάλυψη πάντα σε πρώτο πλάνο με οκτώ κουμπιά συντόμευσης: απόκρυψη κάτω μενού, συχνότητα, ένταση, χάρτης τετραγώνων, εργαλεία πομποδέκτη, WSPR, συνομιλία JS8 και <strong>γρήγορη αλλαγή λειτουργίας</strong> (με ένα πάτημα ανάμεσα σε FT8／FT4／FT2／JS8／WSPR). Καθένα εμφανίζεται ή κρύβεται ξεχωριστά στις Ρυθμίσεις. Το <strong>παρατεταμένο πάτημα</strong> στο αιωρούμενο μενού το διπλώνει σε ένα μόνο κουμπί και ένα ακόμη το ξεδιπλώνει· η διπλωμένη κατάσταση διατηρείται μέχρι να κλείσει η εφαρμογή.</li>
     </ul>`,
 },
 
