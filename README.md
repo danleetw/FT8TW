@@ -65,6 +65,7 @@ as those versions may be modified by attackers.
 
 https://play.google.com/store/apps/details?id=com.bv6lc.ft8tw
 
+https://play.google.com/store/apps/details?id=com.bg7yoz.ft8tw This is the older version. It is relatively more stable, so you can download it as a backup.
 
 [🐞 Issue Reporting]  
 I mainly follow feedback on the Facebook group and on GitHub.  
