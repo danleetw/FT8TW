@@ -4,7 +4,7 @@ const PAGE_T = {
 
 en: {
   js8_title: 'JS8 Chat Mode',
-  js8_intro: 'JS8 is a keyboard-to-keyboard chat mode built on the FT8 signal structure, allowing free-form conversation, store-and-forward messaging, and network-style commands in addition to structured QSOs. Open the JS8 tab to access the chat screen.',
+  js8_intro: 'This chapter covers what JS8 is, how to send your first message, and the more advanced ground beyond that: speed modes, commands, auto-reply and Unicode text. Open the JS8 tab — from the main menu or from the floating window — to reach the chat screen.',
 
   js8_what_title: 'What JS8 Is',
   js8_what_text:  'JS8, devised by KN4CRD, borrows the signal structure of <a href="operating.html">FT8</a> and replaces the rigid message layer on top of it with <strong>free typed text, keyboard to keyboard</strong>. In other words: it keeps FT8\'s ability to be decoded when the signal is far too weak to hear, but lets you actually say something rather than only exchange callsigns and reports.',
@@ -71,7 +71,7 @@ en: {
     <p>A bubble that is still being received offers copying only — it is not in the permanent record yet. Note also that because long-press now opens this menu, message text can no longer be dragged to select part of it; use the two copy items instead.</p>`,
 
   js8_hb_title: 'Heartbeat',
-  js8_hb_text:  'Enable heartbeat announcements at a configurable interval (10, 15, or 30 minutes) so other stations know you are monitoring, even without an active QSO.',
+  js8_hb_text:  'Heartbeat announcements let other stations know you are monitoring even without an active QSO. The <strong>HB button</strong> shows the current setting directly (for example <em>HB 10m</em>); tapping it lists the intervals — off, 10, 15 or 30 minutes — with an asterisk marking the one in use, and <strong>Send HB now</strong> at the bottom for a one-off announcement.',
 
   js8_autoreply_title: 'Auto-Reply',
   js8_autoreply_text:  'Auto-reply can automatically answer directed queries (SNR?/GRID?/INFO?/HEARING?/AGN?) addressed to your callsign, and optionally answer CQ calls as well; each is a separate toggle, both default to off. A per-source cooldown prevents responding to the same station too frequently.',
@@ -80,7 +80,7 @@ en: {
   js8_unicode_text:  'Standard JS8 free text is limited to an uppercase ASCII subset. FT8TW adds an optional, openly documented extension called UTX that allows free text to carry full Unicode content — Chinese, Japanese, Korean, Cyrillic, Arabic, and more — while remaining fully backward-compatible with unmodified JS8Call software. UTX is purely a public, reversible text-encoding format (comparable to UTF-8), never an obscuring cipher, and its complete bit-level specification is published with the project source for anyone to inspect or re-implement.',
 
   js8_safety_title: 'Transmit Safety',
-  js8_safety_text:  'As with FT8/FT4, an independent watchdog automatically stops any JS8 transmission (including heartbeat and auto-reply) if the app is closed, backgrounded and killed by the system, or crashes, preventing the radio from being left keyed unattended.',
+  js8_safety_text:  'As with FT8/FT4, an independent watchdog automatically stops any JS8 transmission (including heartbeat and auto-reply) if the app is closed, backgrounded and killed by the system, or crashes, preventing the radio from being left keyed unattended. <strong>Opening the JS8 screen also stops FT8 transmitting and decoding</strong> (26.0817 and later), since both share one radio and one audio path. Leaving the JS8 screen for another page now stops JS8 completely — reception, transmission, auto-reply and heartbeat — and returns the radio to the frequency you were using before, so FT8 decoding resumes immediately (26.0906 and later; earlier versions left JS8 running and FT8 stayed silent until you switched JS8 off yourself). Switching to another app or locking the screen does <em>not</em> stop it: JS8 keeps receiving until you move to another page inside FT8TW.',
 },
 
 'zh-TW': {
@@ -152,7 +152,7 @@ en: {
     <p>正在接收中、還沒收完的泡泡只提供複製，不能刪除——它還沒進入正式紀錄。另外，因為長按被用來叫出這份選單，訊息文字不再能夠用拖曳的方式選取部分內容，需要文字時請用上面兩個複製項目。</p>`,
 
   js8_hb_title: 'Heartbeat',
-  js8_hb_text:  '可設定 heartbeat 廣播間隔（10、15 或 30 分鐘），即使沒有進行中的通聯，也能讓其他電台知道您正在監聽。',
+  js8_hb_text:  'heartbeat 讓其他電台知道您正在監聽，即使沒有進行中的通聯。<strong>HB 按鈕</strong>上直接顯示目前設定（例如 <em>HB 10m</em>）；點一下會列出間隔選項——關、10、15、30 分鐘——目前選用的那一項前面有星號，選單最後還有<strong>立即發送HB</strong>，可以馬上送一次。',
 
   js8_autoreply_title: '自動回覆',
   js8_autoreply_text:  '自動回覆可自動應答指向您呼號的查詢指令（SNR?/GRID?/INFO?/HEARING?/AGN?），也可選擇自動回應 CQ；兩者為各自獨立的開關，預設皆為關閉。同一來源呼號有冷卻時間限制，避免過於頻繁回應。',
@@ -161,12 +161,12 @@ en: {
   js8_unicode_text:  '標準 JS8 自由文字僅限大寫 ASCII 子集。FT8TW 新增一個可選、且公開文件化的擴充格式「UTX」，讓自由文字能夠承載完整 Unicode 內容——中文、日文、韓文、西里爾文、阿拉伯文等，同時與未修改的原版 JS8Call 軟體保持完全相容。UTX 純粹是一種公開、可逆的文字編碼格式（性質類似 UTF-8），絕非用來隱匿內容的密碼，完整的位元層級規格已隨專案原始碼公開，任何人皆可查閱或重新實作。',
 
   js8_safety_title: '發射安全',
-  js8_safety_text:  '與 FT8/FT4 相同，獨立的監管機制會在 App 被關閉、被系統於背景中結束，或發生當機時，自動停止任何 JS8 發射（包含 heartbeat 與自動回覆），避免電台在無人看管下持續發射。',
+  js8_safety_text:  '與 FT8/FT4 相同，獨立的監管機制會在 App 被關閉、被系統於背景中結束，或發生當機時，自動停止任何 JS8 發射（包含 heartbeat 與自動回覆），避免電台在無人看管下持續發射。<strong>進入 JS8 畫面也會停掉 FT8 的發射與解碼</strong>（26.0817 起），因為兩者共用同一具電台與同一條音訊路徑。離開 JS8 畫面（切到其他分頁）會把 JS8 整組停掉——接收、發射、自動回覆與 heartbeat——並把電台切回進入前的頻率，FT8 解碼隨即恢復（26.0906 起；更早的版本會讓 JS8 留在背景，FT8 得等您自己關掉 JS8 才會接回來）。切到其他 App 或鎖定螢幕則<em>不會</em>停：JS8 會繼續接收，直到您在 FT8TW 裡切換到別的畫面。',
 },
 
 'zh-CN': {
   js8_title: 'JS8 聊天模式',
-  js8_intro: 'JS8 是构建在 FT8 信号结构上的键盘对键盘聊天模式，除了标准 QSO 之外，还能进行自由对话、存储转发消息及类似网络指令的操作。打开 JS8 分页即可进入聊天界面。',
+  js8_intro: '本章说明 JS8 是什么、如何发出第一则消息，以及速度模式、指令、自动回复与 Unicode 文字等进阶用法。从主菜单或悬浮窗口开启 JS8 分页即可进入聊天界面。',
 
   js8_speed_title: '速度模式',
   js8_speed_text:  'JS8 提供五种速度／子模式，在灵敏度与传输量之间权衡。所有人必须用<strong>同一种速度</strong>才收得到彼此：',
@@ -233,7 +233,7 @@ en: {
     <p>正在接收中、还没收完的气泡只提供复制，不能删除——它还没进入正式记录。另外，因为长按被用来叫出这份菜单，消息文本不再能够用拖拽的方式选取部分内容，需要文本时请用上面两个复制项目。</p>`,
 
   js8_hb_title: 'Heartbeat',
-  js8_hb_text:  '可设置 heartbeat 广播间隔（10、15 或 30 分钟），即使没有进行中的通联，也能让其他电台知道您正在监听。',
+  js8_hb_text:  'heartbeat 让其他电台知道您正在监听，即使没有进行中的通联。<strong>HB 按钮</strong>上直接显示目前设置（例如 <em>HB 10m</em>）；点一下会列出间隔选项——关、10、15、30 分钟——目前选用的那一项前面有星号，菜单最后还有<strong>立即发送HB</strong>，可以马上送一次。',
 
   js8_autoreply_title: '自动回复',
   js8_autoreply_text:  '自动回复可自动应答指向您呼号的查询指令（SNR?/GRID?/INFO?/HEARING?/AGN?），也可选择自动回应 CQ；两者为各自独立的开关，默认均为关闭。同一来源呼号有冷却时间限制，避免过于频繁回应。',
@@ -242,12 +242,12 @@ en: {
   js8_unicode_text:  '标准 JS8 自由文本仅限大写 ASCII 子集。FT8TW 新增一个可选、且公开文档化的扩展格式「UTX」，让自由文本能够承载完整 Unicode 内容——中文、日文、韩文、西里尔文、阿拉伯文等，同时与未修改的原版 JS8Call 软件保持完全兼容。UTX 纯粹是一种公开、可逆的文本编码格式（性质类似 UTF-8），绝非用来隐匿内容的密码，完整的位级规格已随项目源码公开，任何人均可查阅或重新实现。',
 
   js8_safety_title: '发射安全',
-  js8_safety_text:  '与 FT8/FT4 相同，独立的监管机制会在 App 被关闭、被系统于后台结束，或发生崩溃时，自动停止任何 JS8 发射（包含 heartbeat 与自动回复），避免电台在无人看管下持续发射。',
+  js8_safety_text:  '与 FT8/FT4 相同，独立的监管机制会在 App 被关闭、被系统于后台结束，或发生崩溃时，自动停止任何 JS8 发射（包含 heartbeat 与自动回复），避免电台在无人看管下持续发射。<strong>进入 JS8 画面也会停掉 FT8 的发射与解码</strong>（26.0817 起），因为两者共用同一具电台与同一条音频路径。离开 JS8 界面（切到其他分页）会把 JS8 整组停掉——接收、发射、自动回复与 heartbeat——并把电台切回进入前的频率，FT8 解码随即恢复（26.0906 起；更早的版本会让 JS8 留在后台，FT8 得等您自己关掉 JS8 才会接回来）。切到其他 App 或锁定屏幕则<em>不会</em>停：JS8 会继续接收，直到您在 FT8TW 里切换到别的界面。',
 },
 
 'ja': {
   js8_title: 'JS8 チャットモード',
-  js8_intro: 'JS8 は FT8 の信号構造の上に作られたキーボード交信モードで、定型的な交信に加えて自由な会話、蓄積転送メッセージ、ネットワーク的なコマンドが使えます。JS8 タブを開くとチャット画面になります。',
+  js8_intro: 'この章では JS8 とは何か、最初のメッセージの送り方、そして速度モード・コマンド・自動応答・Unicode テキストといった応用までを説明します。メインメニューまたはフローティングウィンドウから JS8 タブを開くと、チャット画面に入れます。',
 
   js8_speed_title: 'スピードモード',
   js8_speed_text:  'JS8 には 5 つの速度（サブモード）があり、感度とスループットのどちらを取るかで選びます。互いに受信するには<strong>全員が同じ速度</strong>である必要があります。',
@@ -314,7 +314,7 @@ en: {
     <p>まだ受信中の吹き出しはコピーのみで、削除はできません。正式な記録に入っていないためです。また、長押しがこのメニューに割り当てられたため、電文の一部をドラッグして選択することはできなくなりました。文字が必要なときは上の 2 つのコピー項目をお使いください。</p>`,
 
   js8_hb_title: 'Heartbeat',
-  js8_hb_text:  'Heartbeat の送信間隔（10、15、30 分）を設定しておくと、交信していないときでもワッチ中であることを他局に知らせられます。',
+  js8_hb_text:  'heartbeat は、交信中でなくても「受信しています」と他局に知らせる機能です。<strong>HB ボタン</strong>には現在の設定がそのまま表示され（例：<em>HB 10m</em>）、タップすると間隔——オフ、10、15、30 分——が並びます。使用中の項目にはアスタリスクが付き、最後の<strong>今すぐ HB を送信</strong>で一回だけ送ることもできます。',
 
   js8_autoreply_title: '自動応答',
   js8_autoreply_text:  '自動応答は、自局宛ての問い合わせコマンド（SNR?/GRID?/INFO?/HEARING?/AGN?）に自動で返信します。CQ への自動応答も選べます。どちらも独立したスイッチで、既定はどちらもオフです。同じ相手へ返信しすぎないよう、送信元ごとのクールダウンがあります。',
@@ -323,12 +323,12 @@ en: {
   js8_unicode_text:  '標準の JS8 のフリーテキストは大文字 ASCII の一部に限られます。FT8TW は任意で使える公開仕様の拡張「UTX」を追加し、フリーテキストで Unicode の内容（中国語、日本語、韓国語、キリル文字、アラビア文字など）をそのまま送れるようにしました。改造していない JS8Call とも完全に互換です。UTX はあくまで公開された可逆の文字符号化方式（UTF-8 に近い性質）であり、内容を隠すための暗号ではありません。ビット単位の完全な仕様はプロジェクトのソースとともに公開されており、誰でも検証・再実装できます。',
 
   js8_safety_title: '送信時の安全',
-  js8_safety_text:  'FT8/FT4 と同様に、アプリを閉じたとき、バックグラウンドでシステムに終了させられたとき、異常終了したときには、独立したウォッチドッグが JS8 の送信（Heartbeat や自動応答を含む）をすべて自動的に停止し、無人のまま送信し続けることを防ぎます。',
+  js8_safety_text:  'FT8/FT4 と同様に、アプリを閉じたとき、バックグラウンドでシステムに終了させられたとき、異常終了したときには、独立したウォッチドッグが JS8 の送信（Heartbeat や自動応答を含む）をすべて自動的に停止し、無人のまま送信し続けることを防ぎます。<strong>JS8 画面を開くと FT8 の送信とデコードも停止します</strong>（26.0817 以降）。どちらも同じ無線機と同じ音声経路を使うためです。JS8 画面から他のページへ移ると、JS8 は受信・送信・自動応答・heartbeat のすべてが停止し、無線機は JS8 に入る前の周波数へ戻ります。そのため FT8 のデコードはすぐに再開されます（26.0906 以降。それ以前は JS8 が動き続け、自分で JS8 を止めるまで FT8 は無音のままでした）。他のアプリへの切り替えや画面ロックでは停止<em>しません</em>。FT8TW 内で別のページへ移るまで JS8 は受信を続けます。',
 },
 
 'ru': {
   js8_title: 'Режим чата JS8',
-  js8_intro: 'JS8 — режим клавиатурного общения, построенный на структуре сигнала FT8. Помимо формализованных QSO он позволяет вести свободный разговор, передавать сообщения с промежуточным хранением и использовать команды сетевого типа. Экран чата открывается на вкладке JS8.',
+  js8_intro: 'В этой главе рассказано, что такое JS8, как отправить первое сообщение и что есть дальше: скоростные режимы, команды, автоответ и текст в Unicode. Откройте вкладку JS8 — из главного меню или из плавающего окна — чтобы попасть на экран чата.',
 
   js8_speed_title: 'Скоростные режимы',
   js8_speed_text:  'В JS8 пять субрежимов скорости, каждый из которых меняет чувствительность на пропускную способность. Чтобы слышать друг друга, все должны быть на <strong>одной скорости</strong>:',
@@ -395,7 +395,7 @@ en: {
     <p>Облачко, которое ещё принимается, можно только копировать: оно пока не входит в постоянную запись. Обратите внимание и на то, что долгое нажатие теперь открывает это меню, поэтому выделить часть текста перетаскиванием больше нельзя — пользуйтесь двумя пунктами копирования.</p>`,
 
   js8_hb_title: 'Heartbeat',
-  js8_hb_text:  'Включите объявления heartbeat с выбранным интервалом (10, 15 или 30 минут), чтобы другие станции знали, что вы на приёме, даже без активного QSO.',
+  js8_hb_text:  'Heartbeat сообщает другим станциям, что вы на приёме, даже без активного QSO. На <strong>кнопке HB</strong> сразу видно текущую настройку (например, <em>HB 10m</em>); нажатие открывает список интервалов — выкл., 10, 15 или 30 минут — где используемый отмечен звёздочкой, а внизу есть <strong>Отправить HB сейчас</strong> для разовой передачи.',
 
   js8_autoreply_title: 'Автоответ',
   js8_autoreply_text:  'Автоответ может сам отвечать на адресованные вам запросы (SNR?/GRID?/INFO?/HEARING?/AGN?), а при желании и на вызовы CQ; это два независимых переключателя, оба по умолчанию выключены. Пауза для каждого корреспондента не даёт отвечать одной и той же станции слишком часто.',
@@ -404,12 +404,12 @@ en: {
   js8_unicode_text:  'Обычный свободный текст JS8 ограничен подмножеством прописных символов ASCII. FT8TW добавляет необязательное расширение UTX с открытой документацией, позволяющее передавать в свободном тексте полноценный Unicode — китайский, японский, корейский, кириллицу, арабский и другие — сохраняя полную совместимость с обычным JS8Call. UTX — это именно открытый обратимый формат кодирования текста (по духу близкий к UTF-8), а не шифр для сокрытия содержимого; полная побитовая спецификация опубликована вместе с исходным кодом проекта, и любой может её изучить или реализовать заново.',
 
   js8_safety_title: 'Безопасность передачи',
-  js8_safety_text:  'Как и в FT8/FT4, независимый сторожевой механизм автоматически прекращает любую передачу JS8 (включая heartbeat и автоответ), если приложение закрыто, выгружено системой из фона или аварийно завершилось, — трансивер не останется в передаче без присмотра.',
+  js8_safety_text:  'Как и в FT8/FT4, независимый сторожевой механизм автоматически прекращает любую передачу JS8 (включая heartbeat и автоответ), если приложение закрыто, выгружено системой из фона или аварийно завершилось, — трансивер не останется в передаче без присмотра. <strong>Открытие экрана JS8 также останавливает передачу и декодирование FT8</strong> (с 26.0817), поскольку и то, и другое использует один трансивер и один звуковой тракт. Переход с экрана JS8 на другую страницу полностью останавливает JS8 — приём, передачу, автоответ и heartbeat — и возвращает трансивер на частоту, которая была до входа в JS8, поэтому декодирование FT8 возобновляется сразу (начиная с 26.0906; в более ранних версиях JS8 продолжал работать, а FT8 молчал, пока вы сами не выключали JS8). Переключение на другое приложение или блокировка экрана <em>не</em> останавливают его: JS8 продолжает принимать, пока вы не перейдёте на другую страницу внутри FT8TW.',
 },
 
 'pl': {
   js8_title: 'Tryb czatu JS8',
-  js8_intro: 'JS8 to tryb rozmowy z klawiatury zbudowany na strukturze sygnału FT8. Poza sformalizowanymi łącznościami pozwala na swobodną rozmowę, przesyłanie wiadomości z zapisem pośrednim oraz komendy w stylu sieciowym. Ekran czatu otwiera zakładka JS8.',
+  js8_intro: 'Ten rozdział wyjaśnia, czym jest JS8, jak wysłać pierwszą wiadomość oraz co jest dalej: tryby szybkości, polecenia, autoodpowiedź i tekst Unicode. Zakładkę JS8 otworzysz z menu głównego albo z pływającego okna, aby wejść na ekran czatu.',
 
   js8_speed_title: 'Tryby prędkości',
   js8_speed_text:  'JS8 oferuje pięć trybów prędkości, w których czułość wymienia się na przepustowość. Aby się wzajemnie słyszeć, wszyscy muszą używać <strong>tej samej prędkości</strong>:',
@@ -476,7 +476,7 @@ en: {
     <p>Dymek, który jest jeszcze odbierany, można tylko kopiować — nie trafił jeszcze do trwałego zapisu. Zwróć też uwagę, że skoro długie naciśnięcie otwiera teraz to menu, nie da się już zaznaczyć fragmentu tekstu przeciągnięciem; skorzystaj z dwóch pozycji kopiowania.</p>`,
 
   js8_hb_title: 'Heartbeat',
-  js8_hb_text:  'Włącz ogłoszenia heartbeat z wybranym odstępem (10, 15 lub 30 minut), aby inne stacje wiedziały, że nasłuchujesz, nawet bez trwającej łączności.',
+  js8_hb_text:  'Heartbeat informuje inne stacje, że nasłuchujesz, nawet bez trwającego QSO. <strong>Przycisk HB</strong> pokazuje bieżące ustawienie wprost (np. <em>HB 10m</em>); po dotknięciu wyświetla odstępy — wyłączone, 10, 15 lub 30 minut — z gwiazdką przy aktualnie wybranym, a na końcu <strong>Wyślij HB teraz</strong> dla pojedynczego ogłoszenia.',
 
   js8_autoreply_title: 'Automatyczna odpowiedź',
   js8_autoreply_text:  'Automatyczna odpowiedź potrafi sama odpowiadać na kierowane do twojego znaku zapytania (SNR?/GRID?/INFO?/HEARING?/AGN?), a opcjonalnie także na wywołania CQ; są to dwa niezależne przełączniki, oba domyślnie wyłączone. Osobny czas blokady dla każdego nadawcy zapobiega zbyt częstemu odpowiadaniu tej samej stacji.',
@@ -485,12 +485,12 @@ en: {
   js8_unicode_text:  'Standardowy dowolny tekst w JS8 ogranicza się do podzbioru wielkich liter ASCII. FT8TW dodaje opcjonalne, jawnie udokumentowane rozszerzenie UTX, dzięki któremu dowolny tekst może przenosić pełny Unicode — chiński, japoński, koreański, cyrylicę, arabski i inne — zachowując pełną zgodność z niezmodyfikowanym JS8Call. UTX jest wyłącznie jawnym, odwracalnym formatem kodowania tekstu (o charakterze zbliżonym do UTF-8), a nie szyfrem ukrywającym treść; pełna specyfikacja bitowa jest opublikowana wraz z kodem źródłowym projektu, więc każdy może ją sprawdzić lub zaimplementować od nowa.',
 
   js8_safety_title: 'Bezpieczeństwo nadawania',
-  js8_safety_text:  'Podobnie jak w FT8/FT4, niezależny nadzorca automatycznie przerywa każde nadawanie JS8 (w tym heartbeat i automatyczne odpowiedzi), gdy aplikacja zostanie zamknięta, usunięta z tła przez system albo ulegnie awarii — radio nie zostanie na nadawaniu bez nadzoru.',
+  js8_safety_text:  'Podobnie jak w FT8/FT4, niezależny nadzorca automatycznie przerywa każde nadawanie JS8 (w tym heartbeat i automatyczne odpowiedzi), gdy aplikacja zostanie zamknięta, usunięta z tła przez system albo ulegnie awarii — radio nie zostanie na nadawaniu bez nadzoru. <strong>Otwarcie ekranu JS8 zatrzymuje też nadawanie i dekodowanie FT8</strong> (od 26.0817), ponieważ jedno i drugie korzysta z tego samego radia i tej samej ścieżki dźwiękowej. Inaczej niż Opuszczenie ekranu JS8 na rzecz innej strony całkowicie zatrzymuje JS8 — odbiór, nadawanie, autoodpowiedź i heartbeat — i przywraca radiu częstotliwość sprzed wejścia w JS8, więc dekodowanie FT8 wznawia się natychmiast (od 26.0906; we wcześniejszych wersjach JS8 działał dalej, a FT8 milczał, dopóki sam nie wyłączyłeś JS8). Przełączenie na inną aplikację lub zablokowanie ekranu <em>nie</em> zatrzymuje go: JS8 odbiera dalej, dopóki nie przejdziesz na inną stronę w FT8TW.',
 },
 
 'es': {
   js8_title: 'Modo chat JS8',
-  js8_intro: 'JS8 es un modo de conversación por teclado construido sobre la estructura de señal de FT8. Además de los QSO estructurados permite charla libre, mensajes con almacenamiento y reenvío y comandos de estilo de red. Abre la pestaña JS8 para acceder a la pantalla de chat.',
+  js8_intro: 'Este capítulo explica qué es JS8, cómo enviar tu primer mensaje y lo que viene después: modos de velocidad, comandos, respuesta automática y texto Unicode. Abre la pestaña JS8, desde el menú principal o desde la ventana flotante, para llegar a la pantalla de chat.',
 
   js8_speed_title: 'Modos de velocidad',
   js8_speed_text:  'JS8 ofrece cinco submodos de velocidad que cambian sensibilidad por rendimiento. Para oírse mutuamente, todos han de estar en <strong>la misma velocidad</strong>:',
@@ -557,7 +557,7 @@ en: {
     <p>Una burbuja que todavía se está recibiendo solo permite copiar: aún no forma parte del registro permanente. Ten en cuenta también que, al usarse ahora la pulsación larga para este menú, ya no se puede arrastrar para seleccionar parte del texto; usa los dos elementos de copia.</p>`,
 
   js8_hb_title: 'Heartbeat',
-  js8_hb_text:  'Activa los anuncios heartbeat con el intervalo que prefieras (10, 15 o 30 minutos) para que otras estaciones sepan que estás a la escucha, incluso sin un QSO en curso.',
+  js8_hb_text:  'El heartbeat avisa a otras estaciones de que está a la escucha, incluso sin un QSO en curso. El <strong>botón HB</strong> muestra el ajuste actual directamente (por ejemplo <em>HB 10m</em>); al pulsarlo aparecen los intervalos — desactivado, 10, 15 o 30 minutos — con un asterisco en el que está en uso, y al final <strong>Enviar HB ahora</strong> para un anuncio puntual.',
 
   js8_autoreply_title: 'Respuesta automática',
   js8_autoreply_text:  'La respuesta automática puede contestar por sí sola a las consultas dirigidas a tu indicativo (SNR?/GRID?/INFO?/HEARING?/AGN?) y, si quieres, también a las llamadas CQ; son dos conmutadores independientes y ambos vienen desactivados. Un tiempo de espera por estación evita responder a la misma con demasiada frecuencia.',
@@ -566,12 +566,12 @@ en: {
   js8_unicode_text:  'El texto libre estándar de JS8 se limita a un subconjunto de ASCII en mayúsculas. FT8TW añade una extensión opcional y documentada públicamente llamada UTX, que permite que el texto libre transporte contenido Unicode completo —chino, japonés, coreano, cirílico, árabe y más— manteniendo plena compatibilidad con el JS8Call original sin modificar. UTX es únicamente un formato de codificación de texto público y reversible (de naturaleza parecida a UTF-8), nunca un cifrado para ocultar contenido; su especificación completa a nivel de bits se publica junto con el código fuente del proyecto para que cualquiera pueda revisarla o reimplementarla.',
 
   js8_safety_title: 'Seguridad en transmisión',
-  js8_safety_text:  'Igual que en FT8/FT4, un vigilante independiente detiene automáticamente cualquier transmisión JS8 (incluidos heartbeat y respuesta automática) si la aplicación se cierra, el sistema la elimina en segundo plano o se bloquea, evitando que el equipo quede transmitiendo sin vigilancia.',
+  js8_safety_text:  'Igual que en FT8/FT4, un vigilante independiente detiene automáticamente cualquier transmisión JS8 (incluidos heartbeat y respuesta automática) si la aplicación se cierra, el sistema la elimina en segundo plano o se bloquea, evitando que el equipo quede transmitiendo sin vigilancia. <strong>Abrir la pantalla de JS8 también detiene la transmisión y la decodificación de FT8</strong> (desde 26.0817), ya que ambos comparten el mismo equipo y la misma ruta de audio. Salir de la pantalla JS8 hacia otra página detiene JS8 por completo — recepción, transmisión, respuesta automática y heartbeat — y devuelve la radio a la frecuencia que usaba antes, por lo que la decodificación de FT8 se reanuda de inmediato (desde 26.0906; en versiones anteriores JS8 seguía funcionando y FT8 permanecía en silencio hasta que usted mismo apagaba JS8). Cambiar a otra aplicación o bloquear la pantalla <em>no</em> lo detiene: JS8 sigue recibiendo hasta que se mueva a otra página dentro de FT8TW.',
 },
 
 'el': {
   js8_title: 'Λειτουργία συνομιλίας JS8',
-  js8_intro: 'Το JS8 είναι τρόπος συνομιλίας από πληκτρολόγιο, χτισμένος πάνω στη δομή σήματος του FT8. Πέρα από τις τυποποιημένες επαφές επιτρέπει ελεύθερη συζήτηση, μηνύματα με αποθήκευση και προώθηση, καθώς και εντολές δικτυακού τύπου. Ανοίξτε την καρτέλα JS8 για την οθόνη συνομιλίας.',
+  js8_intro: 'Αυτό το κεφάλαιο εξηγεί τι είναι το JS8, πώς στέλνετε το πρώτο σας μήνυμα και τι ακολουθεί: λειτουργίες ταχύτητας, εντολές, αυτόματη απάντηση και κείμενο Unicode. Ανοίξτε την καρτέλα JS8 — από το κύριο μενού ή από το αιωρούμενο παράθυρο — για να μπείτε στην οθόνη συνομιλίας.',
 
   js8_speed_title: 'Λειτουργίες ταχύτητας',
   js8_speed_text:  'Το JS8 προσφέρει πέντε υπολειτουργίες ταχύτητας, που ανταλλάσσουν ευαισθησία με ρυθμό μετάδοσης. Για να ακούγεστε μεταξύ σας, όλοι πρέπει να είναι στην <strong>ίδια ταχύτητα</strong>:',
@@ -638,7 +638,7 @@ en: {
     <p>Ένα συννεφάκι που ακόμη λαμβάνεται επιτρέπει μόνο αντιγραφή: δεν έχει μπει ακόμη στη μόνιμη καταγραφή. Σημειώστε επίσης ότι, επειδή το παρατεταμένο πάτημα ανοίγει πλέον αυτό το μενού, δεν μπορείτε πια να επιλέξετε μέρος του κειμένου σύροντας· χρησιμοποιήστε τα δύο στοιχεία αντιγραφής.</p>`,
 
   js8_hb_title: 'Heartbeat',
-  js8_hb_text:  'Ενεργοποιήστε τις ανακοινώσεις heartbeat με ρυθμιζόμενο διάστημα (10, 15 ή 30 λεπτά), ώστε οι άλλοι σταθμοί να γνωρίζουν ότι παρακολουθείτε, ακόμη και χωρίς ενεργή επαφή.',
+  js8_hb_text:  'Το heartbeat ενημερώνει τους άλλους σταθμούς ότι ακούτε, ακόμη και χωρίς ενεργή επαφή. Το <strong>κουμπί HB</strong> δείχνει απευθείας την τρέχουσα ρύθμιση (π.χ. <em>HB 10m</em>)· με το πάτημα εμφανίζονται τα διαστήματα — ανενεργό, 10, 15 ή 30 λεπτά — με αστερίσκο σε αυτό που χρησιμοποιείται, και στο τέλος <strong>Αποστολή HB τώρα</strong> για μία μεμονωμένη αναγγελία.',
 
   js8_autoreply_title: 'Αυτόματη απάντηση',
   js8_autoreply_text:  'Η αυτόματη απάντηση μπορεί να απαντά μόνη της σε ερωτήματα που απευθύνονται στο διακριτικό σας (SNR?/GRID?/INFO?/HEARING?/AGN?) και προαιρετικά και σε κλήσεις CQ· πρόκειται για δύο ξεχωριστούς διακόπτες, και οι δύο απενεργοποιημένοι από προεπιλογή. Ένας χρόνος αναμονής ανά σταθμό αποτρέπει τις πολύ συχνές απαντήσεις στον ίδιο σταθμό.',
@@ -647,7 +647,7 @@ en: {
   js8_unicode_text:  'Το τυπικό ελεύθερο κείμενο του JS8 περιορίζεται σε υποσύνολο κεφαλαίων χαρακτήρων ASCII. Το FT8TW προσθέτει την προαιρετική και ανοικτά τεκμηριωμένη επέκταση UTX, που επιτρέπει στο ελεύθερο κείμενο να μεταφέρει πλήρες περιεχόμενο Unicode — κινεζικά, ιαπωνικά, κορεατικά, κυριλλικά, αραβικά και άλλα — διατηρώντας πλήρη συμβατότητα με το αυθεντικό JS8Call. Το UTX είναι αποκλειστικά ανοικτή και αντιστρέψιμη μορφή κωδικοποίησης κειμένου (συγγενής με το UTF-8) και ποτέ κρυπτογράφηση απόκρυψης· η πλήρης προδιαγραφή σε επίπεδο bit δημοσιεύεται μαζί με τον πηγαίο κώδικα του έργου, ώστε ο καθένας να μπορεί να την ελέγξει ή να την υλοποιήσει εκ νέου.',
 
   js8_safety_title: 'Ασφάλεια εκπομπής',
-  js8_safety_text:  'Όπως και στο FT8/FT4, ανεξάρτητος επιτηρητής σταματά αυτόματα κάθε εκπομπή JS8 (συμπεριλαμβανομένων heartbeat και αυτόματης απάντησης) αν η εφαρμογή κλείσει, τερματιστεί από το σύστημα στο παρασκήνιο ή καταρρεύσει, ώστε ο πομποδέκτης να μη μένει σε εκπομπή χωρίς επίβλεψη.',
+  js8_safety_text:  'Όπως και στο FT8/FT4, ανεξάρτητος επιτηρητής σταματά αυτόματα κάθε εκπομπή JS8 (συμπεριλαμβανομένων heartbeat και αυτόματης απάντησης) αν η εφαρμογή κλείσει, τερματιστεί από το σύστημα στο παρασκήνιο ή καταρρεύσει, ώστε ο πομποδέκτης να μη μένει σε εκπομπή χωρίς επίβλεψη. <strong>Το άνοιγμα της οθόνης JS8 σταματά επίσης την εκπομπή και την αποκωδικοποίηση FT8</strong> (από 26.0817), καθώς και τα δύο μοιράζονται τον ίδιο πομποδέκτη και την ίδια διαδρομή ήχου. Η έξοδος από την οθόνη JS8 προς άλλη σελίδα σταματά πλήρως το JS8 — λήψη, εκπομπή, αυτόματη απάντηση και heartbeat — και επαναφέρει τον πομποδέκτη στη συχνότητα που είχατε πριν, οπότε η αποκωδικοποίηση FT8 συνεχίζεται αμέσως (από 26.0906· σε παλαιότερες εκδόσεις το JS8 συνέχιζε και το FT8 έμενε σιωπηλό μέχρι να κλείσετε μόνοι σας το JS8). Η εναλλαγή σε άλλη εφαρμογή ή το κλείδωμα της οθόνης <em>δεν</em> το σταματά: το JS8 συνεχίζει να λαμβάνει μέχρι να μεταβείτε σε άλλη σελίδα μέσα στο FT8TW.',
 },
 
 }; /* end PAGE_T */
