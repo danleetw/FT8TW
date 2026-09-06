@@ -19,7 +19,7 @@ en: {
   setup_s4_text:  'Use the <em>FT4/FT8 mode</em> toggle to choose your operating mode. FT8 uses 15-second TX/RX slots and is the more widely used mode. FT4 uses 7.5-second slots and is approximately 4 dB less sensitive but twice as fast.',
 
   setup_s5_title: '5. Synchronize Time',
-  setup_s5_text:  'FT8 decoding requires your device clock to be accurate to within ±1 second. In Settings, tap <strong>Sync</strong> to synchronize with an internet NTP server. A GPS fix also provides highly accurate time. The app displays the current time offset after synchronization.',
+  setup_s5_text:  'FT8 decoding requires your device clock to be accurate to within ±1 second. In Settings, tap <strong>Sync</strong> to synchronize with an internet NTP server. A GPS fix also provides highly accurate time. The app displays the current time offset after synchronization. This still works away from any network: with no internet connection the app waits for a GPS fix instead, and says which state it is in — waiting for GPS, GPS switched off, or a fix that never arrived — rather than failing silently as it did before 26.0809.',
 },
 
 'zh-TW': {
@@ -39,7 +39,7 @@ en: {
   setup_s4_text:  '使用<em>FT4/FT8 模式</em>切換選擇操作模式。FT8 使用 15 秒時隙，使用較為普遍。FT4 使用 7.5 秒時隙，速度較快但靈敏度低約 4 dB。',
 
   setup_s5_title: '5. 時間同步',
-  setup_s5_text:  'FT8 解碼需要裝置時間準確至 ±1 秒內。在設置頁面點選<strong>同步時間</strong>，透過網路 NTP 伺服器校時。取得 GPS 訊號亦可提供高精度時間。同步後程式會顯示目前的時間偏差值。',
+  setup_s5_text:  'FT8 解碼需要裝置時間準確至 ±1 秒內。在設置頁面點選<strong>同步時間</strong>，透過網路 NTP 伺服器校時。取得 GPS 訊號亦可提供高精度時間。同步後程式會顯示目前的時間偏差值。離網時一樣可用：沒有網路時程式會改等 GPS 定位，並明白告訴您目前是哪一種狀態——正在等 GPS、GPS 沒開啟、或是等不到定位——不像 26.0809 以前那樣無聲失敗。',
 },
 
 'zh-CN': {
@@ -59,7 +59,7 @@ en: {
   setup_s4_text:  '使用<em>FT4/FT8 模式</em>开关选择操作模式。FT8 使用 15 秒时隙，使用较为普遍。FT4 使用 7.5 秒时隙，速度较快但灵敏度低约 4 dB。',
 
   setup_s5_title: '5. 时间同步',
-  setup_s5_text:  'FT8 解码需要设备时间准确至 ±1 秒内。在设置页面点击<strong>同步时间</strong>，通过网络 NTP 服务器校时。获取 GPS 信号亦可提供高精度时间。同步后程序会显示当前的时间偏差值。',
+  setup_s5_text:  'FT8 解码需要设备时间准确至 ±1 秒内。在设置页面点击<strong>同步时间</strong>，通过网络 NTP 服务器校时。获取 GPS 信号亦可提供高精度时间。同步后程序会显示当前的时间偏差值。离网时一样可用：没有网络时程序会改等 GPS 定位，并明确告诉您目前是哪一种状态——正在等 GPS、GPS 没开启、或是等不到定位——不像 26.0809 以前那样无声失败。',
 },
 
 'ja': {
@@ -79,7 +79,7 @@ en: {
   setup_s4_text:  '<em>FT4/FT8 モード</em>の切り替えで運用モードを選びます。FT8 は 15 秒の送受信スロットを使い、より広く使われています。FT4 は 7.5 秒スロットで、感度は約 4 dB 劣りますが速度は 2 倍です。',
 
   setup_s5_title: '5. 時刻を同期する',
-  setup_s5_text:  'FT8 のデコードには端末の時計が ±1 秒以内の精度である必要があります。設定で<strong>同期</strong>をタップするとインターネット上の NTP サーバーと時刻を合わせます。GPS の測位でも高精度な時刻が得られます。同期後は現在の時刻オフセットが表示されます。',
+  setup_s5_text:  'FT8 のデコードには端末の時計が ±1 秒以内の精度である必要があります。設定で<strong>同期</strong>をタップするとインターネット上の NTP サーバーと時刻を合わせます。GPS の測位でも高精度な時刻が得られます。同期後は現在の時刻オフセットが表示されます。ネットワークのない場所でも使えます。インターネットに接続できないときは代わりに GPS の測位を待ち、いまどの状態か——GPS 待ち、GPS がオフ、測位できなかった——を明示します。26.0809 より前のように黙って失敗することはありません。',
 },
 
 'ru': {
@@ -99,7 +99,7 @@ en: {
   setup_s4_text:  'Переключателем <em>Режим FT4/FT8</em> выберите вид работы. FT8 использует интервалы приёма/передачи по 15 секунд и распространён шире. FT4 работает интервалами по 7,5 секунды: он примерно на 4 дБ менее чувствителен, но вдвое быстрее.',
 
   setup_s5_title: '5. Синхронизируйте время',
-  setup_s5_text:  'Для декодирования FT8 часы устройства должны быть точны в пределах ±1 секунды. В настройках нажмите <strong>Синхронизировать</strong>, чтобы сверить время с NTP-сервером в интернете. Приём GPS также даёт высокую точность. После синхронизации приложение показывает текущее смещение времени.',
+  setup_s5_text:  'Для декодирования FT8 часы устройства должны быть точны в пределах ±1 секунды. В настройках нажмите <strong>Синхронизировать</strong>, чтобы сверить время с NTP-сервером в интернете. Приём GPS также даёт высокую точность. После синхронизации приложение показывает текущее смещение времени. Это работает и вне сети: без интернета приложение вместо этого ждёт определения координат GPS и сообщает, в каком оно состоянии — ожидание GPS, GPS выключен или определение так и не состоялось, — а не завершается молча, как до версии 26.0809.',
 },
 
 'pl': {
@@ -119,7 +119,7 @@ en: {
   setup_s4_text:  'Przełącznikiem <em>Tryb FT4/FT8</em> wybierz rodzaj pracy. FT8 używa 15-sekundowych okien nadawania/odbioru i jest szerzej stosowany. FT4 używa okien 7,5-sekundowych: jest o około 4 dB mniej czuły, ale dwa razy szybszy.',
 
   setup_s5_title: '5. Zsynchronizuj czas',
-  setup_s5_text:  'Dekodowanie FT8 wymaga zegara urządzenia dokładnego do ±1 sekundy. W ustawieniach dotknij <strong>Synchronizuj</strong>, aby uzgodnić czas z internetowym serwerem NTP. Ustalona pozycja GPS również daje bardzo dokładny czas. Po synchronizacji aplikacja pokazuje bieżące przesunięcie czasu.',
+  setup_s5_text:  'Dekodowanie FT8 wymaga zegara urządzenia dokładnego do ±1 sekundy. W ustawieniach dotknij <strong>Synchronizuj</strong>, aby uzgodnić czas z internetowym serwerem NTP. Ustalona pozycja GPS również daje bardzo dokładny czas. Po synchronizacji aplikacja pokazuje bieżące przesunięcie czasu. Działa to również poza zasięgiem sieci: bez połączenia z internetem aplikacja czeka zamiast tego na ustalenie pozycji GPS i informuje, w jakim jest stanie — oczekiwanie na GPS, GPS wyłączony albo brak ustalonej pozycji — zamiast po cichu zawodzić, jak przed wersją 26.0809.',
 },
 
 'es': {
@@ -139,7 +139,7 @@ en: {
   setup_s4_text:  'Usa el conmutador <em>Modo FT4/FT8</em> para elegir el modo de trabajo. FT8 emplea intervalos de transmisión/recepción de 15 segundos y es el más utilizado. FT4 usa intervalos de 7,5 segundos: es unos 4 dB menos sensible, pero el doble de rápido.',
 
   setup_s5_title: '5. Sincroniza la hora',
-  setup_s5_text:  'La decodificación de FT8 exige que el reloj del dispositivo sea preciso dentro de ±1 segundo. En Ajustes, pulsa <strong>Sincronizar</strong> para ajustar la hora con un servidor NTP de internet. Una posición GPS también proporciona una hora muy precisa. Tras la sincronización, la aplicación muestra el desfase horario actual.',
+  setup_s5_text:  'La decodificación de FT8 exige que el reloj del dispositivo sea preciso dentro de ±1 segundo. En Ajustes, pulsa <strong>Sincronizar</strong> para ajustar la hora con un servidor NTP de internet. Una posición GPS también proporciona una hora muy precisa. Tras la sincronización, la aplicación muestra el desfase horario actual. Esto también funciona fuera de cobertura: sin conexión a internet la aplicación espera en su lugar una posición GPS e indica en qué estado se encuentra —esperando GPS, GPS desactivado o posición que nunca llegó— en vez de fallar en silencio como hacía antes de 26.0809.',
 },
 
 'el': {
@@ -159,7 +159,7 @@ en: {
   setup_s4_text:  'Με τον διακόπτη <em>Λειτουργία FT4/FT8</em> επιλέξτε τον τρόπο λειτουργίας. Το FT8 χρησιμοποιεί χρονοθυρίδες 15 δευτερολέπτων και είναι πιο διαδεδομένο. Το FT4 χρησιμοποιεί χρονοθυρίδες 7,5 δευτερολέπτων: είναι περίπου 4 dB λιγότερο ευαίσθητο, αλλά διπλάσια γρήγορο.',
 
   setup_s5_title: '5. Συγχρονίστε την ώρα',
-  setup_s5_text:  'Η αποκωδικοποίηση FT8 απαιτεί το ρολόι της συσκευής να είναι ακριβές εντός ±1 δευτερολέπτου. Στις Ρυθμίσεις πατήστε <strong>Συγχρονισμός</strong> για συγχρονισμό με διακομιστή NTP στο διαδίκτυο. Το στίγμα GPS δίνει επίσης πολύ ακριβή ώρα. Μετά τον συγχρονισμό εμφανίζεται η τρέχουσα απόκλιση ώρας.',
+  setup_s5_text:  'Η αποκωδικοποίηση FT8 απαιτεί το ρολόι της συσκευής να είναι ακριβές εντός ±1 δευτερολέπτου. Στις Ρυθμίσεις πατήστε <strong>Συγχρονισμός</strong> για συγχρονισμό με διακομιστή NTP στο διαδίκτυο. Το στίγμα GPS δίνει επίσης πολύ ακριβή ώρα. Μετά τον συγχρονισμό εμφανίζεται η τρέχουσα απόκλιση ώρας. Αυτό λειτουργεί και εκτός δικτύου: χωρίς σύνδεση στο διαδίκτυο η εφαρμογή περιμένει αντ\' αυτού στίγμα GPS και δηλώνει σε ποια κατάσταση βρίσκεται — αναμονή GPS, GPS απενεργοποιημένο ή στίγμα που δεν ήρθε ποτέ — αντί να αποτυγχάνει σιωπηλά όπως πριν από την 26.0809.',
 },
 
 }; /* end PAGE_T */
