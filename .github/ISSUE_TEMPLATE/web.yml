@@ -1,0 +1,25 @@
+name: 網頁版問題回報（Web version）
+description: FT8TW 網頁版（ft8tw.bv6lc.com）的問題或建議 / Problems or suggestions for the FT8TW web version
+title: "[網頁版] "
+labels: ["網頁版"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感謝回報！這裡是 **FT8TW 網頁版**（ft8tw.bv6lc.com）的問題回報；Android App 的問題請改用一般 issue。
+        Thanks for reporting! This form is for the **FT8TW web version**; for the Android app, please open a regular issue.
+  - type: input
+    id: version
+    attributes:
+      label: 版本號 / Version
+      description: 在網頁「設置 › 關於」可以直接複製，例如 1.26.1009-prd.306 / Copy it from Settings › About, e.g. 1.26.1009-prd.306
+      placeholder: 1.26.1009-prd.306
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: 問題說明 / What happened
+      description: 發生了什麼事、怎麼重現、你預期的結果 / What happened, how to reproduce it, and what you expected
+    validations:
+      required: true
