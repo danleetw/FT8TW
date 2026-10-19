@@ -23,3 +23,13 @@ body:
       description: 發生了什麼事、怎麼重現、你預期的結果 / What happened, how to reproduce it, and what you expected
     validations:
       required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: 診斷資料 / Diagnostics
+      description: |
+        在網頁「設置 › 進階與開發者」按「複製診斷資料」，或在「設置 › 關於」按「回報問題」→「複製並開啟 GitHub」，然後貼在這裡。預設已遮蔽呼號與網格（顯示成 <呼號>、<網格>），不想附的內容可以先刪掉。
+        Copy the diagnostics from Settings › Advanced & Developer (or Settings › About › Report an Issue) and paste them here. Your callsign and grid are hidden by default.
+      placeholder: 在這裡貼上診斷資料（Ctrl+V） / Paste the diagnostics here (Ctrl+V)
+    validations:
+      required: false
