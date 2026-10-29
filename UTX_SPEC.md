@@ -2,7 +2,7 @@
 
 **Status**: Implemented (FT8TW)
 **Author**: BV6LC
-**Date**: 2026-07-17
+**Date**: 2026-07-17 (last revised 2026-10-29)
 **License / Rationale**: This specification is published openly; any software may
 implement it for interoperability. Amateur radio regulations require that
 transmissions not use codes or ciphers intended to obscure their meaning. UTX is
@@ -64,7 +64,11 @@ magic was lengthened to 24 bits and a rarer bit pattern was chosen instead.)
 
 The encoder greedily switches modes based on character content; a mode switch
 is only "paid for" when ≥2 consecutive characters belong to the new mode — a
-single off-mode character is instead emitted as a literal.
+single off-mode character is instead emitted as a literal. Exception: a
+character of the Mode A set always switches back to Mode A (the switch is
+cheap, and uppercase letters, digits and callsigns usually come in runs).
+Spaces neither break nor count toward a run; every mode has its own space
+token. The initial mode is the mode of the first non-space character.
 
 ### Mode A — Uppercase ASCII (reuses the JS8Call huffman table)
 
@@ -111,20 +115,32 @@ alphabetic scripts:
 Cyrillic; Hebrew; Arabic; nine Indic scripts; Thai; Lao; Tibetan; Burmese;
 Georgian; Armenian; Vietnamese Latin extensions; general punctuation; two kana
 windows; emoji); `1`+14 bits = a custom base (`code point >> 7`), reaching all
-17 Unicode planes.
+17 Unicode planes. A custom base can point past U+10FFFF; a decoder that
+computes a code point above U+10FFFF must output U+FFFD and stop (random bits,
+e.g. a noise-decoded JTTY frame, do produce this).
 
 ### Literal (fallback)
 
 The literal op in any mode is followed by a raw 21-bit code point (0 –
 0x10FFFF) — any Unicode character can be sent this way, at a cost of 24–27
-bits.
+bits. A literal above 0x10FFFF or in the surrogate range (0xD800–0xDFFF) is
+invalid: the decoder outputs U+FFFD and stops. The same applies to an empty
+or out-of-range Mode H rank and to any reserved op.
 
 ## 5. Integration with the Existing Protocol
 
-- **Trigger condition**: UTX is used only when a message's free-text field
-  contains a character outside the legacy huffman character set; a pure-ASCII
-  message goes entirely through the legacy path and is bit-for-bit compatible
-  with JS8Call.
+- **Opt-in**: UTX is sent only when the user has turned on the "enhanced
+  encoding" setting (off by default). With it off, the free-text field always
+  goes through the legacy path (uppercased), bit-for-bit compatible with
+  JS8Call. Receiving UTX does not depend on the setting.
+- **Trigger condition** (setting on): the free-text field is sent as UTX if
+  any character, after uppercasing, lies outside Latin-1 (U+0000–U+00FF);
+  or uppercasing a character other than ASCII `a`–`z` changes it (e.g. `é`,
+  which legacy cannot restore); or the field mixes ASCII uppercase and
+  lowercase letters (e.g. `Hello`). Everything else — including all-uppercase
+  or all-lowercase text, and Latin-1 punctuation that legacy carries through
+  the JSC dictionary — goes through the legacy path. The test is not "outside
+  the huffman table": legacy also carries punctuation such as `,` via JSC.
 - **Structured frames are unchanged**: heartbeat/CQ, compound, and directed
   frames are unaffected; a command such as "`CALLSIGN MSG 中文內容`" still
   uses a legacy directed-frame command prefix — only the free-text field
@@ -135,7 +151,10 @@ bits.
   `checksum16` (CRC-16/KERMIT + 3 base-41 characters) is computed over the
   message's **UTF-8 bytes** instead of ISO-8859-1 — this produces the same
   result as stock JS8Call for ASCII content, while giving Unicode content a
-  real byte-level checksum instead of a degenerate one.
+  real byte-level checksum instead of a degenerate one. The checksum is
+  computed over exactly the text the receiver will decode (original case for
+  UTX), and the trailing space + 3 checksum characters are appended to that
+  text and encoded inside the same UTX bit stream.
 - **Lost frames**: degrades the same way as legacy — losing a frame partway
   through a message makes the remaining content undecodable (UTX output stops
   at the point of loss; a message with a checksum will fail verification and
@@ -168,23 +187,215 @@ bits.
 | Uppercase English (Mode A) | ~4.7 | same as legacy |
 | Reference: raw UTF-8 Chinese | 24 | ~2.9 |
 
-Message header (magic + mode) costs 18–33 bits, amortized over the first frame
-of the message.
+Message header: 24-bit magic + 2-bit initial mode = 26 bits for Mode A/H;
+Mode W adds a window descriptor, 32 bits with a predefined window or 41 bits
+with a custom base. It is paid once per message, in the first frame.
 
 ## 8. Transmission Time Comparison Example
 
-Sending a **20-character message** in Normal mode (15-second frame):
+Sending a **20-character free-text message** in Normal mode (15-second frame,
+69 bits per frame), including the UTX message header and excluding any
+directed-frame prefix:
 
-| Content | chars/frame | frames needed | approx. time |
+| Content | bits | frames needed | approx. time |
 |---|---|---|---|
-| English (Mode A, same speed as legacy) | ~15.3 | 2 | 30 s |
-| Common Chinese (UTX tier 1) | ~5.3 | 4 | 60 s |
-| Hangul/less-common (UTX tier 2) | ~4.3 | 5 | 75 s |
-| Cyrillic-class scripts (UTX window) | ~8.5 | 3 | 45 s |
-| Reference: same Chinese text as raw UTF-8 (no UTX) | ~2.9 | 7 | 105 s |
+| English (legacy, Mode A cost) | ~94 | 2 | 30 s |
+| Common Chinese (UTX tier 1) | 26 + 20×13 = 286 | 5 | 75 s |
+| Hangul/less-common (UTX tier 2) | 26 + 20×16 = 346 | 6 | 90 s |
+| Cyrillic-class scripts (UTX window) | 32 + 20×8 = 192 | 3 | 45 s |
+| Reference: same Chinese text as raw UTF-8 (no UTX) | 20×24 = 480 | 7 | 105 s |
 
-For the same 20 Chinese characters, UTX (tier 1) takes about 60 seconds — roughly
-**1.75× faster** than the 105 seconds raw UTF-8 would need. English content transmits
-at exactly the same speed as legacy JS8, unaffected by UTX. The Fast/Turbo/Slow
-submodes use different frame lengths (10/6/30 s); scale the figures above
-proportionally.
+For the same 20 Chinese characters, UTX (tier 1) takes about 75 seconds —
+roughly **1.4× faster** than the 105 seconds raw UTF-8 would need; the gap
+widens for longer messages as the header is amortized. English content
+transmits at exactly the same speed as legacy JS8, unaffected by UTX. The
+Fast/Turbo/Slow submodes use different frame lengths (10/6/30 s) and carry 71
+bits per frame, so they may need slightly fewer frames than shown.
+
+## 9. JTTY Transport
+
+A JTTY frame (the send-anytime text mode of WSJT-X 3.2) lasts 1.888 s and
+carries a 34-bit payload = a 32-bit content word (MSB first) + a reserved bit
++ EOM. UTX is carried over JTTY as follows.
+
+Implementation status (2026-10-29):
+
+| Section | FT8TW web app | FT8TW Android app |
+|---|---|---|
+| §9.1–§9.8 (UTX, callsign words, sender frame, auto-split) | send + receive | send + receive |
+| §9.9 check frames | send + receive/repair | not sent; received check frames are discarded (like WSJT-X) |
+
+### 9.1 Marker: reserved bit = 1
+
+Frames with the reserved bit set to 1 carry FT8TW extensions, and the whole
+32-bit content word is available. WSJT-X 3.2 discards every frame whose
+reserved bit is not 0, so WSJT-X users **never see garbage**. Bit 31 of the
+content word is called `S`:
+
+| Frame | S (bit 31) | bits 30–28 | bits 27–0 (or 30–0) |
+|---|---|---|---|
+| First UTX frame | `1` | `001` (UTX v1) | 28 bits of bit stream |
+| Following UTX frame | `0` | — | 31 bits of bit stream (bits 30–0) |
+| Sender frame (§9.7) | `1` | `010` | call28 |
+| Check frame (§9.9) | `1` | `011` | column, index, n, symbol |
+| Reserved | `1` | `000`, `100`–`111` | discarded by the receiver |
+
+### 9.2 Bit stream
+
+The bit stream is the UTX bit stream of §3 **without the 24-bit MAGIC**,
+starting at the 2-bit initial mode (the reserved bit plus `S` and the type
+already identify it, and MAGIC alone would cost a whole JTTY frame). The
+receiver prepends MAGIC and decodes per §3 and §4. A first frame whose initial
+mode is `11` (reserved) is discarded.
+
+### 9.3 Padding
+
+- Padding is added only at the end of the whole bit stream (in the last
+  frame): one `0`, then `1`s up to the end of the frame. Frames in between
+  carry data only. The last frame has EOM set.
+- When the bit stream exactly fills n frames, there is no room for the `0`, so
+  one more frame of `S=0` + `0` + thirty `1`s is sent (for example `你好` =
+  2 + 13×2 = 28 bits exactly fills the first frame, giving 2 UTX frames).
+- The receiver strips padding with `lastIndexOf('0')` only when the EOM frame
+  arrives (stripping earlier would eat a trailing `0` of the data).
+
+### 9.4 Leading callsign words
+
+Consecutive tokens at the start of the message that can be packed as JTTY
+callsign words (`<call>`, `CQ <call> CQ`, `TU <call> CQ`, `<call> TU`,
+`<call> AGN?`, `TU NOW <call>`, standard callsigns) are sent as ordinary JTTY
+frames (reserved bit 0, **EOM not set**); everything from the first token that
+is not a callsign word is sent as UTX. A callsign word carries an implied
+trailing space, so the UTX part has no leading space; callsigns are always sent
+in uppercase.
+
+- Example: `W9XYZ 你好` → callsign word `W9XYZ` + UTX `你好`; `HELLO 你好` →
+  all UTX.
+- WSJT-X decodes only the leading callsign word (no EOM; it ends as incomplete
+  after 3 periods), so WSJT-X users can still see who is calling whom.
+- **Trigger**: in the spirit of §5, UTX is opt-in (an "enhanced encoding"
+  setting, off by default). With it on, UTX is used only when the part after
+  the leading callsigns contains characters outside JTTY TEXT5 (64 characters)
+  or mixes upper and lower case; otherwise the whole message is sent as plain
+  JTTY, interoperable with WSJT-X. With it off, a message containing
+  characters outside TEXT5 is refused (FT8TW suggests turning the setting on).
+  Macros never use UTX.
+
+### 9.5 Length
+
+At most 16 data frames per transmission (including leading callsign frames and
+the sender frame; check frames after EOM are extra, §9.9). With UTX only and no sender frame the bit-stream capacity is
+28 + 15×31 − 1 = 492 bits, about 37 common Han characters or 60 Cyrillic
+letters.
+
+A longer message typed by the user is split automatically into several
+messages of ≤ 16 frames each (preferably after a space or full-width
+punctuation, else between two Han characters, else a hard cut). Each part is
+planned on its own (sender frame, leading callsign words, UTX, check frames)
+and has its own EOM, so on air it is simply an independent message; parts are
+not numbered on air. Between parts the transmitter releases PTT for a
+configurable rest of 1–16 frames (default 4). Macros are never split.
+
+### 9.6 Reception and safeguards
+
+- Only a frame with `S=1` and type `001` may start a UTX segment: a new
+  message, or following the sender frame / callsign-word frames of the same
+  message.
+- A frame with `S=0` is accepted only by a message that matches in time and
+  frequency (JTTY multi-frame rule: n = 1–3 periods after the previous frame
+  ±100 ms, frequency within 10 + 3(n−1) Hz) and whose UTX segment is in
+  progress; otherwise it is discarded (if the first frame is missed, nothing
+  of that message is shown — no garbage).
+- A missing frame in the middle (gap of more than one period) makes the bit
+  stream impossible to align → stop and mark incomplete; decoding U+FFFD or a
+  reserved control code → stop. On EOM the message is complete only if the
+  UTX segment is complete.
+- While a UTX segment is in progress, reserved-bit-0 frames on the same
+  frequency are not appended to it.
+- Measured: 0 false decodes in 60 minutes of white noise with the default
+  gates (same as before the extension).
+
+### 9.7 Sender frame
+
+JTTY has no sender field. Between FT8TW stations, extension type `010`
+announces the sender:
+
+- Content word = `S=1` + `010` + call28 (28 bits, the pack28 value of a
+  standard callsign), reserved bit 1, EOM 0 (a sender frame with EOM 1, or
+  whose call28 is not a standard callsign, is discarded).
+- It is the **first frame of every transmission**, followed by the callsign
+  word / TEXT5 / UTX frames.
+- It is not sent when the message already names the sender (`CQ <me> CQ`, or
+  contains `DE <me>`), or when the sender's callsign is not a standard
+  callsign; users may turn it off (on by default). It is omitted when an
+  ordinary message already needs 16 frames.
+- The receiver takes it as authoritative (over inference from the content); a
+  sender frame with no content is not displayed.
+- Costs 1.888 s per transmission; WSJT-X discards reserved-bit-1 frames and is
+  not affected.
+
+### 9.8 Efficiency reference (1.888 s per frame)
+
+| Content | chars/frame (steady state) | chars/second |
+|---|---|---|
+| Common Chinese (13 bits) | ~2.4 | ~1.3 |
+| Cyrillic-class (~8 bits) | ~3.9 | ~2.0 |
+| Reference: JTTY TEXT5 (alphanumeric) | 5 | 2.6 |
+
+### 9.9 Error-correction (check) frames
+
+JTTY is one-way: there is no acknowledgement or retransmission, and one
+missed frame breaks a message (`...`). Between FT8TW stations a message is
+followed by a few **check frames** from which the receiver recomputes missed
+frames, without any reply.
+
+- **When**: on messages with **3 or more data frames, not counting the sender
+  frame** (every part of an automatically split message is handled on its
+  own). Setting: Off / **Standard (default)**: 2 check frames, recovers any 1
+  missed frame / Strong: 4 check frames, recovers any 2.
+- **Where**: right after the EOM frame of the same transmission (phase
+  continuous, 1.888 s apart). Check frames do **not** count toward the
+  16-frame limit, so a transmission is at most 16 + 4 = 20 frames (37.8 s).
+- **Code**: GF(2^16) with primitive polynomial x^16 + x^12 + x^3 + x + 1
+  (`0x1100B`), α = 2. Each data frame's 32-bit content word is split into a
+  high and a low 16-bit symbol (two columns). For each column, with data
+  symbols d_0 … d_{n−1}, check symbol j is
+
+  p_j = Σ d_i · α^(j·i)  (j = 0, 1; p_0 is plain XOR)
+
+  This parity-check (Vandermonde) form of Reed–Solomon makes p_j independent
+  of the level: the 2 Standard check frames are exactly the first 2 of the 4
+  Strong ones. For r ≤ 2 the code is MDS: a column can be recovered when the
+  number of check symbols received for it is at least the number of missing
+  data symbols, in any positions (erasure decoding by Gaussian elimination);
+  spare check symbols are used to verify.
+- **Content word**: `S=1` + type `011` + column (1 bit, 0 = high 16 bits) +
+  check index j (3 bits) + number of data frames n (5 bits, **including the
+  sender frame**, 3–17) + reserved (3 bits, 0) + the 16-bit symbol; reserved
+  bit 1, EOM 0. Order: (j0, col 0), (j0, col 1), (j1, col 0), (j1, col 1).
+  Receivers discard check frames with EOM 1, non-zero reserved bits, n outside
+  3–17, or j ≥ 4.
+- **Position**: data frames occupy slots 0 … n−1; a check frame is at slot
+  n + 2j + column. Any one check frame therefore gives the start time of slot 0
+  (±100 ms), even if the first data frame was missed.
+- **Reserved bit and EOM are not transmitted** for recovered frames; they
+  follow from the position: EOM only at slot n−1; the reserved-bit pattern is
+  [sender frame (1)]? + reserved-0 frames (only leading callsign words if the
+  message has UTX) + the UTX segment (reserved 1, `S=1`/`001` then `S=0`).
+  When a missing frame sits at a boundary, the receiver tries every
+  structurally possible reading, keeps those where every frame passes the
+  content-word grammar, the UTX bit stream decodes completely and actually
+  needs UTX, and the whole message reassembles completely — and **repairs
+  only if exactly one reading remains**.
+- **Safeguards**: check frames are grouped by n, frequency (±10 Hz) and slot-0
+  time (±100 ms); a group is used only if at least one data frame matches, no
+  frame other than slot n−1 has EOM, slot n holds no data frame, the message
+  does not continue in the 3 slots before slot 0, and no slot holds two different words. An
+  isolated check frame is discarded. Measured: 0 false decodes in 60 minutes
+  of white noise with the default gates.
+- **Display**: the repaired message replaces the incomplete one in place and is
+  marked "repaired n". More missing frames than the check frames can recover
+  are still shown as `...`.
+- **WSJT-X**: check frames have reserved bit 1 and come after EOM, so WSJT-X
+  discards them; data frames and EOM are unchanged and no `...` appears. Only
+  the transmit time grows (Standard +3.8 s, Strong +7.6 s).
