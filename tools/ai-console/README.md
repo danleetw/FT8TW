@@ -94,3 +94,12 @@ python ai_console.py export subs.json   # 匯出
 python ai_console.py import subs.json   # 匯入（覆蓋，原資料存為 data.json.bak）
 python -m unittest test_ai_console      # 測試
 ```
+
+## 網頁版
+
+`web/index.html` 是網頁版，發佈在 claude.ai：<https://claude.ai/artifact/6vRSsanZ7wh8ohjxm585i9>（預設只有你自己看得到）。
+
+- 功能與命令列版相同：訂閱管理、＋1 記錄使用、月費與預算、自動取消規則與建議、匯率。
+- 資料存在該頁面的雲端資料庫，換電腦、用手機打開都看得到；只有你（與你給編輯權的人）能讀寫。
+- 匯出 / 匯入 JSON 與命令列版 `data.json` 格式相同。
+- 網頁無法讀取電腦裡的設定檔：環境備份請上傳 `ai_console.py backup` 產生的 zip 或直接選檔，下載的 zip 可用 `restore` 還原。上傳時會自動遮蔽 API 金鑰與 token。

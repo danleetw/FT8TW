@@ -1,0 +1,690 @@
+<title>AI Console</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<style>
+/* Layout: billing ledger. Summary strip on top, tabbed work area below, single column on phones. */
+:root {
+  --bg: #f4f6f7; --surface: #ffffff; --sunk: #eaeef0; --line: #d6dde1;
+  --fg: #172328; --mut: #5b6b72; --accent: #0f6e78; --accent-fg: #ffffff;
+  --ok: #2a7a46; --warn: #a35c00; --warn-bg: #fff3df; --bad: #b3261e; --bad-bg: #fde8e6;
+  --font-body: "IBM Plex Sans", "Noto Sans TC", system-ui, sans-serif;
+  --font-num: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --r: 8px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #11181b; --surface: #182226; --sunk: #0d1316; --line: #2a373d;
+  --fg: #e3eaed; --mut: #93a3aa; --accent: #4fb8c2; --accent-fg: #0b1a1d;
+  --ok: #6cc58b; --warn: #f0b45c; --warn-bg: #33270f; --bad: #ff8a80; --bad-bg: #3a1a18; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #11181b; --surface: #182226; --sunk: #0d1316; --line: #2a373d;
+  --fg: #e3eaed; --mut: #93a3aa; --accent: #4fb8c2; --accent-fg: #0b1a1d;
+  --ok: #6cc58b; --warn: #f0b45c; --warn-bg: #33270f; --bad: #ff8a80; --bad-bg: #3a1a18; color-scheme: dark }
+
+* { box-sizing: border-box }
+[hidden] { display: none !important }
+.wrap > *, section > * { min-width: 0 }
+body { background: var(--bg); color: var(--fg); font: 15px/1.55 var(--font-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 1080px; margin: 0 auto; padding-block: 24px 48px; display: grid; gap: 20px }
+h1 { font-size: 22px; margin: 0; letter-spacing: .01em }
+h2 { font-size: 17px; margin: 0; text-wrap: balance }
+.mut { color: var(--mut) } small { color: var(--mut) }
+.num { font-family: var(--font-num); font-variant-numeric: tabular-nums }
+a { color: var(--accent) }
+header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px }
+
+.strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--line);
+  border: 1px solid var(--line); border-radius: var(--r); overflow: hidden }
+.stat { background: var(--surface); padding: 12px 14px; display: grid; gap: 2px; min-width: 0 }
+.stat .k { font-size: 12px; color: var(--mut); letter-spacing: .04em }
+.stat .v { font-family: var(--font-num); font-size: 22px; font-weight: 500 }
+.bar { height: 5px; background: var(--sunk); border-radius: 3px; overflow: hidden; margin-top: 4px }
+.bar i { display: block; height: 100% ; background: var(--accent) }
+.bar i.over { background: var(--bad) }
+
+nav { display: flex; gap: 4px; flex-wrap: wrap; border-bottom: 1px solid var(--line) }
+nav button { background: none; border: 0; border-bottom: 2px solid transparent; padding: 8px 12px; font: inherit; color: var(--mut); cursor: pointer }
+nav button[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--accent); font-weight: 600 }
+nav .badge { display: inline-block; min-width: 18px; padding: 0 5px; margin-left: 4px; border-radius: 9px; background: var(--warn-bg); color: var(--warn); font-size: 12px; text-align: center }
+
+section { display: grid; gap: 14px }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center }
+.row.between { justify-content: space-between }
+
+button, .btn { font: inherit; font-size: 14px; border-radius: 6px; padding: 6px 12px; cursor: pointer; border: 1px solid var(--line);
+  background: var(--surface); color: var(--fg); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; line-height: 1.3 }
+button:hover, .btn:hover { border-color: var(--accent) }
+button.primary { background: var(--accent); color: var(--accent-fg); border-color: var(--accent) }
+button.danger { color: var(--bad) }
+button:disabled { opacity: .5; cursor: default }
+button:focus-visible, .btn:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, nav button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+
+.tablewrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r) }
+table { border-collapse: collapse; width: 100%; min-width: 820px }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top }
+tr:last-child td { border-bottom: 0 }
+th { font-size: 12px; color: var(--mut); font-weight: 500; letter-spacing: .04em; background: var(--sunk) }
+td.r, th.r { text-align: right }
+tr.off td { color: var(--mut) }
+.pill { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 10px; border: 1px solid currentColor; white-space: nowrap }
+.pill.ok { color: var(--ok) } .pill.warn { color: var(--warn); background: var(--warn-bg); border-color: transparent }
+.pill.off { color: var(--mut) } .pill.lock { color: var(--accent) }
+.acts { display: flex; gap: 4px; flex-wrap: wrap }
+.acts button, .acts .btn { padding: 3px 8px; font-size: 13px }
+
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; display: grid; gap: 12px; min-width: 0 }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px }
+label { display: grid; gap: 4px; font-size: 13px; color: var(--mut) }
+label.check { display: flex; align-items: center; gap: 8px; color: var(--fg); font-size: 14px }
+input, select, textarea { font: inherit; font-size: 14px; color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 7px 9px; width: 100%; min-width: 0 }
+input[type=checkbox] { width: auto }
+textarea { font-family: var(--font-num); font-size: 12px; min-height: 120px }
+
+.sugg { display: grid; gap: 10px }
+.sugg .item { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--warn); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 6px }
+.sugg .item.due { border-left-color: var(--bad) }
+.sugg ul { margin: 0; padding-left: 18px }
+
+.notice { padding: 10px 14px; border-radius: var(--r); background: var(--warn-bg); color: var(--fg); border: 1px solid var(--line) }
+.notice.bad { background: var(--bad-bg) }
+.empty { text-align: center; padding: 32px 16px; color: var(--mut); background: var(--surface); border: 1px dashed var(--line); border-radius: var(--r) }
+
+dialog { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--fg); padding: 0; width: min(640px, calc(100vw - 32px)); max-height: calc(100vh - 32px) }
+dialog::backdrop { background: rgb(0 0 0 / .4) }
+dialog form { padding: 18px; display: grid; gap: 14px }
+
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); background: var(--fg); color: var(--bg);
+  padding: 8px 16px; border-radius: 8px; font-size: 14px; z-index: 20; max-width: calc(100vw - 32px) }
+.files li { font-family: var(--font-num); font-size: 12px; overflow-wrap: anywhere }
+@media (prefers-reduced-motion: no-preference) { .toast { transition: opacity .2s } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div><h1>AI Console</h1><div class="mut" id="sub">AI 訂閱、使用狀況、費用與環境設定備份</div></div>
+    <div class="mut" id="sync">連線中…</div>
+  </header>
+
+  <div id="banner" hidden></div>
+
+  <div class="strip" aria-label="摘要">
+    <div class="stat"><span class="k">使用中訂閱</span><span class="v" id="s-count">—</span></div>
+    <div class="stat"><span class="k">每月合計</span><span class="v" id="s-month">—</span></div>
+    <div class="stat"><span class="k">每年約</span><span class="v" id="s-year">—</span></div>
+    <div class="stat"><span class="k">每月預算</span><span class="v" id="s-budget">—</span><div class="bar" id="s-bar" hidden><i></i></div></div>
+    <div class="stat"><span class="k">建議取消</span><span class="v" id="s-flag">—</span></div>
+  </div>
+
+  <nav role="tablist">
+    <button role="tab" data-tab="subs" aria-selected="true">訂閱</button>
+    <button role="tab" data-tab="rules" aria-selected="false">自動取消<span class="badge" id="tab-badge" hidden></span></button>
+    <button role="tab" data-tab="backup" aria-selected="false">環境備份</button>
+    <button role="tab" data-tab="data" aria-selected="false">資料與匯率</button>
+  </nav>
+
+  <!-- 訂閱 -->
+  <section id="tab-subs">
+    <div class="row between">
+      <label class="check"><input type="checkbox" id="show-all"> 顯示已取消</label>
+      <button class="primary" id="btn-add">＋ 新增訂閱</button>
+    </div>
+    <div id="subs-list"><div class="empty">正在讀取你的訂閱…</div></div>
+    <p class="mut" style="margin:0">「＋1」記錄一次使用。用量計費的 API 按「記花費」輸入金額。月費依「資料與匯率」頁的匯率換算。</p>
+  </section>
+
+  <!-- 自動取消 -->
+  <section id="tab-rules" hidden>
+    <div class="panel">
+      <h2>規則</h2>
+      <div class="grid2">
+        <label>超過幾天沒使用就建議取消（0 = 停用）<input type="number" min="0" id="r-unused"></label>
+        <label>近 30 天至少使用幾次（0 = 停用）<input type="number" min="0" id="r-minuses"></label>
+        <label>每月預算，基準幣別（0 = 不限）<input type="number" min="0" id="r-budget"></label>
+        <label>續約前幾天內才執行取消<input type="number" min="0" id="r-warn"></label>
+      </div>
+      <label class="check"><input type="checkbox" id="r-auto"> 開啟此頁時，自動把「現在可取消」的項目標記為已取消</label>
+      <div class="row"><button class="primary" id="btn-save-rules">儲存規則</button><span class="mut" id="rules-msg"></span></div>
+      <small>各家 AI 都沒有開放取消訂閱的 API。標記取消後，請點「前往取消頁」按下該服務的取消按鈕。鎖定的項目永遠不會被建議取消。</small>
+    </div>
+    <h2>建議取消</h2>
+    <div class="sugg" id="sugg"></div>
+  </section>
+
+  <!-- 環境備份 -->
+  <section id="tab-backup" hidden>
+    <div class="panel">
+      <h2>新增備份</h2>
+      <p class="mut" style="margin:0">網頁無法直接讀取你電腦裡的設定檔。兩種做法：上傳命令列版 <code>ai_console.py backup</code> 產生的 zip，或直接選取設定檔（例如 <code>~/.claude/settings.json</code>、<code>CLAUDE.md</code>、<code>~/.codex/config.toml</code>）。</p>
+      <div class="grid2">
+        <label>備份名稱<input id="b-name" placeholder="例如：MacBook 2026-11"></label>
+        <label>檔案屬於哪個工具（直接選檔時）
+          <select id="b-tool">
+            <option>claude-code</option><option>claude-desktop</option><option>codex</option><option>gemini-cli</option>
+            <option>cursor</option><option>vscode-copilot</option><option>windsurf</option><option>continue</option><option>aider</option><option>other</option>
+          </select></label>
+      </div>
+      <label>選擇 zip 或設定檔（可多選）<input type="file" id="b-files" multiple></label>
+      <label class="check"><input type="checkbox" id="b-redact" checked> 自動遮蔽 API 金鑰與 token（建議保持勾選）</label>
+      <div class="row"><button class="primary" id="btn-backup">建立備份</button><span class="mut" id="b-msg"></span></div>
+      <small>登入憑證檔（.credentials.json、auth.json、oauth_creds.json 等）一律不收。單一備份上限約 200 KB，單檔超過 64 KB 會略過。</small>
+    </div>
+    <h2>已存的備份</h2>
+    <div id="b-list"></div>
+  </section>
+
+  <!-- 資料 -->
+  <section id="tab-data" hidden>
+    <div class="panel">
+      <h2>幣別與匯率</h2>
+      <div class="grid2">
+        <label>基準幣別<input id="d-base"></label>
+        <label>匯率（換算成基準幣別，一行一個，例如 USD=32）<textarea id="d-rates" style="min-height:90px"></textarea></label>
+      </div>
+      <div class="row"><button class="primary" id="btn-save-rates">儲存</button><span class="mut" id="d-msg"></span></div>
+    </div>
+    <div class="panel">
+      <h2>匯出 / 匯入</h2>
+      <p class="mut" style="margin:0">格式與命令列版的 <code>data.json</code> 相同，可在兩邊互相搬移（<code>ai_console.py export</code> / <code>import</code>）。</p>
+      <div class="row">
+        <button id="btn-export">匯出 JSON</button>
+        <label class="btn" for="d-import">匯入 JSON…</label>
+        <input type="file" id="d-import" accept=".json,application/json" hidden>
+      </div>
+      <div id="import-confirm" hidden class="notice"></div>
+    </div>
+  </section>
+</div>
+
+<dialog id="dlg">
+  <form id="f-sub" method="dialog">
+    <h2 id="f-title">新增訂閱</h2>
+    <label>常用服務（自動填入名稱與取消頁）
+      <select id="f-preset"><option value="">— 自訂 —</option></select></label>
+    <div class="grid2">
+      <label>名稱<input id="f-name" required></label>
+      <label>廠商<input id="f-vendor"></label>
+      <label>方案<input id="f-plan" placeholder="Pro / Max / Plus"></label>
+      <label>計費週期
+        <select id="f-cycle"><option value="monthly">每月</option><option value="quarterly">每季</option><option value="yearly">每年</option><option value="usage">用量計費</option></select></label>
+      <label>價格<input id="f-price" type="number" step="0.01" min="0" value="0"></label>
+      <label>幣別<input id="f-currency" value="USD"></label>
+      <label>開始 / 計費日<input id="f-start" type="date"></label>
+      <label>預定取消日（試用期用）<input id="f-cancelon" type="date"></label>
+      <label>帳號<input id="f-account"></label>
+      <label>付款方式<input id="f-payment" placeholder="信用卡末四碼"></label>
+    </div>
+    <label>管理 / 取消訂閱網址<input id="f-url" type="url"></label>
+    <label>備註<input id="f-notes"></label>
+    <label class="check"><input type="checkbox" id="f-keep"> 鎖定，不讓自動規則取消</label>
+    <div class="row between">
+      <button type="button" class="danger" id="f-delete" hidden>刪除紀錄</button>
+      <div class="row" style="margin-left:auto"><button value="cancel" formnovalidate>取消</button><button class="primary" value="ok" id="f-ok">儲存</button></div>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="dlg-cost">
+  <form id="f-cost" method="dialog">
+    <h2>記錄花費</h2>
+    <div class="grid2">
+      <label>金額<input id="c-amt" type="number" step="0.01" min="0" required></label>
+      <label>日期<input id="c-date" type="date"></label>
+    </div>
+    <label>備註<input id="c-note"></label>
+    <div class="row" style="justify-content:flex-end"><button value="cancel" formnovalidate>取消</button><button class="primary" value="ok">記錄</button></div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" hidden></div>
+
+<script>
+"use strict";
+const PRESETS = {
+  chatgpt: ["ChatGPT", "OpenAI", "https://chatgpt.com/#settings/Account"],
+  "openai-api": ["OpenAI API", "OpenAI", "https://platform.openai.com/settings/organization/billing"],
+  claude: ["Claude", "Anthropic", "https://claude.ai/settings/billing"],
+  "claude-api": ["Claude API", "Anthropic", "https://console.anthropic.com/settings/billing"],
+  gemini: ["Google AI (Gemini)", "Google", "https://one.google.com/settings"],
+  copilot: ["GitHub Copilot", "GitHub", "https://github.com/settings/copilot"],
+  cursor: ["Cursor", "Anysphere", "https://cursor.com/settings"],
+  perplexity: ["Perplexity", "Perplexity", "https://www.perplexity.ai/settings/account"],
+  midjourney: ["Midjourney", "Midjourney", "https://www.midjourney.com/account"],
+  grok: ["Grok / X Premium", "xAI", "https://x.com/settings/manage_subscriptions"],
+};
+const CYCLES = { monthly: 1, quarterly: 3, yearly: 12, usage: 0 };
+const CYCLE_LABEL = { monthly: "月", quarterly: "季", yearly: "年", usage: "用量" };
+const DEFAULT_CFG = {
+  base_currency: "TWD", rates: { TWD: 1, USD: 32, EUR: 35, JPY: 0.21 },
+  rules: { unused_days: 30, monthly_budget: 0, min_uses_per_month: 0, renewal_warning_days: 3, auto_apply: false },
+};
+const SECRET_FILE = /(^|\/)(\.credentials\.json|auth\.json|oauth_creds\.json|credentials\.json|\.env|id_rsa|id_ed25519)$|token|secret|credential|apikey|api_key/i;
+
+let db = null;
+let subs = [];        // [{id, ...}]
+let cfg = structuredClone(DEFAULT_CFG);
+let backups = [];
+let loaded = { subs: false, cfg: false };
+let autoRan = false;
+
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+// ---------- 日期與費用邏輯（與 ai_console.py 相同） ----------
+const pad = (n) => String(n).padStart(2, "0");
+const iso = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+const parse = (s) => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
+const today = () => { const d = new Date(); return new Date(d.getFullYear(), d.getMonth(), d.getDate()); };
+const days = (a, b) => Math.round((b - a) / 86400000);
+function addMonths(d, n) {
+  const m = d.getMonth() + n, y = d.getFullYear() + Math.floor(m / 12), mm = ((m % 12) + 12) % 12;
+  const last = new Date(y, mm + 1, 0).getDate();
+  return new Date(y, mm, Math.min(d.getDate(), last));
+}
+function nextRenewal(s, ref = today()) {
+  const months = CYCLES[s.cycle || "monthly"];
+  if (!months || !s.start_date) return null;
+  const d = parse(s.start_date);
+  let n = 0;
+  while (addMonths(d, n) <= ref) n += months;
+  return addMonths(d, n);
+}
+const rate = (cur) => cfg.rates[(cur || cfg.base_currency).toUpperCase()] ?? 1;
+const recent = (s) => { const cut = today(); cut.setDate(cut.getDate() - 30); return (s.usage || []).filter((u) => parse(u.date) > cut); };
+function monthlyCost(s) {
+  const amt = s.cycle === "usage" ? recent(s).reduce((a, u) => a + (u.cost || 0), 0) : (s.price || 0) / CYCLES[s.cycle || "monthly"];
+  return amt * rate(s.currency) / rate(cfg.base_currency);
+}
+const uses30 = (s) => recent(s).reduce((a, u) => a + (u.count ?? 1), 0);
+function lastUsed(s) { const u = (s.usage || []).map((x) => x.date).sort(); return u.length ? parse(u[u.length - 1]) : null; }
+const active = () => subs.filter((s) => s.status === "active");
+
+function evaluate() {
+  const r = cfg.rules, t = today(), out = new Map();
+  const flag = (s, why) => { if (!out.has(s.id)) out.set(s.id, { s, why: [] }); out.get(s.id).why.push(why); };
+  for (const s of active()) {
+    if (s.keep) continue;
+    if (s.cancel_on && parse(s.cancel_on) <= t) flag(s, `已到預定取消日 ${s.cancel_on}`);
+    const lu = lastUsed(s) || (s.start_date ? parse(s.start_date) : null);
+    if (r.unused_days && lu && days(lu, t) >= r.unused_days) flag(s, `已 ${days(lu, t)} 天未使用（規則：${r.unused_days} 天）`);
+    if (r.min_uses_per_month && s.start_date && days(parse(s.start_date), t) >= 30 && uses30(s) < r.min_uses_per_month)
+      flag(s, `近 30 天僅使用 ${uses30(s)} 次（規則：至少 ${r.min_uses_per_month} 次）`);
+  }
+  if (r.monthly_budget) {
+    let total = active().reduce((a, s) => a + monthlyCost(s), 0);
+    const cpu = (s) => monthlyCost(s) / Math.max(uses30(s), 1);
+    for (const s of active().filter((s) => !s.keep).sort((a, b) => cpu(b) - cpu(a))) {
+      if (total <= r.monthly_budget) break;
+      flag(s, `總月費 ${fmt(total)} 超出預算 ${fmt(r.monthly_budget)}，此項每次使用成本最高`);
+      total -= monthlyCost(s);
+    }
+  }
+  return [...out.values()].map(({ s, why }) => {
+    const nr = nextRenewal(s);
+    const due = !nr || days(t, nr) <= r.renewal_warning_days || why.some((w) => w.startsWith("已到預定取消日"));
+    return { s, why, due, nr };
+  });
+}
+const fmt = (v, cur = cfg.base_currency) => `${v.toLocaleString("zh-TW", { maximumFractionDigits: v < 100 ? 2 : 0 })} ${cur}`;
+
+// ---------- 畫面 ----------
+function toast(msg) {
+  const t = $("#toast"); t.textContent = msg; t.hidden = false;
+  clearTimeout(toast.t); toast.t = setTimeout(() => (t.hidden = true), 2600);
+}
+function showTab(name) {
+  if (!["subs", "rules", "backup", "data"].includes(name)) name = "subs";
+  document.querySelectorAll("nav button").forEach((b) => b.setAttribute("aria-selected", b.dataset.tab === name));
+  document.querySelectorAll("section[id^=tab-]").forEach((s) => (s.hidden = s.id !== "tab-" + name));
+}
+document.querySelectorAll("nav button").forEach((b) => b.addEventListener("click", () => { showTab(b.dataset.tab); location.hash = b.dataset.tab; }));
+window.addEventListener("hashchange", () => showTab(location.hash.slice(1)));
+showTab(location.hash.slice(1));
+
+function render() {
+  const act = active();
+  const total = act.reduce((a, s) => a + monthlyCost(s), 0);
+  const flagged = evaluate();
+  const flaggedIds = new Map(flagged.map((f) => [f.s.id, f]));
+  $("#s-count").textContent = act.length;
+  $("#s-month").textContent = fmt(total);
+  $("#s-year").textContent = fmt(total * 12);
+  const b = cfg.rules.monthly_budget;
+  $("#s-budget").textContent = b ? fmt(b) : "未設定";
+  $("#s-bar").hidden = !b;
+  if (b) { const i = $("#s-bar i"); i.style.width = Math.min(total / b * 100, 100) + "%"; i.classList.toggle("over", total > b); }
+  $("#s-flag").textContent = flagged.length;
+  $("#tab-badge").hidden = !flagged.length; $("#tab-badge").textContent = flagged.length;
+
+  // 訂閱列表
+  const list = $("#show-all").checked ? subs : act;
+  const sorted = [...list].sort((a, b) => (a.status !== "active") - (b.status !== "active") || monthlyCost(b) - monthlyCost(a));
+  if (!loaded.subs) {
+    $("#subs-list").innerHTML = `<div class="empty">正在讀取你的訂閱…</div>`;
+  } else if (!sorted.length) {
+    $("#subs-list").innerHTML = `<div class="empty">還沒有訂閱。按右上角「＋ 新增訂閱」，選常用服務並輸入你實際付的價格。</div>`;
+  } else {
+    const t = today();
+    $("#subs-list").innerHTML = `<div class="tablewrap"><table><thead><tr>
+      <th>服務</th><th>價格</th><th class="r">月費 ${esc(cfg.base_currency)}</th><th>下次續約</th>
+      <th class="r">近 30 天</th><th>最後使用</th><th>狀態</th><th>操作</th></tr></thead><tbody>${sorted.map((s) => {
+        const nr = s.status === "active" ? nextRenewal(s) : null;
+        const lu = lastUsed(s), f = flaggedIds.get(s.id);
+        const price = s.cycle === "usage" ? "用量計費" : `${s.price} ${esc(s.currency)} / ${CYCLE_LABEL[s.cycle]}`;
+        const st = s.status !== "active" ? `<span class="pill off">${s.status === "cancelled" ? "已取消 " + esc(s.cancelled_date || "") : "暫停"}</span>`
+          : f ? `<span class="pill warn">建議取消</span>` : `<span class="pill ok">使用中</span>`;
+        const soon = nr && days(t, nr) <= 7 ? ` <small>（${days(t, nr)} 天後）</small>` : "";
+        return `<tr class="${s.status !== "active" ? "off" : ""}">
+          <td><b>${esc(s.name)}</b>${s.keep ? ' <span class="pill lock">鎖定</span>' : ""}<br><small>${esc([s.vendor, s.plan, s.account].filter(Boolean).join(" · "))}</small></td>
+          <td class="num">${price}</td>
+          <td class="r num">${Math.round(monthlyCost(s)).toLocaleString("zh-TW")}</td>
+          <td class="num">${nr ? iso(nr) + soon : "—"}</td>
+          <td class="r num">${uses30(s)}</td>
+          <td class="num">${lu ? iso(lu) : "—"}</td>
+          <td>${st}</td>
+          <td><div class="acts">
+            ${s.status === "active" ? (s.cycle === "usage" ? `<button data-act="cost" data-id="${esc(s.id)}">記花費</button>` : `<button data-act="use" data-id="${esc(s.id)}">＋1</button>`) : ""}
+            <button data-act="edit" data-id="${esc(s.id)}">編輯</button>
+            ${s.status === "active" ? `<button data-act="cancel" data-id="${esc(s.id)}" class="danger">取消</button>` : `<button data-act="reactivate" data-id="${esc(s.id)}">恢復</button>`}
+            ${s.manage_url ? `<a class="btn" href="${esc(s.manage_url)}" target="_blank" rel="noopener">管理頁</a>` : ""}
+          </div></td></tr>`;
+      }).join("")}</tbody></table></div>`;
+  }
+
+  // 建議取消
+  $("#sugg").innerHTML = !loaded.subs ? `<div class="empty">讀取中…</div>` : flagged.length ? flagged.map(({ s, why, due, nr }) => `
+    <div class="item ${due ? "due" : ""}">
+      <div class="row between"><b>${esc(s.name)}</b><span class="pill ${due ? "warn" : "off"}">${due ? "現在可取消" : `續約前處理（${iso(nr)}）`}</span></div>
+      <ul>${why.map((w) => `<li>${esc(w)}</li>`).join("")}</ul>
+      <div class="acts">
+        <button data-act="cancel" data-id="${esc(s.id)}" class="danger">標記取消</button>
+        <button data-act="keep" data-id="${esc(s.id)}">鎖定保留</button>
+        ${s.manage_url ? `<a class="btn" href="${esc(s.manage_url)}" target="_blank" rel="noopener">前往取消頁</a>` : ""}
+      </div></div>`).join("") : `<div class="empty">目前沒有需要取消的訂閱。</div>`;
+
+  // 規則表單（未聚焦時才同步）
+  const r = cfg.rules;
+  for (const [id, k] of [["#r-unused", "unused_days"], ["#r-minuses", "min_uses_per_month"], ["#r-budget", "monthly_budget"], ["#r-warn", "renewal_warning_days"]])
+    if (document.activeElement !== $(id)) $(id).value = r[k];
+  $("#r-auto").checked = !!r.auto_apply;
+  if (document.activeElement !== $("#d-base")) $("#d-base").value = cfg.base_currency;
+  if (document.activeElement !== $("#d-rates")) $("#d-rates").value = Object.entries(cfg.rates).map(([k, v]) => `${k}=${v}`).join("\n");
+
+  renderBackups();
+}
+
+function renderBackups() {
+  if (!backups.length) { $("#b-list").innerHTML = `<div class="empty">還沒有備份。</div>`; return; }
+  $("#b-list").innerHTML = `<div class="tablewrap"><table style="min-width:600px"><thead><tr><th>名稱</th><th>建立時間</th><th>內容</th><th>操作</th></tr></thead><tbody>${
+    [...backups].sort((a, b) => (b.created || "").localeCompare(a.created || "")).map((b) => {
+      const tools = [...new Set((b.files || []).map((f) => f.tool))];
+      return `<tr><td><b>${esc(b.name)}</b>${b.redacted ? ` <small>已遮蔽 ${b.redacted} 處金鑰</small>` : ""}</td>
+        <td class="num">${esc((b.created || "").replace("T", " ").slice(0, 16))}</td>
+        <td>${(b.files || []).length} 個檔案<br><small>${esc(tools.join(", "))}</small>
+          <details><summary><small>檔案清單</small></summary><ul class="files">${(b.files || []).map((f, i) =>
+            `<li>${esc(f.tool)} / ~/${esc(f.path)} <button data-act="dlfile" data-id="${esc(b.id)}" data-i="${i}" style="padding:0 6px;font-size:12px">下載</button></li>`).join("")}</ul></details></td>
+        <td><div class="acts"><button data-act="dlzip" data-id="${esc(b.id)}">下載 zip</button><button data-act="delbackup" data-id="${esc(b.id)}" class="danger">刪除</button></div></td></tr>`;
+    }).join("")}</tbody></table></div>
+    <small>下載的 zip 與命令列版格式相同，可用 <code>python ai_console.py restore &lt;檔案&gt; --yes</code> 還原到電腦。</small>`;
+}
+
+// ---------- 資料寫入 ----------
+async function write(fn, okMsg) {
+  if (!db) { toast("尚未連上儲存空間，請登入 claude.ai 後重新開啟"); return false; }
+  try { await fn(); if (okMsg) toast(okMsg); return true; }
+  catch (e) {
+    const m = { quota_exceeded: "儲存空間已滿，請刪除舊備份", not_granted: "你沒有修改這份資料的權限", invalid_argument: "資料太大或格式不符" }[e?.code];
+    toast(m || "儲存失敗：" + (e?.message || e)); return false;
+  }
+}
+const subRef = (id) => db.collection("subs").doc(id);
+const saveSub = (s) => { const { id, ...data } = s; return subRef(id).set(data); };
+function slug(name) {
+  const base = name.toLowerCase().replace(/[^a-z0-9一-鿿]+/g, "-").replace(/^-|-$/g, "") || "sub";
+  let id = base, i = 2; while (subs.some((s) => s.id === id)) id = `${base}-${i++}`;
+  return id;
+}
+function addUsage(s, entry) {
+  const usage = [...(s.usage || [])];
+  const same = usage.find((u) => u.date === entry.date && !u.note && !entry.note);
+  if (same) { same.count = (same.count ?? 1) + (entry.count ?? 0); if (entry.cost) same.cost = +((same.cost || 0) + entry.cost).toFixed(4); }
+  else usage.push(entry);
+  return usage.slice(-400);
+}
+async function cancelSub(s, reason) {
+  const ok = await write(() => subRef(s.id).update({ status: "cancelled", cancelled_date: iso(today()), cancel_reason: reason }));
+  return ok;
+}
+
+// ---------- 事件 ----------
+document.addEventListener("click", async (ev) => {
+  const btn = ev.target.closest("button[data-act]"); if (!btn) return;
+  const s = subs.find((x) => x.id === btn.dataset.id);
+  const act = btn.dataset.act;
+  if (act === "use") write(() => subRef(s.id).update({ usage: addUsage(s, { date: iso(today()), count: 1 }) }), `${s.name}：已記錄一次使用`);
+  if (act === "cost") openCost(s);
+  if (act === "edit") openForm(s);
+  if (act === "keep") write(() => subRef(s.id).update({ keep: true }), `${s.name} 已鎖定，不會被建議取消`);
+  if (act === "reactivate") write(() => subRef(s.id).update({ status: "active", cancelled_date: null, cancel_reason: null }), `${s.name} 已恢復為使用中`);
+  if (act === "cancel") {
+    if (btn.dataset.confirm !== "1") { btn.dataset.confirm = "1"; btn.textContent = "確定取消？"; setTimeout(() => { btn.dataset.confirm = ""; btn.textContent = btn.closest(".sugg") ? "標記取消" : "取消"; }, 3000); return; }
+    const f = evaluate().find((x) => x.s.id === s.id);
+    if (await cancelSub(s, f ? f.why.join("；") : "手動取消")) {
+      showBanner(`已標記取消 ${esc(s.name)}。${s.manage_url ? `請到 <a href="${esc(s.manage_url)}" target="_blank" rel="noopener">${esc(s.name)} 的帳單頁</a> 按下取消按鈕，才會真正停止扣款。` : "請到該服務網站完成取消。"}`);
+    }
+  }
+  if (act === "dlzip") downloadZip(backups.find((b) => b.id === btn.dataset.id));
+  if (act === "dlfile") { const b = backups.find((x) => x.id === btn.dataset.id), f = b.files[+btn.dataset.i]; save(f.path.split("/").pop(), f.content); }
+  if (act === "delbackup") {
+    if (btn.dataset.confirm !== "1") { btn.dataset.confirm = "1"; btn.textContent = "確定刪除？"; return; }
+    write(() => db.collection("backups").doc(btn.dataset.id).delete(), "已刪除備份");
+  }
+});
+$("#show-all").addEventListener("change", render);
+
+function showBanner(htmlMsg, bad) {
+  const b = $("#banner"); b.className = "notice" + (bad ? " bad" : ""); b.innerHTML = htmlMsg + ' <button style="margin-left:8px;padding:1px 8px" id="banner-x">知道了</button>'; b.hidden = false;
+  $("#banner-x").onclick = () => (b.hidden = true);
+}
+
+// 新增 / 編輯表單
+const dlg = $("#dlg"); let editing = null;
+for (const [k, [n]] of Object.entries(PRESETS)) $("#f-preset").insertAdjacentHTML("beforeend", `<option value="${k}">${esc(n)}</option>`);
+$("#f-preset").addEventListener("change", (e) => {
+  const p = PRESETS[e.target.value]; if (!p) return;
+  $("#f-name").value = p[0]; $("#f-vendor").value = p[1]; $("#f-url").value = p[2];
+  if (e.target.value.endsWith("-api")) $("#f-cycle").value = "usage";
+});
+const FIELDS = { name: "#f-name", vendor: "#f-vendor", plan: "#f-plan", cycle: "#f-cycle", currency: "#f-currency", start_date: "#f-start", cancel_on: "#f-cancelon", account: "#f-account", payment: "#f-payment", manage_url: "#f-url", notes: "#f-notes" };
+function openForm(s) {
+  editing = s || null;
+  $("#f-title").textContent = s ? `編輯 ${s.name}` : "新增訂閱";
+  $("#f-preset").value = ""; $("#f-preset").closest("label").hidden = !!s;
+  for (const [k, sel] of Object.entries(FIELDS)) $(sel).value = s ? (s[k] ?? "") : "";
+  $("#f-cycle").value = s?.cycle || "monthly"; $("#f-currency").value = s?.currency || "USD";
+  $("#f-start").value = s?.start_date || iso(today());
+  $("#f-price").value = s?.price ?? 0; $("#f-keep").checked = !!s?.keep;
+  $("#f-delete").hidden = !s; $("#f-delete").textContent = "刪除紀錄"; $("#f-delete").dataset.confirm = "";
+  dlg.showModal();
+}
+$("#btn-add").addEventListener("click", () => openForm());
+$("#f-delete").addEventListener("click", async (e) => {
+  const b = e.currentTarget;
+  if (b.dataset.confirm !== "1") { b.dataset.confirm = "1"; b.textContent = "確定刪除？（不會取消實際訂閱）"; return; }
+  if (await write(() => subRef(editing.id).delete(), `已刪除 ${editing.name} 的紀錄`)) dlg.close();
+});
+dlg.addEventListener("close", async () => {
+  if (dlg.returnValue !== "ok") return;
+  const data = {};
+  for (const [k, sel] of Object.entries(FIELDS)) data[k] = $(sel).value.trim();
+  data.currency = (data.currency || "USD").toUpperCase();
+  data.price = +$("#f-price").value || 0; data.keep = $("#f-keep").checked;
+  if (!data.cancel_on) data.cancel_on = null;
+  if (editing) await write(() => subRef(editing.id).update(data), `已更新 ${data.name}`);
+  else {
+    const s = { id: slug(data.name), ...data, status: "active", usage: [] };
+    await write(() => saveSub(s), `已新增 ${data.name}`);
+  }
+});
+
+// 記花費
+const dlgCost = $("#dlg-cost"); let costFor = null;
+function openCost(s) { costFor = s; $("#c-amt").value = ""; $("#c-date").value = iso(today()); $("#c-note").value = ""; dlgCost.showModal(); }
+dlgCost.addEventListener("close", () => {
+  if (dlgCost.returnValue !== "ok" || !costFor) return;
+  const e = { date: $("#c-date").value || iso(today()), count: 1, cost: +$("#c-amt").value || 0 };
+  if ($("#c-note").value.trim()) e.note = $("#c-note").value.trim();
+  write(() => subRef(costFor.id).update({ usage: addUsage(costFor, e) }), `${costFor.name}：已記錄 ${e.cost} ${costFor.currency}`);
+});
+
+// 規則
+$("#btn-save-rules").addEventListener("click", () => {
+  const rules = { unused_days: +$("#r-unused").value || 0, min_uses_per_month: +$("#r-minuses").value || 0,
+    monthly_budget: +$("#r-budget").value || 0, renewal_warning_days: +$("#r-warn").value || 0, auto_apply: $("#r-auto").checked };
+  write(() => db.doc("config/settings").set({ ...cfg, rules }), "規則已儲存");
+});
+$("#btn-save-rates").addEventListener("click", () => {
+  const rates = {};
+  for (const line of $("#d-rates").value.split(/\n|,/)) { const [k, v] = line.split("="); if (k && v && isFinite(+v)) rates[k.trim().toUpperCase()] = +v; }
+  const base = ($("#d-base").value.trim() || "TWD").toUpperCase();
+  if (!rates[base]) rates[base] = 1;
+  write(() => db.doc("config/settings").set({ ...cfg, base_currency: base, rates }), "匯率已儲存");
+});
+
+async function autoApply() {
+  if (autoRan || !cfg.rules.auto_apply || !loaded.subs || !loaded.cfg || !db) return;
+  autoRan = true;
+  const due = evaluate().filter((f) => f.due);
+  if (!due.length) return;
+  for (const f of due) await cancelSub(f.s, "自動取消：" + f.why.join("；"));
+  showBanner(`依規則自動標記取消 ${due.length} 項。請到各服務的帳單頁完成取消：${due.map((f) => f.s.manage_url
+    ? `<a href="${esc(f.s.manage_url)}" target="_blank" rel="noopener">${esc(f.s.name)}</a>` : esc(f.s.name)).join("、")}`);
+}
+
+// ---------- 下載 / 匯出匯入 ----------
+async function save(filename, data) {
+  const dl = window.claude?.use ? await claude.use("downloads") : null;
+  if (!dl) { toast("這個檢視環境無法下載檔案"); return; }
+  try { await dl.save({ filename, data }); }
+  catch (e) { if (e?.code !== "declined") toast(e?.code === "rejected_extension" ? `不允許下載 ${filename.split(".").pop()} 檔` : "下載失敗：" + (e?.message || e)); }
+}
+function exportData() {
+  return { version: 1, base_currency: cfg.base_currency, rates: cfg.rates,
+    rules: (({ auto_apply, ...r }) => r)(cfg.rules), subscriptions: subs.map((s) => ({ ...s })), log: [] };
+}
+$("#btn-export").addEventListener("click", () => save(`ai-console-${iso(today())}.json`, JSON.stringify(exportData(), null, 2)));
+$("#d-import").addEventListener("change", async (e) => {
+  const file = e.target.files[0]; e.target.value = ""; if (!file) return;
+  let data; try { data = JSON.parse(await file.text()); } catch { toast("這不是有效的 JSON 檔"); return; }
+  if (!Array.isArray(data.subscriptions)) { toast("格式不符：缺少 subscriptions"); return; }
+  const box = $("#import-confirm");
+  box.innerHTML = `「${esc(file.name)}」有 ${data.subscriptions.length} 筆訂閱。匯入會<b>取代</b>目前的 ${subs.length} 筆。
+    <div class="row" style="margin-top:8px"><button class="primary" id="imp-ok">取代並匯入</button><button id="imp-no">不要</button></div>`;
+  box.hidden = false;
+  $("#imp-no").onclick = () => (box.hidden = true);
+  $("#imp-ok").onclick = async () => {
+    box.hidden = true;
+    await write(async () => {
+      for (const s of subs) await subRef(s.id).delete();
+      const ids = new Set();
+      for (const raw of data.subscriptions) {
+        let id = String(raw.id || raw.name || "sub").toLowerCase().replace(/[^a-z0-9一-鿿-]+/g, "-").slice(0, 80) || "sub";
+        while (ids.has(id)) id += "-2"; ids.add(id);
+        const { id: _, ...rest } = raw;
+        await subRef(id).set({ ...rest, usage: (raw.usage || []).slice(-400), status: raw.status || "active" });
+      }
+      await db.doc("config/settings").set({
+        base_currency: data.base_currency || cfg.base_currency, rates: data.rates || cfg.rates,
+        rules: { ...cfg.rules, ...(data.rules || {}) } });
+    }, `已匯入 ${data.subscriptions.length} 筆訂閱`);
+  };
+});
+
+// ---------- 環境備份 ----------
+const REDACT = [
+  /\b(sk-ant-[A-Za-z0-9_-]{8,}|sk-(?:proj-)?[A-Za-z0-9_-]{16,}|ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|AIza[0-9A-Za-z_-]{20,}|xox[abp]-[A-Za-z0-9-]{10,})/g,
+  /("(?:[A-Za-z_]*(?:api[_-]?key|token|secret|password|authorization)[A-Za-z_]*)"\s*:\s*")([^"]{6,})(")/gi,
+  /^(\s*[A-Za-z_]*(?:API_KEY|TOKEN|SECRET|PASSWORD)[A-Za-z_]*\s*=\s*["']?)([^"'\s]{6,})/gim,
+];
+function redact(text) {
+  let n = 0;
+  text = text.replace(REDACT[0], () => (n++, "***REDACTED***"));
+  text = text.replace(REDACT[1], (m, a, v, c) => v === "***REDACTED***" ? m : (n++, a + "***REDACTED***" + c));
+  text = text.replace(REDACT[2], (m, a, v) => v === "***REDACTED***" ? m : (n++, a + "***REDACTED***"));
+  return [text, n];
+}
+const isText = (bytes) => !bytes.slice(0, 2000).some((b) => b === 0);
+
+$("#btn-backup").addEventListener("click", async () => {
+  const input = $("#b-files"), msg = $("#b-msg");
+  if (!input.files.length) { msg.textContent = "請先選擇檔案"; return; }
+  const files = [], skipped = [];
+  let redacted = 0, size = 0;
+  const doRedact = $("#b-redact").checked;
+  const addFile = (tool, path, bytes) => {
+    if (SECRET_FILE.test(path)) return skipped.push(path + "（憑證檔）");
+    if (bytes.length > 65536) return skipped.push(path + "（超過 64 KB）");
+    if (!isText(bytes)) return skipped.push(path + "（非文字檔）");
+    let text = new TextDecoder().decode(bytes), n = 0;
+    if (doRedact) [text, n] = redact(text);
+    if (size + text.length > 200000) return skipped.push(path + "（超過備份容量）");
+    redacted += n; size += text.length;
+    files.push({ tool, path, content: text });
+  };
+  msg.textContent = "處理中…";
+  for (const file of input.files) {
+    const bytes = new Uint8Array(await file.arrayBuffer());
+    if (/\.zip$/i.test(file.name)) {
+      if (!window.JSZip) { skipped.push(file.name + "（無法解壓縮）"); continue; }
+      const zip = await JSZip.loadAsync(bytes);
+      let manifest = null;
+      try { manifest = JSON.parse(await zip.file("manifest.json").async("string")); } catch {}
+      const entries = manifest ? manifest.files : Object.keys(zip.files).filter((n) => !zip.files[n].dir).map((n) => ({ tool: n.split("/")[0], path: n.split("/").slice(1).join("/") || n, arc: n }));
+      for (const f of entries) { const zf = zip.file(f.arc); if (zf) addFile(f.tool, f.path, await zf.async("uint8array")); }
+    } else addFile($("#b-tool").value, file.name, bytes);
+  }
+  if (!files.length) { msg.textContent = "沒有可備份的檔案。" + (skipped.length ? "略過：" + skipped.join("、") : ""); return; }
+  const id = "b" + Date.now();
+  const name = $("#b-name").value.trim() || `備份 ${iso(today())}`;
+  const ok = await write(() => db.collection("backups").doc(id).set({ name, created: new Date().toISOString(), files, redacted }),
+    `已建立備份：${files.length} 個檔案`);
+  msg.textContent = ok ? `完成：${files.length} 個檔案${redacted ? `，遮蔽 ${redacted} 處金鑰` : ""}${skipped.length ? `；略過 ${skipped.length} 個：${skipped.slice(0, 5).join("、")}` : ""}` : "";
+  if (ok) { input.value = ""; $("#b-name").value = ""; }
+});
+
+async function downloadZip(b) {
+  if (!window.JSZip) { toast("無法載入壓縮元件，請改用單檔下載"); return; }
+  const zip = new JSZip();
+  const manifest = { created: b.created, platform: "web", include_secrets: false, files: [] };
+  for (const f of b.files) { const arc = `${f.tool}/${f.path}`; zip.file(arc, f.content); manifest.files.push({ tool: f.tool, path: f.path, arc }); }
+  zip.file("manifest.json", JSON.stringify(manifest, null, 2));
+  const blob = await zip.generateAsync({ type: "blob", compression: "DEFLATE" });
+  save(`ai-env-${(b.created || "").slice(0, 10).replace(/-/g, "")}.zip`, blob);
+}
+
+// ---------- 連線 ----------
+(async () => {
+  const timer = setTimeout(() => { if (!loaded.subs) { $("#sync").textContent = "連線逾時"; showBanner("讀取資料逾時。請確認已登入 claude.ai，稍後重新開啟此頁。", true); } }, 10000);
+  db = window.claude?.use ? await claude.use("db") : null;
+  if (!db) {
+    clearTimeout(timer);
+    $("#sync").textContent = "未連線";
+    showBanner("目前無法使用儲存空間，請登入 claude.ai 後開啟此頁。", true);
+    loaded.subs = true; render(); return;
+  }
+  const onErr = (e) => { $("#sync").textContent = "同步中斷"; toast("讀取失敗：" + (e?.message || e?.code)); };
+  db.collection("subs").onSnapshot((snap) => {
+    clearTimeout(timer);
+    subs = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    loaded.subs = true; $("#sync").textContent = "已同步"; render(); autoApply();
+  }, onErr);
+  db.doc("config/settings").onSnapshot((snap) => {
+    const d = snap.exists ? snap.data() : {};
+    cfg = { base_currency: d.base_currency || DEFAULT_CFG.base_currency, rates: { ...DEFAULT_CFG.rates, ...(d.rates || {}) }, rules: { ...DEFAULT_CFG.rules, ...(d.rules || {}) } };
+    loaded.cfg = true; render(); autoApply();
+  }, onErr);
+  db.collection("backups").onSnapshot((snap) => { backups = snap.docs.map((d) => ({ id: d.id, ...d.data() })); renderBackups(); }, onErr);
+})();
+render();
+</script>
