@@ -118,6 +118,51 @@ class AIConsoleTest(unittest.TestCase):
         run("export", str(exp))
         self.assertEqual(len(json.loads(exp.read_text(encoding="utf-8"))["subscriptions"]), 1)
 
+    def test_scan_local_logs(self):
+        proj = self.home / ".claude" / "projects" / "p1"
+        proj.mkdir(parents=True)
+        lines = [
+            {"type": "user", "timestamp": "2026-11-04T01:00:00Z", "message": {"role": "user", "content": "hi"}},
+            {"type": "user", "timestamp": "2026-11-04T01:00:05Z", "message": {"role": "user", "content": [{"type": "tool_result"}]}},
+            {"type": "assistant", "timestamp": "2026-11-04T01:00:03Z", "message": {"id": "m1", "usage": {"input_tokens": 10, "output_tokens": 5, "cache_read_input_tokens": 999}}},
+            {"type": "assistant", "timestamp": "2026-11-04T01:00:04Z", "message": {"id": "m1", "usage": {"input_tokens": 10, "output_tokens": 5}}},
+            {"type": "user", "timestamp": "2026-10-01T01:00:00Z", "message": {"role": "user", "content": "old"}},
+        ]
+        (proj / "s.jsonl").write_text("\n".join(json.dumps(l) for l in lines) + "\nnot json\n")
+        cdx = self.home / ".codex" / "sessions" / "2026" / "11" / "05"
+        cdx.mkdir(parents=True)
+        (cdx / "rollout-1.jsonl").write_text("\n".join(json.dumps(l) for l in [
+            {"timestamp": "2026-11-05T02:00:00Z", "type": "session_meta"},
+            {"timestamp": "2026-11-05T02:01:00Z", "payload": {"type": "token_count", "info": {"total_token_usage": {"total_tokens": 100}}}},
+            {"timestamp": "2026-11-05T02:02:00Z", "payload": {"type": "token_count", "info": {"total_token_usage": {"total_tokens": 250}}}},
+        ]))
+        gem = self.home / ".gemini" / "tmp" / "abc"
+        gem.mkdir(parents=True)
+        (gem / "logs.json").write_text(json.dumps([
+            {"type": "user", "timestamp": "2026-11-05T03:00:00Z"}, {"type": "user", "timestamp": "2026-11-05T04:00:00Z"},
+            {"type": "model", "timestamp": "2026-11-05T04:00:01Z"}]))
+        with mock.patch.dict(os.environ, {"TZ": "UTC"}):
+            import time; time.tzset()
+            rows = ac.scan_local(14, {"claude-code": "claude", "codex": "chatgpt", "gemini-cli": "gemini"})
+        got = {(r["sub_id"], r["date"]): (r["count"], r["tokens"]) for r in rows}
+        self.assertEqual(got[("claude", "2026-11-04")], (1, 15))   # 工具結果不算、同一則回覆只算一次、cache 讀取不算
+        self.assertEqual(got[("chatgpt", "2026-11-05")], (1, 250))
+        self.assertEqual(got[("gemini", "2026-11-05")], (2, 0))
+        self.assertNotIn(("claude", "2026-10-01"), got)
+        # 對應到同一個訂閱的工具要合併
+        rows = ac.scan_local(14, {"codex": "x", "gemini-cli": "x"})
+        self.assertEqual([(r["count"], r["note"]) for r in rows], [(3, "codex+gemini-cli")])
+
+    def test_agent_setup_perms_and_env_override(self):
+        run("agent-setup", "--url", "https://ai.example.com/", "--client-id", "id", "--client-secret", "sec", "--map", "gemini-cli=")
+        f = self.home / ".ai-console" / "agent.json"
+        self.assertEqual(oct(f.stat().st_mode & 0o777), "0o600")
+        cfg = ac.load_agent()
+        self.assertEqual(cfg["url"], "https://ai.example.com")
+        self.assertNotIn("gemini-cli", cfg["map"])
+        with mock.patch.dict(os.environ, {"AI_CONSOLE_CF_CLIENT_SECRET": "fromenv"}):
+            self.assertEqual(ac.load_agent()["client_secret"], "fromenv")
+
 
 if __name__ == "__main__":
     unittest.main()

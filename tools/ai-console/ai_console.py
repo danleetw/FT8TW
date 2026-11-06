@@ -28,7 +28,7 @@ import webbrowser
 import zipfile
 from pathlib import Path
 
-VERSION = "1.0.0"
+VERSION = "1.1.0"
 
 # ---------------------------------------------------------------------------
 # 路徑與資料存取
@@ -573,6 +573,7 @@ def cmd_backup(a):
             o.unlink()
         if old:
             print(f"已清除 {len(old)} 個舊備份（保留最新 {a.keep_last} 個）")
+    return zpath
 
 
 def cmd_backups(a):
@@ -692,6 +693,275 @@ def cmd_import(a):
     print(f"已匯入 {len(new['subscriptions'])} 筆訂閱（原資料備份為 data.json.bak）")
 
 
+# --- Mac mini 代理程式：讀本機使用紀錄、上傳到 Cloudflare ------------------------
+
+AGENT_VERSION = "1.1.0"
+DEFAULT_MAP = {"claude-code": "claude", "codex": "chatgpt", "gemini-cli": "gemini"}
+
+
+def agent_file() -> Path:
+    return console_home() / "agent.json"
+
+
+def load_agent() -> dict:
+    cfg = {"url": "", "client_id": "", "client_secret": "", "map": dict(DEFAULT_MAP)}
+    f = agent_file()
+    if f.exists():
+        cfg.update(json.loads(f.read_text(encoding="utf-8")))
+    # 環境變數優先（方便放在 launchd 或密碼管理工具）
+    cfg["url"] = os.environ.get("AI_CONSOLE_URL", cfg["url"]).rstrip("/")
+    cfg["client_id"] = os.environ.get("AI_CONSOLE_CF_CLIENT_ID", cfg["client_id"])
+    cfg["client_secret"] = os.environ.get("AI_CONSOLE_CF_CLIENT_SECRET", cfg["client_secret"])
+    return cfg
+
+
+def _local_date(ts: str) -> str | None:
+    """ISO 時間字串 → 本地日期 YYYY-MM-DD。"""
+    try:
+        t = dt.datetime.fromisoformat(str(ts).replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    if t.tzinfo:
+        t = t.astimezone()
+    return t.date().isoformat()
+
+
+def _recent_files(root: Path, pattern: str, since: dt.date):
+    if not root.exists():
+        return
+    cutoff = dt.datetime.combine(since, dt.time()).timestamp()
+    for f in root.glob(pattern):
+        try:
+            if f.is_file() and f.stat().st_mtime >= cutoff:
+                yield f
+        except OSError:
+            continue
+
+
+def _jsonl(f: Path):
+    try:
+        with f.open(encoding="utf-8", errors="replace") as fh:
+            for line in fh:
+                line = line.strip()
+                if line:
+                    try:
+                        yield json.loads(line)
+                    except json.JSONDecodeError:
+                        continue
+    except OSError:
+        return
+
+
+def scan_claude_code(since: dt.date) -> dict[str, dict]:
+    """~/.claude/projects/**/*.jsonl：每則你輸入的訊息算一次使用，token 取 input + output + cache 寫入。"""
+    out: dict[str, dict] = {}
+    seen_msgs = set()
+    for f in _recent_files(Path.home() / ".claude" / "projects", "**/*.jsonl", since):
+        for e in _jsonl(f):
+            d = _local_date(e.get("timestamp", ""))
+            if not d or d < since.isoformat():
+                continue
+            day = out.setdefault(d, {"count": 0, "tokens": 0})
+            msg = e.get("message") or {}
+            if e.get("type") == "user" and msg.get("role") == "user" and not e.get("isMeta"):
+                content = msg.get("content")
+                is_tool_result = isinstance(content, list) and any(
+                    isinstance(c, dict) and c.get("type") == "tool_result" for c in content)
+                if not is_tool_result:
+                    day["count"] += 1
+            elif e.get("type") == "assistant":
+                mid = msg.get("id")
+                if mid in seen_msgs:  # 同一則回覆會分成多行，只算一次
+                    continue
+                seen_msgs.add(mid)
+                u = msg.get("usage") or {}
+                day["tokens"] += int(u.get("input_tokens", 0) or 0) + int(u.get("output_tokens", 0) or 0) \
+                    + int(u.get("cache_creation_input_tokens", 0) or 0)
+    return out
+
+
+def scan_codex(since: dt.date) -> dict[str, dict]:
+    """~/.codex/sessions/YYYY/MM/DD/*.jsonl：每個 session 算一次使用，token 取該 session 最後的累計值。"""
+    out: dict[str, dict] = {}
+    for f in _recent_files(Path.home() / ".codex" / "sessions", "**/*.jsonl", since):
+        first_day, tokens = None, 0
+        for e in _jsonl(f):
+            d = _local_date(e.get("timestamp", ""))
+            if d and not first_day:
+                first_day = d
+            p = e.get("payload") or {}
+            if p.get("type") == "token_count":
+                total = ((p.get("info") or {}).get("total_token_usage") or {}).get("total_tokens")
+                if isinstance(total, (int, float)):
+                    tokens = int(total)
+        if first_day and first_day >= since.isoformat():
+            day = out.setdefault(first_day, {"count": 0, "tokens": 0})
+            day["count"] += 1
+            day["tokens"] += tokens
+    return out
+
+
+def scan_gemini_cli(since: dt.date) -> dict[str, dict]:
+    """~/.gemini/tmp/*/logs.json：每則你輸入的訊息算一次使用。"""
+    out: dict[str, dict] = {}
+    for f in _recent_files(Path.home() / ".gemini" / "tmp", "*/logs.json", since):
+        try:
+            items = json.loads(f.read_text(encoding="utf-8", errors="replace"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        for e in items if isinstance(items, list) else []:
+            if not isinstance(e, dict) or e.get("type") != "user":
+                continue
+            d = _local_date(e.get("timestamp", ""))
+            if d and d >= since.isoformat():
+                out.setdefault(d, {"count": 0, "tokens": 0})["count"] += 1
+    return out
+
+
+SCANNERS = {"claude-code": scan_claude_code, "codex": scan_codex, "gemini-cli": scan_gemini_cli}
+
+
+def scan_local(days_back: int, mapping: dict) -> list[dict]:
+    since = today() - dt.timedelta(days=days_back)
+    rows = []
+    for tool, fn in SCANNERS.items():
+        sub_id = mapping.get(tool)
+        if not sub_id:
+            continue
+        for d, v in sorted(fn(since).items()):
+            if v["count"] or v["tokens"]:
+                rows.append({"sub_id": sub_id, "date": d, "count": v["count"], "tokens": v["tokens"], "note": tool})
+    # 同一個訂閱可能對應多個工具（例如 codex 與 chatgpt 都算 ChatGPT），合併同一天
+    merged: dict[tuple, dict] = {}
+    for r in rows:
+        k = (r["sub_id"], r["date"])
+        if k in merged:
+            merged[k]["count"] += r["count"]
+            merged[k]["tokens"] += r["tokens"]
+            merged[k]["note"] += "+" + r["note"]
+        else:
+            merged[k] = dict(r)
+    return list(merged.values())
+
+
+def cmd_scan_local(a):
+    cfg = load_agent()
+    rows = scan_local(a.days, cfg["map"])
+    if not rows:
+        print(f"近 {a.days} 天沒有找到 Claude Code / Codex / Gemini CLI 的使用紀錄。")
+        return
+    print_table([("訂閱", "日期", "次數", "tokens", "來源")] +
+                [(r["sub_id"], r["date"], r["count"], f"{r['tokens']:,}", r["note"]) for r in rows])
+
+
+def _http(cfg: dict, method: str, path: str, body: bytes | None, ctype: str):
+    import urllib.request
+    import urllib.error
+    if not cfg["url"]:
+        sys.exit("尚未設定網址，請先執行 agent-setup")
+    req = urllib.request.Request(cfg["url"] + path, data=body, method=method, headers={
+        "content-type": ctype, "user-agent": f"ai-console-agent/{AGENT_VERSION}",
+        "CF-Access-Client-Id": cfg["client_id"], "CF-Access-Client-Secret": cfg["client_secret"]})
+    try:
+        with urllib.request.urlopen(req, timeout=120) as res:
+            return json.loads(res.read().decode("utf-8") or "{}")
+    except urllib.error.HTTPError as e:
+        detail = e.read().decode("utf-8", "replace")[:300]
+        hint = "（請確認 Access 服務權杖正確，且 Access 政策允許這個權杖）" if e.code in (302, 401, 403) else ""
+        sys.exit(f"上傳失敗：HTTP {e.code} {detail}{hint}")
+    except urllib.error.URLError as e:
+        sys.exit(f"無法連線到 {cfg['url']}：{e.reason}")
+
+
+def cmd_agent_setup(a):
+    cfg = load_agent()
+    if a.url:
+        cfg["url"] = a.url.rstrip("/")
+    if a.client_id:
+        cfg["client_id"] = a.client_id
+    if a.client_secret:
+        cfg["client_secret"] = a.client_secret
+    for spec in a.map or []:
+        tool, _, sub = spec.partition("=")
+        if tool not in SCANNERS:
+            sys.exit(f"未知工具：{tool}，可用：{', '.join(SCANNERS)}")
+        if sub:
+            cfg["map"][tool] = sub
+        else:
+            cfg["map"].pop(tool, None)
+    f = agent_file()
+    f.parent.mkdir(parents=True, exist_ok=True)
+    f.write_text(json.dumps({k: cfg[k] for k in ("url", "client_id", "client_secret", "map")}, indent=2), encoding="utf-8")
+    try:
+        os.chmod(f, 0o600)
+    except OSError:
+        pass
+    print(f"已儲存到 {f}（權限 600）")
+    print(f"  網址：{cfg['url'] or '（未設定）'}")
+    print(f"  Access 服務權杖：{'已設定' if cfg['client_id'] and cfg['client_secret'] else '未設定'}")
+    print("  工具 → 訂閱：" + ", ".join(f"{k}→{v}" for k, v in cfg["map"].items()))
+
+
+def cmd_push(a):
+    import platform
+    cfg = load_agent()
+    rows = scan_local(a.days, cfg["map"])
+    res = _http(cfg, "POST", "/api/ingest", json.dumps({
+        "source": "mac-mini", "host": platform.node(), "version": AGENT_VERSION, "usage": rows}).encode("utf-8"),
+        "application/json")
+    print(f"已上傳使用紀錄：{res.get('written', 0)} 筆")
+    if res.get("skipped"):
+        print(f"  這些訂閱在網頁上還沒建立，已略過：{', '.join(res['skipped'])}")
+        print("  請到網頁新增，或用 agent-setup --map 工具=訂閱id 修改對應")
+    if a.backup:
+        ns = argparse.Namespace(only=None, out=None, include_secrets=False, keep_last=a.keep_last)
+        zpath = cmd_backup(ns)
+        from urllib.parse import urlencode
+        q = urlencode({"source": "mac-mini", "name": f"{platform.node()} {today().isoformat()}", "keep_last": a.keep_last})
+        r = _http(cfg, "POST", f"/api/backups?{q}", zpath.read_bytes(), "application/zip")
+        print(f"已上傳備份：{r.get('name')}")
+
+
+LAUNCHD_LABEL = "com.bv6lc.ai-console"
+
+
+def cmd_agent_install(a):
+    if sys.platform != "darwin":
+        sys.exit("agent-install 只支援 macOS（launchd）。Linux 請改用 cron：見 README。")
+    script = Path(__file__).resolve()
+    log = console_home() / "agent.log"
+    plist = Path.home() / "Library" / "LaunchAgents" / f"{LAUNCHD_LABEL}.plist"
+    plist.parent.mkdir(parents=True, exist_ok=True)
+    console_home().mkdir(parents=True, exist_ok=True)
+    plist.write_text(f"""<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>{LAUNCHD_LABEL}</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>{html.escape(sys.executable)}</string>
+    <string>{html.escape(str(script))}</string>
+    <string>push</string>
+    <string>--backup</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <dict><key>Hour</key><integer>{a.hour}</integer><key>Minute</key><integer>{a.minute}</integer></dict>
+  <key>RunAtLoad</key><false/>
+  <key>StandardOutPath</key><string>{html.escape(str(log))}</string>
+  <key>StandardErrorPath</key><string>{html.escape(str(log))}</string>
+</dict>
+</plist>
+""", encoding="utf-8")
+    print(f"已寫入 {plist}")
+    print("啟用（每天執行一次；Mac 睡眠時錯過的會在喚醒後補跑）：")
+    print(f"  launchctl bootstrap gui/$(id -u) {plist}")
+    print("立即測試一次：")
+    print(f"  launchctl kickstart -k gui/$(id -u)/{LAUNCHD_LABEL} && tail -f {log}")
+    print("停用：")
+    print(f"  launchctl bootout gui/$(id -u)/{LAUNCHD_LABEL}")
+
+
 # ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
@@ -805,6 +1075,28 @@ def build_parser() -> argparse.ArgumentParser:
     x = sp.add_parser("import", help="匯入訂閱資料 JSON（覆蓋）")
     x.add_argument("file")
     x.set_defaults(func=cmd_import)
+
+    x = sp.add_parser("scan-local", help="讀取本機 Claude Code / Codex / Gemini CLI 使用紀錄")
+    x.add_argument("--days", type=int, default=14)
+    x.set_defaults(func=cmd_scan_local)
+
+    x = sp.add_parser("agent-setup", help="設定上傳到 Cloudflare 版的網址與 Access 服務權杖")
+    x.add_argument("--url", help="例如 https://ai.bv6lc.com")
+    x.add_argument("--client-id", help="Cloudflare Access 服務權杖的 Client ID")
+    x.add_argument("--client-secret", help="Cloudflare Access 服務權杖的 Client Secret")
+    x.add_argument("--map", action="append", help="工具=訂閱id，例如 codex=chatgpt；留空值取消對應，例如 gemini-cli=")
+    x.set_defaults(func=cmd_agent_setup)
+
+    x = sp.add_parser("push", help="上傳本機使用紀錄（與備份）到 Cloudflare 版")
+    x.add_argument("--days", type=int, default=14, help="上傳最近幾天（重複上傳會覆蓋，不會重複計算）")
+    x.add_argument("--backup", action="store_true", help="同時備份 AI 環境設定並上傳")
+    x.add_argument("--keep-last", type=int, default=14, help="雲端與本機各保留最新 N 份備份")
+    x.set_defaults(func=cmd_push)
+
+    x = sp.add_parser("agent-install", help="在 macOS 建立每天自動執行 push --backup 的 launchd 排程")
+    x.add_argument("--hour", type=int, default=8)
+    x.add_argument("--minute", type=int, default=43)
+    x.set_defaults(func=cmd_agent_install)
     return p
 
 

@@ -1,0 +1,18 @@
+{
+  "name": "ai-console-cloudflare",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --local --var ALLOW_INSECURE_DEV:1",
+    "deploy": "wrangler deploy",
+    "db:init": "wrangler d1 execute ai-console --remote --file=schema.sql",
+    "db:init:local": "wrangler d1 execute ai-console --local --file=schema.sql",
+    "test": "node --test test/*.test.js"
+  },
+  "dependencies": {
+    "postal-mime": "4.0.11"
+  },
+  "devDependencies": {
+    "wrangler": "4.151.2"
+  }
+}

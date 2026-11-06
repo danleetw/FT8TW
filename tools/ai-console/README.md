@@ -103,3 +103,16 @@ python -m unittest test_ai_console      # 測試
 - 資料存在該頁面的雲端資料庫，換電腦、用手機打開都看得到；只有你（與你給編輯權的人）能讀寫。
 - 匯出 / 匯入 JSON 與命令列版 `data.json` 格式相同。
 - 網頁無法讀取電腦裡的設定檔：環境備份請上傳 `ai_console.py backup` 產生的 zip 或直接選檔，下載的 zip 可用 `restore` 還原。上傳時會自動遮蔽 API 金鑰與 token。
+
+## Cloudflare 版（24 小時在線）
+
+`cloudflare/` 是部署到 `https://ai.bv6lc.com` 的版本：Cloudflare Access 登入、每天自動檢查規則並寄提醒、抓 Claude API / OpenAI API 費用、解析轉寄來的收據、備份存在 R2。部署步驟見 [cloudflare/README.md](cloudflare/README.md)。
+
+Mac mini 用下面這幾個指令把本機使用紀錄和備份上傳上去：
+
+```bash
+python ai_console.py agent-setup --url https://ai.bv6lc.com --client-id <ID> --client-secret <SECRET>
+python ai_console.py scan-local        # 讀 Claude Code / Codex / Gemini CLI 的本機使用紀錄
+python ai_console.py push --backup     # 上傳使用紀錄與環境設定備份
+python ai_console.py agent-install     # macOS：建立每天自動執行的 launchd 排程
+```

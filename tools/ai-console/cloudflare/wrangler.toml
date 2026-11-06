@@ -1,0 +1,48 @@
+name = "ai-console"
+main = "src/worker.js"
+compatibility_date = "2026-10-01"
+# 只透過自訂網域提供服務（前面有 Cloudflare Access），關閉 *.workers.dev 以免繞過登入
+workers_dev = false
+preview_urls = false
+
+routes = [
+  { pattern = "ai.bv6lc.com", custom_domain = true }
+]
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "ai-console"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+[[r2_buckets]]
+binding = "BACKUPS"
+bucket_name = "ai-console-backups"
+
+# 每天台北時間 09:07 檢查（UTC 01:07）
+[triggers]
+crons = ["7 1 * * *"]
+
+[vars]
+TIMEZONE = "Asia/Taipei"
+# Cloudflare Access：團隊網域與應用程式 AUD（在 Zero Trust → Access → Applications 取得）
+ACCESS_TEAM_DOMAIN = "https://REPLACE.cloudflareaccess.com"
+ACCESS_AUD = "REPLACE_WITH_ACCESS_APPLICATION_AUD"
+# 只接受這些寄件者（逗號分隔，比對信封寄件者的子字串）轉寄來的收據，防止偽造
+RECEIPT_ALLOWED_FROM = "danlee.tw"
+# 寄送提醒信的收件人（必須是 Email Routing 已驗證的目的地地址）；留空不寄
+NOTIFY_EMAIL_TO = ""
+NOTIFY_EMAIL_FROM = "ai-console@bv6lc.com"
+
+# 寄提醒信需要 Email Routing；未啟用前先註解掉
+# [[send_email]]
+# name = "MAILER"
+
+# 機密值用 `wrangler secret put` 設定，不要寫在這裡：
+#   ANTHROPIC_ADMIN_KEY   （選用）Claude API 組織的 Admin API key，抓每日費用
+#   OPENAI_ADMIN_KEY      （選用）OpenAI 組織的 Admin key，抓每日費用
+#   TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID （選用）Telegram 提醒

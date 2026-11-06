@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AI Console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+/* Layout: billing ledger. Summary strip on top, tabbed work area below, single column on phones. */
+:root {
+  --bg: #f4f6f7; --surface: #ffffff; --sunk: #eaeef0; --line: #d6dde1;
+  --fg: #172328; --mut: #5b6b72; --accent: #0f6e78; --accent-fg: #ffffff;
+  --ok: #2a7a46; --warn: #a35c00; --warn-bg: #fff3df; --bad: #b3261e; --bad-bg: #fde8e6;
+  --font-body: "IBM Plex Sans", "Noto Sans TC", system-ui, sans-serif;
+  --font-num: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --r: 8px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #11181b; --surface: #182226; --sunk: #0d1316; --line: #2a373d;
+  --fg: #e3eaed; --mut: #93a3aa; --accent: #4fb8c2; --accent-fg: #0b1a1d;
+  --ok: #6cc58b; --warn: #f0b45c; --warn-bg: #33270f; --bad: #ff8a80; --bad-bg: #3a1a18; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #11181b; --surface: #182226; --sunk: #0d1316; --line: #2a373d;
+  --fg: #e3eaed; --mut: #93a3aa; --accent: #4fb8c2; --accent-fg: #0b1a1d;
+  --ok: #6cc58b; --warn: #f0b45c; --warn-bg: #33270f; --bad: #ff8a80; --bad-bg: #3a1a18; color-scheme: dark }
+
+* { box-sizing: border-box }
+[hidden] { display: none !important }
+.wrap > *, section > * { min-width: 0 }
+html, body { margin: 0 }
+body { background: var(--bg); color: var(--fg); font: 15px/1.55 var(--font-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 1080px; margin: 0 auto; padding-block: 24px 48px; display: grid; gap: 20px }
+h1 { font-size: 22px; margin: 0; letter-spacing: .01em }
+h2 { font-size: 17px; margin: 0; text-wrap: balance }
+.mut { color: var(--mut) } small { color: var(--mut) }
+.num { font-family: var(--font-num); font-variant-numeric: tabular-nums }
+a { color: var(--accent) }
+header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px }
+
+.strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--line);
+  border: 1px solid var(--line); border-radius: var(--r); overflow: hidden }
+.stat { background: var(--surface); padding: 12px 14px; display: grid; gap: 2px; min-width: 0 }
+.stat .k { font-size: 12px; color: var(--mut); letter-spacing: .04em }
+.stat .v { font-family: var(--font-num); font-size: 22px; font-weight: 500 }
+.bar { height: 5px; background: var(--sunk); border-radius: 3px; overflow: hidden; margin-top: 4px }
+.bar i { display: block; height: 100% ; background: var(--accent) }
+.bar i.over { background: var(--bad) }
+
+nav { display: flex; gap: 4px; flex-wrap: wrap; border-bottom: 1px solid var(--line) }
+nav button { background: none; border: 0; border-bottom: 2px solid transparent; padding: 8px 12px; font: inherit; color: var(--mut); cursor: pointer }
+nav button[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--accent); font-weight: 600 }
+nav .badge { display: inline-block; min-width: 18px; padding: 0 5px; margin-left: 4px; border-radius: 9px; background: var(--warn-bg); color: var(--warn); font-size: 12px; text-align: center }
+
+section { display: grid; gap: 14px }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center }
+.row.between { justify-content: space-between }
+
+button, .btn { font: inherit; font-size: 14px; border-radius: 6px; padding: 6px 12px; cursor: pointer; border: 1px solid var(--line);
+  background: var(--surface); color: var(--fg); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; line-height: 1.3 }
+button:hover, .btn:hover { border-color: var(--accent) }
+button.primary { background: var(--accent); color: var(--accent-fg); border-color: var(--accent) }
+button.danger { color: var(--bad) }
+button:disabled { opacity: .5; cursor: default }
+button:focus-visible, .btn:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, nav button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+
+.tablewrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r) }
+table { border-collapse: collapse; width: 100%; min-width: 820px }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top }
+tr:last-child td { border-bottom: 0 }
+th { font-size: 12px; color: var(--mut); font-weight: 500; letter-spacing: .04em; background: var(--sunk) }
+td.r, th.r { text-align: right }
+tr.off td { color: var(--mut) }
+.pill { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 10px; border: 1px solid currentColor; white-space: nowrap }
+.pill.ok { color: var(--ok) } .pill.warn { color: var(--warn); background: var(--warn-bg); border-color: transparent }
+.pill.off { color: var(--mut) } .pill.lock { color: var(--accent) }
+.acts { display: flex; gap: 4px; flex-wrap: wrap }
+.acts button, .acts .btn { padding: 3px 8px; font-size: 13px }
+
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; display: grid; gap: 12px; min-width: 0; align-content: start }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px }
+label { display: grid; gap: 4px; font-size: 13px; color: var(--mut) }
+label.check { display: flex; align-items: center; gap: 8px; color: var(--fg); font-size: 14px }
+input, select, textarea { font: inherit; font-size: 14px; color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 7px 9px; width: 100%; min-width: 0 }
+input[type=checkbox] { width: auto }
+textarea { font-family: var(--font-num); font-size: 12px; min-height: 120px }
+
+.sugg { display: grid; gap: 10px }
+.sugg .item { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--warn); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 6px }
+.sugg .item.due { border-left-color: var(--bad) }
+.sugg ul { margin: 0; padding-left: 18px }
+
+.notice { padding: 10px 14px; border-radius: var(--r); background: var(--warn-bg); color: var(--fg); border: 1px solid var(--line) }
+.notice.bad { background: var(--bad-bg) }
+.empty { text-align: center; padding: 32px 16px; color: var(--mut); background: var(--surface); border: 1px dashed var(--line); border-radius: var(--r) }
+
+dialog { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--fg); padding: 0; width: min(640px, calc(100vw - 32px)); max-height: calc(100vh - 32px) }
+dialog::backdrop { background: rgb(0 0 0 / .4) }
+dialog form { padding: 18px; display: grid; gap: 14px }
+
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); background: var(--fg); color: var(--bg);
+  padding: 8px 16px; border-radius: 8px; font-size: 14px; z-index: 20; max-width: calc(100vw - 32px) }
+.files li { font-family: var(--font-num); font-size: 12px; overflow-wrap: anywhere }
+@media (prefers-reduced-motion: no-preference) { .toast { transition: opacity .2s } }
+.tag { font-size: 12px; color: var(--mut); background: var(--sunk); border-radius: 4px; padding: 1px 6px }
+.log { font-family: var(--font-num); font-size: 12px; display: grid; gap: 4px; max-height: 320px; overflow: auto }
+.log div { display: grid; grid-template-columns: 130px 1fr; gap: 8px }
+code { font-family: var(--font-num); font-size: 13px; background: var(--sunk); padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div><h1>AI Console</h1><div class="mut">AI 訂閱、使用狀況、費用與環境設定備份</div></div>
+    <div class="mut" id="sync">連線中…</div>
+  </header>
+
+  <div id="banner" hidden></div>
+
+  <div class="strip" aria-label="摘要">
+    <div class="stat"><span class="k">使用中訂閱</span><span class="v" id="s-count">—</span></div>
+    <div class="stat"><span class="k">每月合計</span><span class="v" id="s-month">—</span></div>
+    <div class="stat"><span class="k">每年約</span><span class="v" id="s-year">—</span></div>
+    <div class="stat"><span class="k">每月預算</span><span class="v" id="s-budget">—</span><div class="bar" id="s-bar" hidden><i></i></div></div>
+    <div class="stat"><span class="k">建議取消</span><span class="v" id="s-flag">—</span></div>
+  </div>
+
+  <nav role="tablist">
+    <button role="tab" data-tab="subs" aria-selected="true">訂閱</button>
+    <button role="tab" data-tab="rules" aria-selected="false">自動取消<span class="badge" id="tab-badge" hidden></span></button>
+    <button role="tab" data-tab="backup" aria-selected="false">環境備份</button>
+    <button role="tab" data-tab="data" aria-selected="false">同步與紀錄</button>
+  </nav>
+
+  <!-- 訂閱 -->
+  <section id="tab-subs">
+    <div class="row between">
+      <label class="check"><input type="checkbox" id="show-all"> 顯示已取消</label>
+      <button class="primary" id="btn-add">＋ 新增訂閱</button>
+    </div>
+    <div id="subs-list"><div class="empty">正在讀取你的訂閱…</div></div>
+    <p class="mut" style="margin:0">「＋1」記錄一次使用。Mac mini 會每天自動上傳 Claude Code、Codex、Gemini CLI 的使用紀錄；有設定 Admin key 的 API 會自動抓每日費用。</p>
+  </section>
+
+  <!-- 自動取消 -->
+  <section id="tab-rules" hidden>
+    <div class="panel">
+      <h2>規則</h2>
+      <div class="grid2">
+        <label>超過幾天沒使用就建議取消（0 = 停用）<input type="number" min="0" id="r-unused"></label>
+        <label>近 30 天至少使用幾次（0 = 停用）<input type="number" min="0" id="r-minuses"></label>
+        <label>每月預算，基準幣別（0 = 不限）<input type="number" min="0" id="r-budget"></label>
+        <label>續約前幾天內才執行取消<input type="number" min="0" id="r-warn"></label>
+      </div>
+      <label class="check"><input type="checkbox" id="r-auto"> 每天的排程檢查時，自動把「現在可取消」的項目標記為已取消並通知我</label>
+      <div class="row"><button class="primary" id="btn-save-rules">儲存規則</button><span class="mut" id="rules-msg"></span></div>
+      <small>每天台北時間 09:07 自動檢查一次。各家 AI 都沒有開放取消訂閱的 API，標記取消後請點「前往取消頁」按下該服務的取消按鈕。鎖定的項目永遠不會被建議取消。</small>
+    </div>
+    <h2>建議取消</h2>
+    <div class="sugg" id="sugg"></div>
+  </section>
+
+  <!-- 環境備份 -->
+  <section id="tab-backup" hidden>
+    <div class="panel">
+      <h2>上傳備份</h2>
+      <p class="mut" style="margin:0">Mac mini 每天會自動上傳一份。這裡也可以手動上傳 <code>ai_console.py backup</code> 產生的 zip。備份存在 Cloudflare R2。</p>
+      <div class="grid2">
+        <label>備份名稱<input id="b-name" placeholder="例如：MacBook 2026-11"></label>
+        <label>zip 檔<input type="file" id="b-file" accept=".zip,application/zip"></label>
+      </div>
+      <div class="row"><button class="primary" id="btn-backup">上傳</button><span class="mut" id="b-msg"></span></div>
+      <small>還原到電腦：下載 zip 後執行 <code>python3 ai_console.py restore &lt;檔案&gt; --yes</code>。</small>
+    </div>
+    <h2>已存的備份</h2>
+    <div id="b-list"></div>
+  </section>
+
+  <!-- 同步與紀錄 -->
+  <section id="tab-data" hidden>
+    <div class="grid2">
+      <div class="panel">
+        <h2>自動同步狀態</h2>
+        <div id="sync-status" class="mut">讀取中…</div>
+        <div class="row"><button id="btn-sync">立即抓 API 費用</button><button id="btn-daily">立即執行每日檢查</button></div>
+      </div>
+      <div class="panel">
+        <h2>幣別與匯率</h2>
+        <label>基準幣別<input id="d-base"></label>
+        <label>匯率（換算成基準幣別，一行一個，例如 USD=32）<textarea id="d-rates" style="min-height:90px"></textarea></label>
+        <div class="row"><button class="primary" id="btn-save-rates">儲存</button></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h2>收據</h2>
+      <p class="mut" style="margin:0">在 Gmail 設定篩選器，把 AI 廠商的收據轉寄到 <code>receipts@bv6lc.com</code>，這裡會自動記下扣款金額並更新訂閱。</p>
+      <div id="receipts"></div>
+    </div>
+    <div class="panel">
+      <h2>匯出 / 匯入</h2>
+      <p class="mut" style="margin:0">格式與命令列版的 <code>data.json</code> 相同。</p>
+      <div class="row">
+        <a class="btn" href="/api/export" download="ai-console.json">匯出 JSON</a>
+        <label class="btn" for="d-import">匯入 JSON…</label>
+        <input type="file" id="d-import" accept=".json,application/json" hidden>
+      </div>
+      <div id="import-confirm" hidden class="notice"></div>
+    </div>
+    <div class="panel">
+      <h2>活動紀錄</h2>
+      <div class="log" id="events"></div>
+    </div>
+  </section>
+</div>
+
+<dialog id="dlg">
+  <form id="f-sub" method="dialog">
+    <h2 id="f-title">新增訂閱</h2>
+    <label id="f-preset-wrap">常用服務（自動填入名稱與取消頁）
+      <select id="f-preset"><option value="">— 自訂 —</option></select></label>
+    <div class="grid2">
+      <label>名稱<input id="f-name" required></label>
+      <label>廠商<input id="f-vendor"></label>
+      <label>方案<input id="f-plan" placeholder="Pro / Max / Plus"></label>
+      <label>計費週期
+        <select id="f-cycle"><option value="monthly">每月</option><option value="quarterly">每季</option><option value="yearly">每年</option><option value="usage">用量計費</option></select></label>
+      <label>價格<input id="f-price" type="number" step="0.01" min="0" value="0"></label>
+      <label>幣別<input id="f-currency" value="USD"></label>
+      <label>開始 / 計費日<input id="f-start" type="date"></label>
+      <label>預定取消日（試用期用）<input id="f-cancelon" type="date"></label>
+      <label>帳號<input id="f-account"></label>
+      <label>付款方式<input id="f-payment" placeholder="信用卡末四碼"></label>
+    </div>
+    <label>管理 / 取消訂閱網址<input id="f-url" type="url"></label>
+    <label>備註<input id="f-notes"></label>
+    <label class="check"><input type="checkbox" id="f-keep"> 鎖定，不讓自動規則取消</label>
+    <div class="row between">
+      <button type="button" class="danger" id="f-delete" hidden>刪除紀錄</button>
+      <div class="row" style="margin-left:auto"><button value="cancel" formnovalidate>取消</button><button class="primary" value="ok">儲存</button></div>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="dlg-cost">
+  <form id="f-cost" method="dialog">
+    <h2>記錄花費</h2>
+    <div class="grid2">
+      <label>金額<input id="c-amt" type="number" step="0.01" min="0" required></label>
+      <label>日期<input id="c-date" type="date"></label>
+    </div>
+    <label>備註<input id="c-note"></label>
+    <div class="row" style="justify-content:flex-end"><button value="cancel" formnovalidate>取消</button><button class="primary" value="ok">記錄</button></div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" hidden></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
